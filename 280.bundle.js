@@ -41,7 +41,7 @@
             default: () => Ae
         });
         var i = e(1635)
-          , s = e(4922)
+          , THREE = e(4922)
           , o = e(1728)
           , a = e(7888)
           , l = e(4078)
@@ -1079,7 +1079,7 @@
                   , e = n - n * t / 2
                   , o = Math.min(e, 1 - e)
                   , a = 0 != o ? (n - e) / o : 0;
-                return new s.Q1f("hsl(" + (0,
+                return new THREE.Color("hsl(" + (0,
                 i.gn)(this, Dt, "f").toString() + "," + (100 * a).toString() + "%," + (100 * e).toString() + "%)")
             }
             set color(t) {
@@ -1087,7 +1087,7 @@
                     h: 0,
                     s: 0,
                     l: 0
-                }, s.er$)
+                }, THREE.SRGBColorSpace)
                   , a = o + e * Math.min(o, 1 - o)
                   , l = 0 == a ? 0 : 2 * (1 - o / a);
                 (0,
@@ -1269,8 +1269,8 @@
                     r.className = "loading",
                     kt.F(c, (0,
                     i.gn)(this, hn, "f"), {
-                        position: new s.Pq0(1e3,.19190498995780947,1.3478),
-                        look: new s.Pq0(0,.19190498995780947,1.3478),
+                        position: new THREE.Vector3(1e3,.19190498995780947,1.3478),
+                        look: new THREE.Vector3(0,.19190498995780947,1.3478),
                         zoom: 2.5
                     }).then((t => {
                         r.src = t,
@@ -1336,8 +1336,8 @@
                     r.className = "loading",
                     kt.F(c, (0,
                     i.gn)(this, hn, "f"), {
-                        position: new s.Pq0(1100,-800.5,-1001.7),
-                        look: new s.Pq0(0,.5,-1.7),
+                        position: new THREE.Vector3(1100,-800.5,-1001.7),
+                        look: new THREE.Vector3(0,.5,-1.7),
                         zoom: 2
                     }).then((t => {
                         r.src = t,
@@ -1392,16 +1392,16 @@
                         i.gn)(this, an, "f").classList.add("hidden"),
                         e.classList.add("selected"),
                         n.panel.classList.remove("hidden"),
-                        p != n && (n.panel == h ? c(new s.Pq0(0,2,6)) : n.panel == (0,
+                        p != n && (n.panel == h ? c(new THREE.Vector3(0,2,6)) : n.panel == (0,
                         i.gn)(this, nn, "f") ? ((0,
                         i.gn)(this, Yt, "m", un).call(this),
-                        c(new s.Pq0(0,2,6))) : n.panel == (0,
+                        c(new THREE.Vector3(0,2,6))) : n.panel == (0,
                         i.gn)(this, sn, "f") ? ((0,
                         i.gn)(this, Yt, "m", mn).call(this),
-                        c(new s.Pq0(-.5155052947032,.74948865866975,3.8370986018837385))) : n.panel == (0,
+                        c(new THREE.Vector3(-.5155052947032,.74948865866975,3.8370986018837385))) : n.panel == (0,
                         i.gn)(this, an, "f") && ((0,
                         i.gn)(this, Yt, "m", vn).call(this),
-                        c(new s.Pq0(2.874291197536667,.9837316369014955,-.7283975369068978)))),
+                        c(new THREE.Vector3(2.874291197536667,.9837316369014955,-.7283975369068978)))),
                         p = n
                     }
                     )),
@@ -1578,7 +1578,7 @@
             l.addEventListener("input", ( () => {
                 let t = l.value;
                 /^[0-9A-F]{6}$/i.test(t) && (t = "#" + t),
-                r.color = new s.Q1f(t),
+                r.color = new THREE.Color(t),
                 (0,
                 i.gn)(this, Yt, "m", dn).call(this)
             }
@@ -1762,13 +1762,13 @@
             Math.random() < .9 ? (r = 100 * (1 - Math.pow(Math.random(), 2)),
             h = 100 * (.05 + .25 * (1 - Math.pow(Math.random(), 2)))) : (r = 0,
             h = 100 * Math.random());
-            const d = new s.Q1f("hsl(" + c.toString() + "," + r.toString() + "%," + h.toString() + "%)").getHex();
+            const d = new THREE.Color("hsl(" + c.toString() + "," + r.toString() + "%," + h.toString() + "%)").getHex();
             let g, f, p;
             g = Math.random() < .5 ? (c + 180) % 360 : Math.random() < .5 ? (c + 120) % 360 : (c - 120) % 360,
             Math.random() < .9 ? (f = r,
             p = 100 * (.05 + .25 * (1 - Math.pow(Math.random(), 2)))) : (f = 0,
             p = 100 * Math.random());
-            const u = new s.Q1f("hsl(" + g.toString() + "," + f.toString() + "%," + p.toString() + "%)").getHex();
+            const u = new THREE.Color("hsl(" + g.toString() + "," + f.toString() + "%," + p.toString() + "%)").getHex();
             let m, v;
             m = Math.random() < .5 ? 1250067 : Math.random() < .4 ? d : u,
             v = Math.random() < .5 ? 6710886 : m == d ? u : m == u || Math.random() < .4 ? d : u;
@@ -2268,7 +2268,7 @@
                 i.GG)(this, ie, (0,
                 i.gn)(this, ne, "f").countryCode, "f"),
                 (0,
-                i.GG)(this, Xn, new s.ubm(70,1,.1,C.A.maxViewDistance), "f"),
+                i.GG)(this, Xn, new THREE.PerspectiveCamera(70,1,.1,C.A.maxViewDistance), "f"),
                 (0,
                 i.gn)(this, Xn, "f").position.set(0, 2, 6),
                 o.scene.add((0,
@@ -2288,9 +2288,9 @@
                 i.gn)(this, Yn, "f").update(),
                 (0,
                 i.gn)(this, Yn, "f").mouseButtons = {
-                    LEFT: s.kBv.ROTATE,
-                    MIDDLE: s.kBv.ROTATE,
-                    RIGHT: s.kBv.ROTATE
+                    LEFT: THREE.MOUSE.ROTATE,
+                    MIDDLE: THREE.MOUSE.ROTATE,
+                    RIGHT: THREE.MOUSE.ROTATE
                 },
                 (0,
                 i.gn)(this, Yn, "f").enablePan = !1,
@@ -2568,14 +2568,14 @@
                 i.gn)(me, me, "f", Me).clone(), "f"),
                 (0,
                 i.gn)(this, ye, "f").traverse((t => {
-                    if (t instanceof s.eaF) {
+                    if (t instanceof THREE.Mesh) {
                         let n;
                         (0,
                         i.gn)(this, ke, "f").isTrackShadowsEnabled() && (t.castShadow = !0,
                         t.receiveShadow = !0),
                         n = Array.isArray(t.material) ? t.material : [t.material];
                         for (const t of n)
-                            t.side = s.hB5,
+                            t.side = THREE.FrontSide,
                             (0,
                             i.gn)(this, ke, "f").addMaterial(t)
                     }
@@ -2584,8 +2584,8 @@
                 a.scene.add((0,
                 i.gn)(this, ye, "f"));
                 const m = {
-                    position: new s.Pq0(0,.35,1.35),
-                    quaternion: (new s.PTz).setFromEuler(new s.O9p(0,-.24 * Math.PI,0))
+                    position: new THREE.Vector3(0,.35,1.35),
+                    quaternion: (new THREE.Quaternion).setFromEuler(new THREE.Euler(0,-.24 * Math.PI,0))
                 };
                 (0,
                 i.GG)(this, Ce, new l.A(null,m,null,null,a,c,e,n,n.getTrackData(),h,null), "f"),
@@ -2604,8 +2604,8 @@
                 i.GG)(this, Ee, [], "f");
                 for (let t = 0; t < E.A.maxNumberOfProfiles; t++) {
                     const o = {
-                        position: new s.Pq0(10.5 * t - 22,.35,-34),
-                        quaternion: (new s.PTz).setFromEuler(new s.O9p(0,0,0))
+                        position: new THREE.Vector3(10.5 * t - 22,.35,-34),
+                        quaternion: (new THREE.Quaternion).setFromEuler(new THREE.Euler(0,0,0))
                     }
                       , r = new l.A(null,o,null,null,a,c,e,n,n.getTrackData(),h,null);
                     r.audioVolume = 0,
@@ -2632,7 +2632,7 @@
                 i.gn)(this, ye, "f")),
                 (0,
                 i.gn)(this, ye, "f").traverse((t => {
-                    if (t instanceof s.eaF) {
+                    if (t instanceof THREE.Mesh) {
                         let n;
                         t.geometry.dispose(),
                         n = Array.isArray(t.material) ? t.material : [t.material];
@@ -2683,18 +2683,18 @@
                             i.GG)(me, me, t.scene, "f", Me),
                             (0,
                             i.gn)(me, me, "f", Me).traverse((t => {
-                                if (t instanceof s.eaF) {
+                                if (t instanceof THREE.Mesh) {
                                     if (Array.isArray(t.material))
                                         for (let n = 0; n < t.material.length; n++) {
                                             const e = t.material[n];
-                                            if (!(e instanceof s._4j))
+                                            if (!(e instanceof THREE.MeshStandardMaterial))
                                                 throw new Error("Material is not a MeshStandardMaterial");
-                                            t.material[n] = new s.G_z({
+                                            t.material[n] = new THREE.MeshLambertMaterial({
                                                 color: e.color
                                             })
                                         }
                                     else
-                                        t.material = new s.G_z({
+                                        t.material = new THREE.MeshLambertMaterial({
                                             color: t.material.color
                                         });
                                     t.geometry = t.geometry.toNonIndexed(),

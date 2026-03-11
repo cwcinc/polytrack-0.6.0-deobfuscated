@@ -38,30 +38,30 @@
         v.insertStyleElement = f();
         o()(m.A, v);
         m.A && m.A.locals && m.A.locals;
-        var w = n(4922)
+        var THREE = n(4922)
           , b = n(7024);
         class k extends b.N {
             constructor(t, e) {
                 super(t, e),
                 this.screenSpacePanning = !1,
                 this.mouseButtons = {
-                    LEFT: w.kBv.PAN,
-                    MIDDLE: w.kBv.DOLLY,
-                    RIGHT: w.kBv.ROTATE
+                    LEFT: THREE.MOUSE.PAN,
+                    MIDDLE: THREE.MOUSE.DOLLY,
+                    RIGHT: THREE.MOUSE.ROTATE
                 },
                 this.touches = {
-                    ONE: w.wtR.PAN,
-                    TWO: w.wtR.DOLLY_ROTATE
+                    ONE: THREE.TOUCH.PAN,
+                    TWO: THREE.TOUCH.DOLLY_ROTATE
                 }
             }
         }
-        class G extends w.aHM {
+        class G extends THREE.Loader {
             constructor(t) {
                 super(t)
             }
             load(t, e, n, i) {
                 const s = this
-                  , o = new w.Y9S(this.manager);
+                  , o = new THREE.FileLoader(this.manager);
                 o.setPath(this.path),
                 o.setRequestHeader(this.requestHeader),
                 o.setWithCredentials(this.withCredentials),
@@ -114,7 +114,7 @@
             const o = s.glyphs[t] || s.glyphs["?"];
             if (!o)
                 return void console.error('THREE.Font: character "' + t + '" does not exists in font family ' + s.familyName + ".");
-            const a = new w.Ld9;
+            const a = new THREE.ShapePath;
             let r, h, l, c, d, g, f, p;
             if (o.o) {
                 const t = o._cachedOutline || (o._cachedOutline = o.o.split(" "));
@@ -200,32 +200,32 @@
                     this.dispose(),
                     (0,
                     i.GG)(this, C, e, "f");
-                    const t = new w.V9B({
+                    const t = new THREE.MeshBasicMaterial({
                         color: 16777215
                     });
                     for (const n of e) {
                         const e = P.hT(n.rotation, n.rotationAxis)
-                          , s = new w.Pq0(...n.detector.center).add(new w.Pq0(0,-1.3,0)).applyQuaternion(e);
-                        s.add(new w.Pq0(n.x * L.A.partSize,n.y * L.A.partSize,n.z * L.A.partSize));
+                          , s = new THREE.Vector3(...n.detector.center).add(new THREE.Vector3(0,-1.3,0)).applyQuaternion(e);
+                        s.add(new THREE.Vector3(n.x * L.A.partSize,n.y * L.A.partSize,n.z * L.A.partSize));
                         const o = (0,
                         i.gn)(A, A, "f", W).generateShapes((n.checkpointOrder + 1).toString(), 4)
-                          , a = new w.MSw(o);
+                          , a = new THREE.ShapeGeometry(o);
                         a.computeBoundingBox();
                         const r = a.boundingBox;
                         if (null == r)
                             throw new Error("Bounding box is null");
                         const h = -.5 * (r.max.x - r.min.x);
                         a.translate(h, 0, 0);
-                        const l = new w.eaF(a,t);
+                        const l = new THREE.Mesh(a,t);
                         l.position.copy(s),
                         l.quaternion.copy(e),
                         (0,
                         i.gn)(this, M, "f").scene.add(l),
                         (0,
                         i.gn)(this, E, "f").push(l);
-                        const c = new w.eaF(a,t);
+                        const c = new THREE.Mesh(a,t);
                         c.position.copy(s),
-                        c.quaternion.copy(e).multiply((new w.PTz).setFromEuler(new w.O9p(0,Math.PI,0))),
+                        c.quaternion.copy(e).multiply((new THREE.Quaternion).setFromEuler(new THREE.Euler(0,Math.PI,0))),
                         (0,
                         i.gn)(this, M, "f").scene.add(c),
                         (0,
@@ -1178,13 +1178,13 @@
                                 preserveDrawingBuffer: !0,
                                 antialias: !0
                             }),
-                            _t.outputColorSpace = w.Zr2,
-                            Rt = new w.Z58,
-                            Ut = new w.qUd(-1,1,1,-1,.5,st.A.maxViewDistance),
+                            _t.outputColorSpace = THREE.LinearSRGBColorSpace,
+                            Rt = new THREE.Scene,
+                            Ut = new THREE.OrthographicCamera(-1,1,1,-1,.5,st.A.maxViewDistance),
                             Ut.position.set(1e3, 1e3, 1e3),
                             Ut.lookAt(0, 0, 0),
                             Rt.add(Ut);
-                            const e = new w.ZyN(16777215,4.7);
+                            const e = new THREE.DirectionalLight(16777215,4.7);
                             e.position.set(8, 10, 10),
                             Rt.add(e)
                         }
@@ -1357,10 +1357,10 @@
                     }
                     if (null == (0,
                     i.gn)(this, Pn, "f")) {
-                        const t = (new w.LoY).setFromPoints([new w.Pq0(0,0,0), new w.Pq0(0,0,0), new w.Pq0(0,0,1), new w.Pq0(0,0,1), new w.Pq0(0,0,1), new w.Pq0(1,0,1), new w.Pq0(1,0,1), new w.Pq0(1,0,1), new w.Pq0(1,0,0), new w.Pq0(1,0,0), new w.Pq0(1,0,0), new w.Pq0(0,0,0), new w.Pq0(0,1,0), new w.Pq0(0,1,0), new w.Pq0(0,1,1), new w.Pq0(0,1,1), new w.Pq0(0,1,1), new w.Pq0(1,1,1), new w.Pq0(1,1,1), new w.Pq0(1,1,1), new w.Pq0(1,1,0), new w.Pq0(1,1,0), new w.Pq0(1,1,0), new w.Pq0(0,1,0), new w.Pq0(0,0,0), new w.Pq0(0,0,0), new w.Pq0(0,1,0), new w.Pq0(0,0,1), new w.Pq0(0,0,1), new w.Pq0(0,1,1), new w.Pq0(1,0,1), new w.Pq0(1,0,1), new w.Pq0(1,1,1), new w.Pq0(1,0,0), new w.Pq0(1,0,0), new w.Pq0(1,1,0)].map((t => t.addScalar(-.5))));
+                        const t = (new THREE.BufferGeometry).setFromPoints([new THREE.Vector3(0,0,0), new THREE.Vector3(0,0,0), new THREE.Vector3(0,0,1), new THREE.Vector3(0,0,1), new THREE.Vector3(0,0,1), new THREE.Vector3(1,0,1), new THREE.Vector3(1,0,1), new THREE.Vector3(1,0,1), new THREE.Vector3(1,0,0), new THREE.Vector3(1,0,0), new THREE.Vector3(1,0,0), new THREE.Vector3(0,0,0), new THREE.Vector3(0,1,0), new THREE.Vector3(0,1,0), new THREE.Vector3(0,1,1), new THREE.Vector3(0,1,1), new THREE.Vector3(0,1,1), new THREE.Vector3(1,1,1), new THREE.Vector3(1,1,1), new THREE.Vector3(1,1,1), new THREE.Vector3(1,1,0), new THREE.Vector3(1,1,0), new THREE.Vector3(1,1,0), new THREE.Vector3(0,1,0), new THREE.Vector3(0,0,0), new THREE.Vector3(0,0,0), new THREE.Vector3(0,1,0), new THREE.Vector3(0,0,1), new THREE.Vector3(0,0,1), new THREE.Vector3(0,1,1), new THREE.Vector3(1,0,1), new THREE.Vector3(1,0,1), new THREE.Vector3(1,1,1), new THREE.Vector3(1,0,0), new THREE.Vector3(1,0,0), new THREE.Vector3(1,1,0)].map((t => t.addScalar(-.5))));
                         (0,
                         i.GG)(this, Pn, {
-                            fill: new w.eaF(new w.iNn(1,1,1),new w.V9B({
+                            fill: new THREE.Mesh(new THREE.BoxGeometry(1,1,1),new THREE.MeshBasicMaterial({
                                 color: p,
                                 transparent: !0,
                                 opacity: .25,
@@ -1368,7 +1368,7 @@
                                 polygonOffsetFactor: -.3,
                                 depthWrite: !1
                             })),
-                            outline: new w.eaF(t,new w.V9B({
+                            outline: new THREE.Mesh(t,new THREE.MeshBasicMaterial({
                                 color: u,
                                 wireframe: !0,
                                 polygonOffset: !0,
@@ -1714,18 +1714,18 @@
                 if (e.length > 0) {
                     let t;
                     t = (0,
-                    i.gn)(this, gn, "f") ? new w.Pq0((0,
+                    i.gn)(this, gn, "f") ? new THREE.Vector3((0,
                     i.gn)(this, hn, "f").x + 2,(0,
                     i.gn)(this, hn, "f").y,(0,
-                    i.gn)(this, hn, "f").z + 2) : new w.Pq0((0,
+                    i.gn)(this, hn, "f").z + 2) : new THREE.Vector3((0,
                     i.gn)(this, hn, "f").x,(0,
                     i.gn)(this, hn, "f").y,Math.floor((0,
                     i.gn)(this, hn, "f").z));
                     let n = e[0]
-                      , s = t.distanceToSquared(new w.Pq0(n.x,n.y,n.z));
+                      , s = t.distanceToSquared(new THREE.Vector3(n.x,n.y,n.z));
                     for (let i = 1; i < e.length; i++) {
                         const o = e[i]
-                          , a = t.distanceToSquared(new w.Pq0(o.x,o.y,o.z));
+                          , a = t.distanceToSquared(new THREE.Vector3(o.x,o.y,o.z));
                         a < s && (n = o,
                         s = a)
                     }
@@ -2053,7 +2053,7 @@
                     e += o.geometry.attributes.position.count,
                     null != o.geometry.index && (n += o.geometry.index.count))
                 }
-                const o = new w.$Ed(t,e,n,(0,
+                const o = new THREE.BatchedMesh(t,e,n,(0,
                 i.gn)(this, Je, "f"))
                   , a = new Map;
                 for (const t of (0,
@@ -2066,20 +2066,20 @@
                     null == n && (n = o.addGeometry(e.geometry),
                     a.set(e.geometry, n));
                     const s = o.addInstance(n)
-                      , r = (new w.kn4).makeRotationFromQuaternion(P.hT(t.rotation, t.rotationAxis)).setPosition(t.offset.x * L.A.partSize, t.offset.y * L.A.partSize, t.offset.z * L.A.partSize);
+                      , r = (new THREE.Matrix4).makeRotationFromQuaternion(P.hT(t.rotation, t.rotationAxis)).setPosition(t.offset.x * L.A.partSize, t.offset.y * L.A.partSize, t.offset.z * L.A.partSize);
                     o.setMatrixAt(s, r)
                 }
                 (0,
                 i.gn)(this, je, "f").add(o),
                 (0,
                 i.gn)(this, Qe, "f").push(o);
-                const r = new w.ZLX((0,
+                const r = new THREE.InstancedMesh((0,
                 i.gn)(this, tn, "f"),(0,
                 i.gn)(this, $e, "f"),(0,
                 i.gn)(this, Ln, "f").tiles.length);
                 (0,
                 i.gn)(this, Ln, "f").tiles.forEach(( (t, e, n, i) => {
-                    const s = (new w.kn4).makeTranslation(t * L.A.partSize, e * L.A.partSize, n * L.A.partSize);
+                    const s = (new THREE.Matrix4).makeTranslation(t * L.A.partSize, e * L.A.partSize, n * L.A.partSize);
                     r.setMatrixAt(i, s)
                 }
                 )),
@@ -2094,9 +2094,9 @@
                 i.gn)(this, yn, "f")];
                 let e;
                 if (null == t.trackPartData) {
-                    const t = new w.iNn(4 * L.A.partSize,L.A.partSize,4 * L.A.partSize);
+                    const t = new THREE.BoxGeometry(4 * L.A.partSize,L.A.partSize,4 * L.A.partSize);
                     t.translate(0, L.A.partSize / 2, 0),
-                    e = new w.eaF(t,(0,
+                    e = new THREE.Mesh(t,(0,
                     i.gn)(this, Je, "f"))
                 } else if (e = t.trackPartData.colors.get(rt.A.Summer)?.clone(),
                 null == e)
@@ -2107,11 +2107,11 @@
                 i.gn)(this, je, "f").add(e),
                 (0,
                 i.gn)(this, Qe, "f").push(e);
-                const n = new w.ZLX((0,
+                const n = new THREE.InstancedMesh((0,
                 i.gn)(this, tn, "f"),(0,
                 i.gn)(this, $e, "f"),t.tiles.length);
                 t.tiles.forEach(( (t, e, i, s) => {
-                    const o = (new w.kn4).makeTranslation(t * L.A.partSize, e * L.A.partSize, i * L.A.partSize);
+                    const o = (new THREE.Matrix4).makeTranslation(t * L.A.partSize, e * L.A.partSize, i * L.A.partSize);
                     n.setMatrixAt(s, o)
                 }
                 )),
@@ -2342,7 +2342,7 @@
             let t;
             if ((0,
             i.gn)(this, se, "f").touchEnabled)
-                t = new w.Pq0((0,
+                t = new THREE.Vector3((0,
                 i.gn)(this, Oe, "f").target.x / L.A.partSize,(0,
                 i.gn)(this, Oe, "f").target.y / L.A.partSize,(0,
                 i.gn)(this, Oe, "f").target.z / L.A.partSize);
@@ -2361,7 +2361,7 @@
                       , s = 500 + 2 * (0,
                     i.gn)(this, Oe, "f").getDistance();
                     t = n.point.distanceToSquared((0,
-                    i.gn)(this, Oe, "f").target) <= s ** 2 ? new w.Pq0(Math.round(n.point.x / L.A.partSize),Math.floor((0,
+                    i.gn)(this, Oe, "f").target) <= s ** 2 ? new THREE.Vector3(Math.round(n.point.x / L.A.partSize),Math.floor((0,
                     i.gn)(this, Xe, "f").position.y / L.A.partSize),Math.round(n.point.z / L.A.partSize)) : null
                 } else
                     t = null
@@ -2383,7 +2383,7 @@
                 i.gn)(this, Mn, "f") || (0,
                 i.gn)(this, dn, "f") != lt.A.ZPositive && (0,
                 i.gn)(this, dn, "f") != lt.A.ZNegative ? Math.round(t.z / e) * e : Math.round(t.z),
-                new w.Pq0(n,s,o)
+                new THREE.Vector3(n,s,o)
             }
             return null
         }
@@ -2450,7 +2450,7 @@
             if ((0,
             i.gn)(this, re, "f") && (0,
             i.gn)(this, Ft, "m", di).call(this)) {
-                const n = new w.Pq0;
+                const n = new THREE.Vector3;
                 if ((0,
                 i.gn)(this, Be, "f") && (n.z = -1),
                 (0,
@@ -2462,8 +2462,8 @@
                 0 != n.x || 0 != n.z) {
                     const s = n.applyQuaternion((0,
                     i.gn)(this, De, "f").quaternion)
-                      , o = new w.I9Y(s.x,s.z).normalize()
-                      , a = new w.Pq0(o.x,0,o.y).multiplyScalar(e * t);
+                      , o = new THREE.Vector2(s.x,s.z).normalize()
+                      , a = new THREE.Vector3(o.x,0,o.y).multiplyScalar(e * t);
                     (0,
                     i.gn)(this, De, "f").position.add(a),
                     (0,
@@ -2480,9 +2480,9 @@
                 (0,
                 i.gn)(this, Ye, "f") && (o -= 1.5 * Math.PI * t),
                 0 != s || 0 != o) {
-                    const t = new w.I9Y((0,
+                    const t = new THREE.Vector2((0,
                     i.gn)(this, De, "f").position.x,(0,
-                    i.gn)(this, De, "f").position.z).distanceTo(new w.I9Y((0,
+                    i.gn)(this, De, "f").position.z).distanceTo(new THREE.Vector2((0,
                     i.gn)(this, Oe, "f").target.x,(0,
                     i.gn)(this, Oe, "f").target.z))
                       , e = (0,
@@ -2648,7 +2648,7 @@
                 (0,
                 i.GG)(this, oe, f, "f"),
                 (0,
-                i.GG)(this, De, new w.ubm(70,1,.5,st.A.maxViewDistance), "f"),
+                i.GG)(this, De, new THREE.PerspectiveCamera(70,1,.5,st.A.maxViewDistance), "f"),
                 (0,
                 i.gn)(this, De, "f").position.set(40, 40, -40),
                 n.scene.add((0,
@@ -2658,19 +2658,19 @@
                 i.gn)(this, De, "f"),n.canvas), "f"),
                 (0,
                 i.gn)(this, Oe, "f").mouseButtons = {
-                    MIDDLE: w.kBv.ROTATE,
-                    RIGHT: w.kBv.PAN
+                    MIDDLE: THREE.MOUSE.ROTATE,
+                    RIGHT: THREE.MOUSE.PAN
                 },
                 (0,
                 i.gn)(this, Oe, "f").minDistance = 4,
                 (0,
                 i.gn)(this, Oe, "f").maxDistance = 3e3,
                 (0,
-                i.GG)(this, Ze, new w.tBo, "f"),
+                i.GG)(this, Ze, new THREE.Raycaster, "f"),
                 (0,
                 i.GG)(this, vn, h.getCurrentUserProfile().nickname, "f"),
                 (0,
-                i.GG)(this, Je, new w.G_z({
+                i.GG)(this, Je, new THREE.MeshLambertMaterial({
                     transparent: !0,
                     opacity: .3,
                     polygonOffset: !0,
@@ -2678,7 +2678,7 @@
                     depthWrite: !1
                 }), "f"),
                 (0,
-                i.GG)(this, je, new w.YJl, "f"),
+                i.GG)(this, je, new THREE.Group, "f"),
                 (0,
                 i.gn)(this, je, "f").visible = !1,
                 n.scene.add((0,
@@ -2686,14 +2686,14 @@
                 n.addMaterial((0,
                 i.gn)(this, Je, "f")),
                 (0,
-                i.GG)(this, tn, (new w.LoY).setFromPoints([new w.Pq0(0,0,0), new w.Pq0(0,0,0), new w.Pq0(0,0,1), new w.Pq0(0,0,1), new w.Pq0(0,0,1), new w.Pq0(1,0,1), new w.Pq0(1,0,1), new w.Pq0(1,0,1), new w.Pq0(1,0,0), new w.Pq0(1,0,0), new w.Pq0(1,0,0), new w.Pq0(0,0,0), new w.Pq0(0,1,0), new w.Pq0(0,1,0), new w.Pq0(0,1,1), new w.Pq0(0,1,1), new w.Pq0(0,1,1), new w.Pq0(1,1,1), new w.Pq0(1,1,1), new w.Pq0(1,1,1), new w.Pq0(1,1,0), new w.Pq0(1,1,0), new w.Pq0(1,1,0), new w.Pq0(0,1,0), new w.Pq0(0,0,0), new w.Pq0(0,0,0), new w.Pq0(0,1,0), new w.Pq0(0,0,1), new w.Pq0(0,0,1), new w.Pq0(0,1,1), new w.Pq0(1,0,1), new w.Pq0(1,0,1), new w.Pq0(1,1,1), new w.Pq0(1,0,0), new w.Pq0(1,0,0), new w.Pq0(1,1,0)]).scale(L.A.partSize, L.A.partSize, L.A.partSize), "f"),
+                i.GG)(this, tn, (new THREE.BufferGeometry).setFromPoints([new THREE.Vector3(0,0,0), new THREE.Vector3(0,0,0), new THREE.Vector3(0,0,1), new THREE.Vector3(0,0,1), new THREE.Vector3(0,0,1), new THREE.Vector3(1,0,1), new THREE.Vector3(1,0,1), new THREE.Vector3(1,0,1), new THREE.Vector3(1,0,0), new THREE.Vector3(1,0,0), new THREE.Vector3(1,0,0), new THREE.Vector3(0,0,0), new THREE.Vector3(0,1,0), new THREE.Vector3(0,1,0), new THREE.Vector3(0,1,1), new THREE.Vector3(0,1,1), new THREE.Vector3(0,1,1), new THREE.Vector3(1,1,1), new THREE.Vector3(1,1,1), new THREE.Vector3(1,1,1), new THREE.Vector3(1,1,0), new THREE.Vector3(1,1,0), new THREE.Vector3(1,1,0), new THREE.Vector3(0,1,0), new THREE.Vector3(0,0,0), new THREE.Vector3(0,0,0), new THREE.Vector3(0,1,0), new THREE.Vector3(0,0,1), new THREE.Vector3(0,0,1), new THREE.Vector3(0,1,1), new THREE.Vector3(1,0,1), new THREE.Vector3(1,0,1), new THREE.Vector3(1,1,1), new THREE.Vector3(1,0,0), new THREE.Vector3(1,0,0), new THREE.Vector3(1,1,0)]).scale(L.A.partSize, L.A.partSize, L.A.partSize), "f"),
                 (0,
-                i.GG)(this, $e, new w.V9B({
+                i.GG)(this, $e, new THREE.MeshBasicMaterial({
                     wireframe: !0
                 }), "f"),
                 (0,
-                i.GG)(this, Xe, new w.eaF(new w.bdM(1e6,1e6),new w.V9B({
-                    side: w.$EB
+                i.GG)(this, Xe, new THREE.Mesh(new THREE.PlaneGeometry(1e6,1e6),new THREE.MeshBasicMaterial({
+                    side: THREE.DoubleSide
                 })), "f"),
                 (0,
                 i.gn)(this, Xe, "f").rotation.x = -Math.PI / 2,
@@ -2705,7 +2705,7 @@
                       , n = -t.clientY / window.innerHeight * 2 + 1;
                     null == (0,
                     i.gn)(this, on, "f") ? (0,
-                    i.GG)(this, on, new w.I9Y(e,n), "f") : (0,
+                    i.GG)(this, on, new THREE.Vector2(e,n), "f") : (0,
                     i.gn)(this, on, "f").set(e, n)
                 }
                 ), "f")),
@@ -3998,13 +3998,13 @@
                 i.gn)(this, Je, "f"));
                 for (const t of (0,
                 i.gn)(this, je, "f").children) {
-                    if (!(t instanceof w.eaF))
+                    if (!(t instanceof THREE.Mesh))
                         throw new Error("Object is not a mesh");
                     const e = t;
                     if (e.geometry.dispose(),
                     Array.isArray(e.material))
                         for (const t of e.material) {
-                            if (!(t instanceof w.imn))
+                            if (!(t instanceof THREE.Material))
                                 throw new Error("Material is not a THREE.Material");
                             t.dispose()
                         }
@@ -4049,7 +4049,7 @@
                 i.gn)(this, Xe, "f").material))
                     for (const t of (0,
                     i.gn)(this, Xe, "f").material) {
-                        if (!(t instanceof w.imn))
+                        if (!(t instanceof THREE.Material))
                             throw new Error("Material is not a THREE.Material");
                         t.dispose()
                     }
@@ -4171,9 +4171,9 @@
             resetView(t, e, n) {
                 (0,
                 i.GG)(this, Ft, e, "a", ni);
-                const s = new w.Pq0(t * L.A.partSize,e * L.A.partSize,n * L.A.partSize);
+                const s = new THREE.Vector3(t * L.A.partSize,e * L.A.partSize,n * L.A.partSize);
                 (0,
-                i.gn)(this, De, "f").position.copy(s).add(new w.Pq0(40,40,-40)),
+                i.gn)(this, De, "f").position.copy(s).add(new THREE.Vector3(40,40,-40)),
                 (0,
                 i.gn)(this, Oe, "f").target.copy(s),
                 (0,
@@ -4206,7 +4206,7 @@
                         const t = P.hT((0,
                         i.gn)(this, cn, "f"), (0,
                         i.gn)(this, dn, "f"))
-                          , e = new w.Pq0((0,
+                          , e = new THREE.Vector3((0,
                         i.gn)(this, hn, "f").x * L.A.partSize,(0,
                         i.gn)(this, hn, "f").y * L.A.partSize,(0,
                         i.gn)(this, hn, "f").z * L.A.partSize);
