@@ -83,16 +83,16 @@
                 yD: () => u
             });
             var THREE = __webpack_require__(4922)
-              , r = __webpack_require__(1882)
-              , a = __webpack_require__(4183)
-              , s = __webpack_require__(2203)
+              , PartCategory = __webpack_require__(1882).A
+              , PartEnvironment = __webpack_require__(4183).A
+              , Part = __webpack_require__(2203).A
               , o = __webpack_require__(2247)
               , l = __webpack_require__(7129);
             const c = [{
-                id: a.A.Summer,
+                id: PartEnvironment.Summer,
                 colors: {}
             }, {
-                id: a.A.Winter,
+                id: PartEnvironment.Winter,
                 colors: {
                     Road: "#5077b2",
                     RoadBarrier: "#898989",
@@ -111,7 +111,7 @@
                     SignBlack: "#5077b2"
                 }
             }, {
-                id: a.A.Desert,
+                id: PartEnvironment.Desert,
                 colors: {
                     Road: "#997240",
                     RoadBarrier: "#211001",
@@ -131,52 +131,52 @@
                 }
             }]
               , h = c.concat([{
-                id: a.A.Custom0,
+                id: PartEnvironment.Custom0,
                 colors: {
                     BlockSurface: "#131313"
                 }
             }, {
-                id: a.A.Custom1,
+                id: PartEnvironment.Custom1,
                 colors: {
                     BlockSurface: "#501b1b"
                 }
             }, {
-                id: a.A.Custom2,
+                id: PartEnvironment.Custom2,
                 colors: {
                     BlockSurface: "#7f4d2b"
                 }
             }, {
-                id: a.A.Custom3,
+                id: PartEnvironment.Custom3,
                 colors: {
                     BlockSurface: "#93862d"
                 }
             }, {
-                id: a.A.Custom4,
+                id: PartEnvironment.Custom4,
                 colors: {
                     BlockSurface: "#2a5e30"
                 }
             }, {
-                id: a.A.Custom5,
+                id: PartEnvironment.Custom5,
                 colors: {
                     BlockSurface: "#236363"
                 }
             }, {
-                id: a.A.Custom6,
+                id: PartEnvironment.Custom6,
                 colors: {
                     BlockSurface: "#20244b"
                 }
             }, {
-                id: a.A.Custom7,
+                id: PartEnvironment.Custom7,
                 colors: {
                     BlockSurface: "#592759"
                 }
             }, {
-                id: a.A.Custom8,
+                id: PartEnvironment.Custom8,
                 colors: {
                     BlockSurface: "#302318"
                 }
             }]);
-            class d {
+            class PartObject {
                 constructor(e, t, n, i, r, a, s=null, o=null) {
                     const c = [];
                     for (const [e,t] of a)
@@ -198,102 +198,289 @@
                     Object.freeze(this)
                 }
             }
-            const u = [new d("6d94d798abd14dc3bce4e99c180309d993ad43adb5f2c90eef8e350eedafe7cf",r.A.Special,s.A.Start,[["Road", "Start"]],c,[[[-2, 0, -2], [1, 0, 1]]],null,new THREE.Vector3(0,.35,1.35)), new d("f29e34b2e05e0a4751109ae564b03fe8878a79cc6b26288f1117ed296d09c5bb",r.A.Special,s.A.StartWide,[["RoadWide", "StartWide"]],c,[[[-2, 0, -2], [5, 0, 1]]],null,new THREE.Vector3(-10,.35,1.35)), new d("3c304054f415fbede4f73a43517db04302f38b16fa2cd4e587082b37b75e20e5",r.A.Special,s.A.PlaneStart,[["Planes", "PlaneStart"]],c,[[[-2, 0, -2], [1, 0, 1]]],null,new THREE.Vector3(0,.35,1.35)), new d("f08710416bdaa3d91d0d43f014e45d421fdb4587a334993bad0056f3dbbcb6bb",r.A.Special,s.A.PlaneStartWide,[["Planes", "PlaneStartWide"]],c,[[[-2, 0, -2], [5, 0, 1]]],null,new THREE.Vector3(-10,.35,1.35)), new d("223fc87c72bb64b58677062ffa08ab7eafd78071bced7c53233606763cd5316b",r.A.Special,s.A.Checkpoint,[["Road", "Checkpoint"]],c,[[[-2, 0, -2], [1, 0, 1]]],{
-                type: o.A.Checkpoint,
-                center: [0, 2.2, 0],
-                size: [10.5, 3.8, 1]
-            }), new d("82d9a9879cee92c04c8d4ba2e16fc31bb1917a31f5802a3bb5177ca9a5cfee01",r.A.Special,s.A.CheckpointWide,[["RoadWide", "CheckpointWide"]],c,[[[-2, 0, -2], [5, 0, 1]]],{
-                type: o.A.Checkpoint,
-                center: [10, 2.2, 0],
-                size: [30.6, 3.8, 1]
-            }), new d("fe8946d7f09724b5e11f493eb5c2a5b5e3d502b15beaad003f8134ac63558948",r.A.Special,s.A.PlaneCheckpoint,[["Planes", "PlaneCheckpoint"]],c,[[[-2, 0, -2], [1, 0, 1]]],{
-                type: o.A.Checkpoint,
-                center: [0, 2.2, 0],
-                size: [18.25, 3.8, 1]
-            }), new d("d486d9b851db35dd44c15f9e0bb3bf582118daf7be514598a19307f61cf46678",r.A.Special,s.A.PlaneCheckpointWide,[["Planes", "PlaneCheckpointWide"]],c,[[[-2, 0, -2], [5, 0, 1]]],{
-                type: o.A.Checkpoint,
-                center: [10, 2.2, 0],
-                size: [38.25, 3.8, 1]
-            }), new d("c01200d573a3594a6a4cb73ebb600964d653e4a89267d3297f3969220742aa79",r.A.Special,s.A.Finish,[["Road", "Finish"]],c,[[[-2, 0, -2], [1, 0, 1]]],{
-                type: o.A.Finish,
-                center: [0, 2.2, 0],
-                size: [10.5, 3.8, 2]
-            }), new d("a9cefdff816e94a643210c58582c2809de0e3e0e0478b8d5baabd7fe81f13e73",r.A.Special,s.A.FinishWide,[["RoadWide", "FinishWide"]],c,[[[-2, 0, -2], [5, 0, 1]]],{
-                type: o.A.Finish,
-                center: [10, 2.2, 0],
-                size: [30.6, 3.8, 2]
-            }), new d("75e5f09fe8a18ecafaf1fb80929173ef0a7dc0b785596bbe0ccd85a934d79578",r.A.Special,s.A.PlaneFinish,[["Planes", "PlaneFinish"]],c,[[[-2, 0, -2], [1, 0, 1]]],{
-                type: o.A.Finish,
-                center: [0, 2.2, 0],
-                size: [18.25, 3.8, 2]
-            }), new d("5801b3268c75809728c63450d06000c5f6fcfd5d72691902f99d7d19d25e1d78",r.A.Special,s.A.PlaneFinishWide,[["Planes", "PlaneFinishWide"]],c,[[[-2, 0, -2], [5, 0, 1]]],{
-                type: o.A.Finish,
-                center: [10, 2.2, 0],
-                size: [38.25, 3.8, 2]
-            }), new d("3421096c1986d008da88b5fac64cd4c475603138c9bf8a98ab6d581dda6befa7",r.A.Road,s.A.Straight,[["Road", "Straight"]],c,[[[-2, 0, -2], [1, 0, 1]]]), new d("bdc3bcdafec9bc26835dc76159f7223da7da5babb3a5770129fa11046c748b69",r.A.Road,s.A.StraightPillarBottom,[["Road", "Straight"], ["Pillar", "SurfacePillarBottom"]],c,[[[-2, 0, -2], [1, 0, 1]]]), new d("2758e984d87b3170f6618c9c689554ef169fd5f80ea7f0df292ffd69792d414e",r.A.Road,s.A.StraightPillarShort,[["Road", "Straight"], ["Pillar", "SurfacePillarShort"]],c,[[[-2, 0, -2], [1, 0, 1]]]), new d("fb5a81784022cfc2d3d0007a032976c8dfd066e72a3bc92f671c98c5cca36aaa",r.A.Road,s.A.TurnSharp,[["Road", "TurnSharp"]],c,[[[-2, 0, -2], [1, 0, 1]]]), new d("3da2e9a93da06b1376c33486f30a5f02d8c2f125f5b7d8b41166049ecd95f269",r.A.Road,s.A.TurnSharpPillarBottom,[["Road", "TurnSharp"], ["Pillar", "SurfacePillarBottom"]],c,[[[-2, 0, -2], [1, 0, 1]]]), new d("c642122276547382e37dcb857b130088f4dc0d208dc7fdb6055b2a93080a3ffe",r.A.Road,s.A.TurnSharpPillarShort,[["Road", "TurnSharp"], ["Pillar", "SurfacePillarShort"]],c,[[[-2, 0, -2], [1, 0, 1]]]), new d("7d8d1eed719515ba7e48b5ef4a53b6b4bb2bef42496b6b40d2551230435ecb66",r.A.Road,s.A.SlopeUp,[["Road", "SlopeUp"]],c,[[[-2, 0, -2], [1, 0, 1]], [[-2, 1, -2], [1, 1, -2]]]), new d("d6d54dbf283f7209032541fc6b924dc879d914f253e391cf8b34dde8354661be",r.A.Road,s.A.SlopeUpLong,[["Road", "SlopeUpLong"]],c,[[[-2, 0, -4], [1, 0, 1]], [[-2, 1, -5], [1, 1, -4]], [[-2, 1, -6], [1, 2, -6]]]), new d("435e8cf33d28e52f75890cba1cb6529991148afd701f9b40e9ab876c11b2c448",r.A.Road,s.A.SlopeDown,[["Road", "SlopeDown"]],c,[[[-2, 0, -2], [1, 0, 1]], [[-2, 1, 0], [1, 1, 1]]]), new d("01990158f65e5d499030d8c6d0ce80d34c136189ae1a9430d4260ea7a85e91a9",r.A.Road,s.A.SlopeDownLong,[["Road", "SlopeDownLong"]],c,[[[-2, 0, -2], [1, 0, 0]], [[-2, 1, -1], [1, 1, 5]], [[-2, 2, 3], [1, 2, 5]]]), new d("f4fe25138e88fc36b796c9251c696f1e44bf77502ee8e4e7d9ed2d8c8be2fd98",r.A.Road,s.A.Slope,[["Road", "Slope"]],c,[[[-2, 0, 0], [1, 0, 1]], [[-2, 1, -2], [1, 1, 0]], [[-2, 2, -2], [1, 2, -2]]]), new d("2cfd3548dbd3dcf793f1597a1350864b5f14ed46e907d163977b73363896c3d4",r.A.Road,s.A.SlopeUpVertical,[["Road", "SlopeUpVertical"]],c,[[[-2, 0, -1], [1, 0, 1]], [[-2, 1, -1], [1, 1, -1]], [[-2, 1, -2], [1, 3, -2]]]), new d("3de87fd1ea3a4ffbf353a03e3c90da97e62b03f85d07ad4bc947e9ceed20b7d8",r.A.Road,s.A.SlopeToVertical,[["Road", "SlopeToVertical"]],c,[[[-2, 0, 0], [1, 0, 1]], [[-2, 1, -2], [1, 1, 0]], [[-2, 2, -2], [1, 3, -2]], [[-2, 2, -1], [-2, 2, -1]], [[1, 2, -1], [1, 2, -1]]]), new d("63628b23e104a3eb3c2ba8189cd408a10fbb6ebcd6fa4359d981e3c3804c13d8",r.A.Road,s.A.IntersectionT,[["Road", "IntersectionT"]],c,[[[-2, 0, -2], [1, 0, 1]]]), new d("400dc4643653001d283bb13f740593fc2300c547bb4d2a962054ba6aabf3721c",r.A.Road,s.A.IntersectionTPillarBottom,[["Road", "IntersectionT"], ["Pillar", "SurfacePillarBottom"]],c,[[[-2, 0, -2], [1, 0, 1]]]), new d("60355388650d35fcbddaaac29e0d03bc2ae46db1a05cd23ddd3f2722ec2d409e",r.A.Road,s.A.IntersectionTPillarShort,[["Road", "IntersectionT"], ["Pillar", "SurfacePillarShort"]],c,[[[-2, 0, -2], [1, 0, 1]]]), new d("74197b3731c2befd03498bf5172859f0b3652f1972c19e43a99bb938769573df",r.A.Road,s.A.IntersectionCross,[["Road", "IntersectionCross"]],c,[[[-2, 0, -2], [1, 0, 1]]]), new d("464e69b5c4f2667c246ade9ed33fd3e50b49438ed0ab787a086dfe74c217ff6c",r.A.Road,s.A.IntersectionCrossPillarBottom,[["Road", "IntersectionCross"], ["Pillar", "SurfacePillarBottom"]],c,[[[-2, 0, -2], [1, 0, 1]]]), new d("90004caf354627289265314966f11b5656e6879ca7de10507e6c50cd95254b75",r.A.Road,s.A.IntersectionCrossPillarShort,[["Road", "IntersectionCross"], ["Pillar", "SurfacePillarShort"]],c,[[[-2, 0, -2], [1, 0, 1]]]), new d("6259b51229152128dc859e1bffc614b60464799c401182dccae58131ee155b1c",r.A.Road,s.A.IntersectionY,[["Road", "IntersectionY"]],c,[[[-6, 0, -10], [-3, 0, -8]], [[-5, 0, -7], [-2, 0, -5]], [[-4, 0, -4], [3, 0, -4]], [[-3, 0, -3], [2, 0, -2]], [[-2, 0, -1], [1, 0, 1]], [[-1, 0, -5], [4, 0, -5]], [[1, 0, -7], [4, 0, -6]], [[2, 0, -10], [5, 0, -8]]]), new d("846db907fcc382dd462283874fcbceab9c8c06fab6e7654a5cf6811dffcf086e",r.A.Road,s.A.IntersectionYLong,[["Road", "IntersectionYLong"]],c,[[[-6, 0, -14], [-3, 0, -11]], [[-5, 0, -10], [-2, 0, -8]], [[-4, 0, -7], [3, 0, -5]], [[-3, 0, -4], [2, 0, -3]], [[-2, 0, -2], [1, 0, 1]], [[-1, 0, -8], [4, 0, -8]], [[1, 0, -10], [4, 0, -9]], [[2, 0, -14], [5, 0, -11]]]), new d("48992a178b504f5205eb7613e273f61a2916b16b9b3d402208dcf711b29d20d3",r.A.Road,s.A.StraightTilted,[["Road", "Straight", {
-                offset: new THREE.Vector3(0,5,0),
-                scale: new THREE.Vector3(1,.894425810573391,1),
-                quaternion: (new THREE.Quaternion).setFromEuler(new THREE.Euler(0,0,-.46364760900081))
-            }]],c,[[[-2, 1, -2], [0, 1, 1]], [[0, 0, -2], [1, 0, 1]]]), new d("d06cc41bda0172e626ad85fca987f426c60b86c3fabd3635d8ddc17f0b38afcd",r.A.Road,s.A.ToTiltedLeft,[["Road", "ToTilted", {
-                flipX: !0,
-                offset: new THREE.Vector3(0,5,0)
-            }]],c,[[[-2, 0, -10], [-1, 0, 1]], [[-2, 1, -3], [1, 1, 1]], [[-1, 1, -10], [1, 1, -4]]]), new d("36bbe97fc3c199f694f3aefc0ba5ee6e6b3859cf8adeaabab77d53eb921d8979",r.A.Road,s.A.ToTiltedRight,[["Road", "ToTilted", {
-                offset: new THREE.Vector3(0,5,0)
-            }]],c,[[[-2, 1, -10], [0, 1, 1]], [[0, 0, -10], [1, 0, 1]], [[1, 1, -3], [1, 1, 1]]]), new d("fd261825d8261ce05c214e0f12e3640a38f448866ee662136fbdee4f2e0bae22",r.A.RoadTurns,s.A.TurnShort,[["Road", "TurnShort"]],c,[[[-2, 0, 0], [1, 0, 1]], [[-2, 0, -1], [2, 0, -1]], [[-1, 0, -2], [3, 0, -2]], [[-1, 0, -3], [5, 0, -3]], [[0, 0, -4], [5, 0, -4]], [[1, 0, -5], [5, 0, -5]], [[3, 0, -6], [5, 0, -6]]]), new d("830000386e11f915cc7be618600256c438ace73ed2b6f0f3ec2990d8c25760fd",r.A.RoadTurns,s.A.TurnLong,[["Road", "TurnLong"]],c,[[[-2, 0, -1], [1, 0, 1]], [[-1, 0, -2], [2, 0, -2]], [[-1, 0, -3], [2, 0, -3]], [[-1, 0, -4], [3, 0, -4]], [[0, 0, -5], [4, 0, -5]], [[1, 0, -6], [6, 0, -6]], [[2, 0, -7], [9, 0, -7]], [[3, 0, -8], [9, 0, -8]], [[4, 0, -9], [9, 0, -9]], [[7, 0, -10], [9, 0, -10]]]), new d("a02b464ce6f6348e13dc90199882e91be6f2220e7e13c79ad46ca9b2032adb01",r.A.RoadTurns,s.A.TurnLong2,[["Road", "TurnLong2"]],c,[[[-2, 0, -2], [1, 0, 1]], [[-1, 0, -4], [2, 0, -3]], [[-1, 0, -5], [3, 0, -5]], [[0, 0, -6], [4, 0, -6]], [[0, 0, -7], [5, 0, -7]], [[1, 0, -8], [6, 0, -8]], [[2, 0, -9], [7, 0, -9]], [[3, 0, -10], [9, 0, -10]], [[4, 0, -11], [13, 0, -11]], [[5, 0, -12], [13, 0, -12]], [[7, 0, -13], [13, 0, -13]], [[10, 0, -14], [13, 0, -14]]]), new d("a9e794783cdb96e81c95a476f9cbe9e43a5f0357e34d7d278e449a701e44afc3",r.A.RoadTurns,s.A.TurnLong3,[["Road", "TurnLong3"]],c,[[[-2, 0, -2], [1, 0, 1]], [[-1, 0, -4], [2, 0, -3]], [[-1, 0, -5], [2, 0, -5]], [[0, 0, -6], [3, 0, -6]], [[0, 0, -7], [3, 0, -7]], [[0, 0, -8], [4, 0, -8]], [[1, 0, -9], [5, 0, -9]], [[2, 0, -10], [6, 0, -10]], [[2, 0, -11], [7, 0, -11]], [[3, 0, -12], [8, 0, -12]], [[4, 0, -13], [10, 0, -13]], [[5, 0, -14], [13, 0, -14]], [[7, 0, -15], [17, 0, -15]], [[8, 0, -16], [17, 0, -16]], [[11, 0, -17], [17, 0, -17]], [[14, 0, -18], [17, 0, -18]]]), new d("285f8b84f4dcbb2cbf59be0a54038a01d7cd672cbce96fa0427b589562ebf45e",r.A.RoadTurns,s.A.TurnSLeft,[["Road", "TurnS", {
-                flipX: !0
-            }]],c,[[[-2, 0, -1], [1, 0, 1]], [[-3, 0, -3], [0, 0, -2]], [[-4, 0, -4], [0, 0, -4]], [[-5, 0, -5], [-1, 0, -5]], [[-5, 0, -7], [-2, 0, -6]], [[-6, 0, -10], [-3, 0, -8]]]), new d("fd7fea58c90ec42781be6192ac4f1086945d48986bc2f0f0702c1ede2c7bd6be",r.A.RoadTurns,s.A.TurnSRight,[["Road", "TurnS"]],c,[[[-2, 0, -1], [1, 0, 1]], [[-1, 0, -3], [2, 0, -2]], [[-1, 0, -4], [3, 0, -4]], [[0, 0, -5], [4, 0, -5]], [[1, 0, -7], [4, 0, -6]], [[2, 0, -10], [5, 0, -8]]]), new d("190ba45df20d893be69c2f9e92d420e3aca4070340a836bb2062ea3ffdeb83e8",r.A.RoadTurns,s.A.TurnSLongLeft,[["Road", "TurnSLong", {
-                flipX: !0
-            }]],c,[[[-6, 0, -14], [-3, 0, -11]], [[-5, 0, -10], [-2, 0, -8]], [[-4, 0, -7], [-1, 0, -5]], [[-3, 0, -4], [0, 0, -3]], [[-2, 0, -2], [1, 0, 1]], [[-1, 0, -8], [-1, 0, -8]], [[0, 0, -5], [0, 0, -5]]]), new d("372b17815889b51da18fbcb77434f1a7ea0b93d2d62cd7c1ca9ec2a1854effe5",r.A.RoadTurns,s.A.TurnSLongRight,[["Road", "TurnSLong"]],c,[[[-2, 0, -2], [1, 0, 1]], [[-1, 0, -5], [2, 0, -3]], [[0, 0, -8], [3, 0, -6]], [[1, 0, -10], [4, 0, -9]], [[2, 0, -14], [5, 0, -11]], [[3, 0, -5], [3, 0, -5]], [[4, 0, -8], [4, 0, -8]]]), new d("26bca19e63867bc0b755ff6fcca65de296c9d1f109f87540103565eb88a0e03d",r.A.RoadTurns,s.A.TurnShortLeftWide,[["RoadWide", "TurnShortLeftWide"]],c,[[[-2, 0, -1], [1, 0, 1]], [[-1, 0, -2], [1, 0, -2]], [[-1, 0, -4], [5, 0, -3]], [[0, 0, -5], [5, 0, -5]], [[1, 0, -6], [5, 0, -6]], [[2, 0, -7], [9, 0, -7]], [[3, 0, -8], [9, 0, -8]], [[4, 0, -9], [9, 0, -9]], [[7, 0, -10], [9, 0, -10]]]), new d("e3845854f85dafd8cec193bcbecdac6cb79f625066de29524d5c10c5580611c5",r.A.RoadTurns,s.A.TurnShortRightWide,[["RoadWide", "TurnShortRightWide"]],c,[[[-2, 0, 0], [1, 0, 1]], [[-2, 0, -1], [2, 0, -1]], [[-2, 0, -2], [3, 0, -2]], [[2, 0, -6], [5, 0, -3]]]), new d("dc6088960a65a55c74353a1e7c8a1ca8ec99e683f6273bf666d6909b288bb84b",r.A.RoadTurns,s.A.TurnLongLeftWide,[["RoadWide", "TurnLongLeftWide"]],c,[[[-2, 0, -2], [1, 0, 1]], [[-1, 0, -5], [1, 0, -3]], [[0, 0, -6], [1, 0, -6]], [[0, 0, -7], [5, 0, -7]], [[1, 0, -8], [5, 0, -8]], [[2, 0, -9], [5, 0, -9]], [[3, 0, -10], [5, 0, -10]], [[4, 0, -11], [13, 0, -11]], [[5, 0, -12], [13, 0, -12]], [[7, 0, -13], [13, 0, -13]], [[10, 0, -14], [13, 0, -14]]]), new d("0bbb8d6c1e4a325e10643cf45546da725c1ea18e92a3a95f753339629a06ef6c",r.A.RoadTurns,s.A.TurnLongRightWide,[["RoadWide", "TurnLongRightWide"]],c,[[[-2, 0, -1], [1, 0, 1]], [[-2, 0, -3], [2, 0, -2]], [[-2, 0, -4], [3, 0, -4]], [[-2, 0, -5], [4, 0, -5]], [[-2, 0, -6], [6, 0, -6]], [[2, 0, -10], [9, 0, -7]]]), new d("3d4972c41e0e1c39b31b98c8b4ba3377477c4370fbd32cbf5a92c88b46fb7614",r.A.RoadTurns,s.A.TurnShortTilted,[["Road", "TurnShortTilted"]],c,[[[-2, 1, 0], [0, 1, 1]], [[-1, 1, -2], [0, 1, -1]], [[0, 0, -2], [2, 0, -1]], [[0, 0, 0], [1, 0, 1]], [[0, 1, -4], [2, 1, -3]], [[1, 0, -3], [5, 0, -3]], [[1, 1, -2], [1, 1, -2]], [[2, 0, -4], [5, 0, -4]], [[2, 1, -5], [5, 1, -5]], [[3, 0, -2], [3, 0, -2]], [[3, 1, -4], [5, 1, -4]], [[4, 1, -6], [5, 1, -6]]]), new d("5d48577ff2562e2abfe287bc0519dd0de692f3665e5596b3ef629069a59a21ab",r.A.RoadTurns,s.A.TurnLongTilted,[["Road", "TurnLongTilted"]],c,[[[-2, 1, 0], [0, 1, 1]], [[-1, 1, -3], [0, 1, -1]], [[0, 0, -3], [2, 0, -2]], [[0, 0, -1], [1, 0, 1]], [[0, 1, -5], [2, 1, -4]], [[1, 0, -4], [3, 0, -4]], [[1, 1, -6], [4, 1, -6]], [[1, 1, -3], [1, 1, -3]], [[2, 0, -5], [4, 0, -5]], [[2, 1, -7], [5, 1, -7]], [[3, 0, -6], [6, 0, -6]], [[3, 1, -8], [9, 1, -8]], [[4, 0, -7], [9, 0, -7]], [[5, 0, -8], [9, 0, -8]], [[5, 1, -9], [9, 1, -9]], [[8, 1, -10], [9, 1, -10]]]), new d("abf9d95b8b0bf58bf4fe8df599e4ccee1b527c7c63f15636374742c1ebc2b93a",r.A.RoadTurns,s.A.TurnLong2Tilted,[["Road", "TurnLong2Tilted"]],c,[[[-2, 1, -1], [0, 1, 1]], [[-1, 1, -4], [0, 1, -2]], [[0, 0, -3], [1, 0, 1]], [[0, 1, -6], [1, 1, -5]], [[1, 0, -5], [2, 0, -4]], [[1, 1, -8], [3, 1, -7]], [[1, 1, -4], [1, 1, -4]], [[2, 0, -7], [4, 0, -6]], [[2, 0, -3], [2, 0, -3]], [[2, 1, -9], [5, 1, -9]], [[2, 1, -6], [2, 1, -6]], [[3, 0, -8], [6, 0, -8]], [[3, 0, -5], [3, 0, -5]], [[3, 1, -10], [6, 1, -10]], [[4, 0, -9], [7, 0, -9]], [[4, 1, -11], [8, 1, -11]], [[4, 1, -8], [4, 1, -8]], [[5, 0, -10], [9, 0, -10]], [[6, 1, -12], [13, 1, -12]], [[7, 0, -11], [13, 0, -11]], [[8, 1, -13], [13, 1, -13]], [[9, 0, -12], [13, 0, -12]], [[11, 1, -14], [13, 1, -14]]]), new d("f64a25f9f9306a760e247f68ce37404d175462993e146853ce1f1b7ac7353bef",r.A.RoadTurns,s.A.TurnLong3Tilted,[["Road", "TurnLong3Tilted"]],c,[[[-2, 1, -1], [0, 1, 1]], [[-1, 1, -5], [1, 1, -4]], [[-1, 1, -3], [0, 1, -2]], [[0, 0, -4], [1, 0, 1]], [[0, 1, -7], [1, 1, -6]], [[1, 0, -7], [3, 0, -6]], [[1, 0, -5], [2, 0, -5]], [[1, 1, -9], [3, 1, -8]], [[2, 0, -8], [4, 0, -8]], [[2, 0, -4], [2, 0, -4]], [[2, 1, -10], [4, 1, -10]], [[2, 1, -7], [2, 1, -7]], [[3, 0, -10], [5, 0, -9]], [[3, 1, -12], [5, 1, -11]], [[4, 0, -11], [7, 0, -11]], [[4, 1, -13], [8, 1, -13]], [[5, 0, -12], [8, 0, -12]], [[6, 0, -13], [10, 0, -13]], [[6, 0, -10], [6, 0, -10]], [[6, 1, -14], [9, 1, -14]], [[6, 1, -12], [6, 1, -12]], [[7, 1, -15], [11, 1, -15]], [[8, 0, -14], [12, 0, -14]], [[9, 0, -15], [17, 0, -15]], [[9, 1, -16], [17, 1, -16]], [[11, 1, -17], [17, 1, -17]], [[12, 0, -16], [17, 0, -16]], [[15, 1, -18], [17, 1, -18]]]), new d("2af8aa6050028dd6ee69b7150e83a6d8819e1848a7b1c782848d3f6448c5091a",r.A.RoadWide,s.A.ToWideMiddle,[["RoadWide", "ToWideMiddle"]],c,[[[-2, 0, -2], [1, 0, 1]]]), new d("26341cfe6bec34f46b10ffcd9a7706a8156b9ac41ed2cdfd166f9f8d3e9bc8f3",r.A.RoadWide,s.A.ToWideLeft,[["RoadWide", "ToWideSide", {
-                flipX: !0
-            }]],c,[[[-2, 0, -2], [1, 0, 1]]]), new d("3f82ebd6c72110b532a20673f8b54c7b25ae5988a51d3793bf383fea8ffcffc3",r.A.RoadWide,s.A.ToWideRight,[["RoadWide", "ToWideSide"]],c,[[[-2, 0, -2], [1, 0, 1]]]), new d("f5cecce9870f41f8cba7a9fbe631c315370a7a82824d04977ec857dbb1dfed29",r.A.RoadWide,s.A.ToWideDouble,[["RoadWide", "ToWideDouble"]],c,[[[-2, 0, -2], [1, 0, 1]]]), new d("99dc726611397f81b47459d32c7bfb8232322d1ca976ba9a3e71cc15451d8cfb",r.A.RoadWide,s.A.ToWideDiagonal,[["RoadWide", "ToWideDiagonal"]],c,[[[-2, 0, -2], [1, 0, 1]]]), new d("47d7e3fb334681911e122babef127881a36a763fb22176854114495802d5ce84",r.A.RoadWide,s.A.StraightWide,[["RoadWide", "StraightWide"]],c,[[[-2, 0, -2], [1, 0, 1]]]), new d("521adc95ed5a4809eeff7eec872c3d6449e4d6a7e4941d672f1e06a50a6615de",r.A.RoadWide,s.A.InnerCornerWide,[["RoadWide", "InnerCornerWide"]],c,[[[-2, 0, -2], [1, 0, 1]]]), new d("d82274b362794e3c1772510002d5015dde345f1e72dd675c8bac41cf2331398b",r.A.RoadWide,s.A.OuterCornerWide,[["RoadWide", "OuterCornerWide"]],c,[[[-2, 0, -2], [1, 0, 1]]]), new d("8c2541fab7e5e930b9280b3ef1e5bfc3092c17901c87457515df577f625c4303",r.A.RoadWide,s.A.SlopeUpLeftWide,[["RoadWide", "SlopeUpWide", {
-                flipX: !0
-            }]],c,[[[-2, 0, -2], [1, 0, 1]], [[-2, 1, -2], [1, 1, -2]]]), new d("6c908d749b8150b47d96c2d0c493ed8bf125035a250025fbe94b6078503bcfce",r.A.RoadWide,s.A.SlopeUpRightWide,[["RoadWide", "SlopeUpWide"]],c,[[[-2, 0, -2], [1, 0, 1]], [[-2, 1, -2], [1, 1, -2]]]), new d("676c22b45763bd86c8bb8d34a2fa7a38abde40618892742de598d866b4925b42",r.A.RoadWide,s.A.SlopeUpLongLeftWide,[["RoadWide", "SlopeUpLongWide", {
-                flipX: !0
-            }]],c,[[[-2, 0, -4], [1, 0, 1]], [[-2, 1, -5], [1, 1, -4]], [[-2, 1, -6], [1, 2, -6]]]), new d("e783f085e8ec313dcd1bbb0849fe5e669ccbb075baac4d289fd442a9cd4ba562",r.A.RoadWide,s.A.SlopeUpLongRightWide,[["RoadWide", "SlopeUpLongWide"]],c,[[[-2, 0, -4], [1, 0, 1]], [[-2, 1, -5], [1, 1, -4]], [[-2, 1, -6], [1, 2, -6]]]), new d("4229bf84ab08f86a24d24b610a8225885f3cb68726ef74f4b314d7705c9eb2da",r.A.RoadWide,s.A.SlopeDownLeftWide,[["RoadWide", "SlopeDownWide", {
-                flipX: !0
-            }]],c,[[[-2, 0, -2], [1, 0, 1]], [[-2, 1, 0], [1, 1, 1]]]), new d("a141744b0ffb4df202f230f1f97443f4198032aacf94e7259b7b0127df6bd838",r.A.RoadWide,s.A.SlopeDownRightWide,[["RoadWide", "SlopeDownWide"]],c,[[[-2, 0, -2], [1, 0, 1]], [[-2, 1, 0], [1, 1, 1]]]), new d("0fd78ec94545d4f7c41515ab7dafafb331b146118e3a14835fb6e6c9cb12e4af",r.A.RoadWide,s.A.SlopeDownLongLeftWide,[["RoadWide", "SlopeDownLongWide", {
-                flipX: !0
-            }]],c,[[[-2, 0, -2], [1, 0, 0]], [[-2, 1, -1], [1, 1, 5]], [[-2, 2, 3], [1, 2, 5]]]), new d("997f1fd3e53bc438066f32e6ea33300a8371b297c7d74f4c25f48f3370fd5752",r.A.RoadWide,s.A.SlopeDownLongRightWide,[["RoadWide", "SlopeDownLongWide"]],c,[[[-2, 0, -2], [1, 0, 0]], [[-2, 1, -1], [1, 1, 5]], [[-2, 2, 3], [1, 2, 5]]]), new d("bde16df3b12aab766167803dc302428bc8d3a4f95efcdeb8660b773e00e6ecb0",r.A.RoadWide,s.A.SlopeLeftWide,[["RoadWide", "SlopeWide", {
-                flipX: !0
-            }]],c,[[[-2, 0, 0], [1, 0, 1]], [[-2, 1, -2], [1, 1, 0]], [[-2, 2, -2], [1, 2, -2]]]), new d("1524c4b16a08292aa84fbe0f0369d09453e75061fc39a9a0503e6caf4843a301",r.A.RoadWide,s.A.SlopeRightWide,[["RoadWide", "SlopeWide"]],c,[[[-2, 0, 0], [1, 0, 1]], [[-2, 1, -2], [1, 1, 0]], [[-2, 2, -2], [1, 2, -2]]]), new d("b598ff14bda99600434b24a619132fec4bffcc535483b9b57b0c8c09c1be1f1b",r.A.RoadWide,s.A.SlopeUpVerticalLeftWide,[["RoadWide", "SlopeUpVerticalWide"]],c,[[[-2, 0, -1], [1, 0, 1]], [[-2, 1, -1], [1, 1, -1]], [[-2, 1, -2], [1, 3, -2]]]), new d("4e0275d3a01eaca6ec5118b8b816ed292cb7172710cf9b7801068424ab684b22",r.A.RoadWide,s.A.SlopeUpVerticalRightWide,[["RoadWide", "SlopeUpVerticalWide", {
-                flipX: !0
-            }]],c,[[[-2, 0, -1], [1, 0, 1]], [[-2, 1, -1], [1, 1, -1]], [[-2, 1, -2], [1, 3, -2]]]), new d("feff879bfa80db0dc58d93fe8e34ca793aa508002df55a27cba2d99cfefa4691",r.A.RoadWide,s.A.SlopeToVerticalLeftWide,[["RoadWide", "SlopeToVerticalWide", {
-                flipX: !0
-            }]],c,[[[-2, 0, 0], [1, 0, 1]], [[-2, 1, -2], [1, 1, 0]], [[-2, 2, -2], [1, 3, -2]], [[-2, 2, -1], [-2, 2, -1]]]), new d("88a9c7425f1e5b287ce571f744348a4a330409fced83f13b5a1c7e8e51e9ead4",r.A.RoadWide,s.A.SlopeToVerticalRightWide,[["RoadWide", "SlopeToVerticalWide"]],c,[[[-2, 0, 0], [1, 0, 1]], [[-2, 1, -2], [1, 1, 0]], [[-2, 2, -2], [1, 3, -2]], [[1, 2, -1], [1, 2, -1]]]), new d("896b47675cc2ff58494979168f6fd36c27c43da29aed6a52fdf80f054630166a",r.A.Plane,s.A.Plane,[["Planes", "Plane"]],c,[[[-2, 0, -2], [1, 0, 1]]]), new d("dc9afb98a8bb998d3b76c3563385e58c1749e56ff43fbc7577b1f57ba8360702",r.A.Plane,s.A.PlanePillarBottom,[["Planes", "Plane"], ["Pillar", "SurfacePillarBottom"]],c,[[[-2, 0, -2], [1, 0, 1]]]), new d("f59ad95edd26814236ab30b73f6f4f68003885ef150201a4ace14b832abcf438",r.A.Plane,s.A.PlanePillarShort,[["Planes", "Plane"], ["Pillar", "SurfacePillarShort"]],c,[[[-2, 0, -2], [1, 0, 1]]]), new d("48247a66b232461083fa2aa36644e7e8779f5b426d474efd375ee7d21d009c9a",r.A.Plane,s.A.HalfPlane,[["Planes", "HalfPlane"]],c,[[[-2, 0, 1], [1, 0, 1]], [[-2, 0, 0], [0, 0, 0]], [[-2, 0, -1], [-1, 0, -1]], [[-2, 0, -2], [-2, 0, -2]]]), new d("eac8530d1a025291674bf34b206f75700dc8626012d8d33ed398f7aed746dac8",r.A.Plane,s.A.QuarterPlane,[["Planes", "QuarterPlane"]],c,[[[-2, 0, 1], [-2, 0, 1]], [[-2, 0, -1], [-1, 0, 0]], [[-2, 0, -2], [-2, 0, -2]]]), new d("f6809dcb8440d3c6043bfd91eb84add7facf61565ce4fd6c2aa73a5a9da32934",r.A.Plane,s.A.PlaneCorner,[["Planes", "PlaneCorner"]],c,[[[-2, 0, -1], [1, 0, 1]], [[-1, 0, -2], [1, 0, -2]]]), new d("2dda4d3801c9cd4c117dc3c8239bea28cafe70ef2127986c2d6b455744fc8019",r.A.Plane,s.A.PlaneSlopeUp,[["Planes", "PlaneSlopeUp"]],c,[[[-2, 0, -2], [1, 0, 1]], [[-2, 1, -2], [1, 1, -2]]]), new d("ff295081bdf76f76ad286007c813d37b5af22b06f337ad8fe43cddbd221255b4",r.A.Plane,s.A.PlaneSlopeUpLong,[["Planes", "PlaneSlopeUpLong"]],c,[[[-2, 0, -4], [1, 0, 1]], [[-2, 1, -5], [1, 1, -4]], [[-2, 1, -6], [1, 2, -6]]]), new d("f1ac897525aa3fcae4fb678ca681bf559d993517b5f4f323b25789b64fe3f477",r.A.Plane,s.A.PlaneSlopeDown,[["Planes", "PlaneSlopeDown"]],c,[[[-2, 0, -2], [1, 0, 1]], [[-2, 1, 0], [1, 1, 1]]]), new d("549dbef42b80ca6cfa7eecb1397918b2fc9ccd15ceb1c494c41944b8a0d50d7b",r.A.Plane,s.A.PlaneSlopeDownLong,[["Planes", "PlaneSlopeDownLong"]],c,[[[-2, 0, -2], [1, 0, 0]], [[-2, 1, -1], [1, 1, 5]], [[-2, 2, 3], [1, 2, 5]]]), new d("2e9a2af92aea4a70361adba95230f3126911aa357299c0fe6c1e0611945961c0",r.A.Plane,s.A.PlaneSlope,[["Planes", "PlaneSlope"]],c,[[[-2, 0, 0], [1, 0, 1]], [[-2, 1, -2], [1, 1, 0]], [[-2, 2, -2], [1, 2, -2]]]), new d("76408f7250687477995d65c39e60554466c6b96376d2ff0c9c9c497e1ee823bf",r.A.Plane,s.A.HalfPlaneSlopeBottomLeft,[["Planes", "HalfPlaneSlopeBottom"]],c,[[[-2, 0, 0], [0, 0, 1]], [[-2, 1, -2], [-2, 1, 0]], [[-2, 2, -2], [-2, 2, -2]], [[-1, 1, -1], [-1, 1, 0]], [[0, 1, 0], [0, 1, 0]], [[1, 0, 1], [1, 0, 1]]]), new d("bb77b8de31e4d193112947bb0c3d9d62985b10d8982acaaf58df54d483863873",r.A.Plane,s.A.HalfPlaneSlopeBottomRight,[["Planes", "HalfPlaneSlopeBottom", {
-                flipX: !0
-            }]],c,[[[-2, 0, 1], [1, 0, 1]], [[-1, 0, 0], [1, 1, 0]], [[0, 1, -1], [1, 1, -1]], [[1, 1, -2], [1, 2, -2]]]), new d("6984589cd1276691a8c2161fec8205194ea7545c8962b3f61f672ec02cf534f9",r.A.Plane,s.A.HalfPlaneSlopeTopLeft,[["Planes", "HalfPlaneSlopeTop", {
-                flipX: !0
-            }]],c,[[[-2, 0, 0], [-1, 1, 0]], [[-2, 0, 1], [-2, 0, 1]], [[-2, 1, -2], [0, 1, -1]], [[-2, 2, -2], [1, 2, -2]], [[1, 1, -2], [1, 1, -2]]]), new d("992d36738e4882dd1da1ca3c2a396c79ae7fcb2ba47649de7cb0f888f18e04b3",r.A.Plane,s.A.HalfPlaneSlopeTopRight,[["Planes", "HalfPlaneSlopeTop"]],c,[[[-2, 1, -2], [1, 2, -2]], [[-1, 1, -1], [1, 1, -1]], [[0, 0, 0], [1, 1, 0]], [[1, 0, 1], [1, 0, 1]]]), new d("ba0d6ec33647740bf4c60e542d1758095afa3ef451bdaec76c783dd32116e4cb",r.A.Plane,s.A.PlaneSlopeVerticalBottom,[["Planes", "PlaneSlopeVertical"]],c,[[[-2, 0, -1], [1, 0, 1]], [[-2, 1, -1], [1, 1, -1]], [[-2, 1, -2], [1, 3, -2]]]), new d("6f750b74664474a57a22f22b4f8b7f2fef330eb00f9041385ec0acfbc2b09302",r.A.Plane,s.A.PlaneSlopeToVertical,[["Planes", "PlaneSlopeToVertical"]],c,[[[-2, 0, 0], [1, 0, 1]], [[-2, 1, -2], [1, 1, 0]], [[-2, 2, -2], [1, 3, -2]]]), new d("5f6d1ece085d450643f1399af53673dcc6bbbf413094d8dd5ee6816d80e1c8ae",r.A.Plane,s.A.PlaneBridge,[["Planes", "PlaneBridge"]],c,[[[-1, 0, -2], [0, 0, 1]]]), new d("32b91fc4cdf95f5b7a490d81058522bae14741601dd44c73cc110121aa1dd6e6",r.A.Plane,s.A.PlaneBridgeCorner,[["Planes", "PlaneBridgeCorner"]],c,[[[-1, 0, -1], [0, 0, 1]], [[1, 0, -1], [1, 0, 0]]]), new d("2db870b1821fb655437bd0527569d5a6843718fa0775682701437432265a1a88",r.A.Plane,s.A.PlaneBridgeIntersectionT,[["Planes", "PlaneBridgeIntersectionT"]],c,[[[-1, 0, -1], [0, 0, 1]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]]]), new d("33aa0e7524b74dcdae4aed89856c09d25248c4cab8f70dcc31b347f0a00fcb52",r.A.Plane,s.A.PlaneBridgeIntersectionCross,[["Planes", "PlaneBridgeIntersectionCross"]],c,[[[-1, 0, -1], [0, 0, 1]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]], [[-1, 0, -2], [0, 0, -2]]]), new d("bd7cc4ab180fc0a6936fef828ae3a91566b3dd621b888fbcc57c9ac11dcb713b",r.A.Plane,s.A.PlaneWall,[["Planes", "PlaneWall"]],c,[[[-2, 0, 1], [1, 0, 1]]]), new d("d92568164028bb2e65799abd9dc6ba66cfe8a28515c09fbe5ac175f5966af66a",r.A.Plane,s.A.PlaneWallCorner,[["Planes", "PlaneWallCorner"]],c,[[[-2, 0, 1], [1, 0, 1]], [[1, 0, -2], [1, 0, 0]]]), new d("792ab5a6f0e2bf8e556575ef12731ec30755855d4394f98eb4ca7ec8b713933c",r.A.Plane,s.A.PlaneWallInnerCorner,[["Planes", "PlaneWallInnerCorner"]],c,[[[1, 0, 1], [1, 0, 1]]]), new d("9f1a6ce37a3b0601346f4d30d8a81075c8eefd3d873cbb24fbe5cf6d5da3093f",r.A.Plane,s.A.PlaneWallSlopeLeft,[["Planes", "PlaneWallSlope"]],c,[[[1, 0, 0], [1, 1, 1]], [[1, 1, -2], [1, 2, -1]]]), new d("0a28443c2fc0e51527b4d3a5a0d98302fc368839b614db5c7d90f151a97c7542",r.A.Plane,s.A.PlaneWallSlopeRight,[["Planes", "PlaneWallSlope", {
-                flipX: !0
-            }]],c,[[[-2, 0, 0], [-2, 1, 1]], [[-2, 1, -2], [-2, 2, -1]]]), new d("b55dca4b19a0f61db43849e444eaa1d9289519ef7e5a4b6e02c7c02ba80f84f4",r.A.Plane,s.A.PlaneWallSlopeUpLeft,[["Planes", "PlaneWallSlopeUp"]],c,[[[1, 0, -2], [1, 1, 1]]]), new d("70c5288fe8e74957d820cc34995566ad26478e00e5314e36e836e0f803b38061",r.A.Plane,s.A.PlaneWallSlopeUpRight,[["Planes", "PlaneWallSlopeUp", {
-                flipX: !0
-            }]],c,[[[-2, 0, -2], [-2, 1, 1]]]), new d("9b16670e084f2e054c61f253abb7b24e29e0b11800de23b9a2877f17c33dd4a9",r.A.Plane,s.A.PlaneWallSlopeDownLeft,[["Planes", "PlaneWallSlopeDown"]],c,[[[1, 0, -2], [1, 1, 1]]]), new d("bf441ad2d47b48000b7535e2dd39c209257f2614363494827200330dfea97e11",r.A.Plane,s.A.PlaneWallSlopeDownRight,[["Planes", "PlaneWallSlopeDown", {
-                flipX: !0
-            }]],c,[[[-2, 0, -2], [-2, 1, 1]]]), new d("8d561c6d1e116c92c5f9ecb9715e57b510dfd38d8e4ba2183429d28238c6ac83",r.A.Plane,s.A.PlaneWallSlopeUpLongLeft,[["Planes", "PlaneWallSlopeUpLong"]],c,[[[1, 0, -4], [1, 1, 1]], [[1, 1, -6], [1, 2, -5]], [[1, 2, -4], [1, 2, -4]]]), new d("ab013301c7b3b91cf48ae1a8d47842f85ac688677cc14e0baa3b3a5a3ce0bb3b",r.A.Plane,s.A.PlaneWallSlopeUpLongRight,[["Planes", "PlaneWallSlopeUpLong", {
-                flipX: !0
-            }]],c,[[[-2, 0, -4], [-2, 1, 1]], [[-2, 1, -6], [-2, 2, -5]], [[-2, 2, -4], [-2, 2, -4]]]), new d("79fc30fd9032052b23a30f03fde4e4932b4a3a6a57c1e2b64631fb5d6c5f1052",r.A.Plane,s.A.PlaneWallSlopeDownLongLeft,[["Planes", "PlaneWallSlopeDownLong"]],c,[[[1, 0, -2], [1, 1, 0]], [[1, 1, 1], [1, 2, 5]], [[1, 2, 0], [1, 2, 0]]]), new d("5aeda192c725700634faf36a401b9bf0b4df869b311da546080569f66c741a66",r.A.Plane,s.A.PlaneWallSlopeDownLongRight,[["Planes", "PlaneWallSlopeDownLong", {
-                flipX: !0
-            }]],c,[[[-2, 0, -2], [-2, 1, 0]], [[-2, 1, 1], [-2, 2, 5]], [[-2, 2, 0], [-2, 2, 0]]]), new d("de0d588c4b2fe6b32d72a7e0e2984285955f805ccb86d3c269f7155401cd6b20",r.A.Block,s.A.Block,[["Blocks", "Block"]],h,[[[-2, 0, -2], [1, 0, 1]]]), new d("1ce6b585c0e99d71877fefe015ff16336ae62eb0caebeca62dd09d836092d7b6",r.A.Block,s.A.HalfBlock,[["Blocks", "HalfBlock"]],h,[[[-2, 0, 1], [1, 0, 1]], [[-2, 0, 0], [0, 0, 0]], [[-2, 0, -1], [-1, 0, -1]], [[-2, 0, -2], [-2, 0, -2]]]), new d("0d5f0609c3c98f687d55d3a73313225c1642f6285ddaca3ed536db742c85958d",r.A.Block,s.A.QuarterBlock,[["Blocks", "QuarterBlock"]],h,[[[-2, 0, 1], [-2, 0, 1]], [[-2, 0, -1], [-1, 0, 0]], [[-2, 0, -2], [-2, 0, -2]]]), new d("18fc1c569c6fc04f95f10174143d19e7a9ea4e387302363f4ae60883c1acd3f0",r.A.Block,s.A.BlockSlopedDown,[["Blocks", "BlockSlopedDown"]],h,[[[-2, 0, -2], [1, 0, -1]], [[-2, 1, -2], [1, 1, 1]]]), new d("22dd5b2804c88994a4d283cb822f47de3c72f82376e4c9332d39feae85206c0f",r.A.Block,s.A.BlockSlopedDownInnerCorner,[["Blocks", "BlockSlopedDownInnerCorner"]],h,[[[-2, 0, -2], [-1, 0, 1]], [[0, 0, -2], [1, 0, -1]], [[-2, 1, -2], [1, 1, 1]]]), new d("81a71b4cc6ef8520f20fd738457abc31b04258c97f9862f70190fd2a0ba91382",r.A.Block,s.A.BlockSlopedDownOuterCorner,[["Blocks", "BlockSlopedDownOuterCorner"]],h,[[[-2, 0, -2], [-1, 0, -1]], [[-2, 1, -2], [1, 1, 1]]]), new d("f4e19d3bc49994a85fecd187b76c21d258e7f30f0506d90bc6f173336e11627d",r.A.Block,s.A.BlockSlopedUp,[["Blocks", "BlockSlopedUp"]],h,[[[-2, 0, -2], [1, 0, 1]], [[-2, 1, -2], [1, 1, -1]]]), new d("fd9309468e97131bbbd1404fac34a7137cb176327789b955c1aea30267e1cded",r.A.Block,s.A.BlockSlopedUpInnerCorner,[["Blocks", "BlockSlopedUpInnerCorner"]],h,[[[-2, 1, -2], [-1, 1, 1]], [[0, 1, -2], [1, 1, -1]], [[-2, 0, -2], [1, 0, 1]]]), new d("1321fb07ece1b80b99dc4671b52673ac028fbf43322e9e652ad633ff6afac21b",r.A.Block,s.A.BlockSlopedUpOuterCorner,[["Blocks", "BlockSlopedUpOuterCorner"]],h,[[[-2, 1, -2], [-1, 1, -1]], [[-2, 0, -2], [1, 0, 1]]]), new d("84d11f91b9410afafd2801d85bcfd87f9390272180e3f49ab77d108e328dbd1d",r.A.Block,s.A.HalfBlockSlopeBottomLeft,[["Blocks", "HalfBlockSlopeBottom"]],h,[[[-2, 0, -2], [-2, 0, 1]], [[-2, 1, -2], [-2, 1, -1]], [[-1, 0, -1], [-1, 0, 1]], [[-1, 1, -1], [-1, 1, -1]], [[0, 0, 0], [0, 0, 1]], [[1, 0, 1], [1, 0, 1]]]), new d("84d77134750b28ec4d4e66d37052a5d83cd97e18144e1b849155976d35418d3b",r.A.Block,s.A.HalfBlockSlopeBottomRight,[["Blocks", "HalfBlockSlopeBottom", {
-                flipX: !0
-            }]],h,[[[-2, 0, 1], [1, 0, 1]], [[-1, 0, 0], [1, 0, 0]], [[0, 0, -1], [1, 1, -1]], [[1, 0, -2], [1, 1, -2]]]), new d("185b3f1a8ed7f7b1eb8da5e6911a181560a3dab738e59f01cb54af58391eb223",r.A.Block,s.A.HalfBlockSlopeTopLeft,[["Blocks", "HalfBlockSlopeTop", {
-                flipX: !0
-            }]],h,[[[-2, 0, -2], [0, 1, -1]], [[-2, 0, 0], [-1, 0, 0]], [[-2, 0, 1], [-2, 0, 1]], [[1, 0, -2], [1, 1, -2]]]), new d("813b1bbe0eebb47629848d50e815cd28760b3e6c56e549a4a53faea4b33726ab",r.A.Block,s.A.HalfBlockSlopeTopRight,[["Blocks", "HalfBlockSlopeTop"]],h,[[[-2, 0, -2], [1, 1, -2]], [[-1, 0, -1], [1, 1, -1]], [[0, 0, 0], [1, 0, 0]], [[1, 0, 1], [1, 0, 1]]]), new d("b97c17388fc38139f2f5a98a36d94831095f79db709dd97748ad2904bc54d689",r.A.Block,s.A.BlockSlopeDown,[["Blocks", "BlockSlopeDown"]],h,[[[-2, 0, -2], [1, 0, 1]]]), new d("50276826bbfb9fcb11a8519b8dae8a2b1cf82817d5431418d9a376664261be82",r.A.Block,s.A.BlockSlopeUp,[["Blocks", "BlockSlopeUp"]],h,[[[-2, 0, -2], [1, 0, 1]]]), new d("63fd3032796397f8e25669c1c1d3fc97b8ec0e5fc88bfcb5c00a2a2c2b517888",r.A.Block,s.A.BlockSlopeDownLong,[["Blocks", "BlockSlopeDownLong"]],h,[[[-2, 0, -2], [1, 0, 5]], [[-2, 1, 0], [1, 1, 5]]]), new d("2d29131222a8d891b4350e6a2f335b114e001cf22e4e2f170dc9b86c4b2fd325",r.A.Block,s.A.BlockSlopeUpLong,[["Blocks", "BlockSlopeUpLong"]],h,[[[-2, 0, -6], [1, 0, 1]], [[-2, 1, -6], [1, 1, -4]]]), new d("0bbcd96c91b69e6e8005bfae5b64455b0d6510cb1595f3fca7f77c86ddda4560",r.A.Block,s.A.BlockSlopeVerticalTop,[["Blocks", "BlockSlopeVertical", {
-                flipY: !0
-            }]],h,[[[-2, 3, -2], [1, 3, 1]], [[-2, 2, -2], [1, 2, -1]], [[-2, 0, -2], [1, 1, -2]]]), new d("e81a123c0be3f8f168fb584d53e8aa038785569bbf2cd1c1cead2272889591e0",r.A.Block,s.A.BlockSlopeVerticalBottom,[["Blocks", "BlockSlopeVertical"]],h,[[[-2, 0, -2], [1, 0, 1]], [[-2, 1, -2], [1, 1, -1]], [[-2, 2, -2], [1, 3, -2]]]), new d("39c8bfd9a12ba536f34db14b3ac24afd133f3dd67ecc30f8ab90138a5a545520",r.A.Block,s.A.BlockSlopeToVertical,[["Blocks", "BlockSlopeToVertical"]],h,[[[-2, 0, -2], [1, 0, 1]], [[-2, 1, -2], [1, 1, -1]], [[-2, 2, -2], [1, 3, -2]]]), new d("3a2f05b1c2c2fd976997fa473f1adb3ba14495701dc5a998f8697798384c6946",r.A.Block,s.A.BlockSlopeVerticalCornerTop,[["Blocks", "BlockSlopeVerticalCornerBottom", {
-                flipY: !0
-            }]],h,[[[-2, 3, -2], [1, 3, 1]], [[-2, 2, -2], [0, 2, 0]], [[1, 2, -2], [1, 2, -1]], [[-2, 2, 1], [-1, 2, 1]], [[-2, 1, -2], [-1, 1, -1]], [[-2, 1, 0], [-1, 1, 0]], [[0, 1, -2], [0, 1, -1]], [[1, 1, -2], [1, 1, -2]], [[-2, 1, 1], [-2, 1, 1]], [[-2, 0, -2], [-1, 0, -1]], [[-2, 0, 0], [-2, 0, 1]], [[0, 0, -2], [1, 0, -2]]]), new d("3e4fa43e69aa1dbee584e16451a95a16229bba8d638df2bf6f6c9ffb3a9629c9",r.A.Block,s.A.BlockInnerCorner,[["Blocks", "BlockInnerCorner"]],h,[[[-2, 0, 0], [-2, 0, 1]], [[-2, 0, -2], [-1, 0, -1]], [[0, 0, -2], [1, 0, -2]]]), new d("5e3b086f679fc9ff779abba9a7ea0db59a0a4dbd0540cd4aa501e2bfea1673f5",r.A.Block,s.A.BlockOuterCorner,[["Blocks", "BlockOuterCorner"]],h,[[[-2, 0, -1], [1, 0, 1]], [[-1, 0, -2], [1, 0, -2]]]), new d("cc9c95eef56def4cf013e4ac85b8013a2b4f4b4346f1f5dd41fa017de763ef17",r.A.Block,s.A.BlockSlopeVerticalCornerBottom,[["Blocks", "BlockSlopeVerticalCornerBottom"]],h,[[[-2, 0, -2], [1, 0, 1]], [[-2, 1, -2], [0, 1, 0]], [[1, 1, -2], [1, 1, -1]], [[-2, 1, 1], [-1, 1, 1]], [[-2, 2, -2], [-1, 2, -1]], [[-2, 2, 0], [-1, 2, 0]], [[0, 2, -2], [0, 2, -1]], [[1, 2, -2], [1, 2, -2]], [[-2, 2, 1], [-2, 2, 1]], [[-2, 3, -2], [-1, 3, -1]], [[-2, 3, 0], [-2, 3, 1]], [[0, 3, -2], [1, 3, -2]]]), new d("e4c82c8e512d52269cb6588fa34b06c179340ea40e71f74cbadadc7e8353f5a2",r.A.Block,s.A.BlockSlopeVerticalInnerCornerTop,[["Blocks", "BlockSlopeVerticalInnerCorner", {
-                flipY: !0
-            }]],h,[[[-2, 3, -2], [0, 3, 1]], [[1, 3, -2], [1, 3, 0]], [[-2, 2, -2], [-2, 2, -1]], [[-1, 2, -2], [-1, 2, -2]], [[-2, 0, -2], [-2, 1, -2]]]), new d("926fdc6e82ecd709cc535faea6bb8778c6e2e91edb39eb6ae6308076dca2ed18",r.A.Block,s.A.BlockSlopeVerticalInnerCornerBottom,[["Blocks", "BlockSlopeVerticalInnerCorner"]],h,[[[-2, 0, -2], [0, 0, 1]], [[1, 0, -2], [1, 0, 0]], [[-2, 1, -2], [-2, 1, -1]], [[-1, 1, -2], [-1, 1, -2]], [[-2, 2, -2], [-2, 3, -2]]]), new d("1086515ba3c1d8e5ec76b378f0bdbc77fc5a57fc8eba8972f0d5e611be945235",r.A.Block,s.A.BlockBridge,[["Blocks", "BlockBridge"]],h,[[[-1, 0, -2], [0, 0, 1]]]), new d("5426ad4ff64af3f1a0f0794ad30cfc20434dfffdf44d93010f5f98671c246ff3",r.A.Block,s.A.BlockBridgeCorner,[["Blocks", "BlockBridgeCorner"]],h,[[[-1, 0, -1], [0, 0, 1]], [[1, 0, -1], [1, 0, 0]]]), new d("784b9b4459e838e5b8f74f6250769ffa52ec5cc3608abc24c380a2e792c3d338",r.A.Block,s.A.BlockBridgeIntersectionT,[["Blocks", "BlockBridgeIntersectionT"]],h,[[[-1, 0, -1], [0, 0, 1]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]]]), new d("dfbcbc107a3c12217bfa3b224a5757d08e995705d1c122bb2c2665bbb8447b1c",r.A.Block,s.A.BlockBridgeIntersectionCross,[["Blocks", "BlockBridgeIntersectionCross"]],h,[[[-1, 0, -1], [0, 0, 1]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]], [[-1, 0, -2], [0, 0, -2]]]), new d("a00d7077d07af7f2125d4db731b5b76ca182b65eb90fbe76061e196a7c0b1652",r.A.WallTrack,s.A.WallTrackTop,[["WallTrack", "WallTrackBottom", {
-                flipY: !0
-            }]],c,[[[-2, 3, -1], [1, 3, 1]], [[-2, 2, -1], [1, 2, -1]], [[-2, 0, -2], [1, 2, -2]]]), new d("010d187fbfbd399bfe880bbea1b548678c239eba0be2913e5cb8a69fbd17adf7",r.A.WallTrack,s.A.WallTrackMiddle,[["WallTrack", "WallTrackMiddle"]],c,[[[-2, 0, -2], [1, 0, -2]]]), new d("72934b2ee76e187eee519baf97df49128dc32e3583795f98645774ae5639f443",r.A.WallTrack,s.A.WallTrackBottom,[["WallTrack", "WallTrackBottom"]],c,[[[-2, 0, -1], [1, 0, 1]], [[-2, 1, -1], [1, 1, -1]], [[-2, 1, -2], [1, 3, -2]]]), new d("1ff36280441e023bd066dc3c5cdf136bd9a3a0beb9eee0aad048c9a2dfd5eafb",r.A.WallTrack,s.A.WallTrackSlopeToVertical,[["WallTrack", "WallTrackSlopeToVertical"]],c,[[[-2, 0, 0], [1, 0, 1]], [[-2, 1, -2], [1, 1, 0]], [[-2, 2, -2], [1, 3, -2]]]), new d("9c7c099734168051032425b6e228665caa581282ef23db6d1ae8c958f8675531",r.A.WallTrack,s.A.WallTrackTopCorner,[["WallTrack", "WallTrackBottomCorner", {
-                flipY: !0
-            }]],c,[[[-2, 0, -1], [-2, 0, 1]], [[-1, 0, -1], [-1, 0, -1]], [[-1, 0, -2], [1, 0, -2]], [[-2, 1, -1], [-2, 1, 1]], [[-1, 1, -1], [-1, 1, 0]], [[0, 1, -1], [0, 1, -1]], [[-1, 1, -2], [1, 1, -2]], [[-2, 2, 0], [-2, 2, 1]], [[-1, 2, 1], [-1, 2, 1]], [[-1, 2, -1], [0, 2, 0]], [[1, 2, -1], [1, 2, -1]], [[0, 2, -2], [1, 2, -2]], [[0, 3, -1], [1, 3, 1]], [[-1, 3, 0], [-1, 3, 1]]]), new d("4027a2439cc3e42ceda50ff3d427a31e127b25a6457b55edc2d498b474a296a7",r.A.WallTrack,s.A.WallTrackMiddleCorner,[["WallTrack", "WallTrackMiddleCorner"]],c,[[[-2, 0, -1], [-2, 0, 1]], [[-1, 0, -1], [-1, 0, -1]], [[-1, 0, -2], [1, 0, -2]]]), new d("32c0ec55a47f619e277cb9efec3dd1b54792e7ea78c370f1e3102b7ba4ed2928",r.A.WallTrack,s.A.WallTrackBottomCorner,[["WallTrack", "WallTrackBottomCorner"]],c,[[[-2, 3, -1], [-2, 3, 1]], [[-1, 3, -1], [-1, 3, -1]], [[-1, 3, -2], [1, 3, -2]], [[-2, 2, -1], [-2, 2, 1]], [[-1, 2, -1], [-1, 2, 0]], [[0, 2, -1], [0, 2, -1]], [[-1, 2, -2], [1, 2, -2]], [[-2, 1, 0], [-2, 1, 1]], [[-1, 1, 1], [-1, 1, 1]], [[-1, 1, -1], [0, 1, 0]], [[1, 1, -1], [1, 1, -1]], [[0, 1, -2], [1, 1, -2]], [[0, 0, -1], [1, 0, 1]], [[-1, 0, 0], [-1, 0, 1]]]), new d("786b8ff7fcb72c67e7b887a78fa7b823c48575ae1e4d3b48ae13620646ac34a7",r.A.WallTrack,s.A.WallTrackTopInnerCorner,[["WallTrack", "WallTrackBottomInnerCorner", {
-                flipY: !0
-            }]],c,[[[-2, 3, -1], [1, 3, 1]], [[-1, 3, -2], [1, 3, -2]], [[-2, 2, -2], [-1, 2, -1]], [[-2, 0, -2], [-2, 1, -2]]]), new d("16c9c8ece47c097f60cfc7f8a2daa2f0e7ad0befb0ebfd185402013fd1ec8e0f",r.A.WallTrack,s.A.WallTrackInnerCorner,[["WallTrack", "WallTrackInnerCorner"]],c,[[[-2, 0, -2], [-2, 0, -2]]]), new d("413dcb45de9fdaf4fe8b78804feaa80891053063a5c432c09b50c24201166572",r.A.WallTrack,s.A.WallTrackBottomInnerCorner,[["WallTrack", "WallTrackBottomInnerCorner"]],c,[[[-2, 0, -1], [1, 0, 1]], [[-1, 0, -2], [1, 0, -2]], [[-2, 1, -2], [-1, 1, -1]], [[-2, 2, -2], [-2, 3, -2]]]), new d("8b7023471502607ef19109760bee3b954ea3b3883c32f3960f75c6651c912ffd",r.A.WallTrack,s.A.WallTrackFloor,[["WallTrack", "WallTrackFloor"]],c,[[[-2, 0, -2], [1, 0, 1]]]), new d("59e7f31827236c71db8b16f3f1f259c4c82c87a37e4d57a5a097c0d527d128f3",r.A.WallTrack,s.A.WallTrackFloorCorner,[["WallTrack", "WallTrackFloorCorner"]],c,[[[-2, 0, 1], [1, 0, 1]], [[0, 0, 0], [1, 0, 0]], [[1, 0, -2], [1, 0, -1]]]), new d("d58e3805b550b70940c845a807086865b21a4c36da74ffddedcfe5ce2d08e093",r.A.WallTrack,s.A.WallTrackFloorPlaneCorner,[["WallTrack", "WallTrackFloorPlaneCorner"]],c,[[[-2, 0, 1], [1, 0, 1]], [[0, 0, 0], [1, 0, 0]], [[1, 0, -2], [1, 0, -1]]]), new d("a56b0c1cf964b213a38167cbbac6f33acd403978ad75746eb51bcfd8c6a36148",r.A.WallTrack,s.A.WallTrackCeiling,[["WallTrack", "WallTrackCeiling"]],c,[[[-2, 0, -2], [1, 0, 1]]]), new d("f87b592d02120312e8e93d8a27c02dcda1095ac2f09879c6efafb2ca2b49d127",r.A.WallTrack,s.A.WallTrackCeilingCorner,[["WallTrack", "WallTrackCeilingCorner"]],c,[[[-2, 0, 1], [1, 0, 1]], [[0, 0, 0], [1, 0, 0]], [[1, 0, -2], [1, 0, -1]]]), new d("cfce1fe50f8cd26393eadd475783830e02f0b39bad4c0e00f7aa69614b22decc",r.A.WallTrack,s.A.WallTrackCeilingPlaneCorner,[["WallTrack", "WallTrackCeilingPlaneCorner"]],c,[[[-2, 0, 1], [1, 0, 1]], [[0, 0, 0], [1, 0, 0]], [[1, 0, -2], [1, 0, -1]]]), new d("19656d02145f1a4ba07dbf2f236f865d34c86f823741b247b5d444a36d61c316",r.A.Pillar,s.A.PillarTop,[["Pillar", "PillarTop"]],c,[[[-1, 0, -1], [0, 0, 0]]]), new d("dde596d55ffc00f0f00d361667239d9f71c414f03304fecb6a7d11f6f5e702f1",r.A.Pillar,s.A.PillarMiddle,[["Pillar", "PillarMiddle"]],c,[[[-1, 0, -1], [0, 0, 0]]]), new d("dced5202d9373f9dd81a39530a87a1a7036c93ae71604a4e26c3a191abf3c197",r.A.Pillar,s.A.PillarBottom,[["Pillar", "PillarBottom"]],c,[[[-1, 0, -1], [0, 0, 0]]]), new d("af83eebf50c302880377e4f8c1fb3b2ef96ae193e8d03c17e1fd77c73a847e63",r.A.Pillar,s.A.PillarShort,[["Pillar", "PillarShort"]],c,[[[-1, 0, -1], [0, 0, 0]]]), new d("bad7c003302fe84912a2f36551fc9751220ebe6e747791a8df205dca9ae31cc0",r.A.Pillar,s.A.PillarTopSlope,[["Pillar", "PillarTopSlope"]],c,[[[-1, 0, -1], [0, 0, 0]], [[-1, 1, -1], [0, 1, -1]]]), new d("9f34b2cd553c88364c36923d7ae5e606253865e0684f575e0538670b6116ac5a",r.A.Pillar,s.A.PillarShortSlope,[["Pillar", "PillarShortSlope"]],c,[[[-1, 0, -1], [0, 0, 0]], [[-1, 1, -1], [0, 1, -1]]]), new d("25b41116fb04b1f3cdd3119f57e0000a6ea8cb12d435718ffd6bb765866c272f",r.A.Pillar,s.A.PillarBranch1,[["Pillar", "PillarBranch1"]],c,[[[-1, 0, -2], [0, 0, 0]]]), new d("05ae39aea4f1ddd818fa57860e688c9cb875544f9b82eafe58a2eb9c19d8d91d",r.A.Pillar,s.A.PillarBranch1Top,[["Pillar", "PillarBranch1Top"]],c,[[[-1, 0, -2], [0, 0, 0]]]), new d("06c29d92e42e0c32050af98d69eecc94ce15adf8ac81dbe53dfb577a83265f4e",r.A.Pillar,s.A.PillarBranch1Middle,[["Pillar", "PillarBranch1Middle"]],c,[[[-1, 0, -2], [0, 0, 0]]]), new d("4a989027e0bd6db264f092bac729d9d450e012a710ea28d199f7ff52efd70fbd",r.A.Pillar,s.A.PillarBranch1Bottom,[["Pillar", "PillarBranch1Bottom"]],c,[[[-1, 0, -2], [0, 0, 0]]]), new d("78b2ff83ad71e7f3d692abc35923fa20c2ae14c01e37d44ec430746ca1bac992",r.A.Pillar,s.A.PillarBranch2,[["Pillar", "PillarBranch2"]],c,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]]]), new d("b22c93bc73ec2da9dbff218da1676d7436527ed284e264f37294e48ef1307301",r.A.Pillar,s.A.PillarBranch2Top,[["Pillar", "PillarBranch2Top"]],c,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]]]), new d("79a456a8fa3da24bec6c033f6c736fa1c728745f9624ae78ca20b6a4a76afae8",r.A.Pillar,s.A.PillarBranch2Middle,[["Pillar", "PillarBranch2Middle"]],c,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]]]), new d("3b81b3f965cbc9fda4fe09e830ba25f1b96ce512d87b0146a1192a6cd0d07335",r.A.Pillar,s.A.PillarBranch2Bottom,[["Pillar", "PillarBranch2Bottom"]],c,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]]]), new d("27727678bbcac9d3b0172b165ca5c92b10f4b4584a3a18fef4c542f3e791f26f",r.A.Pillar,s.A.PillarBranch3,[["Pillar", "PillarBranch3"]],c,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]]]), new d("50c7ac511d30ab9e065c928b776652f038be7683d948082bbefc419ee049e505",r.A.Pillar,s.A.PillarBranch3Top,[["Pillar", "PillarBranch3Top"]],c,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]]]), new d("98b3bfe99e7132825f5aa93122e4e5fdec46eb2877c8eb91fa2648f709527b60",r.A.Pillar,s.A.PillarBranch3Middle,[["Pillar", "PillarBranch3Middle"]],c,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]]]), new d("7326bbb558f8bcc28d5875c43b1b8e3646caadb873a14fde3ab517f779aea345",r.A.Pillar,s.A.PillarBranch3Bottom,[["Pillar", "PillarBranch3Bottom"]],c,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]]]), new d("0e23c2615cfdb350bb3a700b6169589265a1d1079f61294fb497b8f80191d523",r.A.Pillar,s.A.PillarBranch4,[["Pillar", "PillarBranch4"]],c,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]], [[-1, 0, 1], [0, 0, 1]]]), new d("e62b55e111dbcb3faefed0a203eac5b55051a2b11911946660310e3df3588da3",r.A.Pillar,s.A.PillarBranch4Top,[["Pillar", "PillarBranch4Top"]],c,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]], [[-1, 0, 1], [0, 0, 1]]]), new d("4e2cfb89c1c591803a1440532a74c3ace37ec7fe78a526c1b57f6679c620df2e",r.A.Pillar,s.A.PillarBranch4Middle,[["Pillar", "PillarBranch4Middle"]],c,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]], [[-1, 0, 1], [0, 0, 1]]]), new d("e7807350788e4570c8bb74d4a635639ef731d83e52922fac5bc10f415f73f794",r.A.Pillar,s.A.PillarBranch4Bottom,[["Pillar", "PillarBranch4Bottom"]],c,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]], [[-1, 0, 1], [0, 0, 1]]]), new d("836bfd12791bfebd99aba70531da4c9bd6e332d16c1e120a8888ea54f59456f9",r.A.Pillar,s.A.PillarBranch5,[["Pillar", "PillarBranch5"]],c,[[[-2, 0, -1], [1, 0, 0]]]), new d("ab85228116faf9ae7b1e6cb4a03530cbec808df3d3c1d7883eb41eb7cfe231d7",r.A.Pillar,s.A.PillarBranch5Top,[["Pillar", "PillarBranch5Top"]],c,[[[-2, 0, -1], [1, 0, 0]]]), new d("db93d5cea4e523fd67a56f8d928084ab6355331a8e5d1899115c1841866006bb",r.A.Pillar,s.A.PillarBranch5Middle,[["Pillar", "PillarBranch5Middle"]],c,[[[-2, 0, -1], [1, 0, 0]]]), new d("dd793efa234159e3a0ff28b064ecb715e6c8bb76e06acfe4bd0d9a2f2b9bba88",r.A.Pillar,s.A.PillarBranch5Bottom,[["Pillar", "PillarBranch5Bottom"]],c,[[[-2, 0, -1], [1, 0, 0]]]), new d("350f7d3591ffd0b2cfb8204d1c6cd0022fd3bda81ea7e950fce3abea7ec89e1a",r.A.Sign,s.A.SignArrowLeft,[["Signs", "SignArrowRight", {
-                flipX: !0
-            }]],c,[[[-2, 0, -2], [1, 0, -2]]]), new d("22e104e58bba0a609d379578e391ce50ca523c9eee1c3fddebb6d1bb2246a0b9",r.A.Sign,s.A.SignArrowRight,[["Signs", "SignArrowRight"]],c,[[[-2, 0, -2], [1, 0, -2]]]), new d("acba0cfe380e625285b973e09344e61740e77d6f8cac8691ef3e0a0b0878040e",r.A.Sign,s.A.SignArrowUp,[["Signs", "SignArrowUp"]],c,[[[-2, 0, -2], [1, 0, -2]]]), new d("8d0dbea0a26bdf3addd372f5d9a2fdecfd776a48f31218acdeb036129b248ca5",r.A.Sign,s.A.SignArrowDown,[["Signs", "SignArrowUp", {
-                flipY: !0
-            }]],c,[[[-2, 0, -2], [1, 0, -2]]]), new d("e5e1b1ca69d7b230331171be07876c4b1bdebba557c19b18ab17d91eee2771d5",r.A.Sign,s.A.SignWarning,[["Signs", "SignWarning"]],c,[[[-2, 0, -2], [1, 0, -2]]]), new d("64ed1fba4990a25bc774575ff8835117638d2c3e7c8f41bf0032d219e1083e4c",r.A.Sign,s.A.SignWrongWay,[["Signs", "SignWrongWay"]],c,[[[-2, 0, -2], [1, 0, -2]]])]
+            const u = [    
+                new PartObject("6d94d798abd14dc3bce4e99c180309d993ad43adb5f2c90eef8e350eedafe7cf",PartCategory.Special,Part.Start,[["Road", "Start"]],c,[[[-2, 0, -2], [1, 0, 1]]],null,new THREE.Vector3(0,.35,1.35)), 
+                new PartObject("f29e34b2e05e0a4751109ae564b03fe8878a79cc6b26288f1117ed296d09c5bb",PartCategory.Special,Part.StartWide,[["RoadWide", "StartWide"]],c,[[[-2, 0, -2], [5, 0, 1]]],null,new THREE.Vector3(-10,.35,1.35)),
+                new PartObject("3c304054f415fbede4f73a43517db04302f38b16fa2cd4e587082b37b75e20e5",PartCategory.Special,Part.PlaneStart,[["Planes", "PlaneStart"]],c,[[[-2, 0, -2], [1, 0, 1]]],null,new THREE.Vector3(0,.35,1.35)),
+                new PartObject("f08710416bdaa3d91d0d43f014e45d421fdb4587a334993bad0056f3dbbcb6bb",PartCategory.Special,Part.PlaneStartWide,[["Planes", "PlaneStartWide"]],c,[[[-2, 0, -2], [5, 0, 1]]],null,new THREE.Vector3(-10,.35,1.35)),
+                new PartObject("223fc87c72bb64b58677062ffa08ab7eafd78071bced7c53233606763cd5316b",PartCategory.Special,Part.Checkpoint,[["Road", "Checkpoint"]],c,[[[-2, 0, -2], [1, 0, 1]]],{
+                                type: o.A.Checkpoint,
+                                center: [0, 2.2, 0],
+                                size: [10.5, 3.8, 1]
+                            }),
+                new PartObject("82d9a9879cee92c04c8d4ba2e16fc31bb1917a31f5802a3bb5177ca9a5cfee01",PartCategory.Special,Part.CheckpointWide,[["RoadWide", "CheckpointWide"]],c,[[[-2, 0, -2], [5, 0, 1]]],{
+                                type: o.A.Checkpoint,
+                                center: [10, 2.2, 0],
+                                size: [30.6, 3.8, 1]
+                            }),
+                new PartObject("fe8946d7f09724b5e11f493eb5c2a5b5e3d502b15beaad003f8134ac63558948",PartCategory.Special,Part.PlaneCheckpoint,[["Planes", "PlaneCheckpoint"]],c,[[[-2, 0, -2], [1, 0, 1]]],{
+                                type: o.A.Checkpoint,
+                                center: [0, 2.2, 0],
+                                size: [18.25, 3.8, 1]
+                            }),
+                new PartObject("d486d9b851db35dd44c15f9e0bb3bf582118daf7be514598a19307f61cf46678",PartCategory.Special,Part.PlaneCheckpointWide,[["Planes", "PlaneCheckpointWide"]],c,[[[-2, 0, -2], [5, 0, 1]]],{
+                                type: o.A.Checkpoint,
+                                center: [10, 2.2, 0],
+                                size: [38.25, 3.8, 1]
+                            }),
+                new PartObject("c01200d573a3594a6a4cb73ebb600964d653e4a89267d3297f3969220742aa79",PartCategory.Special,Part.Finish,[["Road", "Finish"]],c,[[[-2, 0, -2], [1, 0, 1]]],{
+                                type: o.A.Finish,
+                                center: [0, 2.2, 0],
+                                size: [10.5, 3.8, 2]
+                            }),
+                new PartObject("a9cefdff816e94a643210c58582c2809de0e3e0e0478b8d5baabd7fe81f13e73",PartCategory.Special,Part.FinishWide,[["RoadWide", "FinishWide"]],c,[[[-2, 0, -2], [5, 0, 1]]],{
+                                type: o.A.Finish,
+                                center: [10, 2.2, 0],
+                                size: [30.6, 3.8, 2]
+                            }),
+                new PartObject("75e5f09fe8a18ecafaf1fb80929173ef0a7dc0b785596bbe0ccd85a934d79578",PartCategory.Special,Part.PlaneFinish,[["Planes", "PlaneFinish"]],c,[[[-2, 0, -2], [1, 0, 1]]],{
+                                type: o.A.Finish,
+                                center: [0, 2.2, 0],
+                                size: [18.25, 3.8, 2]
+                            }),
+                new PartObject("5801b3268c75809728c63450d06000c5f6fcfd5d72691902f99d7d19d25e1d78",PartCategory.Special,Part.PlaneFinishWide,[["Planes", "PlaneFinishWide"]],c,[[[-2, 0, -2], [5, 0, 1]]],{
+                                type: o.A.Finish,
+                                center: [10, 2.2, 0],
+                                size: [38.25, 3.8, 2]
+                            }),
+                new PartObject("3421096c1986d008da88b5fac64cd4c475603138c9bf8a98ab6d581dda6befa7",PartCategory.Road,Part.Straight,[["Road", "Straight"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("bdc3bcdafec9bc26835dc76159f7223da7da5babb3a5770129fa11046c748b69",PartCategory.Road,Part.StraightPillarBottom,[["Road", "Straight"], ["Pillar", "SurfacePillarBottom"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("2758e984d87b3170f6618c9c689554ef169fd5f80ea7f0df292ffd69792d414e",PartCategory.Road,Part.StraightPillarShort,[["Road", "Straight"], ["Pillar", "SurfacePillarShort"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("fb5a81784022cfc2d3d0007a032976c8dfd066e72a3bc92f671c98c5cca36aaa",PartCategory.Road,Part.TurnSharp,[["Road", "TurnSharp"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("3da2e9a93da06b1376c33486f30a5f02d8c2f125f5b7d8b41166049ecd95f269",PartCategory.Road,Part.TurnSharpPillarBottom,[["Road", "TurnSharp"], ["Pillar", "SurfacePillarBottom"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("c642122276547382e37dcb857b130088f4dc0d208dc7fdb6055b2a93080a3ffe",PartCategory.Road,Part.TurnSharpPillarShort,[["Road", "TurnSharp"], ["Pillar", "SurfacePillarShort"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("7d8d1eed719515ba7e48b5ef4a53b6b4bb2bef42496b6b40d2551230435ecb66",PartCategory.Road,Part.SlopeUp,[["Road", "SlopeUp"]],c,[[[-2, 0, -2], [1, 0, 1]], [[-2, 1, -2], [1, 1, -2]]]),
+                new PartObject("d6d54dbf283f7209032541fc6b924dc879d914f253e391cf8b34dde8354661be",PartCategory.Road,Part.SlopeUpLong,[["Road", "SlopeUpLong"]],c,[[[-2, 0, -4], [1, 0, 1]], [[-2, 1, -5], [1, 1, -4]], [[-2, 1, -6], [1, 2, -6]]]),
+                new PartObject("435e8cf33d28e52f75890cba1cb6529991148afd701f9b40e9ab876c11b2c448",PartCategory.Road,Part.SlopeDown,[["Road", "SlopeDown"]],c,[[[-2, 0, -2], [1, 0, 1]], [[-2, 1, 0], [1, 1, 1]]]),
+                new PartObject("01990158f65e5d499030d8c6d0ce80d34c136189ae1a9430d4260ea7a85e91a9",PartCategory.Road,Part.SlopeDownLong,[["Road", "SlopeDownLong"]],c,[[[-2, 0, -2], [1, 0, 0]], [[-2, 1, -1], [1, 1, 5]], [[-2, 2, 3], [1, 2, 5]]]),
+                new PartObject("f4fe25138e88fc36b796c9251c696f1e44bf77502ee8e4e7d9ed2d8c8be2fd98",PartCategory.Road,Part.Slope,[["Road", "Slope"]],c,[[[-2, 0, 0], [1, 0, 1]], [[-2, 1, -2], [1, 1, 0]], [[-2, 2, -2], [1, 2, -2]]]),
+                new PartObject("2cfd3548dbd3dcf793f1597a1350864b5f14ed46e907d163977b73363896c3d4",PartCategory.Road,Part.SlopeUpVertical,[["Road", "SlopeUpVertical"]],c,[[[-2, 0, -1], [1, 0, 1]], [[-2, 1, -1], [1, 1, -1]], [[-2, 1, -2], [1, 3, -2]]]),
+                new PartObject("3de87fd1ea3a4ffbf353a03e3c90da97e62b03f85d07ad4bc947e9ceed20b7d8",PartCategory.Road,Part.SlopeToVertical,[["Road", "SlopeToVertical"]],c,[[[-2, 0, 0], [1, 0, 1]], [[-2, 1, -2], [1, 1, 0]], [[-2, 2, -2], [1, 3, -2]], [[-2, 2, -1], [-2, 2, -1]], [[1, 2, -1], [1, 2, -1]]]),
+                new PartObject("63628b23e104a3eb3c2ba8189cd408a10fbb6ebcd6fa4359d981e3c3804c13d8",PartCategory.Road,Part.IntersectionT,[["Road", "IntersectionT"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("400dc4643653001d283bb13f740593fc2300c547bb4d2a962054ba6aabf3721c",PartCategory.Road,Part.IntersectionTPillarBottom,[["Road", "IntersectionT"], ["Pillar", "SurfacePillarBottom"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("60355388650d35fcbddaaac29e0d03bc2ae46db1a05cd23ddd3f2722ec2d409e",PartCategory.Road,Part.IntersectionTPillarShort,[["Road", "IntersectionT"], ["Pillar", "SurfacePillarShort"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("74197b3731c2befd03498bf5172859f0b3652f1972c19e43a99bb938769573df",PartCategory.Road,Part.IntersectionCross,[["Road", "IntersectionCross"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("464e69b5c4f2667c246ade9ed33fd3e50b49438ed0ab787a086dfe74c217ff6c",PartCategory.Road,Part.IntersectionCrossPillarBottom,[["Road", "IntersectionCross"], ["Pillar", "SurfacePillarBottom"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("90004caf354627289265314966f11b5656e6879ca7de10507e6c50cd95254b75",PartCategory.Road,Part.IntersectionCrossPillarShort,[["Road", "IntersectionCross"], ["Pillar", "SurfacePillarShort"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("6259b51229152128dc859e1bffc614b60464799c401182dccae58131ee155b1c",PartCategory.Road,Part.IntersectionY,[["Road", "IntersectionY"]],c,[[[-6, 0, -10], [-3, 0, -8]], [[-5, 0, -7], [-2, 0, -5]], [[-4, 0, -4], [3, 0, -4]], [[-3, 0, -3], [2, 0, -2]], [[-2, 0, -1], [1, 0, 1]], [[-1, 0, -5], [4, 0, -5]], [[1, 0, -7], [4, 0, -6]], [[2, 0, -10], [5, 0, -8]]]),
+                new PartObject("846db907fcc382dd462283874fcbceab9c8c06fab6e7654a5cf6811dffcf086e",PartCategory.Road,Part.IntersectionYLong,[["Road", "IntersectionYLong"]],c,[[[-6, 0, -14], [-3, 0, -11]], [[-5, 0, -10], [-2, 0, -8]], [[-4, 0, -7], [3, 0, -5]], [[-3, 0, -4], [2, 0, -3]], [[-2, 0, -2], [1, 0, 1]], [[-1, 0, -8], [4, 0, -8]], [[1, 0, -10], [4, 0, -9]], [[2, 0, -14], [5, 0, -11]]]),
+                new PartObject("48992a178b504f5205eb7613e273f61a2916b16b9b3d402208dcf711b29d20d3",PartCategory.Road,Part.StraightTilted,[["Road", "Straight", {
+                                offset: new THREE.Vector3(0,5,0),
+                                scale: new THREE.Vector3(1,.894425810573391,1),
+                                quaternion: (new THREE.Quaternion).setFromEuler(new THREE.Euler(0,0,-.46364760900081))
+                            }]],c,[[[-2, 1, -2], [0, 1, 1]], [[0, 0, -2], [1, 0, 1]]]),
+                new PartObject("d06cc41bda0172e626ad85fca987f426c60b86c3fabd3635d8ddc17f0b38afcd",PartCategory.Road,Part.ToTiltedLeft,[["Road", "ToTilted", {
+                                flipX: !0,
+                                offset: new THREE.Vector3(0,5,0)
+                            }]],c,[[[-2, 0, -10], [-1, 0, 1]], [[-2, 1, -3], [1, 1, 1]], [[-1, 1, -10], [1, 1, -4]]]),
+                new PartObject("36bbe97fc3c199f694f3aefc0ba5ee6e6b3859cf8adeaabab77d53eb921d8979",PartCategory.Road,Part.ToTiltedRight,[["Road", "ToTilted", {
+                                offset: new THREE.Vector3(0,5,0)
+                            }]],c,[[[-2, 1, -10], [0, 1, 1]], [[0, 0, -10], [1, 0, 1]], [[1, 1, -3], [1, 1, 1]]]),
+                new PartObject("fd261825d8261ce05c214e0f12e3640a38f448866ee662136fbdee4f2e0bae22",PartCategory.RoadTurns,Part.TurnShort,[["Road", "TurnShort"]],c,[[[-2, 0, 0], [1, 0, 1]], [[-2, 0, -1], [2, 0, -1]], [[-1, 0, -2], [3, 0, -2]], [[-1, 0, -3], [5, 0, -3]], [[0, 0, -4], [5, 0, -4]], [[1, 0, -5], [5, 0, -5]], [[3, 0, -6], [5, 0, -6]]]),
+                new PartObject("830000386e11f915cc7be618600256c438ace73ed2b6f0f3ec2990d8c25760fd",PartCategory.RoadTurns,Part.TurnLong,[["Road", "TurnLong"]],c,[[[-2, 0, -1], [1, 0, 1]], [[-1, 0, -2], [2, 0, -2]], [[-1, 0, -3], [2, 0, -3]], [[-1, 0, -4], [3, 0, -4]], [[0, 0, -5], [4, 0, -5]], [[1, 0, -6], [6, 0, -6]], [[2, 0, -7], [9, 0, -7]], [[3, 0, -8], [9, 0, -8]], [[4, 0, -9], [9, 0, -9]], [[7, 0, -10], [9, 0, -10]]]),
+                new PartObject("a02b464ce6f6348e13dc90199882e91be6f2220e7e13c79ad46ca9b2032adb01",PartCategory.RoadTurns,Part.TurnLong2,[["Road", "TurnLong2"]],c,[[[-2, 0, -2], [1, 0, 1]], [[-1, 0, -4], [2, 0, -3]], [[-1, 0, -5], [3, 0, -5]], [[0, 0, -6], [4, 0, -6]], [[0, 0, -7], [5, 0, -7]], [[1, 0, -8], [6, 0, -8]], [[2, 0, -9], [7, 0, -9]], [[3, 0, -10], [9, 0, -10]], [[4, 0, -11], [13, 0, -11]], [[5, 0, -12], [13, 0, -12]], [[7, 0, -13], [13, 0, -13]], [[10, 0, -14], [13, 0, -14]]]),
+                new PartObject("a9e794783cdb96e81c95a476f9cbe9e43a5f0357e34d7d278e449a701e44afc3",PartCategory.RoadTurns,Part.TurnLong3,[["Road", "TurnLong3"]],c,[[[-2, 0, -2], [1, 0, 1]], [[-1, 0, -4], [2, 0, -3]], [[-1, 0, -5], [2, 0, -5]], [[0, 0, -6], [3, 0, -6]], [[0, 0, -7], [3, 0, -7]], [[0, 0, -8], [4, 0, -8]], [[1, 0, -9], [5, 0, -9]], [[2, 0, -10], [6, 0, -10]], [[2, 0, -11], [7, 0, -11]], [[3, 0, -12], [8, 0, -12]], [[4, 0, -13], [10, 0, -13]], [[5, 0, -14], [13, 0, -14]], [[7, 0, -15], [17, 0, -15]], [[8, 0, -16], [17, 0, -16]], [[11, 0, -17], [17, 0, -17]], [[14, 0, -18], [17, 0, -18]]]),
+                new PartObject("285f8b84f4dcbb2cbf59be0a54038a01d7cd672cbce96fa0427b589562ebf45e",PartCategory.RoadTurns,Part.TurnSLeft,[["Road", "TurnS", {
+                                flipX: !0
+                            }]],c,[[[-2, 0, -1], [1, 0, 1]], [[-3, 0, -3], [0, 0, -2]], [[-4, 0, -4], [0, 0, -4]], [[-5, 0, -5], [-1, 0, -5]], [[-5, 0, -7], [-2, 0, -6]], [[-6, 0, -10], [-3, 0, -8]]]),
+                new PartObject("fd7fea58c90ec42781be6192ac4f1086945d48986bc2f0f0702c1ede2c7bd6be",PartCategory.RoadTurns,Part.TurnSRight,[["Road", "TurnS"]],c,[[[-2, 0, -1], [1, 0, 1]], [[-1, 0, -3], [2, 0, -2]], [[-1, 0, -4], [3, 0, -4]], [[0, 0, -5], [4, 0, -5]], [[1, 0, -7], [4, 0, -6]], [[2, 0, -10], [5, 0, -8]]]),
+                new PartObject("190ba45df20d893be69c2f9e92d420e3aca4070340a836bb2062ea3ffdeb83e8",PartCategory.RoadTurns,Part.TurnSLongLeft,[["Road", "TurnSLong", {
+                                flipX: !0
+                            }]],c,[[[-6, 0, -14], [-3, 0, -11]], [[-5, 0, -10], [-2, 0, -8]], [[-4, 0, -7], [-1, 0, -5]], [[-3, 0, -4], [0, 0, -3]], [[-2, 0, -2], [1, 0, 1]], [[-1, 0, -8], [-1, 0, -8]], [[0, 0, -5], [0, 0, -5]]]),
+                new PartObject("372b17815889b51da18fbcb77434f1a7ea0b93d2d62cd7c1ca9ec2a1854effe5",PartCategory.RoadTurns,Part.TurnSLongRight,[["Road", "TurnSLong"]],c,[[[-2, 0, -2], [1, 0, 1]], [[-1, 0, -5], [2, 0, -3]], [[0, 0, -8], [3, 0, -6]], [[1, 0, -10], [4, 0, -9]], [[2, 0, -14], [5, 0, -11]], [[3, 0, -5], [3, 0, -5]], [[4, 0, -8], [4, 0, -8]]]),
+                new PartObject("26bca19e63867bc0b755ff6fcca65de296c9d1f109f87540103565eb88a0e03d",PartCategory.RoadTurns,Part.TurnShortLeftWide,[["RoadWide", "TurnShortLeftWide"]],c,[[[-2, 0, -1], [1, 0, 1]], [[-1, 0, -2], [1, 0, -2]], [[-1, 0, -4], [5, 0, -3]], [[0, 0, -5], [5, 0, -5]], [[1, 0, -6], [5, 0, -6]], [[2, 0, -7], [9, 0, -7]], [[3, 0, -8], [9, 0, -8]], [[4, 0, -9], [9, 0, -9]], [[7, 0, -10], [9, 0, -10]]]),
+                new PartObject("e3845854f85dafd8cec193bcbecdac6cb79f625066de29524d5c10c5580611c5",PartCategory.RoadTurns,Part.TurnShortRightWide,[["RoadWide", "TurnShortRightWide"]],c,[[[-2, 0, 0], [1, 0, 1]], [[-2, 0, -1], [2, 0, -1]], [[-2, 0, -2], [3, 0, -2]], [[2, 0, -6], [5, 0, -3]]]),
+                new PartObject("dc6088960a65a55c74353a1e7c8a1ca8ec99e683f6273bf666d6909b288bb84b",PartCategory.RoadTurns,Part.TurnLongLeftWide,[["RoadWide", "TurnLongLeftWide"]],c,[[[-2, 0, -2], [1, 0, 1]], [[-1, 0, -5], [1, 0, -3]], [[0, 0, -6], [1, 0, -6]], [[0, 0, -7], [5, 0, -7]], [[1, 0, -8], [5, 0, -8]], [[2, 0, -9], [5, 0, -9]], [[3, 0, -10], [5, 0, -10]], [[4, 0, -11], [13, 0, -11]], [[5, 0, -12], [13, 0, -12]], [[7, 0, -13], [13, 0, -13]], [[10, 0, -14], [13, 0, -14]]]),
+                new PartObject("0bbb8d6c1e4a325e10643cf45546da725c1ea18e92a3a95f753339629a06ef6c",PartCategory.RoadTurns,Part.TurnLongRightWide,[["RoadWide", "TurnLongRightWide"]],c,[[[-2, 0, -1], [1, 0, 1]], [[-2, 0, -3], [2, 0, -2]], [[-2, 0, -4], [3, 0, -4]], [[-2, 0, -5], [4, 0, -5]], [[-2, 0, -6], [6, 0, -6]], [[2, 0, -10], [9, 0, -7]]]),
+                new PartObject("3d4972c41e0e1c39b31b98c8b4ba3377477c4370fbd32cbf5a92c88b46fb7614",PartCategory.RoadTurns,Part.TurnShortTilted,[["Road", "TurnShortTilted"]],c,[[[-2, 1, 0], [0, 1, 1]], [[-1, 1, -2], [0, 1, -1]], [[0, 0, -2], [2, 0, -1]], [[0, 0, 0], [1, 0, 1]], [[0, 1, -4], [2, 1, -3]], [[1, 0, -3], [5, 0, -3]], [[1, 1, -2], [1, 1, -2]], [[2, 0, -4], [5, 0, -4]], [[2, 1, -5], [5, 1, -5]], [[3, 0, -2], [3, 0, -2]], [[3, 1, -4], [5, 1, -4]], [[4, 1, -6], [5, 1, -6]]]),
+                new PartObject("5d48577ff2562e2abfe287bc0519dd0de692f3665e5596b3ef629069a59a21ab",PartCategory.RoadTurns,Part.TurnLongTilted,[["Road", "TurnLongTilted"]],c,[[[-2, 1, 0], [0, 1, 1]], [[-1, 1, -3], [0, 1, -1]], [[0, 0, -3], [2, 0, -2]], [[0, 0, -1], [1, 0, 1]], [[0, 1, -5], [2, 1, -4]], [[1, 0, -4], [3, 0, -4]], [[1, 1, -6], [4, 1, -6]], [[1, 1, -3], [1, 1, -3]], [[2, 0, -5], [4, 0, -5]], [[2, 1, -7], [5, 1, -7]], [[3, 0, -6], [6, 0, -6]], [[3, 1, -8], [9, 1, -8]], [[4, 0, -7], [9, 0, -7]], [[5, 0, -8], [9, 0, -8]], [[5, 1, -9], [9, 1, -9]], [[8, 1, -10], [9, 1, -10]]]),
+                new PartObject("abf9d95b8b0bf58bf4fe8df599e4ccee1b527c7c63f15636374742c1ebc2b93a",PartCategory.RoadTurns,Part.TurnLong2Tilted,[["Road", "TurnLong2Tilted"]],c,[[[-2, 1, -1], [0, 1, 1]], [[-1, 1, -4], [0, 1, -2]], [[0, 0, -3], [1, 0, 1]], [[0, 1, -6], [1, 1, -5]], [[1, 0, -5], [2, 0, -4]], [[1, 1, -8], [3, 1, -7]], [[1, 1, -4], [1, 1, -4]], [[2, 0, -7], [4, 0, -6]], [[2, 0, -3], [2, 0, -3]], [[2, 1, -9], [5, 1, -9]], [[2, 1, -6], [2, 1, -6]], [[3, 0, -8], [6, 0, -8]], [[3, 0, -5], [3, 0, -5]], [[3, 1, -10], [6, 1, -10]], [[4, 0, -9], [7, 0, -9]], [[4, 1, -11], [8, 1, -11]], [[4, 1, -8], [4, 1, -8]], [[5, 0, -10], [9, 0, -10]], [[6, 1, -12], [13, 1, -12]], [[7, 0, -11], [13, 0, -11]], [[8, 1, -13], [13, 1, -13]], [[9, 0, -12], [13, 0, -12]], [[11, 1, -14], [13, 1, -14]]]),
+                new PartObject("f64a25f9f9306a760e247f68ce37404d175462993e146853ce1f1b7ac7353bef",PartCategory.RoadTurns,Part.TurnLong3Tilted,[["Road", "TurnLong3Tilted"]],c,[[[-2, 1, -1], [0, 1, 1]], [[-1, 1, -5], [1, 1, -4]], [[-1, 1, -3], [0, 1, -2]], [[0, 0, -4], [1, 0, 1]], [[0, 1, -7], [1, 1, -6]], [[1, 0, -7], [3, 0, -6]], [[1, 0, -5], [2, 0, -5]], [[1, 1, -9], [3, 1, -8]], [[2, 0, -8], [4, 0, -8]], [[2, 0, -4], [2, 0, -4]], [[2, 1, -10], [4, 1, -10]], [[2, 1, -7], [2, 1, -7]], [[3, 0, -10], [5, 0, -9]], [[3, 1, -12], [5, 1, -11]], [[4, 0, -11], [7, 0, -11]], [[4, 1, -13], [8, 1, -13]], [[5, 0, -12], [8, 0, -12]], [[6, 0, -13], [10, 0, -13]], [[6, 0, -10], [6, 0, -10]], [[6, 1, -14], [9, 1, -14]], [[6, 1, -12], [6, 1, -12]], [[7, 1, -15], [11, 1, -15]], [[8, 0, -14], [12, 0, -14]], [[9, 0, -15], [17, 0, -15]], [[9, 1, -16], [17, 1, -16]], [[11, 1, -17], [17, 1, -17]], [[12, 0, -16], [17, 0, -16]], [[15, 1, -18], [17, 1, -18]]]),
+                new PartObject("2af8aa6050028dd6ee69b7150e83a6d8819e1848a7b1c782848d3f6448c5091a",PartCategory.RoadWide,Part.ToWideMiddle,[["RoadWide", "ToWideMiddle"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("26341cfe6bec34f46b10ffcd9a7706a8156b9ac41ed2cdfd166f9f8d3e9bc8f3",PartCategory.RoadWide,Part.ToWideLeft,[["RoadWide", "ToWideSide", {
+                                flipX: !0
+                            }]],c,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("3f82ebd6c72110b532a20673f8b54c7b25ae5988a51d3793bf383fea8ffcffc3",PartCategory.RoadWide,Part.ToWideRight,[["RoadWide", "ToWideSide"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("f5cecce9870f41f8cba7a9fbe631c315370a7a82824d04977ec857dbb1dfed29",PartCategory.RoadWide,Part.ToWideDouble,[["RoadWide", "ToWideDouble"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("99dc726611397f81b47459d32c7bfb8232322d1ca976ba9a3e71cc15451d8cfb",PartCategory.RoadWide,Part.ToWideDiagonal,[["RoadWide", "ToWideDiagonal"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("47d7e3fb334681911e122babef127881a36a763fb22176854114495802d5ce84",PartCategory.RoadWide,Part.StraightWide,[["RoadWide", "StraightWide"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("521adc95ed5a4809eeff7eec872c3d6449e4d6a7e4941d672f1e06a50a6615de",PartCategory.RoadWide,Part.InnerCornerWide,[["RoadWide", "InnerCornerWide"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("d82274b362794e3c1772510002d5015dde345f1e72dd675c8bac41cf2331398b",PartCategory.RoadWide,Part.OuterCornerWide,[["RoadWide", "OuterCornerWide"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("8c2541fab7e5e930b9280b3ef1e5bfc3092c17901c87457515df577f625c4303",PartCategory.RoadWide,Part.SlopeUpLeftWide,[["RoadWide", "SlopeUpWide", {
+                                flipX: !0
+                            }]],c,[[[-2, 0, -2], [1, 0, 1]], [[-2, 1, -2], [1, 1, -2]]]),
+                new PartObject("6c908d749b8150b47d96c2d0c493ed8bf125035a250025fbe94b6078503bcfce",PartCategory.RoadWide,Part.SlopeUpRightWide,[["RoadWide", "SlopeUpWide"]],c,[[[-2, 0, -2], [1, 0, 1]], [[-2, 1, -2], [1, 1, -2]]]),
+                new PartObject("676c22b45763bd86c8bb8d34a2fa7a38abde40618892742de598d866b4925b42",PartCategory.RoadWide,Part.SlopeUpLongLeftWide,[["RoadWide", "SlopeUpLongWide", {
+                                flipX: !0
+                            }]],c,[[[-2, 0, -4], [1, 0, 1]], [[-2, 1, -5], [1, 1, -4]], [[-2, 1, -6], [1, 2, -6]]]),
+                new PartObject("e783f085e8ec313dcd1bbb0849fe5e669ccbb075baac4d289fd442a9cd4ba562",PartCategory.RoadWide,Part.SlopeUpLongRightWide,[["RoadWide", "SlopeUpLongWide"]],c,[[[-2, 0, -4], [1, 0, 1]], [[-2, 1, -5], [1, 1, -4]], [[-2, 1, -6], [1, 2, -6]]]),
+                new PartObject("4229bf84ab08f86a24d24b610a8225885f3cb68726ef74f4b314d7705c9eb2da",PartCategory.RoadWide,Part.SlopeDownLeftWide,[["RoadWide", "SlopeDownWide", {
+                                flipX: !0
+                            }]],c,[[[-2, 0, -2], [1, 0, 1]], [[-2, 1, 0], [1, 1, 1]]]),
+                new PartObject("a141744b0ffb4df202f230f1f97443f4198032aacf94e7259b7b0127df6bd838",PartCategory.RoadWide,Part.SlopeDownRightWide,[["RoadWide", "SlopeDownWide"]],c,[[[-2, 0, -2], [1, 0, 1]], [[-2, 1, 0], [1, 1, 1]]]),
+                new PartObject("0fd78ec94545d4f7c41515ab7dafafb331b146118e3a14835fb6e6c9cb12e4af",PartCategory.RoadWide,Part.SlopeDownLongLeftWide,[["RoadWide", "SlopeDownLongWide", {
+                                flipX: !0
+                            }]],c,[[[-2, 0, -2], [1, 0, 0]], [[-2, 1, -1], [1, 1, 5]], [[-2, 2, 3], [1, 2, 5]]]),
+                new PartObject("997f1fd3e53bc438066f32e6ea33300a8371b297c7d74f4c25f48f3370fd5752",PartCategory.RoadWide,Part.SlopeDownLongRightWide,[["RoadWide", "SlopeDownLongWide"]],c,[[[-2, 0, -2], [1, 0, 0]], [[-2, 1, -1], [1, 1, 5]], [[-2, 2, 3], [1, 2, 5]]]),
+                new PartObject("bde16df3b12aab766167803dc302428bc8d3a4f95efcdeb8660b773e00e6ecb0",PartCategory.RoadWide,Part.SlopeLeftWide,[["RoadWide", "SlopeWide", {
+                                flipX: !0
+                            }]],c,[[[-2, 0, 0], [1, 0, 1]], [[-2, 1, -2], [1, 1, 0]], [[-2, 2, -2], [1, 2, -2]]]),
+                new PartObject("1524c4b16a08292aa84fbe0f0369d09453e75061fc39a9a0503e6caf4843a301",PartCategory.RoadWide,Part.SlopeRightWide,[["RoadWide", "SlopeWide"]],c,[[[-2, 0, 0], [1, 0, 1]], [[-2, 1, -2], [1, 1, 0]], [[-2, 2, -2], [1, 2, -2]]]),
+                new PartObject("b598ff14bda99600434b24a619132fec4bffcc535483b9b57b0c8c09c1be1f1b",PartCategory.RoadWide,Part.SlopeUpVerticalLeftWide,[["RoadWide", "SlopeUpVerticalWide"]],c,[[[-2, 0, -1], [1, 0, 1]], [[-2, 1, -1], [1, 1, -1]], [[-2, 1, -2], [1, 3, -2]]]),
+                new PartObject("4e0275d3a01eaca6ec5118b8b816ed292cb7172710cf9b7801068424ab684b22",PartCategory.RoadWide,Part.SlopeUpVerticalRightWide,[["RoadWide", "SlopeUpVerticalWide", {
+                                flipX: !0
+                            }]],c,[[[-2, 0, -1], [1, 0, 1]], [[-2, 1, -1], [1, 1, -1]], [[-2, 1, -2], [1, 3, -2]]]),
+                new PartObject("feff879bfa80db0dc58d93fe8e34ca793aa508002df55a27cba2d99cfefa4691",PartCategory.RoadWide,Part.SlopeToVerticalLeftWide,[["RoadWide", "SlopeToVerticalWide", {
+                                flipX: !0
+                            }]],c,[[[-2, 0, 0], [1, 0, 1]], [[-2, 1, -2], [1, 1, 0]], [[-2, 2, -2], [1, 3, -2]], [[-2, 2, -1], [-2, 2, -1]]]),
+                new PartObject("88a9c7425f1e5b287ce571f744348a4a330409fced83f13b5a1c7e8e51e9ead4",PartCategory.RoadWide,Part.SlopeToVerticalRightWide,[["RoadWide", "SlopeToVerticalWide"]],c,[[[-2, 0, 0], [1, 0, 1]], [[-2, 1, -2], [1, 1, 0]], [[-2, 2, -2], [1, 3, -2]], [[1, 2, -1], [1, 2, -1]]]),
+                new PartObject("896b47675cc2ff58494979168f6fd36c27c43da29aed6a52fdf80f054630166a",PartCategory.Plane,Part.Plane,[["Planes", "Plane"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("dc9afb98a8bb998d3b76c3563385e58c1749e56ff43fbc7577b1f57ba8360702",PartCategory.Plane,Part.PlanePillarBottom,[["Planes", "Plane"], ["Pillar", "SurfacePillarBottom"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("f59ad95edd26814236ab30b73f6f4f68003885ef150201a4ace14b832abcf438",PartCategory.Plane,Part.PlanePillarShort,[["Planes", "Plane"], ["Pillar", "SurfacePillarShort"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("48247a66b232461083fa2aa36644e7e8779f5b426d474efd375ee7d21d009c9a",PartCategory.Plane,Part.HalfPlane,[["Planes", "HalfPlane"]],c,[[[-2, 0, 1], [1, 0, 1]], [[-2, 0, 0], [0, 0, 0]], [[-2, 0, -1], [-1, 0, -1]], [[-2, 0, -2], [-2, 0, -2]]]),
+                new PartObject("eac8530d1a025291674bf34b206f75700dc8626012d8d33ed398f7aed746dac8",PartCategory.Plane,Part.QuarterPlane,[["Planes", "QuarterPlane"]],c,[[[-2, 0, 1], [-2, 0, 1]], [[-2, 0, -1], [-1, 0, 0]], [[-2, 0, -2], [-2, 0, -2]]]),
+                new PartObject("f6809dcb8440d3c6043bfd91eb84add7facf61565ce4fd6c2aa73a5a9da32934",PartCategory.Plane,Part.PlaneCorner,[["Planes", "PlaneCorner"]],c,[[[-2, 0, -1], [1, 0, 1]], [[-1, 0, -2], [1, 0, -2]]]),
+                new PartObject("2dda4d3801c9cd4c117dc3c8239bea28cafe70ef2127986c2d6b455744fc8019",PartCategory.Plane,Part.PlaneSlopeUp,[["Planes", "PlaneSlopeUp"]],c,[[[-2, 0, -2], [1, 0, 1]], [[-2, 1, -2], [1, 1, -2]]]),
+                new PartObject("ff295081bdf76f76ad286007c813d37b5af22b06f337ad8fe43cddbd221255b4",PartCategory.Plane,Part.PlaneSlopeUpLong,[["Planes", "PlaneSlopeUpLong"]],c,[[[-2, 0, -4], [1, 0, 1]], [[-2, 1, -5], [1, 1, -4]], [[-2, 1, -6], [1, 2, -6]]]),
+                new PartObject("f1ac897525aa3fcae4fb678ca681bf559d993517b5f4f323b25789b64fe3f477",PartCategory.Plane,Part.PlaneSlopeDown,[["Planes", "PlaneSlopeDown"]],c,[[[-2, 0, -2], [1, 0, 1]], [[-2, 1, 0], [1, 1, 1]]]),
+                new PartObject("549dbef42b80ca6cfa7eecb1397918b2fc9ccd15ceb1c494c41944b8a0d50d7b",PartCategory.Plane,Part.PlaneSlopeDownLong,[["Planes", "PlaneSlopeDownLong"]],c,[[[-2, 0, -2], [1, 0, 0]], [[-2, 1, -1], [1, 1, 5]], [[-2, 2, 3], [1, 2, 5]]]),
+                new PartObject("2e9a2af92aea4a70361adba95230f3126911aa357299c0fe6c1e0611945961c0",PartCategory.Plane,Part.PlaneSlope,[["Planes", "PlaneSlope"]],c,[[[-2, 0, 0], [1, 0, 1]], [[-2, 1, -2], [1, 1, 0]], [[-2, 2, -2], [1, 2, -2]]]),
+                new PartObject("76408f7250687477995d65c39e60554466c6b96376d2ff0c9c9c497e1ee823bf",PartCategory.Plane,Part.HalfPlaneSlopeBottomLeft,[["Planes", "HalfPlaneSlopeBottom"]],c,[[[-2, 0, 0], [0, 0, 1]], [[-2, 1, -2], [-2, 1, 0]], [[-2, 2, -2], [-2, 2, -2]], [[-1, 1, -1], [-1, 1, 0]], [[0, 1, 0], [0, 1, 0]], [[1, 0, 1], [1, 0, 1]]]),
+                new PartObject("bb77b8de31e4d193112947bb0c3d9d62985b10d8982acaaf58df54d483863873",PartCategory.Plane,Part.HalfPlaneSlopeBottomRight,[["Planes", "HalfPlaneSlopeBottom", {
+                                flipX: !0
+                            }]],c,[[[-2, 0, 1], [1, 0, 1]], [[-1, 0, 0], [1, 1, 0]], [[0, 1, -1], [1, 1, -1]], [[1, 1, -2], [1, 2, -2]]]),
+                new PartObject("6984589cd1276691a8c2161fec8205194ea7545c8962b3f61f672ec02cf534f9",PartCategory.Plane,Part.HalfPlaneSlopeTopLeft,[["Planes", "HalfPlaneSlopeTop", {
+                                flipX: !0
+                            }]],c,[[[-2, 0, 0], [-1, 1, 0]], [[-2, 0, 1], [-2, 0, 1]], [[-2, 1, -2], [0, 1, -1]], [[-2, 2, -2], [1, 2, -2]], [[1, 1, -2], [1, 1, -2]]]),
+                new PartObject("992d36738e4882dd1da1ca3c2a396c79ae7fcb2ba47649de7cb0f888f18e04b3",PartCategory.Plane,Part.HalfPlaneSlopeTopRight,[["Planes", "HalfPlaneSlopeTop"]],c,[[[-2, 1, -2], [1, 2, -2]], [[-1, 1, -1], [1, 1, -1]], [[0, 0, 0], [1, 1, 0]], [[1, 0, 1], [1, 0, 1]]]),
+                new PartObject("ba0d6ec33647740bf4c60e542d1758095afa3ef451bdaec76c783dd32116e4cb",PartCategory.Plane,Part.PlaneSlopeVerticalBottom,[["Planes", "PlaneSlopeVertical"]],c,[[[-2, 0, -1], [1, 0, 1]], [[-2, 1, -1], [1, 1, -1]], [[-2, 1, -2], [1, 3, -2]]]),
+                new PartObject("6f750b74664474a57a22f22b4f8b7f2fef330eb00f9041385ec0acfbc2b09302",PartCategory.Plane,Part.PlaneSlopeToVertical,[["Planes", "PlaneSlopeToVertical"]],c,[[[-2, 0, 0], [1, 0, 1]], [[-2, 1, -2], [1, 1, 0]], [[-2, 2, -2], [1, 3, -2]]]),
+                new PartObject("5f6d1ece085d450643f1399af53673dcc6bbbf413094d8dd5ee6816d80e1c8ae",PartCategory.Plane,Part.PlaneBridge,[["Planes", "PlaneBridge"]],c,[[[-1, 0, -2], [0, 0, 1]]]),
+                new PartObject("32b91fc4cdf95f5b7a490d81058522bae14741601dd44c73cc110121aa1dd6e6",PartCategory.Plane,Part.PlaneBridgeCorner,[["Planes", "PlaneBridgeCorner"]],c,[[[-1, 0, -1], [0, 0, 1]], [[1, 0, -1], [1, 0, 0]]]),
+                new PartObject("2db870b1821fb655437bd0527569d5a6843718fa0775682701437432265a1a88",PartCategory.Plane,Part.PlaneBridgeIntersectionT,[["Planes", "PlaneBridgeIntersectionT"]],c,[[[-1, 0, -1], [0, 0, 1]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]]]),
+                new PartObject("33aa0e7524b74dcdae4aed89856c09d25248c4cab8f70dcc31b347f0a00fcb52",PartCategory.Plane,Part.PlaneBridgeIntersectionCross,[["Planes", "PlaneBridgeIntersectionCross"]],c,[[[-1, 0, -1], [0, 0, 1]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]], [[-1, 0, -2], [0, 0, -2]]]),
+                new PartObject("bd7cc4ab180fc0a6936fef828ae3a91566b3dd621b888fbcc57c9ac11dcb713b",PartCategory.Plane,Part.PlaneWall,[["Planes", "PlaneWall"]],c,[[[-2, 0, 1], [1, 0, 1]]]),
+                new PartObject("d92568164028bb2e65799abd9dc6ba66cfe8a28515c09fbe5ac175f5966af66a",PartCategory.Plane,Part.PlaneWallCorner,[["Planes", "PlaneWallCorner"]],c,[[[-2, 0, 1], [1, 0, 1]], [[1, 0, -2], [1, 0, 0]]]),
+                new PartObject("792ab5a6f0e2bf8e556575ef12731ec30755855d4394f98eb4ca7ec8b713933c",PartCategory.Plane,Part.PlaneWallInnerCorner,[["Planes", "PlaneWallInnerCorner"]],c,[[[1, 0, 1], [1, 0, 1]]]),
+                new PartObject("9f1a6ce37a3b0601346f4d30d8a81075c8eefd3d873cbb24fbe5cf6d5da3093f",PartCategory.Plane,Part.PlaneWallSlopeLeft,[["Planes", "PlaneWallSlope"]],c,[[[1, 0, 0], [1, 1, 1]], [[1, 1, -2], [1, 2, -1]]]),
+                new PartObject("0a28443c2fc0e51527b4d3a5a0d98302fc368839b614db5c7d90f151a97c7542",PartCategory.Plane,Part.PlaneWallSlopeRight,[["Planes", "PlaneWallSlope", {
+                                flipX: !0
+                            }]],c,[[[-2, 0, 0], [-2, 1, 1]], [[-2, 1, -2], [-2, 2, -1]]]),
+                new PartObject("b55dca4b19a0f61db43849e444eaa1d9289519ef7e5a4b6e02c7c02ba80f84f4",PartCategory.Plane,Part.PlaneWallSlopeUpLeft,[["Planes", "PlaneWallSlopeUp"]],c,[[[1, 0, -2], [1, 1, 1]]]),
+                new PartObject("70c5288fe8e74957d820cc34995566ad26478e00e5314e36e836e0f803b38061",PartCategory.Plane,Part.PlaneWallSlopeUpRight,[["Planes", "PlaneWallSlopeUp", {
+                                flipX: !0
+                            }]],c,[[[-2, 0, -2], [-2, 1, 1]]]),
+                new PartObject("9b16670e084f2e054c61f253abb7b24e29e0b11800de23b9a2877f17c33dd4a9",PartCategory.Plane,Part.PlaneWallSlopeDownLeft,[["Planes", "PlaneWallSlopeDown"]],c,[[[1, 0, -2], [1, 1, 1]]]),
+                new PartObject("bf441ad2d47b48000b7535e2dd39c209257f2614363494827200330dfea97e11",PartCategory.Plane,Part.PlaneWallSlopeDownRight,[["Planes", "PlaneWallSlopeDown", {
+                                flipX: !0
+                            }]],c,[[[-2, 0, -2], [-2, 1, 1]]]),
+                new PartObject("8d561c6d1e116c92c5f9ecb9715e57b510dfd38d8e4ba2183429d28238c6ac83",PartCategory.Plane,Part.PlaneWallSlopeUpLongLeft,[["Planes", "PlaneWallSlopeUpLong"]],c,[[[1, 0, -4], [1, 1, 1]], [[1, 1, -6], [1, 2, -5]], [[1, 2, -4], [1, 2, -4]]]),
+                new PartObject("ab013301c7b3b91cf48ae1a8d47842f85ac688677cc14e0baa3b3a5a3ce0bb3b",PartCategory.Plane,Part.PlaneWallSlopeUpLongRight,[["Planes", "PlaneWallSlopeUpLong", {
+                                flipX: !0
+                            }]],c,[[[-2, 0, -4], [-2, 1, 1]], [[-2, 1, -6], [-2, 2, -5]], [[-2, 2, -4], [-2, 2, -4]]]),
+                new PartObject("79fc30fd9032052b23a30f03fde4e4932b4a3a6a57c1e2b64631fb5d6c5f1052",PartCategory.Plane,Part.PlaneWallSlopeDownLongLeft,[["Planes", "PlaneWallSlopeDownLong"]],c,[[[1, 0, -2], [1, 1, 0]], [[1, 1, 1], [1, 2, 5]], [[1, 2, 0], [1, 2, 0]]]),
+                new PartObject("5aeda192c725700634faf36a401b9bf0b4df869b311da546080569f66c741a66",PartCategory.Plane,Part.PlaneWallSlopeDownLongRight,[["Planes", "PlaneWallSlopeDownLong", {
+                                flipX: !0
+                            }]],c,[[[-2, 0, -2], [-2, 1, 0]], [[-2, 1, 1], [-2, 2, 5]], [[-2, 2, 0], [-2, 2, 0]]]),
+                new PartObject("de0d588c4b2fe6b32d72a7e0e2984285955f805ccb86d3c269f7155401cd6b20",PartCategory.Block,Part.Block,[["Blocks", "Block"]],h,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("1ce6b585c0e99d71877fefe015ff16336ae62eb0caebeca62dd09d836092d7b6",PartCategory.Block,Part.HalfBlock,[["Blocks", "HalfBlock"]],h,[[[-2, 0, 1], [1, 0, 1]], [[-2, 0, 0], [0, 0, 0]], [[-2, 0, -1], [-1, 0, -1]], [[-2, 0, -2], [-2, 0, -2]]]),
+                new PartObject("0d5f0609c3c98f687d55d3a73313225c1642f6285ddaca3ed536db742c85958d",PartCategory.Block,Part.QuarterBlock,[["Blocks", "QuarterBlock"]],h,[[[-2, 0, 1], [-2, 0, 1]], [[-2, 0, -1], [-1, 0, 0]], [[-2, 0, -2], [-2, 0, -2]]]),
+                new PartObject("18fc1c569c6fc04f95f10174143d19e7a9ea4e387302363f4ae60883c1acd3f0",PartCategory.Block,Part.BlockSlopedDown,[["Blocks", "BlockSlopedDown"]],h,[[[-2, 0, -2], [1, 0, -1]], [[-2, 1, -2], [1, 1, 1]]]),
+                new PartObject("22dd5b2804c88994a4d283cb822f47de3c72f82376e4c9332d39feae85206c0f",PartCategory.Block,Part.BlockSlopedDownInnerCorner,[["Blocks", "BlockSlopedDownInnerCorner"]],h,[[[-2, 0, -2], [-1, 0, 1]], [[0, 0, -2], [1, 0, -1]], [[-2, 1, -2], [1, 1, 1]]]),
+                new PartObject("81a71b4cc6ef8520f20fd738457abc31b04258c97f9862f70190fd2a0ba91382",PartCategory.Block,Part.BlockSlopedDownOuterCorner,[["Blocks", "BlockSlopedDownOuterCorner"]],h,[[[-2, 0, -2], [-1, 0, -1]], [[-2, 1, -2], [1, 1, 1]]]),
+                new PartObject("f4e19d3bc49994a85fecd187b76c21d258e7f30f0506d90bc6f173336e11627d",PartCategory.Block,Part.BlockSlopedUp,[["Blocks", "BlockSlopedUp"]],h,[[[-2, 0, -2], [1, 0, 1]], [[-2, 1, -2], [1, 1, -1]]]),
+                new PartObject("fd9309468e97131bbbd1404fac34a7137cb176327789b955c1aea30267e1cded",PartCategory.Block,Part.BlockSlopedUpInnerCorner,[["Blocks", "BlockSlopedUpInnerCorner"]],h,[[[-2, 1, -2], [-1, 1, 1]], [[0, 1, -2], [1, 1, -1]], [[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("1321fb07ece1b80b99dc4671b52673ac028fbf43322e9e652ad633ff6afac21b",PartCategory.Block,Part.BlockSlopedUpOuterCorner,[["Blocks", "BlockSlopedUpOuterCorner"]],h,[[[-2, 1, -2], [-1, 1, -1]], [[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("84d11f91b9410afafd2801d85bcfd87f9390272180e3f49ab77d108e328dbd1d",PartCategory.Block,Part.HalfBlockSlopeBottomLeft,[["Blocks", "HalfBlockSlopeBottom"]],h,[[[-2, 0, -2], [-2, 0, 1]], [[-2, 1, -2], [-2, 1, -1]], [[-1, 0, -1], [-1, 0, 1]], [[-1, 1, -1], [-1, 1, -1]], [[0, 0, 0], [0, 0, 1]], [[1, 0, 1], [1, 0, 1]]]),
+                new PartObject("84d77134750b28ec4d4e66d37052a5d83cd97e18144e1b849155976d35418d3b",PartCategory.Block,Part.HalfBlockSlopeBottomRight,[["Blocks", "HalfBlockSlopeBottom", {
+                                flipX: !0
+                            }]],h,[[[-2, 0, 1], [1, 0, 1]], [[-1, 0, 0], [1, 0, 0]], [[0, 0, -1], [1, 1, -1]], [[1, 0, -2], [1, 1, -2]]]),
+                new PartObject("185b3f1a8ed7f7b1eb8da5e6911a181560a3dab738e59f01cb54af58391eb223",PartCategory.Block,Part.HalfBlockSlopeTopLeft,[["Blocks", "HalfBlockSlopeTop", {
+                                flipX: !0
+                            }]],h,[[[-2, 0, -2], [0, 1, -1]], [[-2, 0, 0], [-1, 0, 0]], [[-2, 0, 1], [-2, 0, 1]], [[1, 0, -2], [1, 1, -2]]]),
+                new PartObject("813b1bbe0eebb47629848d50e815cd28760b3e6c56e549a4a53faea4b33726ab",PartCategory.Block,Part.HalfBlockSlopeTopRight,[["Blocks", "HalfBlockSlopeTop"]],h,[[[-2, 0, -2], [1, 1, -2]], [[-1, 0, -1], [1, 1, -1]], [[0, 0, 0], [1, 0, 0]], [[1, 0, 1], [1, 0, 1]]]),
+                new PartObject("b97c17388fc38139f2f5a98a36d94831095f79db709dd97748ad2904bc54d689",PartCategory.Block,Part.BlockSlopeDown,[["Blocks", "BlockSlopeDown"]],h,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("50276826bbfb9fcb11a8519b8dae8a2b1cf82817d5431418d9a376664261be82",PartCategory.Block,Part.BlockSlopeUp,[["Blocks", "BlockSlopeUp"]],h,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("63fd3032796397f8e25669c1c1d3fc97b8ec0e5fc88bfcb5c00a2a2c2b517888",PartCategory.Block,Part.BlockSlopeDownLong,[["Blocks", "BlockSlopeDownLong"]],h,[[[-2, 0, -2], [1, 0, 5]], [[-2, 1, 0], [1, 1, 5]]]),
+                new PartObject("2d29131222a8d891b4350e6a2f335b114e001cf22e4e2f170dc9b86c4b2fd325",PartCategory.Block,Part.BlockSlopeUpLong,[["Blocks", "BlockSlopeUpLong"]],h,[[[-2, 0, -6], [1, 0, 1]], [[-2, 1, -6], [1, 1, -4]]]),
+                new PartObject("0bbcd96c91b69e6e8005bfae5b64455b0d6510cb1595f3fca7f77c86ddda4560",PartCategory.Block,Part.BlockSlopeVerticalTop,[["Blocks", "BlockSlopeVertical", {
+                                flipY: !0
+                            }]],h,[[[-2, 3, -2], [1, 3, 1]], [[-2, 2, -2], [1, 2, -1]], [[-2, 0, -2], [1, 1, -2]]]),
+                new PartObject("e81a123c0be3f8f168fb584d53e8aa038785569bbf2cd1c1cead2272889591e0",PartCategory.Block,Part.BlockSlopeVerticalBottom,[["Blocks", "BlockSlopeVertical"]],h,[[[-2, 0, -2], [1, 0, 1]], [[-2, 1, -2], [1, 1, -1]], [[-2, 2, -2], [1, 3, -2]]]),
+                new PartObject("39c8bfd9a12ba536f34db14b3ac24afd133f3dd67ecc30f8ab90138a5a545520",PartCategory.Block,Part.BlockSlopeToVertical,[["Blocks", "BlockSlopeToVertical"]],h,[[[-2, 0, -2], [1, 0, 1]], [[-2, 1, -2], [1, 1, -1]], [[-2, 2, -2], [1, 3, -2]]]),
+                new PartObject("3a2f05b1c2c2fd976997fa473f1adb3ba14495701dc5a998f8697798384c6946",PartCategory.Block,Part.BlockSlopeVerticalCornerTop,[["Blocks", "BlockSlopeVerticalCornerBottom", {
+                                flipY: !0
+                            }]],h,[[[-2, 3, -2], [1, 3, 1]], [[-2, 2, -2], [0, 2, 0]], [[1, 2, -2], [1, 2, -1]], [[-2, 2, 1], [-1, 2, 1]], [[-2, 1, -2], [-1, 1, -1]], [[-2, 1, 0], [-1, 1, 0]], [[0, 1, -2], [0, 1, -1]], [[1, 1, -2], [1, 1, -2]], [[-2, 1, 1], [-2, 1, 1]], [[-2, 0, -2], [-1, 0, -1]], [[-2, 0, 0], [-2, 0, 1]], [[0, 0, -2], [1, 0, -2]]]),
+                new PartObject("3e4fa43e69aa1dbee584e16451a95a16229bba8d638df2bf6f6c9ffb3a9629c9",PartCategory.Block,Part.BlockInnerCorner,[["Blocks", "BlockInnerCorner"]],h,[[[-2, 0, 0], [-2, 0, 1]], [[-2, 0, -2], [-1, 0, -1]], [[0, 0, -2], [1, 0, -2]]]),
+                new PartObject("5e3b086f679fc9ff779abba9a7ea0db59a0a4dbd0540cd4aa501e2bfea1673f5",PartCategory.Block,Part.BlockOuterCorner,[["Blocks", "BlockOuterCorner"]],h,[[[-2, 0, -1], [1, 0, 1]], [[-1, 0, -2], [1, 0, -2]]]),
+                new PartObject("cc9c95eef56def4cf013e4ac85b8013a2b4f4b4346f1f5dd41fa017de763ef17",PartCategory.Block,Part.BlockSlopeVerticalCornerBottom,[["Blocks", "BlockSlopeVerticalCornerBottom"]],h,[[[-2, 0, -2], [1, 0, 1]], [[-2, 1, -2], [0, 1, 0]], [[1, 1, -2], [1, 1, -1]], [[-2, 1, 1], [-1, 1, 1]], [[-2, 2, -2], [-1, 2, -1]], [[-2, 2, 0], [-1, 2, 0]], [[0, 2, -2], [0, 2, -1]], [[1, 2, -2], [1, 2, -2]], [[-2, 2, 1], [-2, 2, 1]], [[-2, 3, -2], [-1, 3, -1]], [[-2, 3, 0], [-2, 3, 1]], [[0, 3, -2], [1, 3, -2]]]),
+                new PartObject("e4c82c8e512d52269cb6588fa34b06c179340ea40e71f74cbadadc7e8353f5a2",PartCategory.Block,Part.BlockSlopeVerticalInnerCornerTop,[["Blocks", "BlockSlopeVerticalInnerCorner", {
+                                flipY: !0
+                            }]],h,[[[-2, 3, -2], [0, 3, 1]], [[1, 3, -2], [1, 3, 0]], [[-2, 2, -2], [-2, 2, -1]], [[-1, 2, -2], [-1, 2, -2]], [[-2, 0, -2], [-2, 1, -2]]]),
+                new PartObject("926fdc6e82ecd709cc535faea6bb8778c6e2e91edb39eb6ae6308076dca2ed18",PartCategory.Block,Part.BlockSlopeVerticalInnerCornerBottom,[["Blocks", "BlockSlopeVerticalInnerCorner"]],h,[[[-2, 0, -2], [0, 0, 1]], [[1, 0, -2], [1, 0, 0]], [[-2, 1, -2], [-2, 1, -1]], [[-1, 1, -2], [-1, 1, -2]], [[-2, 2, -2], [-2, 3, -2]]]),
+                new PartObject("1086515ba3c1d8e5ec76b378f0bdbc77fc5a57fc8eba8972f0d5e611be945235",PartCategory.Block,Part.BlockBridge,[["Blocks", "BlockBridge"]],h,[[[-1, 0, -2], [0, 0, 1]]]),
+                new PartObject("5426ad4ff64af3f1a0f0794ad30cfc20434dfffdf44d93010f5f98671c246ff3",PartCategory.Block,Part.BlockBridgeCorner,[["Blocks", "BlockBridgeCorner"]],h,[[[-1, 0, -1], [0, 0, 1]], [[1, 0, -1], [1, 0, 0]]]),
+                new PartObject("784b9b4459e838e5b8f74f6250769ffa52ec5cc3608abc24c380a2e792c3d338",PartCategory.Block,Part.BlockBridgeIntersectionT,[["Blocks", "BlockBridgeIntersectionT"]],h,[[[-1, 0, -1], [0, 0, 1]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]]]),
+                new PartObject("dfbcbc107a3c12217bfa3b224a5757d08e995705d1c122bb2c2665bbb8447b1c",PartCategory.Block,Part.BlockBridgeIntersectionCross,[["Blocks", "BlockBridgeIntersectionCross"]],h,[[[-1, 0, -1], [0, 0, 1]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]], [[-1, 0, -2], [0, 0, -2]]]),
+                new PartObject("a00d7077d07af7f2125d4db731b5b76ca182b65eb90fbe76061e196a7c0b1652",PartCategory.WallTrack,Part.WallTrackTop,[["WallTrack", "WallTrackBottom", {
+                                flipY: !0
+                            }]],c,[[[-2, 3, -1], [1, 3, 1]], [[-2, 2, -1], [1, 2, -1]], [[-2, 0, -2], [1, 2, -2]]]),
+                new PartObject("010d187fbfbd399bfe880bbea1b548678c239eba0be2913e5cb8a69fbd17adf7",PartCategory.WallTrack,Part.WallTrackMiddle,[["WallTrack", "WallTrackMiddle"]],c,[[[-2, 0, -2], [1, 0, -2]]]),
+                new PartObject("72934b2ee76e187eee519baf97df49128dc32e3583795f98645774ae5639f443",PartCategory.WallTrack,Part.WallTrackBottom,[["WallTrack", "WallTrackBottom"]],c,[[[-2, 0, -1], [1, 0, 1]], [[-2, 1, -1], [1, 1, -1]], [[-2, 1, -2], [1, 3, -2]]]),
+                new PartObject("1ff36280441e023bd066dc3c5cdf136bd9a3a0beb9eee0aad048c9a2dfd5eafb",PartCategory.WallTrack,Part.WallTrackSlopeToVertical,[["WallTrack", "WallTrackSlopeToVertical"]],c,[[[-2, 0, 0], [1, 0, 1]], [[-2, 1, -2], [1, 1, 0]], [[-2, 2, -2], [1, 3, -2]]]),
+                new PartObject("9c7c099734168051032425b6e228665caa581282ef23db6d1ae8c958f8675531",PartCategory.WallTrack,Part.WallTrackTopCorner,[["WallTrack", "WallTrackBottomCorner", {
+                                flipY: !0
+                            }]],c,[[[-2, 0, -1], [-2, 0, 1]], [[-1, 0, -1], [-1, 0, -1]], [[-1, 0, -2], [1, 0, -2]], [[-2, 1, -1], [-2, 1, 1]], [[-1, 1, -1], [-1, 1, 0]], [[0, 1, -1], [0, 1, -1]], [[-1, 1, -2], [1, 1, -2]], [[-2, 2, 0], [-2, 2, 1]], [[-1, 2, 1], [-1, 2, 1]], [[-1, 2, -1], [0, 2, 0]], [[1, 2, -1], [1, 2, -1]], [[0, 2, -2], [1, 2, -2]], [[0, 3, -1], [1, 3, 1]], [[-1, 3, 0], [-1, 3, 1]]]),
+                new PartObject("4027a2439cc3e42ceda50ff3d427a31e127b25a6457b55edc2d498b474a296a7",PartCategory.WallTrack,Part.WallTrackMiddleCorner,[["WallTrack", "WallTrackMiddleCorner"]],c,[[[-2, 0, -1], [-2, 0, 1]], [[-1, 0, -1], [-1, 0, -1]], [[-1, 0, -2], [1, 0, -2]]]),
+                new PartObject("32c0ec55a47f619e277cb9efec3dd1b54792e7ea78c370f1e3102b7ba4ed2928",PartCategory.WallTrack,Part.WallTrackBottomCorner,[["WallTrack", "WallTrackBottomCorner"]],c,[[[-2, 3, -1], [-2, 3, 1]], [[-1, 3, -1], [-1, 3, -1]], [[-1, 3, -2], [1, 3, -2]], [[-2, 2, -1], [-2, 2, 1]], [[-1, 2, -1], [-1, 2, 0]], [[0, 2, -1], [0, 2, -1]], [[-1, 2, -2], [1, 2, -2]], [[-2, 1, 0], [-2, 1, 1]], [[-1, 1, 1], [-1, 1, 1]], [[-1, 1, -1], [0, 1, 0]], [[1, 1, -1], [1, 1, -1]], [[0, 1, -2], [1, 1, -2]], [[0, 0, -1], [1, 0, 1]], [[-1, 0, 0], [-1, 0, 1]]]),
+                new PartObject("786b8ff7fcb72c67e7b887a78fa7b823c48575ae1e4d3b48ae13620646ac34a7",PartCategory.WallTrack,Part.WallTrackTopInnerCorner,[["WallTrack", "WallTrackBottomInnerCorner", {
+                                flipY: !0
+                            }]],c,[[[-2, 3, -1], [1, 3, 1]], [[-1, 3, -2], [1, 3, -2]], [[-2, 2, -2], [-1, 2, -1]], [[-2, 0, -2], [-2, 1, -2]]]),
+                new PartObject("16c9c8ece47c097f60cfc7f8a2daa2f0e7ad0befb0ebfd185402013fd1ec8e0f",PartCategory.WallTrack,Part.WallTrackInnerCorner,[["WallTrack", "WallTrackInnerCorner"]],c,[[[-2, 0, -2], [-2, 0, -2]]]),
+                new PartObject("413dcb45de9fdaf4fe8b78804feaa80891053063a5c432c09b50c24201166572",PartCategory.WallTrack,Part.WallTrackBottomInnerCorner,[["WallTrack", "WallTrackBottomInnerCorner"]],c,[[[-2, 0, -1], [1, 0, 1]], [[-1, 0, -2], [1, 0, -2]], [[-2, 1, -2], [-1, 1, -1]], [[-2, 2, -2], [-2, 3, -2]]]),
+                new PartObject("8b7023471502607ef19109760bee3b954ea3b3883c32f3960f75c6651c912ffd",PartCategory.WallTrack,Part.WallTrackFloor,[["WallTrack", "WallTrackFloor"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("59e7f31827236c71db8b16f3f1f259c4c82c87a37e4d57a5a097c0d527d128f3",PartCategory.WallTrack,Part.WallTrackFloorCorner,[["WallTrack", "WallTrackFloorCorner"]],c,[[[-2, 0, 1], [1, 0, 1]], [[0, 0, 0], [1, 0, 0]], [[1, 0, -2], [1, 0, -1]]]),
+                new PartObject("d58e3805b550b70940c845a807086865b21a4c36da74ffddedcfe5ce2d08e093",PartCategory.WallTrack,Part.WallTrackFloorPlaneCorner,[["WallTrack", "WallTrackFloorPlaneCorner"]],c,[[[-2, 0, 1], [1, 0, 1]], [[0, 0, 0], [1, 0, 0]], [[1, 0, -2], [1, 0, -1]]]),
+                new PartObject("a56b0c1cf964b213a38167cbbac6f33acd403978ad75746eb51bcfd8c6a36148",PartCategory.WallTrack,Part.WallTrackCeiling,[["WallTrack", "WallTrackCeiling"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("f87b592d02120312e8e93d8a27c02dcda1095ac2f09879c6efafb2ca2b49d127",PartCategory.WallTrack,Part.WallTrackCeilingCorner,[["WallTrack", "WallTrackCeilingCorner"]],c,[[[-2, 0, 1], [1, 0, 1]], [[0, 0, 0], [1, 0, 0]], [[1, 0, -2], [1, 0, -1]]]),
+                new PartObject("cfce1fe50f8cd26393eadd475783830e02f0b39bad4c0e00f7aa69614b22decc",PartCategory.WallTrack,Part.WallTrackCeilingPlaneCorner,[["WallTrack", "WallTrackCeilingPlaneCorner"]],c,[[[-2, 0, 1], [1, 0, 1]], [[0, 0, 0], [1, 0, 0]], [[1, 0, -2], [1, 0, -1]]]),
+                new PartObject("19656d02145f1a4ba07dbf2f236f865d34c86f823741b247b5d444a36d61c316",PartCategory.Pillar,Part.PillarTop,[["Pillar", "PillarTop"]],c,[[[-1, 0, -1], [0, 0, 0]]]),
+                new PartObject("dde596d55ffc00f0f00d361667239d9f71c414f03304fecb6a7d11f6f5e702f1",PartCategory.Pillar,Part.PillarMiddle,[["Pillar", "PillarMiddle"]],c,[[[-1, 0, -1], [0, 0, 0]]]),
+                new PartObject("dced5202d9373f9dd81a39530a87a1a7036c93ae71604a4e26c3a191abf3c197",PartCategory.Pillar,Part.PillarBottom,[["Pillar", "PillarBottom"]],c,[[[-1, 0, -1], [0, 0, 0]]]),
+                new PartObject("af83eebf50c302880377e4f8c1fb3b2ef96ae193e8d03c17e1fd77c73a847e63",PartCategory.Pillar,Part.PillarShort,[["Pillar", "PillarShort"]],c,[[[-1, 0, -1], [0, 0, 0]]]),
+                new PartObject("bad7c003302fe84912a2f36551fc9751220ebe6e747791a8df205dca9ae31cc0",PartCategory.Pillar,Part.PillarTopSlope,[["Pillar", "PillarTopSlope"]],c,[[[-1, 0, -1], [0, 0, 0]], [[-1, 1, -1], [0, 1, -1]]]),
+                new PartObject("9f34b2cd553c88364c36923d7ae5e606253865e0684f575e0538670b6116ac5a",PartCategory.Pillar,Part.PillarShortSlope,[["Pillar", "PillarShortSlope"]],c,[[[-1, 0, -1], [0, 0, 0]], [[-1, 1, -1], [0, 1, -1]]]),
+                new PartObject("25b41116fb04b1f3cdd3119f57e0000a6ea8cb12d435718ffd6bb765866c272f",PartCategory.Pillar,Part.PillarBranch1,[["Pillar", "PillarBranch1"]],c,[[[-1, 0, -2], [0, 0, 0]]]),
+                new PartObject("05ae39aea4f1ddd818fa57860e688c9cb875544f9b82eafe58a2eb9c19d8d91d",PartCategory.Pillar,Part.PillarBranch1Top,[["Pillar", "PillarBranch1Top"]],c,[[[-1, 0, -2], [0, 0, 0]]]),
+                new PartObject("06c29d92e42e0c32050af98d69eecc94ce15adf8ac81dbe53dfb577a83265f4e",PartCategory.Pillar,Part.PillarBranch1Middle,[["Pillar", "PillarBranch1Middle"]],c,[[[-1, 0, -2], [0, 0, 0]]]),
+                new PartObject("4a989027e0bd6db264f092bac729d9d450e012a710ea28d199f7ff52efd70fbd",PartCategory.Pillar,Part.PillarBranch1Bottom,[["Pillar", "PillarBranch1Bottom"]],c,[[[-1, 0, -2], [0, 0, 0]]]),
+                new PartObject("78b2ff83ad71e7f3d692abc35923fa20c2ae14c01e37d44ec430746ca1bac992",PartCategory.Pillar,Part.PillarBranch2,[["Pillar", "PillarBranch2"]],c,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]]]),
+                new PartObject("b22c93bc73ec2da9dbff218da1676d7436527ed284e264f37294e48ef1307301",PartCategory.Pillar,Part.PillarBranch2Top,[["Pillar", "PillarBranch2Top"]],c,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]]]),
+                new PartObject("79a456a8fa3da24bec6c033f6c736fa1c728745f9624ae78ca20b6a4a76afae8",PartCategory.Pillar,Part.PillarBranch2Middle,[["Pillar", "PillarBranch2Middle"]],c,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]]]),
+                new PartObject("3b81b3f965cbc9fda4fe09e830ba25f1b96ce512d87b0146a1192a6cd0d07335",PartCategory.Pillar,Part.PillarBranch2Bottom,[["Pillar", "PillarBranch2Bottom"]],c,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]]]),
+                new PartObject("27727678bbcac9d3b0172b165ca5c92b10f4b4584a3a18fef4c542f3e791f26f",PartCategory.Pillar,Part.PillarBranch3,[["Pillar", "PillarBranch3"]],c,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]]]),
+                new PartObject("50c7ac511d30ab9e065c928b776652f038be7683d948082bbefc419ee049e505",PartCategory.Pillar,Part.PillarBranch3Top,[["Pillar", "PillarBranch3Top"]],c,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]]]),
+                new PartObject("98b3bfe99e7132825f5aa93122e4e5fdec46eb2877c8eb91fa2648f709527b60",PartCategory.Pillar,Part.PillarBranch3Middle,[["Pillar", "PillarBranch3Middle"]],c,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]]]),
+                new PartObject("7326bbb558f8bcc28d5875c43b1b8e3646caadb873a14fde3ab517f779aea345",PartCategory.Pillar,Part.PillarBranch3Bottom,[["Pillar", "PillarBranch3Bottom"]],c,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]]]),
+                new PartObject("0e23c2615cfdb350bb3a700b6169589265a1d1079f61294fb497b8f80191d523",PartCategory.Pillar,Part.PillarBranch4,[["Pillar", "PillarBranch4"]],c,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]], [[-1, 0, 1], [0, 0, 1]]]),
+                new PartObject("e62b55e111dbcb3faefed0a203eac5b55051a2b11911946660310e3df3588da3",PartCategory.Pillar,Part.PillarBranch4Top,[["Pillar", "PillarBranch4Top"]],c,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]], [[-1, 0, 1], [0, 0, 1]]]),
+                new PartObject("4e2cfb89c1c591803a1440532a74c3ace37ec7fe78a526c1b57f6679c620df2e",PartCategory.Pillar,Part.PillarBranch4Middle,[["Pillar", "PillarBranch4Middle"]],c,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]], [[-1, 0, 1], [0, 0, 1]]]),
+                new PartObject("e7807350788e4570c8bb74d4a635639ef731d83e52922fac5bc10f415f73f794",PartCategory.Pillar,Part.PillarBranch4Bottom,[["Pillar", "PillarBranch4Bottom"]],c,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]], [[-1, 0, 1], [0, 0, 1]]]),
+                new PartObject("836bfd12791bfebd99aba70531da4c9bd6e332d16c1e120a8888ea54f59456f9",PartCategory.Pillar,Part.PillarBranch5,[["Pillar", "PillarBranch5"]],c,[[[-2, 0, -1], [1, 0, 0]]]),
+                new PartObject("ab85228116faf9ae7b1e6cb4a03530cbec808df3d3c1d7883eb41eb7cfe231d7",PartCategory.Pillar,Part.PillarBranch5Top,[["Pillar", "PillarBranch5Top"]],c,[[[-2, 0, -1], [1, 0, 0]]]),
+                new PartObject("db93d5cea4e523fd67a56f8d928084ab6355331a8e5d1899115c1841866006bb",PartCategory.Pillar,Part.PillarBranch5Middle,[["Pillar", "PillarBranch5Middle"]],c,[[[-2, 0, -1], [1, 0, 0]]]),
+                new PartObject("dd793efa234159e3a0ff28b064ecb715e6c8bb76e06acfe4bd0d9a2f2b9bba88",PartCategory.Pillar,Part.PillarBranch5Bottom,[["Pillar", "PillarBranch5Bottom"]],c,[[[-2, 0, -1], [1, 0, 0]]]),
+                new PartObject("350f7d3591ffd0b2cfb8204d1c6cd0022fd3bda81ea7e950fce3abea7ec89e1a",PartCategory.Sign,Part.SignArrowLeft,[["Signs", "SignArrowRight", {
+                                flipX: !0
+                            }]],c,[[[-2, 0, -2], [1, 0, -2]]]),
+                new PartObject("22e104e58bba0a609d379578e391ce50ca523c9eee1c3fddebb6d1bb2246a0b9",PartCategory.Sign,Part.SignArrowRight,[["Signs", "SignArrowRight"]],c,[[[-2, 0, -2], [1, 0, -2]]]),
+                new PartObject("acba0cfe380e625285b973e09344e61740e77d6f8cac8691ef3e0a0b0878040e",PartCategory.Sign,Part.SignArrowUp,[["Signs", "SignArrowUp"]],c,[[[-2, 0, -2], [1, 0, -2]]]),
+                new PartObject("8d0dbea0a26bdf3addd372f5d9a2fdecfd776a48f31218acdeb036129b248ca5",PartCategory.Sign,Part.SignArrowDown,[["Signs", "SignArrowUp", {
+                                flipY: !0
+                            }]],c,[[[-2, 0, -2], [1, 0, -2]]]),
+                new PartObject("e5e1b1ca69d7b230331171be07876c4b1bdebba557c19b18ab17d91eee2771d5",PartCategory.Sign,Part.SignWarning,[["Signs", "SignWarning"]],c,[[[-2, 0, -2], [1, 0, -2]]]),
+                new PartObject("64ed1fba4990a25bc774575ff8835117638d2c3e7c8f41bf0032d219e1083e4c",PartCategory.Sign,Part.SignWrongWay,[["Signs", "SignWrongWay"]],c,[[[-2, 0, -2], [1, 0, -2]]])
+            ]
               , p = new Map;
             for (const e of u) {
                 if (p.has(e.id))
@@ -505,16 +692,16 @@
             var i = __webpack_require__(2244)
               , r = __webpack_require__(7680)
               , a = __webpack_require__(8438)
-              , s = __webpack_require__(5169)
-              , o = __webpack_require__(4183)
-              , l = __webpack_require__(2203)
+              , TrackEnvironment = __webpack_require__(5169).A
+              , PartEnvironment = __webpack_require__(4183).A
+              , Part = __webpack_require__(2203).A
               , c = __webpack_require__(8566)
               , h = __webpack_require__(405);
             function d(e) {
                 const t = i.D(e);
                 if (null == t)
                     return null;
-                const n = new a.A(s.A.Summer,new r.A);
+                const n = new a.A(TrackEnvironment.Summer,new r.A);
                 let d = 0;
                 for (; d < t.length; ) {
                     if (t.length - d < 2)
@@ -522,9 +709,9 @@
                     let e = t[d + 0] | t[d + 1] << 8;
                     d += 2;
                     let i = null;
-                    if (40 == e && (e = l.A.Slope,
-                    i = l.A.PillarTopSlope),
-                    !(e in l.A))
+                    if (40 == e && (e = Part.Slope,
+                    i = Part.PillarTopSlope),
+                    !(e in Part))
                         return null;
                     if (t.length - d < 4)
                         return null;
@@ -553,8 +740,8 @@
                             return null;
                         let f = null;
                         h.l1.includes(e) && (f = a == r - 1 ? 1 : 0),
-                        null != i && n.addPart(4 * s, l, 4 * u, i, p, c.A.YPositive, o.A.Default, null, null),
-                        n.addPart(4 * s, l, 4 * u, e, p, c.A.YPositive, o.A.Default, null, f)
+                        null != i && n.addPart(4 * s, l, 4 * u, i, p, c.A.YPositive, PartEnvironment.Default, null, null),
+                        n.addPart(4 * s, l, 4 * u, e, p, c.A.YPositive, PartEnvironment.Default, null, f)
                     }
                 }
                 return n
@@ -900,7 +1087,7 @@
             });
             var THREE = __webpack_require__(4922)
               , r = __webpack_require__(4078)
-              , a = __webpack_require__(2825)
+              , RenderManager = __webpack_require__(2825).A
               , s = __webpack_require__(7680);
             let o = null
               , l = null
@@ -916,7 +1103,7 @@
                             null != o && null != l && null != c && null != h || (l = document.createElement("canvas"),
                             l.width = 200,
                             l.height = 200,
-                            c = new a.A(l,null,!1),
+                            c = new RenderManager(l,null,!1),
                             h = new THREE.OrthographicCamera(-1,1,1,-1,.1,1e4),
                             c.scene.add(h),
                             c.setCamera(h),
@@ -1921,9 +2108,9 @@
         1566: (module, t, n) => {
             "use strict";
             n.d(t, {
-                _c: () => o,
-                ec: () => s,
-                pP: () => r
+                toTrianglesDrawMode: () => o,
+                mergeVertices: () => s,
+                mergeGeometries: () => r
             });
             var THREE = n(4922);
             function r(e, t=!1) {
@@ -2220,11 +2407,11 @@
         1728: (module, t, __webpack_require__) => {
             "use strict";
             __webpack_require__.d(t, {
-                Z: () => a
+                Z: () => DRACOLoader
             });
             var THREE = __webpack_require__(4922);
             const r = new WeakMap;
-            class a extends THREE.Loader {
+            class DRACOLoader extends THREE.Loader {
                 constructor(e) {
                     super(e),
                     this.decoderPath = "",
@@ -3191,7 +3378,7 @@
               , THREE = n(4922)
               , a = n(9437);
             const s = new THREE.Matrix4;
-            class o {
+            class FrustumBounds {
                 constructor(e) {
                     e = e || {},
                     this.zNear = !0 === e.webGL ? -1 : 0,
@@ -3227,7 +3414,7 @@
                 }
                 split(e, t) {
                     for (; e.length > t.length; )
-                        t.push(new o);
+                        t.push(new FrustumBounds);
                     t.length = e.length;
                     for (let n = 0; n < e.length; n++) {
                         const i = t[n];
@@ -3256,7 +3443,7 @@
                 lights_pars_begin: "\n#if defined( USE_CSM ) && defined( CSM_CASCADES )\nuniform vec2 CSM_cascades[CSM_CASCADES];\nuniform float cameraNear;\nuniform float shadowFar;\n#endif\n\t" + a.vxI.lights_pars_begin
             }
               , c = new THREE.Matrix4
-              , h = new o({
+              , h = new FrustumBounds({
                 webGL: !0
             })
               , d = new THREE.Vector3
@@ -3266,7 +3453,7 @@
               , g = new THREE.Matrix4
               , m = new THREE.Matrix4
               , A = new THREE.Vector3(0,1,0);
-            class v {
+            class CSM {     // Cascaded Shadow Maps implementation for three.js, based on three/examples/jsm/csm/CSM.js
                 constructor(e) {
                     this.camera = e.camera,
                     this.parent = e.parent,
@@ -3282,7 +3469,7 @@
                     this.lightMargin = e.lightMargin || 200,
                     this.customSplitsCallback = e.customSplitsCallback,
                     this.fade = !1,
-                    this.mainFrustum = new o({
+                    this.mainFrustum = new FrustumBounds({
                         webGL: !0
                     }),
                     this.frustums = [],
@@ -3487,8 +3674,8 @@
                 }
             }
             var y, b, w, x, S, k, E, T, M, _, C, R, P, I, L, U, z, N, D, B, G, F, O, W = n(3476);
-            class V {
-                constructor(e, t, n=null) {
+            class RenderManager {
+                constructor(canvas, settings, fogOverride=null) {
                     y.add(this),
                     w.set(this, void 0),
                     x.set(this, void 0),
@@ -3504,13 +3691,13 @@
                     I.set(this, new THREE.Vector3(8,10,10)),
                     L.set(this, []),
                     U.set(this, []),
-                    i.set(this, w, e, "f"),
-                    i.set(this, x, t, "f"),
-                    i.set(this, S, n, "f");
+                    i.set(this, w, canvas, "f"),
+                    i.set(this, x, settings, "f"),
+                    i.set(this, S, fogOverride, "f");
                     const s = {
-                        antialias: t?.getSettingBoolean(W.A.Antialiasing) ?? !0,
+                        antialias: settings?.getSettingBoolean(W.A.Antialiasing) ?? !0,
                         powerPreference: "high-performance",
-                        canvas: e,
+                        canvas: canvas,
                         alpha: !0
                     };
                     try {
@@ -3682,7 +3869,7 @@
                     return i.get(this, T, "f")
                 }
             }
-            b = V,
+            b = RenderManager,
             w = new WeakMap,
             x = new WeakMap,
             S = new WeakMap,
@@ -3721,7 +3908,7 @@
                 case 3:
                     a = 4
                 }
-                const s = new v({
+                const s = new CSM({
                     maxFar: n,
                     lightFar: 15e3,
                     lightNear: 10,
@@ -3841,8 +4028,8 @@
                         i.get(this, _, "f").updateFrustums()
             }
             ,
-            V.maxViewDistance = 1e4;
-            const H = V
+            RenderManager.maxViewDistance = 1e4;
+            const H = RenderManager
         }
         ,
         2832: (e, t, n) => {
@@ -7163,11 +7350,11 @@
             n.d(t, {
                 A: () => ht
             });
-            var i, r, a, s, o, l = n(1635), THREE = n(4922), h = n(1728), d = n(7888), u = n(1566), p = n(2825);
+            var i, r, a, s, o, l = n(1635), THREE = n(4922), DRACOLoader = n(1728).Z, d = n(7888), BufferGeometryUtils = n(1566), RenderManager = n(2825).A;
             class f {
                 constructor() {
                     i.add(this),
-                    s.set(this, new THREE.PerspectiveCamera(l.get(r, r, "f", a),1,.5,p.A.maxViewDistance))
+                    s.set(this, new THREE.PerspectiveCamera(l.get(r, r, "f", a),1,.5,RenderManager.maxViewDistance))
                 }
                 reset(e, t, n) {
                     this.update(e, t, 0),
@@ -7202,7 +7389,7 @@
             class k {
                 constructor() {
                     m.add(this),
-                    y.set(this, new THREE.PerspectiveCamera(l.get(A, A, "f", v),1,.5,p.A.maxViewDistance)),
+                    y.set(this, new THREE.PerspectiveCamera(l.get(A, A, "f", v),1,.5,RenderManager.maxViewDistance)),
                     b.set(this, new THREE.Vector3),
                     w.set(this, new THREE.Vector3(0,1,0))
                 }
@@ -7797,7 +7984,7 @@
                 static async initResources() {
                     const e = await new Promise(( (e, t) => {
                         const n = new d.B
-                          , i = new h.Z;
+                          , i = new DRACOLoader;
                         i.setDecoderPath("lib/draco/"),
                         n.setDRACOLoader(i),
                         n.load("models/car.glb", (n => {
@@ -7822,7 +8009,7 @@
                                 }
                                 ))
                                   , a = r.map((e => e.geometry))
-                                  , s = u.pP(a, !0);
+                                  , s = BufferGeometryUtils.mergeGeometries(a, !0);
                                 t && (i.updateMatrixWorld(!0),
                                 s.applyMatrix4(i.matrix.clone())),
                                 s.computeVertexNormals();
@@ -8519,7 +8706,7 @@
             A.insertStyleElement = p();
             a()(m.A, A);
             m.A && m.A.locals && m.A.locals;
-            var v, y, b, w, x, S, k, E, T, M, _, C, R, P, I, L, U, z, N, D, B, G, F, O, W, V, H, j, K, q, Q, J, X = n(5839), Y = n(579), Z = n(5169);
+            var v, y, b, w, x, S, k, E, T, M, _, C, R, P, I, L, U, z, N, D, B, G, F, O, W, V, H, j, K, q, Q, J, X = n(5839), TrackExportUI = n(579).A, TrackEnvironment = n(5169).A;
             let $ = null
               , ee = 0
               , te = 0
@@ -8585,31 +8772,31 @@
                             e.appendChild(n)
                         } else {
                             switch (t) {
-                            case Z.A.Summer:
+                            case TrackEnvironment.Summer:
                                 h.prepend(e);
                                 break;
-                            case Z.A.Winter:
+                            case TrackEnvironment.Winter:
                                 {
-                                    const t = d.get(Z.A.Desert);
+                                    const t = d.get(TrackEnvironment.Desert);
                                     null != t ? h.insertBefore(e, t) : h.appendChild(e);
                                     break
                                 }
-                            case Z.A.Desert:
+                            case TrackEnvironment.Desert:
                                 h.appendChild(e)
                             }
                             let n, a, s;
                             switch (r) {
-                            case Z.A.Summer:
+                            case TrackEnvironment.Summer:
                                 n = "",
                                 a = i.get(this, b, "f").get("Summer"),
                                 s = "images/summer.svg";
                                 break;
-                            case Z.A.Winter:
+                            case TrackEnvironment.Winter:
                                 n = "winter",
                                 a = i.get(this, b, "f").get("Winter"),
                                 s = "images/winter_colored.svg";
                                 break;
-                            case Z.A.Desert:
+                            case TrackEnvironment.Desert:
                                 n = "desert",
                                 a = i.get(this, b, "f").get("Desert"),
                                 s = "images/desert_colored.svg"
@@ -8653,13 +8840,13 @@
                 }
                 let g;
                 switch (r) {
-                case Z.A.Summer:
+                case TrackEnvironment.Summer:
                     g = "images/summer.svg";
                     break;
-                case Z.A.Winter:
+                case TrackEnvironment.Winter:
                     g = "images/winter.svg";
                     break;
-                case Z.A.Desert:
+                case TrackEnvironment.Desert:
                     g = "images/desert.svg"
                 }
                 const m = document.createElement("img");
@@ -8918,7 +9105,7 @@
                     le.addEventListener("click", ( () => {
                         i.get(this, w, "f").playUIClick(),
                         this.hide(),
-                        i.set(this, F, new Y.A("",( () => {
+                        i.set(this, F, new TrackExportUI("",( () => {
                             this.show(),
                             i.get(this, F, "f")?.dispose(),
                             i.set(this, F, null, "f")
@@ -22674,9 +22861,9 @@
             var i = n(3075)
               , r = n(7415)
               , a = n(8438)
-              , s = n(2203)
-              , o = n(4183)
-              , l = n(5169)
+              , Part = n(2203).A
+              , PartEnvironment = n(4183).A
+              , TrackEnvironment = n(5169).A
               , c = n(8566)
               , h = n(7680)
               , d = n(405);
@@ -22691,7 +22878,7 @@
                 const u = n.result;
                 if (!(u instanceof Uint8Array))
                     return null;
-                const p = new a.A(l.A.Summer,new h.A);
+                const p = new a.A(TrackEnvironment.Summer,new h.A);
                 let f = 0;
                 for (; f < u.length; ) {
                     if (u.length - f < 2)
@@ -22699,9 +22886,9 @@
                     let e = u[f + 0] | u[f + 1] << 8;
                     f += 2;
                     let t = null;
-                    if (40 == e && (e = s.A.Slope,
-                    t = s.A.PillarTopSlope),
-                    !(e in s.A))
+                    if (40 == e && (e = Part.Slope,
+                    t = Part.PillarTopSlope),
+                    !(e in Part))
                         return null;
                     if (u.length - f < 4)
                         return null;
@@ -22735,8 +22922,8 @@
                         }
                         let g = null;
                         d.l1.includes(e) && (g = i == n - 1 ? 1 : 0),
-                        null != t && p.addPart(4 * r, a, 4 * s, t, l, c.A.YPositive, o.A.Default, null, null),
-                        p.addPart(4 * r, a, 4 * s, e, l, c.A.YPositive, o.A.Default, h, g)
+                        null != t && p.addPart(4 * r, a, 4 * s, t, l, c.A.YPositive, PartEnvironment.Default, null, null),
+                        p.addPart(4 * r, a, 4 * s, e, l, c.A.YPositive, PartEnvironment.Default, h, g)
                     }
                 }
                 return p
@@ -22944,9 +23131,9 @@
             var i = n(3075)
               , r = n(7415)
               , a = n(8438)
-              , s = n(2203)
-              , o = n(4183)
-              , l = n(5169)
+              , Part = n(2203).A
+              , PartEnvironment = n(4183).A
+              , TrackEnvironment = n(5169).A
               , c = n(8566)
               , h = n(7680)
               , d = n(405);
@@ -22956,7 +23143,7 @@
                     return null;
                 const i = t[n];
                 if (n += 1,
-                !(i in l.A))
+                !(i in TrackEnvironment))
                     return null;
                 if (t.length - n < 1)
                     return null;
@@ -22986,12 +23173,12 @@
                     let e = t[n + 0];
                     n += 1;
                     let i = null;
-                    if (40 == e ? (e = s.A.Slope,
-                    i = s.A.PillarTopSlope) : 84 == e ? (e = s.A.Slope,
-                    i = s.A.PillarShortSlope) : 99 == e ? (e = s.A.PlaneSlope,
-                    i = s.A.PillarTopSlope) : 100 == e && (e = s.A.PlaneSlope,
-                    i = s.A.PillarShortSlope),
-                    !(e in s.A))
+                    if (40 == e ? (e = Part.Slope,
+                    i = Part.PillarTopSlope) : 84 == e ? (e = Part.Slope,
+                    i = Part.PillarShortSlope) : 99 == e ? (e = Part.PlaneSlope,
+                    i = Part.PillarTopSlope) : 100 == e && (e = Part.PlaneSlope,
+                    i = Part.PillarShortSlope),
+                    !(e in Part))
                         return null;
                     if (t.length - n < 4)
                         return null;
@@ -23035,7 +23222,7 @@
                             return null;
                         const u = t[n + 0];
                         if (n += 1,
-                        !(u in o.A))
+                        !(u in PartEnvironment))
                             return null;
                         let b = null;
                         if (d.bK.includes(e)) {
@@ -25699,7 +25886,7 @@
                 B: () => a
             });
             var THREE = n(4922)
-              , r = n(1566);
+              , BufferGeometryUtils = n(1566);
             class a extends THREE.Loader {
                 constructor(e) {
                     super(e),
@@ -27326,7 +27513,7 @@
                             if (u.mode === N.TRIANGLES || u.mode === N.TRIANGLE_STRIP || u.mode === N.TRIANGLE_FAN || void 0 === u.mode)
                                 p = !0 === s.isSkinnedMesh ? new THREE.SkinnedMesh(d,f) : new THREE.Mesh(d,f),
                                 !0 === p.isSkinnedMesh && p.normalizeSkinWeights(),
-                                u.mode === N.TRIANGLE_STRIP ? p.geometry = r._c(p.geometry, THREE.AdditiveAnimationBlendMode) : u.mode === N.TRIANGLE_FAN && (p.geometry = r._c(p.geometry, THREE.rYR));
+                                u.mode === N.TRIANGLE_STRIP ? p.geometry = BufferGeometryUtils.toTrianglesDrawMode(p.geometry, THREE.AdditiveAnimationBlendMode) : u.mode === N.TRIANGLE_FAN && (p.geometry = BufferGeometryUtils.toTrianglesDrawMode(p.geometry, THREE.rYR));
                             else if (u.mode === N.LINES)
                                 p = new THREE.LineSegments(d,f);
                             else if (u.mode === N.LINE_STRIP)
@@ -27766,9 +27953,9 @@
             });
             var i = n(7680)
               , r = n(8438)
-              , a = n(5169)
-              , s = n(4183)
-              , o = n(2203)
+              , TrackEnvironment = n(5169).A
+              , PartEnvironment = n(4183).A
+              , Part = n(2203).A
               , l = n(8566)
               , c = n(405);
             function h(e) {
@@ -27777,11 +27964,11 @@
                 if (!("parts"in e) || "object" != typeof e.parts || null == e.parts)
                     return null;
                 const t = e.parts
-                  , n = new r.A(a.A.Summer,new i.A)
+                  , n = new r.A(TrackEnvironment.Summer,new i.A)
                   , h = Object.keys(t);
                 for (const e of h) {
                     const i = parseInt(e, 10);
-                    if (!(i in o.A))
+                    if (!(i in Part))
                         return null;
                     {
                         const e = t[i];
@@ -27805,7 +27992,7 @@
                                     return null;
                                 let d = null;
                                 c.l1.includes(i) && (d = t / 4 == e.length / 4 - 1 ? 1 : 0),
-                                n.addPart(4 * r, a, 4 * o, i, h, l.A.YPositive, s.A.Default, null, d)
+                                n.addPart(4 * r, a, 4 * o, i, h, l.A.YPositive, PartEnvironment.Default, null, d)
                             }
                         }
                     }
@@ -27908,7 +28095,7 @@
             n.d(t, {
                 A: () => M
             });
-            var i, r, a, s, o, l, c, h, d = n(1635), u = n(3075), p = n(1312), THREE = n(4922), g = n(7415), m = n(7980), A = n(666), v = n(5343), y = n(8928), b = n(5440), w = n(9681), x = n(2247), S = n(8971), k = n(5169), E = n(405), T = n(5735);
+            var i, r, a, s, o, l, c, h, d = n(1635), u = n(3075), p = n(1312), THREE = n(4922), g = n(7415), m = n(7980), A = n(666), v = n(5343), y = n(8928), b = n(5440), w = n(9681), x = n(2247), S = n(8971), TrackEnvironment = n(5169).A, E = n(405), T = n(5735);
             r = new WeakMap,
             a = new WeakMap,
             s = new WeakMap,
@@ -28251,17 +28438,17 @@
                       , u = [];
                     let p, f, g;
                     switch (this.environment) {
-                    case k.A.Summer:
+                    case TrackEnvironment.Summer:
                         p = 255,
                         f = 255,
                         g = 255;
                         break;
-                    case k.A.Winter:
+                    case TrackEnvironment.Winter:
                         p = 190,
                         f = 216,
                         g = 247;
                         break;
-                    case k.A.Desert:
+                    case TrackEnvironment.Desert:
                         p = 237,
                         f = 226,
                         g = 175
@@ -28431,9 +28618,9 @@
             var i = __webpack_require__(3075)
               , r = __webpack_require__(7415)
               , a = __webpack_require__(8438)
-              , s = __webpack_require__(2203)
-              , o = __webpack_require__(4183)
-              , l = __webpack_require__(5169)
+              , Part = __webpack_require__(2203).A
+              , PartEnvironment = __webpack_require__(4183).A
+              , TrackEnvironment = __webpack_require__(5169).A
               , c = __webpack_require__(8566)
               , h = __webpack_require__(7680)
               , d = __webpack_require__(405);
@@ -28448,195 +28635,195 @@
                 const u = n.result;
                 if (!(u instanceof Uint8Array))
                     return null;
-                const p = new a.A(l.A.Summer,new h.A);
+                const p = new a.A(TrackEnvironment.Summer,new h.A);
                 let f = 0;
                 for (; f < u.length; ) {
                     if (u.length - f < 2)
                         return null;
                     let e = u[f + 0] | u[f + 1] << 8;
                     f += 2;
-                    let t = o.A.Default;
+                    let t = PartEnvironment.Default;
                     if (e >= 134 && e <= 178)
                         switch (e) {
                         case 134:
-                            e = s.A.Block,
-                            t = o.A.Custom1;
+                            e = Part.Block,
+                            t = PartEnvironment.Custom1;
                             break;
                         case 135:
-                            e = s.A.HalfBlock,
-                            t = o.A.Custom1;
+                            e = Part.HalfBlock,
+                            t = PartEnvironment.Custom1;
                             break;
                         case 136:
-                            e = s.A.QuarterBlock,
-                            t = o.A.Custom1;
+                            e = Part.QuarterBlock,
+                            t = PartEnvironment.Custom1;
                             break;
                         case 137:
-                            e = s.A.BlockSlopedDown,
-                            t = o.A.Custom1;
+                            e = Part.BlockSlopedDown,
+                            t = PartEnvironment.Custom1;
                             break;
                         case 138:
-                            e = s.A.BlockSlopedDownInnerCorner,
-                            t = o.A.Custom1;
+                            e = Part.BlockSlopedDownInnerCorner,
+                            t = PartEnvironment.Custom1;
                             break;
                         case 139:
-                            e = s.A.BlockSlopedDownOuterCorner,
-                            t = o.A.Custom1;
+                            e = Part.BlockSlopedDownOuterCorner,
+                            t = PartEnvironment.Custom1;
                             break;
                         case 140:
-                            e = s.A.BlockSlopedUp,
-                            t = o.A.Custom1;
+                            e = Part.BlockSlopedUp,
+                            t = PartEnvironment.Custom1;
                             break;
                         case 141:
-                            e = s.A.BlockSlopedUpInnerCorner,
-                            t = o.A.Custom1;
+                            e = Part.BlockSlopedUpInnerCorner,
+                            t = PartEnvironment.Custom1;
                             break;
                         case 142:
-                            e = s.A.BlockSlopedUpOuterCorner,
-                            t = o.A.Custom1;
+                            e = Part.BlockSlopedUpOuterCorner,
+                            t = PartEnvironment.Custom1;
                             break;
                         case 143:
-                            e = s.A.BlockSlopeDown,
-                            t = o.A.Custom1;
+                            e = Part.BlockSlopeDown,
+                            t = PartEnvironment.Custom1;
                             break;
                         case 144:
-                            e = s.A.BlockSlopeUp,
-                            t = o.A.Custom1;
+                            e = Part.BlockSlopeUp,
+                            t = PartEnvironment.Custom1;
                             break;
                         case 145:
-                            e = s.A.BlockBridge,
-                            t = o.A.Custom1;
+                            e = Part.BlockBridge,
+                            t = PartEnvironment.Custom1;
                             break;
                         case 146:
-                            e = s.A.BlockBridgeCorner,
-                            t = o.A.Custom1;
+                            e = Part.BlockBridgeCorner,
+                            t = PartEnvironment.Custom1;
                             break;
                         case 147:
-                            e = s.A.BlockBridgeIntersectionT,
-                            t = o.A.Custom1;
+                            e = Part.BlockBridgeIntersectionT,
+                            t = PartEnvironment.Custom1;
                             break;
                         case 148:
-                            e = s.A.BlockBridgeIntersectionCross,
-                            t = o.A.Custom1;
+                            e = Part.BlockBridgeIntersectionCross,
+                            t = PartEnvironment.Custom1;
                             break;
                         case 149:
-                            e = s.A.Block,
-                            t = o.A.Custom6;
+                            e = Part.Block,
+                            t = PartEnvironment.Custom6;
                             break;
                         case 150:
-                            e = s.A.HalfBlock,
-                            t = o.A.Custom6;
+                            e = Part.HalfBlock,
+                            t = PartEnvironment.Custom6;
                             break;
                         case 151:
-                            e = s.A.QuarterBlock,
-                            t = o.A.Custom6;
+                            e = Part.QuarterBlock,
+                            t = PartEnvironment.Custom6;
                             break;
                         case 152:
-                            e = s.A.BlockSlopedDown,
-                            t = o.A.Custom6;
+                            e = Part.BlockSlopedDown,
+                            t = PartEnvironment.Custom6;
                             break;
                         case 153:
-                            e = s.A.BlockSlopedDownInnerCorner,
-                            t = o.A.Custom6;
+                            e = Part.BlockSlopedDownInnerCorner,
+                            t = PartEnvironment.Custom6;
                             break;
                         case 154:
-                            e = s.A.BlockSlopedDownOuterCorner,
-                            t = o.A.Custom6;
+                            e = Part.BlockSlopedDownOuterCorner,
+                            t = PartEnvironment.Custom6;
                             break;
                         case 155:
-                            e = s.A.BlockSlopedUp,
-                            t = o.A.Custom6;
+                            e = Part.BlockSlopedUp,
+                            t = PartEnvironment.Custom6;
                             break;
                         case 156:
-                            e = s.A.BlockSlopedUpInnerCorner,
-                            t = o.A.Custom6;
+                            e = Part.BlockSlopedUpInnerCorner,
+                            t = PartEnvironment.Custom6;
                             break;
                         case 157:
-                            e = s.A.BlockSlopedUpOuterCorner,
-                            t = o.A.Custom6;
+                            e = Part.BlockSlopedUpOuterCorner,
+                            t = PartEnvironment.Custom6;
                             break;
                         case 158:
-                            e = s.A.BlockSlopeDown,
-                            t = o.A.Custom6;
+                            e = Part.BlockSlopeDown,
+                            t = PartEnvironment.Custom6;
                             break;
                         case 159:
-                            e = s.A.BlockSlopeUp,
-                            t = o.A.Custom6;
+                            e = Part.BlockSlopeUp,
+                            t = PartEnvironment.Custom6;
                             break;
                         case 160:
-                            e = s.A.BlockBridge,
-                            t = o.A.Custom6;
+                            e = Part.BlockBridge,
+                            t = PartEnvironment.Custom6;
                             break;
                         case 161:
-                            e = s.A.BlockBridgeCorner,
-                            t = o.A.Custom6;
+                            e = Part.BlockBridgeCorner,
+                            t = PartEnvironment.Custom6;
                             break;
                         case 162:
-                            e = s.A.BlockBridgeIntersectionT,
-                            t = o.A.Custom6;
+                            e = Part.BlockBridgeIntersectionT,
+                            t = PartEnvironment.Custom6;
                             break;
                         case 163:
-                            e = s.A.BlockBridgeIntersectionCross,
-                            t = o.A.Custom6;
+                            e = Part.BlockBridgeIntersectionCross,
+                            t = PartEnvironment.Custom6;
                             break;
                         case 164:
-                            e = s.A.Block,
-                            t = o.A.Custom0;
+                            e = Part.Block,
+                            t = PartEnvironment.Custom0;
                             break;
                         case 165:
-                            e = s.A.HalfBlock,
-                            t = o.A.Custom0;
+                            e = Part.HalfBlock,
+                            t = PartEnvironment.Custom0;
                             break;
                         case 166:
-                            e = s.A.QuarterBlock,
-                            t = o.A.Custom0;
+                            e = Part.QuarterBlock,
+                            t = PartEnvironment.Custom0;
                             break;
                         case 167:
-                            e = s.A.BlockSlopedDown,
-                            t = o.A.Custom0;
+                            e = Part.BlockSlopedDown,
+                            t = PartEnvironment.Custom0;
                             break;
                         case 168:
-                            e = s.A.BlockSlopedDownInnerCorner,
-                            t = o.A.Custom0;
+                            e = Part.BlockSlopedDownInnerCorner,
+                            t = PartEnvironment.Custom0;
                             break;
                         case 169:
-                            e = s.A.BlockSlopedDownOuterCorner,
-                            t = o.A.Custom0;
+                            e = Part.BlockSlopedDownOuterCorner,
+                            t = PartEnvironment.Custom0;
                             break;
                         case 170:
-                            e = s.A.BlockSlopedUp,
-                            t = o.A.Custom0;
+                            e = Part.BlockSlopedUp,
+                            t = PartEnvironment.Custom0;
                             break;
                         case 171:
-                            e = s.A.BlockSlopedUpInnerCorner,
-                            t = o.A.Custom0;
+                            e = Part.BlockSlopedUpInnerCorner,
+                            t = PartEnvironment.Custom0;
                             break;
                         case 172:
-                            e = s.A.BlockSlopedUpOuterCorner,
-                            t = o.A.Custom0;
+                            e = Part.BlockSlopedUpOuterCorner,
+                            t = PartEnvironment.Custom0;
                             break;
                         case 173:
-                            e = s.A.BlockSlopeDown,
-                            t = o.A.Custom0;
+                            e = Part.BlockSlopeDown,
+                            t = PartEnvironment.Custom0;
                             break;
                         case 174:
-                            e = s.A.BlockSlopeUp,
-                            t = o.A.Custom0;
+                            e = Part.BlockSlopeUp,
+                            t = PartEnvironment.Custom0;
                             break;
                         case 175:
-                            e = s.A.BlockBridge,
-                            t = o.A.Custom0;
+                            e = Part.BlockBridge,
+                            t = PartEnvironment.Custom0;
                             break;
                         case 176:
-                            e = s.A.BlockBridgeCorner,
-                            t = o.A.Custom0;
+                            e = Part.BlockBridgeCorner,
+                            t = PartEnvironment.Custom0;
                             break;
                         case 177:
-                            e = s.A.BlockBridgeIntersectionT,
-                            t = o.A.Custom0;
+                            e = Part.BlockBridgeIntersectionT,
+                            t = PartEnvironment.Custom0;
                             break;
                         case 178:
-                            e = s.A.BlockBridgeIntersectionCross,
-                            t = o.A.Custom0
+                            e = Part.BlockBridgeIntersectionCross,
+                            t = PartEnvironment.Custom0
                         }
                     let n = null
                       , i = {
@@ -28645,9 +28832,9 @@
                         z: 0
                     };
                     if (79 == e)
-                        n = s.A.WallTrackFloorPlaneCorner;
+                        n = Part.WallTrackFloorPlaneCorner;
                     else if (81 == e)
-                        n = s.A.WallTrackCeilingPlaneCorner,
+                        n = Part.WallTrackCeilingPlaneCorner,
                         i = {
                             x: 0,
                             y: 3,
@@ -28656,63 +28843,63 @@
                     else if (e >= 87 && e <= 98)
                         switch (e) {
                         case 87:
-                            e = s.A.Slope,
-                            n = s.A.BlockSlopedUp;
+                            e = Part.Slope,
+                            n = Part.BlockSlopedUp;
                             break;
                         case 88:
-                            e = s.A.SlopeUp,
-                            n = s.A.BlockSlopeUp;
+                            e = Part.SlopeUp,
+                            n = Part.BlockSlopeUp;
                             break;
                         case 89:
-                            e = s.A.SlopeDown,
-                            n = s.A.BlockSlopeDown;
+                            e = Part.SlopeDown,
+                            n = Part.BlockSlopeDown;
                             break;
                         case 90:
-                            e = s.A.SlopeUpLeftWide,
-                            n = s.A.BlockSlopeUp;
+                            e = Part.SlopeUpLeftWide,
+                            n = Part.BlockSlopeUp;
                             break;
                         case 91:
-                            e = s.A.SlopeUpRightWide,
-                            n = s.A.BlockSlopeUp;
+                            e = Part.SlopeUpRightWide,
+                            n = Part.BlockSlopeUp;
                             break;
                         case 92:
-                            e = s.A.SlopeDownLeftWide,
-                            n = s.A.BlockSlopeDown;
+                            e = Part.SlopeDownLeftWide,
+                            n = Part.BlockSlopeDown;
                             break;
                         case 93:
-                            e = s.A.SlopeDownRightWide,
-                            n = s.A.BlockSlopeDown;
+                            e = Part.SlopeDownRightWide,
+                            n = Part.BlockSlopeDown;
                             break;
                         case 94:
-                            e = s.A.SlopeLeftWide,
-                            n = s.A.BlockSlopedUp;
+                            e = Part.SlopeLeftWide,
+                            n = Part.BlockSlopedUp;
                             break;
                         case 95:
-                            e = s.A.SlopeRightWide,
-                            n = s.A.BlockSlopedUp;
+                            e = Part.SlopeRightWide,
+                            n = Part.BlockSlopedUp;
                             break;
                         case 96:
-                            e = s.A.PlaneSlopeUp,
-                            n = s.A.BlockSlopeUp;
+                            e = Part.PlaneSlopeUp,
+                            n = Part.BlockSlopeUp;
                             break;
                         case 97:
-                            e = s.A.PlaneSlopeDown,
-                            n = s.A.BlockSlopeDown;
+                            e = Part.PlaneSlopeDown,
+                            n = Part.BlockSlopeDown;
                             break;
                         case 98:
-                            e = s.A.PlaneSlope,
-                            n = s.A.BlockSlopedUp;
+                            e = Part.PlaneSlope,
+                            n = Part.BlockSlopedUp;
                             break;
                         default:
                             throw new Error("Invalid track part id")
                         }
                     else
-                        40 == e ? (e = s.A.Slope,
-                        n = s.A.PillarTopSlope) : 84 == e ? (e = s.A.Slope,
-                        n = s.A.PillarShortSlope) : 99 == e ? (e = s.A.PlaneSlope,
-                        n = s.A.PillarTopSlope) : 100 == e && (e = s.A.PlaneSlope,
-                        n = s.A.PillarShortSlope);
-                    if (!(e in s.A))
+                        40 == e ? (e = Part.Slope,
+                        n = Part.PillarTopSlope) : 84 == e ? (e = Part.Slope,
+                        n = Part.PillarShortSlope) : 99 == e ? (e = Part.PlaneSlope,
+                        n = Part.PillarTopSlope) : 100 == e && (e = Part.PlaneSlope,
+                        n = Part.PillarShortSlope);
+                    if (!(e in Part))
                         return null;
                     if (u.length - f < 4)
                         return null;
@@ -28746,7 +28933,7 @@
                         }
                         let A = null;
                         d.l1.includes(e) && (A = a == r - 1 ? 1 : 0),
-                        null != n && p.addPart(4 * s + i.x, l + i.y, 4 * h + i.z, n, g, c.A.YPositive, o.A.Default, null, null),
+                        null != n && p.addPart(4 * s + i.x, l + i.y, 4 * h + i.z, n, g, c.A.YPositive, PartEnvironment.Default, null, null),
                         p.addPart(4 * s, l, 4 * h, e, g, c.A.YPositive, t, m, A)
                     }
                 }
@@ -28793,8 +28980,8 @@
             THREE = __webpack_require__(4922), 
             v = __webpack_require__(8438), 
             y = __webpack_require__(2247), 
-            b = __webpack_require__(4183), 
-            w = __webpack_require__(5169), 
+            PartEnvironment = __webpack_require__(4183).A, 
+            TrackEnvironment = __webpack_require__(5169).A,
             x = __webpack_require__(7680), 
             S = __webpack_require__(5735), 
             k = __webpack_require__(3476), 
@@ -28830,7 +29017,7 @@
                     r.set(this, void 0),
                     a.set(this, void 0),
                     s.set(this, void 0),
-                    this.environment = w.A.Summer,
+                    this.environment = TrackEnvironment.Summer,
                     o.set(this, new x.A),
                     l.set(this, []),
                     c.set(this, new Map),
@@ -28891,7 +29078,7 @@
                 }
                 setPart(e, t, n, i, r, a, o, d, u) {
                     const p = m.get(this, s, "f").getPart(i);
-                    if (o != b.A.Default && !p.colors.has(o))
+                    if (o != PartEnvironment.Default && !p.colors.has(o))
                         throw new Error("Track part color does not exist");
                     const f = S.hT(r, a)
                       , g = new THREE.Vector3(e * M.partSize,t * M.partSize,n * M.partSize)
@@ -28988,24 +29175,24 @@
                     let n, c = null;
                     if (2 == m.get(this, a, "f").getSettingInteger(k.A.ShadowQuality))
                         switch (this.environment) {
-                        case w.A.Summer:
+                        case TrackEnvironment.Summer:
                             c = new THREE.Color(2511171);
                             break;
-                        case w.A.Winter:
+                        case TrackEnvironment.Winter:
                             c = new THREE.Color(7904713);
                             break;
-                        case w.A.Desert:
+                        case TrackEnvironment.Desert:
                             c = new THREE.Color(7958351)
                         }
                     switch (this.environment) {
-                    case w.A.Summer:
-                        n = b.A.Summer;
+                    case TrackEnvironment.Summer:
+                        n = PartEnvironment.Summer;
                         break;
-                    case w.A.Winter:
-                        n = b.A.Winter;
+                    case TrackEnvironment.Winter:
+                        n = PartEnvironment.Winter;
                         break;
-                    case w.A.Desert:
-                        n = b.A.Desert
+                    case TrackEnvironment.Desert:
+                        n = PartEnvironment.Desert
                     }
                     const h = m.get(this, r, "f").isTrackShadowsEnabled();
                     for (const e of m.get(this, s, "f").getAllParts())
@@ -29013,7 +29200,7 @@
                             const s = [];
                             for (const t of m.get(this, l, "f")) {
                                 let r = t.color;
-                                r == b.A.Default && (r = n),
+                                r == PartEnvironment.Default && (r = n),
                                 t.type == e && r == i && s.push(t)
                             }
                             if (s.length > 0) {
@@ -37251,7 +37438,7 @@
             n.d(t, {
                 A: () => k
             });
-            var i, r, a, s = n(1635), THREE = n(4922), l = n(2825);
+            var i, r, a, s = n(1635), THREE = n(4922), RenderManager = n(2825).A;
             class c {
                 constructor(e) {
                     if (r.set(this, void 0),
@@ -37276,12 +37463,12 @@
                 value: [.12047764760664692, .19645762332790628, .5525629082262744, .41272626379209965, .7795036003541387, .13367266027110114, .7999601557377349, .9519714253374205, .1735048382917752, .7513367084489158, .6531386724839523, .9026427867068505, .8543272738216994, .11176849958868162, .6705698284858437, .26628732081296946, .31140322993719605, .45170300835470933, .12615515120247944, .0610638094525735, .291990923385425, .4613983868623317, .6615759832726253, .4373182881232056, .7432890501246443, .39316710322388837, .49444122821563297, .5994296685114344, .060050119050233386, .4165885432422003, .43974364800990084, .1628314496954224, .05787972729968116, .225388541259955, .6075775236386991, .8908354370882479, .47072983115144584, .7662003453186828, .20651036895645647, .03724062137286044, .17110277274376795, .7626426077793496, .8372112804261309, .8761690804447455, .13887024930406633, .8287513367412203, .9794446290917873, .807658524448803, .8465629116398186, .5187285629536083, .33962953580139277, .9798419666114342, .6777071959103609, .5388899884934379, .7863389168762325, .4274591420924474, .25631366937500566, .5695289062505289, .026841382754547727, .18267938207996903, .9853642975717878, .24428485895234409, .5322028747608949, .9655065842019517, .043810183244384016, .541216190236913, .05897981610006209, .2849168541804703, .5349823008832073, .9655676144971486, .22831812764497283, .7698701658704175, .4103995069939841, .25782763124411856, .8490222628872495, .39280879489916987, .31999467883347554, .2860820872456349, .9684928577493004, .9973831481899462, .2930912094664657, .4847128131859766, .7218400909709828, .40407009594106236, .7059298060123587, .45362146566562744, .4640974655488792, .16076769483252273, .5989453525750241, .585759299589679, .9417035568973537, .20117930667657413, .5777873180244959, .1991854396549344, .8743781441651348, .624666386634513, .38720573630932886, .9967931526923675, .49817894572849486, .24585267823751833, .8639168275132305, .2865624029759799, .6163605496913385, .5864748073339972, .8781049154377354, .7497547608938613, .7864098057445887, .0334170452332867, .4875588105294657, .6737395339380896, .21851121231639659, .2923739650597854, .6073797612662293, .41823228947229896, .8531029420136382, .3260916332061783, .6306262204574675, .5268576689601923, .3516570914484707, .8659366375222706, .8447448461834428, .3794548980890986, .9832775904115916, .8442256760399809, .3006550591973338, .9718660619781394, .5103245035851833, .794319831388071]
             };
             const h = c;
-            var d, u, p, f, g, m, A, v, y, b, w = n(8971), x = n(5169);
+            var d, u, p, f, g, m, A, v, y, b, w = n(8971), TrackEnvironment = n(5169).A;
             class S {
                 constructor(e) {
                     d.add(this),
                     p.set(this, void 0),
-                    f.set(this, x.A.Summer),
+                    f.set(this, TrackEnvironment.Summer),
                     g.set(this, void 0),
                     m.set(this, void 0),
                     A.set(this, void 0),
@@ -37293,12 +37480,12 @@
                     e.addMaterial(s.get(this, g, "f")),
                     s.set(this, m, new THREE.MeshLambertMaterial, "f"),
                     e.addMaterial(s.get(this, m, "f"));
-                    s.set(this, A, new THREE.Mesh(new THREE.PlaneGeometry(6 * l.A.maxViewDistance,6 * l.A.maxViewDistance,10,10),s.get(this, g, "f")), "f"),
+                    s.set(this, A, new THREE.Mesh(new THREE.PlaneGeometry(6 * RenderManager.maxViewDistance,6 * RenderManager.maxViewDistance,10,10),s.get(this, g, "f")), "f"),
                     s.get(this, A, "f").rotation.x = -Math.PI / 2,
                     s.get(this, A, "f").renderOrder = -2,
                     s.get(this, A, "f").receiveShadow = !0,
                     e.scene.add(s.get(this, A, "f")),
-                    s.get(this, d, "m", b).call(this, x.A.Summer)
+                    s.get(this, d, "m", b).call(this, TrackEnvironment.Summer)
                 }
                 clearMountains() {
                     null != s.get(this, v, "f") && (s.get(this, v, "f").material.dispose(),
@@ -37390,13 +37577,13 @@
             y = function(e) {
                 let t;
                 switch (e) {
-                case x.A.Summer:
+                case TrackEnvironment.Summer:
                     t = new THREE.Color(3495480);
                     break;
-                case x.A.Winter:
+                case TrackEnvironment.Winter:
                     t = new THREE.Color(11053224);
                     break;
-                case x.A.Desert:
+                case TrackEnvironment.Desert:
                     t = new THREE.Color(11171394)
                 }
                 return t
@@ -37426,9 +37613,9 @@
             var i = n(3075)
               , r = n(7415)
               , a = n(8438)
-              , s = n(2203)
-              , o = n(4183)
-              , l = n(5169)
+              , Part = n(2203).A
+              , PartEnvironment = n(4183).A
+              , TrackEnvironment = n(5169).A
               , c = n(8566)
               , h = n(7680)
               , d = n(405);
@@ -37438,7 +37625,7 @@
                     return null;
                 const i = t[n];
                 if (n += 1,
-                !(i in l.A))
+                !(i in TrackEnvironment))
                     return null;
                 if (t.length - n < 1)
                     return null;
@@ -37466,7 +37653,7 @@
                         return null;
                     const e = t[n + 0];
                     if (n += 1,
-                    !(e in s.A))
+                    !(e in Part))
                         return null;
                     if (t.length - n < 4)
                         return null;
@@ -37508,7 +37695,7 @@
                             return null;
                         const y = t[n + 0];
                         if (n += 1,
-                        !(y in o.A))
+                        !(y in PartEnvironment))
                             return null;
                         let b = null;
                         if (d.bK.includes(e)) {
@@ -38650,7 +38837,7 @@
             }
         }
         ;
-        var _renderer, _camera, _isEnabled, _toggleListeners, _onKeyDown, _onKeyUp, _onMouseDown, _onMouseUp, _onMouseMove, _onContextMenu, _moveForward, _moveRight, _moveBackward, _moveLeft, _speedModifier, At = i(2825);
+        var _renderer, _camera, _isEnabled, _toggleListeners, _onKeyDown, _onKeyUp, _onMouseDown, _onMouseUp, _onMouseMove, _onContextMenu, _moveForward, _moveRight, _moveBackward, _moveLeft, _speedModifier, RenderManager = i(2825).A;
         _renderer = new WeakMap,
         _camera = new WeakMap,
         _isEnabled = new WeakMap,
@@ -38684,7 +38871,7 @@
                 _moveLeft.set(this, !1),
                 _speedModifier.set(this, !1),
                 C.set(this, _renderer, renderer, "f"),
-                C.set(this, _camera, new THREE.PerspectiveCamera(70,1,.5,At.A.maxViewDistance), "f"),
+                C.set(this, _camera, new THREE.PerspectiveCamera(70,1,.5,RenderManager.maxViewDistance), "f"),
                 C.get(this, _camera, "f").position.set(0, 20, 0),
                 window.addEventListener("keydown", C.set(this, _onKeyDown, (e => {
                     inputManager.checkKeyBinding(e, KeyBind.SpectatorMoveForwards) ? (C.set(this, _moveForward, !0, "f"),
@@ -49119,7 +49306,7 @@
             }
         }
         ;
-        var Uo, zo, No, Do, Bo, Go, Fo, Oo, Wo, Vo, Ho, jo, Ko, qo, Qo, Jo, Xo, Yo, Zo, $o, el = i(579), tl = i(5169);
+        var Uo, zo, No, Do, Bo, Go, Fo, Oo, Wo, Vo, Ho, jo, Ko, qo, Qo, Jo, Xo, Yo, Zo, $o, TrackExportUI = i(579).A, TrackEnvironment = i(5169).A;
         zo = new WeakMap,
         No = new WeakMap,
         Do = new WeakMap,
@@ -49250,7 +49437,7 @@
                             C.get(this, Xo, "f"))
                                 return;
                             const n = e.toExportString(o);
-                            C.set(this, Qo, new el.A(n,( () => {
+                            C.set(this, Qo, new TrackExportUI(n,( () => {
                                 C.get(this, Qo, "f")?.dispose(),
                                 C.set(this, Qo, null, "f"),
                                 C.get(this, Oo, "f").className = "track-info-ui"
@@ -49272,13 +49459,13 @@
                 )),
                 b.appendChild(w),
                 l) {
-                case tl.A.Summer:
+                case TrackEnvironment.Summer:
                     x = "images/summer.svg";
                     break;
-                case tl.A.Winter:
+                case TrackEnvironment.Winter:
                     x = "images/winter.svg";
                     break;
-                case tl.A.Desert:
+                case TrackEnvironment.Desert:
                     x = "images/desert.svg"
                 }
                 const S = document.createElement("img");
@@ -51410,7 +51597,7 @@
                 ))) : p && (C.get(this, vc, "m", qc).call(this),
                 C.get(this, vc, "m", Xc).call(this),
                 C.get(this, Rc, "f").show()),
-                C.set(this, Oc, new THREE.PerspectiveCamera(70,1,.5,At.A.maxViewDistance), "f"),
+                C.set(this, Oc, new THREE.PerspectiveCamera(70,1,.5,RenderManager.maxViewDistance), "f"),
                 n.scene.add(C.get(this, Oc, "f")),
                 C.get(this, vc, "m", Zc).call(this)
             }
@@ -51934,7 +52121,7 @@
                         author: "BonnieBeans",
                         lastModified: new Date("2026-03-04T10:55:21.000Z")
                     },
-                    environment: tl.A.Summer,
+                    environment: TrackEnvironment.Summer,
                     trackUrl: "tracks/community/marvelous_marble.track",
                     thumbnail: "tracks/community/thumbnails/marvelous_marble.png"
                 }, {
@@ -51945,7 +52132,7 @@
                         author: "Flatbread",
                         lastModified: null
                     },
-                    environment: tl.A.Summer,
+                    environment: TrackEnvironment.Summer,
                     trackUrl: "tracks/community/arx_lucida.track",
                     thumbnail: "tracks/community/thumbnails/arx_lucida.png"
                 }, {
@@ -51956,7 +52143,7 @@
                         author: "Flatbread & BonnieBeans",
                         lastModified: null
                     },
-                    environment: tl.A.Winter,
+                    environment: TrackEnvironment.Winter,
                     trackUrl: "tracks/community/koselig.track",
                     thumbnail: "tracks/community/thumbnails/koselig.png"
                 }, {
@@ -51967,7 +52154,7 @@
                         author: "Zihcx",
                         lastModified: null
                     },
-                    environment: tl.A.Summer,
+                    environment: TrackEnvironment.Summer,
                     trackUrl: "tracks/community/sky_bound.track",
                     thumbnail: "tracks/community/thumbnails/sky_bound.png"
                 }, {
@@ -51978,7 +52165,7 @@
                         author: "Jurre",
                         lastModified: null
                     },
-                    environment: tl.A.Desert,
+                    environment: TrackEnvironment.Desert,
                     trackUrl: "tracks/community/shardmir.track",
                     thumbnail: "tracks/community/thumbnails/shardmir.png"
                 }, {
@@ -51989,7 +52176,7 @@
                         author: "TD_blox",
                         lastModified: null
                     },
-                    environment: tl.A.Summer,
+                    environment: TrackEnvironment.Summer,
                     trackUrl: "tracks/community/steinwallburg.track",
                     thumbnail: "tracks/community/thumbnails/steinwallburg.png"
                 }, {
@@ -52000,7 +52187,7 @@
                         author: "TD_blox",
                         lastModified: null
                     },
-                    environment: tl.A.Summer,
+                    environment: TrackEnvironment.Summer,
                     trackUrl: "tracks/community/paradise_palace.track",
                     thumbnail: "tracks/community/thumbnails/paradise_palace.png"
                 }, {
@@ -52011,7 +52198,7 @@
                         author: "2xi",
                         lastModified: null
                     },
-                    environment: tl.A.Summer,
+                    environment: TrackEnvironment.Summer,
                     trackUrl: "tracks/community/sunken_glyphs.track",
                     thumbnail: "tracks/community/thumbnails/sunken_glyphs.png"
                 }, {
@@ -52022,7 +52209,7 @@
                         author: "2xi and imracer",
                         lastModified: null
                     },
-                    environment: tl.A.Summer,
+                    environment: TrackEnvironment.Summer,
                     trackUrl: "tracks/community/grimspyre.track",
                     thumbnail: "tracks/community/thumbnails/grimspyre.png"
                 }, {
@@ -52033,7 +52220,7 @@
                         author: "CheeseWaffleBoy & BonnieBeans",
                         lastModified: null
                     },
-                    environment: tl.A.Summer,
+                    environment: TrackEnvironment.Summer,
                     trackUrl: "tracks/community/magenta_mines.track",
                     thumbnail: "tracks/community/thumbnails/magenta_mines.png"
                 }, {
@@ -52044,7 +52231,7 @@
                         author: "Shovelfish",
                         lastModified: null
                     },
-                    environment: tl.A.Winter,
+                    environment: TrackEnvironment.Winter,
                     trackUrl: "tracks/community/cruising_altitude.track",
                     thumbnail: "tracks/community/thumbnails/cruising_altitude.png"
                 }, {
@@ -52055,7 +52242,7 @@
                         author: "Herny🇦🇺",
                         lastModified: null
                     },
-                    environment: tl.A.Desert,
+                    environment: TrackEnvironment.Desert,
                     trackUrl: "tracks/community/termite_terror.track",
                     thumbnail: "tracks/community/thumbnails/termite_terror.png"
                 }, {
@@ -52066,7 +52253,7 @@
                         author: "TD_blox & Xav",
                         lastModified: new Date("2026-02-27T22:59:29.000Z")
                     },
-                    environment: tl.A.Winter,
+                    environment: TrackEnvironment.Winter,
                     trackUrl: "tracks/community/4_seasons.track",
                     thumbnail: "tracks/community/thumbnails/4_seasons.png"
                 }, {
@@ -52077,7 +52264,7 @@
                         author: "Henrik",
                         lastModified: null
                     },
-                    environment: tl.A.Summer,
+                    environment: TrackEnvironment.Summer,
                     trackUrl: "tracks/community/lost_at_sea.track",
                     thumbnail: "tracks/community/thumbnails/lost_at_sea.png"
                 }, {
@@ -52088,7 +52275,7 @@
                         author: "Zihcx",
                         lastModified: null
                     },
-                    environment: tl.A.Winter,
+                    environment: TrackEnvironment.Winter,
                     trackUrl: "tracks/community/frosted_fjords.track",
                     thumbnail: "tracks/community/thumbnails/frosted_fjords.png"
                 }, {
@@ -52099,7 +52286,7 @@
                         author: "Porg",
                         lastModified: null
                     },
-                    environment: tl.A.Summer,
+                    environment: TrackEnvironment.Summer,
                     trackUrl: "tracks/community/levitation.track",
                     thumbnail: "tracks/community/thumbnails/levitation.png"
                 }, {
@@ -52110,7 +52297,7 @@
                         author: "2xi & CSniper",
                         lastModified: null
                     },
-                    environment: tl.A.Winter,
+                    environment: TrackEnvironment.Winter,
                     trackUrl: "tracks/community/frozen_ramparts.track",
                     thumbnail: "tracks/community/thumbnails/frozen_ramparts.png"
                 }, {
@@ -52121,7 +52308,7 @@
                         author: "PHILR, Karpin_",
                         lastModified: null
                     },
-                    environment: tl.A.Summer,
+                    environment: TrackEnvironment.Summer,
                     trackUrl: "tracks/community/tangled_cliffs.track",
                     thumbnail: "tracks/community/thumbnails/tangled_cliffs.png"
                 }, {
@@ -52132,7 +52319,7 @@
                         author: "Blu3bolt ",
                         lastModified: null
                     },
-                    environment: tl.A.Desert,
+                    environment: TrackEnvironment.Desert,
                     trackUrl: "tracks/community/dinruth.track",
                     thumbnail: "tracks/community/thumbnails/dinruth.png"
                 }, {
@@ -52143,7 +52330,7 @@
                         author: "HummusHere imracer",
                         lastModified: null
                     },
-                    environment: tl.A.Summer,
+                    environment: TrackEnvironment.Summer,
                     trackUrl: "tracks/community/sludge_pipe_circuit.track",
                     thumbnail: "tracks/community/thumbnails/sludge_pipe_circuit.png"
                 }, {
@@ -52154,7 +52341,7 @@
                         author: "BonnieBeans",
                         lastModified: null
                     },
-                    environment: tl.A.Winter,
+                    environment: TrackEnvironment.Winter,
                     trackUrl: "tracks/community/zealot.track",
                     thumbnail: "tracks/community/thumbnails/zealot.png"
                 }, {
@@ -52165,7 +52352,7 @@
                         author: "Hiksi & BonnieBeans",
                         lastModified: null
                     },
-                    environment: tl.A.Desert,
+                    environment: TrackEnvironment.Desert,
                     trackUrl: "tracks/community/shrouded_oasis.track",
                     thumbnail: "tracks/community/thumbnails/shrouded_oasis.png"
                 }, {
@@ -52176,7 +52363,7 @@
                         author: "AZiggy",
                         lastModified: null
                     },
-                    environment: tl.A.Summer,
+                    environment: TrackEnvironment.Summer,
                     trackUrl: "tracks/community/cogware.track",
                     thumbnail: "tracks/community/thumbnails/cogware.png"
                 }, {
@@ -52187,7 +52374,7 @@
                         author: "2xi, imracer, KoiPoi",
                         lastModified: null
                     },
-                    environment: tl.A.Summer,
+                    environment: TrackEnvironment.Summer,
                     trackUrl: "tracks/community/land_of_the_rising_sun.track",
                     thumbnail: "tracks/community/thumbnails/land_of_the_rising_sun.png"
                 }, {
@@ -52198,7 +52385,7 @@
                         author: "BonnieBeans",
                         lastModified: null
                     },
-                    environment: tl.A.Desert,
+                    environment: TrackEnvironment.Desert,
                     trackUrl: "tracks/community/midas_metropolis.track",
                     thumbnail: "tracks/community/thumbnails/midas_metropolis.png"
                 }, {
@@ -52209,7 +52396,7 @@
                         author: "BonnieBeans",
                         lastModified: null
                     },
-                    environment: tl.A.Winter,
+                    environment: TrackEnvironment.Winter,
                     trackUrl: "tracks/community/frozen_in_time.track",
                     thumbnail: "tracks/community/thumbnails/frozen_in_time.png"
                 }, {
@@ -52220,7 +52407,7 @@
                         author: "Forty Shovelfish",
                         lastModified: null
                     },
-                    environment: tl.A.Winter,
+                    environment: TrackEnvironment.Winter,
                     trackUrl: "tracks/community/winterfell.track",
                     thumbnail: "tracks/community/thumbnails/winterfell.png"
                 }, {
@@ -52231,7 +52418,7 @@
                         author: "BonnieBeans",
                         lastModified: null
                     },
-                    environment: tl.A.Summer,
+                    environment: TrackEnvironment.Summer,
                     trackUrl: "tracks/community/launch_control.track",
                     thumbnail: "tracks/community/thumbnails/launch_control.png"
                 }, {
@@ -52242,7 +52429,7 @@
                         author: "2xi & imracer",
                         lastModified: new Date("2026-02-16T03:10:30.000Z")
                     },
-                    environment: tl.A.Summer,
+                    environment: TrackEnvironment.Summer,
                     trackUrl: "tracks/community/fractured_shores.track",
                     thumbnail: "tracks/community/thumbnails/fractured_shores.png"
                 }, {
@@ -52253,7 +52440,7 @@
                         author: "Leaf, Forty, WB",
                         lastModified: new Date("2026-03-03T10:34:19.000Z")
                     },
-                    environment: tl.A.Desert,
+                    environment: TrackEnvironment.Desert,
                     trackUrl: "tracks/community/starry_tropisx.track",
                     thumbnail: "tracks/community/thumbnails/starry_tropisx.png"
                 }, {
@@ -52264,7 +52451,7 @@
                         author: "Forty, Shovelfish, Hero",
                         lastModified: new Date("2026-03-02T10:11:02.000Z")
                     },
-                    environment: tl.A.Summer,
+                    environment: TrackEnvironment.Summer,
                     trackUrl: "tracks/community/flying_dreams.track",
                     thumbnail: "tracks/community/thumbnails/flying_dreams.png"
                 }, {
@@ -52275,7 +52462,7 @@
                         author: "Nexus",
                         lastModified: null
                     },
-                    environment: tl.A.Summer,
+                    environment: TrackEnvironment.Summer,
                     trackUrl: "tracks/community/ghost_city.track",
                     thumbnail: "tracks/community/thumbnails/ghost_city.png"
                 }, {
@@ -52286,7 +52473,7 @@
                         author: "Viper & Bowl of Petunias ft. Jurre",
                         lastModified: null
                     },
-                    environment: tl.A.Summer,
+                    environment: TrackEnvironment.Summer,
                     trackUrl: "tracks/community/asguardia.track",
                     thumbnail: "tracks/community/thumbnails/asguardia.png"
                 }, {
@@ -52297,7 +52484,7 @@
                         author: "Tacopanda, Arkangel",
                         lastModified: null
                     },
-                    environment: tl.A.Summer,
+                    environment: TrackEnvironment.Summer,
                     trackUrl: "tracks/community/mos_espa.track",
                     thumbnail: "tracks/community/thumbnails/mos_espa.png"
                 }, {
@@ -52308,7 +52495,7 @@
                         author: "Tacopanda",
                         lastModified: null
                     },
-                    environment: tl.A.Desert,
+                    environment: TrackEnvironment.Desert,
                     trackUrl: "tracks/community/joenail_jones.track",
                     thumbnail: "tracks/community/thumbnails/joenail_jones.png"
                 }, {
@@ -52319,7 +52506,7 @@
                         author: "paldeanp",
                         lastModified: null
                     },
-                    environment: tl.A.Desert,
+                    environment: TrackEnvironment.Desert,
                     trackUrl: "tracks/community/anubis.track",
                     thumbnail: "tracks/community/thumbnails/anubis.png"
                 }, {
@@ -52330,7 +52517,7 @@
                         author: "🇧🇦 ѕєαѕση",
                         lastModified: null
                     },
-                    environment: tl.A.Summer,
+                    environment: TrackEnvironment.Summer,
                     trackUrl: "tracks/community/natsujo.track",
                     thumbnail: "tracks/community/thumbnails/natsujo.png"
                 }, {
@@ -52341,7 +52528,7 @@
                         author: "Forty",
                         lastModified: null
                     },
-                    environment: tl.A.Desert,
+                    environment: TrackEnvironment.Desert,
                     trackUrl: "tracks/community/arabica.track",
                     thumbnail: "tracks/community/thumbnails/arabica.png"
                 }, {
@@ -52352,7 +52539,7 @@
                         author: "AZiggy & ChickenHotel813",
                         lastModified: null
                     },
-                    environment: tl.A.Winter,
+                    environment: TrackEnvironment.Winter,
                     trackUrl: "tracks/community/hyperions_sanctuary.track",
                     thumbnail: "tracks/community/thumbnails/hyperions_sanctuary.png"
                 }, {
@@ -52363,7 +52550,7 @@
                         author: "Lotus",
                         lastModified: null
                     },
-                    environment: tl.A.Winter,
+                    environment: TrackEnvironment.Winter,
                     trackUrl: "tracks/community/winter_hollow.track",
                     thumbnail: "tracks/community/thumbnails/winter_hollow.png"
                 }, {
@@ -52374,7 +52561,7 @@
                         author: "HeroHunter",
                         lastModified: null
                     },
-                    environment: tl.A.Desert,
+                    environment: TrackEnvironment.Desert,
                     trackUrl: "tracks/community/clay_temples.track",
                     thumbnail: "tracks/community/thumbnails/clay_temples.png"
                 }, {
@@ -52385,7 +52572,7 @@
                         author: "Shovelfish, Tacopanda, Forty",
                         lastModified: null
                     },
-                    environment: tl.A.Desert,
+                    environment: TrackEnvironment.Desert,
                     trackUrl: "tracks/community/las_calles.track",
                     thumbnail: "tracks/community/thumbnails/las_calles.png"
                 }, {
@@ -52396,7 +52583,7 @@
                         author: "ARKANGEL",
                         lastModified: null
                     },
-                    environment: tl.A.Desert,
+                    environment: TrackEnvironment.Desert,
                     trackUrl: "tracks/community/desert_stallion.track",
                     thumbnail: "tracks/community/thumbnails/desert_stallion.png"
                 }, {
@@ -52407,7 +52594,7 @@
                         author: "cwcinc",
                         lastModified: null
                     },
-                    environment: tl.A.Desert,
+                    environment: TrackEnvironment.Desert,
                     trackUrl: "tracks/community/last_remnant.track",
                     thumbnail: "tracks/community/thumbnails/last_remnant.png"
                 }, {
@@ -52418,7 +52605,7 @@
                         author: "Noia",
                         lastModified: null
                     },
-                    environment: tl.A.Summer,
+                    environment: TrackEnvironment.Summer,
                     trackUrl: "tracks/community/lu_muvimento.track",
                     thumbnail: "tracks/community/thumbnails/lu_muvimento.png"
                 }, {
@@ -52429,7 +52616,7 @@
                         author: "Haru-PT",
                         lastModified: null
                     },
-                    environment: tl.A.Summer,
+                    environment: TrackEnvironment.Summer,
                     trackUrl: "tracks/community/90_reset.track",
                     thumbnail: "tracks/community/thumbnails/90_reset.png"
                 }, {
@@ -52440,7 +52627,7 @@
                         author: "Tini",
                         lastModified: null
                     },
-                    environment: tl.A.Winter,
+                    environment: TrackEnvironment.Winter,
                     trackUrl: "tracks/community/opal_palace_ii.track",
                     thumbnail: "tracks/community/thumbnails/opal_palace_ii.png"
                 }, {
@@ -52451,7 +52638,7 @@
                         author: "Marcus",
                         lastModified: new Date("2026-02-25T12:16:34.000Z")
                     },
-                    environment: tl.A.Summer,
+                    environment: TrackEnvironment.Summer,
                     trackUrl: "tracks/community/re_akina.track",
                     thumbnail: "tracks/community/thumbnails/re_akina.png"
                 }, {
@@ -52462,7 +52649,7 @@
                         author: "Haru-PT",
                         lastModified: null
                     },
-                    environment: tl.A.Desert,
+                    environment: TrackEnvironment.Desert,
                     trackUrl: "tracks/community/sandline_ultimatum.track",
                     thumbnail: "tracks/community/thumbnails/sandline_ultimatum.png"
                 }, {
@@ -52473,7 +52660,7 @@
                         author: "HeroHunter, Lotus",
                         lastModified: null
                     },
-                    environment: tl.A.Desert,
+                    environment: TrackEnvironment.Desert,
                     trackUrl: "tracks/community/malformations.track",
                     thumbnail: "tracks/community/thumbnails/malformations.png"
                 }, {
@@ -52484,7 +52671,7 @@
                         author: "Vlady87",
                         lastModified: null
                     },
-                    environment: tl.A.Winter,
+                    environment: TrackEnvironment.Winter,
                     trackUrl: "tracks/community/snow_park.track",
                     thumbnail: "tracks/community/thumbnails/snow_park.png"
                 }, {
@@ -52495,7 +52682,7 @@
                         author: "HeroHunter",
                         lastModified: null
                     },
-                    environment: tl.A.Summer,
+                    environment: TrackEnvironment.Summer,
                     trackUrl: "tracks/community/concrete_jungle.track",
                     thumbnail: "tracks/community/thumbnails/concrete_jungle.png"
                 }].map((e => ({
@@ -52662,7 +52849,7 @@
             }
         }
         ;
-        var od, ld, cd, hd, dd, ud = i(1728), pd = i(1566), fd = i(2203), gd = i(1882), md = i(4183), Ad = i(8566);
+        var od, ld, cd, hd, dd, DRACOLoader = i(1728).Z, BufferGeometryUtils = i(1566), Part = i(2203).A, PartCategory = i(1882).A, PartEnvironment = i(4183).A, Ad = i(8566);
         class vd {
             constructor() {
                 od.add(this),
@@ -52671,7 +52858,7 @@
             }
             async init(e, t) {
                 const n = new ne.B
-                  , i = new ud.Z;
+                  , i = new DRACOLoader;
                 i.setDecoderPath("lib/draco/"),
                 n.setDRACOLoader(i);
                 const r = (a = ["models/blocks.glb", "models/pillar.glb", "models/planes.glb", "models/road.glb", "models/road_wide.glb", "models/signs.glb", "models/wall_track.glb"],
@@ -52804,9 +52991,9 @@
                             for (const t of e)
                                 i.push(t)
                         }
-                        const r = pd.pP(i, !0).toNonIndexed();
+                        const r = BufferGeometryUtils.mergeGeometries(i, !0).toNonIndexed();
                         r.computeVertexNormals();
-                        const o = pd.ec(r)
+                        const o = BufferGeometryUtils.mergeVertices(r)
                           , c = new THREE.Mesh(o,s);
                         n.colors.set(t.id, c),
                         l ?? (l = r)
@@ -52827,74 +53014,74 @@
                     i.set(t, n)
                 }
                 ;
-                c(fd.A.BlockSlopeUp, fd.A.SlopeUp),
-                c(fd.A.BlockSlopeUp, fd.A.SlopeUpLeftWide),
-                c(fd.A.BlockSlopeUp, fd.A.SlopeUpRightWide),
-                c(fd.A.BlockSlopeUp, fd.A.PlaneSlopeUp),
-                c(fd.A.BlockSlopedUp, fd.A.Slope),
-                c(fd.A.BlockSlopedUp, fd.A.SlopeLeftWide),
-                c(fd.A.BlockSlopedUp, fd.A.SlopeRightWide),
-                c(fd.A.BlockSlopedUp, fd.A.PlaneSlope),
-                c(fd.A.BlockSlopeDown, fd.A.SlopeDown),
-                c(fd.A.BlockSlopeDown, fd.A.SlopeDownLeftWide),
-                c(fd.A.BlockSlopeDown, fd.A.SlopeDownRightWide),
-                c(fd.A.BlockSlopeDown, fd.A.PlaneSlopeDown),
-                c(fd.A.BlockSlopeDownLong, fd.A.SlopeDownLong),
-                c(fd.A.BlockSlopeDownLong, fd.A.SlopeDownLongLeftWide),
-                c(fd.A.BlockSlopeDownLong, fd.A.SlopeDownLongRightWide),
-                c(fd.A.BlockSlopeDownLong, fd.A.PlaneSlopeDownLong),
-                c(fd.A.BlockSlopeUpLong, fd.A.SlopeUpLong),
-                c(fd.A.BlockSlopeUpLong, fd.A.SlopeUpLongLeftWide),
-                c(fd.A.BlockSlopeUpLong, fd.A.SlopeUpLongRightWide),
-                c(fd.A.BlockSlopeUpLong, fd.A.PlaneSlopeUpLong),
-                c(fd.A.BlockSlopeVerticalTop, fd.A.WallTrackTop),
-                c(fd.A.BlockSlopeVerticalInnerCornerTop, fd.A.WallTrackTopInnerCorner),
-                c(fd.A.BlockSlopeVerticalInnerCornerBottom, fd.A.WallTrackBottomInnerCorner),
-                c(fd.A.BlockInnerCorner, fd.A.WallTrackMiddleCorner),
-                c(fd.A.BlockInnerCorner, fd.A.BlockOuterCorner),
-                c(fd.A.BlockInnerCorner, fd.A.PlaneCorner),
-                c(fd.A.BlockOuterCorner, fd.A.WallTrackFloorPlaneCorner, ( (e, t) => (e.rotation + 2) % 4 == t.rotation && e.x == t.x && e.y == t.y && e.z == t.z && e.rotationAxis == t.rotationAxis)),
-                c(fd.A.BlockOuterCorner, fd.A.WallTrackFloorCorner, ( (e, t) => (e.rotation + 2) % 4 == t.rotation && e.x == t.x && e.y == t.y && e.z == t.z && e.rotationAxis == t.rotationAxis)),
-                c(fd.A.BlockOuterCorner, fd.A.WallTrackCeilingPlaneCorner, ( (e, t) => (e.rotation + 2) % 4 == t.rotation && e.x == t.x && e.y == t.y && e.z == t.z && e.rotationAxis == t.rotationAxis)),
-                c(fd.A.BlockOuterCorner, fd.A.WallTrackCeilingCorner, ( (e, t) => (e.rotation + 2) % 4 == t.rotation && e.x == t.x && e.y == t.y && e.z == t.z && e.rotationAxis == t.rotationAxis)),
-                c(fd.A.PlaneCorner, fd.A.WallTrackFloorPlaneCorner, ( (e, t) => (e.rotation + 2) % 4 == t.rotation && e.x == t.x && e.y == t.y && e.z == t.z && e.rotationAxis == t.rotationAxis)),
-                c(fd.A.PlaneCorner, fd.A.WallTrackFloorCorner, ( (e, t) => (e.rotation + 2) % 4 == t.rotation && e.x == t.x && e.y == t.y && e.z == t.z && e.rotationAxis == t.rotationAxis));
+                c(Part.BlockSlopeUp, Part.SlopeUp),
+                c(Part.BlockSlopeUp, Part.SlopeUpLeftWide),
+                c(Part.BlockSlopeUp, Part.SlopeUpRightWide),
+                c(Part.BlockSlopeUp, Part.PlaneSlopeUp),
+                c(Part.BlockSlopedUp, Part.Slope),
+                c(Part.BlockSlopedUp, Part.SlopeLeftWide),
+                c(Part.BlockSlopedUp, Part.SlopeRightWide),
+                c(Part.BlockSlopedUp, Part.PlaneSlope),
+                c(Part.BlockSlopeDown, Part.SlopeDown),
+                c(Part.BlockSlopeDown, Part.SlopeDownLeftWide),
+                c(Part.BlockSlopeDown, Part.SlopeDownRightWide),
+                c(Part.BlockSlopeDown, Part.PlaneSlopeDown),
+                c(Part.BlockSlopeDownLong, Part.SlopeDownLong),
+                c(Part.BlockSlopeDownLong, Part.SlopeDownLongLeftWide),
+                c(Part.BlockSlopeDownLong, Part.SlopeDownLongRightWide),
+                c(Part.BlockSlopeDownLong, Part.PlaneSlopeDownLong),
+                c(Part.BlockSlopeUpLong, Part.SlopeUpLong),
+                c(Part.BlockSlopeUpLong, Part.SlopeUpLongLeftWide),
+                c(Part.BlockSlopeUpLong, Part.SlopeUpLongRightWide),
+                c(Part.BlockSlopeUpLong, Part.PlaneSlopeUpLong),
+                c(Part.BlockSlopeVerticalTop, Part.WallTrackTop),
+                c(Part.BlockSlopeVerticalInnerCornerTop, Part.WallTrackTopInnerCorner),
+                c(Part.BlockSlopeVerticalInnerCornerBottom, Part.WallTrackBottomInnerCorner),
+                c(Part.BlockInnerCorner, Part.WallTrackMiddleCorner),
+                c(Part.BlockInnerCorner, Part.BlockOuterCorner),
+                c(Part.BlockInnerCorner, Part.PlaneCorner),
+                c(Part.BlockOuterCorner, Part.WallTrackFloorPlaneCorner, ( (e, t) => (e.rotation + 2) % 4 == t.rotation && e.x == t.x && e.y == t.y && e.z == t.z && e.rotationAxis == t.rotationAxis)),
+                c(Part.BlockOuterCorner, Part.WallTrackFloorCorner, ( (e, t) => (e.rotation + 2) % 4 == t.rotation && e.x == t.x && e.y == t.y && e.z == t.z && e.rotationAxis == t.rotationAxis)),
+                c(Part.BlockOuterCorner, Part.WallTrackCeilingPlaneCorner, ( (e, t) => (e.rotation + 2) % 4 == t.rotation && e.x == t.x && e.y == t.y && e.z == t.z && e.rotationAxis == t.rotationAxis)),
+                c(Part.BlockOuterCorner, Part.WallTrackCeilingCorner, ( (e, t) => (e.rotation + 2) % 4 == t.rotation && e.x == t.x && e.y == t.y && e.z == t.z && e.rotationAxis == t.rotationAxis)),
+                c(Part.PlaneCorner, Part.WallTrackFloorPlaneCorner, ( (e, t) => (e.rotation + 2) % 4 == t.rotation && e.x == t.x && e.y == t.y && e.z == t.z && e.rotationAxis == t.rotationAxis)),
+                c(Part.PlaneCorner, Part.WallTrackFloorCorner, ( (e, t) => (e.rotation + 2) % 4 == t.rotation && e.x == t.x && e.y == t.y && e.z == t.z && e.rotationAxis == t.rotationAxis));
                 const h = (e, t) => e.x == t.x && e.y == t.y && e.z == t.z && e.rotation == t.rotation && e.rotationAxis == t.rotationAxis || e.x == t.x && e.y == t.y + 3 && e.z == t.z && e.rotation == t.rotation && (e.rotationAxis == Ad.A.YPositive && t.rotationAxis == Ad.A.YNegative || e.rotationAxis == Ad.A.YNegative && t.rotationAxis == Ad.A.YPositive || e.rotationAxis == Ad.A.XPositive && t.rotationAxis == Ad.A.XNegative || e.rotationAxis == Ad.A.XNegative && t.rotationAxis == Ad.A.XPositive || e.rotationAxis == Ad.A.ZPositive && t.rotationAxis == Ad.A.ZNegative || e.rotationAxis == Ad.A.ZNegative && t.rotationAxis == Ad.A.ZPositive);
-                return c(fd.A.BlockSlopeVerticalBottom, fd.A.PlaneSlopeVerticalBottom, h),
-                c(fd.A.BlockSlopeVerticalBottom, fd.A.WallTrackBottom, h),
-                c(fd.A.BlockSlopeVerticalBottom, fd.A.SlopeUpVertical, h),
-                c(fd.A.BlockSlopeVerticalBottom, fd.A.SlopeUpVerticalLeftWide, h),
-                c(fd.A.BlockSlopeVerticalBottom, fd.A.SlopeUpVerticalRightWide, h),
-                c(fd.A.BlockSlopeVerticalCornerBottom, fd.A.WallTrackBottomCorner),
-                c(fd.A.BlockSlopeVerticalCornerTop, fd.A.WallTrackTopCorner),
-                c(fd.A.BlockSlopeToVertical, fd.A.SlopeToVertical),
-                c(fd.A.BlockSlopeToVertical, fd.A.SlopeToVerticalLeftWide),
-                c(fd.A.BlockSlopeToVertical, fd.A.SlopeToVerticalRightWide),
-                c(fd.A.BlockSlopeToVertical, fd.A.PlaneSlopeToVertical),
-                c(fd.A.BlockSlopeToVertical, fd.A.WallTrackSlopeToVertical),
-                c(fd.A.HalfBlock, fd.A.HalfBlock, ( (e, t) => e.rotation == (t.rotation + 2) % 4 && e.x == t.x && e.y == t.y && e.z == t.z && e.rotationAxis == t.rotationAxis)),
-                c(fd.A.HalfBlock, fd.A.HalfPlane, ( (e, t) => e.rotation == (t.rotation + 2) % 4 && e.x == t.x && e.y == t.y && e.z == t.z && e.rotationAxis == t.rotationAxis)),
-                c(fd.A.HalfBlock, fd.A.QuarterBlock, ( (e, t) => e.rotation != t.rotation && (e.rotation + 1) % 4 != t.rotation && e.x == t.x && e.y == t.y && e.z == t.z && e.rotationAxis == t.rotationAxis)),
-                c(fd.A.HalfBlock, fd.A.QuarterPlane, ( (e, t) => e.rotation != t.rotation && (e.rotation + 1) % 4 != t.rotation && e.x == t.x && e.y == t.y && e.z == t.z && e.rotationAxis == t.rotationAxis)),
-                c(fd.A.QuarterBlock, fd.A.QuarterBlock, ( (e, t) => e.rotation != t.rotation && e.x == t.x && e.y == t.y && e.z == t.z && e.rotationAxis == t.rotationAxis)),
-                c(fd.A.QuarterBlock, fd.A.HalfPlane, ( (e, t) => e.rotation != t.rotation && e.rotation != (t.rotation + 1) % 4 && e.x == t.x && e.y == t.y && e.z == t.z && e.rotationAxis == t.rotationAxis)),
-                c(fd.A.QuarterBlock, fd.A.QuarterPlane, ( (e, t) => e.rotation != t.rotation && e.x == t.x && e.y == t.y && e.z == t.z && e.rotationAxis == t.rotationAxis)),
-                c(fd.A.HalfPlane, fd.A.HalfPlane, ( (e, t) => e.rotation == (t.rotation + 2) % 4 && e.x == t.x && e.y == t.y && e.z == t.z && e.rotationAxis == t.rotationAxis)),
-                c(fd.A.HalfPlane, fd.A.QuarterPlane, ( (e, t) => e.rotation != t.rotation && (e.rotation + 1) % 4 != t.rotation && e.x == t.x && e.y == t.y && e.z == t.z && e.rotationAxis == t.rotationAxis)),
-                c(fd.A.QuarterPlane, fd.A.QuarterPlane, ( (e, t) => e.rotation != t.rotation && e.x == t.x && e.y == t.y && e.z == t.z && e.rotationAxis == t.rotationAxis)),
-                c(fd.A.HalfBlockSlopeBottomLeft, fd.A.HalfPlaneSlopeBottomLeft),
-                c(fd.A.HalfBlockSlopeBottomRight, fd.A.HalfPlaneSlopeBottomRight),
-                c(fd.A.HalfBlockSlopeTopLeft, fd.A.HalfPlaneSlopeTopLeft),
-                c(fd.A.HalfBlockSlopeTopRight, fd.A.HalfPlaneSlopeTopRight),
-                c(fd.A.HalfBlockSlopeBottomLeft, fd.A.HalfBlock, ( (e, t) => e.rotation == (t.rotation + 2) % 4 && e.x == t.x && (e.y == t.y || e.y == t.y - 1) && e.z == t.z && e.rotationAxis == t.rotationAxis)),
-                c(fd.A.HalfBlockSlopeBottomRight, fd.A.HalfBlock, ( (e, t) => e.rotation == (t.rotation + 1) % 4 && e.x == t.x && (e.y == t.y || e.y == t.y - 1) && e.z == t.z && e.rotationAxis == t.rotationAxis)),
-                c(fd.A.HalfBlockSlopeTopLeft, fd.A.HalfBlock, ( (e, t) => e.rotation == (t.rotation + 3) % 4 && e.x == t.x && (e.y == t.y || e.y == t.y - 1) && e.z == t.z && e.rotationAxis == t.rotationAxis)),
-                c(fd.A.HalfBlockSlopeTopRight, fd.A.HalfBlock, ( (e, t) => e.rotation == (t.rotation + 0) % 4 && e.x == t.x && (e.y == t.y || e.y == t.y - 1) && e.z == t.z && e.rotationAxis == t.rotationAxis)),
-                c(fd.A.HalfPlaneSlopeBottomLeft, fd.A.HalfBlock, ( (e, t) => e.rotation == (t.rotation + 2) % 4 && e.x == t.x && (e.y == t.y || e.y == t.y - 1 || e.y == t.y - 2) && e.z == t.z && e.rotationAxis == t.rotationAxis)),
-                c(fd.A.HalfPlaneSlopeBottomRight, fd.A.HalfBlock, ( (e, t) => e.rotation == (t.rotation + 1) % 4 && e.x == t.x && (e.y == t.y || e.y == t.y - 1 || e.y == t.y - 2) && e.z == t.z && e.rotationAxis == t.rotationAxis)),
-                c(fd.A.HalfPlaneSlopeTopLeft, fd.A.HalfBlock, ( (e, t) => e.rotation == (t.rotation + 3) % 4 && e.x == t.x && (e.y == t.y || e.y == t.y - 1 || e.y == t.y - 2) && e.z == t.z && e.rotationAxis == t.rotationAxis)),
-                c(fd.A.HalfPlaneSlopeTopRight, fd.A.HalfBlock, ( (e, t) => e.rotation == (t.rotation + 0) % 4 && e.x == t.x && (e.y == t.y || e.y == t.y - 1 || e.y == t.y - 2) && e.z == t.z && e.rotationAxis == t.rotationAxis)),
-                c(fd.A.WallTrackTopInnerCorner, fd.A.WallTrackCeilingCorner, ( (e, t) => {
+                return c(Part.BlockSlopeVerticalBottom, Part.PlaneSlopeVerticalBottom, h),
+                c(Part.BlockSlopeVerticalBottom, Part.WallTrackBottom, h),
+                c(Part.BlockSlopeVerticalBottom, Part.SlopeUpVertical, h),
+                c(Part.BlockSlopeVerticalBottom, Part.SlopeUpVerticalLeftWide, h),
+                c(Part.BlockSlopeVerticalBottom, Part.SlopeUpVerticalRightWide, h),
+                c(Part.BlockSlopeVerticalCornerBottom, Part.WallTrackBottomCorner),
+                c(Part.BlockSlopeVerticalCornerTop, Part.WallTrackTopCorner),
+                c(Part.BlockSlopeToVertical, Part.SlopeToVertical),
+                c(Part.BlockSlopeToVertical, Part.SlopeToVerticalLeftWide),
+                c(Part.BlockSlopeToVertical, Part.SlopeToVerticalRightWide),
+                c(Part.BlockSlopeToVertical, Part.PlaneSlopeToVertical),
+                c(Part.BlockSlopeToVertical, Part.WallTrackSlopeToVertical),
+                c(Part.HalfBlock, Part.HalfBlock, ( (e, t) => e.rotation == (t.rotation + 2) % 4 && e.x == t.x && e.y == t.y && e.z == t.z && e.rotationAxis == t.rotationAxis)),
+                c(Part.HalfBlock, Part.HalfPlane, ( (e, t) => e.rotation == (t.rotation + 2) % 4 && e.x == t.x && e.y == t.y && e.z == t.z && e.rotationAxis == t.rotationAxis)),
+                c(Part.HalfBlock, Part.QuarterBlock, ( (e, t) => e.rotation != t.rotation && (e.rotation + 1) % 4 != t.rotation && e.x == t.x && e.y == t.y && e.z == t.z && e.rotationAxis == t.rotationAxis)),
+                c(Part.HalfBlock, Part.QuarterPlane, ( (e, t) => e.rotation != t.rotation && (e.rotation + 1) % 4 != t.rotation && e.x == t.x && e.y == t.y && e.z == t.z && e.rotationAxis == t.rotationAxis)),
+                c(Part.QuarterBlock, Part.QuarterBlock, ( (e, t) => e.rotation != t.rotation && e.x == t.x && e.y == t.y && e.z == t.z && e.rotationAxis == t.rotationAxis)),
+                c(Part.QuarterBlock, Part.HalfPlane, ( (e, t) => e.rotation != t.rotation && e.rotation != (t.rotation + 1) % 4 && e.x == t.x && e.y == t.y && e.z == t.z && e.rotationAxis == t.rotationAxis)),
+                c(Part.QuarterBlock, Part.QuarterPlane, ( (e, t) => e.rotation != t.rotation && e.x == t.x && e.y == t.y && e.z == t.z && e.rotationAxis == t.rotationAxis)),
+                c(Part.HalfPlane, Part.HalfPlane, ( (e, t) => e.rotation == (t.rotation + 2) % 4 && e.x == t.x && e.y == t.y && e.z == t.z && e.rotationAxis == t.rotationAxis)),
+                c(Part.HalfPlane, Part.QuarterPlane, ( (e, t) => e.rotation != t.rotation && (e.rotation + 1) % 4 != t.rotation && e.x == t.x && e.y == t.y && e.z == t.z && e.rotationAxis == t.rotationAxis)),
+                c(Part.QuarterPlane, Part.QuarterPlane, ( (e, t) => e.rotation != t.rotation && e.x == t.x && e.y == t.y && e.z == t.z && e.rotationAxis == t.rotationAxis)),
+                c(Part.HalfBlockSlopeBottomLeft, Part.HalfPlaneSlopeBottomLeft),
+                c(Part.HalfBlockSlopeBottomRight, Part.HalfPlaneSlopeBottomRight),
+                c(Part.HalfBlockSlopeTopLeft, Part.HalfPlaneSlopeTopLeft),
+                c(Part.HalfBlockSlopeTopRight, Part.HalfPlaneSlopeTopRight),
+                c(Part.HalfBlockSlopeBottomLeft, Part.HalfBlock, ( (e, t) => e.rotation == (t.rotation + 2) % 4 && e.x == t.x && (e.y == t.y || e.y == t.y - 1) && e.z == t.z && e.rotationAxis == t.rotationAxis)),
+                c(Part.HalfBlockSlopeBottomRight, Part.HalfBlock, ( (e, t) => e.rotation == (t.rotation + 1) % 4 && e.x == t.x && (e.y == t.y || e.y == t.y - 1) && e.z == t.z && e.rotationAxis == t.rotationAxis)),
+                c(Part.HalfBlockSlopeTopLeft, Part.HalfBlock, ( (e, t) => e.rotation == (t.rotation + 3) % 4 && e.x == t.x && (e.y == t.y || e.y == t.y - 1) && e.z == t.z && e.rotationAxis == t.rotationAxis)),
+                c(Part.HalfBlockSlopeTopRight, Part.HalfBlock, ( (e, t) => e.rotation == (t.rotation + 0) % 4 && e.x == t.x && (e.y == t.y || e.y == t.y - 1) && e.z == t.z && e.rotationAxis == t.rotationAxis)),
+                c(Part.HalfPlaneSlopeBottomLeft, Part.HalfBlock, ( (e, t) => e.rotation == (t.rotation + 2) % 4 && e.x == t.x && (e.y == t.y || e.y == t.y - 1 || e.y == t.y - 2) && e.z == t.z && e.rotationAxis == t.rotationAxis)),
+                c(Part.HalfPlaneSlopeBottomRight, Part.HalfBlock, ( (e, t) => e.rotation == (t.rotation + 1) % 4 && e.x == t.x && (e.y == t.y || e.y == t.y - 1 || e.y == t.y - 2) && e.z == t.z && e.rotationAxis == t.rotationAxis)),
+                c(Part.HalfPlaneSlopeTopLeft, Part.HalfBlock, ( (e, t) => e.rotation == (t.rotation + 3) % 4 && e.x == t.x && (e.y == t.y || e.y == t.y - 1 || e.y == t.y - 2) && e.z == t.z && e.rotationAxis == t.rotationAxis)),
+                c(Part.HalfPlaneSlopeTopRight, Part.HalfBlock, ( (e, t) => e.rotation == (t.rotation + 0) % 4 && e.x == t.x && (e.y == t.y || e.y == t.y - 1 || e.y == t.y - 2) && e.z == t.z && e.rotationAxis == t.rotationAxis)),
+                c(Part.WallTrackTopInnerCorner, Part.WallTrackCeilingCorner, ( (e, t) => {
                     let n;
                     switch (e.rotationAxis) {
                     case Ad.A.YPositive:
@@ -52921,7 +53108,7 @@
                     return e.rotation == t.rotation && e.x + 3 * n.x == t.x && e.y + 3 * n.y == t.y && e.z + 3 * n.z == t.z && e.rotationAxis == t.rotationAxis
                 }
                 )),
-                c(fd.A.WallTrackTopInnerCorner, fd.A.WallTrackCeilingPlaneCorner, ( (e, t) => {
+                c(Part.WallTrackTopInnerCorner, Part.WallTrackCeilingPlaneCorner, ( (e, t) => {
                     let n;
                     switch (e.rotationAxis) {
                     case Ad.A.YPositive:
@@ -52948,32 +53135,32 @@
                     return e.rotation == t.rotation && e.x + 3 * n.x == t.x && e.y + 3 * n.y == t.y && e.z + 3 * n.z == t.z && e.rotationAxis == t.rotationAxis
                 }
                 )),
-                c(fd.A.WallTrackBottomInnerCorner, fd.A.WallTrackFloorCorner),
-                c(fd.A.WallTrackBottomInnerCorner, fd.A.WallTrackFloorPlaneCorner),
-                c(fd.A.PillarTopSlope, fd.A.Slope),
-                c(fd.A.PillarTopSlope, fd.A.SlopeLeftWide),
-                c(fd.A.PillarTopSlope, fd.A.SlopeRightWide),
-                c(fd.A.PillarTopSlope, fd.A.PlaneSlope),
-                c(fd.A.PillarTopSlope, fd.A.StraightTilted, ( (e, t) => e.x == t.x && e.y == t.y && e.z == t.z && e.rotation == (t.rotation + 1) % 4 && e.rotationAxis == t.rotationAxis)),
-                c(fd.A.PillarTopSlope, fd.A.BlockSlopedDown, ( (e, t) => e.x == t.x && e.y == t.y && e.z == t.z && e.rotation == (t.rotation + 2) % 4 && e.rotationAxis == t.rotationAxis)),
-                c(fd.A.PillarTopSlope, fd.A.BlockSlopedUp, ( (e, t) => e.rotation == (t.rotation + 2) % 4 && (e.rotationAxis == Ad.A.YPositive && t.rotationAxis == Ad.A.YNegative ? e.x == t.x && e.y + 2 == t.y && e.z == t.z : e.rotationAxis == Ad.A.YNegative && t.rotationAxis == Ad.A.YPositive ? e.x == t.x && e.y == t.y + 2 && e.z == t.z : e.rotationAxis == Ad.A.XPositive && t.rotationAxis == Ad.A.XNegative ? e.x + 2 == t.x && e.y == t.y && e.z == t.z : e.rotationAxis == Ad.A.XNegative && t.rotationAxis == Ad.A.XPositive ? e.x == t.x + 2 && e.y == t.y && e.z == t.z : e.rotationAxis == Ad.A.ZPositive && t.rotationAxis == Ad.A.ZNegative ? e.x == t.x && e.y == t.y && e.z + 2 == t.z : e.rotationAxis == Ad.A.ZNegative && t.rotationAxis == Ad.A.ZPositive && (e.x == t.x && e.y == t.y && e.z == t.z + 2)))),
-                c(fd.A.PillarShortSlope, fd.A.Slope),
-                c(fd.A.PillarShortSlope, fd.A.SlopeLeftWide),
-                c(fd.A.PillarShortSlope, fd.A.SlopeRightWide),
-                c(fd.A.PillarShortSlope, fd.A.PlaneSlope),
-                c(fd.A.PillarShortSlope, fd.A.StraightTilted, ( (e, t) => e.x == t.x && e.y == t.y && e.z == t.z && e.rotation == (t.rotation + 1) % 4 && e.rotationAxis == t.rotationAxis)),
-                c(fd.A.PillarShortSlope, fd.A.BlockSlopedDown, ( (e, t) => e.x == t.x && e.y == t.y && e.z == t.z && e.rotation == (t.rotation + 2) % 4 && e.rotationAxis == t.rotationAxis)),
-                c(fd.A.PillarShortSlope, fd.A.BlockSlopedUp, ( (e, t) => e.rotation == (t.rotation + 2) % 4 && (e.rotationAxis == Ad.A.YPositive && t.rotationAxis == Ad.A.YNegative ? e.x == t.x && e.y + 2 == t.y && e.z == t.z : e.rotationAxis == Ad.A.YNegative && t.rotationAxis == Ad.A.YPositive ? e.x == t.x && e.y == t.y + 2 && e.z == t.z : e.rotationAxis == Ad.A.XPositive && t.rotationAxis == Ad.A.XNegative ? e.x + 2 == t.x && e.y == t.y && e.z == t.z : e.rotationAxis == Ad.A.XNegative && t.rotationAxis == Ad.A.XPositive ? e.x == t.x + 2 && e.y == t.y && e.z == t.z : e.rotationAxis == Ad.A.ZPositive && t.rotationAxis == Ad.A.ZNegative ? e.x == t.x && e.y == t.y && e.z + 2 == t.z : e.rotationAxis == Ad.A.ZNegative && t.rotationAxis == Ad.A.ZPositive && (e.x == t.x && e.y == t.y && e.z == t.z + 2)))),
-                c(fd.A.PlaneWallSlopeLeft, fd.A.PlaneWallSlopeLeft, ( (e, t) => e.x == t.x && e.y == t.y + 1 && e.z == t.z && e.rotation == t.rotation && e.rotationAxis == t.rotationAxis)),
-                c(fd.A.PlaneWallSlopeRight, fd.A.PlaneWallSlopeRight, ( (e, t) => e.x == t.x && e.y == t.y + 1 && e.z == t.z && e.rotation == t.rotation && e.rotationAxis == t.rotationAxis)),
-                c(fd.A.PlaneWallSlopeUpLeft, fd.A.PlaneWallSlopeUpLeft, ( (e, t) => e.x == t.x && e.y == t.y + 1 && e.z == t.z && e.rotation == t.rotation && e.rotationAxis == t.rotationAxis)),
-                c(fd.A.PlaneWallSlopeUpRight, fd.A.PlaneWallSlopeUpRight, ( (e, t) => e.x == t.x && e.y == t.y + 1 && e.z == t.z && e.rotation == t.rotation && e.rotationAxis == t.rotationAxis)),
-                c(fd.A.PlaneWallSlopeDownLeft, fd.A.PlaneWallSlopeDownLeft, ( (e, t) => e.x == t.x && e.y == t.y + 1 && e.z == t.z && e.rotation == t.rotation && e.rotationAxis == t.rotationAxis)),
-                c(fd.A.PlaneWallSlopeDownRight, fd.A.PlaneWallSlopeDownRight, ( (e, t) => e.x == t.x && e.y == t.y + 1 && e.z == t.z && e.rotation == t.rotation && e.rotationAxis == t.rotationAxis)),
-                c(fd.A.PlaneWallSlopeUpLongLeft, fd.A.PlaneWallSlopeUpLongLeft, ( (e, t) => e.x == t.x && (e.y == t.y + 1 || e.y == t.y + 2) && e.z == t.z && e.rotation == t.rotation && e.rotationAxis == t.rotationAxis)),
-                c(fd.A.PlaneWallSlopeUpLongRight, fd.A.PlaneWallSlopeUpLongRight, ( (e, t) => e.x == t.x && (e.y == t.y + 1 || e.y == t.y + 2) && e.z == t.z && e.rotation == t.rotation && e.rotationAxis == t.rotationAxis)),
-                c(fd.A.PlaneWallSlopeDownLongLeft, fd.A.PlaneWallSlopeDownLongLeft, ( (e, t) => e.x == t.x && (e.y == t.y + 1 || e.y == t.y + 2) && e.z == t.z && e.rotation == t.rotation && e.rotationAxis == t.rotationAxis)),
-                c(fd.A.PlaneWallSlopeDownLongRight, fd.A.PlaneWallSlopeDownLongRight, ( (e, t) => e.x == t.x && (e.y == t.y + 1 || e.y == t.y + 2) && e.z == t.z && e.rotation == t.rotation && e.rotationAxis == t.rotationAxis)),
+                c(Part.WallTrackBottomInnerCorner, Part.WallTrackFloorCorner),
+                c(Part.WallTrackBottomInnerCorner, Part.WallTrackFloorPlaneCorner),
+                c(Part.PillarTopSlope, Part.Slope),
+                c(Part.PillarTopSlope, Part.SlopeLeftWide),
+                c(Part.PillarTopSlope, Part.SlopeRightWide),
+                c(Part.PillarTopSlope, Part.PlaneSlope),
+                c(Part.PillarTopSlope, Part.StraightTilted, ( (e, t) => e.x == t.x && e.y == t.y && e.z == t.z && e.rotation == (t.rotation + 1) % 4 && e.rotationAxis == t.rotationAxis)),
+                c(Part.PillarTopSlope, Part.BlockSlopedDown, ( (e, t) => e.x == t.x && e.y == t.y && e.z == t.z && e.rotation == (t.rotation + 2) % 4 && e.rotationAxis == t.rotationAxis)),
+                c(Part.PillarTopSlope, Part.BlockSlopedUp, ( (e, t) => e.rotation == (t.rotation + 2) % 4 && (e.rotationAxis == Ad.A.YPositive && t.rotationAxis == Ad.A.YNegative ? e.x == t.x && e.y + 2 == t.y && e.z == t.z : e.rotationAxis == Ad.A.YNegative && t.rotationAxis == Ad.A.YPositive ? e.x == t.x && e.y == t.y + 2 && e.z == t.z : e.rotationAxis == Ad.A.XPositive && t.rotationAxis == Ad.A.XNegative ? e.x + 2 == t.x && e.y == t.y && e.z == t.z : e.rotationAxis == Ad.A.XNegative && t.rotationAxis == Ad.A.XPositive ? e.x == t.x + 2 && e.y == t.y && e.z == t.z : e.rotationAxis == Ad.A.ZPositive && t.rotationAxis == Ad.A.ZNegative ? e.x == t.x && e.y == t.y && e.z + 2 == t.z : e.rotationAxis == Ad.A.ZNegative && t.rotationAxis == Ad.A.ZPositive && (e.x == t.x && e.y == t.y && e.z == t.z + 2)))),
+                c(Part.PillarShortSlope, Part.Slope),
+                c(Part.PillarShortSlope, Part.SlopeLeftWide),
+                c(Part.PillarShortSlope, Part.SlopeRightWide),
+                c(Part.PillarShortSlope, Part.PlaneSlope),
+                c(Part.PillarShortSlope, Part.StraightTilted, ( (e, t) => e.x == t.x && e.y == t.y && e.z == t.z && e.rotation == (t.rotation + 1) % 4 && e.rotationAxis == t.rotationAxis)),
+                c(Part.PillarShortSlope, Part.BlockSlopedDown, ( (e, t) => e.x == t.x && e.y == t.y && e.z == t.z && e.rotation == (t.rotation + 2) % 4 && e.rotationAxis == t.rotationAxis)),
+                c(Part.PillarShortSlope, Part.BlockSlopedUp, ( (e, t) => e.rotation == (t.rotation + 2) % 4 && (e.rotationAxis == Ad.A.YPositive && t.rotationAxis == Ad.A.YNegative ? e.x == t.x && e.y + 2 == t.y && e.z == t.z : e.rotationAxis == Ad.A.YNegative && t.rotationAxis == Ad.A.YPositive ? e.x == t.x && e.y == t.y + 2 && e.z == t.z : e.rotationAxis == Ad.A.XPositive && t.rotationAxis == Ad.A.XNegative ? e.x + 2 == t.x && e.y == t.y && e.z == t.z : e.rotationAxis == Ad.A.XNegative && t.rotationAxis == Ad.A.XPositive ? e.x == t.x + 2 && e.y == t.y && e.z == t.z : e.rotationAxis == Ad.A.ZPositive && t.rotationAxis == Ad.A.ZNegative ? e.x == t.x && e.y == t.y && e.z + 2 == t.z : e.rotationAxis == Ad.A.ZNegative && t.rotationAxis == Ad.A.ZPositive && (e.x == t.x && e.y == t.y && e.z == t.z + 2)))),
+                c(Part.PlaneWallSlopeLeft, Part.PlaneWallSlopeLeft, ( (e, t) => e.x == t.x && e.y == t.y + 1 && e.z == t.z && e.rotation == t.rotation && e.rotationAxis == t.rotationAxis)),
+                c(Part.PlaneWallSlopeRight, Part.PlaneWallSlopeRight, ( (e, t) => e.x == t.x && e.y == t.y + 1 && e.z == t.z && e.rotation == t.rotation && e.rotationAxis == t.rotationAxis)),
+                c(Part.PlaneWallSlopeUpLeft, Part.PlaneWallSlopeUpLeft, ( (e, t) => e.x == t.x && e.y == t.y + 1 && e.z == t.z && e.rotation == t.rotation && e.rotationAxis == t.rotationAxis)),
+                c(Part.PlaneWallSlopeUpRight, Part.PlaneWallSlopeUpRight, ( (e, t) => e.x == t.x && e.y == t.y + 1 && e.z == t.z && e.rotation == t.rotation && e.rotationAxis == t.rotationAxis)),
+                c(Part.PlaneWallSlopeDownLeft, Part.PlaneWallSlopeDownLeft, ( (e, t) => e.x == t.x && e.y == t.y + 1 && e.z == t.z && e.rotation == t.rotation && e.rotationAxis == t.rotationAxis)),
+                c(Part.PlaneWallSlopeDownRight, Part.PlaneWallSlopeDownRight, ( (e, t) => e.x == t.x && e.y == t.y + 1 && e.z == t.z && e.rotation == t.rotation && e.rotationAxis == t.rotationAxis)),
+                c(Part.PlaneWallSlopeUpLongLeft, Part.PlaneWallSlopeUpLongLeft, ( (e, t) => e.x == t.x && (e.y == t.y + 1 || e.y == t.y + 2) && e.z == t.z && e.rotation == t.rotation && e.rotationAxis == t.rotationAxis)),
+                c(Part.PlaneWallSlopeUpLongRight, Part.PlaneWallSlopeUpLongRight, ( (e, t) => e.x == t.x && (e.y == t.y + 1 || e.y == t.y + 2) && e.z == t.z && e.rotation == t.rotation && e.rotationAxis == t.rotationAxis)),
+                c(Part.PlaneWallSlopeDownLongLeft, Part.PlaneWallSlopeDownLongLeft, ( (e, t) => e.x == t.x && (e.y == t.y + 1 || e.y == t.y + 2) && e.z == t.z && e.rotation == t.rotation && e.rotationAxis == t.rotationAxis)),
+                c(Part.PlaneWallSlopeDownLongRight, Part.PlaneWallSlopeDownLongRight, ( (e, t) => e.x == t.x && (e.y == t.y + 1 || e.y == t.y + 2) && e.z == t.z && e.rotation == t.rotation && e.rotationAxis == t.rotationAxis)),
                 i.dispose(),
                 l
             }
@@ -53031,42 +53218,42 @@
             getCategoryMesh(e, t) {
                 let n, i;
                 switch (e) {
-                case gd.A.Special:
-                    n = this.getPart(fd.A.Start);
+                case PartCategory.Special:
+                    n = this.getPart(Part.Start);
                     break;
-                case gd.A.Road:
-                    n = this.getPart(fd.A.Straight);
+                case PartCategory.Road:
+                    n = this.getPart(Part.Straight);
                     break;
-                case gd.A.RoadTurns:
-                    n = this.getPart(fd.A.TurnShort);
+                case PartCategory.RoadTurns:
+                    n = this.getPart(Part.TurnShort);
                     break;
-                case gd.A.RoadWide:
-                    n = this.getPart(fd.A.OuterCornerWide);
+                case PartCategory.RoadWide:
+                    n = this.getPart(Part.OuterCornerWide);
                     break;
-                case gd.A.Plane:
-                    n = this.getPart(fd.A.Plane);
+                case PartCategory.Plane:
+                    n = this.getPart(Part.Plane);
                     break;
-                case gd.A.Block:
-                    n = this.getPart(fd.A.Block);
+                case PartCategory.Block:
+                    n = this.getPart(Part.Block);
                     break;
-                case gd.A.WallTrack:
-                    n = this.getPart(fd.A.WallTrackBottom);
+                case PartCategory.WallTrack:
+                    n = this.getPart(Part.WallTrackBottom);
                     break;
-                case gd.A.Pillar:
-                    n = this.getPart(fd.A.PillarShort);
+                case PartCategory.Pillar:
+                    n = this.getPart(Part.PillarShort);
                     break;
-                case gd.A.Sign:
-                    n = this.getPart(fd.A.SignArrowLeft)
+                case PartCategory.Sign:
+                    n = this.getPart(Part.SignArrowLeft)
                 }
                 switch (t) {
-                case tl.A.Summer:
-                    i = md.A.Summer;
+                case TrackEnvironment.Summer:
+                    i = PartEnvironment.Summer;
                     break;
-                case tl.A.Winter:
-                    i = md.A.Winter;
+                case TrackEnvironment.Winter:
+                    i = PartEnvironment.Winter;
                     break;
-                case tl.A.Desert:
-                    i = md.A.Desert
+                case TrackEnvironment.Desert:
+                    i = PartEnvironment.Desert
                 }
                 const r = n.colors.get(i);
                 if (null == r)
@@ -53083,7 +53270,7 @@
         }
         ,
         dd = async function() {
-            const e = Object.values(fd.A).filter((e => "string" != typeof e));
+            const e = Object.values(Part).filter((e => "string" != typeof e));
             let t = !0;
             for (const n of e) {
                 const e = C.get(this, ld, "f").get(n);
@@ -53094,7 +53281,7 @@
                     throw new Error("Part model with id " + n.toString() + " has not been loaded yet");
                 const r = await window.crypto.subtle.digest("SHA-256", i)
                   , a = Array.from(new Uint8Array(r)).map((e => e.toString(16).padStart(2, "0"))).join("");
-                a != e.configuration.checksum && (console.error("Part id " + n.toString() + " " + fd.A[n] + " checksum mismatch: " + a + " != " + e.configuration.checksum),
+                a != e.configuration.checksum && (console.error("Part id " + n.toString() + " " + Part[n] + " checksum mismatch: " + a + " != " + e.configuration.checksum),
                 t = !1)
             }
             return t
@@ -56286,7 +56473,7 @@
             const c = document.getElementById("screen");
             if (!(c instanceof HTMLCanvasElement))
                 throw new Error("Screen is not a canvas element");
-            const h = new At.A(c,r)
+            const h = new RenderManager(c,r)
               , d = new vd
               , u = d.init(h, t)
               , p = new Lu.A(!0,d,t)

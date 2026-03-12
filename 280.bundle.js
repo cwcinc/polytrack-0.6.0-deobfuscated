@@ -42,7 +42,7 @@
         });
         var i = e(1635)
           , THREE = e(4922)
-          , o = e(1728)
+          , DRACOLoader = e(1728).Z
           , a = e(7888)
           , l = e(4078)
           , c = e(5072)
@@ -68,7 +68,7 @@
         x.A && x.A.locals && x.A.locals;
         var G = e(7024)
           , y = e(765)
-          , C = e(2825)
+          , RenderManager = e(2825).A
           , E = e(2951)
           , M = e(2561)
           , N = {};
@@ -1675,7 +1675,7 @@
                 i.set(this, ne, i.get(this, Hn, "f").getCurrentUserProfile(), "f"),
                 i.set(this, ee, i.get(this, ne, "f").nickname, "f"),
                 i.set(this, ie, i.get(this, ne, "f").countryCode, "f"),
-                i.set(this, Xn, new THREE.PerspectiveCamera(70,1,.1,C.A.maxViewDistance), "f"),
+                i.set(this, Xn, new THREE.PerspectiveCamera(70,1,.1,RenderManager.maxViewDistance), "f"),
                 i.get(this, Xn, "f").position.set(0, 2, 6),
                 o.scene.add(i.get(this, Xn, "f")),
                 i.set(this, Yn, new G.N(i.get(this, Xn, "f"),o.canvas), "f"),
@@ -1937,7 +1937,7 @@
                 if (null != i.get(me, me, "f", Me))
                     return;
                 const t = new a.B
-                  , n = new o.Z;
+                  , n = new DRACOLoader;
                 try {
                     n.setDecoderPath("lib/draco/"),
                     t.setDRACOLoader(n),

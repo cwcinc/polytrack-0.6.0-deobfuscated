@@ -460,11 +460,11 @@
             }
         }
         ;
-        var st = n(2825)
+        var RenderManager = n(2825).A
           , KeyBind = n(5818).A
-          , at = n(579)
-          , rt = n(4183)
-          , ht = n(2203)
+          , TrackExportUI = n(579).A
+          , PartEnvironment = n(4183).A
+          , Part = n(2203).A
           , lt = n(8566);
         var ct = n(4839)
           , dt = n(7129)
@@ -813,7 +813,7 @@
         zt.insertStyleElement = f();
         o()(Pt.A, zt);
         Pt.A && Pt.A.locals && Pt.A.locals;
-        var Nt, St, Tt, qt, Dt = n(7680), Ot = n(5169);
+        var Nt, St, Tt, qt, Dt = n(7680), TrackEnvironment = n(5169).A;
         Nt = new WeakMap,
         St = new WeakMap,
         Tt = new WeakMap,
@@ -892,13 +892,13 @@
                 k.appendChild(G);
                 const x = document.createElement("button");
                 x.className = "button environment-button",
-                o.environment == Ot.A.Summer && (x.classList.add("selected"),
+                o.environment == TrackEnvironment.Summer && (x.classList.add("selected"),
                 x.disabled = !0),
                 x.innerHTML = '<img src="images/summer.svg"> ',
                 x.append(document.createTextNode(e.get("Summer"))),
                 x.addEventListener("click", ( () => {
                     t.playUIClick(),
-                    a(Ot.A.Summer),
+                    a(TrackEnvironment.Summer),
                     x.classList.add("selected"),
                     y.classList.remove("selected"),
                     A.classList.remove("selected"),
@@ -910,13 +910,13 @@
                 k.appendChild(x);
                 const y = document.createElement("button");
                 y.className = "button environment-button",
-                o.environment == Ot.A.Winter && (y.classList.add("selected"),
+                o.environment == TrackEnvironment.Winter && (y.classList.add("selected"),
                 y.disabled = !0),
                 y.innerHTML = '<img src="images/winter.svg"> ',
                 y.append(document.createTextNode(e.get("Winter"))),
                 y.addEventListener("click", ( () => {
                     t.playUIClick(),
-                    a(Ot.A.Winter),
+                    a(TrackEnvironment.Winter),
                     x.classList.remove("selected"),
                     y.classList.add("selected"),
                     A.classList.remove("selected"),
@@ -928,13 +928,13 @@
                 k.appendChild(y);
                 const A = document.createElement("button");
                 A.className = "button environment-button",
-                o.environment == Ot.A.Desert && (A.classList.add("selected"),
+                o.environment == TrackEnvironment.Desert && (A.classList.add("selected"),
                 A.disabled = !0),
                 A.innerHTML = '<img src="images/desert.svg"> ',
                 A.append(document.createTextNode(e.get("Desert"))),
                 A.addEventListener("click", ( () => {
                     t.playUIClick(),
-                    a(Ot.A.Desert),
+                    a(TrackEnvironment.Desert),
                     x.classList.remove("selected"),
                     y.classList.remove("selected"),
                     A.classList.add("selected"),
@@ -1036,7 +1036,7 @@
                             }),
                             _t.outputColorSpace = THREE.LinearSRGBColorSpace,
                             Rt = new THREE.Scene,
-                            Ut = new THREE.OrthographicCamera(-1,1,1,-1,.5,st.A.maxViewDistance),
+                            Ut = new THREE.OrthographicCamera(-1,1,1,-1,.5,RenderManager.maxViewDistance),
                             Ut.position.set(1e3, 1e3, 1e3),
                             Ut.lookAt(0, 0, 0),
                             Rt.add(Ut);
@@ -1564,7 +1564,7 @@
                     h = document.createElement("div"),
                     h.className = "color-panel hidden",
                     i.get(this, ue, "f").prepend(h);
-                    const t = [rt.A.Default].concat(Array.from(n.colors.keys()));
+                    const t = [PartEnvironment.Default].concat(Array.from(n.colors.keys()));
                     for (const e of t) {
                         const t = document.createElement("button");
                         t.addEventListener("click", ( () => {
@@ -1578,7 +1578,7 @@
                                 e != t && e.classList.remove("selected")
                         }
                         )),
-                        e == rt.A.Default && t.classList.add("selected"),
+                        e == PartEnvironment.Default && t.classList.add("selected"),
                         h.appendChild(t);
                         const n = document.createElement("img");
                         n.className = "loading",
@@ -1604,8 +1604,8 @@
         ,
         Xn = function() {
             if (null == i.get(this, yn, "f"))
-                return rt.A.Default;
-            return i.get(this, xn, "f")[i.get(this, yn, "f")].colorButtons.some(( ([t]) => t == i.get(this, An, "f"))) ? i.get(this, An, "f") : rt.A.Default
+                return PartEnvironment.Default;
+            return i.get(this, xn, "f")[i.get(this, yn, "f")].colorButtons.some(( ([t]) => t == i.get(this, An, "f"))) ? i.get(this, An, "f") : PartEnvironment.Default
         }
         ,
         jn = function(t) {
@@ -1627,14 +1627,14 @@
             }
             let t;
             switch (i.get(this, Jt, "f").environment) {
-            case Ot.A.Summer:
-                t = rt.A.Summer;
+            case TrackEnvironment.Summer:
+                t = PartEnvironment.Summer;
                 break;
-            case Ot.A.Winter:
-                t = rt.A.Winter;
+            case TrackEnvironment.Winter:
+                t = PartEnvironment.Winter;
                 break;
-            case Ot.A.Desert:
-                t = rt.A.Desert
+            case TrackEnvironment.Desert:
+                t = PartEnvironment.Desert
             }
             for (const e of i.get(this, xn, "f"))
                 if (null != e.id)
@@ -1680,7 +1680,7 @@
                   , n = 0;
                 const s = new Set;
                 for (const t of i.get(this, Ln, "f").parts) {
-                    const o = i.get(this, Qt, "f").getPart(t.id).colors.get(rt.A.Summer);
+                    const o = i.get(this, Qt, "f").getPart(t.id).colors.get(PartEnvironment.Summer);
                     if (null == o)
                         throw new Error("Track part mesh has not loaded yet");
                     s.has(o.geometry) || (s.add(o.geometry),
@@ -1690,7 +1690,7 @@
                 const o = new THREE.BatchedMesh(t,e,n,i.get(this, Je, "f"))
                   , a = new Map;
                 for (const t of i.get(this, Ln, "f").parts) {
-                    const e = i.get(this, Qt, "f").getPart(t.id).colors.get(rt.A.Summer);
+                    const e = i.get(this, Qt, "f").getPart(t.id).colors.get(PartEnvironment.Summer);
                     if (null == e)
                         throw new Error("Track part mesh has not loaded yet");
                     let n = a.get(e.geometry);
@@ -1717,7 +1717,7 @@
                     const t = new THREE.BoxGeometry(4 * L.A.partSize,L.A.partSize,4 * L.A.partSize);
                     t.translate(0, L.A.partSize / 2, 0),
                     e = new THREE.Mesh(t,i.get(this, Je, "f"))
-                } else if (e = t.trackPartData.colors.get(rt.A.Summer)?.clone(),
+                } else if (e = t.trackPartData.colors.get(PartEnvironment.Summer)?.clone(),
                 null == e)
                     throw new Error("Track part mesh has not loaded yet");
                 e.material = i.get(this, Je, "f"),
@@ -1746,14 +1746,14 @@
                 else {
                     let e;
                     switch (i.get(this, Jt, "f").environment) {
-                    case Ot.A.Summer:
-                        e = rt.A.Summer;
+                    case TrackEnvironment.Summer:
+                        e = PartEnvironment.Summer;
                         break;
-                    case Ot.A.Winter:
-                        e = rt.A.Winter;
+                    case TrackEnvironment.Winter:
+                        e = PartEnvironment.Winter;
                         break;
-                    case Ot.A.Desert:
-                        e = rt.A.Desert
+                    case TrackEnvironment.Desert:
+                        e = PartEnvironment.Desert
                     }
                     for (const n of i.get(this, xn, "f"))
                         if (n.category == t && null != n.id && !n.image.hasAttribute("src")) {
@@ -1800,7 +1800,7 @@
                     for (const [t,s,o] of e.colorButtons)
                         if (t == n ? s.classList.add("selected") : s.classList.remove("selected"),
                         !o.hasAttribute("src"))
-                            if (t == rt.A.Default)
+                            if (t == PartEnvironment.Default)
                                 o.src = "images/empty.svg",
                                 o.className = "";
                             else {
@@ -2081,7 +2081,7 @@
                 Gn.set(this, null),
                 xn.set(this, []),
                 yn.set(this, null),
-                An.set(this, rt.A.Default),
+                An.set(this, PartEnvironment.Default),
                 Mn.set(this, !1),
                 En.set(this, !1),
                 Cn.set(this, null),
@@ -2105,7 +2105,7 @@
                 i.set(this, ie, d, "f"),
                 i.set(this, se, g, "f"),
                 i.set(this, oe, f, "f"),
-                i.set(this, De, new THREE.PerspectiveCamera(70,1,.5,st.A.maxViewDistance), "f"),
+                i.set(this, De, new THREE.PerspectiveCamera(70,1,.5,RenderManager.maxViewDistance), "f"),
                 i.get(this, De, "f").position.set(40, 40, -40),
                 n.scene.add(i.get(this, De, "f")),
                 i.set(this, Oe, new k(i.get(this, De, "f"),n.canvas), "f"),
@@ -2405,13 +2405,13 @@
                                     Math.random() < .1 ? M(t) : Math.random() < .6 ? E(t) : Math.random() < .5 ? L(t, i < 2 || Math.random() < .5) : Math.random() < .5 ? C(t) : W(t)) : M(t)
                                 }
                                 function m(t) {
-                                    d(n, i, s, ht.A.Straight, o),
+                                    d(n, i, s, Part.Straight, o),
                                     f(),
                                     r(),
                                     p(t)
                                 }
                                 function v(t) {
-                                    d(n, i, s, ht.A.TurnSharp, o - 1),
+                                    d(n, i, s, Part.TurnSharp, o - 1),
                                     f(),
                                     o = (o + 1) % 4,
                                     r(),
@@ -2419,7 +2419,7 @@
                                     Math.random() < .4 ? m(t) : Math.random() < .5 ? v(t) : w(t)) : x()
                                 }
                                 function w(t) {
-                                    d(n, i, s, ht.A.TurnSharp, o),
+                                    d(n, i, s, Part.TurnSharp, o),
                                     f(),
                                     o = ((o - 1) % 4 + 4) % 4,
                                     r(),
@@ -2453,72 +2453,72 @@
                                     d(n, i + 1, s, null),
                                     d(n, i + 2, s, null),
                                     a = e ? o : o + 2,
-                                    d(n, i, s, ht.A.Slope, a),
+                                    d(n, i, s, Part.Slope, a),
                                     r(),
                                     e && (i += 2),
                                     t > 0 ? (--t,
                                     Math.random() < .4 || i <= 3 ? k(t, e) : G(t, e)) : k(t, e)
                                 }
                                 function x() {
-                                    d(n, i, s, ht.A.Finish, o)
+                                    d(n, i, s, Part.Finish, o)
                                 }
                                 function y(t) {
-                                    d(n, i, s, ht.A.Start, o),
+                                    d(n, i, s, Part.Start, o),
                                     f(),
                                     r(),
                                     p(t)
                                 }
                                 function A(t) {
-                                    Math.random() < .5 ? (d(n, i, s, ht.A.ToWideLeft, o),
+                                    Math.random() < .5 ? (d(n, i, s, Part.ToWideLeft, o),
                                     f(),
                                     c(),
-                                    d(n, i, s, ht.A.OuterCornerWide, o + 2),
+                                    d(n, i, s, Part.OuterCornerWide, o + 2),
                                     f(),
-                                    r()) : (d(n, i, s, ht.A.ToWideRight, o),
+                                    r()) : (d(n, i, s, Part.ToWideRight, o),
                                     f(),
                                     l(),
-                                    d(n, i, s, ht.A.OuterCornerWide, o + 1),
+                                    d(n, i, s, Part.OuterCornerWide, o + 1),
                                     f(),
                                     r(),
                                     c()),
                                     u(t)
                                 }
                                 function M(t) {
-                                    Math.random() < .5 ? (d(n, i, s, ht.A.OuterCornerWide, o + 3),
+                                    Math.random() < .5 ? (d(n, i, s, Part.OuterCornerWide, o + 3),
                                     f(),
                                     l(),
-                                    d(n, i, s, ht.A.ToWideRight, o + 2),
+                                    d(n, i, s, Part.ToWideRight, o + 2),
                                     f(),
-                                    r()) : (d(n, i, s, ht.A.ToWideLeft, o + 2),
+                                    r()) : (d(n, i, s, Part.ToWideLeft, o + 2),
                                     f(),
                                     l(),
-                                    d(n, i, s, ht.A.OuterCornerWide, o),
+                                    d(n, i, s, Part.OuterCornerWide, o),
                                     f(),
                                     r(),
                                     c()),
                                     p(t)
                                 }
                                 function E(t) {
-                                    d(n, i, s, ht.A.StraightWide, o),
+                                    d(n, i, s, Part.StraightWide, o),
                                     f(),
                                     l(),
-                                    d(n, i, s, ht.A.StraightWide, o + 2),
+                                    d(n, i, s, Part.StraightWide, o + 2),
                                     f(),
                                     c(),
                                     r(),
                                     u(t)
                                 }
                                 function C(t) {
-                                    d(n, i, s, ht.A.StraightWide, o),
+                                    d(n, i, s, Part.StraightWide, o),
                                     f(),
                                     r(),
-                                    d(n, i, s, ht.A.OuterCornerWide, o + 3),
+                                    d(n, i, s, Part.OuterCornerWide, o + 3),
                                     f(),
                                     l(),
-                                    d(n, i, s, ht.A.StraightWide, o + 1),
+                                    d(n, i, s, Part.StraightWide, o + 1),
                                     f(),
                                     h(),
-                                    d(n, i, s, ht.A.InnerCornerWide, o + 3),
+                                    d(n, i, s, Part.InnerCornerWide, o + 3),
                                     f(),
                                     r(),
                                     o = (o + 1) % 4,
@@ -2526,16 +2526,16 @@
                                     u(t)
                                 }
                                 function W(t) {
-                                    d(n, i, s, ht.A.InnerCornerWide, o),
+                                    d(n, i, s, Part.InnerCornerWide, o),
                                     f(),
                                     l(),
-                                    d(n, i, s, ht.A.StraightWide, o + 2),
+                                    d(n, i, s, Part.StraightWide, o + 2),
                                     f(),
                                     r(),
-                                    d(n, i, s, ht.A.OuterCornerWide, o),
+                                    d(n, i, s, Part.OuterCornerWide, o),
                                     f(),
                                     c(),
-                                    d(n, i, s, ht.A.StraightWide, o + 1),
+                                    d(n, i, s, Part.StraightWide, o + 1),
                                     f(),
                                     h(),
                                     o = ((o - 1) % 4 + 4) % 4,
@@ -2544,9 +2544,9 @@
                                 }
                                 function L(t, e) {
                                     let a, h;
-                                    e ? (a = ht.A.SlopeUpLeftWide,
-                                    h = ht.A.SlopeUpRightWide) : (a = ht.A.SlopeDownLeftWide,
-                                    h = ht.A.SlopeDownRightWide),
+                                    e ? (a = Part.SlopeUpLeftWide,
+                                    h = Part.SlopeUpRightWide) : (a = Part.SlopeDownLeftWide,
+                                    h = Part.SlopeDownRightWide),
                                     e || --i,
                                     l(),
                                     d(n, i + 1, s, null),
@@ -2562,9 +2562,9 @@
                                 function P(t, e) {
                                     let a, h;
                                     e || --i,
-                                    e ? (a = ht.A.SlopeDownRightWide,
-                                    h = ht.A.SlopeDownLeftWide) : (a = ht.A.SlopeUpRightWide,
-                                    h = ht.A.SlopeUpLeftWide),
+                                    e ? (a = Part.SlopeDownRightWide,
+                                    h = Part.SlopeDownLeftWide) : (a = Part.SlopeUpRightWide,
+                                    h = Part.SlopeUpLeftWide),
                                     l(),
                                     d(n, i + 1, s, null),
                                     d(n, i, s, a, o + 2),
@@ -2580,18 +2580,18 @@
                                     e ? (l(),
                                     d(n, i + 1, s, null),
                                     d(n, i + 2, s, null),
-                                    d(n, i, s, ht.A.SlopeLeftWide, o),
+                                    d(n, i, s, Part.SlopeLeftWide, o),
                                     c(),
                                     d(n, i + 1, s, null),
                                     d(n, i + 2, s, null),
-                                    d(n, i, s, ht.A.SlopeRightWide, o)) : (l(),
+                                    d(n, i, s, Part.SlopeRightWide, o)) : (l(),
                                     d(n, i + 1, s, null),
                                     d(n, i + 2, s, null),
-                                    d(n, i, s, ht.A.SlopeRightWide, o + 2),
+                                    d(n, i, s, Part.SlopeRightWide, o + 2),
                                     c(),
                                     d(n, i + 1, s, null),
                                     d(n, i + 2, s, null),
-                                    d(n, i, s, ht.A.SlopeLeftWide, o + 2)),
+                                    d(n, i, s, Part.SlopeLeftWide, o + 2)),
                                     r(),
                                     e && (i += 2),
                                     t > 0 ? (--t,
@@ -2603,8 +2603,8 @@
                                     for (const N of a.values())
                                         if (null != N.type) {
                                             let S = null;
-                                            N.type == ht.A.Start && (S = 0),
-                                            t.setPart(4 * N.x, N.y, 4 * N.z, N.type, N.direction, lt.A.YPositive, rt.A.Default, null, S)
+                                            N.type == Part.Start && (S = 0),
+                                            t.setPart(4 * N.x, N.y, 4 * N.z, N.type, N.direction, lt.A.YPositive, PartEnvironment.Default, null, S)
                                         }
                             } while (e)
                         }(i.get(this, Jt, "f")),
@@ -2801,7 +2801,7 @@
                                 lastModified: i.get(this, wn, "f")
                             }
                               , s = i.get(this, Jt, "f").getTrackData().toExportString(n);
-                            i.set(this, Ge, new at.A(s,( () => {
+                            i.set(this, Ge, new TrackExportUI(s,( () => {
                                 i.get(this, Ge, "f")?.dispose(),
                                 i.set(this, Ge, null, "f"),
                                 i.get(this, he, "f").className = "editor-ui"
@@ -2817,7 +2817,7 @@
                             lastModified: i.get(this, wn, "f")
                         }
                           , n = i.get(this, Jt, "f").getTrackData().toExportString(e);
-                        i.set(this, Ge, new at.A(n,( () => {
+                        i.set(this, Ge, new TrackExportUI(n,( () => {
                             i.get(this, Ge, "f")?.dispose(),
                             i.set(this, Ge, null, "f"),
                             i.get(this, he, "f").className = "editor-ui"
@@ -2833,15 +2833,15 @@
                 C.append(document.createTextNode(i.get(this, Zt, "f").get("Help"))),
                 C.addEventListener("click", ( () => {
                     i.get(this, Yt, "f").playUIClick();
-                    const t = i.get(this, Qt, "f").getPart(ht.A.Start).colors.get(rt.A.Summer);
+                    const t = i.get(this, Qt, "f").getPart(Part.Start).colors.get(PartEnvironment.Summer);
                     if (null == t)
                         throw new Error("Starting point mesh is null");
                     const e = Kt(t)
-                      , n = i.get(this, Qt, "f").getPart(ht.A.Checkpoint).colors.get(rt.A.Summer);
+                      , n = i.get(this, Qt, "f").getPart(Part.Checkpoint).colors.get(PartEnvironment.Summer);
                     if (null == n)
                         throw new Error("Checkpoint mesh is null");
                     const s = Kt(n)
-                      , o = i.get(this, Qt, "f").getPart(ht.A.Finish).colors.get(rt.A.Summer);
+                      , o = i.get(this, Qt, "f").getPart(Part.Finish).colors.get(PartEnvironment.Summer);
                     if (null == o)
                         throw new Error("Finish line mesh is null");
                     const a = Kt(o);
@@ -3326,7 +3326,7 @@
                 i.set(this, ki, new pi(a,r,h,c,t,e,n,d,g,f,p,u,l,m), "f"),
                 i.get(this, ki, "f").enable(),
                 i.get(this, ui, "f").clear(),
-                i.get(this, ui, "f").setPart(0, 0, 0, ht.A.Start, 0, lt.A.YPositive, rt.A.Default, null, 0),
+                i.get(this, ui, "f").setPart(0, 0, 0, Part.Start, 0, lt.A.YPositive, PartEnvironment.Default, null, 0),
                 i.get(this, ui, "f").generateMeshes(),
                 h.setCamera(i.get(this, ki, "f").camera),
                 i.get(this, ki, "f").setTestCallback(( () => {
