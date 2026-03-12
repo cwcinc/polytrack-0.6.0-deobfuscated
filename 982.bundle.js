@@ -53,19 +53,13 @@
                   , r = document.getElementById("ui");
                 if (null == r)
                     throw new Error("UI element not found");
-                (0,
-                a.GG)(this, x, r, "f"),
-                (0,
-                a.GG)(this, g, document.createElement("div"), "f"),
-                (0,
-                a.gn)(this, g, "f").className = "admin-ui",
-                (0,
-                a.gn)(this, x, "f").appendChild((0,
-                a.gn)(this, g, "f"));
+                a.set(this, x, r, "f"),
+                a.set(this, g, document.createElement("div"), "f"),
+                a.get(this, g, "f").className = "admin-ui",
+                a.get(this, x, "f").appendChild(a.get(this, g, "f"));
                 const s = document.createElement("div");
                 s.className = "tracks-list",
-                (0,
-                a.gn)(this, g, "f").appendChild(s);
+                a.get(this, g, "f").appendChild(s);
                 let p = null
                   , u = 1;
                 async function m(n, a) {
@@ -173,8 +167,7 @@
                 ));
                 const f = document.createElement("div");
                 f.className = "leaderboard-container",
-                (0,
-                a.gn)(this, g, "f").appendChild(f);
+                a.get(this, g, "f").appendChild(f);
                 const b = document.createElement("table");
                 f.appendChild(b);
                 const v = document.createElement("div");
@@ -217,21 +210,16 @@
                     l()
                 }
                 )),
-                (0,
-                a.gn)(this, g, "f").appendChild(I),
-                window.addEventListener("keydown", (0,
-                a.GG)(this, k, (t => {
+                a.get(this, g, "f").appendChild(I),
+                window.addEventListener("keydown", a.set(this, k, (t => {
                     "Escape" == t.code && (l(),
                     t.preventDefault())
                 }
                 ), "f"))
             }
             dispose() {
-                (0,
-                a.gn)(this, x, "f").removeChild((0,
-                a.gn)(this, g, "f")),
-                window.removeEventListener("keydown", (0,
-                a.gn)(this, k, "f"))
+                a.get(this, x, "f").removeChild(a.get(this, g, "f")),
+                window.removeEventListener("keydown", a.get(this, k, "f"))
             }
         }
         ;
@@ -244,21 +232,15 @@
                 y.set(this, void 0),
                 I.set(this, void 0),
                 G.set(this, void 0),
-                (0,
-                a.GG)(this, y, t, "f"),
-                (0,
-                a.GG)(this, I, e, "f"),
-                (0,
-                a.GG)(this, G, new E(t,n,i,d,o,l), "f")
+                a.set(this, y, t, "f"),
+                a.set(this, I, e, "f"),
+                a.set(this, G, new E(t,n,i,d,o,l), "f")
             }
             dispose() {
-                (0,
-                a.gn)(this, G, "f").dispose()
+                a.get(this, G, "f").dispose()
             }
             update(t) {
-                (0,
-                a.gn)(this, y, "f").update(t, !1, (0,
-                a.gn)(this, I, "f"))
+                a.get(this, y, "f").update(t, !1, a.get(this, I, "f"))
             }
         }
     }

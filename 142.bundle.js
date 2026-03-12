@@ -50,24 +50,15 @@
                 const d = document.getElementById("ui");
                 if (null == d)
                     throw new Error("UI element not found");
-                (0,
-                i.GG)(this, M, d, "f"),
-                (0,
-                i.GG)(this, R, document.createElement("div"), "f"),
-                (0,
-                i.gn)(this, R, "f").className = "verifier-ui",
-                (0,
-                i.gn)(this, M, "f").appendChild((0,
-                i.gn)(this, R, "f")),
-                (0,
-                i.GG)(this, C, document.createElement("p"), "f"),
-                (0,
-                i.gn)(this, R, "f").appendChild((0,
-                i.gn)(this, C, "f"));
+                i.set(this, M, d, "f"),
+                i.set(this, R, document.createElement("div"), "f"),
+                i.get(this, R, "f").className = "verifier-ui",
+                i.get(this, M, "f").appendChild(i.get(this, R, "f")),
+                i.set(this, C, document.createElement("p"), "f"),
+                i.get(this, R, "f").appendChild(i.get(this, C, "f"));
                 const l = document.createElement("p");
                 l.textContent = "Number of threads: " + t.toString(),
-                (0,
-                i.gn)(this, R, "f").appendChild(l);
+                i.get(this, R, "f").appendChild(l);
                 const h = document.createElement("input");
                 h.type = "range",
                 h.min = "0",
@@ -79,12 +70,10 @@
                     r(e)
                 }
                 )),
-                (0,
-                i.gn)(this, R, "f").appendChild(h);
+                i.get(this, R, "f").appendChild(h);
                 const g = document.createElement("p");
                 g.textContent = "Max time: " + Math.floor(n / 60 / 1e3).toString() + " minutes",
-                (0,
-                i.gn)(this, R, "f").appendChild(g);
+                i.get(this, R, "f").appendChild(g);
                 const f = document.createElement("input");
                 f.type = "range",
                 f.min = 6e4 .toString(),
@@ -96,17 +85,12 @@
                     o(e)
                 }
                 )),
-                (0,
-                i.gn)(this, R, "f").appendChild(f);
+                i.get(this, R, "f").appendChild(f);
                 const c = document.createElement("table");
-                (0,
-                i.gn)(this, R, "f").appendChild(c),
-                (0,
-                i.GG)(this, W, c.createTHead(), "f"),
-                (0,
-                i.GG)(this, S, c.createTBody(), "f");
-                const m = (0,
-                i.gn)(this, W, "f").insertRow();
+                i.get(this, R, "f").appendChild(c),
+                i.set(this, W, c.createTHead(), "f"),
+                i.set(this, S, c.createTBody(), "f");
+                const m = i.get(this, W, "f").insertRow();
                 for (const e of ["Track", "State", "Verified", "Invalid", "Estimated remaining"]) {
                     const t = document.createElement("th");
                     t.textContent = e,
@@ -120,42 +104,33 @@
                     a()
                 }
                 )),
-                (0,
-                i.gn)(this, R, "f").appendChild(u),
-                window.addEventListener("keydown", (0,
-                i.GG)(this, y, (e => {
+                i.get(this, R, "f").appendChild(u),
+                window.addEventListener("keydown", i.set(this, y, (e => {
                     "Escape" == e.code && (a(),
                     e.preventDefault())
                 }
                 ), "f"))
             }
             dispose() {
-                (0,
-                i.gn)(this, M, "f").removeChild((0,
-                i.gn)(this, R, "f")),
-                window.removeEventListener("keydown", (0,
-                i.gn)(this, y, "f"))
+                i.get(this, M, "f").removeChild(i.get(this, R, "f")),
+                window.removeEventListener("keydown", i.get(this, y, "f"))
             }
             setText(e) {
-                (0,
-                i.gn)(this, C, "f").textContent = e
+                i.get(this, C, "f").textContent = e
             }
             setTracks(e) {
                 for (const t of e) {
-                    let e = (0,
-                    i.gn)(this, b, "f").get(t.id);
+                    let e = i.get(this, b, "f").get(t.id);
                     if (null == e) {
                         e = {
-                            element: (0,
-                            i.gn)(this, S, "f").insertRow(),
+                            element: i.get(this, S, "f").insertRow(),
                             name: t.name,
                             exhausted: t.exhausted,
                             recordingsVerified: t.recordingsVerified,
                             invalidRecordings: t.invalidRecordings,
                             estimatedRemaining: t.estimatedRemaining
                         },
-                        (0,
-                        i.gn)(this, b, "f").set(t.id, e);
+                        i.get(this, b, "f").set(t.id, e);
                         e.element.insertCell().textContent = t.name;
                         e.element.insertCell().textContent = t.exhausted ? "Empty" : "Processing";
                         e.element.insertCell().textContent = t.recordingsVerified.toString();
@@ -208,68 +183,43 @@
                 ne.set(this, s.A.maxFrames),
                 ie.set(this, 4),
                 se.set(this, void 0),
-                (0,
-                i.GG)(this, D, e, "f"),
-                (0,
-                i.GG)(this, I, t, "f"),
-                (0,
-                i.GG)(this, A, n, "f"),
-                (0,
-                i.GG)(this, F, a, "f"),
-                (0,
-                i.GG)(this, B, l, "f"),
-                (0,
-                i.GG)(this, L, h, "f"),
-                "undefined" != typeof navigator && "hardwareConcurrency"in navigator && navigator.hardwareConcurrency > 0 && (0,
-                i.GG)(this, ie, navigator.hardwareConcurrency, "f"),
-                (0,
-                i.GG)(this, se, (0,
-                i.gn)(this, ie, "f"), "f"),
+                i.set(this, D, e, "f"),
+                i.set(this, I, t, "f"),
+                i.set(this, A, n, "f"),
+                i.set(this, F, a, "f"),
+                i.set(this, B, l, "f"),
+                i.set(this, L, h, "f"),
+                "undefined" != typeof navigator && "hardwareConcurrency"in navigator && navigator.hardwareConcurrency > 0 && i.set(this, ie, navigator.hardwareConcurrency, "f"),
+                i.set(this, se, i.get(this, ie, "f"), "f"),
                 t.clear(),
-                (0,
-                i.GG)(this, P, new E(e,(0,
-                i.gn)(this, ie, "f"),(0,
-                i.gn)(this, ne, "f"),g,(e => {
-                    for ((0,
-                    i.GG)(this, se, e, "f"); (0,
-                    i.gn)(this, N, "f").length < (0,
-                    i.gn)(this, se, "f"); )
-                        (0,
-                        i.gn)(this, N, "f").push({
+                i.set(this, P, new E(e,i.get(this, ie, "f"),i.get(this, ne, "f"),g,(e => {
+                    for (i.set(this, se, e, "f"); i.get(this, N, "f").length < i.get(this, se, "f"); )
+                        i.get(this, N, "f").push({
                             simulation: new r.A(!1,d,l),
                             isBusy: !1,
                             isDisposed: !1
                         });
-                    for (; (0,
-                    i.gn)(this, N, "f").length > (0,
-                    i.gn)(this, se, "f"); ) {
-                        const e = (0,
-                        i.gn)(this, N, "f").pop();
+                    for (; i.get(this, N, "f").length > i.get(this, se, "f"); ) {
+                        const e = i.get(this, N, "f").pop();
                         null != e && (e.simulation.dispose(),
                         e.isDisposed = !0)
                     }
                 }
                 ),(e => {
-                    (0,
-                    i.GG)(this, ne, e, "f");
-                    for (const e of (0,
-                    i.gn)(this, U, "f"))
+                    i.set(this, ne, e, "f");
+                    for (const e of i.get(this, U, "f"))
                         e.timeout = new Date,
                         e.estimatedRemaining = null
                 }
                 )), "f");
-                for (let e = 0; e < (0,
-                i.gn)(this, se, "f"); e++)
-                    (0,
-                    i.gn)(this, N, "f").push({
-                        simulation: new r.A(!1,d,(0,
-                        i.gn)(this, B, "f")),
+                for (let e = 0; e < i.get(this, se, "f"); e++)
+                    i.get(this, N, "f").push({
+                        simulation: new r.A(!1,d,i.get(this, B, "f")),
                         isBusy: !1,
                         isDisposed: !1
                     });
                 if (o.forEachTrack(( (e, t, n, s) => {
-                    (0,
-                    i.gn)(this, U, "f").push({
+                    i.get(this, U, "f").push({
                         id: e,
                         name: t.name,
                         trackData: s,
@@ -281,18 +231,15 @@
                     })
                 }
                 )),
-                (0,
-                i.GG)(this, q, setInterval(( () => {
-                    (0,
-                    i.gn)(this, T, "m", oe).call(this)
+                i.set(this, q, setInterval(( () => {
+                    i.get(this, T, "m", oe).call(this)
                 }
                 ), 10), "f"),
                 window.electron) {
                     const e = () => {
                         if (window.electron) {
                             const e = new Date
-                              , t = "--- PolyTrack Verifier ---\n" + (0,
-                            i.gn)(this, T, "m", de).call(this, e);
+                              , t = "--- PolyTrack Verifier ---\n" + i.get(this, T, "m", de).call(this, e);
                             window.electron.log(t)
                         }
                     }
@@ -302,27 +249,18 @@
                 }
             }
             dispose() {
-                (0,
-                i.gn)(this, P, "f").dispose();
-                for (const e of (0,
-                i.gn)(this, N, "f"))
+                i.get(this, P, "f").dispose();
+                for (const e of i.get(this, N, "f"))
                     e.simulation.dispose(),
                     e.isDisposed = !0;
-                (0,
-                i.gn)(this, N, "f").length = 0,
-                clearInterval((0,
-                i.gn)(this, q, "f"))
+                i.get(this, N, "f").length = 0,
+                clearInterval(i.get(this, q, "f"))
             }
             update(e) {
-                if ((0,
-                i.gn)(this, B, "f").hasLoaded()) {
+                if (i.get(this, B, "f").hasLoaded()) {
                     const e = new Date;
-                    (0,
-                    i.gn)(this, P, "f").setText((0,
-                    i.gn)(this, T, "m", de).call(this, e)),
-                    (0,
-                    i.gn)(this, P, "f").setTracks((0,
-                    i.gn)(this, U, "f").map(( ({id: t, name: n, timeout: i, recordingsVerified: s, invalidRecordings: a, estimatedRemaining: r}) => ({
+                    i.get(this, P, "f").setText(i.get(this, T, "m", de).call(this, e)),
+                    i.get(this, P, "f").setTracks(i.get(this, U, "f").map(( ({id: t, name: n, timeout: i, recordingsVerified: s, invalidRecordings: a, estimatedRemaining: r}) => ({
                         id: t,
                         name: n,
                         exhausted: i > e,
@@ -331,9 +269,7 @@
                         estimatedRemaining: r
                     }))))
                 }
-                (0,
-                i.gn)(this, D, "f").update(e, !1, (0,
-                i.gn)(this, I, "f"))
+                i.get(this, D, "f").update(e, !1, i.get(this, I, "f"))
             }
         }
         V = fe,
@@ -366,8 +302,7 @@
         se = new WeakMap,
         T = new WeakSet,
         ae = function(e) {
-            const t = (0,
-            i.gn)(this, U, "f").slice();
+            const t = i.get(this, U, "f").slice();
             do {
                 const n = Math.floor(Math.random() * t.length)
                   , i = t.splice(n, 1)[0];
@@ -379,36 +314,16 @@
         ,
         re = function() {
             const e = new Date;
-            if (!(0,
-            i.gn)(this, Y, "f") && (0,
-            i.gn)(this, H, "f").length < (0,
-            i.gn)(this, _, "f") && Math.abs(e.getTime() - (0,
-            i.gn)(this, O, "f").getTime()) >= (0,
-            i.gn)(this, ee, "f")) {
-                (0,
-                i.GG)(this, Y, !0, "f"),
-                (0,
-                i.GG)(this, O, e, "f");
-                const t = (0,
-                i.gn)(this, T, "m", ae).call(this, e);
-                if (null != t || (0,
-                i.gn)(this, z, "f").length > 0 && 0 == (0,
-                i.gn)(this, H, "f").length || (0,
-                i.gn)(this, z, "f").length > (0,
-                i.gn)(this, $, "f")) {
-                    const n = (0,
-                    i.gn)(this, z, "f");
-                    (0,
-                    i.GG)(this, z, [], "f");
-                    const r = null != t && (null == t.lastEstimatedRemainingTime || Math.abs(e.getTime() - t.lastEstimatedRemainingTime.getTime()) >= (0,
-                    i.gn)(this, te, "f"));
-                    (0,
-                    i.gn)(this, A, "f").verifyRecordings((0,
-                    i.gn)(this, L, "f"), t?.id ?? null, (0,
-                    i.gn)(this, ne, "f"), r, n).then(( ({unverifiedRecordings: n, exhaustive: r, estimatedRemaining: o}) => {
-                        null != t && ((0,
-                        i.GG)(this, H, (0,
-                        i.gn)(this, H, "f").concat(n.map(( ({id: e, recording: n, frames: i}) => ({
+            if (!i.get(this, Y, "f") && i.get(this, H, "f").length < i.get(this, _, "f") && Math.abs(e.getTime() - i.get(this, O, "f").getTime()) >= i.get(this, ee, "f")) {
+                i.set(this, Y, !0, "f"),
+                i.set(this, O, e, "f");
+                const t = i.get(this, T, "m", ae).call(this, e);
+                if (null != t || i.get(this, z, "f").length > 0 && 0 == i.get(this, H, "f").length || i.get(this, z, "f").length > i.get(this, $, "f")) {
+                    const n = i.get(this, z, "f");
+                    i.set(this, z, [], "f");
+                    const r = null != t && (null == t.lastEstimatedRemainingTime || Math.abs(e.getTime() - t.lastEstimatedRemainingTime.getTime()) >= i.get(this, te, "f"));
+                    i.get(this, A, "f").verifyRecordings(i.get(this, L, "f"), t?.id ?? null, i.get(this, ne, "f"), r, n).then(( ({unverifiedRecordings: n, exhaustive: r, estimatedRemaining: o}) => {
+                        null != t && (i.set(this, H, i.get(this, H, "f").concat(n.map(( ({id: e, recording: n, frames: i}) => ({
                             track: t,
                             recordingId: e,
                             recording: s.A.deserialize(n),
@@ -421,22 +336,16 @@
                     }
                     )).catch((e => {
                         console.error(e),
-                        (0,
-                        i.gn)(this, A, "f").getUser((0,
-                        i.gn)(this, L, "f")).then((e => {
+                        i.get(this, A, "f").getUser(i.get(this, L, "f")).then((e => {
                             if (!e?.isVerifier) {
                                 for (let e = 0; e < he.A.maxNumberOfProfiles; e++) {
-                                    const t = (0,
-                                    i.gn)(this, F, "f").getUserProfile(e);
-                                    if (null != t && t.isVerifier && t.token == (0,
-                                    i.gn)(this, L, "f")) {
-                                        (0,
-                                        i.gn)(this, F, "f").setIsVerifier(!1, e);
+                                    const t = i.get(this, F, "f").getUserProfile(e);
+                                    if (null != t && t.isVerifier && t.token == i.get(this, L, "f")) {
+                                        i.get(this, F, "f").setIsVerifier(!1, e);
                                         break
                                     }
                                 }
-                                (0,
-                                i.GG)(this, j, !1, "f")
+                                i.set(this, j, !1, "f")
                             }
                         }
                         )).catch((e => {
@@ -445,54 +354,39 @@
                         ))
                     }
                     )).finally(( () => {
-                        (0,
-                        i.GG)(this, Y, !1, "f")
+                        i.set(this, Y, !1, "f")
                     }
                     ))
                 } else
-                    (0,
-                    i.GG)(this, Y, !1, "f")
+                    i.set(this, Y, !1, "f")
             }
         }
         ,
         oe = async function() {
             var e, t, n, s, a, r;
-            if ((0,
-            i.gn)(this, B, "f").hasLoaded() && (0,
-            i.gn)(this, j, "f")) {
-                (0,
-                i.gn)(this, T, "m", re).call(this);
-                for (const d of (0,
-                i.gn)(this, N, "f"))
-                    if (!d.isBusy && (0,
-                    i.gn)(this, H, "f").length > 0) {
+            if (i.get(this, B, "f").hasLoaded() && i.get(this, j, "f")) {
+                i.get(this, T, "m", re).call(this);
+                for (const d of i.get(this, N, "f"))
+                    if (!d.isBusy && i.get(this, H, "f").length > 0) {
                         d.isBusy = !0;
-                        const {track: l, recordingId: h, recording: g, time: f} = (0,
-                        i.gn)(this, H, "f").splice(0, 1)[0];
+                        const {track: l, recordingId: h, recording: g, time: f} = i.get(this, H, "f").splice(0, 1)[0];
                         if (null == g)
-                            (0,
-                            i.GG)(this, Q, (e = (0,
-                            i.gn)(this, Q, "f"),
+                            i.set(this, Q, (e = i.get(this, Q, "f"),
                             ++e), "f"),
                             l.recordingsVerified++,
-                            (0,
-                            i.GG)(this, X, (t = (0,
-                            i.gn)(this, X, "f"),
+                            i.set(this, X, (t = i.get(this, X, "f"),
                             ++t), "f"),
                             l.invalidRecordings++,
                             null != l.estimatedRemaining && (l.estimatedRemaining = Math.max(0, l.estimatedRemaining - 1),
                             0 == l.estimatedRemaining && (l.lastEstimatedRemainingTime = null)),
-                            (0,
-                            i.gn)(this, z, "f").push({
+                            i.get(this, z, "f").push({
                                 id: h,
                                 verifiedState: ge.Y.Invalid
                             }),
                             d.isBusy = !1;
                         else {
                             let e;
-                            (0,
-                            i.GG)(this, K, (n = (0,
-                            i.gn)(this, K, "f"),
+                            i.set(this, K, (n = i.get(this, K, "f"),
                             ++n), "f");
                             try {
                                 l.trackData instanceof o.A ? e = l.trackData : (e = await l.trackData(),
@@ -504,23 +398,16 @@
                             try {
                                 if (null != e) {
                                     const t = await d.simulation.validate(e, g, f);
-                                    (0,
-                                    i.GG)(this, Q, (s = (0,
-                                    i.gn)(this, Q, "f"),
+                                    i.set(this, Q, (s = i.get(this, Q, "f"),
                                     ++s), "f"),
                                     l.recordingsVerified++,
-                                    t || ((0,
-                                    i.GG)(this, X, (a = (0,
-                                    i.gn)(this, X, "f"),
+                                    t || (i.set(this, X, (a = i.get(this, X, "f"),
                                     ++a), "f"),
                                     l.invalidRecordings++),
                                     null != l.estimatedRemaining && (l.estimatedRemaining = Math.max(0, l.estimatedRemaining - 1),
                                     0 == l.estimatedRemaining && (l.lastEstimatedRemainingTime = null)),
-                                    (0,
-                                    i.GG)(this, Z, (0,
-                                    i.gn)(this, Z, "f") + f.numberOfFrames, "f"),
-                                    (0,
-                                    i.gn)(this, z, "f").push({
+                                    i.set(this, Z, i.get(this, Z, "f") + f.numberOfFrames, "f"),
+                                    i.get(this, z, "f").push({
                                         id: h,
                                         verifiedState: t ? ge.Y.Verified : ge.Y.Invalid
                                     })
@@ -530,9 +417,7 @@
                                     throw e
                             } finally {
                                 d.isBusy = !1,
-                                (0,
-                                i.GG)(this, K, (r = (0,
-                                i.gn)(this, K, "f"),
+                                i.set(this, K, (r = i.get(this, K, "f"),
                                 --r), "f")
                             }
                         }
@@ -541,31 +426,21 @@
         }
         ,
         de = function(e) {
-            const t = (e.getTime() - (0,
-            i.gn)(this, J, "f").getTime()) / 1e3;
+            const t = (e.getTime() - i.get(this, J, "f").getTime()) / 1e3;
             let n = "";
-            (0,
-            i.gn)(this, j, "f") ? n += "Recordings are being verified...\n" : n += "Error: User is no longer a verifier\n",
-            n += "\nBacklog: " + (0,
-            i.gn)(this, H, "f").length.toString(),
-            n += "\nProcessing: " + (0,
-            i.gn)(this, K, "f").toString(),
-            n += "\nRecordings verified: " + (0,
-            i.gn)(this, Q, "f").toString(),
-            n += "\nInvalid recordings found: " + (0,
-            i.gn)(this, X, "f").toString(),
+            i.get(this, j, "f") ? n += "Recordings are being verified...\n" : n += "Error: User is no longer a verifier\n",
+            n += "\nBacklog: " + i.get(this, H, "f").length.toString(),
+            n += "\nProcessing: " + i.get(this, K, "f").toString(),
+            n += "\nRecordings verified: " + i.get(this, Q, "f").toString(),
+            n += "\nInvalid recordings found: " + i.get(this, X, "f").toString(),
             n += "\n";
-            const s = (0,
-            i.gn)(this, Q, "f") / t;
+            const s = i.get(this, Q, "f") / t;
             n += "\nVerifications per second: " + s.toFixed(2),
-            n += "\nSimulated frames per second: " + Math.floor((0,
-            i.gn)(this, Z, "f") / t).toString(),
+            n += "\nSimulated frames per second: " + Math.floor(i.get(this, Z, "f") / t).toString(),
             n += "\n";
-            const a = (0,
-            i.gn)(this, U, "f").reduce(( (e, t) => null != t.estimatedRemaining ? e + t.estimatedRemaining : e), 0);
+            const a = i.get(this, U, "f").reduce(( (e, t) => null != t.estimatedRemaining ? e + t.estimatedRemaining : e), 0);
             return n += "\nTotal estimated remaining: " + a.toString(),
-            n += "\nTotal estimated remaining time: " + (0,
-            i.gn)(V, V, "m", le).call(V, a / s),
+            n += "\nTotal estimated remaining time: " + i.get(V, V, "m", le).call(V, a / s),
             n
         }
         ,

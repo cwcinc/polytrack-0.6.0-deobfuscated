@@ -105,20 +105,16 @@
         q = function(t) {
             let n, e;
             null == t ? (n = "images/blank_flag.svg",
-            e = (0,
-            i.gn)(this, z, "f").get("None")) : (n = "images/countries/" + t.code + ".svg",
+            e = i.get(this, z, "f").get("None")) : (n = "images/countries/" + t.code + ".svg",
             e = t.name);
             const s = document.createElement("button");
             s.className = "button country-button",
             s.addEventListener("click", ( () => {
-                (0,
-                i.gn)(this, P, "f").playUIClick(),
-                (0,
-                i.gn)(this, I, "f").call(this, t?.code ?? null)
+                i.get(this, P, "f").playUIClick(),
+                i.get(this, I, "f").call(this, t?.code ?? null)
             }
             )),
-            (0,
-            i.gn)(this, D, "f").appendChild(s);
+            i.get(this, D, "f").appendChild(s);
             const o = document.createElement("img");
             o.className = "loading",
             o.addEventListener("load", ( () => {
@@ -176,17 +172,14 @@
         }
         ,
         V = function() {
-            const t = (0,
-            i.gn)(this, O, "f").value.trim().toLowerCase().split(" ");
+            const t = i.get(this, O, "f").value.trim().toLowerCase().split(" ");
             let n = !1;
-            for (const {searchNames: e, button: s} of (0,
-            i.gn)(this, R, "f")) {
+            for (const {searchNames: e, button: s} of i.get(this, R, "f")) {
                 const i = e.flatMap((t => t.split(" ")));
                 t.every((t => i.some((n => n.startsWith(t))))) ? (n = !0,
                 s.style.display = "") : s.style.display = "none"
             }
-            (0,
-            i.gn)(this, B, "f").style.display = n ? "none" : ""
+            i.get(this, B, "f").style.display = n ? "none" : ""
         }
         ;
         const X = class {
@@ -202,91 +195,58 @@
                 R.set(this, []),
                 B.set(this, void 0),
                 F.set(this, void 0),
-                (0,
-                i.GG)(this, z, t, "f"),
-                (0,
-                i.GG)(this, P, n, "f"),
-                (0,
-                i.GG)(this, I, o, "f");
+                i.set(this, z, t, "f"),
+                i.set(this, P, n, "f"),
+                i.set(this, I, o, "f");
                 const a = document.getElementById("ui");
                 if (null == a)
                     throw new Error("UI element not found");
-                (0,
-                i.GG)(this, U, a, "f"),
-                (0,
-                i.GG)(this, H, document.createElement("div"), "f"),
-                (0,
-                i.gn)(this, H, "f").className = "country-selection-ui",
-                (0,
-                i.gn)(this, U, "f").appendChild((0,
-                i.gn)(this, H, "f"));
+                i.set(this, U, a, "f"),
+                i.set(this, H, document.createElement("div"), "f"),
+                i.get(this, H, "f").className = "country-selection-ui",
+                i.get(this, U, "f").appendChild(i.get(this, H, "f"));
                 const l = document.createElement("div");
                 l.className = "background",
-                (0,
-                i.gn)(this, H, "f").appendChild(l);
+                i.get(this, H, "f").appendChild(l);
                 const c = document.createElement("div");
                 c.className = "container",
-                (0,
-                i.gn)(this, H, "f").appendChild(c);
+                i.get(this, H, "f").appendChild(c);
                 const r = document.createElement("h1");
                 r.textContent = t.get("Select country"),
                 c.appendChild(r);
                 const h = document.createElement("div");
                 h.className = "search-bar-container",
                 c.appendChild(h),
-                (0,
-                i.GG)(this, O, document.createElement("input"), "f"),
-                (0,
-                i.gn)(this, O, "f").type = "text",
-                (0,
-                i.gn)(this, O, "f").spellcheck = !1,
-                (0,
-                i.gn)(this, O, "f").autocomplete = "off",
-                (0,
-                i.gn)(this, O, "f").enterKeyHint = "search",
-                (0,
-                i.gn)(this, O, "f").placeholder = (0,
-                i.gn)(this, z, "f").get("Search country..."),
-                (0,
-                i.gn)(this, O, "f").addEventListener("input", ( () => {
-                    (0,
-                    i.gn)(this, T, "m", V).call(this)
+                i.set(this, O, document.createElement("input"), "f"),
+                i.get(this, O, "f").type = "text",
+                i.get(this, O, "f").spellcheck = !1,
+                i.get(this, O, "f").autocomplete = "off",
+                i.get(this, O, "f").enterKeyHint = "search",
+                i.get(this, O, "f").placeholder = i.get(this, z, "f").get("Search country..."),
+                i.get(this, O, "f").addEventListener("input", ( () => {
+                    i.get(this, T, "m", V).call(this)
                 }
                 )),
-                h.appendChild((0,
-                i.gn)(this, O, "f")),
-                (0,
-                i.gn)(this, O, "f").focus();
+                h.appendChild(i.get(this, O, "f")),
+                i.get(this, O, "f").focus();
                 const d = document.createElement("img");
                 d.src = "images/search.svg",
                 h.appendChild(d),
-                (0,
-                i.GG)(this, D, document.createElement("div"), "f"),
-                (0,
-                i.gn)(this, D, "f").className = "content",
-                c.appendChild((0,
-                i.gn)(this, D, "f")),
-                (0,
-                i.GG)(this, B, document.createElement("div"), "f"),
-                (0,
-                i.gn)(this, B, "f").className = "nothing-found-message",
-                (0,
-                i.gn)(this, B, "f").style.display = "none",
-                (0,
-                i.gn)(this, B, "f").textContent = (0,
-                i.gn)(this, z, "f").get("No countries found"),
-                (0,
-                i.gn)(this, D, "f").appendChild((0,
-                i.gn)(this, B, "f"));
+                i.set(this, D, document.createElement("div"), "f"),
+                i.get(this, D, "f").className = "content",
+                c.appendChild(i.get(this, D, "f")),
+                i.set(this, B, document.createElement("div"), "f"),
+                i.get(this, B, "f").className = "nothing-found-message",
+                i.get(this, B, "f").style.display = "none",
+                i.get(this, B, "f").textContent = i.get(this, z, "f").get("No countries found"),
+                i.get(this, D, "f").appendChild(i.get(this, B, "f"));
                 let g = null;
                 const f = [null].concat((0,
                 L.O)());
                 for (const t of f) {
-                    const {searchNames: n, button: s} = (0,
-                    i.gn)(this, T, "m", q).call(this, t);
+                    const {searchNames: n, button: s} = i.get(this, T, "m", q).call(this, t);
                     t?.code == e && (g = s),
-                    (0,
-                    i.gn)(this, R, "f").push({
+                    i.get(this, R, "f").push({
                         searchNames: n,
                         button: s
                     })
@@ -305,23 +265,16 @@
                 )),
                 p.appendChild(u),
                 null != g && (g.classList.add("selected"),
-                (0,
-                i.gn)(this, D, "f").scrollTop = Math.max(0, g.offsetTop - (0,
-                i.gn)(this, D, "f").offsetTop - (0,
-                i.gn)(this, D, "f").clientHeight / 2 + g.clientHeight / 2)),
-                window.addEventListener("keydown", (0,
-                i.GG)(this, F, (t => {
+                i.get(this, D, "f").scrollTop = Math.max(0, g.offsetTop - i.get(this, D, "f").offsetTop - i.get(this, D, "f").clientHeight / 2 + g.clientHeight / 2)),
+                window.addEventListener("keydown", i.set(this, F, (t => {
                     "Escape" == t.code && (s(),
                     t.preventDefault())
                 }
                 ), "f"))
             }
             dispose() {
-                (0,
-                i.gn)(this, U, "f").removeChild((0,
-                i.gn)(this, H, "f")),
-                window.removeEventListener("keydown", (0,
-                i.gn)(this, F, "f"))
+                i.get(this, U, "f").removeChild(i.get(this, H, "f")),
+                window.removeEventListener("keydown", i.get(this, F, "f"))
             }
         }
         ;
@@ -334,13 +287,11 @@
         K = new WeakMap,
         Q = new WeakSet,
         $ = function() {
-            let t = (0,
-            i.gn)(this, j, "f").value;
+            let t = i.get(this, j, "f").value;
             return /\S/.test(t) || (t = "Anonymous"),
             {
                 nickname: t,
-                countryCode: (0,
-                i.gn)(this, J, "f")
+                countryCode: i.get(this, J, "f")
             }
         }
         ;
@@ -353,28 +304,20 @@
                 Z.set(this, void 0),
                 J.set(this, void 0),
                 K.set(this, null),
-                (0,
-                i.GG)(this, J, s, "f");
+                i.set(this, J, s, "f");
                 const h = document.getElementById("ui");
                 if (null == h)
                     throw new Error("UI element not found");
-                (0,
-                i.GG)(this, Y, h, "f"),
-                (0,
-                i.GG)(this, _, document.createElement("div"), "f"),
-                (0,
-                i.gn)(this, _, "f").className = "profile-settings-ui",
-                (0,
-                i.gn)(this, Y, "f").appendChild((0,
-                i.gn)(this, _, "f"));
+                i.set(this, Y, h, "f"),
+                i.set(this, _, document.createElement("div"), "f"),
+                i.get(this, _, "f").className = "profile-settings-ui",
+                i.get(this, Y, "f").appendChild(i.get(this, _, "f"));
                 const d = document.createElement("div");
                 d.className = "background",
-                (0,
-                i.gn)(this, _, "f").appendChild(d);
+                i.get(this, _, "f").appendChild(d);
                 const g = document.createElement("div");
                 g.className = "container",
-                (0,
-                i.gn)(this, _, "f").appendChild(g);
+                i.get(this, _, "f").appendChild(g);
                 const f = document.createElement("h1");
                 f.textContent = t.get("Profile"),
                 g.appendChild(f);
@@ -388,30 +331,19 @@
                 m.className = "title",
                 m.append(document.createTextNode(t.get("Nickname"))),
                 u.appendChild(m),
-                (0,
-                i.GG)(this, j, document.createElement("input"), "f"),
-                (0,
-                i.gn)(this, j, "f").type = "text",
-                (0,
-                i.gn)(this, j, "f").placeholder = E.A.defaultNickname,
-                (0,
-                i.gn)(this, j, "f").spellcheck = !1,
-                e != (0,
-                i.gn)(this, j, "f").placeholder && ((0,
-                i.gn)(this, j, "f").value = e),
-                u.appendChild((0,
-                i.gn)(this, j, "f")),
-                (0,
-                i.gn)(this, j, "f").focus(),
-                (0,
-                i.gn)(this, j, "f").addEventListener("input", ( () => {
-                    let t = (0,
-                    i.gn)(this, j, "f").value;
+                i.set(this, j, document.createElement("input"), "f"),
+                i.get(this, j, "f").type = "text",
+                i.get(this, j, "f").placeholder = E.A.defaultNickname,
+                i.get(this, j, "f").spellcheck = !1,
+                e != i.get(this, j, "f").placeholder && (i.get(this, j, "f").value = e),
+                u.appendChild(i.get(this, j, "f")),
+                i.get(this, j, "f").focus(),
+                i.get(this, j, "f").addEventListener("input", ( () => {
+                    let t = i.get(this, j, "f").value;
                     for (; (0,
                     A.k)(t) >= 50; )
                         t = t.substring(0, t.length - 1);
-                    (0,
-                    i.gn)(this, j, "f").value = t
+                    i.get(this, j, "f").value = t
                 }
                 ));
                 const v = document.createElement("div");
@@ -427,8 +359,7 @@
                 w.appendChild(b);
                 const x = (0,
                 L.O)()
-                  , k = x.find((t => t.code == (0,
-                i.gn)(this, J, "f")))
+                  , k = x.find((t => t.code == i.get(this, J, "f")))
                   , G = k?.name ?? t.get("None");
                 let y;
                 y = null == k ? "images/blank_flag.svg" : "images/countries/" + k.code + ".svg";
@@ -443,37 +374,25 @@
                 C.append(N),
                 C.addEventListener("click", ( () => {
                     if (n.playUIClick(),
-                    null == (0,
-                    i.gn)(this, K, "f")) {
-                        (0,
-                        i.gn)(this, _, "f").classList.add("hidden");
-                        const e = (0,
-                        i.gn)(this, J, "f");
-                        (0,
-                        i.GG)(this, K, new X(t,n,e,( () => {
-                            (0,
-                            i.gn)(this, _, "f").classList.remove("hidden"),
-                            (0,
-                            i.gn)(this, K, "f")?.dispose(),
-                            (0,
-                            i.GG)(this, K, null, "f")
+                    null == i.get(this, K, "f")) {
+                        i.get(this, _, "f").classList.add("hidden");
+                        const e = i.get(this, J, "f");
+                        i.set(this, K, new X(t,n,e,( () => {
+                            i.get(this, _, "f").classList.remove("hidden"),
+                            i.get(this, K, "f")?.dispose(),
+                            i.set(this, K, null, "f")
                         }
                         ),(n => {
-                            (0,
-                            i.gn)(this, _, "f").classList.remove("hidden"),
-                            (0,
-                            i.GG)(this, J, n, "f");
-                            const e = x.find((t => t.code == (0,
-                            i.gn)(this, J, "f")))
+                            i.get(this, _, "f").classList.remove("hidden"),
+                            i.set(this, J, n, "f");
+                            const e = x.find((t => t.code == i.get(this, J, "f")))
                               , s = e?.name ?? t.get("None");
                             let o;
                             o = null == e ? "images/blank_flag.svg" : "images/countries/" + e.code + ".svg",
                             M.src = o,
                             N.textContent = s,
-                            (0,
-                            i.gn)(this, K, "f")?.dispose(),
-                            (0,
-                            i.GG)(this, K, null, "f")
+                            i.get(this, K, "f")?.dispose(),
+                            i.set(this, K, null, "f")
                         }
                         )), "f")
                     }
@@ -500,8 +419,7 @@
                 P.append(t.get("Delete")),
                 P.addEventListener("click", ( () => {
                     n.playUIClick(),
-                    l((0,
-                    i.gn)(this, Q, "m", $).call(this))
+                    l(i.get(this, Q, "m", $).call(this))
                 }
                 )),
                 z.appendChild(P);
@@ -518,8 +436,7 @@
                 H.append(t.get("Export")),
                 H.addEventListener("click", ( () => {
                     n.playUIClick(),
-                    c((0,
-                    i.gn)(this, Q, "m", $).call(this), o.token)
+                    c(i.get(this, Q, "m", $).call(this), o.token)
                 }
                 )),
                 U.appendChild(H);
@@ -547,8 +464,7 @@
                     e.prepend(document.createTextNode(t.get("Save"))),
                     e.addEventListener("click", ( () => {
                         n.playUIClick(),
-                        r((0,
-                        i.gn)(this, Q, "m", $).call(this))
+                        r(i.get(this, Q, "m", $).call(this))
                     }
                     )),
                     D.appendChild(e)
@@ -559,32 +475,23 @@
                     e.prepend(document.createTextNode(t.get("Confirm"))),
                     e.addEventListener("click", ( () => {
                         n.playUIClick(),
-                        r((0,
-                        i.gn)(this, Q, "m", $).call(this))
+                        r(i.get(this, Q, "m", $).call(this))
                     }
                     )),
                     D.appendChild(e)
                 }
-                window.addEventListener("keydown", (0,
-                i.GG)(this, Z, (t => {
-                    null == (0,
-                    i.gn)(this, K, "f") && ("Escape" == t.code ? (r(null),
-                    t.preventDefault()) : "Enter" == t.code && (r((0,
-                    i.gn)(this, Q, "m", $).call(this)),
+                window.addEventListener("keydown", i.set(this, Z, (t => {
+                    null == i.get(this, K, "f") && ("Escape" == t.code ? (r(null),
+                    t.preventDefault()) : "Enter" == t.code && (r(i.get(this, Q, "m", $).call(this)),
                     t.preventDefault()))
                 }
                 ), "f"))
             }
             dispose() {
-                (0,
-                i.gn)(this, Y, "f").removeChild((0,
-                i.gn)(this, _, "f")),
-                (0,
-                i.gn)(this, K, "f")?.dispose(),
-                (0,
-                i.GG)(this, K, null, "f"),
-                window.removeEventListener("keydown", (0,
-                i.gn)(this, Z, "f"))
+                i.get(this, Y, "f").removeChild(i.get(this, _, "f")),
+                i.get(this, K, "f")?.dispose(),
+                i.set(this, K, null, "f"),
+                window.removeEventListener("keydown", i.get(this, Z, "f"))
             }
         }
         ;
@@ -609,23 +516,16 @@
                 const a = document.getElementById("ui");
                 if (null == a)
                     throw new Error("UI element not found");
-                (0,
-                i.GG)(this, it, a, "f"),
-                (0,
-                i.GG)(this, st, document.createElement("div"), "f"),
-                (0,
-                i.gn)(this, st, "f").className = "user-export-ui",
-                (0,
-                i.gn)(this, it, "f").appendChild((0,
-                i.gn)(this, st, "f"));
+                i.set(this, it, a, "f"),
+                i.set(this, st, document.createElement("div"), "f"),
+                i.get(this, st, "f").className = "user-export-ui",
+                i.get(this, it, "f").appendChild(i.get(this, st, "f"));
                 const l = document.createElement("div");
                 l.className = "background",
-                (0,
-                i.gn)(this, st, "f").appendChild(l);
+                i.get(this, st, "f").appendChild(l);
                 const c = document.createElement("div");
                 c.className = "container",
-                (0,
-                i.gn)(this, st, "f").appendChild(c);
+                i.get(this, st, "f").appendChild(c);
                 const r = document.createElement("textarea");
                 r.value = e,
                 r.readOnly = null == o,
@@ -660,19 +560,15 @@
                     e.element.classList.add("right"),
                     h.appendChild(e.element)
                 }
-                window.addEventListener("keydown", (0,
-                i.GG)(this, ot, (t => {
+                window.addEventListener("keydown", i.set(this, ot, (t => {
                     "Escape" == t.code && (s(),
                     t.preventDefault())
                 }
                 ), "f"))
             }
             dispose() {
-                (0,
-                i.gn)(this, it, "f").removeChild((0,
-                i.gn)(this, st, "f")),
-                window.removeEventListener("keydown", (0,
-                i.gn)(this, ot, "f"))
+                i.get(this, it, "f").removeChild(i.get(this, st, "f")),
+                window.removeEventListener("keydown", i.get(this, ot, "f"))
             }
         }
         ;
@@ -696,27 +592,22 @@
         wt = new WeakMap,
         ht = new WeakSet,
         bt = function(t, n, e) {
-            const s = (0,
-            i.gn)(this, pt, "f").getUserProfile(n)
+            const s = i.get(this, pt, "f").getUserProfile(n)
               , o = document.createElement("div");
             o.className = "slot";
             const a = document.createElement("button");
             if (a.className = "button main",
-            n == (0,
-            i.gn)(this, pt, "f").profileSlot && a.classList.add("selected"),
+            n == i.get(this, pt, "f").profileSlot && a.classList.add("selected"),
             a.addEventListener("click", ( () => {
-                (0,
-                i.gn)(this, ft, "f").playUIClick();
-                for (const t of (0,
-                i.gn)(this, mt, "f"))
+                i.get(this, ft, "f").playUIClick();
+                for (const t of i.get(this, mt, "f"))
                     t.classList.remove("selected");
                 a.classList.add("selected"),
                 e(n)
             }
             )),
             o.appendChild(a),
-            (0,
-            i.gn)(this, mt, "f").push(a),
+            i.get(this, mt, "f").push(a),
             null != s) {
                 const t = document.createElement("div");
                 t.className = "image-container",
@@ -726,8 +617,7 @@
                 n.src = "images/car_thumbnail_placeholder.png",
                 t.appendChild(n);
                 const e = document.createElement("img");
-                kt.F(s.carStyle, (0,
-                i.gn)(this, wt, "f")).then((t => {
+                kt.F(s.carStyle, i.get(this, wt, "f")).then((t => {
                     e.src = t,
                     n.classList.remove("show"),
                     e.classList.add("show")
@@ -765,8 +655,7 @@
                 a.appendChild(e);
                 const s = document.createElement("span");
                 s.className = "name empty",
-                s.textContent = (0,
-                i.gn)(this, gt, "f").get("Empty"),
+                s.textContent = i.get(this, gt, "f").get("Empty"),
                 e.appendChild(s)
             }
             t.appendChild(o)
@@ -786,29 +675,19 @@
                 const l = document.getElementById("ui");
                 if (null == l)
                     throw new Error("UI element not found");
-                (0,
-                i.GG)(this, dt, l, "f"),
-                (0,
-                i.GG)(this, gt, t, "f"),
-                (0,
-                i.GG)(this, ft, n, "f"),
-                (0,
-                i.GG)(this, pt, e, "f"),
-                (0,
-                i.GG)(this, ut, document.createElement("div"), "f"),
-                (0,
-                i.gn)(this, ut, "f").className = "profile-selection-ui",
-                (0,
-                i.gn)(this, dt, "f").appendChild((0,
-                i.gn)(this, ut, "f"));
+                i.set(this, dt, l, "f"),
+                i.set(this, gt, t, "f"),
+                i.set(this, ft, n, "f"),
+                i.set(this, pt, e, "f"),
+                i.set(this, ut, document.createElement("div"), "f"),
+                i.get(this, ut, "f").className = "profile-selection-ui",
+                i.get(this, dt, "f").appendChild(i.get(this, ut, "f"));
                 const c = document.createElement("div");
                 c.className = "background",
-                (0,
-                i.gn)(this, ut, "f").appendChild(c);
+                i.get(this, ut, "f").appendChild(c);
                 const r = document.createElement("div");
                 r.className = "container",
-                (0,
-                i.gn)(this, ut, "f").appendChild(r);
+                i.get(this, ut, "f").appendChild(r);
                 const h = document.createElement("div");
                 h.className = "top-bar",
                 r.appendChild(h);
@@ -816,8 +695,7 @@
                 d.textContent = t.get("Profiles"),
                 h.appendChild(d);
                 for (let t = 0; t < E.A.maxNumberOfProfiles; t++)
-                    (0,
-                    i.gn)(this, ht, "m", bt).call(this, r, t, a);
+                    i.get(this, ht, "m", bt).call(this, r, t, a);
                 const g = document.createElement("div");
                 g.className = "bottom-bar",
                 r.appendChild(g);
@@ -841,21 +719,16 @@
                 }
                 )),
                 g.appendChild(p),
-                window.addEventListener("keydown", (0,
-                i.GG)(this, vt, (t => {
+                window.addEventListener("keydown", i.set(this, vt, (t => {
                     "Escape" == t.code && (s(),
                     t.preventDefault())
                 }
                 ), "f"))
             }
             dispose() {
-                (0,
-                i.gn)(this, wt, "f").cancel(),
-                (0,
-                i.gn)(this, dt, "f").removeChild((0,
-                i.gn)(this, ut, "f")),
-                window.removeEventListener("keydown", (0,
-                i.gn)(this, vt, "f"))
+                i.get(this, wt, "f").cancel(),
+                i.get(this, dt, "f").removeChild(i.get(this, ut, "f")),
+                window.removeEventListener("keydown", i.get(this, vt, "f"))
             }
         }
         ;
@@ -896,21 +769,13 @@
         qt = new WeakMap,
         Nt = new WeakSet,
         Vt = function() {
-            (0,
-            i.gn)(this, It, "f").style.left = "calc(" + (100 * (0,
-            i.gn)(this, Dt, "f") / 360).toString() + "% - 1px)",
-            (0,
-            i.gn)(this, St, "f").style.backgroundImage = "linear-gradient(transparent, #000), linear-gradient(to right, transparent, hsla(" + (0,
-            i.gn)(this, Dt, "f").toString() + ", 100%, 50%, 1))"
+            i.get(this, It, "f").style.left = "calc(" + (100 * i.get(this, Dt, "f") / 360).toString() + "% - 1px)",
+            i.get(this, St, "f").style.backgroundImage = "linear-gradient(transparent, #000), linear-gradient(to right, transparent, hsla(" + i.get(this, Dt, "f").toString() + ", 100%, 50%, 1))"
         }
         ,
         Xt = function() {
-            (0,
-            i.gn)(this, Tt, "f").style.left = "calc(" + (0,
-            i.gn)(this, Ot, "f").toString() + "% - 6px)",
-            (0,
-            i.gn)(this, Tt, "f").style.top = "calc(" + (100 - (0,
-            i.gn)(this, Ht, "f")).toString() + "% - 6px)"
+            i.get(this, Tt, "f").style.left = "calc(" + i.get(this, Ot, "f").toString() + "% - 6px)",
+            i.get(this, Tt, "f").style.top = "calc(" + (100 - i.get(this, Ht, "f")).toString() + "% - 6px)"
         }
         ;
         const Qt = class {
@@ -932,155 +797,91 @@
                 Bt.set(this, void 0),
                 Ft.set(this, void 0),
                 qt.set(this, void 0),
-                (0,
-                i.GG)(this, Lt, t, "f"),
-                (0,
-                i.GG)(this, At, n, "f"),
-                (0,
-                i.GG)(this, Wt, document.createElement("div"), "f"),
-                (0,
-                i.gn)(this, Wt, "f").className = "color-picker-ui",
-                (0,
-                i.GG)(this, St, document.createElement("div"), "f"),
-                (0,
-                i.gn)(this, St, "f").className = "value-saturation-picker",
-                (0,
-                i.gn)(this, Wt, "f").appendChild((0,
-                i.gn)(this, St, "f")),
-                (0,
-                i.GG)(this, Tt, document.createElement("div"), "f"),
-                (0,
-                i.gn)(this, Tt, "f").className = "marker",
-                (0,
-                i.gn)(this, St, "f").appendChild((0,
-                i.gn)(this, Tt, "f")),
-                (0,
-                i.GG)(this, Pt, document.createElement("div"), "f"),
-                (0,
-                i.gn)(this, Pt, "f").className = "hue-picker",
-                (0,
-                i.gn)(this, Wt, "f").appendChild((0,
-                i.gn)(this, Pt, "f")),
-                (0,
-                i.GG)(this, It, document.createElement("div"), "f"),
-                (0,
-                i.gn)(this, It, "f").className = "marker",
-                (0,
-                i.gn)(this, Pt, "f").appendChild((0,
-                i.gn)(this, It, "f")),
-                (0,
-                i.gn)(this, Lt, "f").appendChild((0,
-                i.gn)(this, Wt, "f"));
-                (0,
-                i.GG)(this, Rt, (t => {
+                i.set(this, Lt, t, "f"),
+                i.set(this, At, n, "f"),
+                i.set(this, Wt, document.createElement("div"), "f"),
+                i.get(this, Wt, "f").className = "color-picker-ui",
+                i.set(this, St, document.createElement("div"), "f"),
+                i.get(this, St, "f").className = "value-saturation-picker",
+                i.get(this, Wt, "f").appendChild(i.get(this, St, "f")),
+                i.set(this, Tt, document.createElement("div"), "f"),
+                i.get(this, Tt, "f").className = "marker",
+                i.get(this, St, "f").appendChild(i.get(this, Tt, "f")),
+                i.set(this, Pt, document.createElement("div"), "f"),
+                i.get(this, Pt, "f").className = "hue-picker",
+                i.get(this, Wt, "f").appendChild(i.get(this, Pt, "f")),
+                i.set(this, It, document.createElement("div"), "f"),
+                i.get(this, It, "f").className = "marker",
+                i.get(this, Pt, "f").appendChild(i.get(this, It, "f")),
+                i.get(this, Lt, "f").appendChild(i.get(this, Wt, "f"));
+                i.set(this, Rt, (t => {
                     let e = null;
-                    if (t instanceof MouseEvent ? (0,
-                    i.gn)(this, zt, "f") && (e = t) : t instanceof TouchEvent && t.targetTouches.length > 0 && (e = t.targetTouches[t.targetTouches.length - 1]),
+                    if (t instanceof MouseEvent ? i.get(this, zt, "f") && (e = t) : t instanceof TouchEvent && t.targetTouches.length > 0 && (e = t.targetTouches[t.targetTouches.length - 1]),
                     null != e) {
-                        const t = (0,
-                        i.gn)(this, St, "f").getBoundingClientRect()
+                        const t = i.get(this, St, "f").getBoundingClientRect()
                           , s = Math.max(0, Math.min(1, (e.clientX - t.left) / t.width))
                           , o = Math.max(0, Math.min(1, (e.clientY - t.top) / t.height));
-                        (0,
-                        i.GG)(this, Ot, 100 * s, "f"),
-                        (0,
-                        i.GG)(this, Ht, 100 * (1 - o), "f"),
-                        (0,
-                        i.gn)(this, Nt, "m", Xt).call(this),
+                        i.set(this, Ot, 100 * s, "f"),
+                        i.set(this, Ht, 100 * (1 - o), "f"),
+                        i.get(this, Nt, "m", Xt).call(this),
                         n(this.color)
                     }
                 }
                 ), "f"),
-                (0,
-                i.GG)(this, Bt, (t => {
-                    0 == t.button && (0,
-                    i.GG)(this, zt, !1, "f")
+                i.set(this, Bt, (t => {
+                    0 == t.button && i.set(this, zt, !1, "f")
                 }
                 ), "f"),
-                (0,
-                i.gn)(this, St, "f").addEventListener("mousedown", (t => {
-                    0 == t.button && (0,
-                    i.GG)(this, zt, !0, "f"),
-                    (0,
-                    i.gn)(this, Rt, "f").call(this, t)
+                i.get(this, St, "f").addEventListener("mousedown", (t => {
+                    0 == t.button && i.set(this, zt, !0, "f"),
+                    i.get(this, Rt, "f").call(this, t)
                 }
                 )),
-                window.addEventListener("mouseup", (0,
-                i.gn)(this, Bt, "f")),
-                window.addEventListener("mousemove", (0,
-                i.gn)(this, Rt, "f")),
-                (0,
-                i.gn)(this, St, "f").addEventListener("touchstart", (0,
-                i.gn)(this, Rt, "f")),
-                (0,
-                i.gn)(this, St, "f").addEventListener("touchmove", (0,
-                i.gn)(this, Rt, "f")),
-                (0,
-                i.GG)(this, Ft, (t => {
+                window.addEventListener("mouseup", i.get(this, Bt, "f")),
+                window.addEventListener("mousemove", i.get(this, Rt, "f")),
+                i.get(this, St, "f").addEventListener("touchstart", i.get(this, Rt, "f")),
+                i.get(this, St, "f").addEventListener("touchmove", i.get(this, Rt, "f")),
+                i.set(this, Ft, (t => {
                     let e = null;
-                    if (t instanceof MouseEvent ? (0,
-                    i.gn)(this, Ut, "f") && (e = t) : t instanceof TouchEvent && t.targetTouches.length > 0 && (e = t.targetTouches[t.targetTouches.length - 1]),
+                    if (t instanceof MouseEvent ? i.get(this, Ut, "f") && (e = t) : t instanceof TouchEvent && t.targetTouches.length > 0 && (e = t.targetTouches[t.targetTouches.length - 1]),
                     null != e) {
-                        const t = (0,
-                        i.gn)(this, Pt, "f").getBoundingClientRect()
+                        const t = i.get(this, Pt, "f").getBoundingClientRect()
                           , s = Math.max(0, Math.min(1, (e.clientX - t.left) / t.width));
-                        (0,
-                        i.GG)(this, Dt, 360 * s, "f"),
-                        (0,
-                        i.gn)(this, Nt, "m", Vt).call(this),
+                        i.set(this, Dt, 360 * s, "f"),
+                        i.get(this, Nt, "m", Vt).call(this),
                         n(this.color)
                     }
                 }
                 ), "f"),
-                (0,
-                i.GG)(this, qt, (t => {
-                    0 == t.button && (0,
-                    i.GG)(this, Ut, !1, "f")
+                i.set(this, qt, (t => {
+                    0 == t.button && i.set(this, Ut, !1, "f")
                 }
                 ), "f"),
-                (0,
-                i.gn)(this, Pt, "f").addEventListener("mousedown", (t => {
-                    0 == t.button && (0,
-                    i.GG)(this, Ut, !0, "f"),
-                    (0,
-                    i.gn)(this, Ft, "f").call(this, t)
+                i.get(this, Pt, "f").addEventListener("mousedown", (t => {
+                    0 == t.button && i.set(this, Ut, !0, "f"),
+                    i.get(this, Ft, "f").call(this, t)
                 }
                 )),
-                window.addEventListener("mouseup", (0,
-                i.gn)(this, qt, "f")),
-                window.addEventListener("mousemove", (0,
-                i.gn)(this, Ft, "f")),
-                (0,
-                i.gn)(this, Pt, "f").addEventListener("touchstart", (0,
-                i.gn)(this, Ft, "f")),
-                (0,
-                i.gn)(this, Pt, "f").addEventListener("touchmove", (0,
-                i.gn)(this, Ft, "f")),
-                (0,
-                i.gn)(this, Nt, "m", Vt).call(this),
-                (0,
-                i.gn)(this, Nt, "m", Xt).call(this)
+                window.addEventListener("mouseup", i.get(this, qt, "f")),
+                window.addEventListener("mousemove", i.get(this, Ft, "f")),
+                i.get(this, Pt, "f").addEventListener("touchstart", i.get(this, Ft, "f")),
+                i.get(this, Pt, "f").addEventListener("touchmove", i.get(this, Ft, "f")),
+                i.get(this, Nt, "m", Vt).call(this),
+                i.get(this, Nt, "m", Xt).call(this)
             }
             dispose() {
-                window.removeEventListener("mouseup", (0,
-                i.gn)(this, Bt, "f")),
-                window.removeEventListener("mousemove", (0,
-                i.gn)(this, Rt, "f")),
-                window.removeEventListener("mouseup", (0,
-                i.gn)(this, qt, "f")),
-                window.removeEventListener("mousemove", (0,
-                i.gn)(this, Ft, "f"))
+                window.removeEventListener("mouseup", i.get(this, Bt, "f")),
+                window.removeEventListener("mousemove", i.get(this, Rt, "f")),
+                window.removeEventListener("mouseup", i.get(this, qt, "f")),
+                window.removeEventListener("mousemove", i.get(this, Ft, "f"))
             }
             get color() {
-                const t = (0,
-                i.gn)(this, Ot, "f") / 100
-                  , n = (0,
-                i.gn)(this, Ht, "f") / 100
+                const t = i.get(this, Ot, "f") / 100
+                  , n = i.get(this, Ht, "f") / 100
                   , e = n - n * t / 2
                   , o = Math.min(e, 1 - e)
                   , a = 0 != o ? (n - e) / o : 0;
-                return new THREE.Color("hsl(" + (0,
-                i.gn)(this, Dt, "f").toString() + "," + (100 * a).toString() + "%," + (100 * e).toString() + "%)")
+                return new THREE.Color("hsl(" + i.get(this, Dt, "f").toString() + "," + (100 * a).toString() + "%," + (100 * e).toString() + "%)")
             }
             set color(t) {
                 const {h: n, s: e, l: o} = t.getHSL({
@@ -1090,18 +891,12 @@
                 }, THREE.SRGBColorSpace)
                   , a = o + e * Math.min(o, 1 - o)
                   , l = 0 == a ? 0 : 2 * (1 - o / a);
-                (0,
-                i.GG)(this, Dt, 360 * n, "f"),
-                (0,
-                i.GG)(this, Ot, 100 * l, "f"),
-                (0,
-                i.GG)(this, Ht, 100 * a, "f"),
-                (0,
-                i.gn)(this, Nt, "m", Vt).call(this),
-                (0,
-                i.gn)(this, Nt, "m", Xt).call(this),
-                (0,
-                i.gn)(this, At, "f").call(this, this.color)
+                i.set(this, Dt, 360 * n, "f"),
+                i.set(this, Ot, 100 * l, "f"),
+                i.set(this, Ht, 100 * a, "f"),
+                i.get(this, Nt, "m", Vt).call(this),
+                i.get(this, Nt, "m", Xt).call(this),
+                i.get(this, At, "f").call(this, this.color)
             }
         }
         ;
@@ -1124,48 +919,31 @@
                 cn.set(this, []),
                 rn.set(this, void 0),
                 hn.set(this, new xt.A),
-                (0,
-                i.GG)(this, jt, o, "f"),
-                (0,
-                i.GG)(this, Zt, a, "f"),
-                (0,
-                i.GG)(this, rn, l, "f"),
-                (0,
-                i.GG)(this, Jt, document.createElement("div"), "f"),
-                (0,
-                i.gn)(this, Jt, "f").className = "customization-panel-ui",
-                (0,
-                i.gn)(this, Zt, "f").appendChild((0,
-                i.gn)(this, Jt, "f"));
+                i.set(this, jt, o, "f"),
+                i.set(this, Zt, a, "f"),
+                i.set(this, rn, l, "f"),
+                i.set(this, Jt, document.createElement("div"), "f"),
+                i.get(this, Jt, "f").className = "customization-panel-ui",
+                i.get(this, Zt, "f").appendChild(i.get(this, Jt, "f"));
                 const r = document.createElement("div");
                 r.className = "tab-bar",
-                (0,
-                i.gn)(this, Jt, "f").appendChild(r);
+                i.get(this, Jt, "f").appendChild(r);
                 const h = document.createElement("div");
                 h.className = "panel color-panel",
-                (0,
-                i.gn)(this, Jt, "f").appendChild(h);
+                i.get(this, Jt, "f").appendChild(h);
                 const d = document.createElement("div");
                 d.className = "left",
                 h.appendChild(d);
                 const g = document.createElement("div");
                 g.className = "right",
                 h.appendChild(g),
-                (0,
-                i.gn)(this, Yt, "m", bn).call(this, n.get("Primary"), d),
-                (0,
-                i.gn)(this, Yt, "m", bn).call(this, n.get("Secondary"), d),
-                (0,
-                i.gn)(this, Yt, "m", bn).call(this, n.get("Frame"), g),
-                (0,
-                i.gn)(this, Yt, "m", bn).call(this, n.get("Rims"), g),
-                (0,
-                i.GG)(this, nn, document.createElement("div"), "f"),
-                (0,
-                i.gn)(this, nn, "f").className = "panel options-panel hidden",
-                (0,
-                i.gn)(this, Jt, "f").appendChild((0,
-                i.gn)(this, nn, "f"));
+                i.get(this, Yt, "m", bn).call(this, n.get("Primary"), d),
+                i.get(this, Yt, "m", bn).call(this, n.get("Secondary"), d),
+                i.get(this, Yt, "m", bn).call(this, n.get("Frame"), g),
+                i.get(this, Yt, "m", bn).call(this, n.get("Rims"), g),
+                i.set(this, nn, document.createElement("div"), "f"),
+                i.get(this, nn, "f").className = "panel options-panel hidden",
+                i.get(this, Jt, "f").appendChild(i.get(this, nn, "f"));
                 for (let s = 0; s < y.A.patterns.length; s++) {
                     if (!y.A.isValidPattern(s))
                         throw new Error("Invalid car style pattern");
@@ -1173,59 +951,42 @@
                     const a = document.createElement("button");
                     a.addEventListener("click", ( () => {
                         t.playUIClick(),
-                        (0,
-                        i.gn)(this, jt, "f").isPatternUnlocked(s) ? ((0,
-                        i.GG)(this, Kt, s, "f"),
-                        (0,
-                        i.gn)(this, Yt, "m", gn).call(this),
-                        (0,
-                        i.gn)(this, Yt, "m", dn).call(this)) : e.showConfirm(n.get("Would you like to watch an ad to unlock this item?"), n.get("Cancel"), n.get("Watch"), null, ( () => {
+                        i.get(this, jt, "f").isPatternUnlocked(s) ? (i.set(this, Kt, s, "f"),
+                        i.get(this, Yt, "m", gn).call(this),
+                        i.get(this, Yt, "m", dn).call(this)) : e.showConfirm(n.get("Would you like to watch an ad to unlock this item?"), n.get("Cancel"), n.get("Watch"), null, ( () => {
                             xn.$L("unlock-pattern").then((t => {
-                                t.success ? ((0,
-                                i.GG)(this, Kt, s, "f"),
-                                (0,
-                                i.gn)(this, Yt, "m", gn).call(this),
-                                (0,
-                                i.gn)(this, Yt, "m", dn).call(this),
+                                t.success ? (i.set(this, Kt, s, "f"),
+                                i.get(this, Yt, "m", gn).call(this),
+                                i.get(this, Yt, "m", dn).call(this),
                                 null != o && (a.removeChild(o),
                                 o = null),
-                                (0,
-                                i.gn)(this, jt, "f").unlockPattern(s)) : e.show(n.get("Ad not completed"), n.get("Ok"), null)
+                                i.get(this, jt, "f").unlockPattern(s)) : e.show(n.get("Ad not completed"), n.get("Ok"), null)
                             }
                             ))
                         }
                         ))
                     }
                     )),
-                    s == (0,
-                    i.gn)(this, Kt, "f") && a.classList.add("selected"),
-                    (0,
-                    i.gn)(this, nn, "f").appendChild(a);
+                    s == i.get(this, Kt, "f") && a.classList.add("selected"),
+                    i.get(this, nn, "f").appendChild(a);
                     const l = new y.A(s,y.A.defaultRims,y.A.defaultExhaust,2236962,9868950,1250067,6710886)
                       , c = document.createElement("img");
                     c.className = "loading",
-                    kt.F(l, (0,
-                    i.gn)(this, hn, "f")).then((t => {
+                    kt.F(l, i.get(this, hn, "f")).then((t => {
                         c.src = t,
                         c.classList.remove("loading")
                     }
                     )),
                     a.appendChild(c),
-                    (0,
-                    i.gn)(this, jt, "f").isPatternUnlocked(s) || (o = document.createElement("img"),
+                    i.get(this, jt, "f").isPatternUnlocked(s) || (o = document.createElement("img"),
                     o.className = "video-icon",
                     o.src = "images/video.svg",
                     a.appendChild(o)),
-                    (0,
-                    i.gn)(this, en, "f").set(s, a)
+                    i.get(this, en, "f").set(s, a)
                 }
-                (0,
-                i.GG)(this, sn, document.createElement("div"), "f"),
-                (0,
-                i.gn)(this, sn, "f").className = "panel options-panel hidden",
-                (0,
-                i.gn)(this, Jt, "f").appendChild((0,
-                i.gn)(this, sn, "f"));
+                i.set(this, sn, document.createElement("div"), "f"),
+                i.get(this, sn, "f").className = "panel options-panel hidden",
+                i.get(this, Jt, "f").appendChild(i.get(this, sn, "f"));
                 for (let o = 0; o < y.A.rims.length; o++) {
                     if (!y.A.isValidRims(o))
                         throw new Error("Invalid car style rims");
@@ -1233,24 +994,16 @@
                     const l = document.createElement("button");
                     l.addEventListener("click", ( () => {
                         t.playUIClick(),
-                        (0,
-                        i.gn)(this, jt, "f").isRimsUnlocked(o) ? ((0,
-                        i.GG)(this, $t, o, "f"),
-                        (0,
-                        i.gn)(this, Yt, "m", fn).call(this),
-                        (0,
-                        i.gn)(this, Yt, "m", dn).call(this)) : e.showConfirm(n.get("Would you like to watch an ad to unlock this item?"), n.get("Cancel"), n.get("Watch"), null, ( () => {
+                        i.get(this, jt, "f").isRimsUnlocked(o) ? (i.set(this, $t, o, "f"),
+                        i.get(this, Yt, "m", fn).call(this),
+                        i.get(this, Yt, "m", dn).call(this)) : e.showConfirm(n.get("Would you like to watch an ad to unlock this item?"), n.get("Cancel"), n.get("Watch"), null, ( () => {
                             xn.$L("unlock-rims").then((t => {
-                                t.success ? ((0,
-                                i.GG)(this, $t, o, "f"),
-                                (0,
-                                i.gn)(this, Yt, "m", fn).call(this),
-                                (0,
-                                i.gn)(this, Yt, "m", dn).call(this),
+                                t.success ? (i.set(this, $t, o, "f"),
+                                i.get(this, Yt, "m", fn).call(this),
+                                i.get(this, Yt, "m", dn).call(this),
                                 null != a && (l.removeChild(a),
                                 a = null),
-                                (0,
-                                i.gn)(this, jt, "f").unlockRims(o)) : e.show(n.get("Ad not completed"), n.get("Ok"), null)
+                                i.get(this, jt, "f").unlockRims(o)) : e.show(n.get("Ad not completed"), n.get("Ok"), null)
                             }
                             )).catch((t => {
                                 console.error(t)
@@ -1260,15 +1013,12 @@
                         ))
                     }
                     )),
-                    o == (0,
-                    i.gn)(this, $t, "f") && l.classList.add("selected"),
-                    (0,
-                    i.gn)(this, sn, "f").appendChild(l);
+                    o == i.get(this, $t, "f") && l.classList.add("selected"),
+                    i.get(this, sn, "f").appendChild(l);
                     const c = new y.A(y.A.defaultPattern,o,y.A.defaultExhaust,9868950,9868950,1250067,6710886)
                       , r = document.createElement("img");
                     r.className = "loading",
-                    kt.F(c, (0,
-                    i.gn)(this, hn, "f"), {
+                    kt.F(c, i.get(this, hn, "f"), {
                         position: new THREE.Vector3(1e3,.19190498995780947,1.3478),
                         look: new THREE.Vector3(0,.19190498995780947,1.3478),
                         zoom: 2.5
@@ -1278,21 +1028,15 @@
                     }
                     )),
                     l.appendChild(r),
-                    (0,
-                    i.gn)(this, jt, "f").isRimsUnlocked(o) || (a = document.createElement("img"),
+                    i.get(this, jt, "f").isRimsUnlocked(o) || (a = document.createElement("img"),
                     a.className = "video-icon",
                     a.src = "images/video.svg",
                     l.appendChild(a)),
-                    (0,
-                    i.gn)(this, on, "f").set(o, l)
+                    i.get(this, on, "f").set(o, l)
                 }
-                (0,
-                i.GG)(this, an, document.createElement("div"), "f"),
-                (0,
-                i.gn)(this, an, "f").className = "panel options-panel hidden",
-                (0,
-                i.gn)(this, Jt, "f").appendChild((0,
-                i.gn)(this, an, "f"));
+                i.set(this, an, document.createElement("div"), "f"),
+                i.get(this, an, "f").className = "panel options-panel hidden",
+                i.get(this, Jt, "f").appendChild(i.get(this, an, "f"));
                 for (let o = 0; o < y.A.exhausts.length; o++) {
                     if (!y.A.isValidExhaust(o))
                         throw new Error("Invalid car style exhaust");
@@ -1300,24 +1044,16 @@
                     const l = document.createElement("button");
                     l.addEventListener("click", ( () => {
                         t.playUIClick(),
-                        (0,
-                        i.gn)(this, jt, "f").isExhaustUnlocked(o) ? ((0,
-                        i.GG)(this, tn, o, "f"),
-                        (0,
-                        i.gn)(this, Yt, "m", pn).call(this),
-                        (0,
-                        i.gn)(this, Yt, "m", dn).call(this)) : e.showConfirm(n.get("Would you like to watch an ad to unlock this item?"), n.get("Cancel"), n.get("Watch"), null, ( () => {
+                        i.get(this, jt, "f").isExhaustUnlocked(o) ? (i.set(this, tn, o, "f"),
+                        i.get(this, Yt, "m", pn).call(this),
+                        i.get(this, Yt, "m", dn).call(this)) : e.showConfirm(n.get("Would you like to watch an ad to unlock this item?"), n.get("Cancel"), n.get("Watch"), null, ( () => {
                             xn.$L("unlock-exhaust").then((t => {
-                                t.success ? ((0,
-                                i.GG)(this, tn, o, "f"),
-                                (0,
-                                i.gn)(this, Yt, "m", pn).call(this),
-                                (0,
-                                i.gn)(this, Yt, "m", dn).call(this),
+                                t.success ? (i.set(this, tn, o, "f"),
+                                i.get(this, Yt, "m", pn).call(this),
+                                i.get(this, Yt, "m", dn).call(this),
                                 null != a && (l.removeChild(a),
                                 a = null),
-                                (0,
-                                i.gn)(this, jt, "f").unlockExhaust(o)) : e.show(n.get("Ad not completed"), n.get("Ok"), null)
+                                i.get(this, jt, "f").unlockExhaust(o)) : e.show(n.get("Ad not completed"), n.get("Ok"), null)
                             }
                             )).catch((t => {
                                 console.error(t)
@@ -1327,15 +1063,12 @@
                         ))
                     }
                     )),
-                    o == (0,
-                    i.gn)(this, tn, "f") && l.classList.add("selected"),
-                    (0,
-                    i.gn)(this, an, "f").appendChild(l);
+                    o == i.get(this, tn, "f") && l.classList.add("selected"),
+                    i.get(this, an, "f").appendChild(l);
                     const c = new y.A(y.A.defaultPattern,y.A.defaultRims,o,9868950,9868950,1250067,6710886)
                       , r = document.createElement("img");
                     r.className = "loading",
-                    kt.F(c, (0,
-                    i.gn)(this, hn, "f"), {
+                    kt.F(c, i.get(this, hn, "f"), {
                         position: new THREE.Vector3(1100,-800.5,-1001.7),
                         look: new THREE.Vector3(0,.5,-1.7),
                         zoom: 2
@@ -1345,13 +1078,11 @@
                     }
                     )),
                     l.appendChild(r),
-                    (0,
-                    i.gn)(this, jt, "f").isExhaustUnlocked(o) || (a = document.createElement("img"),
+                    i.get(this, jt, "f").isExhaustUnlocked(o) || (a = document.createElement("img"),
                     a.className = "video-icon",
                     a.src = "images/video.svg",
                     l.appendChild(a)),
-                    (0,
-                    i.gn)(this, ln, "f").set(o, l)
+                    i.get(this, ln, "f").set(o, l)
                 }
                 const f = [{
                     title: n.get("Paint"),
@@ -1360,18 +1091,15 @@
                 }, {
                     title: n.get("Pattern"),
                     icon: "images/pattern.svg",
-                    panel: (0,
-                    i.gn)(this, nn, "f")
+                    panel: i.get(this, nn, "f")
                 }, {
                     title: n.get("Rims"),
                     icon: "images/rims.svg",
-                    panel: (0,
-                    i.gn)(this, sn, "f")
+                    panel: i.get(this, sn, "f")
                 }, {
                     title: n.get("Exhaust"),
                     icon: "images/exhaust.svg",
-                    panel: (0,
-                    i.gn)(this, an, "f")
+                    panel: i.get(this, an, "f")
                 }];
                 let p = f[0];
                 const u = [];
@@ -1384,23 +1112,14 @@
                         for (const t of u)
                             t.classList.remove("selected");
                         h.classList.add("hidden"),
-                        (0,
-                        i.gn)(this, nn, "f").classList.add("hidden"),
-                        (0,
-                        i.gn)(this, sn, "f").classList.add("hidden"),
-                        (0,
-                        i.gn)(this, an, "f").classList.add("hidden"),
+                        i.get(this, nn, "f").classList.add("hidden"),
+                        i.get(this, sn, "f").classList.add("hidden"),
+                        i.get(this, an, "f").classList.add("hidden"),
                         e.classList.add("selected"),
                         n.panel.classList.remove("hidden"),
-                        p != n && (n.panel == h ? c(new THREE.Vector3(0,2,6)) : n.panel == (0,
-                        i.gn)(this, nn, "f") ? ((0,
-                        i.gn)(this, Yt, "m", un).call(this),
-                        c(new THREE.Vector3(0,2,6))) : n.panel == (0,
-                        i.gn)(this, sn, "f") ? ((0,
-                        i.gn)(this, Yt, "m", mn).call(this),
-                        c(new THREE.Vector3(-.5155052947032,.74948865866975,3.8370986018837385))) : n.panel == (0,
-                        i.gn)(this, an, "f") && ((0,
-                        i.gn)(this, Yt, "m", vn).call(this),
+                        p != n && (n.panel == h ? c(new THREE.Vector3(0,2,6)) : n.panel == i.get(this, nn, "f") ? (i.get(this, Yt, "m", un).call(this),
+                        c(new THREE.Vector3(0,2,6))) : n.panel == i.get(this, sn, "f") ? (i.get(this, Yt, "m", mn).call(this),
+                        c(new THREE.Vector3(-.5155052947032,.74948865866975,3.8370986018837385))) : n.panel == i.get(this, an, "f") && (i.get(this, Yt, "m", vn).call(this),
                         c(new THREE.Vector3(2.874291197536667,.9837316369014955,-.7283975369068978)))),
                         p = n
                     }
@@ -1416,57 +1135,28 @@
                 }
             }
             dispose() {
-                (0,
-                i.gn)(this, hn, "f").cancel(),
-                (0,
-                i.gn)(this, Zt, "f").removeChild((0,
-                i.gn)(this, Jt, "f"));
-                for (const t of (0,
-                i.gn)(this, cn, "f"))
+                i.get(this, hn, "f").cancel(),
+                i.get(this, Zt, "f").removeChild(i.get(this, Jt, "f"));
+                for (const t of i.get(this, cn, "f"))
                     t.dispose()
             }
             setCarStyle(t) {
-                (0,
-                i.GG)(this, Kt, t.pattern, "f"),
-                (0,
-                i.GG)(this, $t, t.rims, "f"),
-                (0,
-                i.GG)(this, tn, t.exhaust, "f"),
-                (0,
-                i.gn)(this, jt, "f").isPatternUnlocked((0,
-                i.gn)(this, Kt, "f")) || (0,
-                i.gn)(this, jt, "f").unlockPattern((0,
-                i.gn)(this, Kt, "f")),
-                (0,
-                i.gn)(this, jt, "f").isRimsUnlocked((0,
-                i.gn)(this, $t, "f")) || (0,
-                i.gn)(this, jt, "f").unlockRims((0,
-                i.gn)(this, $t, "f")),
-                (0,
-                i.gn)(this, jt, "f").isExhaustUnlocked((0,
-                i.gn)(this, tn, "f")) || (0,
-                i.gn)(this, jt, "f").unlockExhaust((0,
-                i.gn)(this, tn, "f")),
-                (0,
-                i.gn)(this, Yt, "m", gn).call(this),
-                (0,
-                i.gn)(this, Yt, "m", fn).call(this),
-                (0,
-                i.gn)(this, Yt, "m", pn).call(this),
-                (0,
-                i.gn)(this, Yt, "m", un).call(this),
-                (0,
-                i.gn)(this, Yt, "m", mn).call(this),
-                (0,
-                i.gn)(this, Yt, "m", vn).call(this),
-                (0,
-                i.gn)(this, cn, "f")[0].color = t.primaryColor,
-                (0,
-                i.gn)(this, cn, "f")[1].color = t.secondaryColor,
-                (0,
-                i.gn)(this, cn, "f")[2].color = t.frameColor,
-                (0,
-                i.gn)(this, cn, "f")[3].color = t.rimsColor
+                i.set(this, Kt, t.pattern, "f"),
+                i.set(this, $t, t.rims, "f"),
+                i.set(this, tn, t.exhaust, "f"),
+                i.get(this, jt, "f").isPatternUnlocked(i.get(this, Kt, "f")) || i.get(this, jt, "f").unlockPattern(i.get(this, Kt, "f")),
+                i.get(this, jt, "f").isRimsUnlocked(i.get(this, $t, "f")) || i.get(this, jt, "f").unlockRims(i.get(this, $t, "f")),
+                i.get(this, jt, "f").isExhaustUnlocked(i.get(this, tn, "f")) || i.get(this, jt, "f").unlockExhaust(i.get(this, tn, "f")),
+                i.get(this, Yt, "m", gn).call(this),
+                i.get(this, Yt, "m", fn).call(this),
+                i.get(this, Yt, "m", pn).call(this),
+                i.get(this, Yt, "m", un).call(this),
+                i.get(this, Yt, "m", mn).call(this),
+                i.get(this, Yt, "m", vn).call(this),
+                i.get(this, cn, "f")[0].color = t.primaryColor,
+                i.get(this, cn, "f")[1].color = t.secondaryColor,
+                i.get(this, cn, "f")[2].color = t.frameColor,
+                i.get(this, cn, "f")[3].color = t.rimsColor
             }
         }
         _t = kn,
@@ -1487,64 +1177,38 @@
         hn = new WeakMap,
         Yt = new WeakSet,
         dn = function() {
-            const t = new y.A((0,
-            i.gn)(this, Kt, "f"),(0,
-            i.gn)(this, $t, "f"),(0,
-            i.gn)(this, tn, "f"),(0,
-            i.gn)(this, cn, "f")[0].color.getHex(),(0,
-            i.gn)(this, cn, "f")[1].color.getHex(),(0,
-            i.gn)(this, cn, "f")[2].color.getHex(),(0,
-            i.gn)(this, cn, "f")[3].color.getHex());
-            (0,
-            i.gn)(this, rn, "f").call(this, t)
+            const t = new y.A(i.get(this, Kt, "f"),i.get(this, $t, "f"),i.get(this, tn, "f"),i.get(this, cn, "f")[0].color.getHex(),i.get(this, cn, "f")[1].color.getHex(),i.get(this, cn, "f")[2].color.getHex(),i.get(this, cn, "f")[3].color.getHex());
+            i.get(this, rn, "f").call(this, t)
         }
         ,
         gn = function() {
-            for (const [t,n] of (0,
-            i.gn)(this, en, "f"))
-                t == (0,
-                i.gn)(this, Kt, "f") ? n.classList.add("selected") : n.classList.remove("selected")
+            for (const [t,n] of i.get(this, en, "f"))
+                t == i.get(this, Kt, "f") ? n.classList.add("selected") : n.classList.remove("selected")
         }
         ,
         fn = function() {
-            for (const [t,n] of (0,
-            i.gn)(this, on, "f"))
-                t == (0,
-                i.gn)(this, $t, "f") ? n.classList.add("selected") : n.classList.remove("selected")
+            for (const [t,n] of i.get(this, on, "f"))
+                t == i.get(this, $t, "f") ? n.classList.add("selected") : n.classList.remove("selected")
         }
         ,
         pn = function() {
-            for (const [t,n] of (0,
-            i.gn)(this, ln, "f"))
-                t == (0,
-                i.gn)(this, tn, "f") ? n.classList.add("selected") : n.classList.remove("selected")
+            for (const [t,n] of i.get(this, ln, "f"))
+                t == i.get(this, tn, "f") ? n.classList.add("selected") : n.classList.remove("selected")
         }
         ,
         un = function() {
-            const t = (0,
-            i.gn)(this, en, "f").get((0,
-            i.gn)(this, Kt, "f"));
-            null != t && (0,
-            i.gn)(_t, _t, "m", wn).call(_t, (0,
-            i.gn)(this, nn, "f"), t)
+            const t = i.get(this, en, "f").get(i.get(this, Kt, "f"));
+            null != t && i.get(_t, _t, "m", wn).call(_t, i.get(this, nn, "f"), t)
         }
         ,
         mn = function() {
-            const t = (0,
-            i.gn)(this, on, "f").get((0,
-            i.gn)(this, $t, "f"));
-            null != t && (0,
-            i.gn)(_t, _t, "m", wn).call(_t, (0,
-            i.gn)(this, sn, "f"), t)
+            const t = i.get(this, on, "f").get(i.get(this, $t, "f"));
+            null != t && i.get(_t, _t, "m", wn).call(_t, i.get(this, sn, "f"), t)
         }
         ,
         vn = function() {
-            const t = (0,
-            i.gn)(this, ln, "f").get((0,
-            i.gn)(this, tn, "f"));
-            null != t && (0,
-            i.gn)(_t, _t, "m", wn).call(_t, (0,
-            i.gn)(this, an, "f"), t)
+            const t = i.get(this, ln, "f").get(i.get(this, tn, "f"));
+            null != t && i.get(_t, _t, "m", wn).call(_t, i.get(this, an, "f"), t)
         }
         ,
         wn = function(t, n) {
@@ -1579,8 +1243,7 @@
                 let t = l.value;
                 /^[0-9A-F]{6}$/i.test(t) && (t = "#" + t),
                 r.color = new THREE.Color(t),
-                (0,
-                i.gn)(this, Yt, "m", dn).call(this)
+                i.get(this, Yt, "m", dn).call(this)
             }
             )),
             l.addEventListener("blur", ( () => {
@@ -1594,13 +1257,11 @@
             const r = new Qt(e,(t => {
                 document.activeElement != l && (l.value = "#" + t.getHexString()),
                 c.style.backgroundColor = "#" + t.getHexString(),
-                (0,
-                i.gn)(this, Yt, "m", dn).call(this)
+                i.get(this, Yt, "m", dn).call(this)
             }
             ));
             l.value = "#" + r.color.getHexString(),
-            (0,
-            i.gn)(this, cn, "f").push(r)
+            i.get(this, cn, "f").push(r)
         }
         ;
         const Gn = kn;
@@ -1611,11 +1272,7 @@
         Nn = new WeakMap,
         yn = new WeakSet,
         Ln = function() {
-            (0,
-            i.gn)(this, Cn, "f").saveUnlockedCarStyles(Array.from((0,
-            i.gn)(this, En, "f")), Array.from((0,
-            i.gn)(this, Mn, "f")), Array.from((0,
-            i.gn)(this, Nn, "f")))
+            i.get(this, Cn, "f").saveUnlockedCarStyles(Array.from(i.get(this, En, "f")), Array.from(i.get(this, Mn, "f")), Array.from(i.get(this, Nn, "f")))
         }
         ;
         const An = class {
@@ -1625,69 +1282,52 @@
                 En.set(this, new Set),
                 Mn.set(this, new Set),
                 Nn.set(this, new Set),
-                (0,
-                i.GG)(this, Cn, t, "f"),
+                i.set(this, Cn, t, "f"),
                 xn.XZ()) {
-                    const {patterns: t, rims: n, exhausts: e} = (0,
-                    i.gn)(this, Cn, "f").loadUnlockedCarStyles();
+                    const {patterns: t, rims: n, exhausts: e} = i.get(this, Cn, "f").loadUnlockedCarStyles();
                     for (const n of t)
-                        (0,
-                        i.gn)(this, En, "f").add(n);
+                        i.get(this, En, "f").add(n);
                     for (const t of n)
-                        (0,
-                        i.gn)(this, Mn, "f").add(t);
+                        i.get(this, Mn, "f").add(t);
                     for (const t of e)
-                        (0,
-                        i.gn)(this, Nn, "f").add(t);
+                        i.get(this, Nn, "f").add(t);
                     for (let t = 0; t < 4; t++) {
                         if (!y.A.isValidPattern(t))
                             throw new Error("Invalid car style pattern");
-                        (0,
-                        i.gn)(this, En, "f").add(t)
+                        i.get(this, En, "f").add(t)
                     }
                     for (let t = 0; t < 3; t++) {
                         if (!y.A.isValidRims(t))
                             throw new Error("Invalid car style rims");
-                        (0,
-                        i.gn)(this, Mn, "f").add(t)
+                        i.get(this, Mn, "f").add(t)
                     }
                     for (let t = 0; t < 2; t++) {
                         if (!y.A.isValidExhaust(t))
                             throw new Error("Invalid car style exhaust");
-                        (0,
-                        i.gn)(this, Nn, "f").add(t)
+                        i.get(this, Nn, "f").add(t)
                     }
                 }
             }
             isPatternUnlocked(t) {
-                return !xn.XZ() || (0,
-                i.gn)(this, En, "f").has(t)
+                return !xn.XZ() || i.get(this, En, "f").has(t)
             }
             unlockPattern(t) {
-                this.isPatternUnlocked(t) || ((0,
-                i.gn)(this, En, "f").add(t),
-                (0,
-                i.gn)(this, yn, "m", Ln).call(this))
+                this.isPatternUnlocked(t) || (i.get(this, En, "f").add(t),
+                i.get(this, yn, "m", Ln).call(this))
             }
             isRimsUnlocked(t) {
-                return !xn.XZ() || (0,
-                i.gn)(this, Mn, "f").has(t)
+                return !xn.XZ() || i.get(this, Mn, "f").has(t)
             }
             unlockRims(t) {
-                this.isRimsUnlocked(t) || ((0,
-                i.gn)(this, Mn, "f").add(t),
-                (0,
-                i.gn)(this, yn, "m", Ln).call(this))
+                this.isRimsUnlocked(t) || (i.get(this, Mn, "f").add(t),
+                i.get(this, yn, "m", Ln).call(this))
             }
             isExhaustUnlocked(t) {
-                return !xn.XZ() || (0,
-                i.gn)(this, Nn, "f").has(t)
+                return !xn.XZ() || i.get(this, Nn, "f").has(t)
             }
             unlockExhaust(t) {
-                this.isExhaustUnlocked(t) || ((0,
-                i.gn)(this, Nn, "f").add(t),
-                (0,
-                i.gn)(this, yn, "m", Ln).call(this))
+                this.isExhaustUnlocked(t) || (i.get(this, Nn, "f").add(t),
+                i.get(this, yn, "m", Ln).call(this))
             }
         }
         ;
@@ -1724,12 +1364,9 @@
         Wn = new WeakSet,
         ae = function() {
             const t = y.A.default();
-            (0,
-            i.gn)(this, $n, "f").setCarStyle(t),
-            (0,
-            i.gn)(this, Sn, "f").setCarStyle(t),
-            (0,
-            i.GG)(this, se, !0, "f")
+            i.get(this, $n, "f").setCarStyle(t),
+            i.get(this, Sn, "f").setCarStyle(t),
+            i.set(this, se, !0, "f")
         }
         ,
         le = function() {
@@ -1738,22 +1375,19 @@
                     throw new Error("Invalid car style pattern");
                 return n
             }
-            )).filter((t => (0,
-            i.gn)(this, Vn, "f").isPatternUnlocked(t)))
+            )).filter((t => i.get(this, Vn, "f").isPatternUnlocked(t)))
               , n = y.A.rims.map(( (t, n) => {
                 if (!y.A.isValidRims(n))
                     throw new Error("Invalid car style rims");
                 return n
             }
-            )).filter((t => (0,
-            i.gn)(this, Vn, "f").isRimsUnlocked(t)))
+            )).filter((t => i.get(this, Vn, "f").isRimsUnlocked(t)))
               , e = y.A.exhausts.map(( (t, n) => {
                 if (!y.A.isValidExhaust(n))
                     throw new Error("Invalid car style exhaust");
                 return n
             }
-            )).filter((t => (0,
-            i.gn)(this, Vn, "f").isExhaustUnlocked(t)))
+            )).filter((t => i.get(this, Vn, "f").isExhaustUnlocked(t)))
               , o = t[Math.floor(Math.random() * t.length)]
               , a = n[Math.floor(Math.random() * n.length)]
               , l = e[Math.floor(Math.random() * e.length)]
@@ -1773,282 +1407,147 @@
             m = Math.random() < .5 ? 1250067 : Math.random() < .4 ? d : u,
             v = Math.random() < .5 ? 6710886 : m == d ? u : m == u || Math.random() < .4 ? d : u;
             const w = new y.A(o,a,l,d,u,m,v);
-            (0,
-            i.gn)(this, $n, "f").setCarStyle(w),
-            (0,
-            i.gn)(this, Sn, "f").setCarStyle(w),
-            (0,
-            i.GG)(this, se, !0, "f")
+            i.get(this, $n, "f").setCarStyle(w),
+            i.get(this, Sn, "f").setCarStyle(w),
+            i.set(this, se, !0, "f")
         }
         ,
         ce = function() {
-            for (let t = 0; t < (0,
-            i.gn)(this, Tn, "f").length; t++) {
-                const n = (0,
-                i.gn)(this, Tn, "f")[t]
-                  , e = (0,
-                i.gn)(this, Hn, "f").getUserProfile(t);
-                null != e && t != (0,
-                i.gn)(this, te, "f") ? (n.setCarStyle(e.carStyle),
+            for (let t = 0; t < i.get(this, Tn, "f").length; t++) {
+                const n = i.get(this, Tn, "f")[t]
+                  , e = i.get(this, Hn, "f").getUserProfile(t);
+                null != e && t != i.get(this, te, "f") ? (n.setCarStyle(e.carStyle),
                 n.setVisible(!0)) : n.setVisible(!1)
             }
         }
         ,
         re = function t(n, e, s, o) {
             const a = null != o;
-            (0,
-            i.GG)(this, Bn, new tt((0,
-            i.gn)(this, zn, "f"),(0,
-            i.gn)(this, In, "f"),e,s,(0,
-            i.gn)(this, ne, "f"),a,(e => {
-                (0,
-                i.gn)(this, Bn, "f")?.dispose(),
-                (0,
-                i.GG)(this, Bn, null, "f"),
-                (0,
-                i.gn)(this, On, "f").showConfirm((0,
-                i.gn)(this, zn, "f").get('Are you sure you would like to delete "{0}"?', [e.nickname]), (0,
-                i.gn)(this, zn, "f").get("Cancel"), (0,
-                i.gn)(this, zn, "f").get("Confirm"), ( () => {
-                    (0,
-                    i.gn)(this, Wn, "m", t).call(this, n, e.nickname, e.countryCode, o)
+            i.set(this, Bn, new tt(i.get(this, zn, "f"),i.get(this, In, "f"),e,s,i.get(this, ne, "f"),a,(e => {
+                i.get(this, Bn, "f")?.dispose(),
+                i.set(this, Bn, null, "f"),
+                i.get(this, On, "f").showConfirm(i.get(this, zn, "f").get('Are you sure you would like to delete "{0}"?', [e.nickname]), i.get(this, zn, "f").get("Cancel"), i.get(this, zn, "f").get("Confirm"), ( () => {
+                    i.get(this, Wn, "m", t).call(this, n, e.nickname, e.countryCode, o)
                 }
                 ), ( () => {
-                    if ((0,
-                    i.gn)(this, Hn, "f").deleteProfileSlot(n),
-                    n == (0,
-                    i.gn)(this, Hn, "f").profileSlot) {
-                        (0,
-                        i.gn)(this, Hn, "f").setProfileSlot((0,
-                        i.gn)(this, Hn, "f").firstOccupiedProfileSlot() ?? 0),
-                        (0,
-                        i.GG)(this, te, (0,
-                        i.gn)(this, Hn, "f").profileSlot, "f"),
-                        (0,
-                        i.GG)(this, ne, (0,
-                        i.gn)(this, Hn, "f").getCurrentUserProfile(), "f"),
-                        (0,
-                        i.GG)(this, ee, (0,
-                        i.gn)(this, ne, "f").nickname, "f"),
-                        (0,
-                        i.GG)(this, ie, (0,
-                        i.gn)(this, ne, "f").countryCode, "f"),
-                        (0,
-                        i.gn)(this, Zn, "f").textContent = (0,
-                        i.gn)(this, ee, "f");
+                    if (i.get(this, Hn, "f").deleteProfileSlot(n),
+                    n == i.get(this, Hn, "f").profileSlot) {
+                        i.get(this, Hn, "f").setProfileSlot(i.get(this, Hn, "f").firstOccupiedProfileSlot() ?? 0),
+                        i.set(this, te, i.get(this, Hn, "f").profileSlot, "f"),
+                        i.set(this, ne, i.get(this, Hn, "f").getCurrentUserProfile(), "f"),
+                        i.set(this, ee, i.get(this, ne, "f").nickname, "f"),
+                        i.set(this, ie, i.get(this, ne, "f").countryCode, "f"),
+                        i.get(this, Zn, "f").textContent = i.get(this, ee, "f");
                         const t = (0,
                         L.O)()
-                          , n = null == (0,
-                        i.gn)(this, ie, "f") ? null : t.find((t => t.code == (0,
-                        i.gn)(this, ie, "f")));
-                        null != n ? ((0,
-                        i.gn)(this, jn, "f").classList.add("loading"),
-                        (0,
-                        i.gn)(this, jn, "f").src = "images/countries/" + n.code + ".svg",
-                        (0,
-                        i.gn)(this, jn, "f").title = n.name,
-                        (0,
-                        i.gn)(this, jn, "f").classList.remove("hidden")) : (0,
-                        i.gn)(this, jn, "f").classList.add("hidden"),
-                        (0,
-                        i.gn)(this, $n, "f").setCarStyle((0,
-                        i.gn)(this, ne, "f").carStyle),
-                        (0,
-                        i.gn)(this, Sn, "f").setCarStyle((0,
-                        i.gn)(this, ne, "f").carStyle),
-                        (0,
-                        i.GG)(this, se, !1, "f"),
-                        (0,
-                        i.gn)(this, Wn, "m", ce).call(this)
+                          , n = null == i.get(this, ie, "f") ? null : t.find((t => t.code == i.get(this, ie, "f")));
+                        null != n ? (i.get(this, jn, "f").classList.add("loading"),
+                        i.get(this, jn, "f").src = "images/countries/" + n.code + ".svg",
+                        i.get(this, jn, "f").title = n.name,
+                        i.get(this, jn, "f").classList.remove("hidden")) : i.get(this, jn, "f").classList.add("hidden"),
+                        i.get(this, $n, "f").setCarStyle(i.get(this, ne, "f").carStyle),
+                        i.get(this, Sn, "f").setCarStyle(i.get(this, ne, "f").carStyle),
+                        i.set(this, se, !1, "f"),
+                        i.get(this, Wn, "m", ce).call(this)
                     }
-                    (0,
-                    i.gn)(this, _n, "f").classList.remove("hidden")
+                    i.get(this, _n, "f").classList.remove("hidden")
                 }
                 ))
             }
             ),( (e, s) => {
-                (0,
-                i.gn)(this, Bn, "f")?.dispose(),
-                (0,
-                i.GG)(this, Bn, null, "f"),
-                (0,
-                i.gn)(this, On, "f").showConfirm((0,
-                i.gn)(this, zn, "f").get("Are you sure you want to display your private key?") + "\n\n" + (0,
-                i.gn)(this, zn, "f").get("DO NOT SHARE THIS KEY WITH ANYONE."), (0,
-                i.gn)(this, zn, "f").get("Cancel"), (0,
-                i.gn)(this, zn, "f").get("Confirm"), ( () => {
-                    (0,
-                    i.gn)(this, Wn, "m", t).call(this, n, e.nickname, e.countryCode, o)
+                i.get(this, Bn, "f")?.dispose(),
+                i.set(this, Bn, null, "f"),
+                i.get(this, On, "f").showConfirm(i.get(this, zn, "f").get("Are you sure you want to display your private key?") + "\n\n" + i.get(this, zn, "f").get("DO NOT SHARE THIS KEY WITH ANYONE."), i.get(this, zn, "f").get("Cancel"), i.get(this, zn, "f").get("Confirm"), ( () => {
+                    i.get(this, Wn, "m", t).call(this, n, e.nickname, e.countryCode, o)
                 }
                 ), ( () => {
-                    (0,
-                    i.GG)(this, Fn, new lt((0,
-                    i.gn)(this, In, "f"),(0,
-                    i.gn)(this, zn, "f"),s,( () => {
-                        (0,
-                        i.gn)(this, Fn, "f")?.dispose(),
-                        (0,
-                        i.GG)(this, Fn, null, "f"),
-                        (0,
-                        i.gn)(this, Wn, "m", t).call(this, n, e.nickname, e.countryCode, o)
+                    i.set(this, Fn, new lt(i.get(this, In, "f"),i.get(this, zn, "f"),s,( () => {
+                        i.get(this, Fn, "f")?.dispose(),
+                        i.set(this, Fn, null, "f"),
+                        i.get(this, Wn, "m", t).call(this, n, e.nickname, e.countryCode, o)
                     }
                     ),null), "f")
                 }
                 ))
             }
             ),(t => {
-                if ((0,
-                i.gn)(this, Bn, "f")?.dispose(),
-                (0,
-                i.GG)(this, Bn, null, "f"),
+                if (i.get(this, Bn, "f")?.dispose(),
+                i.set(this, Bn, null, "f"),
                 null != t) {
-                    if (t.nickname != (0,
-                    i.gn)(this, ee, "f") && ((0,
-                    i.GG)(this, ee, t.nickname, "f"),
-                    (0,
-                    i.gn)(this, Zn, "f").textContent = (0,
-                    i.gn)(this, ee, "f"),
-                    (0,
-                    i.GG)(this, se, !0, "f")),
-                    t.countryCode != (0,
-                    i.gn)(this, ie, "f")) {
-                        (0,
-                        i.GG)(this, ie, t.countryCode, "f");
+                    if (t.nickname != i.get(this, ee, "f") && (i.set(this, ee, t.nickname, "f"),
+                    i.get(this, Zn, "f").textContent = i.get(this, ee, "f"),
+                    i.set(this, se, !0, "f")),
+                    t.countryCode != i.get(this, ie, "f")) {
+                        i.set(this, ie, t.countryCode, "f");
                         const n = (0,
                         L.O)()
-                          , e = null == (0,
-                        i.gn)(this, ie, "f") ? null : n.find((t => t.code == (0,
-                        i.gn)(this, ie, "f")));
-                        null != e ? ((0,
-                        i.gn)(this, jn, "f").classList.add("loading"),
-                        (0,
-                        i.gn)(this, jn, "f").src = "images/countries/" + e.code + ".svg",
-                        (0,
-                        i.gn)(this, jn, "f").title = e.name,
-                        (0,
-                        i.gn)(this, jn, "f").classList.remove("hidden")) : (0,
-                        i.gn)(this, jn, "f").classList.add("hidden"),
-                        (0,
-                        i.GG)(this, se, !0, "f")
+                          , e = null == i.get(this, ie, "f") ? null : n.find((t => t.code == i.get(this, ie, "f")));
+                        null != e ? (i.get(this, jn, "f").classList.add("loading"),
+                        i.get(this, jn, "f").src = "images/countries/" + e.code + ".svg",
+                        i.get(this, jn, "f").title = e.name,
+                        i.get(this, jn, "f").classList.remove("hidden")) : i.get(this, jn, "f").classList.add("hidden"),
+                        i.set(this, se, !0, "f")
                     }
-                    a && (0,
-                    i.gn)(this, Wn, "m", fe).call(this)
+                    a && i.get(this, Wn, "m", fe).call(this)
                 }
-                (0,
-                i.gn)(this, _n, "f").classList.remove("hidden")
+                i.get(this, _n, "f").classList.remove("hidden")
             }
             )), "f")
         }
         ,
         he = function t(n, e) {
-            (0,
-            i.GG)(this, Fn, new lt((0,
-            i.gn)(this, In, "f"),(0,
-            i.gn)(this, zn, "f"),e,( () => {
-                (0,
-                i.gn)(this, Fn, "f")?.dispose(),
-                (0,
-                i.GG)(this, Fn, null, "f"),
-                (0,
-                i.gn)(this, Wn, "m", de).call(this)
+            i.set(this, Fn, new lt(i.get(this, In, "f"),i.get(this, zn, "f"),e,( () => {
+                i.get(this, Fn, "f")?.dispose(),
+                i.set(this, Fn, null, "f"),
+                i.get(this, Wn, "m", de).call(this)
             }
             ),(e => {
-                (0,
-                i.gn)(this, Fn, "f")?.dispose(),
-                (0,
-                i.GG)(this, Fn, null, "f"),
-                (0,
-                i.gn)(this, Hn, "f").hasDuplicateToken(e) ? (0,
-                i.gn)(this, On, "f").show((0,
-                i.gn)(this, zn, "f").get("You cannot have duplicate user profiles"), (0,
-                i.gn)(this, zn, "f").get("Ok"), ( () => {
-                    (0,
-                    i.gn)(this, Wn, "m", t).call(this, n, e)
+                i.get(this, Fn, "f")?.dispose(),
+                i.set(this, Fn, null, "f"),
+                i.get(this, Hn, "f").hasDuplicateToken(e) ? i.get(this, On, "f").show(i.get(this, zn, "f").get("You cannot have duplicate user profiles"), i.get(this, zn, "f").get("Ok"), ( () => {
+                    i.get(this, Wn, "m", t).call(this, n, e)
                 }
-                )) : (0,
-                i.gn)(this, Hn, "f").isValidToken(e) ? (0,
-                i.gn)(this, Un, "f").getUser(e).then((s => {
+                )) : i.get(this, Hn, "f").isValidToken(e) ? i.get(this, Un, "f").getUser(e).then((s => {
                     if (null != s)
-                        if ((0,
-                        i.gn)(this, Hn, "f").createProfile(n, e, s.nickname, s.countryCode, s.carStyle)) {
-                            (0,
-                            i.GG)(this, te, n, "f"),
-                            (0,
-                            i.gn)(this, Hn, "f").setProfileSlot(n),
-                            (0,
-                            i.GG)(this, ne, (0,
-                            i.gn)(this, Hn, "f").getCurrentUserProfile(), "f"),
-                            (0,
-                            i.GG)(this, ee, (0,
-                            i.gn)(this, ne, "f").nickname, "f"),
-                            (0,
-                            i.GG)(this, ie, (0,
-                            i.gn)(this, ne, "f").countryCode, "f"),
-                            (0,
-                            i.gn)(this, Zn, "f").textContent = (0,
-                            i.gn)(this, ee, "f");
+                        if (i.get(this, Hn, "f").createProfile(n, e, s.nickname, s.countryCode, s.carStyle)) {
+                            i.set(this, te, n, "f"),
+                            i.get(this, Hn, "f").setProfileSlot(n),
+                            i.set(this, ne, i.get(this, Hn, "f").getCurrentUserProfile(), "f"),
+                            i.set(this, ee, i.get(this, ne, "f").nickname, "f"),
+                            i.set(this, ie, i.get(this, ne, "f").countryCode, "f"),
+                            i.get(this, Zn, "f").textContent = i.get(this, ee, "f");
                             const t = (0,
                             L.O)()
-                              , e = null == (0,
-                            i.gn)(this, ie, "f") ? null : t.find((t => t.code == (0,
-                            i.gn)(this, ie, "f")));
-                            null != e ? ((0,
-                            i.gn)(this, jn, "f").classList.add("loading"),
-                            (0,
-                            i.gn)(this, jn, "f").src = "images/countries/" + e.code + ".svg",
-                            (0,
-                            i.gn)(this, jn, "f").title = e.name,
-                            (0,
-                            i.gn)(this, jn, "f").classList.remove("hidden")) : (0,
-                            i.gn)(this, jn, "f").classList.add("hidden"),
-                            (0,
-                            i.gn)(this, $n, "f").setCarStyle((0,
-                            i.gn)(this, ne, "f").carStyle),
-                            (0,
-                            i.gn)(this, Sn, "f").setCarStyle((0,
-                            i.gn)(this, ne, "f").carStyle),
-                            (0,
-                            i.GG)(this, se, !1, "f"),
-                            (0,
-                            i.gn)(this, Wn, "m", ce).call(this),
-                            (0,
-                            i.gn)(this, _n, "f").classList.remove("hidden")
+                              , e = null == i.get(this, ie, "f") ? null : t.find((t => t.code == i.get(this, ie, "f")));
+                            null != e ? (i.get(this, jn, "f").classList.add("loading"),
+                            i.get(this, jn, "f").src = "images/countries/" + e.code + ".svg",
+                            i.get(this, jn, "f").title = e.name,
+                            i.get(this, jn, "f").classList.remove("hidden")) : i.get(this, jn, "f").classList.add("hidden"),
+                            i.get(this, $n, "f").setCarStyle(i.get(this, ne, "f").carStyle),
+                            i.get(this, Sn, "f").setCarStyle(i.get(this, ne, "f").carStyle),
+                            i.set(this, se, !1, "f"),
+                            i.get(this, Wn, "m", ce).call(this),
+                            i.get(this, _n, "f").classList.remove("hidden")
                         } else
-                            (0,
-                            i.gn)(this, On, "f").show((0,
-                            i.gn)(this, zn, "f").get("Failed to create user profile"), (0,
-                            i.gn)(this, zn, "f").get("Ok"), ( () => {
-                                (0,
-                                i.gn)(this, Wn, "m", t).call(this, n, e)
+                            i.get(this, On, "f").show(i.get(this, zn, "f").get("Failed to create user profile"), i.get(this, zn, "f").get("Ok"), ( () => {
+                                i.get(this, Wn, "m", t).call(this, n, e)
                             }
                             ));
                     else
-                        (0,
-                        i.gn)(this, On, "f").show((0,
-                        i.gn)(this, zn, "f").get("This user profile does not exist on the server"), (0,
-                        i.gn)(this, zn, "f").get("Ok"), ( () => {
-                            (0,
-                            i.gn)(this, Wn, "m", t).call(this, n, e)
+                        i.get(this, On, "f").show(i.get(this, zn, "f").get("This user profile does not exist on the server"), i.get(this, zn, "f").get("Ok"), ( () => {
+                            i.get(this, Wn, "m", t).call(this, n, e)
                         }
                         ))
                 }
                 )).catch((s => {
                     console.error(s),
-                    (0,
-                    i.gn)(this, On, "f").show((0,
-                    i.gn)(this, zn, "f").get("Failed to download user profile from the server"), (0,
-                    i.gn)(this, zn, "f").get("Ok"), ( () => {
-                        (0,
-                        i.gn)(this, Wn, "m", t).call(this, n, e)
+                    i.get(this, On, "f").show(i.get(this, zn, "f").get("Failed to download user profile from the server"), i.get(this, zn, "f").get("Ok"), ( () => {
+                        i.get(this, Wn, "m", t).call(this, n, e)
                     }
                     ))
                 }
-                )) : (0,
-                i.gn)(this, On, "f").show((0,
-                i.gn)(this, zn, "f").get("User token is invalid"), (0,
-                i.gn)(this, zn, "f").get("Ok"), ( () => {
-                    (0,
-                    i.gn)(this, Wn, "m", t).call(this, n, e)
+                )) : i.get(this, On, "f").show(i.get(this, zn, "f").get("User token is invalid"), i.get(this, zn, "f").get("Ok"), ( () => {
+                    i.get(this, Wn, "m", t).call(this, n, e)
                 }
                 ))
             }
@@ -2056,149 +1555,75 @@
         }
         ,
         de = function t() {
-            (0,
-            i.gn)(this, _n, "f").classList.add("hidden"),
-            (0,
-            i.GG)(this, qn, new Gt((0,
-            i.gn)(this, zn, "f"),(0,
-            i.gn)(this, In, "f"),(0,
-            i.gn)(this, Hn, "f"),( () => {
-                (0,
-                i.gn)(this, qn, "f")?.dispose(),
-                (0,
-                i.GG)(this, qn, null, "f"),
-                (0,
-                i.gn)(this, _n, "f").classList.remove("hidden")
+            i.get(this, _n, "f").classList.add("hidden"),
+            i.set(this, qn, new Gt(i.get(this, zn, "f"),i.get(this, In, "f"),i.get(this, Hn, "f"),( () => {
+                i.get(this, qn, "f")?.dispose(),
+                i.set(this, qn, null, "f"),
+                i.get(this, _n, "f").classList.remove("hidden")
             }
             ),( () => {
-                (0,
-                i.gn)(this, qn, "f")?.dispose(),
-                (0,
-                i.GG)(this, qn, null, "f");
-                const n = (0,
-                i.gn)(this, Hn, "f").firstFreeProfileSlot();
-                null == n ? (0,
-                i.gn)(this, On, "f").show((0,
-                i.gn)(this, zn, "f").get("You need a free user profile slot to import a new user profile"), (0,
-                i.gn)(this, zn, "f").get("Ok"), ( () => {
-                    (0,
-                    i.gn)(this, Wn, "m", t).call(this)
+                i.get(this, qn, "f")?.dispose(),
+                i.set(this, qn, null, "f");
+                const n = i.get(this, Hn, "f").firstFreeProfileSlot();
+                null == n ? i.get(this, On, "f").show(i.get(this, zn, "f").get("You need a free user profile slot to import a new user profile"), i.get(this, zn, "f").get("Ok"), ( () => {
+                    i.get(this, Wn, "m", t).call(this)
                 }
-                )) : (0,
-                i.gn)(this, Wn, "m", he).call(this, n, "")
+                )) : i.get(this, Wn, "m", he).call(this, n, "")
             }
             ),(t => {
-                (0,
-                i.gn)(this, qn, "f")?.dispose(),
-                (0,
-                i.GG)(this, qn, null, "f"),
-                (0,
-                i.GG)(this, te, t, "f"),
-                (0,
-                i.gn)(this, Hn, "f").setProfileSlot(t),
-                (0,
-                i.GG)(this, ne, (0,
-                i.gn)(this, Hn, "f").getCurrentUserProfile(), "f"),
-                (0,
-                i.GG)(this, ee, (0,
-                i.gn)(this, ne, "f").nickname, "f"),
-                (0,
-                i.GG)(this, ie, (0,
-                i.gn)(this, ne, "f").countryCode, "f"),
-                (0,
-                i.gn)(this, Zn, "f").textContent = (0,
-                i.gn)(this, ee, "f");
+                i.get(this, qn, "f")?.dispose(),
+                i.set(this, qn, null, "f"),
+                i.set(this, te, t, "f"),
+                i.get(this, Hn, "f").setProfileSlot(t),
+                i.set(this, ne, i.get(this, Hn, "f").getCurrentUserProfile(), "f"),
+                i.set(this, ee, i.get(this, ne, "f").nickname, "f"),
+                i.set(this, ie, i.get(this, ne, "f").countryCode, "f"),
+                i.get(this, Zn, "f").textContent = i.get(this, ee, "f");
                 const n = (0,
                 L.O)()
-                  , e = null == (0,
-                i.gn)(this, ie, "f") ? null : n.find((t => t.code == (0,
-                i.gn)(this, ie, "f")));
-                null != e ? ((0,
-                i.gn)(this, jn, "f").classList.add("loading"),
-                (0,
-                i.gn)(this, jn, "f").src = "images/countries/" + e.code + ".svg",
-                (0,
-                i.gn)(this, jn, "f").title = e.name,
-                (0,
-                i.gn)(this, jn, "f").classList.remove("hidden")) : (0,
-                i.gn)(this, jn, "f").classList.add("hidden"),
-                (0,
-                i.gn)(this, $n, "f").setCarStyle((0,
-                i.gn)(this, ne, "f").carStyle),
-                (0,
-                i.gn)(this, Sn, "f").setCarStyle((0,
-                i.gn)(this, ne, "f").carStyle),
-                (0,
-                i.GG)(this, se, !1, "f"),
-                (0,
-                i.gn)(this, Wn, "m", ce).call(this),
-                (0,
-                i.gn)(this, _n, "f").classList.remove("hidden")
+                  , e = null == i.get(this, ie, "f") ? null : n.find((t => t.code == i.get(this, ie, "f")));
+                null != e ? (i.get(this, jn, "f").classList.add("loading"),
+                i.get(this, jn, "f").src = "images/countries/" + e.code + ".svg",
+                i.get(this, jn, "f").title = e.name,
+                i.get(this, jn, "f").classList.remove("hidden")) : i.get(this, jn, "f").classList.add("hidden"),
+                i.get(this, $n, "f").setCarStyle(i.get(this, ne, "f").carStyle),
+                i.get(this, Sn, "f").setCarStyle(i.get(this, ne, "f").carStyle),
+                i.set(this, se, !1, "f"),
+                i.get(this, Wn, "m", ce).call(this),
+                i.get(this, _n, "f").classList.remove("hidden")
             }
             )), "f")
         }
         ,
         ge = function(t) {
-            (0,
-            i.gn)(this, se, "f") ? (0,
-            i.gn)(this, On, "f").showConfirm((0,
-            i.gn)(this, zn, "f").get("Are you sure you want to exit without saving?") + "\n\n" + (0,
-            i.gn)(this, zn, "f").get("All changes will be lost!"), (0,
-            i.gn)(this, zn, "f").get("Cancel"), (0,
-            i.gn)(this, zn, "f").get("Confirm"), null, ( () => {
+            i.get(this, se, "f") ? i.get(this, On, "f").showConfirm(i.get(this, zn, "f").get("Are you sure you want to exit without saving?") + "\n\n" + i.get(this, zn, "f").get("All changes will be lost!"), i.get(this, zn, "f").get("Cancel"), i.get(this, zn, "f").get("Confirm"), null, ( () => {
                 t()
             }
             )) : t()
         }
         ,
         fe = function() {
-            (0,
-            i.gn)(this, se, "f") && ((0,
-            i.gn)(this, Hn, "f").setNickname((0,
-            i.gn)(this, ee, "f")),
-            (0,
-            i.gn)(this, Hn, "f").setCountryCode((0,
-            i.gn)(this, ie, "f")),
-            (0,
-            i.gn)(this, Hn, "f").setCarStyle((0,
-            i.gn)(this, Sn, "f").getCarStyle()),
-            (0,
-            i.GG)(this, te, (0,
-            i.gn)(this, Hn, "f").profileSlot, "f"),
-            (0,
-            i.GG)(this, ne, (0,
-            i.gn)(this, Hn, "f").getCurrentUserProfile(), "f"),
-            (0,
-            i.GG)(this, se, !1, "f"),
-            (0,
-            i.GG)(this, oe, !0, "f")),
-            (0,
-            i.gn)(this, Wn, "m", pe).call(this)
+            i.get(this, se, "f") && (i.get(this, Hn, "f").setNickname(i.get(this, ee, "f")),
+            i.get(this, Hn, "f").setCountryCode(i.get(this, ie, "f")),
+            i.get(this, Hn, "f").setCarStyle(i.get(this, Sn, "f").getCarStyle()),
+            i.set(this, te, i.get(this, Hn, "f").profileSlot, "f"),
+            i.set(this, ne, i.get(this, Hn, "f").getCurrentUserProfile(), "f"),
+            i.set(this, se, !1, "f"),
+            i.set(this, oe, !0, "f")),
+            i.get(this, Wn, "m", pe).call(this)
         }
         ,
         pe = function() {
-            null != (0,
-            i.gn)(this, Kn, "f") && (clearTimeout((0,
-            i.gn)(this, Kn, "f")),
-            (0,
-            i.GG)(this, Kn, null, "f")),
-            (0,
-            i.gn)(this, Jn, "f").classList.remove("show"),
-            (0,
-            i.gn)(this, Jn, "f").classList.remove("hide"),
-            (0,
-            i.GG)(this, Kn, window.setTimeout(( () => {
-                (0,
-                i.gn)(this, Jn, "f").textContent = (0,
-                i.gn)(this, zn, "f").get("Car saved!"),
-                (0,
-                i.gn)(this, Jn, "f").classList.add("show"),
-                (0,
-                i.GG)(this, Kn, window.setTimeout(( () => {
-                    (0,
-                    i.gn)(this, Jn, "f").classList.remove("show"),
-                    (0,
-                    i.gn)(this, Jn, "f").classList.add("hide")
+            null != i.get(this, Kn, "f") && (clearTimeout(i.get(this, Kn, "f")),
+            i.set(this, Kn, null, "f")),
+            i.get(this, Jn, "f").classList.remove("show"),
+            i.get(this, Jn, "f").classList.remove("hide"),
+            i.set(this, Kn, window.setTimeout(( () => {
+                i.get(this, Jn, "f").textContent = i.get(this, zn, "f").get("Car saved!"),
+                i.get(this, Jn, "f").classList.add("show"),
+                i.set(this, Kn, window.setTimeout(( () => {
+                    i.get(this, Jn, "f").classList.remove("show"),
+                    i.get(this, Jn, "f").classList.add("hide")
                 }
                 ), 3e3), "f")
             }
@@ -2237,109 +1662,65 @@
                 ie.set(this, void 0),
                 se.set(this, !1),
                 oe.set(this, !1),
-                (0,
-                i.GG)(this, Sn, t, "f"),
-                (0,
-                i.GG)(this, Tn, n, "f"),
-                (0,
-                i.GG)(this, Pn, o, "f"),
-                (0,
-                i.GG)(this, In, a, "f"),
-                (0,
-                i.GG)(this, Un, l, "f"),
-                (0,
-                i.GG)(this, Hn, c, "f"),
-                (0,
-                i.GG)(this, On, r, "f"),
-                (0,
-                i.GG)(this, zn, e, "f"),
-                (0,
-                i.GG)(this, Vn, new An(h), "f"),
-                (0,
-                i.GG)(this, te, (0,
-                i.gn)(this, Hn, "f").profileSlot, "f"),
-                (0,
-                i.GG)(this, ne, (0,
-                i.gn)(this, Hn, "f").getCurrentUserProfile(), "f"),
-                (0,
-                i.GG)(this, ee, (0,
-                i.gn)(this, ne, "f").nickname, "f"),
-                (0,
-                i.GG)(this, ie, (0,
-                i.gn)(this, ne, "f").countryCode, "f"),
-                (0,
-                i.GG)(this, Xn, new THREE.PerspectiveCamera(70,1,.1,C.A.maxViewDistance), "f"),
-                (0,
-                i.gn)(this, Xn, "f").position.set(0, 2, 6),
-                o.scene.add((0,
-                i.gn)(this, Xn, "f")),
-                (0,
-                i.GG)(this, Yn, new G.N((0,
-                i.gn)(this, Xn, "f"),o.canvas), "f"),
-                (0,
-                i.gn)(this, Yn, "f").addEventListener("start", ( () => {
-                    (0,
-                    i.GG)(this, Qn, null, "f")
+                i.set(this, Sn, t, "f"),
+                i.set(this, Tn, n, "f"),
+                i.set(this, Pn, o, "f"),
+                i.set(this, In, a, "f"),
+                i.set(this, Un, l, "f"),
+                i.set(this, Hn, c, "f"),
+                i.set(this, On, r, "f"),
+                i.set(this, zn, e, "f"),
+                i.set(this, Vn, new An(h), "f"),
+                i.set(this, te, i.get(this, Hn, "f").profileSlot, "f"),
+                i.set(this, ne, i.get(this, Hn, "f").getCurrentUserProfile(), "f"),
+                i.set(this, ee, i.get(this, ne, "f").nickname, "f"),
+                i.set(this, ie, i.get(this, ne, "f").countryCode, "f"),
+                i.set(this, Xn, new THREE.PerspectiveCamera(70,1,.1,C.A.maxViewDistance), "f"),
+                i.get(this, Xn, "f").position.set(0, 2, 6),
+                o.scene.add(i.get(this, Xn, "f")),
+                i.set(this, Yn, new G.N(i.get(this, Xn, "f"),o.canvas), "f"),
+                i.get(this, Yn, "f").addEventListener("start", ( () => {
+                    i.set(this, Qn, null, "f")
                 }
                 )),
-                (0,
-                i.gn)(this, Yn, "f").target.set(0, 0, 1.2),
-                (0,
-                i.gn)(this, Yn, "f").update(),
-                (0,
-                i.gn)(this, Yn, "f").mouseButtons = {
+                i.get(this, Yn, "f").target.set(0, 0, 1.2),
+                i.get(this, Yn, "f").update(),
+                i.get(this, Yn, "f").mouseButtons = {
                     LEFT: THREE.MOUSE.ROTATE,
                     MIDDLE: THREE.MOUSE.ROTATE,
                     RIGHT: THREE.MOUSE.ROTATE
                 },
-                (0,
-                i.gn)(this, Yn, "f").enablePan = !1,
-                (0,
-                i.gn)(this, Yn, "f").minDistance = 2.5,
-                (0,
-                i.gn)(this, Yn, "f").maxDistance = 7,
-                (0,
-                i.gn)(this, Yn, "f").maxPolarAngle = Math.PI / 2 - .15;
+                i.get(this, Yn, "f").enablePan = !1,
+                i.get(this, Yn, "f").minDistance = 2.5,
+                i.get(this, Yn, "f").maxDistance = 7,
+                i.get(this, Yn, "f").maxPolarAngle = Math.PI / 2 - .15;
                 const g = document.getElementById("ui");
                 if (null == g)
                     throw new Error("UI element not found");
-                (0,
-                i.GG)(this, Dn, g, "f"),
-                (0,
-                i.GG)(this, _n, document.createElement("div"), "f"),
-                (0,
-                i.gn)(this, _n, "f").className = "customization-ui";
+                i.set(this, Dn, g, "f"),
+                i.set(this, _n, document.createElement("div"), "f"),
+                i.get(this, _n, "f").className = "customization-ui";
                 const f = document.createElement("div");
                 f.className = "safe-area-left",
-                (0,
-                i.gn)(this, _n, "f").appendChild(f);
+                i.get(this, _n, "f").appendChild(f);
                 const p = document.createElement("div");
                 p.className = "safe-area-right",
-                (0,
-                i.gn)(this, _n, "f").appendChild(p);
+                i.get(this, _n, "f").appendChild(p);
                 const u = document.createElement("div");
                 u.className = "top",
-                (0,
-                i.gn)(this, _n, "f").appendChild(u);
+                i.get(this, _n, "f").appendChild(u);
                 const m = document.createElement("button");
                 m.className = "button",
                 m.innerHTML = '<img class="button-icon" src="images/quit.svg"> ',
                 m.append(document.createTextNode(e.get("Exit"))),
                 m.addEventListener("click", ( () => {
                     a.playUIClick(),
-                    xn.Xx() || (0,
-                    i.gn)(this, Wn, "m", ge).call(this, d)
+                    xn.Xx() || i.get(this, Wn, "m", ge).call(this, d)
                 }
                 )),
                 u.appendChild(m),
-                window.addEventListener("keydown", (0,
-                i.GG)(this, Rn, (t => {
-                    "Escape" != t.code || xn.Xx() || null != (0,
-                    i.gn)(this, Bn, "f") || null != (0,
-                    i.gn)(this, Fn, "f") || null != (0,
-                    i.gn)(this, qn, "f") || (0,
-                    i.gn)(this, On, "f").isOpen || ((0,
-                    i.gn)(this, Wn, "m", ge).call(this, d),
+                window.addEventListener("keydown", i.set(this, Rn, (t => {
+                    "Escape" != t.code || xn.Xx() || null != i.get(this, Bn, "f") || null != i.get(this, Fn, "f") || null != i.get(this, qn, "f") || i.get(this, On, "f").isOpen || (i.get(this, Wn, "m", ge).call(this, d),
                     t.preventDefault())
                 }
                 ), "f"));
@@ -2349,22 +1730,12 @@
                 v.append(document.createTextNode(e.get("Save"))),
                 v.addEventListener("click", ( () => {
                     a.playUIClick(),
-                    (0,
-                    i.gn)(this, se, "f") && (0,
-                    i.gn)(this, ee, "f") == E.A.defaultNickname ? ((0,
-                    i.gn)(this, _n, "f").classList.add("hidden"),
-                    (0,
-                    i.gn)(this, Wn, "m", re).call(this, (0,
-                    i.gn)(this, te, "f"), (0,
-                    i.gn)(this, ee, "f"), (0,
-                    i.gn)(this, ie, "f"), ( () => {
-                        (0,
-                        i.gn)(this, _n, "f").classList.remove("hidden"),
-                        (0,
-                        i.gn)(this, Wn, "m", fe).call(this)
+                    i.get(this, se, "f") && i.get(this, ee, "f") == E.A.defaultNickname ? (i.get(this, _n, "f").classList.add("hidden"),
+                    i.get(this, Wn, "m", re).call(this, i.get(this, te, "f"), i.get(this, ee, "f"), i.get(this, ie, "f"), ( () => {
+                        i.get(this, _n, "f").classList.remove("hidden"),
+                        i.get(this, Wn, "m", fe).call(this)
                     }
-                    ))) : (0,
-                    i.gn)(this, Wn, "m", fe).call(this)
+                    ))) : i.get(this, Wn, "m", fe).call(this)
                 }
                 )),
                 u.appendChild(v);
@@ -2374,8 +1745,7 @@
                 w.append(document.createTextNode(e.get("Default"))),
                 w.addEventListener("click", ( () => {
                     a.playUIClick(),
-                    (0,
-                    i.gn)(this, Wn, "m", ae).call(this)
+                    i.get(this, Wn, "m", ae).call(this)
                 }
                 )),
                 u.appendChild(w);
@@ -2385,8 +1755,7 @@
                 b.append(document.createTextNode(e.get("Random"))),
                 b.addEventListener("click", ( () => {
                     a.playUIClick(),
-                    (0,
-                    i.gn)(this, Wn, "m", le).call(this)
+                    i.get(this, Wn, "m", le).call(this)
                 }
                 )),
                 u.appendChild(b);
@@ -2396,139 +1765,78 @@
                 x.append(document.createTextNode(e.get("Switch Profile"))),
                 x.addEventListener("click", ( () => {
                     a.playUIClick(),
-                    xn.Xx() || ((0,
-                    i.gn)(this, se, "f") ? (0,
-                    i.gn)(this, On, "f").showConfirm(e.get("Are you sure you want to switch profile without saving?") + "\n\n" + e.get("All changes will be lost!"), e.get("Cancel"), e.get("Confirm"), null, ( () => {
-                        (0,
-                        i.gn)(this, Wn, "m", de).call(this)
+                    xn.Xx() || (i.get(this, se, "f") ? i.get(this, On, "f").showConfirm(e.get("Are you sure you want to switch profile without saving?") + "\n\n" + e.get("All changes will be lost!"), e.get("Cancel"), e.get("Confirm"), null, ( () => {
+                        i.get(this, Wn, "m", de).call(this)
                     }
-                    )) : (0,
-                    i.gn)(this, Wn, "m", de).call(this))
+                    )) : i.get(this, Wn, "m", de).call(this))
                 }
                 )),
                 u.appendChild(x);
                 const k = document.createElement("div");
                 k.className = "profile-button-container",
-                (0,
-                i.gn)(this, _n, "f").appendChild(k);
+                i.get(this, _n, "f").appendChild(k);
                 const y = document.createElement("button");
                 y.className = "button",
-                (0,
-                i.GG)(this, jn, document.createElement("img"), "f"),
-                (0,
-                i.gn)(this, jn, "f").className = "country-flag loading",
-                (0,
-                i.gn)(this, jn, "f").addEventListener("load", ( () => {
-                    (0,
-                    i.gn)(this, jn, "f").classList.remove("loading")
+                i.set(this, jn, document.createElement("img"), "f"),
+                i.get(this, jn, "f").className = "country-flag loading",
+                i.get(this, jn, "f").addEventListener("load", ( () => {
+                    i.get(this, jn, "f").classList.remove("loading")
                 }
                 )),
-                (0,
-                i.gn)(this, jn, "f").draggable = !1,
-                y.appendChild((0,
-                i.gn)(this, jn, "f"));
+                i.get(this, jn, "f").draggable = !1,
+                y.appendChild(i.get(this, jn, "f"));
                 const M = (0,
                 L.O)()
-                  , N = null == (0,
-                i.gn)(this, ie, "f") ? null : M.find((t => t.code == (0,
-                i.gn)(this, ie, "f")));
-                null != N ? ((0,
-                i.gn)(this, jn, "f").src = "images/countries/" + N.code + ".svg",
-                (0,
-                i.gn)(this, jn, "f").title = N.name) : (0,
-                i.gn)(this, jn, "f").classList.add("hidden"),
-                (0,
-                i.GG)(this, Zn, document.createTextNode((0,
-                i.gn)(this, ee, "f")), "f"),
-                y.append((0,
-                i.gn)(this, Zn, "f")),
+                  , N = null == i.get(this, ie, "f") ? null : M.find((t => t.code == i.get(this, ie, "f")));
+                null != N ? (i.get(this, jn, "f").src = "images/countries/" + N.code + ".svg",
+                i.get(this, jn, "f").title = N.name) : i.get(this, jn, "f").classList.add("hidden"),
+                i.set(this, Zn, document.createTextNode(i.get(this, ee, "f")), "f"),
+                y.append(i.get(this, Zn, "f")),
                 y.addEventListener("click", ( () => {
                     a.playUIClick(),
-                    (0,
-                    i.gn)(this, _n, "f").classList.add("hidden"),
-                    (0,
-                    i.gn)(this, Wn, "m", re).call(this, (0,
-                    i.gn)(this, te, "f"), (0,
-                    i.gn)(this, ee, "f"), (0,
-                    i.gn)(this, ie, "f"), null)
+                    i.get(this, _n, "f").classList.add("hidden"),
+                    i.get(this, Wn, "m", re).call(this, i.get(this, te, "f"), i.get(this, ee, "f"), i.get(this, ie, "f"), null)
                 }
                 )),
                 k.appendChild(y),
-                (0,
-                i.GG)(this, Jn, document.createElement("div"), "f"),
-                (0,
-                i.gn)(this, Jn, "f").className = "save-message",
-                (0,
-                i.gn)(this, _n, "f").appendChild((0,
-                i.gn)(this, Jn, "f")),
-                (0,
-                i.GG)(this, $n, new Gn((0,
-                i.gn)(this, In, "f"),(0,
-                i.gn)(this, zn, "f"),(0,
-                i.gn)(this, On, "f"),(0,
-                i.gn)(this, Vn, "f"),(0,
-                i.gn)(this, _n, "f"),(t => {
-                    (0,
-                    i.gn)(this, Sn, "f").setCarStyle(t),
-                    (0,
-                    i.GG)(this, se, !0, "f")
+                i.set(this, Jn, document.createElement("div"), "f"),
+                i.get(this, Jn, "f").className = "save-message",
+                i.get(this, _n, "f").appendChild(i.get(this, Jn, "f")),
+                i.set(this, $n, new Gn(i.get(this, In, "f"),i.get(this, zn, "f"),i.get(this, On, "f"),i.get(this, Vn, "f"),i.get(this, _n, "f"),(t => {
+                    i.get(this, Sn, "f").setCarStyle(t),
+                    i.set(this, se, !0, "f")
                 }
                 ),(t => {
-                    (0,
-                    i.GG)(this, Qn, t, "f")
+                    i.set(this, Qn, t, "f")
                 }
                 )), "f"),
-                (0,
-                i.gn)(this, Dn, "f").appendChild((0,
-                i.gn)(this, _n, "f")),
-                (0,
-                i.gn)(this, $n, "f").setCarStyle((0,
-                i.gn)(this, ne, "f").carStyle),
-                (0,
-                i.gn)(this, Sn, "f").setCarStyle((0,
-                i.gn)(this, ne, "f").carStyle),
-                (0,
-                i.gn)(this, Wn, "m", ce).call(this),
-                (0,
-                i.GG)(this, se, !1, "f")
+                i.get(this, Dn, "f").appendChild(i.get(this, _n, "f")),
+                i.get(this, $n, "f").setCarStyle(i.get(this, ne, "f").carStyle),
+                i.get(this, Sn, "f").setCarStyle(i.get(this, ne, "f").carStyle),
+                i.get(this, Wn, "m", ce).call(this),
+                i.set(this, se, !1, "f")
             }
             dispose() {
-                if ((0,
-                i.gn)(this, oe, "f")) {
-                    const {token: t, nickname: n, countryCode: e, carStyle: s} = (0,
-                    i.gn)(this, Hn, "f").getCurrentUserProfile();
-                    (0,
-                    i.gn)(this, Un, "f").submitUserProfile(t, n, e, s).catch((t => {
+                if (i.get(this, oe, "f")) {
+                    const {token: t, nickname: n, countryCode: e, carStyle: s} = i.get(this, Hn, "f").getCurrentUserProfile();
+                    i.get(this, Un, "f").submitUserProfile(t, n, e, s).catch((t => {
                         console.warn(t)
                     }
                     ))
                 }
-                (0,
-                i.gn)(this, Pn, "f").scene.remove((0,
-                i.gn)(this, Xn, "f")),
-                window.removeEventListener("keydown", (0,
-                i.gn)(this, Rn, "f")),
-                (0,
-                i.gn)(this, $n, "f").dispose(),
-                (0,
-                i.gn)(this, Dn, "f").removeChild((0,
-                i.gn)(this, _n, "f")),
-                (0,
-                i.gn)(this, Yn, "f").dispose(),
-                (0,
-                i.gn)(this, Pn, "f").canvas.style.touchAction = ""
+                i.get(this, Pn, "f").scene.remove(i.get(this, Xn, "f")),
+                window.removeEventListener("keydown", i.get(this, Rn, "f")),
+                i.get(this, $n, "f").dispose(),
+                i.get(this, Dn, "f").removeChild(i.get(this, _n, "f")),
+                i.get(this, Yn, "f").dispose(),
+                i.get(this, Pn, "f").canvas.style.touchAction = ""
             }
             update(t) {
-                null != (0,
-                i.gn)(this, Qn, "f") && ((0,
-                i.gn)(this, Xn, "f").position.lerp((0,
-                i.gn)(this, Qn, "f"), Math.min(1, 10 * t)),
-                (0,
-                i.gn)(this, Yn, "f").update())
+                null != i.get(this, Qn, "f") && (i.get(this, Xn, "f").position.lerp(i.get(this, Qn, "f"), Math.min(1, 10 * t)),
+                i.get(this, Yn, "f").update())
             }
             get camera() {
-                return (0,
-                i.gn)(this, Xn, "f")
+                return i.get(this, Xn, "f")
             }
         }
         ;
@@ -2544,64 +1852,46 @@
                 ye.set(this, void 0),
                 Ce.set(this, void 0),
                 Ee.set(this, void 0),
-                (0,
-                i.GG)(this, ve, c, "f"),
-                (0,
-                i.GG)(this, we, n, "f"),
-                (0,
-                i.GG)(this, be, e, "f"),
-                (0,
-                i.GG)(this, xe, o, "f"),
-                (0,
-                i.GG)(this, ke, a, "f");
+                i.set(this, ve, c, "f"),
+                i.set(this, we, n, "f"),
+                i.set(this, be, e, "f"),
+                i.set(this, xe, o, "f"),
+                i.set(this, ke, a, "f");
                 const u = Ne.U("PolyTrack24pdBBHsYCCCAAA9XK12cdEBcBplkDN42ExQNdSWh5Xf9eEp1009dQICjjB7eqqlx7YH8BnFJzsokZScpwEDHaBDwkHFLDPYfxQPqFblOkZfJVS5YWIfXDZru01TebKuEiCCvXfpfxuTe0adAH1wf51aX4OmtpXr6XJPfHfSPO3CemUiRGceD0OBJGnIjkU5RJaqf8t5u5RFgcOawuRoIeAp088v3gpv4u2fe6kqKyyFaX5HQk17dqpwUldfSAL32crBslQfPAQfwSaC");
                 if (null == u)
                     throw new Error("Failed to load track data");
                 if (n.loadTrackData(u.trackData),
                 n.generateMeshes(),
                 e.generateMountains(n.getBounds()),
-                null == (0,
-                i.gn)(me, me, "f", Me))
+                null == i.get(me, me, "f", Me))
                     throw new Error("CustomizationState resources not initialized");
-                (0,
-                i.GG)(this, ye, (0,
-                i.gn)(me, me, "f", Me).clone(), "f"),
-                (0,
-                i.gn)(this, ye, "f").traverse((t => {
+                i.set(this, ye, i.get(me, me, "f", Me).clone(), "f"),
+                i.get(this, ye, "f").traverse((t => {
                     if (t instanceof THREE.Mesh) {
                         let n;
-                        (0,
-                        i.gn)(this, ke, "f").isTrackShadowsEnabled() && (t.castShadow = !0,
+                        i.get(this, ke, "f").isTrackShadowsEnabled() && (t.castShadow = !0,
                         t.receiveShadow = !0),
                         n = Array.isArray(t.material) ? t.material : [t.material];
                         for (const t of n)
                             t.side = THREE.FrontSide,
-                            (0,
-                            i.gn)(this, ke, "f").addMaterial(t)
+                            i.get(this, ke, "f").addMaterial(t)
                     }
                 }
                 )),
-                a.scene.add((0,
-                i.gn)(this, ye, "f"));
+                a.scene.add(i.get(this, ye, "f"));
                 const m = {
                     position: new THREE.Vector3(0,.35,1.35),
                     quaternion: (new THREE.Quaternion).setFromEuler(new THREE.Euler(0,-.24 * Math.PI,0))
                 };
-                (0,
-                i.GG)(this, Ce, new l.A(null,m,null,null,a,c,e,n,n.getTrackData(),h,null), "f"),
-                (0,
-                i.gn)(this, Ce, "f").audioVolume = 0;
-                const v = (0,
-                i.gn)(this, Ce, "f").getCarState();
-                (0,
-                i.gn)(this, Ce, "f").setCarState({
+                i.set(this, Ce, new l.A(null,m,null,null,a,c,e,n,n.getTrackData(),h,null), "f"),
+                i.get(this, Ce, "f").audioVolume = 0;
+                const v = i.get(this, Ce, "f").getCarState();
+                i.get(this, Ce, "f").setCarState({
                     ...v,
                     steering: -.2
                 }, !0),
-                (0,
-                i.gn)(this, Ce, "f").update(0),
-                (0,
-                i.GG)(this, Ee, [], "f");
+                i.get(this, Ce, "f").update(0),
+                i.set(this, Ee, [], "f");
                 for (let t = 0; t < E.A.maxNumberOfProfiles; t++) {
                     const o = {
                         position: new THREE.Vector3(10.5 * t - 22,.35,-34),
@@ -2610,67 +1900,41 @@
                       , r = new l.A(null,o,null,null,a,c,e,n,n.getTrackData(),h,null);
                     r.audioVolume = 0,
                     r.update(0),
-                    (0,
-                    i.gn)(this, Ee, "f").push(r)
+                    i.get(this, Ee, "f").push(r)
                 }
-                (0,
-                i.GG)(this, Ge, new ue((0,
-                i.gn)(this, Ce, "f"),(0,
-                i.gn)(this, Ee, "f"),t,a,c,d,r,g,f,p), "f"),
-                a.setCamera((0,
-                i.gn)(this, Ge, "f").camera)
+                i.set(this, Ge, new ue(i.get(this, Ce, "f"),i.get(this, Ee, "f"),t,a,c,d,r,g,f,p), "f"),
+                a.setCamera(i.get(this, Ge, "f").camera)
             }
             dispose() {
-                (0,
-                i.gn)(this, we, "f").clear(),
-                (0,
-                i.gn)(this, be, "f").clearMountains(),
-                (0,
-                i.gn)(this, Ge, "f").dispose(),
-                (0,
-                i.gn)(this, ke, "f").scene.remove((0,
-                i.gn)(this, ye, "f")),
-                (0,
-                i.gn)(this, ye, "f").traverse((t => {
+                i.get(this, we, "f").clear(),
+                i.get(this, be, "f").clearMountains(),
+                i.get(this, Ge, "f").dispose(),
+                i.get(this, ke, "f").scene.remove(i.get(this, ye, "f")),
+                i.get(this, ye, "f").traverse((t => {
                     if (t instanceof THREE.Mesh) {
                         let n;
                         t.geometry.dispose(),
                         n = Array.isArray(t.material) ? t.material : [t.material];
                         for (const t of n)
                             t.dispose(),
-                            (0,
-                            i.gn)(this, ke, "f").removeMaterial(t)
+                            i.get(this, ke, "f").removeMaterial(t)
                     }
                 }
                 )),
-                (0,
-                i.gn)(this, Ce, "f").dispose();
-                for (const t of (0,
-                i.gn)(this, Ee, "f"))
+                i.get(this, Ce, "f").dispose();
+                for (const t of i.get(this, Ee, "f"))
                     t.dispose();
-                (0,
-                i.GG)(this, Ee, [], "f")
+                i.set(this, Ee, [], "f")
             }
             update(t) {
-                (0,
-                i.gn)(this, Ge, "f").update(t),
-                (0,
-                i.gn)(this, be, "f").update((0,
-                i.gn)(this, we, "f")),
-                (0,
-                i.gn)(this, xe, "f").update(t, (0,
-                i.gn)(this, ke, "f").camera, (0,
-                i.gn)(this, we, "f").sunDirection),
-                (0,
-                i.gn)(this, ve, "f").update(t, !1, (0,
-                i.gn)(this, ke, "f")),
-                (0,
-                i.gn)(this, ke, "f").update((0,
-                i.gn)(this, we, "f").sunDirection)
+                i.get(this, Ge, "f").update(t),
+                i.get(this, be, "f").update(i.get(this, we, "f")),
+                i.get(this, xe, "f").update(t, i.get(this, ke, "f").camera, i.get(this, we, "f").sunDirection),
+                i.get(this, ve, "f").update(t, !1, i.get(this, ke, "f")),
+                i.get(this, ke, "f").update(i.get(this, we, "f").sunDirection)
             }
             static async initResources() {
-                if (null != (0,
-                i.gn)(me, me, "f", Me))
+                if (null != i.get(me, me, "f", Me))
                     return;
                 const t = new a.B
                   , n = new o.Z;
@@ -2679,10 +1943,8 @@
                     t.setDRACOLoader(n),
                     await new Promise(( (n, e) => {
                         t.load("models/garage.glb", (t => {
-                            (0,
-                            i.GG)(me, me, t.scene, "f", Me),
-                            (0,
-                            i.gn)(me, me, "f", Me).traverse((t => {
+                            i.set(me, me, t.scene, "f", Me),
+                            i.get(me, me, "f", Me).traverse((t => {
                                 if (t instanceof THREE.Mesh) {
                                     if (Array.isArray(t.material))
                                         for (let n = 0; n < t.material.length; n++) {

@@ -16,18 +16,11 @@
             s = new WeakMap,
             i = new WeakSet,
             o = function(e) {
-                (0,
-                l.gn)(this, a, "f").textContent = e,
-                null != (0,
-                l.gn)(this, s, "f") && clearTimeout((0,
-                l.gn)(this, s, "f")),
-                (0,
-                l.GG)(this, s, setTimeout(( () => {
-                    (0,
-                    l.gn)(this, a, "f").textContent = (0,
-                    l.gn)(this, r, "f").get("Copy"),
-                    (0,
-                    l.GG)(this, s, null, "f")
+                l.get(this, a, "f").textContent = e,
+                null != l.get(this, s, "f") && clearTimeout(l.get(this, s, "f")),
+                l.set(this, s, setTimeout(( () => {
+                    l.get(this, a, "f").textContent = l.get(this, r, "f").get("Copy"),
+                    l.set(this, s, null, "f")
                 }
                 ), 2e3), "f")
             }
@@ -38,24 +31,19 @@
                     r.set(this, void 0),
                     a.set(this, void 0),
                     s.set(this, null),
-                    (0,
-                    l.GG)(this, r, t, "f"),
+                    l.set(this, r, t, "f"),
                     this.element = document.createElement("button"),
                     this.element.className = "button",
                     this.element.innerHTML = '<img class="button-icon" src="images/copy.svg"> ',
-                    (0,
-                    l.GG)(this, a, document.createTextNode(t.get("Copy")), "f"),
-                    this.element.append((0,
-                    l.gn)(this, a, "f")),
+                    l.set(this, a, document.createTextNode(t.get("Copy")), "f"),
+                    this.element.append(l.get(this, a, "f")),
                     this.element.addEventListener("click", ( () => {
                         e.playUIClick();
                         const t = n();
                         (async () => {
                             try {
                                 await navigator.clipboard.writeText(t),
-                                (0,
-                                l.gn)(this, i, "m", o).call(this, (0,
-                                l.gn)(this, r, "f").get("Copied!"))
+                                l.get(this, i, "m", o).call(this, l.get(this, r, "f").get("Copied!"))
                             } catch (e) {
                                 console.error(e);
                                 const n = document.createElement("textarea");
@@ -65,14 +53,10 @@
                                 try {
                                     n.select(),
                                     document.execCommand("copy"),
-                                    (0,
-                                    l.gn)(this, i, "m", o).call(this, (0,
-                                    l.gn)(this, r, "f").get("Copied!"))
+                                    l.get(this, i, "m", o).call(this, l.get(this, r, "f").get("Copied!"))
                                 } catch (e) {
                                     console.error(e),
-                                    (0,
-                                    l.gn)(this, i, "m", o).call(this, (0,
-                                    l.gn)(this, r, "f").get("Error!"))
+                                    l.get(this, i, "m", o).call(this, l.get(this, r, "f").get("Error!"))
                                 } finally {
                                     document.body.removeChild(n)
                                 }
@@ -400,28 +384,20 @@
                     x.set(this, void 0),
                     S.set(this, void 0),
                     k.set(this, void 0),
-                    (0,
-                    i.GG)(this, v, r, "f");
+                    i.set(this, v, r, "f");
                     const l = document.getElementById("ui");
                     if (null == l)
                         throw new Error("UI element not found");
-                    (0,
-                    i.GG)(this, y, l, "f"),
-                    (0,
-                    i.GG)(this, b, document.createElement("div"), "f"),
-                    (0,
-                    i.gn)(this, b, "f").className = "track-export-ui",
-                    (0,
-                    i.gn)(this, y, "f").appendChild((0,
-                    i.gn)(this, b, "f"));
+                    i.set(this, y, l, "f"),
+                    i.set(this, b, document.createElement("div"), "f"),
+                    i.get(this, b, "f").className = "track-export-ui",
+                    i.get(this, y, "f").appendChild(i.get(this, b, "f"));
                     const c = document.createElement("div");
                     c.className = "background",
-                    (0,
-                    i.gn)(this, b, "f").appendChild(c);
+                    i.get(this, b, "f").appendChild(c);
                     const h = document.createElement("div");
                     h.className = "box",
-                    (0,
-                    i.gn)(this, b, "f").appendChild(h);
+                    i.get(this, b, "f").appendChild(h);
                     const d = document.createElement("div");
                     d.className = "bar",
                     h.appendChild(d);
@@ -435,36 +411,22 @@
                     }
                     )),
                     d.appendChild(u),
-                    null == n ? ((0,
-                    i.GG)(this, x, new T.A(a,r,( () => (0,
-                    i.gn)(this, w, "f").value)), "f"),
-                    (0,
-                    i.gn)(this, x, "f").element.classList.add("right"),
-                    d.appendChild((0,
-                    i.gn)(this, x, "f").element),
-                    (0,
-                    i.GG)(this, S, null, "f")) : ((0,
-                    i.GG)(this, x, null, "f"),
-                    (0,
-                    i.GG)(this, S, document.createElement("button"), "f"),
-                    (0,
-                    i.gn)(this, S, "f").className = "button right",
-                    (0,
-                    i.gn)(this, S, "f").innerHTML = '<img class="button-icon" src="images/import.svg"> ',
-                    (0,
-                    i.gn)(this, S, "f").append(document.createTextNode(r.get("Import"))),
-                    (0,
-                    i.gn)(this, S, "f").addEventListener("click", ( () => {
+                    null == n ? (i.set(this, x, new T.A(a,r,( () => i.get(this, w, "f").value)), "f"),
+                    i.get(this, x, "f").element.classList.add("right"),
+                    d.appendChild(i.get(this, x, "f").element),
+                    i.set(this, S, null, "f")) : (i.set(this, x, null, "f"),
+                    i.set(this, S, document.createElement("button"), "f"),
+                    i.get(this, S, "f").className = "button right",
+                    i.get(this, S, "f").innerHTML = '<img class="button-icon" src="images/import.svg"> ',
+                    i.get(this, S, "f").append(document.createTextNode(r.get("Import"))),
+                    i.get(this, S, "f").addEventListener("click", ( () => {
                         a.playUIClick();
-                        const e = (0,
-                        i.gn)(this, w, "f").value.split(/\s+/).map((e => e.trim())).filter((e => e.length > 0))
+                        const e = i.get(this, w, "f").value.split(/\s+/).map((e => e.trim())).filter((e => e.length > 0))
                           , t = e.length > 1
                           , l = e => {
-                            (0,
-                            i.gn)(this, b, "f").classList.add("hidden"),
+                            i.get(this, b, "f").classList.add("hidden"),
                             o.show(e, r.get("Ok"), ( () => {
-                                (0,
-                                i.gn)(this, b, "f").classList.remove("hidden")
+                                i.get(this, b, "f").classList.remove("hidden")
                             }
                             ))
                         }
@@ -514,34 +476,22 @@
                         )()
                     }
                     )),
-                    d.appendChild((0,
-                    i.gn)(this, S, "f"))),
-                    (0,
-                    i.GG)(this, w, document.createElement("textarea"), "f"),
-                    (0,
-                    i.gn)(this, w, "f").spellcheck = !1,
-                    h.appendChild((0,
-                    i.gn)(this, w, "f")),
-                    null != n && ((0,
-                    i.gn)(this, w, "f").placeholder = (0,
-                    i.gn)(this, v, "f").get("Paste track data here...")),
-                    (0,
-                    i.gn)(this, w, "f").value = e,
-                    (0,
-                    i.gn)(this, w, "f").readOnly = null == n,
-                    window.addEventListener("keydown", (0,
-                    i.GG)(this, k, (e => {
+                    d.appendChild(i.get(this, S, "f"))),
+                    i.set(this, w, document.createElement("textarea"), "f"),
+                    i.get(this, w, "f").spellcheck = !1,
+                    h.appendChild(i.get(this, w, "f")),
+                    null != n && (i.get(this, w, "f").placeholder = i.get(this, v, "f").get("Paste track data here...")),
+                    i.get(this, w, "f").value = e,
+                    i.get(this, w, "f").readOnly = null == n,
+                    window.addEventListener("keydown", i.set(this, k, (e => {
                         "Escape" != e.code || o.isOpen || (t(),
                         e.preventDefault())
                     }
                     ), "f"))
                 }
                 dispose() {
-                    (0,
-                    i.gn)(this, y, "f").removeChild((0,
-                    i.gn)(this, b, "f")),
-                    window.removeEventListener("keydown", (0,
-                    i.gn)(this, k, "f"))
+                    i.get(this, y, "f").removeChild(i.get(this, b, "f")),
+                    window.removeEventListener("keydown", i.get(this, k, "f"))
                 }
             }
         }
@@ -667,14 +617,10 @@
                     this.pattern = e,
                     this.rims = t,
                     this.exhaust = n,
-                    (0,
-                    c.GG)(this, r, i, "f"),
-                    (0,
-                    c.GG)(this, a, l, "f"),
-                    (0,
-                    c.GG)(this, s, h, "f"),
-                    (0,
-                    c.GG)(this, o, d, "f")
+                    c.set(this, r, i, "f"),
+                    c.set(this, a, l, "f"),
+                    c.set(this, s, h, "f"),
+                    c.set(this, o, d, "f")
                 }
                 static default() {
                     const e = 360 * Math.random()
@@ -683,70 +629,54 @@
                     return new i(i.defaultPattern,i.defaultRims,i.defaultExhaust,new THREE.Color("hsl(" + e.toString() + "," + t.toString() + "%," + n.toString() + "%)").getHex(),16777215,1250067,6710886)
                 }
                 get primaryHex() {
-                    return (0,
-                    c.gn)(this, r, "f")
+                    return c.get(this, r, "f")
                 }
                 set primaryHex(e) {
                     if (e < 0 || e > 16777215 || !Number.isSafeInteger(e))
                         throw new Error("Invalid primary color hex value");
-                    (0,
-                    c.GG)(this, r, e, "f")
+                    c.set(this, r, e, "f")
                 }
                 get secondaryHex() {
-                    return (0,
-                    c.gn)(this, a, "f")
+                    return c.get(this, a, "f")
                 }
                 set secondaryHex(e) {
                     if (e < 0 || e > 16777215 || !Number.isSafeInteger(e))
                         throw new Error("Invalid secondary color hex value");
-                    (0,
-                    c.GG)(this, a, e, "f")
+                    c.set(this, a, e, "f")
                 }
                 get frameHex() {
-                    return (0,
-                    c.gn)(this, s, "f")
+                    return c.get(this, s, "f")
                 }
                 set frameHex(e) {
                     if (e < 0 || e > 16777215 || !Number.isSafeInteger(e))
                         throw new Error("Invalid frame color hex value");
-                    (0,
-                    c.GG)(this, s, e, "f")
+                    c.set(this, s, e, "f")
                 }
                 get rimsHex() {
-                    return (0,
-                    c.gn)(this, o, "f")
+                    return c.get(this, o, "f")
                 }
                 set rimsHex(e) {
                     if (e < 0 || e > 16777215 || !Number.isSafeInteger(e))
                         throw new Error("Invalid rims color hex value");
-                    (0,
-                    c.GG)(this, o, e, "f")
+                    c.set(this, o, e, "f")
                 }
                 get primaryColor() {
-                    return new THREE.Color((0,
-                    c.gn)(this, r, "f"))
+                    return new THREE.Color(c.get(this, r, "f"))
                 }
                 get secondaryColor() {
-                    return new THREE.Color((0,
-                    c.gn)(this, a, "f"))
+                    return new THREE.Color(c.get(this, a, "f"))
                 }
                 get frameColor() {
-                    return new THREE.Color((0,
-                    c.gn)(this, s, "f"))
+                    return new THREE.Color(c.get(this, s, "f"))
                 }
                 get rimsColor() {
-                    return new THREE.Color((0,
-                    c.gn)(this, o, "f"))
+                    return new THREE.Color(c.get(this, o, "f"))
                 }
                 equals(e) {
                     return this.pattern == e.pattern && this.rims == e.rims && this.exhaust == e.exhaust && this.primaryHex == e.primaryHex && this.secondaryHex == e.secondaryHex && this.frameHex == e.frameHex && this.rimsHex == e.rimsHex
                 }
                 clone() {
-                    return new i(this.pattern,this.rims,this.exhaust,(0,
-                    c.gn)(this, r, "f"),(0,
-                    c.gn)(this, a, "f"),(0,
-                    c.gn)(this, s, "f"),(0,
-                    c.gn)(this, o, "f"))
+                    return new i(this.pattern,this.rims,this.exhaust,c.get(this, r, "f"),c.get(this, a, "f"),c.get(this, s, "f"),c.get(this, o, "f"))
                 }
                 serialize() {
                     return d.l(this.serializeBinary())
@@ -754,13 +684,11 @@
                 static deserializeSafe(e) {
                     const t = d.D(e);
                     if (null == t)
-                        return (0,
-                        c.gn)(i, i, "m", l).call(i);
+                        return c.get(i, i, "m", l).call(i);
                     try {
                         return i.deserializeBinary(t)
                     } catch {
-                        return (0,
-                        c.gn)(i, i, "m", l).call(i)
+                        return c.get(i, i, "m", l).call(i)
                     }
                 }
                 serializeBinary() {
@@ -769,22 +697,10 @@
                     e[1] = this.pattern,
                     e[2] = this.rims,
                     e[3] = this.exhaust,
-                    e.set([255 & (0,
-                    c.gn)(this, r, "f"), (0,
-                    c.gn)(this, r, "f") >> 8 & 255, (0,
-                    c.gn)(this, r, "f") >> 16 & 255], 4),
-                    e.set([255 & (0,
-                    c.gn)(this, a, "f"), (0,
-                    c.gn)(this, a, "f") >> 8 & 255, (0,
-                    c.gn)(this, a, "f") >> 16 & 255], 7),
-                    e.set([255 & (0,
-                    c.gn)(this, s, "f"), (0,
-                    c.gn)(this, s, "f") >> 8 & 255, (0,
-                    c.gn)(this, s, "f") >> 16 & 255], 10),
-                    e.set([255 & (0,
-                    c.gn)(this, o, "f"), (0,
-                    c.gn)(this, o, "f") >> 8 & 255, (0,
-                    c.gn)(this, o, "f") >> 16 & 255], 13),
+                    e.set([255 & c.get(this, r, "f"), c.get(this, r, "f") >> 8 & 255, c.get(this, r, "f") >> 16 & 255], 4),
+                    e.set([255 & c.get(this, a, "f"), c.get(this, a, "f") >> 8 & 255, c.get(this, a, "f") >> 16 & 255], 7),
+                    e.set([255 & c.get(this, s, "f"), c.get(this, s, "f") >> 8 & 255, c.get(this, s, "f") >> 16 & 255], 10),
+                    e.set([255 & c.get(this, o, "f"), c.get(this, o, "f") >> 8 & 255, c.get(this, o, "f") >> 16 & 255], 13),
                     e
                 }
                 static deserializeBinary(e) {
@@ -1062,113 +978,45 @@
                     l.set(this, []),
                     c.set(this, []),
                     h.set(this, null),
-                    null != e && ((0,
-                    f.GG)(this, a, e.up, "f"),
-                    (0,
-                    f.GG)(this, s, e.right, "f"),
-                    (0,
-                    f.GG)(this, o, e.down, "f"),
-                    (0,
-                    f.GG)(this, l, e.left, "f"),
-                    (0,
-                    f.GG)(this, c, e.reset, "f"))
+                    null != e && (f.set(this, a, e.up, "f"),
+                    f.set(this, s, e.right, "f"),
+                    f.set(this, o, e.down, "f"),
+                    f.set(this, l, e.left, "f"),
+                    f.set(this, c, e.reset, "f"))
                 }
                 recordFrame(e, t) {
                     if (e > r.maxFrames)
                         throw new Error("Frame number exceeds maximum frame count.");
-                    if (null != (0,
-                    f.gn)(this, h, "f") && e <= (0,
-                    f.gn)(this, h, "f"))
+                    if (null != f.get(this, h, "f") && e <= f.get(this, h, "f"))
                         throw new Error("Frame number must be greater than the previous recorded frame.");
-                    (0,
-                    f.GG)(this, h, e, "f");
-                    const n = (0,
-                    f.gn)(this, a, "f").length % 2 != 0
-                      , i = (0,
-                    f.gn)(this, s, "f").length % 2 != 0
-                      , d = (0,
-                    f.gn)(this, o, "f").length % 2 != 0
-                      , u = (0,
-                    f.gn)(this, l, "f").length % 2 != 0
-                      , p = (0,
-                    f.gn)(this, c, "f").length % 2 != 0;
-                    t.up != n && (0,
-                    f.gn)(this, a, "f").push(e),
-                    t.right != i && (0,
-                    f.gn)(this, s, "f").push(e),
-                    t.down != d && (0,
-                    f.gn)(this, o, "f").push(e),
-                    t.left != u && (0,
-                    f.gn)(this, l, "f").push(e),
-                    t.reset != p && (0,
-                    f.gn)(this, c, "f").push(e)
+                    f.set(this, h, e, "f");
+                    const n = f.get(this, a, "f").length % 2 != 0
+                      , i = f.get(this, s, "f").length % 2 != 0
+                      , d = f.get(this, o, "f").length % 2 != 0
+                      , u = f.get(this, l, "f").length % 2 != 0
+                      , p = f.get(this, c, "f").length % 2 != 0;
+                    t.up != n && f.get(this, a, "f").push(e),
+                    t.right != i && f.get(this, s, "f").push(e),
+                    t.down != d && f.get(this, o, "f").push(e),
+                    t.left != u && f.get(this, l, "f").push(e),
+                    t.reset != p && f.get(this, c, "f").push(e)
                 }
                 getFrame(e) {
                     return {
-                        up: ((0,
-                        f.gn)(this, i, "m", d).call(this, e, (0,
-                        f.gn)(this, a, "f")) + 1) % 2 != 0,
-                        right: ((0,
-                        f.gn)(this, i, "m", d).call(this, e, (0,
-                        f.gn)(this, s, "f")) + 1) % 2 != 0,
-                        down: ((0,
-                        f.gn)(this, i, "m", d).call(this, e, (0,
-                        f.gn)(this, o, "f")) + 1) % 2 != 0,
-                        left: ((0,
-                        f.gn)(this, i, "m", d).call(this, e, (0,
-                        f.gn)(this, l, "f")) + 1) % 2 != 0,
-                        reset: ((0,
-                        f.gn)(this, i, "m", d).call(this, e, (0,
-                        f.gn)(this, c, "f")) + 1) % 2 != 0
+                        up: (f.get(this, i, "m", d).call(this, e, f.get(this, a, "f")) + 1) % 2 != 0,
+                        right: (f.get(this, i, "m", d).call(this, e, f.get(this, s, "f")) + 1) % 2 != 0,
+                        down: (f.get(this, i, "m", d).call(this, e, f.get(this, o, "f")) + 1) % 2 != 0,
+                        left: (f.get(this, i, "m", d).call(this, e, f.get(this, l, "f")) + 1) % 2 != 0,
+                        reset: (f.get(this, i, "m", d).call(this, e, f.get(this, c, "f")) + 1) % 2 != 0
                     }
                 }
                 serialize() {
-                    const e = new Uint8Array(3 + 3 * (0,
-                    f.gn)(this, a, "f").length + 3 + 3 * (0,
-                    f.gn)(this, s, "f").length + 3 + 3 * (0,
-                    f.gn)(this, o, "f").length + 3 + 3 * (0,
-                    f.gn)(this, l, "f").length + 3 + 3 * (0,
-                    f.gn)(this, c, "f").length);
-                    (0,
-                    f.gn)(this, i, "m", u).call(this, (0,
-                    f.gn)(this, a, "f"), e.subarray(0, 3 + 3 * (0,
-                    f.gn)(this, a, "f").length)),
-                    (0,
-                    f.gn)(this, i, "m", u).call(this, (0,
-                    f.gn)(this, s, "f"), e.subarray(3 + 3 * (0,
-                    f.gn)(this, a, "f").length, 3 + 3 * (0,
-                    f.gn)(this, a, "f").length + 3 + 3 * (0,
-                    f.gn)(this, s, "f").length)),
-                    (0,
-                    f.gn)(this, i, "m", u).call(this, (0,
-                    f.gn)(this, o, "f"), e.subarray(3 + 3 * (0,
-                    f.gn)(this, a, "f").length + 3 + 3 * (0,
-                    f.gn)(this, s, "f").length, 3 + 3 * (0,
-                    f.gn)(this, a, "f").length + 3 + 3 * (0,
-                    f.gn)(this, s, "f").length + 3 + 3 * (0,
-                    f.gn)(this, o, "f").length)),
-                    (0,
-                    f.gn)(this, i, "m", u).call(this, (0,
-                    f.gn)(this, l, "f"), e.subarray(3 + 3 * (0,
-                    f.gn)(this, a, "f").length + 3 + 3 * (0,
-                    f.gn)(this, s, "f").length + 3 + 3 * (0,
-                    f.gn)(this, o, "f").length, 3 + 3 * (0,
-                    f.gn)(this, a, "f").length + 3 + 3 * (0,
-                    f.gn)(this, s, "f").length + 3 + 3 * (0,
-                    f.gn)(this, o, "f").length + 3 + 3 * (0,
-                    f.gn)(this, l, "f").length)),
-                    (0,
-                    f.gn)(this, i, "m", u).call(this, (0,
-                    f.gn)(this, c, "f"), e.subarray(3 + 3 * (0,
-                    f.gn)(this, a, "f").length + 3 + 3 * (0,
-                    f.gn)(this, s, "f").length + 3 + 3 * (0,
-                    f.gn)(this, o, "f").length + 3 + 3 * (0,
-                    f.gn)(this, l, "f").length, 3 + 3 * (0,
-                    f.gn)(this, a, "f").length + 3 + 3 * (0,
-                    f.gn)(this, s, "f").length + 3 + 3 * (0,
-                    f.gn)(this, o, "f").length + 3 + 3 * (0,
-                    f.gn)(this, l, "f").length + 3 + 3 * (0,
-                    f.gn)(this, c, "f").length));
+                    const e = new Uint8Array(3 + 3 * f.get(this, a, "f").length + 3 + 3 * f.get(this, s, "f").length + 3 + 3 * f.get(this, o, "f").length + 3 + 3 * f.get(this, l, "f").length + 3 + 3 * f.get(this, c, "f").length);
+                    f.get(this, i, "m", u).call(this, f.get(this, a, "f"), e.subarray(0, 3 + 3 * f.get(this, a, "f").length)),
+                    f.get(this, i, "m", u).call(this, f.get(this, s, "f"), e.subarray(3 + 3 * f.get(this, a, "f").length, 3 + 3 * f.get(this, a, "f").length + 3 + 3 * f.get(this, s, "f").length)),
+                    f.get(this, i, "m", u).call(this, f.get(this, o, "f"), e.subarray(3 + 3 * f.get(this, a, "f").length + 3 + 3 * f.get(this, s, "f").length, 3 + 3 * f.get(this, a, "f").length + 3 + 3 * f.get(this, s, "f").length + 3 + 3 * f.get(this, o, "f").length)),
+                    f.get(this, i, "m", u).call(this, f.get(this, l, "f"), e.subarray(3 + 3 * f.get(this, a, "f").length + 3 + 3 * f.get(this, s, "f").length + 3 + 3 * f.get(this, o, "f").length, 3 + 3 * f.get(this, a, "f").length + 3 + 3 * f.get(this, s, "f").length + 3 + 3 * f.get(this, o, "f").length + 3 + 3 * f.get(this, l, "f").length)),
+                    f.get(this, i, "m", u).call(this, f.get(this, c, "f"), e.subarray(3 + 3 * f.get(this, a, "f").length + 3 + 3 * f.get(this, s, "f").length + 3 + 3 * f.get(this, o, "f").length + 3 + 3 * f.get(this, l, "f").length, 3 + 3 * f.get(this, a, "f").length + 3 + 3 * f.get(this, s, "f").length + 3 + 3 * f.get(this, o, "f").length + 3 + 3 * f.get(this, l, "f").length + 3 + 3 * f.get(this, c, "f").length));
                     const t = new g.Ay.Deflate({
                         level: 9
                     });
@@ -1186,24 +1034,19 @@
                     const i = n.result;
                     if (!(i instanceof Uint8Array))
                         return null;
-                    const a = (0,
-                    f.gn)(r, r, "m", p).call(r, i);
+                    const a = f.get(r, r, "m", p).call(r, i);
                     if (null == a)
                         return null;
-                    const s = (0,
-                    f.gn)(r, r, "m", p).call(r, i.subarray(3 + 3 * a.length));
+                    const s = f.get(r, r, "m", p).call(r, i.subarray(3 + 3 * a.length));
                     if (null == s)
                         return null;
-                    const o = (0,
-                    f.gn)(r, r, "m", p).call(r, i.subarray(3 + 3 * a.length + 3 + 3 * s.length));
+                    const o = f.get(r, r, "m", p).call(r, i.subarray(3 + 3 * a.length + 3 + 3 * s.length));
                     if (null == o)
                         return null;
-                    const l = (0,
-                    f.gn)(r, r, "m", p).call(r, i.subarray(3 + 3 * a.length + 3 + 3 * s.length + 3 + 3 * o.length));
+                    const l = f.get(r, r, "m", p).call(r, i.subarray(3 + 3 * a.length + 3 + 3 * s.length + 3 + 3 * o.length));
                     if (null == l)
                         return null;
-                    const c = (0,
-                    f.gn)(r, r, "m", p).call(r, i.subarray(3 + 3 * a.length + 3 + 3 * s.length + 3 + 3 * o.length + 3 + 3 * l.length));
+                    const c = f.get(r, r, "m", p).call(r, i.subarray(3 + 3 * a.length + 3 + 3 * s.length + 3 + 3 * o.length + 3 + 3 * l.length));
                     return null == c ? null : new r({
                         up: a,
                         right: s,
@@ -1299,28 +1142,21 @@
                     r.set(this, [])
                 }
                 cancel() {
-                    if (!(0,
-                    a.gn)(this, i, "f")) {
-                        (0,
-                        a.GG)(this, i, !0, "f");
-                        for (const e of (0,
-                        a.gn)(this, r, "f"))
+                    if (!a.get(this, i, "f")) {
+                        a.set(this, i, !0, "f");
+                        for (const e of a.get(this, r, "f"))
                             e()
                     }
                 }
                 get isCancelled() {
-                    return (0,
-                    a.gn)(this, i, "f")
+                    return a.get(this, i, "f")
                 }
                 addCancelCallback(e) {
-                    (0,
-                    a.gn)(this, r, "f").push(e),
-                    (0,
-                    a.gn)(this, i, "f") && e()
+                    a.get(this, r, "f").push(e),
+                    a.get(this, i, "f") && e()
                 }
                 throwIfCancelled() {
-                    if ((0,
-                    a.gn)(this, i, "f"))
+                    if (a.get(this, i, "f"))
                         throw new Error("Operation cancelled")
                 }
             }
@@ -1339,37 +1175,23 @@
                     s.set(this, []),
                     o.set(this, 256),
                     l.set(this, new THREE.Vector3(0,1,0)),
-                    (0,
-                    d.GG)(this, r, e, "f"),
-                    (0,
-                    d.GG)(this, a, new THREE.InstancedMesh((0,
-                    d.gn)(i, i, "f", c),(0,
-                    d.gn)(i, i, "f", h),(0,
-                    d.gn)(this, o, "f")), "f"),
-                    (0,
-                    d.gn)(this, a, "f").frustumCulled = !1,
-                    e.scene.add((0,
-                    d.gn)(this, a, "f")),
+                    d.set(this, r, e, "f"),
+                    d.set(this, a, new THREE.InstancedMesh(d.get(i, i, "f", c),d.get(i, i, "f", h),d.get(this, o, "f")), "f"),
+                    d.get(this, a, "f").frustumCulled = !1,
+                    e.scene.add(d.get(this, a, "f")),
                     this.clear()
                 }
                 dispose() {
-                    (0,
-                    d.gn)(this, a, "f").dispose(),
-                    (0,
-                    d.gn)(this, r, "f").scene.remove((0,
-                    d.gn)(this, a, "f"))
+                    d.get(this, a, "f").dispose(),
+                    d.get(this, r, "f").scene.remove(d.get(this, a, "f"))
                 }
                 clear() {
-                    (0,
-                    d.gn)(this, s, "f").length = 0,
-                    (0,
-                    d.gn)(this, a, "f").count = 0,
-                    (0,
-                    d.gn)(this, a, "f").instanceMatrix.needsUpdate = !0
+                    d.get(this, s, "f").length = 0,
+                    d.get(this, a, "f").count = 0,
+                    d.get(this, a, "f").instanceMatrix.needsUpdate = !0
                 }
                 spawn(e, t, n) {
-                    (0,
-                    d.gn)(this, s, "f").push({
+                    d.get(this, s, "f").push({
                         x: e + .25 * (Math.random() - .5),
                         y: t + .25 * (Math.random() - .5),
                         z: n + .25 * (Math.random() - .5),
@@ -1381,45 +1203,29 @@
                     })
                 }
                 update(e) {
-                    for (let t = (0,
-                    d.gn)(this, s, "f").length - 1; t >= 0; --t) {
-                        const n = (0,
-                        d.gn)(this, s, "f")[t];
+                    for (let t = d.get(this, s, "f").length - 1; t >= 0; --t) {
+                        const n = d.get(this, s, "f")[t];
                         n.vy += 15 * e,
                         n.x += n.vx * e,
                         n.y += n.vy * e,
                         n.z += n.vz * e,
                         n.lifetime -= e,
-                        n.lifetime <= 0 && (0,
-                        d.gn)(this, s, "f").splice(t, 1)
+                        n.lifetime <= 0 && d.get(this, s, "f").splice(t, 1)
                     }
                     let t = !1;
-                    (0,
-                    d.gn)(this, a, "f").count != (0,
-                    d.gn)(this, s, "f").length && ((0,
-                    d.gn)(this, a, "f").count = Math.min((0,
-                    d.gn)(this, s, "f").length, (0,
-                    d.gn)(this, o, "f")),
+                    d.get(this, a, "f").count != d.get(this, s, "f").length && (d.get(this, a, "f").count = Math.min(d.get(this, s, "f").length, d.get(this, o, "f")),
                     t = !0);
-                    for (let e = 0; e < (0,
-                    d.gn)(this, a, "f").count; ++e) {
-                        const t = (0,
-                        d.gn)(this, s, "f")[(0,
-                        d.gn)(this, s, "f").length - 1 - e]
+                    for (let e = 0; e < d.get(this, a, "f").count; ++e) {
+                        const t = d.get(this, s, "f")[d.get(this, s, "f").length - 1 - e]
                           , n = new THREE.Matrix4;
-                        n.lookAt(new THREE.Vector3(t.x,t.y,t.z), (0,
-                        d.gn)(this, r, "f").camera.position, (0,
-                        d.gn)(this, l, "f")),
+                        n.lookAt(new THREE.Vector3(t.x,t.y,t.z), d.get(this, r, "f").camera.position, d.get(this, l, "f")),
                         n.setPosition(t.x, t.y, t.z),
                         n.multiply((new THREE.Matrix4).makeRotationZ(t.rotation));
                         const i = .5 + 2 * (.5 - t.lifetime);
                         n.scale(new THREE.Vector3(i,i,i)),
-                        (0,
-                        d.gn)(this, a, "f").setMatrixAt(e, n)
+                        d.get(this, a, "f").setMatrixAt(e, n)
                     }
-                    (t || (0,
-                    d.gn)(this, s, "f").length > 0) && ((0,
-                    d.gn)(this, a, "f").instanceMatrix.needsUpdate = !0)
+                    (t || d.get(this, s, "f").length > 0) && (d.get(this, a, "f").instanceMatrix.needsUpdate = !0)
                 }
                 static initResources(e) {
                     e.addResource();
@@ -1427,8 +1233,7 @@
                         e.loadedResource()
                     }
                     ));
-                    (0,
-                    d.gn)(this, i, "f", h).map = t
+                    d.get(this, i, "f", h).map = t
                 }
             }
             i = p,
@@ -1556,8 +1361,7 @@
                     carCollisionShapeVertices: a.A.models.collisionShapeVertices,
                     carMassOffset: a.A.massOffset
                 };
-                (0,
-                r.gn)(this, h, "f").postMessage(i)
+                r.get(this, h, "f").postMessage(i)
             }
             ;
             const A = class {
@@ -1569,30 +1373,24 @@
                     u.set(this, new Map),
                     p.set(this, []),
                     f.set(this, new Map),
-                    (0,
-                    r.GG)(this, h, new Worker("simulation_worker.bundle.js"), "f"),
-                    (0,
-                    r.gn)(this, h, "f").addEventListener("message", (e => {
+                    r.set(this, h, new Worker("simulation_worker.bundle.js"), "f"),
+                    r.get(this, h, "f").addEventListener("message", (e => {
                         const t = e.data;
                         switch (t.messageType) {
                         case o.VerifyResult:
                             {
                                 const e = t.carId
-                                  , n = (0,
-                                r.gn)(this, u, "f").get(e);
-                                null != n && ((0,
-                                r.gn)(this, u, "f").delete(e),
+                                  , n = r.get(this, u, "f").get(e);
+                                null != n && (r.get(this, u, "f").delete(e),
                                 n.resolve(t.result));
                                 break
                             }
                         case o.DeterminismResult:
                             {
                                 const e = t.isDeterminstic;
-                                for (const t of (0,
-                                r.gn)(this, p, "f"))
+                                for (const t of r.get(this, p, "f"))
                                     t(e);
-                                (0,
-                                r.gn)(this, p, "f").length = 0;
+                                r.get(this, p, "f").length = 0;
                                 break
                             }
                         case o.UpdateResult:
@@ -1601,8 +1399,7 @@
                                 for (const t of e) {
                                     const e = new Uint8Array(t)
                                       , n = e[0] | e[1] << 8 | e[2] << 16 | e[3] << 24
-                                      , i = (0,
-                                    r.gn)(this, f, "f").get(n);
+                                      , i = r.get(this, f, "f").get(n);
                                     if (null != i) {
                                         i(m.VO(e.subarray(4)).carState)
                                     }
@@ -1612,45 +1409,33 @@
                         }
                     }
                     )),
-                    null != t && null != n ? ((0,
-                    r.GG)(this, c, t, "f"),
-                    n.hasLoaded() ? (0,
-                    r.gn)(this, l, "m", g).call(this, e, t) : n.addCompleteListener(( () => {
-                        (0,
-                        r.gn)(this, l, "m", g).call(this, e, t)
+                    null != t && null != n ? (r.set(this, c, t, "f"),
+                    n.hasLoaded() ? r.get(this, l, "m", g).call(this, e, t) : n.addCompleteListener(( () => {
+                        r.get(this, l, "m", g).call(this, e, t)
                     }
-                    ))) : (0,
-                    r.GG)(this, c, null, "f")
+                    ))) : r.set(this, c, null, "f")
                 }
                 dispose() {
-                    (0,
-                    r.gn)(this, h, "f").terminate();
-                    for (const {reject: e} of (0,
-                    r.gn)(this, u, "f").values())
+                    r.get(this, h, "f").terminate();
+                    for (const {reject: e} of r.get(this, u, "f").values())
                         e(new Error("Simulation has been disposed"));
-                    (0,
-                    r.gn)(this, u, "f").clear(),
-                    (0,
-                    r.gn)(this, p, "f").length = 0
+                    r.get(this, u, "f").clear(),
+                    r.get(this, p, "f").length = 0
                 }
                 validate(e, t, n) {
                     return new Promise(( (i, a) => {
                         var l, p;
-                        if (null == (0,
-                        r.gn)(this, c, "f"))
+                        if (null == r.get(this, c, "f"))
                             throw new Error("TrackPartManager is not initialized");
                         if (null == e.getStartTransform())
                             i(!1);
                         else {
                             const c = s.A.createMountainVertices(e.getBounds())
-                              , f = ((0,
-                            r.GG)(this, d, (p = (0,
-                            r.gn)(this, d, "f"),
+                              , f = (r.set(this, d, (p = r.get(this, d, "f"),
                             l = p++,
                             p), "f"),
                             l);
-                            (0,
-                            r.gn)(this, u, "f").set(f, {
+                            r.get(this, u, "f").set(f, {
                                 resolve: i,
                                 reject: a
                             });
@@ -1667,37 +1452,30 @@
                                 carRecording: t.serialize(),
                                 targetFrames: n.numberOfFrames
                             };
-                            (0,
-                            r.gn)(this, h, "f").postMessage(g)
+                            r.get(this, h, "f").postMessage(g)
                         }
                     }
                     ))
                 }
                 testDeterminism() {
                     return new Promise((e => {
-                        (0,
-                        r.gn)(this, p, "f").push(e);
+                        r.get(this, p, "f").push(e);
                         const t = {
                             messageType: o.TestDeterminism
                         };
-                        (0,
-                        r.gn)(this, h, "f").postMessage(t)
+                        r.get(this, h, "f").postMessage(t)
                     }
                     ))
                 }
                 createCar(e, t, n, i, s, l) {
                     var u, p;
-                    if (null == (0,
-                    r.gn)(this, c, "f"))
+                    if (null == r.get(this, c, "f"))
                         throw new Error("TrackPartManager is not initialized");
-                    const g = ((0,
-                    r.GG)(this, d, (p = (0,
-                    r.gn)(this, d, "f"),
+                    const g = (r.set(this, d, (p = r.get(this, d, "f"),
                     u = p++,
                     p), "f"),
                     u);
-                    (0,
-                    r.gn)(this, f, "f").set(g, l);
+                    r.get(this, f, "f").set(g, l);
                     const m = {
                         messageType: o.CreateCar,
                         mountainVertices: t,
@@ -1710,8 +1488,7 @@
                         carId: g,
                         carRecording: s?.serialize() ?? null
                     };
-                    return (0,
-                    r.gn)(this, h, "f").postMessage(m),
+                    return r.get(this, h, "f").postMessage(m),
                     {
                         id: g,
                         carState: {
@@ -1755,10 +1532,8 @@
                         messageType: o.DeleteCar,
                         carId: e
                     };
-                    if ((0,
-                    r.gn)(this, h, "f").postMessage(t),
-                    !(0,
-                    r.gn)(this, f, "f").delete(e))
+                    if (r.get(this, h, "f").postMessage(t),
+                    !r.get(this, f, "f").delete(e))
                         throw new Error("Deleting non-existant car")
                 }
                 startCar(e, t) {
@@ -1767,8 +1542,7 @@
                         carId: e,
                         targetSimulationTimeFrames: t?.numberOfFrames ?? null
                     };
-                    (0,
-                    r.gn)(this, h, "f").postMessage(n)
+                    r.get(this, h, "f").postMessage(n)
                 }
                 controlCar(e, t, n, i, a, s) {
                     const l = {
@@ -1780,8 +1554,7 @@
                         left: a,
                         reset: s
                     };
-                    (0,
-                    r.gn)(this, h, "f").postMessage(l)
+                    r.get(this, h, "f").postMessage(l)
                 }
                 pauseCar(e, t) {
                     const n = {
@@ -1789,8 +1562,7 @@
                         carId: e,
                         isPaused: t
                     };
-                    (0,
-                    r.gn)(this, h, "f").postMessage(n)
+                    r.get(this, h, "f").postMessage(n)
                 }
             }
         }
@@ -2410,8 +2182,8 @@
         1635: (module, t, __webpack_require__) => {
             "use strict";
             __webpack_require__.d(t, {
-                GG: () => r,
-                gn: () => i
+                set: () => r,
+                get: () => i
             });
             Object.create;
             Object.create;
@@ -3732,12 +3504,9 @@
                     I.set(this, new THREE.Vector3(8,10,10)),
                     L.set(this, []),
                     U.set(this, []),
-                    (0,
-                    i.GG)(this, w, e, "f"),
-                    (0,
-                    i.GG)(this, x, t, "f"),
-                    (0,
-                    i.GG)(this, S, n, "f");
+                    i.set(this, w, e, "f"),
+                    i.set(this, x, t, "f"),
+                    i.set(this, S, n, "f");
                     const s = {
                         antialias: t?.getSettingBoolean(W.A.Antialiasing) ?? !0,
                         powerPreference: "high-performance",
@@ -3746,224 +3515,130 @@
                     };
                     try {
                         s.failIfMajorPerformanceCaveat = !0,
-                        (0,
-                        i.GG)(this, k, new a.JeP(s), "f"),
-                        (0,
-                        i.GG)(this, E, !1, "f")
+                        i.set(this, k, new a.JeP(s), "f"),
+                        i.set(this, E, !1, "f")
                     } catch {
                         s.failIfMajorPerformanceCaveat = !1,
-                        (0,
-                        i.GG)(this, k, new a.JeP(s), "f"),
-                        (0,
-                        i.GG)(this, E, !0, "f")
+                        i.set(this, k, new a.JeP(s), "f"),
+                        i.set(this, E, !0, "f")
                     }
-                    (0,
-                    i.gn)(this, k, "f").outputColorSpace = THREE.LinearSRGBColorSpace,
-                    (0,
-                    i.gn)(this, k, "f").debug.checkShaderErrors = !1,
-                    (0,
-                    i.GG)(this, T, new THREE.Scene, "f"),
-                    (0,
-                    i.gn)(this, y, "m", G).call(this),
-                    (0,
-                    i.gn)(this, T, "f").add(new THREE.HemisphereLight(3891597,11714755,4.7)),
+                    i.get(this, k, "f").outputColorSpace = THREE.LinearSRGBColorSpace,
+                    i.get(this, k, "f").debug.checkShaderErrors = !1,
+                    i.set(this, T, new THREE.Scene, "f"),
+                    i.get(this, y, "m", G).call(this),
+                    i.get(this, T, "f").add(new THREE.HemisphereLight(3891597,11714755,4.7)),
                     document.addEventListener("fullscreenchange", ( () => {
-                        (0,
-                        i.gn)(this, y, "m", F).call(this)
+                        i.get(this, y, "m", F).call(this)
                     }
                     )),
-                    (0,
-                    i.gn)(this, w, "f").addEventListener("webglcontextrestored", ( () => {
-                        for (const e of (0,
-                        i.gn)(this, U, "f"))
+                    i.get(this, w, "f").addEventListener("webglcontextrestored", ( () => {
+                        for (const e of i.get(this, U, "f"))
                             e()
                     }
                     )),
                     null != window.electron && window.electron.addFullscreenChangeListener(( () => {
-                        (0,
-                        i.gn)(this, y, "m", F).call(this)
+                        i.get(this, y, "m", F).call(this)
                     }
                     ))
                 }
                 clear() {
-                    (0,
-                    i.gn)(this, k, "f").clear()
+                    i.get(this, k, "f").clear()
                 }
                 update(e) {
-                    (0,
-                    i.gn)(this, I, "f").copy(e.getSunPosition());
-                    let t = (0,
-                    i.gn)(this, x, "f")?.getSettingInteger(W.A.ShadowQuality) ?? 0;
+                    i.get(this, I, "f").copy(e.getSunPosition());
+                    let t = i.get(this, x, "f")?.getSettingInteger(W.A.ShadowQuality) ?? 0;
                     if (this.isShadowQualitySupported(t) || (t = 0),
                     !Number.isSafeInteger(t) || t <= 2 || t > 5)
-                        if (null != (0,
-                        i.gn)(this, _, "f") && ((0,
-                        i.gn)(this, _, "f").remove(),
-                        (0,
-                        i.gn)(this, _, "f").dispose(),
-                        (0,
-                        i.GG)(this, _, null, "f"),
-                        (0,
-                        i.GG)(this, C, null, "f")),
-                        null == (0,
-                        i.gn)(this, P, "f") && ((0,
-                        i.GG)(this, P, new THREE.DirectionalLight(16777215,4.7), "f"),
-                        (0,
-                        i.gn)(this, P, "f").position.copy((0,
-                        i.gn)(this, I, "f")),
-                        (0,
-                        i.gn)(this, T, "f").add((0,
-                        i.gn)(this, P, "f")),
-                        (0,
-                        i.gn)(this, T, "f").add((0,
-                        i.gn)(this, P, "f").target)),
+                        if (null != i.get(this, _, "f") && (i.get(this, _, "f").remove(),
+                        i.get(this, _, "f").dispose(),
+                        i.set(this, _, null, "f"),
+                        i.set(this, C, null, "f")),
+                        null == i.get(this, P, "f") && (i.set(this, P, new THREE.DirectionalLight(16777215,4.7), "f"),
+                        i.get(this, P, "f").position.copy(i.get(this, I, "f")),
+                        i.get(this, T, "f").add(i.get(this, P, "f")),
+                        i.get(this, T, "f").add(i.get(this, P, "f").target)),
                         1 == t || 2 == t) {
-                            if (!(0,
-                            i.gn)(this, P, "f").castShadow) {
-                                const e = (0,
-                                i.gn)(this, y, "m", B).call(this, t);
-                                (0,
-                                i.gn)(this, P, "f").castShadow = !0,
-                                (0,
-                                i.gn)(this, P, "f").shadow.camera.top = 10,
-                                (0,
-                                i.gn)(this, P, "f").shadow.camera.right = 10,
-                                (0,
-                                i.gn)(this, P, "f").shadow.camera.bottom = -10,
-                                (0,
-                                i.gn)(this, P, "f").shadow.camera.left = -10,
-                                (0,
-                                i.gn)(this, P, "f").shadow.camera.near = 1,
-                                (0,
-                                i.gn)(this, P, "f").shadow.camera.far = 50,
-                                (0,
-                                i.gn)(this, P, "f").shadow.mapSize.width = e,
-                                (0,
-                                i.gn)(this, P, "f").shadow.mapSize.height = e,
-                                (0,
-                                i.gn)(this, P, "f").shadow.normalBias = .03,
-                                (0,
-                                i.gn)(this, P, "f").shadow.intensity = .6
+                            if (!i.get(this, P, "f").castShadow) {
+                                const e = i.get(this, y, "m", B).call(this, t);
+                                i.get(this, P, "f").castShadow = !0,
+                                i.get(this, P, "f").shadow.camera.top = 10,
+                                i.get(this, P, "f").shadow.camera.right = 10,
+                                i.get(this, P, "f").shadow.camera.bottom = -10,
+                                i.get(this, P, "f").shadow.camera.left = -10,
+                                i.get(this, P, "f").shadow.camera.near = 1,
+                                i.get(this, P, "f").shadow.camera.far = 50,
+                                i.get(this, P, "f").shadow.mapSize.width = e,
+                                i.get(this, P, "f").shadow.mapSize.height = e,
+                                i.get(this, P, "f").shadow.normalBias = .03,
+                                i.get(this, P, "f").shadow.intensity = .6
                             }
-                            (0,
-                            i.gn)(this, P, "f").position.addVectors((0,
-                            i.gn)(this, M, "f").position, (0,
-                            i.gn)(this, I, "f").multiplyScalar(12.5)),
-                            (0,
-                            i.gn)(this, P, "f").target.position.copy((0,
-                            i.gn)(this, M, "f").position),
-                            (0,
-                            i.gn)(this, k, "f").shadowMap.enabled = !0
+                            i.get(this, P, "f").position.addVectors(i.get(this, M, "f").position, i.get(this, I, "f").multiplyScalar(12.5)),
+                            i.get(this, P, "f").target.position.copy(i.get(this, M, "f").position),
+                            i.get(this, k, "f").shadowMap.enabled = !0
                         } else
-                            (0,
-                            i.gn)(this, P, "f").castShadow = !1,
-                            (0,
-                            i.gn)(this, P, "f").shadow.map?.dispose(),
-                            (0,
-                            i.gn)(this, P, "f").shadow.map = null,
-                            (0,
-                            i.gn)(this, k, "f").shadowMap.enabled = !1;
+                            i.get(this, P, "f").castShadow = !1,
+                            i.get(this, P, "f").shadow.map?.dispose(),
+                            i.get(this, P, "f").shadow.map = null,
+                            i.get(this, k, "f").shadowMap.enabled = !1;
                     else {
-                        if (null != (0,
-                        i.gn)(this, _, "f") && (0,
-                        i.gn)(this, C, "f") != t && ((0,
-                        i.gn)(this, _, "f").remove(),
-                        (0,
-                        i.gn)(this, _, "f").dispose(),
-                        (0,
-                        i.GG)(this, _, null, "f"),
-                        (0,
-                        i.GG)(this, C, null, "f"),
-                        (0,
-                        i.gn)(this, k, "f").compile((0,
-                        i.gn)(this, T, "f"), (0,
-                        i.gn)(this, M, "f"))),
-                        null == (0,
-                        i.gn)(this, _, "f")) {
-                            (0,
-                            i.gn)(this, k, "f").shadowMap.enabled = !0,
-                            (0,
-                            i.GG)(this, _, (0,
-                            i.gn)(this, y, "m", z).call(this, t), "f"),
-                            (0,
-                            i.GG)(this, C, t, "f");
-                            for (const {material: e, onBeforeCompile: t, customProgramCacheKey: n} of (0,
-                            i.gn)(this, R, "f"))
-                                (0,
-                                i.gn)(this, y, "m", D).call(this, e, t, n)
+                        if (null != i.get(this, _, "f") && i.get(this, C, "f") != t && (i.get(this, _, "f").remove(),
+                        i.get(this, _, "f").dispose(),
+                        i.set(this, _, null, "f"),
+                        i.set(this, C, null, "f"),
+                        i.get(this, k, "f").compile(i.get(this, T, "f"), i.get(this, M, "f"))),
+                        null == i.get(this, _, "f")) {
+                            i.get(this, k, "f").shadowMap.enabled = !0,
+                            i.set(this, _, i.get(this, y, "m", z).call(this, t), "f"),
+                            i.set(this, C, t, "f");
+                            for (const {material: e, onBeforeCompile: t, customProgramCacheKey: n} of i.get(this, R, "f"))
+                                i.get(this, y, "m", D).call(this, e, t, n)
                         }
-                        null != (0,
-                        i.gn)(this, P, "f") && ((0,
-                        i.gn)(this, T, "f").remove((0,
-                        i.gn)(this, P, "f")),
-                        (0,
-                        i.gn)(this, T, "f").remove((0,
-                        i.gn)(this, P, "f").target),
-                        (0,
-                        i.GG)(this, P, null, "f")),
-                        (0,
-                        i.gn)(this, _, "f").lightDirection = (0,
-                        i.gn)(this, I, "f").clone().negate().normalize(),
-                        (0,
-                        i.gn)(this, _, "f").update()
+                        null != i.get(this, P, "f") && (i.get(this, T, "f").remove(i.get(this, P, "f")),
+                        i.get(this, T, "f").remove(i.get(this, P, "f").target),
+                        i.set(this, P, null, "f")),
+                        i.get(this, _, "f").lightDirection = i.get(this, I, "f").clone().negate().normalize(),
+                        i.get(this, _, "f").update()
                     }
-                    (0,
-                    i.gn)(this, y, "m", N).call(this),
-                    (0,
-                    i.gn)(this, y, "m", G).call(this),
-                    (0,
-                    i.gn)(this, k, "f").render((0,
-                    i.gn)(this, T, "f"), (0,
-                    i.gn)(this, M, "f"))
+                    i.get(this, y, "m", N).call(this),
+                    i.get(this, y, "m", G).call(this),
+                    i.get(this, k, "f").render(i.get(this, T, "f"), i.get(this, M, "f"))
                 }
                 addMaterial(e) {
                     const t = Array.isArray(e) ? e : [e];
                     for (const e of t) {
                         const t = e.onBeforeCompile.bind(e)
                           , n = e.onBeforeCompile.toString();
-                        (0,
-                        i.gn)(this, R, "f").push({
+                        i.get(this, R, "f").push({
                             material: e,
                             onBeforeCompile: t,
                             customProgramCacheKey: n
                         }),
-                        null != (0,
-                        i.gn)(this, _, "f") && (0,
-                        i.gn)(this, y, "m", D).call(this, e, t, n)
+                        null != i.get(this, _, "f") && i.get(this, y, "m", D).call(this, e, t, n)
                     }
                 }
                 removeMaterial(e) {
                     if (Array.isArray(e))
                         for (const t of e) {
-                            const e = (0,
-                            i.gn)(this, R, "f").findIndex((e => e.material == t));
-                            e >= 0 && (0,
-                            i.gn)(this, R, "f").splice(e, 1)
+                            const e = i.get(this, R, "f").findIndex((e => e.material == t));
+                            e >= 0 && i.get(this, R, "f").splice(e, 1)
                         }
                     else {
-                        const t = (0,
-                        i.gn)(this, R, "f").findIndex((t => t.material == e));
-                        t >= 0 && (0,
-                        i.gn)(this, R, "f").splice(t, 1)
+                        const t = i.get(this, R, "f").findIndex((t => t.material == e));
+                        t >= 0 && i.get(this, R, "f").splice(t, 1)
                     }
                 }
                 isTrackShadowsEnabled() {
-                    const e = (0,
-                    i.gn)(this, x, "f")?.getSettingInteger(W.A.ShadowQuality) ?? 0;
+                    const e = i.get(this, x, "f")?.getSettingInteger(W.A.ShadowQuality) ?? 0;
                     return 3 == e || 4 == e || 5 == e
                 }
                 isShadowQualitySupported(e) {
-                    return !Number.isSafeInteger(e) || e <= 0 || e > 5 || (0,
-                    i.gn)(this, k, "f").capabilities.maxTextureSize >= (0,
-                    i.gn)(this, y, "m", B).call(this, e)
+                    return !Number.isSafeInteger(e) || e <= 0 || e > 5 || i.get(this, k, "f").capabilities.maxTextureSize >= i.get(this, y, "m", B).call(this, e)
                 }
                 getMaxAnisotropy() {
-                    return (0,
-                    i.gn)(this, k, "f").capabilities.getMaxAnisotropy()
+                    return i.get(this, k, "f").capabilities.getMaxAnisotropy()
                 }
                 get isUsingSoftwareRenderer() {
-                    return (0,
-                    i.gn)(this, E, "f")
+                    return i.get(this, E, "f")
                 }
                 get isFullscreen() {
                     return null != window.electron ? window.electron.isFullscreen() : null != document.fullscreenElement
@@ -3972,55 +3647,39 @@
                     this.isFullscreen ? null != window.electron ? window.electron.setFullscreen(!1) : await document.exitFullscreen() : null != window.electron ? window.electron.setFullscreen(!0) : await document.body.requestFullscreen()
                 }
                 addFullscreenChangeListener(e) {
-                    (0,
-                    i.gn)(this, L, "f").push(e)
+                    i.get(this, L, "f").push(e)
                 }
                 removeFullscreenChangeListener(e) {
-                    const t = (0,
-                    i.gn)(this, L, "f").indexOf(e);
-                    t >= 0 && (0,
-                    i.gn)(this, L, "f").splice(t, 1)
+                    const t = i.get(this, L, "f").indexOf(e);
+                    t >= 0 && i.get(this, L, "f").splice(t, 1)
                 }
                 addContextRestoredEventListener(e) {
-                    (0,
-                    i.gn)(this, U, "f").push(e)
+                    i.get(this, U, "f").push(e)
                 }
                 removeContextRestoredEventListener(e) {
-                    const t = (0,
-                    i.gn)(this, U, "f").indexOf(e);
-                    t >= 0 && (0,
-                    i.gn)(this, U, "f").splice(t, 1)
+                    const t = i.get(this, U, "f").indexOf(e);
+                    t >= 0 && i.get(this, U, "f").splice(t, 1)
                 }
                 get csm() {
-                    return (0,
-                    i.gn)(this, _, "f")
+                    return i.get(this, _, "f")
                 }
                 setCamera(e) {
-                    (0,
-                    i.GG)(this, M, e, "f"),
-                    (0,
-                    i.gn)(this, y, "m", N).call(this),
-                    null != (0,
-                    i.gn)(this, _, "f") && ((0,
-                    i.gn)(this, _, "f").camera = e,
-                    (0,
-                    i.gn)(this, y, "m", O).call(this))
+                    i.set(this, M, e, "f"),
+                    i.get(this, y, "m", N).call(this),
+                    null != i.get(this, _, "f") && (i.get(this, _, "f").camera = e,
+                    i.get(this, y, "m", O).call(this))
                 }
                 get camera() {
-                    return (0,
-                    i.gn)(this, M, "f")
+                    return i.get(this, M, "f")
                 }
                 get canvas() {
-                    return (0,
-                    i.gn)(this, w, "f")
+                    return i.get(this, w, "f")
                 }
                 setAnimationLoop(e) {
-                    (0,
-                    i.gn)(this, k, "f").setAnimationLoop(e)
+                    i.get(this, k, "f").setAnimationLoop(e)
                 }
                 get scene() {
-                    return (0,
-                    i.gn)(this, T, "f")
+                    return i.get(this, T, "f")
                 }
             }
             b = V,
@@ -4042,8 +3701,7 @@
             z = function(e) {
                 if (3 != e && 4 != e && 5 != e)
                     throw new Error("Unsupported shadow quality: " + e.toString());
-                const t = (0,
-                i.gn)(this, y, "m", B).call(this, e);
+                const t = i.get(this, y, "m", B).call(this, e);
                 let n, a;
                 switch (e) {
                 case 5:
@@ -4084,13 +3742,11 @@
                         r.push(1))
                     }
                     ,
-                    parent: (0,
-                    i.gn)(this, T, "f"),
+                    parent: i.get(this, T, "f"),
                     shadowMapSize: t,
                     lightDirection: new THREE.Vector3(0,0,-1),
                     lightIntensity: 4.7,
-                    camera: (0,
-                    i.gn)(this, M, "f")
+                    camera: i.get(this, M, "f")
                 });
                 s.fade = !0,
                 5 == e ? (s.lights[0].shadow.normalBias = .025,
@@ -4110,46 +3766,30 @@
             }
             ,
             N = function() {
-                let e, t = (0,
-                i.gn)(this, x, "f")?.getSettingFloat(W.A.RenderScale) ?? 1;
+                let e, t = i.get(this, x, "f")?.getSettingFloat(W.A.RenderScale) ?? 1;
                 if (t = Number.isFinite(t) ? Math.min(Math.max(t, .1), 2) : 1,
-                (0,
-                i.gn)(this, M, "f")instanceof THREE.PerspectiveCamera) {
+                i.get(this, M, "f")instanceof THREE.PerspectiveCamera) {
                     const e = window.innerWidth / window.innerHeight
                       , t = new THREE.Vector2;
-                    (0,
-                    i.gn)(this, k, "f").getSize(t);
+                    i.get(this, k, "f").getSize(t);
                     const n = Math.max(1, .5 * e);
-                    t.width == window.innerWidth && t.height == window.innerHeight && (0,
-                    i.gn)(this, M, "f").aspect == e && (0,
-                    i.gn)(this, M, "f").zoom == n || ((0,
-                    i.gn)(this, k, "f").setSize(window.innerWidth, window.innerHeight),
-                    (0,
-                    i.gn)(this, M, "f").aspect = e,
-                    (0,
-                    i.gn)(this, M, "f").zoom = n,
-                    (0,
-                    i.gn)(this, y, "m", O).call(this),
-                    (0,
-                    i.gn)(this, M, "f").updateProjectionMatrix())
+                    t.width == window.innerWidth && t.height == window.innerHeight && i.get(this, M, "f").aspect == e && i.get(this, M, "f").zoom == n || (i.get(this, k, "f").setSize(window.innerWidth, window.innerHeight),
+                    i.get(this, M, "f").aspect = e,
+                    i.get(this, M, "f").zoom = n,
+                    i.get(this, y, "m", O).call(this),
+                    i.get(this, M, "f").updateProjectionMatrix())
                 }
-                e = (0,
-                i.gn)(this, x, "f")?.getSettingBoolean(W.A.ScreenPixelDensity) ?? 1 ? window.devicePixelRatio : 1;
-                const n = (0,
-                i.gn)(this, k, "f").getPixelRatio()
-                  , a = Math.min((0,
-                i.gn)(this, k, "f").capabilities.maxTextureSize / window.innerWidth, (0,
-                i.gn)(this, k, "f").capabilities.maxTextureSize / window.innerHeight)
+                e = i.get(this, x, "f")?.getSettingBoolean(W.A.ScreenPixelDensity) ?? 1 ? window.devicePixelRatio : 1;
+                const n = i.get(this, k, "f").getPixelRatio()
+                  , a = Math.min(i.get(this, k, "f").capabilities.maxTextureSize / window.innerWidth, i.get(this, k, "f").capabilities.maxTextureSize / window.innerHeight)
                   , s = Math.min(e * t, a);
-                n != s && (0,
-                i.gn)(this, k, "f").setPixelRatio(s)
+                n != s && i.get(this, k, "f").setPixelRatio(s)
             }
             ,
             D = function(e, t, n) {
                 const r = Array.isArray(e) ? e : [e];
                 for (const e of r) {
-                    (0,
-                    i.gn)(this, _, "f")?.setupMaterial(e);
+                    i.get(this, _, "f")?.setupMaterial(e);
                     const r = e.onBeforeCompile.toString()
                       , a = e.onBeforeCompile.bind(e);
                     e.onBeforeCompile = (e, n) => {
@@ -4180,41 +3820,25 @@
             ,
             G = function() {
                 let e;
-                e = null != (0,
-                i.gn)(this, S, "f") ? (0,
-                i.gn)(this, S, "f") : (0,
-                i.gn)(this, x, "f")?.getSettingBoolean(W.A.FogEnabled) ?? !0,
-                e ? null == (0,
-                i.gn)(this, T, "f").fog && ((0,
-                i.gn)(this, T, "f").fog = new THREE.Fog(10211839,0,b.maxViewDistance)) : null != (0,
-                i.gn)(this, T, "f").fog && ((0,
-                i.gn)(this, T, "f").fog = null)
+                e = null != i.get(this, S, "f") ? i.get(this, S, "f") : i.get(this, x, "f")?.getSettingBoolean(W.A.FogEnabled) ?? !0,
+                e ? null == i.get(this, T, "f").fog && (i.get(this, T, "f").fog = new THREE.Fog(10211839,0,b.maxViewDistance)) : null != i.get(this, T, "f").fog && (i.get(this, T, "f").fog = null)
             }
             ,
             F = function() {
-                for (const e of (0,
-                i.gn)(this, L, "f"))
+                for (const e of i.get(this, L, "f"))
                     e()
             }
             ,
             O = function() {
-                if (null != (0,
-                i.gn)(this, _, "f"))
-                    if ((0,
-                    i.gn)(this, M, "f")instanceof THREE.PerspectiveCamera) {
-                        const e = (0,
-                        i.gn)(this, M, "f").fov;
-                        (0,
-                        i.gn)(this, M, "f").fov = 100,
-                        (0,
-                        i.gn)(this, _, "f").updateFrustums(),
-                        (0,
-                        i.gn)(this, M, "f").fov = e,
-                        (0,
-                        i.gn)(this, M, "f").updateProjectionMatrix()
+                if (null != i.get(this, _, "f"))
+                    if (i.get(this, M, "f")instanceof THREE.PerspectiveCamera) {
+                        const e = i.get(this, M, "f").fov;
+                        i.get(this, M, "f").fov = 100,
+                        i.get(this, _, "f").updateFrustums(),
+                        i.get(this, M, "f").fov = e,
+                        i.get(this, M, "f").updateProjectionMatrix()
                     } else
-                        (0,
-                        i.gn)(this, _, "f").updateFrustums()
+                        i.get(this, _, "f").updateFrustums()
             }
             ,
             V.maxViewDistance = 1e4;
@@ -4264,15 +3888,9 @@
                     a.set(this, void 0),
                     s.set(this, void 0),
                     o.set(this, void 0),
-                    (0,
-                    h.GG)(this, a, e, "f"),
-                    (0,
-                    h.GG)(this, s, (0,
-                    h.gn)(this, a, "f").loadUserProfileSlot() ?? 0, "f"),
-                    (0,
-                    h.GG)(this, o, (0,
-                    h.gn)(this, i, "m", c).call(this, (0,
-                    h.gn)(this, s, "f")), "f")
+                    h.set(this, a, e, "f"),
+                    h.set(this, s, h.get(this, a, "f").loadUserProfileSlot() ?? 0, "f"),
+                    h.set(this, o, h.get(this, i, "m", c).call(this, h.get(this, s, "f")), "f")
                 }
                 static createToken() {
                     let e = "";
@@ -4290,113 +3908,76 @@
                     d.sha256)(e)
                 }
                 createProfile(e, t, n, i, r) {
-                    return !!this.isValidToken(t) && ((0,
-                    h.gn)(this, a, "f").saveUserProfile(e, new p.A(t,n,i,r,!1)),
-                    null != (0,
-                    h.gn)(this, a, "f").loadUserProfile(e))
+                    return !!this.isValidToken(t) && (h.get(this, a, "f").saveUserProfile(e, new p.A(t,n,i,r,!1)),
+                    null != h.get(this, a, "f").loadUserProfile(e))
                 }
                 isValidToken(e) {
                     return !(!/^[0-9a-f]*$/.test(e) || 64 != e.length)
                 }
                 hasDuplicateToken(e) {
                     for (let t = 0; t < r.maxNumberOfProfiles; t++)
-                        if ((0,
-                        h.gn)(this, a, "f").loadUserProfile(t)?.token == e)
+                        if (h.get(this, a, "f").loadUserProfile(t)?.token == e)
                             return !0;
                     return !1
                 }
                 firstOccupiedProfileSlot() {
                     for (let e = 0; e < r.maxNumberOfProfiles; e++)
-                        if (null != (0,
-                        h.gn)(this, a, "f").loadUserProfile(e))
+                        if (null != h.get(this, a, "f").loadUserProfile(e))
                             return e;
                     return null
                 }
                 firstFreeProfileSlot() {
                     for (let e = 0; e < r.maxNumberOfProfiles; e++)
-                        if (null == (0,
-                        h.gn)(this, a, "f").loadUserProfile(e))
+                        if (null == h.get(this, a, "f").loadUserProfile(e))
                             return e;
                     return null
                 }
                 deleteProfileSlot(e) {
-                    (0,
-                    h.gn)(this, a, "f").deleteAllRecordsForProfile(e),
-                    (0,
-                    h.gn)(this, a, "f").deleteUserProfile(e)
+                    h.get(this, a, "f").deleteAllRecordsForProfile(e),
+                    h.get(this, a, "f").deleteUserProfile(e)
                 }
                 setProfileSlot(e) {
                     if (!Number.isSafeInteger(e) || e < 0)
                         throw new Error("Profile slot is invalid");
-                    (0,
-                    h.GG)(this, s, e, "f"),
-                    (0,
-                    h.GG)(this, o, (0,
-                    h.gn)(this, i, "m", c).call(this, (0,
-                    h.gn)(this, s, "f")), "f"),
-                    (0,
-                    h.gn)(this, a, "f").saveUserProfileSlot((0,
-                    h.gn)(this, s, "f"))
+                    h.set(this, s, e, "f"),
+                    h.set(this, o, h.get(this, i, "m", c).call(this, h.get(this, s, "f")), "f"),
+                    h.get(this, a, "f").saveUserProfileSlot(h.get(this, s, "f"))
                 }
-                setNickname(e, t=(0,
-                h.gn)(this, s, "f")) {
+                setNickname(e, t=h.get(this, s, "f")) {
                     let n;
-                    n = t == (0,
-                    h.gn)(this, s, "f") ? (0,
-                    h.gn)(this, o, "f") : (0,
-                    h.gn)(this, i, "m", c).call(this, t),
+                    n = t == h.get(this, s, "f") ? h.get(this, o, "f") : h.get(this, i, "m", c).call(this, t),
                     n.nickname = e,
-                    (0,
-                    h.gn)(this, a, "f").saveUserProfile(t, n)
+                    h.get(this, a, "f").saveUserProfile(t, n)
                 }
-                setCountryCode(e, t=(0,
-                h.gn)(this, s, "f")) {
+                setCountryCode(e, t=h.get(this, s, "f")) {
                     let n;
-                    n = t == (0,
-                    h.gn)(this, s, "f") ? (0,
-                    h.gn)(this, o, "f") : (0,
-                    h.gn)(this, i, "m", c).call(this, t),
+                    n = t == h.get(this, s, "f") ? h.get(this, o, "f") : h.get(this, i, "m", c).call(this, t),
                     n.countryCode = e,
-                    (0,
-                    h.gn)(this, a, "f").saveUserProfile(t, n)
+                    h.get(this, a, "f").saveUserProfile(t, n)
                 }
-                setCarStyle(e, t=(0,
-                h.gn)(this, s, "f")) {
+                setCarStyle(e, t=h.get(this, s, "f")) {
                     let n;
-                    n = t == (0,
-                    h.gn)(this, s, "f") ? (0,
-                    h.gn)(this, o, "f") : (0,
-                    h.gn)(this, i, "m", c).call(this, t),
+                    n = t == h.get(this, s, "f") ? h.get(this, o, "f") : h.get(this, i, "m", c).call(this, t),
                     n.carStyle = e,
-                    (0,
-                    h.gn)(this, a, "f").saveUserProfile(t, n)
+                    h.get(this, a, "f").saveUserProfile(t, n)
                 }
-                setIsVerifier(e, t=(0,
-                h.gn)(this, s, "f")) {
+                setIsVerifier(e, t=h.get(this, s, "f")) {
                     let n;
-                    n = t == (0,
-                    h.gn)(this, s, "f") ? (0,
-                    h.gn)(this, o, "f") : (0,
-                    h.gn)(this, i, "m", c).call(this, t),
+                    n = t == h.get(this, s, "f") ? h.get(this, o, "f") : h.get(this, i, "m", c).call(this, t),
                     n.isVerifier = e,
-                    (0,
-                    h.gn)(this, a, "f").saveUserProfile(t, n)
+                    h.get(this, a, "f").saveUserProfile(t, n)
                 }
                 get profileSlot() {
-                    return (0,
-                    h.gn)(this, s, "f")
+                    return h.get(this, s, "f")
                 }
                 getCurrentUserProfile() {
-                    return (0,
-                    h.gn)(this, o, "f").clone()
+                    return h.get(this, o, "f").clone()
                 }
                 getUserProfile(e) {
-                    if (e == (0,
-                    h.gn)(this, s, "f"))
+                    if (e == h.get(this, s, "f"))
                         return this.getCurrentUserProfile();
                     {
-                        const t = (0,
-                        h.gn)(this, a, "f").loadUserProfile(e);
+                        const t = h.get(this, a, "f").loadUserProfile(e);
                         return null != t ? t : null
                     }
                 }
@@ -4426,16 +4007,12 @@
                 const t = r.createToken()
                   , n = r.defaultNickname
                   , i = u.A.default();
-                (0,
-                h.gn)(this, a, "f").saveUserProfile(e, new p.A(t,n,null,i,!1))
+                h.get(this, a, "f").saveUserProfile(e, new p.A(t,n,null,i,!1))
             }
             ,
             c = function(e) {
-                return null == (0,
-                h.gn)(this, a, "f").loadUserProfile(e) && (0,
-                h.gn)(this, i, "m", l).call(this, e),
-                (0,
-                h.gn)(this, a, "f").loadUserProfile(e) ?? new p.A
+                return null == h.get(this, a, "f").loadUserProfile(e) && h.get(this, i, "m", l).call(this, e),
+                h.get(this, a, "f").loadUserProfile(e) ?? new p.A
             }
             ,
             f.defaultNickname = "Anonymous",
@@ -7590,46 +7167,31 @@
             class f {
                 constructor() {
                     i.add(this),
-                    s.set(this, new THREE.PerspectiveCamera((0,
-                    l.gn)(r, r, "f", a),1,.5,p.A.maxViewDistance))
+                    s.set(this, new THREE.PerspectiveCamera(l.get(r, r, "f", a),1,.5,p.A.maxViewDistance))
                 }
                 reset(e, t, n) {
                     this.update(e, t, 0),
-                    (0,
-                    l.gn)(this, s, "f").fov = (0,
-                    l.gn)(this, i, "m", o).call(this, n ?? 0),
-                    (0,
-                    l.gn)(this, s, "f").updateProjectionMatrix()
+                    l.get(this, s, "f").fov = l.get(this, i, "m", o).call(this, n ?? 0),
+                    l.get(this, s, "f").updateProjectionMatrix()
                 }
                 update(e, t, n) {
-                    (0,
-                    l.gn)(this, s, "f").fov = (0,
-                    l.gn)(this, i, "m", o).call(this, n),
-                    (0,
-                    l.gn)(this, s, "f").updateProjectionMatrix();
-                    const r = new THREE.Vector3(0,1.1 + .46 / (0,
-                    l.gn)(this, s, "f").zoom - .46,.4);
-                    (0,
-                    l.gn)(this, s, "f").position.addVectors(e, r.applyQuaternion(t)),
-                    (0,
-                    l.gn)(this, s, "f").quaternion.copy(t),
-                    (0,
-                    l.gn)(this, s, "f").quaternion.multiply((new THREE.Quaternion).setFromEuler(new THREE.Euler(0,Math.PI,0))),
-                    (0,
-                    l.gn)(this, s, "f").updateMatrix()
+                    l.get(this, s, "f").fov = l.get(this, i, "m", o).call(this, n),
+                    l.get(this, s, "f").updateProjectionMatrix();
+                    const r = new THREE.Vector3(0,1.1 + .46 / l.get(this, s, "f").zoom - .46,.4);
+                    l.get(this, s, "f").position.addVectors(e, r.applyQuaternion(t)),
+                    l.get(this, s, "f").quaternion.copy(t),
+                    l.get(this, s, "f").quaternion.multiply((new THREE.Quaternion).setFromEuler(new THREE.Euler(0,Math.PI,0))),
+                    l.get(this, s, "f").updateMatrix()
                 }
                 get camera() {
-                    return (0,
-                    l.gn)(this, s, "f")
+                    return l.get(this, s, "f")
                 }
             }
             r = f,
             s = new WeakMap,
             i = new WeakSet,
             o = function(e) {
-                return (0,
-                l.gn)(r, r, "f", a) + (80 - (0,
-                l.gn)(r, r, "f", a)) * (1 - Math.exp(-Math.abs(e) / 200))
+                return l.get(r, r, "f", a) + (80 - l.get(r, r, "f", a)) * (1 - Math.exp(-Math.abs(e) / 200))
             }
             ,
             a = {
@@ -7640,71 +7202,40 @@
             class k {
                 constructor() {
                     m.add(this),
-                    y.set(this, new THREE.PerspectiveCamera((0,
-                    l.gn)(A, A, "f", v),1,.5,p.A.maxViewDistance)),
+                    y.set(this, new THREE.PerspectiveCamera(l.get(A, A, "f", v),1,.5,p.A.maxViewDistance)),
                     b.set(this, new THREE.Vector3),
                     w.set(this, new THREE.Vector3(0,1,0))
                 }
                 reset(e, t, n) {
-                    (0,
-                    l.GG)(this, b, new THREE.Vector3(1e-5,0,-1), "f"),
-                    (0,
-                    l.gn)(this, b, "f").applyQuaternion(t),
-                    (0,
-                    l.gn)(this, b, "f").add(e),
-                    (0,
-                    l.GG)(this, w, new THREE.Vector3(0,1,0), "f"),
-                    (0,
-                    l.gn)(this, w, "f").applyQuaternion(t),
+                    l.set(this, b, new THREE.Vector3(1e-5,0,-1), "f"),
+                    l.get(this, b, "f").applyQuaternion(t),
+                    l.get(this, b, "f").add(e),
+                    l.set(this, w, new THREE.Vector3(0,1,0), "f"),
+                    l.get(this, w, "f").applyQuaternion(t),
                     this.update(0, e, t, 0),
-                    (0,
-                    l.gn)(this, y, "f").fov = (0,
-                    l.gn)(this, m, "m", x).call(this, n ?? 0),
-                    (0,
-                    l.gn)(this, y, "f").updateProjectionMatrix()
+                    l.get(this, y, "f").fov = l.get(this, m, "m", x).call(this, n ?? 0),
+                    l.get(this, y, "f").updateProjectionMatrix()
                 }
                 update(e, t, n, i) {
-                    (0,
-                    l.gn)(this, y, "f").fov = (0,
-                    l.gn)(this, m, "m", x).call(this, i),
-                    (0,
-                    l.gn)(this, y, "f").updateProjectionMatrix();
+                    l.get(this, y, "f").fov = l.get(this, m, "m", x).call(this, i),
+                    l.get(this, y, "f").updateProjectionMatrix();
                     const r = new THREE.Vector3(0,1,0);
                     r.applyQuaternion(n);
                     const a = Math.min(1, 5 * e);
-                    (0,
-                    l.gn)(this, w, "f").set(a * r.x + (1 - a) * (0,
-                    l.gn)(this, w, "f").x, a * r.y + (1 - a) * (0,
-                    l.gn)(this, w, "f").y, a * r.z + (1 - a) * (0,
-                    l.gn)(this, w, "f").z);
-                    const s = (new THREE.Vector3).subVectors(t, (0,
-                    l.gn)(this, b, "f"));
+                    l.get(this, w, "f").set(a * r.x + (1 - a) * l.get(this, w, "f").x, a * r.y + (1 - a) * l.get(this, w, "f").y, a * r.z + (1 - a) * l.get(this, w, "f").z);
+                    const s = (new THREE.Vector3).subVectors(t, l.get(this, b, "f"));
                     s.normalize();
                     const o = 5.5
-                      , h = 1.8 / Math.min((0,
-                    l.gn)(this, y, "f").zoom, 2);
-                    (0,
-                    l.gn)(this, y, "f").position.x = t.x - s.x * o + 2 * (0,
-                    l.gn)(this, w, "f").x,
-                    (0,
-                    l.gn)(this, y, "f").position.y = Math.max(.25, t.y - s.y * o + 2 * (0,
-                    l.gn)(this, w, "f").y),
-                    (0,
-                    l.gn)(this, y, "f").position.z = t.z - s.z * o + 2 * (0,
-                    l.gn)(this, w, "f").z,
-                    (0,
-                    l.gn)(this, y, "f").lookAt(t.x + (0,
-                    l.gn)(this, w, "f").x * h, t.y + (0,
-                    l.gn)(this, w, "f").y * h, t.z + (0,
-                    l.gn)(this, w, "f").z * h),
-                    (0,
-                    l.gn)(this, y, "f").updateMatrix(),
-                    (0,
-                    l.gn)(this, b, "f").set(t.x - s.x * o, t.y - s.y * o, t.z - s.z * o)
+                      , h = 1.8 / Math.min(l.get(this, y, "f").zoom, 2);
+                    l.get(this, y, "f").position.x = t.x - s.x * o + 2 * l.get(this, w, "f").x,
+                    l.get(this, y, "f").position.y = Math.max(.25, t.y - s.y * o + 2 * l.get(this, w, "f").y),
+                    l.get(this, y, "f").position.z = t.z - s.z * o + 2 * l.get(this, w, "f").z,
+                    l.get(this, y, "f").lookAt(t.x + l.get(this, w, "f").x * h, t.y + l.get(this, w, "f").y * h, t.z + l.get(this, w, "f").z * h),
+                    l.get(this, y, "f").updateMatrix(),
+                    l.get(this, b, "f").set(t.x - s.x * o, t.y - s.y * o, t.z - s.z * o)
                 }
                 get camera() {
-                    return (0,
-                    l.gn)(this, y, "f")
+                    return l.get(this, y, "f")
                 }
             }
             A = k,
@@ -7713,9 +7244,7 @@
             w = new WeakMap,
             m = new WeakSet,
             x = function(e) {
-                return (0,
-                l.gn)(A, A, "f", v) + (100 - (0,
-                l.gn)(A, A, "f", v)) * (1 - Math.exp(-Math.abs(e) / 200))
+                return l.get(A, A, "f", v) + (100 - l.get(A, A, "f", v)) * (1 - Math.exp(-Math.abs(e) / 200))
             }
             ,
             v = {
@@ -7733,56 +7262,34 @@
                     I.set(this, 0),
                     L.set(this, null),
                     U.set(this, null),
-                    (0,
-                    l.GG)(this, M, e, "f");
+                    l.set(this, M, e, "f");
                     const t = new THREE.BufferGeometry;
-                    (0,
-                    l.GG)(this, C, new Float32Array(6 * (0,
-                    l.gn)(this, P, "f") * 3), "f"),
-                    (0,
-                    l.GG)(this, R, new THREE.BufferAttribute((0,
-                    l.gn)(this, C, "f"),3), "f"),
-                    t.setAttribute("position", (0,
-                    l.gn)(this, R, "f")),
-                    (0,
-                    l.GG)(this, _, new THREE.Mesh(t,(0,
-                    l.gn)(T, T, "f", z)), "f"),
-                    (0,
-                    l.gn)(this, _, "f").frustumCulled = !1,
-                    (0,
-                    l.gn)(this, M, "f").scene.add((0,
-                    l.gn)(this, _, "f"))
+                    l.set(this, C, new Float32Array(6 * l.get(this, P, "f") * 3), "f"),
+                    l.set(this, R, new THREE.BufferAttribute(l.get(this, C, "f"),3), "f"),
+                    t.setAttribute("position", l.get(this, R, "f")),
+                    l.set(this, _, new THREE.Mesh(t,l.get(T, T, "f", z)), "f"),
+                    l.get(this, _, "f").frustumCulled = !1,
+                    l.get(this, M, "f").scene.add(l.get(this, _, "f"))
                 }
                 dispose() {
-                    (0,
-                    l.gn)(this, _, "f").geometry.dispose(),
-                    (0,
-                    l.gn)(this, M, "f").scene.remove((0,
-                    l.gn)(this, _, "f"))
+                    l.get(this, _, "f").geometry.dispose(),
+                    l.get(this, M, "f").scene.remove(l.get(this, _, "f"))
                 }
                 clear() {
-                    for (let e = 0; e < (0,
-                    l.gn)(this, C, "f").length; ++e)
-                        (0,
-                        l.gn)(this, C, "f")[e] = 0;
-                    (0,
-                    l.gn)(this, R, "f").needsUpdate = !0,
-                    (0,
-                    l.GG)(this, I, 0, "f"),
+                    for (let e = 0; e < l.get(this, C, "f").length; ++e)
+                        l.get(this, C, "f")[e] = 0;
+                    l.get(this, R, "f").needsUpdate = !0,
+                    l.set(this, I, 0, "f"),
                     this.break()
                 }
                 break() {
-                    (0,
-                    l.GG)(this, L, null, "f"),
-                    (0,
-                    l.GG)(this, U, null, "f")
+                    l.set(this, L, null, "f"),
+                    l.set(this, U, null, "f")
                 }
                 spawn(e, t, n, i) {
                     var r, a;
-                    const s = (0,
-                    l.gn)(this, L, "f")
-                      , o = (0,
-                    l.gn)(this, U, "f")
+                    const s = l.get(this, L, "f")
+                      , o = l.get(this, U, "f")
                       , h = (new THREE.Vector3).addVectors(e, new THREE.Vector3(.172,-.3,0).applyQuaternion(t))
                       , d = (new THREE.Vector3).addVectors(e, new THREE.Vector3(-.172,-.3,0).applyQuaternion(t))
                       , u = (new THREE.Vector3).copy(h)
@@ -7792,59 +7299,33 @@
                     const g = (new THREE.Vector3).subVectors(d, n).dot(i);
                     if (p.addScaledVector(i, -g),
                     null != s && null != o) {
-                        const e = ((0,
-                        l.GG)(this, I, (a = (0,
-                        l.gn)(this, I, "f"),
+                        const e = (l.set(this, I, (a = l.get(this, I, "f"),
                         r = a++,
                         a), "f"),
                         r);
-                        (0,
-                        l.gn)(this, C, "f")[6 * e * 3 + 0] = u.x,
-                        (0,
-                        l.gn)(this, C, "f")[6 * e * 3 + 1] = u.y,
-                        (0,
-                        l.gn)(this, C, "f")[6 * e * 3 + 2] = u.z,
-                        (0,
-                        l.gn)(this, C, "f")[6 * e * 3 + 3] = s.x,
-                        (0,
-                        l.gn)(this, C, "f")[6 * e * 3 + 4] = s.y,
-                        (0,
-                        l.gn)(this, C, "f")[6 * e * 3 + 5] = s.z,
-                        (0,
-                        l.gn)(this, C, "f")[6 * e * 3 + 6] = p.x,
-                        (0,
-                        l.gn)(this, C, "f")[6 * e * 3 + 7] = p.y,
-                        (0,
-                        l.gn)(this, C, "f")[6 * e * 3 + 8] = p.z,
-                        (0,
-                        l.gn)(this, C, "f")[6 * e * 3 + 9] = p.x,
-                        (0,
-                        l.gn)(this, C, "f")[6 * e * 3 + 10] = p.y,
-                        (0,
-                        l.gn)(this, C, "f")[6 * e * 3 + 11] = p.z,
-                        (0,
-                        l.gn)(this, C, "f")[6 * e * 3 + 12] = s.x,
-                        (0,
-                        l.gn)(this, C, "f")[6 * e * 3 + 13] = s.y,
-                        (0,
-                        l.gn)(this, C, "f")[6 * e * 3 + 14] = s.z,
-                        (0,
-                        l.gn)(this, C, "f")[6 * e * 3 + 15] = o.x,
-                        (0,
-                        l.gn)(this, C, "f")[6 * e * 3 + 16] = o.y,
-                        (0,
-                        l.gn)(this, C, "f")[6 * e * 3 + 17] = o.z,
-                        (0,
-                        l.gn)(this, R, "f").needsUpdate = !0,
-                        (0,
-                        l.gn)(this, I, "f") >= (0,
-                        l.gn)(this, P, "f") - 1 && (0,
-                        l.GG)(this, I, 0, "f")
+                        l.get(this, C, "f")[6 * e * 3 + 0] = u.x,
+                        l.get(this, C, "f")[6 * e * 3 + 1] = u.y,
+                        l.get(this, C, "f")[6 * e * 3 + 2] = u.z,
+                        l.get(this, C, "f")[6 * e * 3 + 3] = s.x,
+                        l.get(this, C, "f")[6 * e * 3 + 4] = s.y,
+                        l.get(this, C, "f")[6 * e * 3 + 5] = s.z,
+                        l.get(this, C, "f")[6 * e * 3 + 6] = p.x,
+                        l.get(this, C, "f")[6 * e * 3 + 7] = p.y,
+                        l.get(this, C, "f")[6 * e * 3 + 8] = p.z,
+                        l.get(this, C, "f")[6 * e * 3 + 9] = p.x,
+                        l.get(this, C, "f")[6 * e * 3 + 10] = p.y,
+                        l.get(this, C, "f")[6 * e * 3 + 11] = p.z,
+                        l.get(this, C, "f")[6 * e * 3 + 12] = s.x,
+                        l.get(this, C, "f")[6 * e * 3 + 13] = s.y,
+                        l.get(this, C, "f")[6 * e * 3 + 14] = s.z,
+                        l.get(this, C, "f")[6 * e * 3 + 15] = o.x,
+                        l.get(this, C, "f")[6 * e * 3 + 16] = o.y,
+                        l.get(this, C, "f")[6 * e * 3 + 17] = o.z,
+                        l.get(this, R, "f").needsUpdate = !0,
+                        l.get(this, I, "f") >= l.get(this, P, "f") - 1 && l.set(this, I, 0, "f")
                     }
-                    (0,
-                    l.GG)(this, L, u, "f"),
-                    (0,
-                    l.GG)(this, U, p, "f")
+                    l.set(this, L, u, "f"),
+                    l.set(this, U, p, "f")
                 }
             }
             T = D,
@@ -7921,63 +7402,32 @@
                     Be.set(this, null),
                     Ge.set(this, void 0),
                     Fe.set(this, !1),
-                    (0,
-                    l.GG)(this, O, a, "f"),
-                    (0,
-                    l.GG)(this, Ae, r, "f"),
-                    (0,
-                    l.GG)(this, Re, s, "f"),
-                    (0,
-                    l.GG)(this, Pe, o, "f"),
-                    (0,
-                    l.GG)(this, Ie, d, "f"),
-                    (0,
-                    l.GG)(this, Z, e, "f"),
-                    (0,
-                    l.GG)(this, $, u, "f"),
-                    d?.getSettingBoolean(st.A.ParticlesEnabled) ? (0,
-                    l.GG)(this, De, new N.A(r), "f") : (0,
-                    l.GG)(this, De, null, "f"),
-                    null != (0,
-                    l.gn)(this, Re, "f") && null != (0,
-                    l.gn)(this, Pe, "f") && (0,
-                    l.GG)(this, Le, [new B((0,
-                    l.gn)(this, Ae, "f")), new B((0,
-                    l.gn)(this, Ae, "f")), new B((0,
-                    l.gn)(this, Ae, "f")), new B((0,
-                    l.gn)(this, Ae, "f"))], "f"),
-                    (0,
-                    l.GG)(this, X, new E, "f"),
-                    (0,
-                    l.gn)(this, X, "f").reset(t.position, t.quaternion),
-                    r.scene.add((0,
-                    l.gn)(this, X, "f").camera),
-                    (0,
-                    l.GG)(this, Y, new g, "f"),
-                    (0,
-                    l.gn)(this, Y, "f").reset(t.position, t.quaternion),
-                    r.scene.add((0,
-                    l.gn)(this, Y, "f").camera),
+                    l.set(this, O, a, "f"),
+                    l.set(this, Ae, r, "f"),
+                    l.set(this, Re, s, "f"),
+                    l.set(this, Pe, o, "f"),
+                    l.set(this, Ie, d, "f"),
+                    l.set(this, Z, e, "f"),
+                    l.set(this, $, u, "f"),
+                    d?.getSettingBoolean(st.A.ParticlesEnabled) ? l.set(this, De, new N.A(r), "f") : l.set(this, De, null, "f"),
+                    null != l.get(this, Re, "f") && null != l.get(this, Pe, "f") && l.set(this, Le, [new B(l.get(this, Ae, "f")), new B(l.get(this, Ae, "f")), new B(l.get(this, Ae, "f")), new B(l.get(this, Ae, "f"))], "f"),
+                    l.set(this, X, new E, "f"),
+                    l.get(this, X, "f").reset(t.position, t.quaternion),
+                    r.scene.add(l.get(this, X, "f").camera),
+                    l.set(this, Y, new g, "f"),
+                    l.get(this, Y, "f").reset(t.position, t.quaternion),
+                    r.scene.add(l.get(this, Y, "f").camera),
                     null == F.models)
                         throw new Error("Car model isn't loaded yet");
-                    if (null != (0,
-                    l.gn)(this, Z, "f") && null != (0,
-                    l.gn)(this, Re, "f") && null != (0,
-                    l.gn)(this, Pe, "f") && null != h) {
-                        const e = (0,
-                        l.gn)(this, Z, "f").createCar(t, (0,
-                        l.gn)(this, Re, "f").getMountainVertices(), (0,
-                        l.gn)(this, Re, "f").getMountainOffset(), h, n, (e => {
+                    if (null != l.get(this, Z, "f") && null != l.get(this, Re, "f") && null != l.get(this, Pe, "f") && null != h) {
+                        const e = l.get(this, Z, "f").createCar(t, l.get(this, Re, "f").getMountainVertices(), l.get(this, Re, "f").getMountainOffset(), h, n, (e => {
                             this.setCarState(e, !1)
                         }
                         ));
-                        (0,
-                        l.GG)(this, ne, e.id, "f"),
-                        (0,
-                        l.GG)(this, ie, e.carState, "f")
+                        l.set(this, ne, e.id, "f"),
+                        l.set(this, ie, e.carState, "f")
                     } else
-                        (0,
-                        l.GG)(this, ie, {
+                        l.set(this, ie, {
                             frames: 0,
                             speedKmh: 0,
                             hasStarted: !1,
@@ -8011,244 +7461,129 @@
                                 reset: !1
                             }
                         }, "f");
-                    if ((0,
-                    l.gn)(this, $, "f")?.call(this, (0,
-                    l.gn)(this, ie, "f")),
-                    (0,
-                    l.GG)(this, re, i, "f"),
+                    if (l.get(this, $, "f")?.call(this, l.get(this, ie, "f")),
+                    l.set(this, re, i, "f"),
                     null == n)
-                        (0,
-                        l.GG)(this, ae, null != (0,
-                        l.gn)(this, re, "f"), "f"),
-                        (0,
-                        l.GG)(this, se, new lt.A, "f");
+                        l.set(this, ae, null != l.get(this, re, "f"), "f"),
+                        l.set(this, se, new lt.A, "f");
                     else {
-                        if (null != (0,
-                        l.gn)(this, re, "f"))
+                        if (null != l.get(this, re, "f"))
                             throw new Error("Can't control car when recording is set");
-                        (0,
-                        l.GG)(this, ae, !1, "f"),
-                        (0,
-                        l.GG)(this, se, n, "f")
+                        l.set(this, ae, !1, "f"),
+                        l.set(this, se, n, "f")
                     }
-                    (0,
-                    l.GG)(this, Ce, S.A.default(), "f"),
-                    (0,
-                    l.GG)(this, Te, (0,
-                    l.gn)(F, F, "m", He).call(F, r, (0,
-                    l.gn)(this, Ce, "f").pattern), "f"),
-                    (0,
-                    l.GG)(this, Me, {
-                        value: (0,
-                        l.gn)(this, Te, "f")
+                    l.set(this, Ce, S.A.default(), "f"),
+                    l.set(this, Te, l.get(F, F, "m", He).call(F, r, l.get(this, Ce, "f").pattern), "f"),
+                    l.set(this, Me, {
+                        value: l.get(this, Te, "f")
                     }, "f"),
-                    (0,
-                    l.GG)(this, _e, {
+                    l.set(this, _e, {
                         value: new THREE.Vector3(0,0,0)
                     }, "f"),
-                    (0,
-                    l.GG)(this, we, F.models.chassis.clone(), "f"),
-                    (0,
-                    l.gn)(this, G, "m", Ve).call(this, (0,
-                    l.gn)(this, we, "f")),
-                    (0,
-                    l.GG)(this, xe, F.models.suspension.clone(), "f"),
-                    (0,
-                    l.gn)(this, G, "m", Ve).call(this, (0,
-                    l.gn)(this, xe, "f")),
-                    (0,
-                    l.GG)(this, Se, (0,
-                    l.gn)(F, F, "m", Ke).call(F, (0,
-                    l.gn)(this, Ce, "f").exhaust), "f"),
-                    (0,
-                    l.gn)(this, G, "m", Ve).call(this, (0,
-                    l.gn)(this, Se, "f")),
-                    (0,
-                    l.GG)(this, ke, [0, 1, 2, 3].map((e => {
-                        const t = (0,
-                        l.gn)(F, F, "m", je).call(F, (0,
-                        l.gn)(this, Ce, "f").rims);
-                        (0,
-                        l.gn)(this, G, "m", Ve).call(this, t);
+                    l.set(this, we, F.models.chassis.clone(), "f"),
+                    l.get(this, G, "m", Ve).call(this, l.get(this, we, "f")),
+                    l.set(this, xe, F.models.suspension.clone(), "f"),
+                    l.get(this, G, "m", Ve).call(this, l.get(this, xe, "f")),
+                    l.set(this, Se, l.get(F, F, "m", Ke).call(F, l.get(this, Ce, "f").exhaust), "f"),
+                    l.get(this, G, "m", Ve).call(this, l.get(this, Se, "f")),
+                    l.set(this, ke, [0, 1, 2, 3].map((e => {
+                        const t = l.get(F, F, "m", je).call(F, l.get(this, Ce, "f").rims);
+                        l.get(this, G, "m", Ve).call(this, t);
                         return (1 == e || 3 == e) && (t.scale.x = -1),
                         t
                     }
                     )), "f"),
-                    (0,
-                    l.GG)(this, ve, new THREE.Group, "f"),
-                    (0,
-                    l.gn)(this, ve, "f").add((0,
-                    l.gn)(this, we, "f")),
-                    (0,
-                    l.gn)(this, ve, "f").add((0,
-                    l.gn)(this, xe, "f")),
-                    (0,
-                    l.gn)(this, we, "f").add((0,
-                    l.gn)(this, Se, "f"));
-                    for (const e of (0,
-                    l.gn)(this, ke, "f"))
-                        (0,
-                        l.gn)(this, ve, "f").add(e);
-                    if ((0,
-                    l.gn)(this, Ae, "f").scene.add((0,
-                    l.gn)(this, ve, "f")),
-                    null != (0,
-                    l.gn)(this, re, "f") && null != (0,
-                    l.gn)(this, ne, "f")) {
-                        const e = (0,
-                        l.gn)(this, ne, "f");
-                        (0,
-                        l.gn)(this, Z, "f")?.controlCar(e, (0,
-                        l.gn)(this, re, "f").up, (0,
-                        l.gn)(this, re, "f").right, (0,
-                        l.gn)(this, re, "f").down, (0,
-                        l.gn)(this, re, "f").left, (0,
-                        l.gn)(this, re, "f").reset),
-                        (0,
-                        l.gn)(this, re, "f").addChangeCallback((0,
-                        l.GG)(this, Be, (t => {
-                            (0,
-                            l.gn)(this, te, "f") || (0,
-                            l.gn)(this, Z, "f")?.controlCar(e, t.up, t.right, t.down, t.left, t.reset)
+                    l.set(this, ve, new THREE.Group, "f"),
+                    l.get(this, ve, "f").add(l.get(this, we, "f")),
+                    l.get(this, ve, "f").add(l.get(this, xe, "f")),
+                    l.get(this, we, "f").add(l.get(this, Se, "f"));
+                    for (const e of l.get(this, ke, "f"))
+                        l.get(this, ve, "f").add(e);
+                    if (l.get(this, Ae, "f").scene.add(l.get(this, ve, "f")),
+                    null != l.get(this, re, "f") && null != l.get(this, ne, "f")) {
+                        const e = l.get(this, ne, "f");
+                        l.get(this, Z, "f")?.controlCar(e, l.get(this, re, "f").up, l.get(this, re, "f").right, l.get(this, re, "f").down, l.get(this, re, "f").left, l.get(this, re, "f").reset),
+                        l.get(this, re, "f").addChangeCallback(l.set(this, Be, (t => {
+                            l.get(this, te, "f") || l.get(this, Z, "f")?.controlCar(e, t.up, t.right, t.down, t.left, t.reset)
                         }
                         ), "f"))
                     }
-                    r.addContextRestoredEventListener((0,
-                    l.GG)(this, Ge, ( () => {
-                        (0,
-                        l.gn)(this, Te, "f").dispose(),
-                        (0,
-                        l.GG)(this, Te, (0,
-                        l.gn)(F, F, "m", He).call(F, r, (0,
-                        l.gn)(this, Ce, "f").pattern), "f"),
-                        (0,
-                        l.gn)(this, Me, "f").value = (0,
-                        l.gn)(this, Te, "f"),
-                        (0,
-                        l.gn)(this, G, "m", We).call(this)
+                    r.addContextRestoredEventListener(l.set(this, Ge, ( () => {
+                        l.get(this, Te, "f").dispose(),
+                        l.set(this, Te, l.get(F, F, "m", He).call(F, r, l.get(this, Ce, "f").pattern), "f"),
+                        l.get(this, Me, "f").value = l.get(this, Te, "f"),
+                        l.get(this, G, "m", We).call(this)
                     }
                     ), "f"))
                 }
                 dispose() {
-                    (0,
-                    l.GG)(this, Fe, !0, "f"),
-                    (0,
-                    l.gn)(this, G, "m", Oe).call(this),
-                    (0,
-                    l.gn)(this, Ae, "f").scene.remove((0,
-                    l.gn)(this, X, "f").camera),
-                    (0,
-                    l.gn)(this, Ae, "f").scene.remove((0,
-                    l.gn)(this, Y, "f").camera),
-                    (0,
-                    l.gn)(this, De, "f")?.dispose();
-                    for (const e of (0,
-                    l.gn)(this, Le, "f"))
+                    l.set(this, Fe, !0, "f"),
+                    l.get(this, G, "m", Oe).call(this),
+                    l.get(this, Ae, "f").scene.remove(l.get(this, X, "f").camera),
+                    l.get(this, Ae, "f").scene.remove(l.get(this, Y, "f").camera),
+                    l.get(this, De, "f")?.dispose();
+                    for (const e of l.get(this, Le, "f"))
                         e.dispose();
-                    (0,
-                    l.gn)(this, Le, "f").length = 0,
-                    null != (0,
-                    l.gn)(this, be, "f") && ((0,
-                    l.gn)(this, be, "f").geometry.dispose(),
-                    (0,
-                    l.gn)(this, be, "f").material.map?.dispose(),
-                    (0,
-                    l.gn)(this, be, "f").material.dispose(),
-                    (0,
-                    l.gn)(this, Ae, "f").scene.remove((0,
-                    l.gn)(this, be, "f")),
-                    (0,
-                    l.GG)(this, be, null, "f")),
-                    (0,
-                    l.gn)(this, Ae, "f").scene.remove((0,
-                    l.gn)(this, ve, "f")),
-                    (0,
-                    l.gn)(this, Te, "f").dispose(),
-                    (0,
-                    l.gn)(this, ve, "f").traverse((e => {
-                        e instanceof THREE.Mesh && (0,
-                        l.gn)(this, Ae, "f").removeMaterial(e.material)
+                    l.get(this, Le, "f").length = 0,
+                    null != l.get(this, be, "f") && (l.get(this, be, "f").geometry.dispose(),
+                    l.get(this, be, "f").material.map?.dispose(),
+                    l.get(this, be, "f").material.dispose(),
+                    l.get(this, Ae, "f").scene.remove(l.get(this, be, "f")),
+                    l.set(this, be, null, "f")),
+                    l.get(this, Ae, "f").scene.remove(l.get(this, ve, "f")),
+                    l.get(this, Te, "f").dispose(),
+                    l.get(this, ve, "f").traverse((e => {
+                        e instanceof THREE.Mesh && l.get(this, Ae, "f").removeMaterial(e.material)
                     }
                     )),
-                    null != (0,
-                    l.gn)(this, ne, "f") && (0,
-                    l.gn)(this, Z, "f")?.deleteCar((0,
-                    l.gn)(this, ne, "f")),
-                    null != (0,
-                    l.gn)(this, Be, "f") && (0,
-                    l.gn)(this, re, "f")?.removeChangeCallback((0,
-                    l.gn)(this, Be, "f")),
-                    (0,
-                    l.gn)(this, Ae, "f").removeContextRestoredEventListener((0,
-                    l.gn)(this, Ge, "f"))
+                    null != l.get(this, ne, "f") && l.get(this, Z, "f")?.deleteCar(l.get(this, ne, "f")),
+                    null != l.get(this, Be, "f") && l.get(this, re, "f")?.removeChangeCallback(l.get(this, Be, "f")),
+                    l.get(this, Ae, "f").removeContextRestoredEventListener(l.get(this, Ge, "f"))
                 }
                 addResetCallback(e) {
-                    (0,
-                    l.gn)(this, de, "f").push(e)
+                    l.get(this, de, "f").push(e)
                 }
                 addCheckpointCallback(e) {
-                    (0,
-                    l.gn)(this, ue, "f").push(e)
+                    l.get(this, ue, "f").push(e)
                 }
                 addFinishCallback(e) {
-                    (0,
-                    l.gn)(this, pe, "f").push(e)
+                    l.get(this, pe, "f").push(e)
                 }
                 getChassisMatrix() {
-                    return (0,
-                    l.gn)(this, we, "f").matrix
+                    return l.get(this, we, "f").matrix
                 }
                 getSpeedKmh() {
-                    return (0,
-                    l.gn)(this, ie, "f").speedKmh
+                    return l.get(this, ie, "f").speedKmh
                 }
                 start() {
-                    null != (0,
-                    l.gn)(this, ne, "f") && (0,
-                    l.gn)(this, Z, "f")?.startCar((0,
-                    l.gn)(this, ne, "f"), null)
+                    null != l.get(this, ne, "f") && l.get(this, Z, "f")?.startCar(l.get(this, ne, "f"), null)
                 }
                 hasStarted() {
-                    return (0,
-                    l.gn)(this, ie, "f").hasStarted
+                    return l.get(this, ie, "f").hasStarted
                 }
                 hasFinished() {
-                    return null != (0,
-                    l.gn)(this, ie, "f").finishFrames
+                    return null != l.get(this, ie, "f").finishFrames
                 }
                 getFinishTime() {
-                    return null == (0,
-                    l.gn)(this, ie, "f").finishFrames ? null : new ot.A((0,
-                    l.gn)(this, ie, "f").finishFrames)
+                    return null == l.get(this, ie, "f").finishFrames ? null : new ot.A(l.get(this, ie, "f").finishFrames)
                 }
                 getRecording() {
-                    return (0,
-                    l.gn)(this, se, "f")
+                    return l.get(this, se, "f")
                 }
                 getTime() {
-                    return new ot.A((0,
-                    l.gn)(this, ie, "f").frames)
+                    return new ot.A(l.get(this, ie, "f").frames)
                 }
                 getNextCheckpointIndex() {
-                    return (0,
-                    l.gn)(this, ie, "f").nextCheckpointIndex
+                    return l.get(this, ie, "f").nextCheckpointIndex
                 }
                 hasCheckpointToRespawnAt() {
-                    return (0,
-                    l.gn)(this, ie, "f").hasCheckpointToRespawnAt
+                    return l.get(this, ie, "f").hasCheckpointToRespawnAt
                 }
                 getPosition() {
-                    return new THREE.Vector3((0,
-                    l.gn)(this, ie, "f").position.x,(0,
-                    l.gn)(this, ie, "f").position.y,(0,
-                    l.gn)(this, ie, "f").position.z)
+                    return new THREE.Vector3(l.get(this, ie, "f").position.x,l.get(this, ie, "f").position.y,l.get(this, ie, "f").position.z)
                 }
                 getQuaternion() {
-                    return new THREE.Quaternion((0,
-                    l.gn)(this, ie, "f").quaternion.x,(0,
-                    l.gn)(this, ie, "f").quaternion.y,(0,
-                    l.gn)(this, ie, "f").quaternion.z,(0,
-                    l.gn)(this, ie, "f").quaternion.w)
+                    return new THREE.Quaternion(l.get(this, ie, "f").quaternion.x,l.get(this, ie, "f").quaternion.y,l.get(this, ie, "f").quaternion.z,l.get(this, ie, "f").quaternion.w)
                 }
                 getMatrix4() {
                     const e = this.getPosition()
@@ -8258,123 +7593,63 @@
                     n
                 }
                 get isPaused() {
-                    return (0,
-                    l.gn)(this, ee, "f")
+                    return l.get(this, ee, "f")
                 }
                 set isPaused(e) {
-                    (0,
-                    l.gn)(this, ee, "f") != e && (null != (0,
-                    l.gn)(this, ne, "f") && (0,
-                    l.gn)(this, Z, "f")?.pauseCar((0,
-                    l.gn)(this, ne, "f"), e),
-                    (0,
-                    l.GG)(this, ee, e, "f"))
+                    l.get(this, ee, "f") != e && (null != l.get(this, ne, "f") && l.get(this, Z, "f")?.pauseCar(l.get(this, ne, "f"), e),
+                    l.set(this, ee, e, "f"))
                 }
                 get isControlsDisabled() {
-                    return (0,
-                    l.gn)(this, te, "f")
+                    return l.get(this, te, "f")
                 }
                 set isControlsDisabled(e) {
-                    e != (0,
-                    l.gn)(this, te, "f") && (null != (0,
-                    l.gn)(this, re, "f") && null != (0,
-                    l.gn)(this, ne, "f") && (e ? (0,
-                    l.gn)(this, Z, "f")?.controlCar((0,
-                    l.gn)(this, ne, "f"), !1, !1, !1, !1, !1) : (0,
-                    l.gn)(this, Z, "f")?.controlCar((0,
-                    l.gn)(this, ne, "f"), (0,
-                    l.gn)(this, re, "f").up, (0,
-                    l.gn)(this, re, "f").right, (0,
-                    l.gn)(this, re, "f").down, (0,
-                    l.gn)(this, re, "f").left, (0,
-                    l.gn)(this, re, "f").reset)),
-                    (0,
-                    l.GG)(this, te, e, "f"))
+                    e != l.get(this, te, "f") && (null != l.get(this, re, "f") && null != l.get(this, ne, "f") && (e ? l.get(this, Z, "f")?.controlCar(l.get(this, ne, "f"), !1, !1, !1, !1, !1) : l.get(this, Z, "f")?.controlCar(l.get(this, ne, "f"), l.get(this, re, "f").up, l.get(this, re, "f").right, l.get(this, re, "f").down, l.get(this, re, "f").left, l.get(this, re, "f").reset)),
+                    l.set(this, te, e, "f"))
                 }
                 getControls() {
-                    return (0,
-                    l.gn)(this, te, "f") ? {
+                    return l.get(this, te, "f") ? {
                         up: !1,
                         right: !1,
                         down: !1,
                         left: !1,
                         reset: !1
-                    } : null != (0,
-                    l.gn)(this, re, "f") ? (0,
-                    l.gn)(this, re, "f").getControls() : (0,
-                    l.gn)(this, ie, "f").controls
+                    } : null != l.get(this, re, "f") ? l.get(this, re, "f").getControls() : l.get(this, ie, "f").controls
                 }
                 setNameTag(e, t) {
-                    null != (0,
-                    l.gn)(this, ye, "f") && (0,
-                    l.gn)(this, ye, "f").countryCode == e && (0,
-                    l.gn)(this, ye, "f").name == t || ((0,
-                    l.GG)(this, ye, {
+                    null != l.get(this, ye, "f") && l.get(this, ye, "f").countryCode == e && l.get(this, ye, "f").name == t || (l.set(this, ye, {
                         countryCode: e,
                         name: t
                     }, "f"),
-                    (0,
-                    l.gn)(this, G, "m", We).call(this))
+                    l.get(this, G, "m", We).call(this))
                 }
                 getCarStyle() {
-                    return (0,
-                    l.gn)(this, Ce, "f")
+                    return l.get(this, Ce, "f")
                 }
                 setCarStyle(e) {
-                    if (!(0,
-                    l.gn)(this, Ce, "f").equals(e)) {
-                        if (e.pattern != (0,
-                        l.gn)(this, Ce, "f").pattern && ((0,
-                        l.gn)(this, Te, "f").dispose(),
-                        (0,
-                        l.GG)(this, Te, (0,
-                        l.gn)(F, F, "m", He).call(F, (0,
-                        l.gn)(this, Ae, "f"), e.pattern), "f"),
-                        (0,
-                        l.gn)(this, Me, "f").value = (0,
-                        l.gn)(this, Te, "f")),
-                        e.rims != (0,
-                        l.gn)(this, Ce, "f").rims)
-                            for (let t = 0; t < (0,
-                            l.gn)(this, ke, "f").length; t++) {
-                                const n = (0,
-                                l.gn)(this, ke, "f")[t];
-                                (0,
-                                l.gn)(this, ve, "f").remove(n),
-                                (0,
-                                l.gn)(this, Ae, "f").removeMaterial(n.material);
-                                const i = (0,
-                                l.gn)(F, F, "m", je).call(F, e.rims);
-                                (0,
-                                l.gn)(this, G, "m", Ve).call(this, i),
+                    if (!l.get(this, Ce, "f").equals(e)) {
+                        if (e.pattern != l.get(this, Ce, "f").pattern && (l.get(this, Te, "f").dispose(),
+                        l.set(this, Te, l.get(F, F, "m", He).call(F, l.get(this, Ae, "f"), e.pattern), "f"),
+                        l.get(this, Me, "f").value = l.get(this, Te, "f")),
+                        e.rims != l.get(this, Ce, "f").rims)
+                            for (let t = 0; t < l.get(this, ke, "f").length; t++) {
+                                const n = l.get(this, ke, "f")[t];
+                                l.get(this, ve, "f").remove(n),
+                                l.get(this, Ae, "f").removeMaterial(n.material);
+                                const i = l.get(F, F, "m", je).call(F, e.rims);
+                                l.get(this, G, "m", Ve).call(this, i),
                                 i.position.copy(n.position),
                                 i.quaternion.copy(n.quaternion),
                                 i.scale.copy(n.scale),
-                                (0,
-                                l.gn)(this, ve, "f").add(i),
-                                (0,
-                                l.gn)(this, ke, "f")[t] = i
+                                l.get(this, ve, "f").add(i),
+                                l.get(this, ke, "f")[t] = i
                             }
-                        e.exhaust != (0,
-                        l.gn)(this, Ce, "f").exhaust && ((0,
-                        l.gn)(this, we, "f").remove((0,
-                        l.gn)(this, Se, "f")),
-                        (0,
-                        l.gn)(this, Ae, "f").removeMaterial((0,
-                        l.gn)(this, Se, "f").material),
-                        (0,
-                        l.GG)(this, Se, (0,
-                        l.gn)(F, F, "m", Ke).call(F, e.exhaust), "f"),
-                        (0,
-                        l.gn)(this, G, "m", Ve).call(this, (0,
-                        l.gn)(this, Se, "f")),
-                        (0,
-                        l.gn)(this, we, "f").add((0,
-                        l.gn)(this, Se, "f"))),
-                        (0,
-                        l.gn)(this, _e, "f").value = (new THREE.Vector3).setFromColor(e.secondaryColor),
-                        (0,
-                        l.gn)(this, ve, "f").traverse((t => {
+                        e.exhaust != l.get(this, Ce, "f").exhaust && (l.get(this, we, "f").remove(l.get(this, Se, "f")),
+                        l.get(this, Ae, "f").removeMaterial(l.get(this, Se, "f").material),
+                        l.set(this, Se, l.get(F, F, "m", Ke).call(F, e.exhaust), "f"),
+                        l.get(this, G, "m", Ve).call(this, l.get(this, Se, "f")),
+                        l.get(this, we, "f").add(l.get(this, Se, "f"))),
+                        l.get(this, _e, "f").value = (new THREE.Vector3).setFromColor(e.secondaryColor),
+                        l.get(this, ve, "f").traverse((t => {
                             if (t instanceof THREE.Mesh) {
                                 let n;
                                 n = Array.isArray(t.material) ? t.material : [t.material];
@@ -8383,13 +7658,11 @@
                             }
                         }
                         )),
-                        (0,
-                        l.GG)(this, Ce, e.clone(), "f")
+                        l.set(this, Ce, e.clone(), "f")
                     }
                 }
                 setOpacity(e) {
-                    (0,
-                    l.gn)(this, ve, "f").traverse((t => {
+                    l.get(this, ve, "f").traverse((t => {
                         if (t instanceof THREE.Mesh) {
                             let n;
                             n = Array.isArray(t.material) ? t.material : [t.material];
@@ -8404,221 +7677,122 @@
                     ))
                 }
                 setVisible(e) {
-                    (0,
-                    l.gn)(this, ve, "f").visible = e
+                    l.get(this, ve, "f").visible = e
                 }
                 getCarState() {
-                    return (0,
-                    l.gn)(this, ie, "f")
+                    return l.get(this, ie, "f")
                 }
                 setCarState(e, t) {
-                    if ((0,
-                    l.gn)(this, Fe, "f"))
+                    if (l.get(this, Fe, "f"))
                         return;
-                    const n = (0,
-                    l.gn)(this, ie, "f");
-                    (0,
-                    l.GG)(this, ie, e, "f");
+                    const n = l.get(this, ie, "f");
+                    l.set(this, ie, e, "f");
                     const i = .001;
                     if (t) {
-                        (0,
-                        l.GG)(this, Ne, null, "f"),
-                        (0,
-                        l.gn)(this, De, "f")?.clear();
-                        for (const e of (0,
-                        l.gn)(this, Le, "f"))
+                        l.set(this, Ne, null, "f"),
+                        l.get(this, De, "f")?.clear();
+                        for (const e of l.get(this, Le, "f"))
                             e.clear()
                     }
-                    if ((null == (0,
-                    l.gn)(this, Ne, "f") || (0,
-                    l.gn)(this, Ne, "f") + 10 <= (0,
-                    l.gn)(this, ie, "f").frames) && ((0,
-                    l.GG)(this, Ne, (0,
-                    l.gn)(this, ie, "f").frames, "f"),
-                    (0,
-                    l.gn)(this, G, "m", Je).call(this, .01)),
-                    t || !n.controls.reset && (0,
-                    l.gn)(this, ie, "f").controls.reset) {
-                        (0,
-                        l.gn)(this, X, "f").reset(this.getPosition(), this.getQuaternion(), this.getSpeedKmh()),
-                        (0,
-                        l.gn)(this, Y, "f").reset(this.getPosition(), this.getQuaternion(), this.getSpeedKmh());
-                        for (const e of (0,
-                        l.gn)(this, de, "f"))
+                    if ((null == l.get(this, Ne, "f") || l.get(this, Ne, "f") + 10 <= l.get(this, ie, "f").frames) && (l.set(this, Ne, l.get(this, ie, "f").frames, "f"),
+                    l.get(this, G, "m", Je).call(this, .01)),
+                    t || !n.controls.reset && l.get(this, ie, "f").controls.reset) {
+                        l.get(this, X, "f").reset(this.getPosition(), this.getQuaternion(), this.getSpeedKmh()),
+                        l.get(this, Y, "f").reset(this.getPosition(), this.getQuaternion(), this.getSpeedKmh());
+                        for (const e of l.get(this, de, "f"))
                             e()
                     }
-                    if ((0,
-                    l.gn)(this, G, "m", Ze).call(this, i),
-                    (0,
-                    l.gn)(this, G, "m", et).call(this, i),
-                    (0,
-                    l.gn)(this, ae, "f") && (0,
-                    l.gn)(this, ie, "f").hasStarted && null == n.finishFrames && (0,
-                    l.gn)(this, se, "f").recordFrame(n.frames, (0,
-                    l.gn)(this, ie, "f").controls),
-                    (0,
-                    l.gn)(this, ie, "f").nextCheckpointIndex > n.nextCheckpointIndex) {
-                        this.notificationAudioEnabled && (0,
-                        l.gn)(this, G, "m", Qe).call(this);
-                        for (const e of (0,
-                        l.gn)(this, ue, "f"))
+                    if (l.get(this, G, "m", Ze).call(this, i),
+                    l.get(this, G, "m", et).call(this, i),
+                    l.get(this, ae, "f") && l.get(this, ie, "f").hasStarted && null == n.finishFrames && l.get(this, se, "f").recordFrame(n.frames, l.get(this, ie, "f").controls),
+                    l.get(this, ie, "f").nextCheckpointIndex > n.nextCheckpointIndex) {
+                        this.notificationAudioEnabled && l.get(this, G, "m", Qe).call(this);
+                        for (const e of l.get(this, ue, "f"))
                             e(n.nextCheckpointIndex)
                     }
-                    if (null != (0,
-                    l.gn)(this, ie, "f").finishFrames && null == n.finishFrames) {
-                        this.notificationAudioEnabled && (0,
-                        l.gn)(this, G, "m", Qe).call(this);
-                        for (const e of (0,
-                        l.gn)(this, pe, "f"))
+                    if (null != l.get(this, ie, "f").finishFrames && null == n.finishFrames) {
+                        this.notificationAudioEnabled && l.get(this, G, "m", Qe).call(this);
+                        for (const e of l.get(this, pe, "f"))
                             e(this)
                     }
-                    (t || (0,
-                    l.gn)(this, ie, "f").frames % 50 == 0) && (0,
-                    l.gn)(this, $, "f")?.call(this, (0,
-                    l.gn)(this, ie, "f"))
+                    (t || l.get(this, ie, "f").frames % 50 == 0) && l.get(this, $, "f")?.call(this, l.get(this, ie, "f"))
                 }
                 update(e) {
-                    if ((0,
-                    l.gn)(this, G, "m", Xe).call(this),
-                    (0,
-                    l.gn)(this, De, "f")?.update(e),
-                    null != (0,
-                    l.gn)(this, be, "f")) {
+                    if (l.get(this, G, "m", Xe).call(this),
+                    l.get(this, De, "f")?.update(e),
+                    null != l.get(this, be, "f")) {
                         const e = this.getPosition()
                           , t = new THREE.Vector3(0,1,0).applyQuaternion(this.getQuaternion())
                           , n = 1.75;
-                        (0,
-                        l.gn)(this, be, "f").position.copy(e.clone().addScaledVector(t, n));
-                        const i = (0,
-                        l.gn)(this, be, "f").position.distanceToSquared((0,
-                        l.gn)(this, Ae, "f").camera.position)
+                        l.get(this, be, "f").position.copy(e.clone().addScaledVector(t, n));
+                        const i = l.get(this, be, "f").position.distanceToSquared(l.get(this, Ae, "f").camera.position)
                           , r = 2.5
                           , a = 50;
-                        (0,
-                        l.gn)(this, be, "f").visible = (0,
-                        l.gn)(this, ie, "f").hasStarted && i >= r * r && i <= a * a,
-                        (0,
-                        l.gn)(this, be, "f").visible && (0,
-                        l.gn)(this, be, "f").lookAt((0,
-                        l.gn)(this, Ae, "f").camera.position)
+                        l.get(this, be, "f").visible = l.get(this, ie, "f").hasStarted && i >= r * r && i <= a * a,
+                        l.get(this, be, "f").visible && l.get(this, be, "f").lookAt(l.get(this, Ae, "f").camera.position)
                     }
                     const t = this.getMatrix4()
                       , n = this.getQuaternion();
-                    (0,
-                    l.gn)(this, we, "f").matrixAutoUpdate = !1,
-                    (0,
-                    l.gn)(this, we, "f").matrix.copy(t),
-                    (0,
-                    l.gn)(this, we, "f").matrix.multiply((new THREE.Matrix4).makeTranslation(0, F.massOffset, 0)),
-                    (0,
-                    l.gn)(this, xe, "f").matrixAutoUpdate = !1,
-                    (0,
-                    l.gn)(this, xe, "f").matrix.copy((0,
-                    l.gn)(this, we, "f").matrix);
+                    l.get(this, we, "f").matrixAutoUpdate = !1,
+                    l.get(this, we, "f").matrix.copy(t),
+                    l.get(this, we, "f").matrix.multiply((new THREE.Matrix4).makeTranslation(0, F.massOffset, 0)),
+                    l.get(this, xe, "f").matrixAutoUpdate = !1,
+                    l.get(this, xe, "f").matrix.copy(l.get(this, we, "f").matrix);
                     for (let i = 0; i < 4; i++) {
-                        const r = null != (0,
-                        l.gn)(this, ie, "f").wheelContact[i]
-                          , a = (0,
-                        l.gn)(this, ie, "f").wheelDeltaRotation[i];
+                        const r = null != l.get(this, ie, "f").wheelContact[i]
+                          , a = l.get(this, ie, "f").wheelDeltaRotation[i];
                         if (this.hasStarted()) {
                             if (r)
-                                (0,
-                                l.gn)(this, fe, "f")[i] = 1e3 * a,
-                                (0,
-                                l.gn)(this, ge, "f")[i] = 1e3 * a;
+                                l.get(this, fe, "f")[i] = 1e3 * a,
+                                l.get(this, ge, "f")[i] = 1e3 * a;
                             else {
                                 const {up: t, down: n} = this.getControls()
                                   , r = 2 == i || 3 == i;
-                                n ? (0,
-                                l.gn)(this, ie, "f").brakeLightEnabled ? (0,
-                                l.gn)(this, ge, "f")[i] > 0 ? (0,
-                                l.gn)(this, ge, "f")[i] = Math.max(0, (0,
-                                l.gn)(this, ge, "f")[i] - 50 * e) : (0,
-                                l.gn)(this, ge, "f")[i] < 0 && ((0,
-                                l.gn)(this, ge, "f")[i] = Math.min(0, (0,
-                                l.gn)(this, ge, "f")[i] + 50 * e)) : r && ((0,
-                                l.gn)(this, fe, "f")[i] -= 25 * e,
-                                (0,
-                                l.gn)(this, ge, "f")[i] -= 25 * e) : t && r && ((0,
-                                l.gn)(this, fe, "f")[i] += 25 * e,
-                                (0,
-                                l.gn)(this, ge, "f")[i] += 50 * e),
-                                (0,
-                                l.gn)(this, fe, "f")[i] *= Math.max(0, 1 - e),
-                                (0,
-                                l.gn)(this, ge, "f")[i] *= Math.max(0, 1 - e)
+                                n ? l.get(this, ie, "f").brakeLightEnabled ? l.get(this, ge, "f")[i] > 0 ? l.get(this, ge, "f")[i] = Math.max(0, l.get(this, ge, "f")[i] - 50 * e) : l.get(this, ge, "f")[i] < 0 && (l.get(this, ge, "f")[i] = Math.min(0, l.get(this, ge, "f")[i] + 50 * e)) : r && (l.get(this, fe, "f")[i] -= 25 * e,
+                                l.get(this, ge, "f")[i] -= 25 * e) : t && r && (l.get(this, fe, "f")[i] += 25 * e,
+                                l.get(this, ge, "f")[i] += 50 * e),
+                                l.get(this, fe, "f")[i] *= Math.max(0, 1 - e),
+                                l.get(this, ge, "f")[i] *= Math.max(0, 1 - e)
                             }
-                            (0,
-                            l.gn)(this, me, "f")[i] += (0,
-                            l.gn)(this, ge, "f")[i] * e
+                            l.get(this, me, "f")[i] += l.get(this, ge, "f")[i] * e
                         }
-                        const s = (0,
-                        l.gn)(F, F, "f", oe)[i].clone().add(new THREE.Vector3(0,-(0,
-                        l.gn)(this, ie, "f").wheelSuspensionLength[i],0)).applyMatrix4(t)
+                        const s = l.get(F, F, "f", oe)[i].clone().add(new THREE.Vector3(0,-l.get(this, ie, "f").wheelSuspensionLength[i],0)).applyMatrix4(t)
                           , o = n.clone();
-                        (0 == i || 1 == i) && o.multiply((new THREE.Quaternion).setFromAxisAngle(new THREE.Vector3(0,1,0), (0,
-                        l.gn)(this, ie, "f").steering)),
-                        o.multiply((new THREE.Quaternion).setFromAxisAngle(new THREE.Vector3(1,0,0), (0,
-                        l.gn)(this, me, "f")[i])),
-                        (0,
-                        l.gn)(this, ke, "f")[i].position.copy(s),
-                        (0,
-                        l.gn)(this, ke, "f")[i].quaternion.copy(o);
-                        const h = (0,
-                        l.gn)(this, ie, "f").wheelSuspensionLength[i]
-                          , d = (0,
-                        l.gn)(this, ie, "f").wheelSkidInfo[i];
-                        if ((0,
-                        l.gn)(this, xe, "f").morphTargetInfluences || ((0,
-                        l.gn)(this, xe, "f").morphTargetInfluences = []),
-                        (0,
-                        l.gn)(this, xe, "f").morphTargetInfluences[i] = 2 * h + .06,
-                        e > 0 && (0,
-                        l.gn)(this, Ie, "f")?.getSettingBoolean(st.A.SkidmarksEnabled) && i < (0,
-                        l.gn)(this, Le, "f").length) {
-                            const e = (0,
-                            l.gn)(this, ie, "f").wheelContact[i]
-                              , t = Math.min(1, Math.abs(a) / (0,
-                            l.gn)(F, F, "f", le))
-                              , r = Math.pow(t, (0,
-                            l.gn)(F, F, "f", ce)) * (0,
-                            l.gn)(F, F, "f", he);
-                            null != e && d < r && 0 == (0,
-                            l.gn)(this, ze, "f")[i] && (0,
-                            l.gn)(this, Le, "f")[i].spawn(new THREE.Vector3(s.x,s.y,s.z), n, new THREE.Vector3(e.position.x,e.position.y,e.position.z), new THREE.Vector3(e.normal.x,e.normal.y,e.normal.z))
+                        (0 == i || 1 == i) && o.multiply((new THREE.Quaternion).setFromAxisAngle(new THREE.Vector3(0,1,0), l.get(this, ie, "f").steering)),
+                        o.multiply((new THREE.Quaternion).setFromAxisAngle(new THREE.Vector3(1,0,0), l.get(this, me, "f")[i])),
+                        l.get(this, ke, "f")[i].position.copy(s),
+                        l.get(this, ke, "f")[i].quaternion.copy(o);
+                        const h = l.get(this, ie, "f").wheelSuspensionLength[i]
+                          , d = l.get(this, ie, "f").wheelSkidInfo[i];
+                        if (l.get(this, xe, "f").morphTargetInfluences || (l.get(this, xe, "f").morphTargetInfluences = []),
+                        l.get(this, xe, "f").morphTargetInfluences[i] = 2 * h + .06,
+                        e > 0 && l.get(this, Ie, "f")?.getSettingBoolean(st.A.SkidmarksEnabled) && i < l.get(this, Le, "f").length) {
+                            const e = l.get(this, ie, "f").wheelContact[i]
+                              , t = Math.min(1, Math.abs(a) / l.get(F, F, "f", le))
+                              , r = Math.pow(t, l.get(F, F, "f", ce)) * l.get(F, F, "f", he);
+                            null != e && d < r && 0 == l.get(this, ze, "f")[i] && l.get(this, Le, "f")[i].spawn(new THREE.Vector3(s.x,s.y,s.z), n, new THREE.Vector3(e.position.x,e.position.y,e.position.z), new THREE.Vector3(e.normal.x,e.normal.y,e.normal.z))
                         }
                     }
-                    (0,
-                    l.gn)(this, G, "m", it).call(this, (0,
-                    l.gn)(this, ie, "f").brakeLightEnabled)
+                    l.get(this, G, "m", it).call(this, l.get(this, ie, "f").brakeLightEnabled)
                 }
                 updateCameras(e) {
-                    if (null == (0,
-                    l.gn)(this, ie, "f").finishFrames) {
+                    if (null == l.get(this, ie, "f").finishFrames) {
                         const t = this.getPosition()
                           , n = this.getQuaternion()
                           , i = this.getSpeedKmh();
-                        (0,
-                        l.gn)(this, X, "f").update(e, t, n, i),
-                        (0,
-                        l.gn)(this, Y, "f").update(t, n, i)
+                        l.get(this, X, "f").update(e, t, n, i),
+                        l.get(this, Y, "f").update(t, n, i)
                     }
                 }
                 get cameraOrbit() {
-                    return (0,
-                    l.gn)(this, X, "f").camera
+                    return l.get(this, X, "f").camera
                 }
                 get cameraCockpit() {
-                    return (0,
-                    l.gn)(this, Y, "f").camera
+                    return l.get(this, Y, "f").camera
                 }
                 set audioVolume(e) {
-                    (0,
-                    l.GG)(this, V, e, "f"),
-                    null != (0,
-                    l.gn)(this, W, "f") && (0,
-                    l.gn)(this, W, "f").gain.setTargetAtTime((0,
-                    l.gn)(this, V, "f"), 0, .01)
+                    l.set(this, V, e, "f"),
+                    null != l.get(this, W, "f") && l.get(this, W, "f").gain.setTargetAtTime(l.get(this, V, "f"), 0, .01)
                 }
                 static async initResources() {
                     const e = await new Promise(( (e, t) => {
@@ -8683,11 +7857,9 @@
                                 suspension: a(r("Suspension", !0)),
                                 rims: s,
                                 exhausts: o,
-                                collisionShapeVertices: (0,
-                                l.gn)(F, F, "m", rt).call(F, r("Collision", !0))
+                                collisionShapeVertices: l.get(F, F, "m", rt).call(F, r("Collision", !0))
                             },
-                            (0,
-                            l.gn)(F, F, "m", at).call(F).then((t => {
+                            l.get(F, F, "m", at).call(F).then((t => {
                                 e(t)
                             }
                             )).catch(t)
@@ -8765,41 +7937,26 @@
             Fe = new WeakMap,
             G = new WeakSet,
             Oe = function() {
-                (0,
-                l.gn)(this, G, "m", qe).call(this),
+                l.get(this, G, "m", qe).call(this),
                 setTimeout(( () => {
-                    if (null != (0,
-                    l.gn)(this, H, "f") && ((0,
-                    l.gn)(this, H, "f").source.stop(),
-                    (0,
-                    l.GG)(this, H, null, "f")),
-                    null != (0,
-                    l.gn)(this, K, "f")) {
-                        for (const {source: e} of (0,
-                        l.gn)(this, K, "f"))
+                    if (null != l.get(this, H, "f") && (l.get(this, H, "f").source.stop(),
+                    l.set(this, H, null, "f")),
+                    null != l.get(this, K, "f")) {
+                        for (const {source: e} of l.get(this, K, "f"))
                             e.stop();
-                        (0,
-                        l.GG)(this, K, null, "f")
+                        l.set(this, K, null, "f")
                     }
                 }
                 ), 200)
             }
             ,
             We = function() {
-                if (null != (0,
-                l.gn)(this, be, "f") && ((0,
-                l.gn)(this, be, "f").geometry.dispose(),
-                (0,
-                l.gn)(this, be, "f").material.map?.dispose(),
-                (0,
-                l.gn)(this, be, "f").material.dispose(),
-                (0,
-                l.gn)(this, Ae, "f").scene.remove((0,
-                l.gn)(this, be, "f")),
-                (0,
-                l.GG)(this, be, null, "f")),
-                null != (0,
-                l.gn)(this, ye, "f")) {
+                if (null != l.get(this, be, "f") && (l.get(this, be, "f").geometry.dispose(),
+                l.get(this, be, "f").material.map?.dispose(),
+                l.get(this, be, "f").material.dispose(),
+                l.get(this, Ae, "f").scene.remove(l.get(this, be, "f")),
+                l.set(this, be, null, "f")),
+                null != l.get(this, ye, "f")) {
                     const e = document.createElement("canvas")
                       , t = e.getContext("2d");
                     if (null != t) {
@@ -8807,19 +7964,15 @@
                           , i = `bold ${n.toString()}px ForcedSquare, Arial, sans-serif`;
                         let r, a;
                         t.font = i,
-                        null == (0,
-                        l.gn)(this, ye, "f").countryCode ? (r = 0,
+                        null == l.get(this, ye, "f").countryCode ? (r = 0,
                         a = 0) : (r = n * (4 / 3),
                         a = 10);
-                        const s = t.measureText((0,
-                        l.gn)(this, ye, "f").name).width;
+                        const s = t.measureText(l.get(this, ye, "f").name).width;
                         if (e.width = r + a + s + 20,
                         e.height = n + 20,
-                        null != (0,
-                        l.gn)(this, ye, "f").countryCode) {
+                        null != l.get(this, ye, "f").countryCode) {
                             const e = new Image;
-                            e.src = "images/countries/" + (0,
-                            l.gn)(this, ye, "f").countryCode + ".svg",
+                            e.src = "images/countries/" + l.get(this, ye, "f").countryCode + ".svg",
                             e.addEventListener("load", ( () => {
                                 t.drawImage(e, 10, 10, r, n),
                                 o.needsUpdate = !0
@@ -8830,8 +7983,7 @@
                         t.fillRect(0, 0, e.width, e.height),
                         t.fillStyle = "rgba(255,255,255,0.9)",
                         t.font = i,
-                        t.fillText((0,
-                        l.gn)(this, ye, "f").name, 10 + r + a, n - 5);
+                        t.fillText(l.get(this, ye, "f").name, 10 + r + a, n - 5);
                         const o = new THREE.Texture(e);
                         o.needsUpdate = !0;
                         const h = .4
@@ -8843,13 +7995,9 @@
                             depthTest: !1,
                             depthWrite: !1
                         });
-                        (0,
-                        l.GG)(this, be, new THREE.Mesh(u,p), "f"),
-                        (0,
-                        l.gn)(this, be, "f").renderOrder = 1,
-                        (0,
-                        l.gn)(this, Ae, "f").scene.add((0,
-                        l.gn)(this, be, "f"))
+                        l.set(this, be, new THREE.Mesh(u,p), "f"),
+                        l.get(this, be, "f").renderOrder = 1,
+                        l.get(this, Ae, "f").scene.add(l.get(this, be, "f"))
                     }
                 }
             }
@@ -8871,10 +8019,8 @@
                         e.onBeforeCompile = e => {
                             e.fragmentShader = "uniform sampler2D carColorPattern;\nuniform vec3 carColorSecondary;\n" + e.fragmentShader,
                             e.fragmentShader = e.fragmentShader.replace("vec4 diffuseColor = vec4( diffuse, opacity );", "float colorSource = texture(carColorPattern, vUv).g;\nvec4 diffuseColor = vec4( carColorSecondary * colorSource + diffuse * (1.0 - colorSource), opacity );"),
-                            e.uniforms.carColorPattern = (0,
-                            l.gn)(this, Me, "f"),
-                            e.uniforms.carColorSecondary = (0,
-                            l.gn)(this, _e, "f"),
+                            e.uniforms.carColorPattern = l.get(this, Me, "f"),
+                            e.uniforms.carColorSecondary = l.get(this, _e, "f"),
                             e.defines ?? (e.defines = {}),
                             e.defines.USE_UV = !0
                         }
@@ -8885,14 +8031,12 @@
                     else if ("BrakeLight" == e.name) {
                         if (!(e instanceof THREE.MeshStandardMaterial))
                             throw new Error("Brake light material must be MeshStandardMaterial");
-                        (0,
-                        l.GG)(this, Ee, e, "f")
+                        l.set(this, Ee, e, "f")
                     }
                 e.castShadow = !0,
                 e.receiveShadow = !0,
                 e.frustumCulled = !1,
-                (0,
-                l.gn)(this, Ae, "f").addMaterial(e.material)
+                l.get(this, Ae, "f").addMaterial(e.material)
             }
             ,
             He = function(e, t) {
@@ -8933,50 +8077,33 @@
             }
             ,
             qe = function() {
-                if (null != (0,
-                l.gn)(this, H, "f") && ((0,
-                l.gn)(this, H, "f").source.playbackRate.setTargetAtTime(.7, 0, .15),
-                (0,
-                l.gn)(this, H, "f").gain.gain.setTargetAtTime(0, 0, .15)),
-                null != (0,
-                l.gn)(this, K, "f"))
-                    for (const e of (0,
-                    l.gn)(this, K, "f"))
+                if (null != l.get(this, H, "f") && (l.get(this, H, "f").source.playbackRate.setTargetAtTime(.7, 0, .15),
+                l.get(this, H, "f").gain.gain.setTargetAtTime(0, 0, .15)),
+                null != l.get(this, K, "f"))
+                    for (const e of l.get(this, K, "f"))
                         e.source.playbackRate.setTargetAtTime(.3, 0, .15),
                         e.gain.gain.setTargetAtTime(0, 0, .15);
-                if (null != (0,
-                l.gn)(this, Ue, "f")) {
-                    for (const {source: e} of (0,
-                    l.gn)(this, Ue, "f"))
+                if (null != l.get(this, Ue, "f")) {
+                    for (const {source: e} of l.get(this, Ue, "f"))
                         e.stop();
-                    (0,
-                    l.GG)(this, Ue, null, "f")
+                    l.set(this, Ue, null, "f")
                 }
             }
             ,
             Qe = function() {
-                const e = (0,
-                l.gn)(this, Ie, "f")?.getSettingFloat(st.A.CheckpointVolume) ?? 0;
-                let t = Math.min(Math.max((0,
-                l.gn)(this, V, "f") * e, 0), 1);
+                const e = l.get(this, Ie, "f")?.getSettingFloat(st.A.CheckpointVolume) ?? 0;
+                let t = Math.min(Math.max(l.get(this, V, "f") * e, 0), 1);
                 if (Number.isNaN(t) && (t = 0),
-                t > 0 && null != (0,
-                l.gn)(this, O, "f")) {
-                    const e = (0,
-                    l.gn)(this, O, "f").getBuffer("checkpoint");
-                    if (null != e && null != (0,
-                    l.gn)(this, O, "f").context && null != (0,
-                    l.gn)(this, O, "f").destinationMaster) {
-                        const n = (0,
-                        l.gn)(this, O, "f").context.createBufferSource();
+                t > 0 && null != l.get(this, O, "f")) {
+                    const e = l.get(this, O, "f").getBuffer("checkpoint");
+                    if (null != e && null != l.get(this, O, "f").context && null != l.get(this, O, "f").destinationMaster) {
+                        const n = l.get(this, O, "f").context.createBufferSource();
                         n.buffer = e,
                         n.playbackRate.value = 1.25;
-                        const i = (0,
-                        l.gn)(this, O, "f").context.createGain();
+                        const i = l.get(this, O, "f").context.createGain();
                         i.gain.value = .03 * t,
                         n.connect(i),
-                        i.connect((0,
-                        l.gn)(this, O, "f").destinationMaster),
+                        i.connect(l.get(this, O, "f").destinationMaster),
                         n.start(0)
                     }
                 }
@@ -8985,245 +8112,141 @@
             Je = function(e) {
                 const t = this.getMatrix4();
                 for (let n = 0; n < 4; n++) {
-                    const i = (0,
-                    l.gn)(F, F, "f", oe)[n].clone().add(new THREE.Vector3(0,-(0,
-                    l.gn)(this, ie, "f").wheelSuspensionLength[n],0)).applyMatrix4(t)
-                      , r = null != (0,
-                    l.gn)(this, ie, "f").wheelContact[n]
-                      , a = (0,
-                    l.gn)(this, ie, "f").wheelDeltaRotation[n]
-                      , s = (0,
-                    l.gn)(this, ie, "f").wheelSkidInfo[n]
-                      , o = Math.min(1, Math.abs(a) / (0,
-                    l.gn)(F, F, "f", le))
-                      , h = Math.pow(o, (0,
-                    l.gn)(F, F, "f", ce)) * (0,
-                    l.gn)(F, F, "f", he);
-                    r && s < h ? (n < (0,
-                    l.gn)(this, Le, "f").length && ((0,
-                    l.gn)(this, ze, "f")[n] = Math.max(0, (0,
-                    l.gn)(this, ze, "f")[n] - e)),
-                    0 == (0,
-                    l.gn)(this, ze, "f")[n] && null != (0,
-                    l.gn)(this, De, "f") && (0,
-                    l.gn)(this, De, "f").spawn(i.x, i.y, i.z)) : (n < (0,
-                    l.gn)(this, Le, "f").length && (0,
-                    l.gn)(this, Ie, "f")?.getSettingBoolean(st.A.SkidmarksEnabled) && (0,
-                    l.gn)(this, Le, "f")[n].break(),
-                    (0,
-                    l.gn)(this, ze, "f")[n] = .075)
+                    const i = l.get(F, F, "f", oe)[n].clone().add(new THREE.Vector3(0,-l.get(this, ie, "f").wheelSuspensionLength[n],0)).applyMatrix4(t)
+                      , r = null != l.get(this, ie, "f").wheelContact[n]
+                      , a = l.get(this, ie, "f").wheelDeltaRotation[n]
+                      , s = l.get(this, ie, "f").wheelSkidInfo[n]
+                      , o = Math.min(1, Math.abs(a) / l.get(F, F, "f", le))
+                      , h = Math.pow(o, l.get(F, F, "f", ce)) * l.get(F, F, "f", he);
+                    r && s < h ? (n < l.get(this, Le, "f").length && (l.get(this, ze, "f")[n] = Math.max(0, l.get(this, ze, "f")[n] - e)),
+                    0 == l.get(this, ze, "f")[n] && null != l.get(this, De, "f") && l.get(this, De, "f").spawn(i.x, i.y, i.z)) : (n < l.get(this, Le, "f").length && l.get(this, Ie, "f")?.getSettingBoolean(st.A.SkidmarksEnabled) && l.get(this, Le, "f")[n].break(),
+                    l.get(this, ze, "f")[n] = .075)
                 }
             }
             ,
             Xe = function() {
-                if (null != (0,
-                l.gn)(this, O, "f") && null != (0,
-                l.gn)(this, O, "f").context && null != (0,
-                l.gn)(this, O, "f").destinationSfx) {
-                    null == (0,
-                    l.gn)(this, W, "f") && ((0,
-                    l.GG)(this, W, (0,
-                    l.gn)(this, O, "f").context.createGain(), "f"),
-                    (0,
-                    l.gn)(this, W, "f").gain.value = (0,
-                    l.gn)(this, V, "f"),
-                    (0,
-                    l.gn)(this, W, "f").connect((0,
-                    l.gn)(this, O, "f").destinationSfx)),
-                    null == (0,
-                    l.gn)(this, Q, "f") && ((0,
-                    l.GG)(this, Q, (0,
-                    l.gn)(this, O, "f").context.createPanner(), "f"),
-                    (0,
-                    l.gn)(this, Q, "f").refDistance = 5,
-                    (0,
-                    l.gn)(this, Q, "f").connect((0,
-                    l.gn)(this, W, "f")));
+                if (null != l.get(this, O, "f") && null != l.get(this, O, "f").context && null != l.get(this, O, "f").destinationSfx) {
+                    null == l.get(this, W, "f") && (l.set(this, W, l.get(this, O, "f").context.createGain(), "f"),
+                    l.get(this, W, "f").gain.value = l.get(this, V, "f"),
+                    l.get(this, W, "f").connect(l.get(this, O, "f").destinationSfx)),
+                    null == l.get(this, Q, "f") && (l.set(this, Q, l.get(this, O, "f").context.createPanner(), "f"),
+                    l.get(this, Q, "f").refDistance = 5,
+                    l.get(this, Q, "f").connect(l.get(this, W, "f")));
                     const e = this.getPosition();
-                    (0,
-                    l.gn)(this, Q, "f").positionX.value = e.x,
-                    (0,
-                    l.gn)(this, Q, "f").positionY.value = e.y,
-                    (0,
-                    l.gn)(this, Q, "f").positionZ.value = e.z;
+                    l.get(this, Q, "f").positionX.value = e.x,
+                    l.get(this, Q, "f").positionY.value = e.y,
+                    l.get(this, Q, "f").positionZ.value = e.z;
                     const t = 4;
-                    if ((0,
-                    l.gn)(this, J, "f").length < t) {
-                        (0,
-                        l.gn)(this, J, "f").length = 0;
+                    if (l.get(this, J, "f").length < t) {
+                        l.get(this, J, "f").length = 0;
                         for (let e = 0; e < t; ++e) {
-                            const e = (0,
-                            l.gn)(this, O, "f").context.createPanner();
+                            const e = l.get(this, O, "f").context.createPanner();
                             e.refDistance = 5,
-                            e.connect((0,
-                            l.gn)(this, W, "f")),
-                            (0,
-                            l.gn)(this, J, "f").push(e)
+                            e.connect(l.get(this, W, "f")),
+                            l.get(this, J, "f").push(e)
                         }
                     }
                     const n = this.getMatrix4();
                     for (let e = 0; e < t; ++e) {
-                        const t = (0,
-                        l.gn)(this, J, "f")[e]
-                          , i = (0,
-                        l.gn)(F, F, "f", oe)[e].clone().add(new THREE.Vector3(0,-(0,
-                        l.gn)(this, ie, "f").wheelSuspensionLength[e],0)).applyMatrix4(n);
+                        const t = l.get(this, J, "f")[e]
+                          , i = l.get(F, F, "f", oe)[e].clone().add(new THREE.Vector3(0,-l.get(this, ie, "f").wheelSuspensionLength[e],0)).applyMatrix4(n);
                         t.positionX.value = i.x,
                         t.positionY.value = i.y,
                         t.positionZ.value = i.z
                     }
-                    (0,
-                    l.gn)(this, Ae, "f").camera != (0,
-                    l.gn)(this, X, "f").camera && (0,
-                    l.gn)(this, Ae, "f").camera != (0,
-                    l.gn)(this, Y, "f").camera || (0,
-                    l.gn)(this, O, "f").refreshListener((0,
-                    l.gn)(this, Ae, "f")),
-                    (0,
-                    l.gn)(this, G, "m", Ye).call(this),
-                    (0,
-                    l.gn)(this, G, "m", $e).call(this),
-                    (0,
-                    l.gn)(this, G, "m", nt).call(this)
+                    l.get(this, Ae, "f").camera != l.get(this, X, "f").camera && l.get(this, Ae, "f").camera != l.get(this, Y, "f").camera || l.get(this, O, "f").refreshListener(l.get(this, Ae, "f")),
+                    l.get(this, G, "m", Ye).call(this),
+                    l.get(this, G, "m", $e).call(this),
+                    l.get(this, G, "m", nt).call(this)
                 }
             }
             ,
             Ye = function() {
-                if (null == (0,
-                l.gn)(this, H, "f") && null != (0,
-                l.gn)(this, Q, "f") && null != (0,
-                l.gn)(this, O, "f")) {
-                    const e = (0,
-                    l.gn)(this, O, "f").getBuffer("engine");
-                    if (null != e && null != (0,
-                    l.gn)(this, O, "f").context) {
-                        const t = (0,
-                        l.gn)(this, O, "f").context.createBufferSource();
+                if (null == l.get(this, H, "f") && null != l.get(this, Q, "f") && null != l.get(this, O, "f")) {
+                    const e = l.get(this, O, "f").getBuffer("engine");
+                    if (null != e && null != l.get(this, O, "f").context) {
+                        const t = l.get(this, O, "f").context.createBufferSource();
                         t.buffer = e,
                         t.loop = !0,
                         t.playbackRate.value = .7;
-                        const n = (0,
-                        l.gn)(this, O, "f").context.createGain();
+                        const n = l.get(this, O, "f").context.createGain();
                         n.gain.value = 0,
                         t.connect(n),
-                        n.connect((0,
-                        l.gn)(this, Q, "f")),
+                        n.connect(l.get(this, Q, "f")),
                         t.start(0, 2 * Math.random()),
-                        (0,
-                        l.GG)(this, H, {
+                        l.set(this, H, {
                             source: t,
                             gain: n
                         }, "f")
                     }
                 }
-                if (null != (0,
-                l.gn)(this, H, "f")) {
-                    const e = ((0,
-                    l.gn)(this, fe, "f")[0] + (0,
-                    l.gn)(this, fe, "f")[1] + (0,
-                    l.gn)(this, fe, "f")[2] + (0,
-                    l.gn)(this, fe, "f")[3]) / 4
+                if (null != l.get(this, H, "f")) {
+                    const e = (l.get(this, fe, "f")[0] + l.get(this, fe, "f")[1] + l.get(this, fe, "f")[2] + l.get(this, fe, "f")[3]) / 4
                       , t = .7 + Math.pow(Math.abs(e), 1 / 3) / 3
-                      , n = null != (0,
-                    l.gn)(this, ie, "f").wheelContact[0] || null != (0,
-                    l.gn)(this, ie, "f").wheelContact[1] || null != (0,
-                    l.gn)(this, ie, "f").wheelContact[2] || null != (0,
-                    l.gn)(this, ie, "f").wheelContact[3]
+                      , n = null != l.get(this, ie, "f").wheelContact[0] || null != l.get(this, ie, "f").wheelContact[1] || null != l.get(this, ie, "f").wheelContact[2] || null != l.get(this, ie, "f").wheelContact[3]
                       , {up: i, down: r} = this.getControls()
-                      , a = this.hasStarted() && !this.hasFinished() && (i && !(r && (0,
-                    l.gn)(this, ie, "f").brakeLightEnabled) || r && !(0,
-                    l.gn)(this, ie, "f").brakeLightEnabled);
+                      , a = this.hasStarted() && !this.hasFinished() && (i && !(r && l.get(this, ie, "f").brakeLightEnabled) || r && !l.get(this, ie, "f").brakeLightEnabled);
                     let s;
                     s = n ? a ? t : Math.max(.7, t / 2) : a ? Math.max(.7, 1.15 * t) : Math.max(.7, t / 2),
-                    (0,
-                    l.gn)(this, H, "f").source.playbackRate.setTargetAtTime(s, 0, .05),
-                    (0,
-                    l.gn)(this, H, "f").gain.gain.setTargetAtTime(Math.min(.285, s / 14), 0, .05)
+                    l.get(this, H, "f").source.playbackRate.setTargetAtTime(s, 0, .05),
+                    l.get(this, H, "f").gain.gain.setTargetAtTime(Math.min(.285, s / 14), 0, .05)
                 }
             }
             ,
             Ze = function(e) {
-                if ((0,
-                l.gn)(this, j, "f").length < 4) {
-                    (0,
-                    l.gn)(this, j, "f").length = 0;
+                if (l.get(this, j, "f").length < 4) {
+                    l.get(this, j, "f").length = 0;
                     for (let e = 0; e < 4; ++e)
-                        (0,
-                        l.gn)(this, j, "f").push(0)
+                        l.get(this, j, "f").push(0)
                 }
-                for (let t = 0; t < 4 && t < (0,
-                l.gn)(this, J, "f").length; t++)
-                    if ((0,
-                    l.gn)(this, j, "f")[t] -= e,
-                    (0,
-                    l.gn)(this, j, "f")[t] <= 0) {
-                        const e = Math.abs((0,
-                        l.gn)(this, ie, "f").wheelSuspensionVelocity[t]);
-                        if (e > 4 && null != (0,
-                        l.gn)(this, O, "f")) {
-                            const n = (0,
-                            l.gn)(this, O, "f").getBuffer("suspension");
-                            if (null != n && null != (0,
-                            l.gn)(this, O, "f").context) {
-                                const i = (0,
-                                l.gn)(this, O, "f").context.createBufferSource();
+                for (let t = 0; t < 4 && t < l.get(this, J, "f").length; t++)
+                    if (l.get(this, j, "f")[t] -= e,
+                    l.get(this, j, "f")[t] <= 0) {
+                        const e = Math.abs(l.get(this, ie, "f").wheelSuspensionVelocity[t]);
+                        if (e > 4 && null != l.get(this, O, "f")) {
+                            const n = l.get(this, O, "f").getBuffer("suspension");
+                            if (null != n && null != l.get(this, O, "f").context) {
+                                const i = l.get(this, O, "f").context.createBufferSource();
                                 i.buffer = n,
                                 i.playbackRate.value = .7 + .1 * Math.random();
-                                const r = (0,
-                                l.gn)(this, O, "f").context.createGain();
+                                const r = l.get(this, O, "f").context.createGain();
                                 r.gain.value = Math.min(.285, e / 140),
                                 i.connect(r),
-                                r.connect((0,
-                                l.gn)(this, J, "f")[t]),
-                                i.start((0,
-                                l.gn)(this, O, "f").context.currentTime + .02 * Math.random()),
-                                (0,
-                                l.gn)(this, j, "f")[t] = .1
+                                r.connect(l.get(this, J, "f")[t]),
+                                i.start(l.get(this, O, "f").context.currentTime + .02 * Math.random()),
+                                l.get(this, j, "f")[t] = .1
                             }
                         }
                     }
             }
             ,
             $e = function() {
-                if (null == (0,
-                l.gn)(this, K, "f") && null != (0,
-                l.gn)(this, O, "f")) {
-                    const e = (0,
-                    l.gn)(this, O, "f").getBuffer("tires");
-                    if (null != e && null != (0,
-                    l.gn)(this, O, "f").context) {
-                        (0,
-                        l.GG)(this, K, [], "f");
+                if (null == l.get(this, K, "f") && null != l.get(this, O, "f")) {
+                    const e = l.get(this, O, "f").getBuffer("tires");
+                    if (null != e && null != l.get(this, O, "f").context) {
+                        l.set(this, K, [], "f");
                         const t = 4;
                         for (let n = 0; n < t; n++) {
-                            const i = (0,
-                            l.gn)(this, O, "f").context.createBufferSource();
+                            const i = l.get(this, O, "f").context.createBufferSource();
                             i.buffer = e,
                             i.loop = !0,
                             i.playbackRate.value = .3;
-                            const r = (0,
-                            l.gn)(this, O, "f").context.createGain();
+                            const r = l.get(this, O, "f").context.createGain();
                             r.gain.value = 0,
                             i.connect(r),
-                            r.connect((0,
-                            l.gn)(this, J, "f")[n]),
+                            r.connect(l.get(this, J, "f")[n]),
                             i.start(0, n / t * 3.5 + .25 * Math.random()),
-                            (0,
-                            l.gn)(this, K, "f").push({
+                            l.get(this, K, "f").push({
                                 source: i,
                                 gain: r
                             })
                         }
                     }
                 }
-                if (null != (0,
-                l.gn)(this, K, "f"))
-                    for (let e = 0; e < (0,
-                    l.gn)(this, K, "f").length; ++e) {
-                        const t = (0,
-                        l.gn)(this, K, "f")[e];
-                        if (null != (0,
-                        l.gn)(this, ie, "f").wheelContact[e]) {
+                if (null != l.get(this, K, "f"))
+                    for (let e = 0; e < l.get(this, K, "f").length; ++e) {
+                        const t = l.get(this, K, "f")[e];
+                        if (null != l.get(this, ie, "f").wheelContact[e]) {
                             const e = Math.min(3, Math.abs(this.getSpeedKmh()) / 110);
                             t.gain.gain.setTargetAtTime(e / 10.5, 0, .15)
                         } else
@@ -9234,97 +8257,65 @@
             }
             ,
             et = function(e) {
-                null != (0,
-                l.gn)(this, q, "f") && ((0,
-                l.gn)(this, q, "f").timeout -= e,
-                (0,
-                l.gn)(this, q, "f").timeout <= 0 && (0,
-                l.GG)(this, q, null, "f"));
-                const t = (0,
-                l.gn)(this, ie, "f").collisionImpulses;
+                null != l.get(this, q, "f") && (l.get(this, q, "f").timeout -= e,
+                l.get(this, q, "f").timeout <= 0 && l.set(this, q, null, "f"));
+                const t = l.get(this, ie, "f").collisionImpulses;
                 for (const e of t)
-                    (0,
-                    l.gn)(this, G, "m", tt).call(this, e)
+                    l.get(this, G, "m", tt).call(this, e)
             }
             ,
             tt = function(e) {
-                if (e > 25 && null != (0,
-                l.gn)(this, Q, "f") && null != (0,
-                l.gn)(this, O, "f") && (null == (0,
-                l.gn)(this, q, "f") || (0,
-                l.gn)(this, q, "f").impulse + 100 < e)) {
-                    (0,
-                    l.GG)(this, q, {
+                if (e > 25 && null != l.get(this, Q, "f") && null != l.get(this, O, "f") && (null == l.get(this, q, "f") || l.get(this, q, "f").impulse + 100 < e)) {
+                    l.set(this, q, {
                         timeout: .2,
                         impulse: e
                     }, "f");
-                    const t = (0,
-                    l.gn)(this, O, "f").getBuffer("collision");
-                    if (null != t && null != (0,
-                    l.gn)(this, O, "f").context) {
-                        const n = (0,
-                        l.gn)(this, O, "f").context.createBufferSource();
+                    const t = l.get(this, O, "f").getBuffer("collision");
+                    if (null != t && null != l.get(this, O, "f").context) {
+                        const n = l.get(this, O, "f").context.createBufferSource();
                         n.buffer = t,
                         n.playbackRate.value = .1 + .15 * Math.min(e / 4e3, 1);
-                        const i = (0,
-                        l.gn)(this, O, "f").context.createGain();
+                        const i = l.get(this, O, "f").context.createGain();
                         i.gain.value = Math.max(.3, Math.min(e / 4e3, 1)) / 2.5,
                         n.connect(i),
-                        i.connect((0,
-                        l.gn)(this, Q, "f")),
+                        i.connect(l.get(this, Q, "f")),
                         n.start(0)
                     }
                 }
             }
             ,
             nt = function() {
-                if (null == (0,
-                l.gn)(this, Ue, "f") && null != (0,
-                l.gn)(this, O, "f")) {
-                    const e = (0,
-                    l.gn)(this, O, "f").getBuffer("skidding");
-                    if (null != e && null != (0,
-                    l.gn)(this, O, "f").context) {
-                        (0,
-                        l.GG)(this, Ue, [], "f");
+                if (null == l.get(this, Ue, "f") && null != l.get(this, O, "f")) {
+                    const e = l.get(this, O, "f").getBuffer("skidding");
+                    if (null != e && null != l.get(this, O, "f").context) {
+                        l.set(this, Ue, [], "f");
                         const t = 4;
                         for (let n = 0; n < t; ++n) {
-                            const i = (0,
-                            l.gn)(this, O, "f").context.createBufferSource();
+                            const i = l.get(this, O, "f").context.createBufferSource();
                             i.buffer = e,
                             i.loop = !0,
                             i.playbackRate.value = .5;
-                            const r = (0,
-                            l.gn)(this, O, "f").context.createGain();
+                            const r = l.get(this, O, "f").context.createGain();
                             r.gain.value = 0,
                             i.connect(r),
-                            r.connect((0,
-                            l.gn)(this, J, "f")[n]),
+                            r.connect(l.get(this, J, "f")[n]),
                             i.start(0, n / t * 3.5 + .25 * Math.random()),
-                            (0,
-                            l.gn)(this, Ue, "f").push({
+                            l.get(this, Ue, "f").push({
                                 source: i,
                                 gain: r
                             })
                         }
                     }
                 }
-                if (null != (0,
-                l.gn)(this, Ue, "f"))
-                    for (let e = 0; e < (0,
-                    l.gn)(this, Ue, "f").length; ++e) {
-                        const t = (0,
-                        l.gn)(this, Ue, "f")[e];
-                        0 == (0,
-                        l.gn)(this, ze, "f")[e] ? t.gain.gain.setTargetAtTime(.75 / 3.5, 0, .1) : t.gain.gain.setTargetAtTime(0, 0, .1)
+                if (null != l.get(this, Ue, "f"))
+                    for (let e = 0; e < l.get(this, Ue, "f").length; ++e) {
+                        const t = l.get(this, Ue, "f")[e];
+                        0 == l.get(this, ze, "f")[e] ? t.gain.gain.setTargetAtTime(.75 / 3.5, 0, .1) : t.gain.gain.setTargetAtTime(0, 0, .1)
                     }
             }
             ,
             it = function(e) {
-                null != (0,
-                l.gn)(this, Ee, "f") && (e ? (0,
-                l.gn)(this, Ee, "f").emissive.setRGB(1, .4, .3) : (0,
-                l.gn)(this, Ee, "f").emissive.setRGB(0, 0, 0))
+                null != l.get(this, Ee, "f") && (e ? l.get(this, Ee, "f").emissive.setRGB(1, .4, .3) : l.get(this, Ee, "f").emissive.setRGB(0, 0, 0))
             }
             ,
             rt = function(e) {
@@ -9568,22 +8559,16 @@
                 switch (c.className = "track",
                 e) {
                 case "official":
-                    h = (0,
-                    i.gn)(this, I, "f"),
-                    d = (0,
-                    i.gn)(this, z, "f");
+                    h = i.get(this, I, "f"),
+                    d = i.get(this, z, "f");
                     break;
                 case "community":
-                    h = (0,
-                    i.gn)(this, L, "f"),
-                    d = (0,
-                    i.gn)(this, N, "f");
+                    h = i.get(this, L, "f"),
+                    d = i.get(this, N, "f");
                     break;
                 case "custom":
-                    h = (0,
-                    i.gn)(this, U, "f"),
-                    d = (0,
-                    i.gn)(this, D, "f")
+                    h = i.get(this, U, "f"),
+                    d = i.get(this, D, "f")
                 }
                 if (null == t)
                     h.appendChild(c);
@@ -9616,20 +8601,17 @@
                             switch (r) {
                             case Z.A.Summer:
                                 n = "",
-                                a = (0,
-                                i.gn)(this, b, "f").get("Summer"),
+                                a = i.get(this, b, "f").get("Summer"),
                                 s = "images/summer.svg";
                                 break;
                             case Z.A.Winter:
                                 n = "winter",
-                                a = (0,
-                                i.gn)(this, b, "f").get("Winter"),
+                                a = i.get(this, b, "f").get("Winter"),
                                 s = "images/winter_colored.svg";
                                 break;
                             case Z.A.Desert:
                                 n = "desert",
-                                a = (0,
-                                i.gn)(this, b, "f").get("Desert"),
+                                a = i.get(this, b, "f").get("Desert"),
                                 s = "images/desert_colored.svg"
                             }
                             const o = document.createElement("div");
@@ -9645,10 +8627,8 @@
                 const u = document.createElement("button");
                 u.className = "button",
                 u.addEventListener("click", ( () => {
-                    (0,
-                    i.gn)(this, w, "f").playUIClick(),
-                    (0,
-                    i.gn)(this, M, "f").call(this, n, r, a, e, s, o)
+                    i.get(this, w, "f").playUIClick(),
+                    i.get(this, M, "f").call(this, n, r, a, e, s, o)
                 }
                 )),
                 c.appendChild(u);
@@ -9686,28 +8666,23 @@
                 m.className = "environment",
                 m.src = g,
                 u.appendChild(m);
-                const A = (0,
-                i.gn)(this, x, "f").getRecordTime((0,
-                i.gn)(this, k, "f").profileSlot, s)
+                const A = i.get(this, x, "f").getRecordTime(i.get(this, k, "f").profileSlot, s)
                   , v = document.createElement("div");
                 if (v.className = "record",
-                v.textContent = null != A ? X.A.formatTimeString(A) : (0,
-                i.gn)(this, b, "f").get("No record"),
+                v.textContent = null != A ? X.A.formatTimeString(A) : i.get(this, b, "f").get("No record"),
                 u.appendChild(v),
                 null != l) {
                     const e = document.createElement("button");
                     e.className = "delete-button",
                     e.innerHTML = '<img src="images/erase.svg">',
                     e.addEventListener("click", ( () => {
-                        (0,
-                        i.gn)(this, w, "f").playUIClick(),
+                        i.get(this, w, "f").playUIClick(),
                         l()
                     }
                     )),
                     c.appendChild(e)
                 }
-                (0,
-                i.gn)(this, B, "f").push({
+                i.get(this, B, "f").push({
                     category: e,
                     group: t,
                     trackMetadata: n,
@@ -9719,78 +8694,49 @@
             ,
             Q = function(e) {
                 $ = e,
-                (0,
-                i.gn)(this, T, "f").saveTrackSelectionTab($),
-                "official" == e ? ((0,
-                i.gn)(this, C, "f").classList.add("selected"),
-                (0,
-                i.gn)(this, R, "f").classList.remove("selected"),
-                (0,
-                i.gn)(this, P, "f").classList.remove("selected"),
-                (0,
-                i.gn)(this, I, "f").classList.add("open"),
-                (0,
-                i.gn)(this, L, "f").classList.remove("open"),
-                (0,
-                i.gn)(this, U, "f").classList.remove("open")) : "community" == e ? ((0,
-                i.gn)(this, C, "f").classList.remove("selected"),
-                (0,
-                i.gn)(this, R, "f").classList.add("selected"),
-                (0,
-                i.gn)(this, P, "f").classList.remove("selected"),
-                (0,
-                i.gn)(this, I, "f").classList.remove("open"),
-                (0,
-                i.gn)(this, L, "f").classList.add("open"),
-                (0,
-                i.gn)(this, U, "f").classList.remove("open")) : ((0,
-                i.gn)(this, C, "f").classList.remove("selected"),
-                (0,
-                i.gn)(this, R, "f").classList.remove("selected"),
-                (0,
-                i.gn)(this, P, "f").classList.add("selected"),
-                (0,
-                i.gn)(this, I, "f").classList.remove("open"),
-                (0,
-                i.gn)(this, L, "f").classList.remove("open"),
-                (0,
-                i.gn)(this, U, "f").classList.add("open"))
+                i.get(this, T, "f").saveTrackSelectionTab($),
+                "official" == e ? (i.get(this, C, "f").classList.add("selected"),
+                i.get(this, R, "f").classList.remove("selected"),
+                i.get(this, P, "f").classList.remove("selected"),
+                i.get(this, I, "f").classList.add("open"),
+                i.get(this, L, "f").classList.remove("open"),
+                i.get(this, U, "f").classList.remove("open")) : "community" == e ? (i.get(this, C, "f").classList.remove("selected"),
+                i.get(this, R, "f").classList.add("selected"),
+                i.get(this, P, "f").classList.remove("selected"),
+                i.get(this, I, "f").classList.remove("open"),
+                i.get(this, L, "f").classList.add("open"),
+                i.get(this, U, "f").classList.remove("open")) : (i.get(this, C, "f").classList.remove("selected"),
+                i.get(this, R, "f").classList.remove("selected"),
+                i.get(this, P, "f").classList.add("selected"),
+                i.get(this, I, "f").classList.remove("open"),
+                i.get(this, L, "f").classList.remove("open"),
+                i.get(this, U, "f").classList.add("open"))
             }
             ,
             J = function() {
-                const e = (0,
-                i.gn)(this, G, "f").value.trim().toLowerCase();
-                for (const t of (0,
-                i.gn)(this, B, "f"))
+                const e = i.get(this, G, "f").value.trim().toLowerCase();
+                for (const t of i.get(this, B, "f"))
                     t.trackMetadata.name.toLowerCase().includes(e) || t.trackMetadata.author?.toLowerCase().includes(e) ? t.buttonContainer.style.display = "" : t.buttonContainer.style.display = "none";
                 for (const e of ["official", "community", "custom"]) {
                     let t;
                     switch (e) {
                     case "official":
-                        t = (0,
-                        i.gn)(this, z, "f");
+                        t = i.get(this, z, "f");
                         break;
                     case "community":
-                        t = (0,
-                        i.gn)(this, N, "f");
+                        t = i.get(this, N, "f");
                         break;
                     case "custom":
-                        t = (0,
-                        i.gn)(this, D, "f")
+                        t = i.get(this, D, "f")
                     }
                     for (const [n,r] of t.entries())
-                        (0,
-                        i.gn)(this, B, "f").some((t => t.category == e && t.group == n && "none" != t.buttonContainer.style.display)) ? r.style.display = "" : r.style.display = "none"
+                        i.get(this, B, "f").some((t => t.category == e && t.group == n && "none" != t.buttonContainer.style.display)) ? r.style.display = "" : r.style.display = "none"
                 }
-                if ($ ?? ($ = (0,
-                i.gn)(this, T, "f").loadTrackSelectionTab()),
-                (0,
-                i.gn)(this, B, "f").filter((e => e.category == $)).every((e => "none" == e.buttonContainer.style.display)))
+                if ($ ?? ($ = i.get(this, T, "f").loadTrackSelectionTab()),
+                i.get(this, B, "f").filter((e => e.category == $)).every((e => "none" == e.buttonContainer.style.display)))
                     for (const e of ["official", "community", "custom"])
-                        if ((0,
-                        i.gn)(this, B, "f").some((t => t.category == e && "none" != t.buttonContainer.style.display))) {
-                            (0,
-                            i.gn)(this, v, "m", Q).call(this, e);
+                        if (i.get(this, B, "f").some((t => t.category == e && "none" != t.buttonContainer.style.display))) {
+                            i.get(this, v, "m", Q).call(this, e);
                             break
                         }
             }
@@ -9832,130 +8778,75 @@
                             throw new Error("UI element not found");
                         e = t
                     }
-                    (0,
-                    i.GG)(this, y, e, "f"),
-                    (0,
-                    i.GG)(this, b, t, "f"),
-                    (0,
-                    i.GG)(this, w, n, "f"),
-                    (0,
-                    i.GG)(this, x, r, "f"),
-                    (0,
-                    i.GG)(this, S, a, "f"),
-                    (0,
-                    i.GG)(this, k, s, "f"),
-                    (0,
-                    i.GG)(this, E, o, "f"),
-                    (0,
-                    i.GG)(this, T, l, "f"),
-                    (0,
-                    i.GG)(this, M, u, "f"),
-                    (0,
-                    i.GG)(this, _, document.createElement("div"), "f"),
-                    (0,
-                    i.gn)(this, _, "f").className = h ? "track-selection-ui with-background hidden" : "track-selection-ui hidden",
-                    e.appendChild((0,
-                    i.gn)(this, _, "f"));
+                    i.set(this, y, e, "f"),
+                    i.set(this, b, t, "f"),
+                    i.set(this, w, n, "f"),
+                    i.set(this, x, r, "f"),
+                    i.set(this, S, a, "f"),
+                    i.set(this, k, s, "f"),
+                    i.set(this, E, o, "f"),
+                    i.set(this, T, l, "f"),
+                    i.set(this, M, u, "f"),
+                    i.set(this, _, document.createElement("div"), "f"),
+                    i.get(this, _, "f").className = h ? "track-selection-ui with-background hidden" : "track-selection-ui hidden",
+                    e.appendChild(i.get(this, _, "f"));
                     const p = document.createElement("div");
                     p.className = "safe-area-left",
-                    (0,
-                    i.gn)(this, _, "f").appendChild(p);
+                    i.get(this, _, "f").appendChild(p);
                     const f = document.createElement("div");
                     f.className = "safe-area-right",
-                    (0,
-                    i.gn)(this, _, "f").appendChild(f);
+                    i.get(this, _, "f").appendChild(f);
                     const g = document.createElement("div");
                     g.className = "bar",
-                    (0,
-                    i.gn)(this, _, "f").appendChild(g);
+                    i.get(this, _, "f").appendChild(g);
                     const m = document.createElement("div");
                     m.className = "category-container",
-                    (0,
-                    i.gn)(this, _, "f").appendChild(m),
-                    (0,
-                    i.GG)(this, C, document.createElement("button"), "f"),
-                    (0,
-                    i.gn)(this, C, "f").className = "button official selected",
-                    (0,
-                    i.gn)(this, C, "f").append(document.createTextNode((0,
-                    i.gn)(this, b, "f").get("Official tracks"))),
-                    (0,
-                    i.gn)(this, C, "f").addEventListener("click", ( () => {
-                        (0,
-                        i.gn)(this, w, "f").playUIClick(),
-                        (0,
-                        i.gn)(this, v, "m", Q).call(this, "official")
+                    i.get(this, _, "f").appendChild(m),
+                    i.set(this, C, document.createElement("button"), "f"),
+                    i.get(this, C, "f").className = "button official selected",
+                    i.get(this, C, "f").append(document.createTextNode(i.get(this, b, "f").get("Official tracks"))),
+                    i.get(this, C, "f").addEventListener("click", ( () => {
+                        i.get(this, w, "f").playUIClick(),
+                        i.get(this, v, "m", Q).call(this, "official")
                     }
                     )),
-                    m.appendChild((0,
-                    i.gn)(this, C, "f"));
+                    m.appendChild(i.get(this, C, "f"));
                     const A = document.createElement("div");
                     A.className = "cover",
-                    (0,
-                    i.gn)(this, C, "f").prepend(A),
-                    (0,
-                    i.GG)(this, R, document.createElement("button"), "f"),
-                    (0,
-                    i.gn)(this, R, "f").className = "button community",
-                    (0,
-                    i.gn)(this, R, "f").append(document.createTextNode((0,
-                    i.gn)(this, b, "f").get("Community tracks"))),
-                    (0,
-                    i.gn)(this, R, "f").addEventListener("click", ( () => {
-                        (0,
-                        i.gn)(this, w, "f").playUIClick(),
-                        (0,
-                        i.gn)(this, v, "m", Q).call(this, "community")
+                    i.get(this, C, "f").prepend(A),
+                    i.set(this, R, document.createElement("button"), "f"),
+                    i.get(this, R, "f").className = "button community",
+                    i.get(this, R, "f").append(document.createTextNode(i.get(this, b, "f").get("Community tracks"))),
+                    i.get(this, R, "f").addEventListener("click", ( () => {
+                        i.get(this, w, "f").playUIClick(),
+                        i.get(this, v, "m", Q).call(this, "community")
                     }
                     )),
-                    m.appendChild((0,
-                    i.gn)(this, R, "f"));
+                    m.appendChild(i.get(this, R, "f"));
                     const q = document.createElement("div");
                     q.className = "cover",
-                    (0,
-                    i.gn)(this, R, "f").prepend(q),
-                    (0,
-                    i.GG)(this, P, document.createElement("button"), "f"),
-                    (0,
-                    i.gn)(this, P, "f").className = "button custom",
-                    (0,
-                    i.gn)(this, P, "f").append(document.createTextNode((0,
-                    i.gn)(this, b, "f").get("Custom tracks"))),
-                    (0,
-                    i.gn)(this, P, "f").addEventListener("click", ( () => {
-                        (0,
-                        i.gn)(this, w, "f").playUIClick(),
-                        (0,
-                        i.gn)(this, v, "m", Q).call(this, "custom")
+                    i.get(this, R, "f").prepend(q),
+                    i.set(this, P, document.createElement("button"), "f"),
+                    i.get(this, P, "f").className = "button custom",
+                    i.get(this, P, "f").append(document.createTextNode(i.get(this, b, "f").get("Custom tracks"))),
+                    i.get(this, P, "f").addEventListener("click", ( () => {
+                        i.get(this, w, "f").playUIClick(),
+                        i.get(this, v, "m", Q).call(this, "custom")
                     }
                     )),
-                    m.appendChild((0,
-                    i.gn)(this, P, "f"));
+                    m.appendChild(i.get(this, P, "f"));
                     const X = document.createElement("div");
                     X.className = "cover",
-                    (0,
-                    i.gn)(this, P, "f").prepend(X),
-                    (0,
-                    i.GG)(this, I, document.createElement("div"), "f"),
-                    (0,
-                    i.gn)(this, I, "f").className = "tracks-container open",
-                    (0,
-                    i.gn)(this, _, "f").appendChild((0,
-                    i.gn)(this, I, "f")),
-                    (0,
-                    i.GG)(this, L, document.createElement("div"), "f"),
-                    (0,
-                    i.gn)(this, L, "f").className = "tracks-container",
-                    (0,
-                    i.gn)(this, _, "f").appendChild((0,
-                    i.gn)(this, L, "f")),
-                    (0,
-                    i.GG)(this, U, document.createElement("div"), "f"),
-                    (0,
-                    i.gn)(this, U, "f").className = "tracks-container no-group-containers",
-                    (0,
-                    i.gn)(this, _, "f").appendChild((0,
-                    i.gn)(this, U, "f"));
+                    i.get(this, P, "f").prepend(X),
+                    i.set(this, I, document.createElement("div"), "f"),
+                    i.get(this, I, "f").className = "tracks-container open",
+                    i.get(this, _, "f").appendChild(i.get(this, I, "f")),
+                    i.set(this, L, document.createElement("div"), "f"),
+                    i.get(this, L, "f").className = "tracks-container",
+                    i.get(this, _, "f").appendChild(i.get(this, L, "f")),
+                    i.set(this, U, document.createElement("div"), "f"),
+                    i.get(this, U, "f").className = "tracks-container no-group-containers",
+                    i.get(this, _, "f").appendChild(i.get(this, U, "f"));
                     let Z = null;
                     const ie = e => {
                         Z = 1 == e.touches.length ? {
@@ -9968,49 +8859,36 @@
                         if (null != Z && 1 == e.changedTouches.length) {
                             const t = e.changedTouches[0].clientX - Z.x
                               , n = e.changedTouches[0].clientY - Z.y;
-                            Date.now() - Z.time < 500 && Math.abs(t) > 75 && Math.abs(n) < Math.abs(t) && (t > 0 ? "community" == $ ? (0,
-                            i.gn)(this, v, "m", Q).call(this, "official") : "custom" == $ && (0,
-                            i.gn)(this, v, "m", Q).call(this, "community") : "official" == $ ? (0,
-                            i.gn)(this, v, "m", Q).call(this, "community") : "community" == $ && (0,
-                            i.gn)(this, v, "m", Q).call(this, "custom"))
+                            Date.now() - Z.time < 500 && Math.abs(t) > 75 && Math.abs(n) < Math.abs(t) && (t > 0 ? "community" == $ ? i.get(this, v, "m", Q).call(this, "official") : "custom" == $ && i.get(this, v, "m", Q).call(this, "community") : "official" == $ ? i.get(this, v, "m", Q).call(this, "community") : "community" == $ && i.get(this, v, "m", Q).call(this, "custom"))
                         }
                         Z = null
                     }
                     ;
-                    (0,
-                    i.gn)(this, I, "f").addEventListener("touchstart", ie, {
+                    i.get(this, I, "f").addEventListener("touchstart", ie, {
                         passive: !0
                     }),
-                    (0,
-                    i.gn)(this, L, "f").addEventListener("touchstart", ie, {
+                    i.get(this, L, "f").addEventListener("touchstart", ie, {
                         passive: !0
                     }),
-                    (0,
-                    i.gn)(this, U, "f").addEventListener("touchstart", ie, {
+                    i.get(this, U, "f").addEventListener("touchstart", ie, {
                         passive: !0
                     }),
-                    (0,
-                    i.gn)(this, I, "f").addEventListener("touchend", re, {
+                    i.get(this, I, "f").addEventListener("touchend", re, {
                         passive: !0
                     }),
-                    (0,
-                    i.gn)(this, L, "f").addEventListener("touchend", re, {
+                    i.get(this, L, "f").addEventListener("touchend", re, {
                         passive: !0
                     }),
-                    (0,
-                    i.gn)(this, U, "f").addEventListener("touchend", re, {
+                    i.get(this, U, "f").addEventListener("touchend", re, {
                         passive: !0
                     });
                     const ae = document.createElement("button");
                     ae.className = "button",
                     "cancel" == c ? (ae.innerHTML = '<img class="button-icon" src="images/erase.svg"> ',
-                    ae.append(document.createTextNode((0,
-                    i.gn)(this, b, "f").get("Cancel")))) : (ae.innerHTML = '<img class="button-icon" src="images/back.svg"> ',
-                    ae.append(document.createTextNode((0,
-                    i.gn)(this, b, "f").get("Back")))),
+                    ae.append(document.createTextNode(i.get(this, b, "f").get("Cancel")))) : (ae.innerHTML = '<img class="button-icon" src="images/back.svg"> ',
+                    ae.append(document.createTextNode(i.get(this, b, "f").get("Back")))),
                     ae.addEventListener("click", ( () => {
-                        (0,
-                        i.gn)(this, w, "f").playUIClick(),
+                        i.get(this, w, "f").playUIClick(),
                         d()
                     }
                     )),
@@ -10018,277 +8896,176 @@
                     const se = document.createElement("div");
                     se.className = "search-bar-container",
                     g.appendChild(se),
-                    (0,
-                    i.GG)(this, G, document.createElement("input"), "f"),
-                    (0,
-                    i.gn)(this, G, "f").type = "text",
-                    (0,
-                    i.gn)(this, G, "f").spellcheck = !1,
-                    (0,
-                    i.gn)(this, G, "f").autocomplete = "off",
-                    (0,
-                    i.gn)(this, G, "f").autocapitalize = "off",
-                    (0,
-                    i.gn)(this, G, "f").enterKeyHint = "search",
-                    (0,
-                    i.gn)(this, G, "f").placeholder = (0,
-                    i.gn)(this, b, "f").get("Search by track or author..."),
-                    (0,
-                    i.gn)(this, G, "f").addEventListener("input", ( () => {
-                        (0,
-                        i.gn)(this, v, "m", J).call(this)
+                    i.set(this, G, document.createElement("input"), "f"),
+                    i.get(this, G, "f").type = "text",
+                    i.get(this, G, "f").spellcheck = !1,
+                    i.get(this, G, "f").autocomplete = "off",
+                    i.get(this, G, "f").autocapitalize = "off",
+                    i.get(this, G, "f").enterKeyHint = "search",
+                    i.get(this, G, "f").placeholder = i.get(this, b, "f").get("Search by track or author..."),
+                    i.get(this, G, "f").addEventListener("input", ( () => {
+                        i.get(this, v, "m", J).call(this)
                     }
                     )),
-                    se.appendChild((0,
-                    i.gn)(this, G, "f"));
+                    se.appendChild(i.get(this, G, "f"));
                     const oe = document.createElement("img");
                     oe.src = "images/search.svg",
                     se.appendChild(oe);
                     const le = document.createElement("button");
                     le.className = "button",
                     le.innerHTML = '<img class="button-icon" src="images/import.svg"> ',
-                    le.append(document.createTextNode((0,
-                    i.gn)(this, b, "f").get("Import"))),
+                    le.append(document.createTextNode(i.get(this, b, "f").get("Import"))),
                     le.addEventListener("click", ( () => {
-                        (0,
-                        i.gn)(this, w, "f").playUIClick(),
+                        i.get(this, w, "f").playUIClick(),
                         this.hide(),
-                        (0,
-                        i.GG)(this, F, new Y.A("",( () => {
+                        i.set(this, F, new Y.A("",( () => {
                             this.show(),
-                            (0,
-                            i.gn)(this, F, "f")?.dispose(),
-                            (0,
-                            i.GG)(this, F, null, "f")
+                            i.get(this, F, "f")?.dispose(),
+                            i.set(this, F, null, "f")
                         }
                         ),( (e, t) => {
-                            if ((0,
-                            i.gn)(this, F, "f")?.dispose(),
-                            (0,
-                            i.GG)(this, F, null, "f"),
-                            (0,
-                            i.gn)(this, v, "m", Q).call(this, "custom"),
+                            if (i.get(this, F, "f")?.dispose(),
+                            i.set(this, F, null, "f"),
+                            i.get(this, v, "m", Q).call(this, "custom"),
                             t || 1 != e.length)
                                 this.show();
                             else {
                                 const {trackMetadata: t, trackData: n, trackId: r, trackThumbnail: a} = e[0];
-                                (0,
-                                i.gn)(this, M, "f").call(this, t, n.environment, ( () => Promise.resolve(n)), "custom", r, a)
+                                i.get(this, M, "f").call(this, t, n.environment, ( () => Promise.resolve(n)), "custom", r, a)
                             }
                         }
                         ),t,n,a,o), "f")
                     }
                     )),
                     g.appendChild(le),
-                    window.addEventListener("keydown", (0,
-                    i.GG)(this, V, (e => {
-                        (0,
-                        i.gn)(this, O, "f") && "Escape" == e.code && (d(),
+                    window.addEventListener("keydown", i.set(this, V, (e => {
+                        i.get(this, O, "f") && "Escape" == e.code && (d(),
                         e.preventDefault()),
-                        "ShiftLeft" != e.code && "ShiftRight" != e.code || (0,
-                        i.GG)(this, W, !0, "f")
+                        "ShiftLeft" != e.code && "ShiftRight" != e.code || i.set(this, W, !0, "f")
                     }
                     ), "f")),
-                    window.addEventListener("keyup", (0,
-                    i.GG)(this, H, (e => {
-                        "ShiftLeft" != e.code && "ShiftRight" != e.code || (0,
-                        i.GG)(this, W, !1, "f")
+                    window.addEventListener("keyup", i.set(this, H, (e => {
+                        "ShiftLeft" != e.code && "ShiftRight" != e.code || i.set(this, W, !1, "f")
                     }
                     ), "f")),
-                    (0,
-                    i.gn)(this, S, "f").addCustomTracksChangedListener((0,
-                    i.GG)(this, j, ( () => {
+                    i.get(this, S, "f").addCustomTracksChangedListener(i.set(this, j, ( () => {
                         this.refresh()
                     }
                     ), "f")),
-                    (0,
-                    i.gn)(this, I, "f").addEventListener("scroll", ( () => {
-                        ee = (0,
-                        i.gn)(this, I, "f").scrollTop
+                    i.get(this, I, "f").addEventListener("scroll", ( () => {
+                        ee = i.get(this, I, "f").scrollTop
                     }
                     ), {
                         passive: !0
                     }),
-                    (0,
-                    i.gn)(this, L, "f").addEventListener("scroll", ( () => {
-                        te = (0,
-                        i.gn)(this, L, "f").scrollTop
+                    i.get(this, L, "f").addEventListener("scroll", ( () => {
+                        te = i.get(this, L, "f").scrollTop
                     }
                     ), {
                         passive: !0
                     }),
-                    (0,
-                    i.gn)(this, U, "f").addEventListener("scroll", ( () => {
-                        ne = (0,
-                        i.gn)(this, U, "f").scrollTop
+                    i.get(this, U, "f").addEventListener("scroll", ( () => {
+                        ne = i.get(this, U, "f").scrollTop
                     }
                     ), {
                         passive: !0
                     }),
-                    (0,
-                    i.gn)(this, x, "f").addRecordChangedCallback((0,
-                    i.GG)(this, K, ( () => {
+                    i.get(this, x, "f").addRecordChangedCallback(i.set(this, K, ( () => {
                         this.refresh()
                     }
                     ), "f"))
                 }
                 dispose() {
-                    (0,
-                    i.gn)(this, y, "f").removeChild((0,
-                    i.gn)(this, _, "f")),
-                    window.removeEventListener("keydown", (0,
-                    i.gn)(this, V, "f")),
-                    window.removeEventListener("keyup", (0,
-                    i.gn)(this, H, "f")),
-                    (0,
-                    i.gn)(this, F, "f")?.dispose(),
-                    (0,
-                    i.GG)(this, F, null, "f"),
-                    (0,
-                    i.gn)(this, S, "f").removeCustomTracksChangedListener((0,
-                    i.gn)(this, j, "f")),
-                    (0,
-                    i.gn)(this, x, "f").removeRecordChangedCallback((0,
-                    i.gn)(this, K, "f"))
+                    i.get(this, y, "f").removeChild(i.get(this, _, "f")),
+                    window.removeEventListener("keydown", i.get(this, V, "f")),
+                    window.removeEventListener("keyup", i.get(this, H, "f")),
+                    i.get(this, F, "f")?.dispose(),
+                    i.set(this, F, null, "f"),
+                    i.get(this, S, "f").removeCustomTracksChangedListener(i.get(this, j, "f")),
+                    i.get(this, x, "f").removeRecordChangedCallback(i.get(this, K, "f"))
                 }
                 hide() {
-                    (0,
-                    i.gn)(this, _, "f").classList.add("hidden"),
-                    (0,
-                    i.GG)(this, O, !1, "f")
+                    i.get(this, _, "f").classList.add("hidden"),
+                    i.set(this, O, !1, "f")
                 }
                 show() {
-                    (0,
-                    i.gn)(this, _, "f").classList.remove("hidden"),
-                    (0,
-                    i.GG)(this, O, !0, "f"),
+                    i.get(this, _, "f").classList.remove("hidden"),
+                    i.set(this, O, !0, "f"),
                     this.refresh(),
-                    $ ?? ($ = (0,
-                    i.gn)(this, T, "f").loadTrackSelectionTab()),
-                    "official" == $ ? ((0,
-                    i.gn)(this, C, "f").classList.add("selected"),
-                    (0,
-                    i.gn)(this, R, "f").classList.remove("selected"),
-                    (0,
-                    i.gn)(this, P, "f").classList.remove("selected"),
-                    (0,
-                    i.gn)(this, I, "f").classList.add("open"),
-                    (0,
-                    i.gn)(this, L, "f").classList.remove("open"),
-                    (0,
-                    i.gn)(this, U, "f").classList.remove("open"),
-                    (0,
-                    i.gn)(this, I, "f").scrollTop = ee) : "community" == $ ? ((0,
-                    i.gn)(this, C, "f").classList.remove("selected"),
-                    (0,
-                    i.gn)(this, R, "f").classList.add("selected"),
-                    (0,
-                    i.gn)(this, P, "f").classList.remove("selected"),
-                    (0,
-                    i.gn)(this, I, "f").classList.remove("open"),
-                    (0,
-                    i.gn)(this, L, "f").classList.add("open"),
-                    (0,
-                    i.gn)(this, U, "f").classList.remove("open"),
-                    (0,
-                    i.gn)(this, L, "f").scrollTop = te) : ((0,
-                    i.gn)(this, C, "f").classList.remove("selected"),
-                    (0,
-                    i.gn)(this, R, "f").classList.remove("selected"),
-                    (0,
-                    i.gn)(this, P, "f").classList.add("selected"),
-                    (0,
-                    i.gn)(this, I, "f").classList.remove("open"),
-                    (0,
-                    i.gn)(this, L, "f").classList.remove("open"),
-                    (0,
-                    i.gn)(this, U, "f").classList.add("open"),
-                    (0,
-                    i.gn)(this, U, "f").scrollTop = ne)
+                    $ ?? ($ = i.get(this, T, "f").loadTrackSelectionTab()),
+                    "official" == $ ? (i.get(this, C, "f").classList.add("selected"),
+                    i.get(this, R, "f").classList.remove("selected"),
+                    i.get(this, P, "f").classList.remove("selected"),
+                    i.get(this, I, "f").classList.add("open"),
+                    i.get(this, L, "f").classList.remove("open"),
+                    i.get(this, U, "f").classList.remove("open"),
+                    i.get(this, I, "f").scrollTop = ee) : "community" == $ ? (i.get(this, C, "f").classList.remove("selected"),
+                    i.get(this, R, "f").classList.add("selected"),
+                    i.get(this, P, "f").classList.remove("selected"),
+                    i.get(this, I, "f").classList.remove("open"),
+                    i.get(this, L, "f").classList.add("open"),
+                    i.get(this, U, "f").classList.remove("open"),
+                    i.get(this, L, "f").scrollTop = te) : (i.get(this, C, "f").classList.remove("selected"),
+                    i.get(this, R, "f").classList.remove("selected"),
+                    i.get(this, P, "f").classList.add("selected"),
+                    i.get(this, I, "f").classList.remove("open"),
+                    i.get(this, L, "f").classList.remove("open"),
+                    i.get(this, U, "f").classList.add("open"),
+                    i.get(this, U, "f").scrollTop = ne)
                 }
                 get isOpen() {
-                    return (0,
-                    i.gn)(this, O, "f") || null != (0,
-                    i.gn)(this, F, "f")
+                    return i.get(this, O, "f") || null != i.get(this, F, "f")
                 }
                 refresh() {
-                    if ((0,
-                    i.GG)(this, B, [], "f"),
-                    (0,
-                    i.gn)(this, I, "f").innerHTML = "",
-                    (0,
-                    i.gn)(this, L, "f").innerHTML = "",
-                    (0,
-                    i.gn)(this, U, "f").innerHTML = "",
-                    (0,
-                    i.gn)(this, z, "f").clear(),
-                    (0,
-                    i.gn)(this, N, "f").clear(),
-                    (0,
-                    i.gn)(this, D, "f").clear(),
-                    (0,
-                    i.gn)(this, S, "f").forEachOfficialTrack(( (e, t, n, r) => {
-                        (0,
-                        i.gn)(this, v, "m", q).call(this, "official", n.environment, t, n.environment, ( () => Promise.resolve(n)), e, r)
+                    if (i.set(this, B, [], "f"),
+                    i.get(this, I, "f").innerHTML = "",
+                    i.get(this, L, "f").innerHTML = "",
+                    i.get(this, U, "f").innerHTML = "",
+                    i.get(this, z, "f").clear(),
+                    i.get(this, N, "f").clear(),
+                    i.get(this, D, "f").clear(),
+                    i.get(this, S, "f").forEachOfficialTrack(( (e, t, n, r) => {
+                        i.get(this, v, "m", q).call(this, "official", n.environment, t, n.environment, ( () => Promise.resolve(n)), e, r)
                     }
                     )),
-                    (0,
-                    i.gn)(this, S, "f").isCommunityTracksEmpty()) {
+                    i.get(this, S, "f").isCommunityTracksEmpty()) {
                         const e = document.createElement("div");
                         e.className = "empty";
                         const t = document.createElement("div");
                         t.className = "title",
-                        t.textContent = (0,
-                        i.gn)(this, b, "f").get("No community tracks"),
+                        t.textContent = i.get(this, b, "f").get("No community tracks"),
                         e.appendChild(t);
                         const n = document.createElement("div");
                         n.className = "description",
-                        n.textContent = (0,
-                        i.gn)(this, b, "f").get("Community tracks are coming soon"),
+                        n.textContent = i.get(this, b, "f").get("Community tracks are coming soon"),
                         e.appendChild(n),
-                        (0,
-                        i.gn)(this, L, "f").appendChild(e)
+                        i.get(this, L, "f").appendChild(e)
                     } else
-                        (0,
-                        i.gn)(this, S, "f").forEachCommunityTrack(( (e, t, n, r, a, s) => {
-                            (0,
-                            i.gn)(this, v, "m", q).call(this, "community", t, n, r, a, e, s)
+                        i.get(this, S, "f").forEachCommunityTrack(( (e, t, n, r, a, s) => {
+                            i.get(this, v, "m", q).call(this, "community", t, n, r, a, e, s)
                         }
                         ));
-                    if ((0,
-                    i.gn)(this, S, "f").isCustomTracksEmpty()) {
+                    if (i.get(this, S, "f").isCustomTracksEmpty()) {
                         const e = document.createElement("div");
                         e.className = "empty";
                         const t = document.createElement("div");
                         t.className = "title",
-                        t.textContent = (0,
-                        i.gn)(this, b, "f").get("No custom tracks"),
+                        t.textContent = i.get(this, b, "f").get("No custom tracks"),
                         e.appendChild(t);
                         const n = document.createElement("div");
                         n.className = "description",
-                        n.textContent = (0,
-                        i.gn)(this, b, "f").get("Create a track using the editor or import a track code"),
+                        n.textContent = i.get(this, b, "f").get("Create a track using the editor or import a track code"),
                         e.appendChild(n),
-                        (0,
-                        i.gn)(this, U, "f").appendChild(e)
+                        i.get(this, U, "f").appendChild(e)
                     } else
-                        (0,
-                        i.gn)(this, S, "f").forEachCustomTrack(( (e, t, n, r) => {
-                            (0,
-                            i.gn)(this, v, "m", q).call(this, "custom", null, t, n.environment, ( () => Promise.resolve(n)), e, r, ( () => {
-                                (0,
-                                i.gn)(this, W, "f") ? (0,
-                                i.gn)(this, S, "f").deleteCustomTrack(t.name) : (this.hide(),
-                                (0,
-                                i.gn)(this, E, "f").showConfirm((0,
-                                i.gn)(this, b, "f").get('Are you sure you want to delete "{0}"?', [t.name]), (0,
-                                i.gn)(this, b, "f").get("Cancel"), (0,
-                                i.gn)(this, b, "f").get("Delete"), ( () => {
+                        i.get(this, S, "f").forEachCustomTrack(( (e, t, n, r) => {
+                            i.get(this, v, "m", q).call(this, "custom", null, t, n.environment, ( () => Promise.resolve(n)), e, r, ( () => {
+                                i.get(this, W, "f") ? i.get(this, S, "f").deleteCustomTrack(t.name) : (this.hide(),
+                                i.get(this, E, "f").showConfirm(i.get(this, b, "f").get('Are you sure you want to delete "{0}"?', [t.name]), i.get(this, b, "f").get("Cancel"), i.get(this, b, "f").get("Delete"), ( () => {
                                     this.show()
                                 }
                                 ), ( () => {
-                                    (0,
-                                    i.gn)(this, S, "f").deleteCustomTrack(t.name),
+                                    i.get(this, S, "f").deleteCustomTrack(t.name),
                                     this.show()
                                 }
                                 )))
@@ -10296,8 +9073,7 @@
                             ))
                         }
                         ));
-                    (0,
-                    i.gn)(this, v, "m", J).call(this)
+                    i.get(this, v, "m", J).call(this)
                 }
             }
         }
@@ -23871,29 +22647,20 @@
                     const t = document.getElementById("ui");
                     if (null == t)
                         throw new Error("UI element not found");
-                    (0,
-                    i.GG)(this, v, t, "f"),
-                    (0,
-                    i.GG)(this, y, document.createElement("div"), "f"),
-                    (0,
-                    i.gn)(this, y, "f").className = "loading-screen-ui",
-                    e && (0,
-                    i.gn)(this, y, "f").classList.add("background"),
-                    (0,
-                    i.gn)(this, v, "f").appendChild((0,
-                    i.gn)(this, y, "f"));
+                    i.set(this, v, t, "f"),
+                    i.set(this, y, document.createElement("div"), "f"),
+                    i.get(this, y, "f").className = "loading-screen-ui",
+                    e && i.get(this, y, "f").classList.add("background"),
+                    i.get(this, v, "f").appendChild(i.get(this, y, "f"));
                     const n = document.createElement("div");
                     n.className = "loading-spinner-container",
-                    (0,
-                    i.gn)(this, y, "f").appendChild(n);
+                    i.get(this, y, "f").appendChild(n);
                     const r = document.createElement("div");
                     r.className = "loading-spinner-ui",
                     n.appendChild(r)
                 }
                 dispose() {
-                    (0,
-                    i.gn)(this, v, "f").removeChild((0,
-                    i.gn)(this, y, "f"))
+                    i.get(this, v, "f").removeChild(i.get(this, y, "f"))
                 }
             }
         }
@@ -24795,158 +23562,99 @@
                     L.set(this, null),
                     U.set(this, null),
                     this.record = null,
-                    (0,
-                    i.GG)(this, v, e, "f"),
-                    (0,
-                    i.GG)(this, y, t, "f"),
-                    (0,
-                    i.GG)(this, b, n, "f"),
-                    (0,
-                    i.GG)(this, w, document.createElement("div"), "f"),
-                    "off" == n.getSetting(z.A.Timer) ? (0,
-                    i.gn)(this, w, "f").className = "timer-ui hidden" : "top" == n.getSetting(z.A.Timer) ? (0,
-                    i.gn)(this, w, "f").className = "timer-ui up" : (0,
-                    i.gn)(this, w, "f").className = "timer-ui",
+                    i.set(this, v, e, "f"),
+                    i.set(this, y, t, "f"),
+                    i.set(this, b, n, "f"),
+                    i.set(this, w, document.createElement("div"), "f"),
+                    "off" == n.getSetting(z.A.Timer) ? i.get(this, w, "f").className = "timer-ui hidden" : "top" == n.getSetting(z.A.Timer) ? i.get(this, w, "f").className = "timer-ui up" : i.get(this, w, "f").className = "timer-ui",
                     r)
-                        (0,
-                        i.GG)(this, C, null, "f");
+                        i.set(this, C, null, "f");
                     else {
                         const e = document.createElement("div");
                         e.className = "left",
-                        (0,
-                        i.gn)(this, w, "f").appendChild(e);
+                        i.get(this, w, "f").appendChild(e);
                         const n = document.createElement("div");
                         n.className = "title-container",
                         e.appendChild(n),
-                        (0,
-                        i.GG)(this, x, document.createElement("h2"), "f"),
-                        (0,
-                        i.gn)(this, x, "f").className = "title",
-                        (0,
-                        i.gn)(this, x, "f").textContent = t.get("Record"),
-                        n.appendChild((0,
-                        i.gn)(this, x, "f")),
-                        (0,
-                        i.GG)(this, E, document.createElement("h2"), "f"),
-                        (0,
-                        i.gn)(this, E, "f").className = "checkpoint-time",
-                        n.appendChild((0,
-                        i.gn)(this, E, "f"));
+                        i.set(this, x, document.createElement("h2"), "f"),
+                        i.get(this, x, "f").className = "title",
+                        i.get(this, x, "f").textContent = t.get("Record"),
+                        n.appendChild(i.get(this, x, "f")),
+                        i.set(this, E, document.createElement("h2"), "f"),
+                        i.get(this, E, "f").className = "checkpoint-time",
+                        n.appendChild(i.get(this, E, "f"));
                         const r = document.createElement("div");
                         r.className = "time",
                         e.appendChild(r),
-                        (0,
-                        i.GG)(this, C, document.createElement("p"), "f"),
-                        (0,
-                        i.gn)(this, C, "f").className = "small",
-                        (0,
-                        i.gn)(this, C, "f").textContent = "- - -",
-                        r.appendChild((0,
-                        i.gn)(this, C, "f"))
+                        i.set(this, C, document.createElement("p"), "f"),
+                        i.get(this, C, "f").className = "small",
+                        i.get(this, C, "f").textContent = "- - -",
+                        r.appendChild(i.get(this, C, "f"))
                     }
                     const a = document.createElement("div");
                     a.className = "center",
-                    (0,
-                    i.gn)(this, w, "f").appendChild(a);
+                    i.get(this, w, "f").appendChild(a);
                     const s = document.createElement("div");
                     s.className = "title-container",
                     a.appendChild(s),
-                    (0,
-                    i.GG)(this, S, document.createElement("h2"), "f"),
-                    (0,
-                    i.gn)(this, S, "f").className = "title",
-                    (0,
-                    i.gn)(this, S, "f").textContent = t.get("Current"),
-                    s.appendChild((0,
-                    i.gn)(this, S, "f")),
-                    (0,
-                    i.GG)(this, T, document.createElement("h2"), "f"),
-                    (0,
-                    i.gn)(this, T, "f").className = "checkpoint-time",
-                    s.appendChild((0,
-                    i.gn)(this, T, "f"));
+                    i.set(this, S, document.createElement("h2"), "f"),
+                    i.get(this, S, "f").className = "title",
+                    i.get(this, S, "f").textContent = t.get("Current"),
+                    s.appendChild(i.get(this, S, "f")),
+                    i.set(this, T, document.createElement("h2"), "f"),
+                    i.get(this, T, "f").className = "checkpoint-time",
+                    s.appendChild(i.get(this, T, "f"));
                     const o = document.createElement("div");
                     if (o.className = "time",
                     a.appendChild(o),
-                    (0,
-                    i.GG)(this, R, document.createElement("p"), "f"),
-                    (0,
-                    i.gn)(this, R, "f").textContent = "- - -",
-                    o.appendChild((0,
-                    i.gn)(this, R, "f")),
+                    i.set(this, R, document.createElement("p"), "f"),
+                    i.get(this, R, "f").textContent = "- - -",
+                    o.appendChild(i.get(this, R, "f")),
                     r)
-                        (0,
-                        i.GG)(this, P, null, "f");
+                        i.set(this, P, null, "f");
                     else {
                         const e = document.createElement("div");
                         e.className = "right",
-                        (0,
-                        i.gn)(this, w, "f").appendChild(e);
+                        i.get(this, w, "f").appendChild(e);
                         const n = document.createElement("div");
                         n.className = "title-container",
                         e.appendChild(n),
-                        (0,
-                        i.GG)(this, k, document.createElement("h2"), "f"),
-                        (0,
-                        i.gn)(this, k, "f").className = "title",
-                        (0,
-                        i.gn)(this, k, "f").textContent = t.get("Difference"),
-                        n.appendChild((0,
-                        i.gn)(this, k, "f")),
-                        (0,
-                        i.GG)(this, M, document.createElement("h2"), "f"),
-                        (0,
-                        i.gn)(this, M, "f").className = "checkpoint-time",
-                        n.appendChild((0,
-                        i.gn)(this, M, "f"));
+                        i.set(this, k, document.createElement("h2"), "f"),
+                        i.get(this, k, "f").className = "title",
+                        i.get(this, k, "f").textContent = t.get("Difference"),
+                        n.appendChild(i.get(this, k, "f")),
+                        i.set(this, M, document.createElement("h2"), "f"),
+                        i.get(this, M, "f").className = "checkpoint-time",
+                        n.appendChild(i.get(this, M, "f"));
                         const r = document.createElement("div");
                         r.className = "time",
                         e.appendChild(r),
-                        (0,
-                        i.GG)(this, P, document.createElement("p"), "f"),
-                        (0,
-                        i.gn)(this, P, "f").className = "small",
-                        (0,
-                        i.gn)(this, P, "f").textContent = "- - -",
-                        r.appendChild((0,
-                        i.gn)(this, P, "f"))
+                        i.set(this, P, document.createElement("p"), "f"),
+                        i.get(this, P, "f").className = "small",
+                        i.get(this, P, "f").textContent = "- - -",
+                        r.appendChild(i.get(this, P, "f"))
                     }
-                    (0,
-                    i.gn)(this, v, "f").appendChild((0,
-                    i.gn)(this, w, "f"))
+                    i.get(this, v, "f").appendChild(i.get(this, w, "f"))
                 }
                 dispose() {
-                    (0,
-                    i.gn)(this, w, "f").parentElement == (0,
-                    i.gn)(this, v, "f") && (0,
-                    i.gn)(this, v, "f").removeChild((0,
-                    i.gn)(this, w, "f"))
+                    i.get(this, w, "f").parentElement == i.get(this, v, "f") && i.get(this, v, "f").removeChild(i.get(this, w, "f"))
                 }
                 setOverridePosition(e) {
-                    const t = (0,
-                    i.gn)(this, b, "f").getSetting(z.A.Timer);
-                    (0,
-                    i.gn)(this, w, "f").className = "off" == t ? "timer-ui hidden" : e ?? "top" == t ? "timer-ui up" : "timer-ui"
+                    const t = i.get(this, b, "f").getSetting(z.A.Timer);
+                    i.get(this, w, "f").className = "off" == t ? "timer-ui hidden" : e ?? "top" == t ? "timer-ui up" : "timer-ui"
                 }
                 setBottomOffset(e) {
-                    (0,
-                    i.gn)(this, w, "f").style.bottom = e.toString() + "px"
+                    i.get(this, w, "f").style.bottom = e.toString() + "px"
                 }
                 hideCheckpointTime() {
-                    for (const e of (0,
-                    i.gn)(this, _, "f"))
+                    for (const e of i.get(this, _, "f"))
                         e.cancel();
-                    (0,
-                    i.gn)(this, _, "f").length = 0
+                    i.get(this, _, "f").length = 0
                 }
                 showCheckpointTime(e, t) {
                     if (this.hideCheckpointTime(),
-                    null != (0,
-                    i.gn)(this, E, "f") && null != t && ((0,
-                    i.gn)(this, E, "f").textContent = N.formatTimeString(t, !1),
-                    (0,
-                    i.gn)(this, _, "f").push((0,
-                    i.gn)(this, E, "f").animate([{
+                    null != i.get(this, E, "f") && null != t && (i.get(this, E, "f").textContent = N.formatTimeString(t, !1),
+                    i.get(this, _, "f").push(i.get(this, E, "f").animate([{
                         opacity: 0,
                         transform: "translateX(20px)",
                         offset: 0,
@@ -24969,11 +23677,8 @@
                     }], {
                         duration: 3500
                     }))),
-                    (0,
-                    i.gn)(this, T, "f").textContent = N.formatTimeString(e, !1),
-                    (0,
-                    i.gn)(this, _, "f").push((0,
-                    i.gn)(this, T, "f").animate([{
+                    i.get(this, T, "f").textContent = N.formatTimeString(e, !1),
+                    i.get(this, _, "f").push(i.get(this, T, "f").animate([{
                         opacity: 0,
                         transform: "translateX(20px)",
                         offset: 0,
@@ -24996,21 +23701,13 @@
                     }], {
                         duration: 3500
                     })),
-                    null != (0,
-                    i.gn)(this, M, "f") && null != t) {
+                    null != i.get(this, M, "f") && null != t) {
                         const n = e.difference(t);
-                        (0,
-                        i.gn)(this, M, "f").textContent = N.formatTimeString(n, !0),
-                        n.isNegative() ? ((0,
-                        i.gn)(this, M, "f").classList.remove("red"),
-                        (0,
-                        i.gn)(this, M, "f").classList.add("green")) : ((0,
-                        i.gn)(this, M, "f").classList.add("red"),
-                        (0,
-                        i.gn)(this, M, "f").classList.remove("green")),
-                        (0,
-                        i.gn)(this, _, "f").push((0,
-                        i.gn)(this, M, "f").animate([{
+                        i.get(this, M, "f").textContent = N.formatTimeString(n, !0),
+                        n.isNegative() ? (i.get(this, M, "f").classList.remove("red"),
+                        i.get(this, M, "f").classList.add("green")) : (i.get(this, M, "f").classList.add("red"),
+                        i.get(this, M, "f").classList.remove("green")),
+                        i.get(this, _, "f").push(i.get(this, M, "f").animate([{
                             opacity: 0,
                             transform: "translateX(20px)",
                             offset: 0,
@@ -25034,10 +23731,7 @@
                             duration: 3500
                         }))
                     }
-                    null != (0,
-                    i.gn)(this, x, "f") && null != t && (0,
-                    i.gn)(this, _, "f").push((0,
-                    i.gn)(this, x, "f").animate([{
+                    null != i.get(this, x, "f") && null != t && i.get(this, _, "f").push(i.get(this, x, "f").animate([{
                         opacity: 1,
                         offset: 0,
                         easing: "ease-in-out"
@@ -25056,9 +23750,7 @@
                     }], {
                         duration: 3500
                     })),
-                    (0,
-                    i.gn)(this, _, "f").push((0,
-                    i.gn)(this, S, "f").animate([{
+                    i.get(this, _, "f").push(i.get(this, S, "f").animate([{
                         opacity: 1,
                         offset: 0,
                         easing: "ease-in-out"
@@ -25077,10 +23769,7 @@
                     }], {
                         duration: 3500
                     })),
-                    null != (0,
-                    i.gn)(this, k, "f") && null != t && (0,
-                    i.gn)(this, _, "f").push((0,
-                    i.gn)(this, k, "f").animate([{
+                    null != i.get(this, k, "f") && null != t && i.get(this, _, "f").push(i.get(this, k, "f").animate([{
                         opacity: 1,
                         offset: 0,
                         easing: "ease-in-out"
@@ -25117,75 +23806,46 @@
                     const t = e.getFinishTime() ?? e.getTime();
                     let n;
                     if (n = null != this.record ? t.difference(this.record) : null,
-                    null != (0,
-                    i.gn)(this, C, "f")) {
+                    null != i.get(this, C, "f")) {
                         const e = N.formatTimeString(this.record, !1);
-                        if (e != (0,
-                        i.gn)(this, I, "f")) {
-                            (0,
-                            i.gn)(this, C, "f").innerHTML = "";
+                        if (e != i.get(this, I, "f")) {
+                            i.get(this, C, "f").innerHTML = "";
                             for (const t of e) {
                                 const e = document.createElement("span");
                                 e.textContent = t,
-                                (0,
-                                i.gn)(this, C, "f").appendChild(e)
+                                i.get(this, C, "f").appendChild(e)
                             }
-                            (0,
-                            i.GG)(this, I, e, "f")
+                            i.set(this, I, e, "f")
                         }
-                        null == this.record ? "small center" != (0,
-                        i.gn)(this, C, "f").className && ((0,
-                        i.gn)(this, C, "f").className = "small center") : "small" != (0,
-                        i.gn)(this, C, "f").className && ((0,
-                        i.gn)(this, C, "f").className = "small")
+                        null == this.record ? "small center" != i.get(this, C, "f").className && (i.get(this, C, "f").className = "small center") : "small" != i.get(this, C, "f").className && (i.get(this, C, "f").className = "small")
                     }
                     const r = N.formatTimeString(t, !1);
-                    if (r != (0,
-                    i.gn)(this, L, "f")) {
-                        (0,
-                        i.gn)(this, R, "f").innerHTML = "";
+                    if (r != i.get(this, L, "f")) {
+                        i.get(this, R, "f").innerHTML = "";
                         for (const e of r) {
                             const t = document.createElement("span");
                             t.textContent = e,
-                            (0,
-                            i.gn)(this, R, "f").appendChild(t)
+                            i.get(this, R, "f").appendChild(t)
                         }
-                        (0,
-                        i.GG)(this, L, r, "f")
+                        i.set(this, L, r, "f")
                     }
-                    if (null != (0,
-                    i.gn)(this, P, "f")) {
+                    if (null != i.get(this, P, "f")) {
                         const e = N.formatTimeString(n, !0);
-                        if (e != (0,
-                        i.gn)(this, U, "f")) {
-                            (0,
-                            i.gn)(this, P, "f").innerHTML = "";
+                        if (e != i.get(this, U, "f")) {
+                            i.get(this, P, "f").innerHTML = "";
                             for (let t = 0; t < e.length; ++t) {
                                 const r = document.createElement("span");
                                 0 == t && Number.isFinite(n) && (r.className = "sign"),
                                 r.textContent = e[t],
-                                (0,
-                                i.gn)(this, P, "f").appendChild(r)
+                                i.get(this, P, "f").appendChild(r)
                             }
-                            (0,
-                            i.GG)(this, U, e, "f")
+                            i.set(this, U, e, "f")
                         }
-                        null == n ? "small center" != (0,
-                        i.gn)(this, P, "f").className && ((0,
-                        i.gn)(this, P, "f").className = "small center") : n.isNegative() ? "small green" != (0,
-                        i.gn)(this, P, "f").className && ((0,
-                        i.gn)(this, P, "f").className = "small green") : "small red" != (0,
-                        i.gn)(this, P, "f").className && ((0,
-                        i.gn)(this, P, "f").className = "small red")
+                        null == n ? "small center" != i.get(this, P, "f").className && (i.get(this, P, "f").className = "small center") : n.isNegative() ? "small green" != i.get(this, P, "f").className && (i.get(this, P, "f").className = "small green") : "small red" != i.get(this, P, "f").className && (i.get(this, P, "f").className = "small red")
                     }
                 }
                 set nickname(e) {
-                    null != (0,
-                    i.gn)(this, x, "f") ? (0,
-                    i.gn)(this, x, "f").textContent = null != e ? '"' + e + '"' : (0,
-                    i.gn)(this, y, "f").get("Record") : (0,
-                    i.gn)(this, S, "f").textContent = null != e ? '"' + e + '"' : (0,
-                    i.gn)(this, y, "f").get("Current")
+                    null != i.get(this, x, "f") ? i.get(this, x, "f").textContent = null != e ? '"' + e + '"' : i.get(this, y, "f").get("Record") : i.get(this, S, "f").textContent = null != e ? '"' + e + '"' : i.get(this, y, "f").get("Current")
                 }
             }
             v = new WeakMap,
@@ -25829,58 +24489,44 @@
                     null != e) {
                         if (!Number.isSafeInteger(e))
                             throw new Error("Frames is not a safe integer");
-                        (0,
-                        r.GG)(this, i, e, "f")
+                        r.set(this, i, e, "f")
                     }
                 }
                 get numberOfFrames() {
-                    return (0,
-                    r.gn)(this, i, "f")
+                    return r.get(this, i, "f")
                 }
                 get time() {
-                    return (0,
-                    r.gn)(this, i, "f") / 1e3
+                    return r.get(this, i, "f") / 1e3
                 }
                 increment() {
                     var e;
-                    (0,
-                    r.GG)(this, i, (e = (0,
-                    r.gn)(this, i, "f"),
+                    r.set(this, i, (e = r.get(this, i, "f"),
                     ++e), "f")
                 }
                 difference(e) {
-                    return new a((0,
-                    r.gn)(this, i, "f") - e.numberOfFrames)
+                    return new a(r.get(this, i, "f") - e.numberOfFrames)
                 }
                 lessThan(e) {
-                    return (0,
-                    r.gn)(this, i, "f") < e.numberOfFrames
+                    return r.get(this, i, "f") < e.numberOfFrames
                 }
                 greaterThan(e) {
-                    return (0,
-                    r.gn)(this, i, "f") > e.numberOfFrames
+                    return r.get(this, i, "f") > e.numberOfFrames
                 }
                 lessOrEqual(e) {
-                    return (0,
-                    r.gn)(this, i, "f") <= e.numberOfFrames
+                    return r.get(this, i, "f") <= e.numberOfFrames
                 }
                 greaterOrEqual(e) {
-                    return (0,
-                    r.gn)(this, i, "f") >= e.numberOfFrames
+                    return r.get(this, i, "f") >= e.numberOfFrames
                 }
                 equals(e) {
-                    return (0,
-                    r.gn)(this, i, "f") == e.numberOfFrames
+                    return r.get(this, i, "f") == e.numberOfFrames
                 }
                 isNegative() {
-                    return (0,
-                    r.gn)(this, i, "f") < 0
+                    return r.get(this, i, "f") < 0
                 }
                 clone() {
                     const e = new a;
-                    return (0,
-                    r.GG)(e, i, (0,
-                    r.gn)(this, i, "f"), "f"),
+                    return r.set(e, i, r.get(this, i, "f"), "f"),
                     e
                 }
             }
@@ -26670,34 +25316,27 @@
                     const t = [];
                     for (const [n,i,r] of e)
                         t.push([n, i, r]);
-                    (0,
-                    r.GG)(this, i, t, "f")
+                    r.set(this, i, t, "f")
                 }
                 rotated(e, t) {
-                    return new s((0,
-                    r.gn)(this, i, "f").map(( ([n,i,r]) => a.sR(n, i, r, e, t))))
+                    return new s(r.get(this, i, "f").map(( ([n,i,r]) => a.sR(n, i, r, e, t))))
                 }
                 forEach(e) {
-                    for (let t = 0; t < (0,
-                    r.gn)(this, i, "f").length; t++) {
-                        const [n,a,s] = (0,
-                        r.gn)(this, i, "f")[t];
+                    for (let t = 0; t < r.get(this, i, "f").length; t++) {
+                        const [n,a,s] = r.get(this, i, "f")[t];
                         e(n, a, s, t)
                     }
                 }
                 some(e) {
-                    for (let t = 0; t < (0,
-                    r.gn)(this, i, "f").length; t++) {
-                        const [n,a,s] = (0,
-                        r.gn)(this, i, "f")[t];
+                    for (let t = 0; t < r.get(this, i, "f").length; t++) {
+                        const [n,a,s] = r.get(this, i, "f")[t];
                         if (e(n, a, s, t))
                             return !0
                     }
                     return !1
                 }
                 get length() {
-                    return (0,
-                    r.gn)(this, i, "f").length
+                    return r.get(this, i, "f").length
                 }
             }
             i = new WeakMap;
@@ -26831,31 +25470,26 @@
                     if (i.set(this, void 0),
                     !(Number.isSafeInteger(e) && e >= 0 && e < 180))
                         throw new Error("Representation is not a safe integer or is out of range");
-                    (0,
-                    r.GG)(this, i, e, "f")
+                    r.set(this, i, e, "f")
                 }
                 clone() {
-                    return new s((0,
-                    r.gn)(this, i, "f"))
+                    return new s(r.get(this, i, "f"))
                 }
                 toDegrees() {
-                    return 2 * (0,
-                    r.gn)(this, i, "f")
+                    return 2 * r.get(this, i, "f")
                 }
                 static fromDegrees(e) {
                     const t = Math.round(e / 2 % 180);
                     return new s(t)
                 }
                 getSunPosition() {
-                    const e = 2 * (0,
-                    r.gn)(this, i, "f") * (Math.PI / 180)
+                    const e = 2 * r.get(this, i, "f") * (Math.PI / 180)
                       , t = Math.cos(e)
                       , n = Math.sin(e);
                     return new THREE.Vector3(t,.78,n).normalize()
                 }
                 get representation() {
-                    return (0,
-                    r.gn)(this, i, "f")
+                    return r.get(this, i, "f")
                 }
             }
             i = new WeakMap;
@@ -28692,9 +27326,7 @@
                             if (u.mode === N.TRIANGLES || u.mode === N.TRIANGLE_STRIP || u.mode === N.TRIANGLE_FAN || void 0 === u.mode)
                                 p = !0 === s.isSkinnedMesh ? new THREE.SkinnedMesh(d,f) : new THREE.Mesh(d,f),
                                 !0 === p.isSkinnedMesh && p.normalizeSkinWeights(),
-                                u.mode === N.TRIANGLE_STRIP ? p.geometry = (0,
-                                r._c)(p.geometry, THREE.AdditiveAnimationBlendMode) : u.mode === N.TRIANGLE_FAN && (p.geometry = (0,
-                                r._c)(p.geometry, THREE.rYR));
+                                u.mode === N.TRIANGLE_STRIP ? p.geometry = r._c(p.geometry, THREE.AdditiveAnimationBlendMode) : u.mode === N.TRIANGLE_FAN && (p.geometry = r._c(p.geometry, THREE.rYR));
                             else if (u.mode === N.LINES)
                                 p = new THREE.LineSegments(d,f);
                             else if (u.mode === N.LINE_STRIP)
@@ -29286,14 +27918,11 @@
             c = function() {
                 let e = -1 / 0
                   , t = null;
-                for (const n of (0,
-                d.gn)(this, o, "f")) {
-                    const i = (0,
-                    d.gn)(this, l, "f").get(n);
+                for (const n of d.get(this, o, "f")) {
+                    const i = d.get(this, l, "f").get(n);
                     if (null == i)
                         throw new Error("Part list does not exist");
-                    const r = (0,
-                    E.Hw)(n).startOffset;
+                    const r = E.Hw(n).startOffset;
                     if (i.length > 0 && null != r)
                         for (const n of i) {
                             if (null == n.startOrder)
@@ -29317,18 +27946,15 @@
             ,
             h = function() {
                 const e = [];
-                e.push((0,
-                d.gn)(this, a, "f")),
-                e.push((0,
-                d.gn)(this, s, "f").representation);
+                e.push(d.get(this, a, "f")),
+                e.push(d.get(this, s, "f").representation);
                 let t = 1 / 0
                   , n = 1 / 0
                   , i = 1 / 0
                   , r = -1 / 0
                   , c = -1 / 0
                   , h = -1 / 0;
-                for (const [,e] of (0,
-                d.gn)(this, l, "f"))
+                for (const [,e] of d.get(this, l, "f"))
                     for (const a of e)
                         t = Math.min(a.x, t),
                         n = Math.min(a.y, n),
@@ -29349,10 +27975,8 @@
                   , m = Math.max(1, Math.min(4, Math.ceil(Math.log2(p + 1) / 8)))
                   , A = Math.max(1, Math.min(4, Math.ceil(Math.log2(f + 1) / 8)));
                 e.push(255 & t, t >>> 8 & 255, t >>> 16 & 255, t >>> 24 & 255, 255 & n, n >>> 8 & 255, n >>> 16 & 255, n >>> 24 & 255, 255 & i, i >>> 8 & 255, i >>> 16 & 255, i >>> 24 & 255, 255 & (g | m << 2 | A << 4));
-                for (const r of (0,
-                d.gn)(this, o, "f")) {
-                    const a = (0,
-                    d.gn)(this, l, "f").get(r);
+                for (const r of d.get(this, o, "f")) {
+                    const a = d.get(this, l, "f").get(r);
                     if (null == a)
                         throw new Error("Part list does not exist");
                     if (r < 0 || r > 255)
@@ -29390,41 +28014,31 @@
                     s.set(this, void 0),
                     o.set(this, []),
                     l.set(this, new Map),
-                    (0,
-                    d.GG)(this, a, e, "f"),
-                    (0,
-                    d.GG)(this, s, t.clone(), "f")
+                    d.set(this, a, e, "f"),
+                    d.set(this, s, t.clone(), "f")
                 }
                 get environment() {
-                    return (0,
-                    d.gn)(this, a, "f")
+                    return d.get(this, a, "f")
                 }
                 set environment(e) {
-                    (0,
-                    d.GG)(this, r, null, "f"),
-                    (0,
-                    d.GG)(this, a, e, "f")
+                    d.set(this, r, null, "f"),
+                    d.set(this, a, e, "f")
                 }
                 get sunDirection() {
-                    return (0,
-                    d.gn)(this, s, "f").clone()
+                    return d.get(this, s, "f").clone()
                 }
                 set sunDirection(e) {
-                    (0,
-                    d.GG)(this, r, null, "f"),
-                    (0,
-                    d.GG)(this, s, e.clone(), "f")
+                    d.set(this, r, null, "f"),
+                    d.set(this, s, e.clone(), "f")
                 }
                 get numberOfParts() {
                     let e = 0;
-                    for (const t of (0,
-                    d.gn)(this, l, "f").values())
+                    for (const t of d.get(this, l, "f").values())
                         e += t.length;
                     return e
                 }
                 addPart(e, t, n, i, a, s, c, h, u) {
-                    (0,
-                    d.GG)(this, r, null, "f");
+                    d.set(this, r, null, "f");
                     const p = {
                         x: e,
                         y: t,
@@ -29435,8 +28049,7 @@
                         checkpointOrder: h,
                         startOrder: u
                     }
-                      , f = (0,
-                    d.gn)(this, l, "f").get(i);
+                      , f = d.get(this, l, "f").get(i);
                     if (null != f) {
                         let e = 0
                           , t = f.length;
@@ -29447,25 +28060,19 @@
                         }
                         f.splice(e, 0, p)
                     } else {
-                        (0,
-                        d.gn)(this, l, "f").set(i, [p]);
+                        d.get(this, l, "f").set(i, [p]);
                         let e = 0
-                          , t = (0,
-                        d.gn)(this, o, "f").length;
+                          , t = d.get(this, o, "f").length;
                         for (; e < t; ) {
                             const n = e + t >>> 1;
-                            (0,
-                            d.gn)(this, o, "f")[n] < i ? e = n + 1 : t = n
+                            d.get(this, o, "f")[n] < i ? e = n + 1 : t = n
                         }
-                        (0,
-                        d.gn)(this, o, "f").splice(e, 0, i)
+                        d.get(this, o, "f").splice(e, 0, i)
                     }
                 }
                 forEachPart(e) {
-                    for (const t of (0,
-                    d.gn)(this, o, "f")) {
-                        const n = (0,
-                        d.gn)(this, l, "f").get(t);
+                    for (const t of d.get(this, o, "f")) {
+                        const n = d.get(this, l, "f").get(t);
                         if (null == n)
                             throw new Error("Part list does not exist");
                         for (const i of n)
@@ -29473,13 +28080,9 @@
                     }
                 }
                 getId() {
-                    return (0,
-                    d.GG)(this, r, (0,
-                    d.gn)(this, r, "f") ?? (0,
-                    p.sha256)((0,
-                    d.gn)(this, i, "m", h).call(this)), "f"),
-                    (0,
-                    d.gn)(this, r, "f")
+                    return d.set(this, r, d.get(this, r, "f") ?? (0,
+                    p.sha256)(d.get(this, i, "m", h).call(this)), "f"),
+                    d.get(this, r, "f")
                 }
                 getBounds() {
                     let e = 1 / 0
@@ -29502,12 +28105,10 @@
                     }
                 }
                 hasStartingPoint() {
-                    return null != (0,
-                    d.gn)(this, i, "m", c).call(this)
+                    return null != d.get(this, i, "m", c).call(this)
                 }
                 getStartTransform() {
-                    const e = (0,
-                    d.gn)(this, i, "m", c).call(this);
+                    const e = d.get(this, i, "m", c).call(this);
                     if (null != e) {
                         const t = T.hT(e.rotation, e.rotationAxis).multiply((new THREE.Quaternion).setFromEuler(new THREE.Euler(0,Math.PI,0)))
                           , n = e.startOffset;
@@ -29520,8 +28121,7 @@
                     return null
                 }
                 toSaveString() {
-                    const e = (0,
-                    d.gn)(this, i, "m", h).call(this)
+                    const e = d.get(this, i, "m", h).call(this)
                       , t = new u.Ay.Deflate({
                         level: 9,
                         windowBits: 9,
@@ -29557,8 +28157,7 @@
                     s[1 + t.length] = n,
                     null != r && s.set(r, 1 + t.length + 1),
                     s.set(a, 1 + t.length + 1 + n);
-                    const o = (0,
-                    d.gn)(this, i, "m", h).call(this)
+                    const o = d.get(this, i, "m", h).call(this)
                       , l = new u.Ay.Deflate({
                         level: 9,
                         windowBits: 9,
@@ -29620,8 +28219,7 @@
                       , n = -1 / 0
                       , i = -1 / 0;
                     this.forEachPart(( (r, a, s, o, l, c) => {
-                        (0,
-                        E.Hw)(o).tiles.rotated(l, c).forEach(( (a, o, l) => {
+                        E.Hw(o).tiles.rotated(l, c).forEach(( (a, o, l) => {
                             e = Math.min(e, Math.floor((r + a - 2) / 4)),
                             t = Math.min(t, Math.floor((s + l - 2) / 4)),
                             n = Math.max(n, Math.floor((r + a - 2) / 4)),
@@ -29669,8 +28267,7 @@
                         g = 175
                     }
                     this.forEachPart(( (n, i, r, a, s, l) => {
-                        const m = (0,
-                        E.Hw)(a);
+                        const m = E.Hw(a);
                         m.tiles.rotated(s, l).forEach(( (i, a, s) => {
                             const l = Math.floor((n + i - 2) / 4) - e
                               , A = Math.floor((r + s - 2) / 4) - t
@@ -30243,34 +28840,24 @@
                         max: new THREE.Vector2(0,0)
                     }),
                     u.set(this, []),
-                    (0,
-                    m.GG)(this, r, e, "f"),
-                    (0,
-                    m.GG)(this, a, t, "f"),
-                    (0,
-                    m.GG)(this, s, n, "f")
+                    m.set(this, r, e, "f"),
+                    m.set(this, a, t, "f"),
+                    m.set(this, s, n, "f")
                 }
                 get sunDirection() {
-                    return (0,
-                    m.gn)(this, o, "f")
+                    return m.get(this, o, "f")
                 }
                 set sunDirection(e) {
-                    (0,
-                    m.GG)(this, o, e.clone(), "f")
+                    m.set(this, o, e.clone(), "f")
                 }
                 clear() {
-                    (0,
-                    m.gn)(this, l, "f").length = 0,
-                    (0,
-                    m.gn)(this, c, "f").clear(),
-                    (0,
-                    m.gn)(this, h, "f").clear(),
-                    (0,
-                    m.gn)(this, i, "m", p).call(this)
+                    m.get(this, l, "f").length = 0,
+                    m.get(this, c, "f").clear(),
+                    m.get(this, h, "f").clear(),
+                    m.get(this, i, "m", p).call(this)
                 }
                 getPartsWithin(e, t, n, i, r, a) {
-                    return (0,
-                    m.gn)(this, l, "f").filter((s => s.type.configuration.tiles.rotated(s.rotation, s.rotationAxis).some(( (o, l, c) => {
+                    return m.get(this, l, "f").filter((s => s.type.configuration.tiles.rotated(s.rotation, s.rotationAxis).some(( (o, l, c) => {
                         const h = s.x + o
                           , d = s.y + l
                           , u = s.z + c;
@@ -30289,8 +28876,7 @@
                     })))
                 }
                 getPartsAt(e, t, n) {
-                    const i = (0,
-                    m.gn)(this, c, "f").get(e.toString() + "|" + t.toString() + "|" + n.toString());
+                    const i = m.get(this, c, "f").get(e.toString() + "|" + t.toString() + "|" + n.toString());
                     return null == i ? [] : i.map((e => ({
                         id: e.type.configuration.id,
                         x: e.x,
@@ -30304,37 +28890,30 @@
                     })))
                 }
                 setPart(e, t, n, i, r, a, o, d, u) {
-                    const p = (0,
-                    m.gn)(this, s, "f").getPart(i);
+                    const p = m.get(this, s, "f").getPart(i);
                     if (o != b.A.Default && !p.colors.has(o))
                         throw new Error("Track part color does not exist");
                     const f = S.hT(r, a)
                       , g = new THREE.Vector3(e * M.partSize,t * M.partSize,n * M.partSize)
                       , v = (new THREE.Matrix4).compose(g, f, new THREE.Vector3(1,1,1))
                       , y = new T(e,t,n,r,a,o,p,v,d,u);
-                    (0,
-                    m.gn)(this, l, "f").push(y);
+                    m.get(this, l, "f").push(y);
                     p.configuration.tiles.rotated(r, a).forEach(( (i, r, a) => {
                         const s = (e + i).toString() + "|" + (t + r).toString() + "|" + (n + a).toString();
                         if (t + r < 0)
                             throw new Error("Track part below ground");
                         {
-                            const e = (0,
-                            m.gn)(this, c, "f").get(s);
-                            null == e ? (0,
-                            m.gn)(this, c, "f").set(s, [y]) : e.push(y)
+                            const e = m.get(this, c, "f").get(s);
+                            null == e ? m.get(this, c, "f").set(s, [y]) : e.push(y)
                         }
                     }
                     ));
-                    const w = (0,
-                    m.gn)(this, h, "f").get(i);
-                    null == w ? (0,
-                    m.gn)(this, h, "f").set(i, [y]) : w.push(y)
+                    const w = m.get(this, h, "f").get(i);
+                    null == w ? m.get(this, h, "f").set(i, [y]) : w.push(y)
                 }
                 deletePartsAt(e, t, n) {
                     const r = []
-                      , a = (0,
-                    m.gn)(this, c, "f").get(e.toString() + "|" + t.toString() + "|" + n.toString());
+                      , a = m.get(this, c, "f").get(e.toString() + "|" + t.toString() + "|" + n.toString());
                     if (null != a)
                         for (let e = 0; e < a.length; ++e) {
                             const t = a[e];
@@ -30349,19 +28928,15 @@
                                 checkpointOrder: t.checkpointOrder,
                                 startOrder: t.startOrder
                             }),
-                            (0,
-                            m.gn)(this, i, "m", f).call(this, (0,
-                            m.gn)(this, l, "f").indexOf(t)),
+                            m.get(this, i, "m", f).call(this, m.get(this, l, "f").indexOf(t)),
                             --e
                         }
                     return r
                 }
                 deletePartsWithin(e, t, n, r, a, s) {
                     const o = [];
-                    for (let c = 0; c < (0,
-                    m.gn)(this, l, "f").length; ++c) {
-                        const h = (0,
-                        m.gn)(this, l, "f")[c];
+                    for (let c = 0; c < m.get(this, l, "f").length; ++c) {
+                        const h = m.get(this, l, "f")[c];
                         h.type.configuration.tiles.rotated(h.rotation, h.rotationAxis).some(( (i, o, l) => {
                             const c = h.x + i
                               , d = h.y + o
@@ -30379,20 +28954,16 @@
                             checkpointOrder: h.checkpointOrder,
                             startOrder: h.startOrder
                         }),
-                        (0,
-                        m.gn)(this, i, "m", f).call(this, c),
+                        m.get(this, i, "m", f).call(this, c),
                         --c)
                     }
                     return o
                 }
                 deleteSpecificPart(e, t, n, r, a, s) {
-                    for (let o = 0; o < (0,
-                    m.gn)(this, l, "f").length; ++o) {
-                        const c = (0,
-                        m.gn)(this, l, "f")[o];
+                    for (let o = 0; o < m.get(this, l, "f").length; ++o) {
+                        const c = m.get(this, l, "f")[o];
                         if (c.type.configuration.id == e && c.x == t && c.y == n && c.z == r && c.rotation == a && c.rotationAxis == s)
-                            return (0,
-                            m.gn)(this, i, "m", f).call(this, o),
+                            return m.get(this, i, "m", f).call(this, o),
                             {
                                 id: c.type.configuration.id,
                                 x: c.x,
@@ -30408,18 +28979,14 @@
                     return null
                 }
                 getBounds() {
-                    return (0,
-                    m.gn)(this, d, "f")
+                    return m.get(this, d, "f")
                 }
                 generateMeshes() {
-                    (0,
-                    m.gn)(this, i, "m", p).call(this);
-                    const e = (0,
-                    m.gn)(this, o, "f").getSunPosition()
+                    m.get(this, i, "m", p).call(this);
+                    const e = m.get(this, o, "f").getSunPosition()
                       , t = new THREE.Vector4(e.x,e.y,e.z,0);
                     let n, c = null;
-                    if (2 == (0,
-                    m.gn)(this, a, "f").getSettingInteger(k.A.ShadowQuality))
+                    if (2 == m.get(this, a, "f").getSettingInteger(k.A.ShadowQuality))
                         switch (this.environment) {
                         case w.A.Summer:
                             c = new THREE.Color(2511171);
@@ -30440,14 +29007,11 @@
                     case w.A.Desert:
                         n = b.A.Desert
                     }
-                    const h = (0,
-                    m.gn)(this, r, "f").isTrackShadowsEnabled();
-                    for (const e of (0,
-                    m.gn)(this, s, "f").getAllParts())
+                    const h = m.get(this, r, "f").isTrackShadowsEnabled();
+                    for (const e of m.get(this, s, "f").getAllParts())
                         for (const [i,a] of e.colors) {
                             const s = [];
-                            for (const t of (0,
-                            m.gn)(this, l, "f")) {
+                            for (const t of m.get(this, l, "f")) {
                                 let r = t.color;
                                 r == b.A.Default && (r = n),
                                 t.type == e && r == i && s.push(t)
@@ -30463,30 +29027,23 @@
                                 e.receiveShadow = !0;
                                 for (let t = 0; t < s.length; ++t)
                                     e.setMatrixAt(t, s[t].matrix);
-                                if ((0,
-                                m.gn)(this, r, "f").scene.add(e),
-                                (0,
-                                m.gn)(this, u, "f").push(e),
+                                if (m.get(this, r, "f").scene.add(e),
+                                m.get(this, u, "f").push(e),
                                 null != c) {
                                     const n = new E.t(e,c);
                                     n.update(new THREE.Plane(new THREE.Vector3(0,1,0),0), t),
-                                    (0,
-                                    m.gn)(this, r, "f").scene.add(n),
-                                    (0,
-                                    m.gn)(this, u, "f").push(n)
+                                    m.get(this, r, "f").scene.add(n),
+                                    m.get(this, u, "f").push(n)
                                 }
                             }
                         }
-                    (0,
-                    m.gn)(this, i, "m", g).call(this)
+                    m.get(this, i, "m", g).call(this)
                 }
                 getCheckpoints() {
                     let e = [];
-                    const t = (0,
-                    m.gn)(this, s, "f").getPartTypesWithDetector(y.A.Checkpoint);
+                    const t = m.get(this, s, "f").getPartTypesWithDetector(y.A.Checkpoint);
                     for (const n of t) {
-                        const t = (0,
-                        m.gn)(this, h, "f").get(n);
+                        const t = m.get(this, h, "f").get(n);
                         null != t && (e = e.concat(t))
                     }
                     return e.map((e => {
@@ -30509,11 +29066,9 @@
                 }
                 getCheckpointOrders() {
                     let e = [];
-                    const t = (0,
-                    m.gn)(this, s, "f").getPartTypesWithDetector(y.A.Checkpoint);
+                    const t = m.get(this, s, "f").getPartTypesWithDetector(y.A.Checkpoint);
                     for (const n of t) {
-                        const t = (0,
-                        m.gn)(this, h, "f").get(n);
+                        const t = m.get(this, h, "f").get(n);
                         null != t && (e = e.concat(t))
                     }
                     return e.map((e => {
@@ -30527,11 +29082,9 @@
                 }
                 getTotalNumberOfCheckpointIndices() {
                     let e = [];
-                    const t = (0,
-                    m.gn)(this, s, "f").getPartTypesWithDetector(y.A.Checkpoint);
+                    const t = m.get(this, s, "f").getPartTypesWithDetector(y.A.Checkpoint);
                     for (const n of t) {
-                        const t = (0,
-                        m.gn)(this, h, "f").get(n);
+                        const t = m.get(this, h, "f").get(n);
                         null != t && (e = e.concat(t))
                     }
                     return e.map((e => e.checkpointOrder)).filter(( (e, t, n) => n.indexOf(e) == t)).length
@@ -30539,10 +29092,8 @@
                 getStart() {
                     let e = -1 / 0
                       , t = null;
-                    for (const [n,i] of (0,
-                    m.gn)(this, h, "f")) {
-                        const r = (0,
-                        m.gn)(this, s, "f").getPartStartOffset(n);
+                    for (const [n,i] of m.get(this, h, "f")) {
+                        const r = m.get(this, s, "f").getPartStartOffset(n);
                         if (i.length > 0 && null != r)
                             for (const n of i) {
                                 if (null == n.startOrder)
@@ -30578,10 +29129,8 @@
                 }
                 getNextStartOrder() {
                     let e = 0;
-                    for (const [t,n] of (0,
-                    m.gn)(this, h, "f")) {
-                        const i = (0,
-                        m.gn)(this, s, "f").getPartStartOffset(t);
+                    for (const [t,n] of m.get(this, h, "f")) {
+                        const i = m.get(this, s, "f").getPartStartOffset(t);
                         if (n.length > 0 && null != i)
                             for (const t of n) {
                                 if (null == t.startOrder)
@@ -30592,10 +29141,8 @@
                     return e
                 }
                 getTrackData() {
-                    const e = new v.A(this.environment,(0,
-                    m.gn)(this, o, "f"));
-                    for (const t of (0,
-                    m.gn)(this, l, "f"))
+                    const e = new v.A(this.environment,m.get(this, o, "f"));
+                    for (const t of m.get(this, l, "f"))
                         e.addPart(t.x, t.y, t.z, t.type.configuration.id, t.rotation, t.rotationAxis, t.color, t.checkpointOrder, t.startOrder);
                     return e
                 }
@@ -30621,26 +29168,19 @@
             u = new WeakMap,
             i = new WeakSet,
             p = function() {
-                for (const e of (0,
-                m.gn)(this, u, "f"))
-                    (0,
-                    m.gn)(this, r, "f").scene.remove(e);
-                (0,
-                m.gn)(this, u, "f").length = 0
+                for (const e of m.get(this, u, "f"))
+                    m.get(this, r, "f").scene.remove(e);
+                m.get(this, u, "f").length = 0
             }
             ,
             f = function(e) {
-                if (e < 0 || e >= (0,
-                m.gn)(this, l, "f").length)
+                if (e < 0 || e >= m.get(this, l, "f").length)
                     throw new Error("Track part index out of bounds");
-                const t = (0,
-                m.gn)(this, l, "f")[e];
-                (0,
-                m.gn)(this, l, "f").splice(e, 1);
+                const t = m.get(this, l, "f")[e];
+                m.get(this, l, "f").splice(e, 1);
                 t.type.configuration.tiles.rotated(t.rotation, t.rotationAxis).forEach(( (e, n, i) => {
                     const r = (t.x + e).toString() + "|" + (t.y + n).toString() + "|" + (t.z + i).toString()
-                      , a = (0,
-                    m.gn)(this, c, "f").get(r);
+                      , a = m.get(this, c, "f").get(r);
                     if (null == a)
                         throw new Error("Track part section missing");
                     {
@@ -30648,13 +29188,11 @@
                         if (!(e >= 0))
                             throw new Error("Track part missing from parts by position map");
                         a.splice(e, 1),
-                        0 == a.length && (0,
-                        m.gn)(this, c, "f").delete(r)
+                        0 == a.length && m.get(this, c, "f").delete(r)
                     }
                 }
                 ));
-                const n = (0,
-                m.gn)(this, h, "f").get(t.type.configuration.id);
+                const n = m.get(this, h, "f").get(t.type.configuration.id);
                 if (null == n)
                     throw new Error("Track part type is missing from parts by type map");
                 for (let e = 0; e < n.length; ++e) {
@@ -30672,18 +29210,15 @@
                   , t = 1 / 0
                   , n = -1 / 0
                   , i = -1 / 0;
-                for (const r of (0,
-                m.gn)(this, l, "f"))
+                for (const r of m.get(this, l, "f"))
                     e = Math.min(r.x, e),
                     t = Math.min(r.z, t),
                     n = Math.max(r.x, n),
                     i = Math.max(r.z, i);
-                Number.isFinite(e) && Number.isFinite(t) && Number.isFinite(n) && Number.isFinite(i) ? (0,
-                m.GG)(this, d, {
+                Number.isFinite(e) && Number.isFinite(t) && Number.isFinite(n) && Number.isFinite(i) ? m.set(this, d, {
                     min: new THREE.Vector2(e,t),
                     max: new THREE.Vector2(n,i)
-                }, "f") : (0,
-                m.GG)(this, d, {
+                }, "f") : m.set(this, d, {
                     min: new THREE.Vector2,
                     max: new THREE.Vector2
                 }, "f")
@@ -38723,26 +37258,16 @@
                     null != e) {
                         if (!Number.isInteger(e))
                             throw new Error("Seed must be an integer");
-                        (0,
-                        s.GG)(this, r, e % (0,
-                        s.gn)(i, i, "f", a).length, "f")
+                        s.set(this, r, e % s.get(i, i, "f", a).length, "f")
                     } else
-                        (0,
-                        s.GG)(this, r, 0, "f")
+                        s.set(this, r, 0, "f")
                 }
                 next() {
                     var e;
-                    return (0,
-                    s.GG)(this, r, (e = (0,
-                    s.gn)(this, r, "f"),
+                    return s.set(this, r, (e = s.get(this, r, "f"),
                     ++e), "f"),
-                    (0,
-                    s.gn)(this, r, "f") >= (0,
-                    s.gn)(i, i, "f", a).length && (0,
-                    s.GG)(this, r, 0, "f"),
-                    (0,
-                    s.gn)(i, i, "f", a)[(0,
-                    s.gn)(this, r, "f")]
+                    s.get(this, r, "f") >= s.get(i, i, "f", a).length && s.set(this, r, 0, "f"),
+                    s.get(i, i, "f", a)[s.get(this, r, "f")]
                 }
             }
             i = c,
@@ -38761,43 +37286,25 @@
                     m.set(this, void 0),
                     A.set(this, void 0),
                     v.set(this, null),
-                    (0,
-                    s.GG)(this, p, e, "f"),
-                    (0,
-                    s.GG)(this, g, new THREE.MeshLambertMaterial({
+                    s.set(this, p, e, "f"),
+                    s.set(this, g, new THREE.MeshLambertMaterial({
                         depthWrite: !1
                     }), "f"),
-                    e.addMaterial((0,
-                    s.gn)(this, g, "f")),
-                    (0,
-                    s.GG)(this, m, new THREE.MeshLambertMaterial, "f"),
-                    e.addMaterial((0,
-                    s.gn)(this, m, "f"));
-                    (0,
-                    s.GG)(this, A, new THREE.Mesh(new THREE.PlaneGeometry(6 * l.A.maxViewDistance,6 * l.A.maxViewDistance,10,10),(0,
-                    s.gn)(this, g, "f")), "f"),
-                    (0,
-                    s.gn)(this, A, "f").rotation.x = -Math.PI / 2,
-                    (0,
-                    s.gn)(this, A, "f").renderOrder = -2,
-                    (0,
-                    s.gn)(this, A, "f").receiveShadow = !0,
-                    e.scene.add((0,
-                    s.gn)(this, A, "f")),
-                    (0,
-                    s.gn)(this, d, "m", b).call(this, x.A.Summer)
+                    e.addMaterial(s.get(this, g, "f")),
+                    s.set(this, m, new THREE.MeshLambertMaterial, "f"),
+                    e.addMaterial(s.get(this, m, "f"));
+                    s.set(this, A, new THREE.Mesh(new THREE.PlaneGeometry(6 * l.A.maxViewDistance,6 * l.A.maxViewDistance,10,10),s.get(this, g, "f")), "f"),
+                    s.get(this, A, "f").rotation.x = -Math.PI / 2,
+                    s.get(this, A, "f").renderOrder = -2,
+                    s.get(this, A, "f").receiveShadow = !0,
+                    e.scene.add(s.get(this, A, "f")),
+                    s.get(this, d, "m", b).call(this, x.A.Summer)
                 }
                 clearMountains() {
-                    null != (0,
-                    s.gn)(this, v, "f") && ((0,
-                    s.gn)(this, v, "f").material.dispose(),
-                    (0,
-                    s.gn)(this, v, "f").geometry.dispose(),
-                    (0,
-                    s.gn)(this, p, "f").scene.remove((0,
-                    s.gn)(this, v, "f")),
-                    (0,
-                    s.GG)(this, v, null, "f"))
+                    null != s.get(this, v, "f") && (s.get(this, v, "f").material.dispose(),
+                    s.get(this, v, "f").geometry.dispose(),
+                    s.get(this, p, "f").scene.remove(s.get(this, v, "f")),
+                    s.set(this, v, null, "f"))
                 }
                 generateMountains(e) {
                     this.clearMountains();
@@ -38805,14 +37312,11 @@
                       , i = new THREE.BufferGeometry;
                     i.setAttribute("position", new THREE.BufferAttribute(new Float32Array(t),3)),
                     i.computeVertexNormals();
-                    const r = new THREE.Mesh(i,(0,
-                    s.gn)(this, m, "f"));
+                    const r = new THREE.Mesh(i,s.get(this, m, "f"));
                     r.position.copy(n),
                     r.receiveShadow = !0,
-                    (0,
-                    s.gn)(this, p, "f").scene.add(r),
-                    (0,
-                    s.GG)(this, v, r, "f")
+                    s.get(this, p, "f").scene.add(r),
+                    s.set(this, v, r, "f")
                 }
                 static createMountainVertices(e) {
                     const t = new h
@@ -38856,31 +37360,23 @@
                     }
                 }
                 getMountainVertices() {
-                    if (null == (0,
-                    s.gn)(this, v, "f"))
+                    if (null == s.get(this, v, "f"))
                         return [];
-                    const e = (0,
-                    s.gn)(this, v, "f").geometry;
+                    const e = s.get(this, v, "f").geometry;
                     if (!(e.attributes.position instanceof THREE.BufferAttribute))
                         throw new Error("Vertices must use BufferAttribute");
                     return Array.from(e.attributes.position.array)
                 }
                 getMountainOffset() {
-                    return null == (0,
-                    s.gn)(this, v, "f") ? new THREE.Vector3 : (0,
-                    s.gn)(this, v, "f").position.clone()
+                    return null == s.get(this, v, "f") ? new THREE.Vector3 : s.get(this, v, "f").position.clone()
                 }
                 update(e) {
-                    e.environment != (0,
-                    s.gn)(this, f, "f") && (0,
-                    s.gn)(this, d, "m", b).call(this, e.environment);
+                    e.environment != s.get(this, f, "f") && s.get(this, d, "m", b).call(this, e.environment);
                     const t = new THREE.Vector3
                       , n = new THREE.Quaternion
                       , i = new THREE.Vector3;
-                    (0,
-                    s.gn)(this, p, "f").camera.matrix.decompose(t, n, i),
-                    (0,
-                    s.gn)(this, A, "f").position.set(t.x, 0, t.z)
+                    s.get(this, p, "f").camera.matrix.decompose(t, n, i),
+                    s.get(this, A, "f").position.set(t.x, 0, t.z)
                 }
             }
             u = S,
@@ -38907,14 +37403,10 @@
             }
             ,
             b = function(e) {
-                (0,
-                s.GG)(this, f, e, "f");
-                const t = (0,
-                s.gn)(u, u, "m", y).call(u, e);
-                (0,
-                s.gn)(this, g, "f").color.copy(t),
-                (0,
-                s.gn)(this, m, "f").color.copy(t)
+                s.set(this, f, e, "f");
+                const t = s.get(u, u, "m", y).call(u, e);
+                s.get(this, g, "f").color.copy(t),
+                s.get(this, m, "f").color.copy(t)
             }
             ;
             const k = S
@@ -39334,8 +37826,7 @@
         t()(p.A, f);
         p.A && p.A.locals && p.A.locals;
         var g = i(6546);
-        (0,
-        g.F3)("App", {
+        g.F3("App", {
             web: () => i.e(168).then(i.bind(i, 1168)).then((e => new e.AppWeb))
         });
         var m, A, v, y, b, w, x, S, k, E, T, M, THREE = i(4922), C = i(1635), R = i(3476), P = i(5387);
@@ -39363,8 +37854,7 @@
                         n(e)
                     }
                     )).catch(( () => {
-                        (0,
-                        C.gn)(this, m, "m", e).call(this, t.slice(1), n)
+                        C.get(this, m, "m", e).call(this, t.slice(1), n)
                     }
                     ))
                 }
@@ -39374,32 +37864,20 @@
         }
         ,
         E = function() {
-            null != (0,
-            C.gn)(this, S, "f") && (!this.isAppActive || P.ip() || P.g_() ? (0,
-            C.gn)(this, S, "f").gain.setTargetAtTime(0, 0, .1) : (0,
-            C.gn)(this, S, "f").gain.setTargetAtTime((0,
-            C.gn)(this, v, "f").getSettingFloat(R.A.MasterVolume), 0, .1))
+            null != C.get(this, S, "f") && (!this.isAppActive || P.ip() || P.g_() ? C.get(this, S, "f").gain.setTargetAtTime(0, 0, .1) : C.get(this, S, "f").gain.setTargetAtTime(C.get(this, v, "f").getSettingFloat(R.A.MasterVolume), 0, .1))
         }
         ,
         T = function() {
-            let e = Math.min(Math.max((0,
-            C.gn)(this, v, "f").getSettingFloat(R.A.SoundEffectVolume), 0), 1);
+            let e = Math.min(Math.max(C.get(this, v, "f").getSettingFloat(R.A.SoundEffectVolume), 0), 1);
             Number.isNaN(e) && (e = 0),
-            null == (0,
-            C.gn)(this, x, "f") && null != this.context && null != this.destinationMaster ? ((0,
-            C.GG)(this, x, this.context.createGain(), "f"),
-            (0,
-            C.gn)(this, x, "f").gain.value = e,
-            (0,
-            C.gn)(this, x, "f").connect(this.destinationMaster)) : (0,
-            C.gn)(this, x, "f")?.gain.setTargetAtTime(e, 0, .1)
+            null == C.get(this, x, "f") && null != this.context && null != this.destinationMaster ? (C.set(this, x, this.context.createGain(), "f"),
+            C.get(this, x, "f").gain.value = e,
+            C.get(this, x, "f").connect(this.destinationMaster)) : C.get(this, x, "f")?.gain.setTargetAtTime(e, 0, .1)
         }
         ,
         M = function(e, t) {
-            if (t && (0,
-            C.gn)(this, A, "f").hasLoaded()) {
-                if (null == (0,
-                C.gn)(this, b, "f")) {
+            if (t && C.get(this, A, "f").hasLoaded()) {
+                if (null == C.get(this, b, "f")) {
                     const e = this.getBuffer("music");
                     if (null != e && null != this.context && null != this.destinationMaster) {
                         const t = this.context.createBufferSource();
@@ -39410,32 +37888,21 @@
                         t.connect(n),
                         n.connect(this.destinationMaster),
                         t.start(0),
-                        (0,
-                        C.GG)(this, b, {
+                        C.set(this, b, {
                             source: t,
                             gain: n
                         }, "f")
                     }
                 } else {
-                    let e = Math.min(Math.max((0,
-                    C.gn)(this, v, "f").getSettingFloat(R.A.MusicVolume), 0), 1);
+                    let e = Math.min(Math.max(C.get(this, v, "f").getSettingFloat(R.A.MusicVolume), 0), 1);
                     Number.isNaN(e) && (e = 0),
-                    (0,
-                    C.gn)(this, b, "f").gain.gain.setTargetAtTime(.25 * e, 0, .5)
+                    C.get(this, b, "f").gain.gain.setTargetAtTime(.25 * e, 0, .5)
                 }
-                (0,
-                C.GG)(this, w, 0, "f")
+                C.set(this, w, 0, "f")
             } else
-                null != (0,
-                C.gn)(this, b, "f") && ((0,
-                C.gn)(this, b, "f").gain.gain.setTargetAtTime(0, 0, .5),
-                (0,
-                C.gn)(this, w, "f") >= 5 ? ((0,
-                C.gn)(this, b, "f").source.stop(),
-                (0,
-                C.GG)(this, b, null, "f")) : (0,
-                C.GG)(this, w, (0,
-                C.gn)(this, w, "f") + e, "f"))
+                null != C.get(this, b, "f") && (C.get(this, b, "f").gain.gain.setTargetAtTime(0, 0, .5),
+                C.get(this, w, "f") >= 5 ? (C.get(this, b, "f").source.stop(),
+                C.set(this, b, null, "f")) : C.set(this, w, C.get(this, w, "f") + e, "f"))
         }
         ;
         const I = class {
@@ -39450,10 +37917,8 @@
                 x.set(this, null),
                 S.set(this, null),
                 this.isAppActive = !0,
-                (0,
-                C.GG)(this, A, e, "f"),
-                (0,
-                C.GG)(this, v, t, "f");
+                C.set(this, A, e, "f"),
+                C.set(this, v, t, "f");
                 try {
                     const e = new (window.AudioContext || window.webkitAudioContext);
                     if ("running" != e.state) {
@@ -39475,41 +37940,27 @@
                     this.context = null,
                     console.error("Failed to create audio context: ", e)
                 }
-                null != this.context ? ((0,
-                C.GG)(this, S, this.context.createGain(), "f"),
-                (0,
-                C.gn)(this, S, "f").gain.value = (0,
-                C.gn)(this, v, "f").getSettingFloat(R.A.MasterVolume),
-                (0,
-                C.gn)(this, S, "f").connect(this.context.destination)) : (0,
-                C.GG)(this, S, null, "f")
+                null != this.context ? (C.set(this, S, this.context.createGain(), "f"),
+                C.get(this, S, "f").gain.value = C.get(this, v, "f").getSettingFloat(R.A.MasterVolume),
+                C.get(this, S, "f").connect(this.context.destination)) : C.set(this, S, null, "f")
             }
             get destinationSfx() {
-                return (0,
-                C.gn)(this, x, "f")
+                return C.get(this, x, "f")
             }
             get destinationMaster() {
-                return (0,
-                C.gn)(this, S, "f")
+                return C.get(this, S, "f")
             }
             load(e, t) {
-                (0,
-                C.gn)(this, A, "f").addResource(),
-                (0,
-                C.gn)(this, m, "m", k).call(this, t, (t => {
-                    (0,
-                    C.gn)(this, A, "f").loadedResource(),
+                C.get(this, A, "f").addResource(),
+                C.get(this, m, "m", k).call(this, t, (t => {
+                    C.get(this, A, "f").loadedResource(),
                     null == t ? (console.warn('Audio "' + e + '" failed to load'),
-                    (0,
-                    C.gn)(this, y, "f").set(e, null)) : (0,
-                    C.gn)(this, y, "f").set(e, t)
+                    C.get(this, y, "f").set(e, null)) : C.get(this, y, "f").set(e, t)
                 }
                 ))
             }
             getBuffer(e) {
-                return null == this.context ? null : (0,
-                C.gn)(this, y, "f").has(e) ? (0,
-                C.gn)(this, y, "f").get(e) ?? null : null
+                return null == this.context ? null : C.get(this, y, "f").has(e) ? C.get(this, y, "f").get(e) ?? null : null
             }
             playUIClick() {
                 const e = this.getBuffer("click");
@@ -39547,12 +37998,9 @@
             }
             update(e, t, n) {
                 this.refreshListener(n),
-                (0,
-                C.gn)(this, m, "m", E).call(this),
-                (0,
-                C.gn)(this, m, "m", T).call(this),
-                (0,
-                C.gn)(this, m, "m", M).call(this, e, t)
+                C.get(this, m, "m", E).call(this),
+                C.get(this, m, "m", T).call(this),
+                C.get(this, m, "m", M).call(this, e, t)
             }
         }
         ;
@@ -39657,13 +38105,9 @@
         $ = new WeakMap,
         Q = new WeakSet,
         ee = function() {
-            if (null != (0,
-            C.gn)(this, X, "f")) {
-                const e = "FPS: " + (0,
-                C.gn)(this, $, "f").toString();
-                (0,
-                C.gn)(this, X, "f").textContent != e && ((0,
-                C.gn)(this, X, "f").textContent = e)
+            if (null != C.get(this, X, "f")) {
+                const e = "FPS: " + C.get(this, $, "f").toString();
+                C.get(this, X, "f").textContent != e && (C.get(this, X, "f").textContent = e)
             }
         }
         ;
@@ -39678,51 +38122,28 @@
                 const e = document.getElementById("ui");
                 if (null == e)
                     throw new Error("UI element not found");
-                (0,
-                C.GG)(this, J, e, "f")
+                C.set(this, J, e, "f")
             }
             show() {
-                (0,
-                C.GG)(this, X, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, X, "f").className = "debug-ui",
-                (0,
-                C.gn)(this, J, "f").appendChild((0,
-                C.gn)(this, X, "f")),
-                (0,
-                C.gn)(this, Q, "m", ee).call(this)
+                C.set(this, X, document.createElement("div"), "f"),
+                C.get(this, X, "f").className = "debug-ui",
+                C.get(this, J, "f").appendChild(C.get(this, X, "f")),
+                C.get(this, Q, "m", ee).call(this)
             }
             hide() {
-                null != (0,
-                C.gn)(this, X, "f") && ((0,
-                C.gn)(this, J, "f").removeChild((0,
-                C.gn)(this, X, "f")),
-                (0,
-                C.GG)(this, X, null, "f"))
+                null != C.get(this, X, "f") && (C.get(this, J, "f").removeChild(C.get(this, X, "f")),
+                C.set(this, X, null, "f"))
             }
             toggle() {
-                null != (0,
-                C.gn)(this, X, "f") ? this.hide() : this.show()
+                null != C.get(this, X, "f") ? this.hide() : this.show()
             }
             update(e) {
-                (0,
-                C.GG)(this, Y, (0,
-                C.gn)(this, Y, "f") + e, "f"),
-                (0,
-                C.GG)(this, Z, (0,
-                C.gn)(this, Z, "f") + 1, "f"),
-                (0,
-                C.gn)(this, Y, "f") >= 1 && ((0,
-                C.GG)(this, $, (0,
-                C.gn)(this, Z, "f"), "f"),
-                (0,
-                C.GG)(this, Y, (0,
-                C.gn)(this, Y, "f") - Math.trunc((0,
-                C.gn)(this, Y, "f")), "f"),
-                (0,
-                C.GG)(this, Z, 0, "f"),
-                (0,
-                C.gn)(this, Q, "m", ee).call(this))
+                C.set(this, Y, C.get(this, Y, "f") + e, "f"),
+                C.set(this, Z, C.get(this, Z, "f") + 1, "f"),
+                C.get(this, Y, "f") >= 1 && (C.set(this, $, C.get(this, Z, "f"), "f"),
+                C.set(this, Y, C.get(this, Y, "f") - Math.trunc(C.get(this, Y, "f")), "f"),
+                C.set(this, Z, 0, "f"),
+                C.get(this, Q, "m", ee).call(this))
             }
         }
         ;
@@ -39752,60 +38173,34 @@
                 ce.set(this, void 0),
                 he.set(this, void 0),
                 de.set(this, null),
-                (0,
-                C.GG)(this, se, e, "f"),
-                (0,
-                C.GG)(this, oe, n, "f"),
-                (0,
-                C.GG)(this, le, t, "f"),
-                (0,
-                C.GG)(this, ce, document.createElement("div"), "f"),
-                0 == (0,
-                C.gn)(this, le, "f") || "off" == n.getSetting(R.A.Checkpoints) ? "top" == n.getSetting(R.A.Checkpoints) ? (0,
-                C.gn)(this, ce, "f").className = "checkpoint-ui up" : (0,
-                C.gn)(this, ce, "f").className = "checkpoint-ui" : (0,
-                C.gn)(this, ce, "f").className = "hidden",
-                (0,
-                C.gn)(this, se, "f").appendChild((0,
-                C.gn)(this, ce, "f"));
+                C.set(this, se, e, "f"),
+                C.set(this, oe, n, "f"),
+                C.set(this, le, t, "f"),
+                C.set(this, ce, document.createElement("div"), "f"),
+                0 == C.get(this, le, "f") || "off" == n.getSetting(R.A.Checkpoints) ? "top" == n.getSetting(R.A.Checkpoints) ? C.get(this, ce, "f").className = "checkpoint-ui up" : C.get(this, ce, "f").className = "checkpoint-ui" : C.get(this, ce, "f").className = "hidden",
+                C.get(this, se, "f").appendChild(C.get(this, ce, "f"));
                 const i = document.createElement("div");
-                (0,
-                C.gn)(this, ce, "f").appendChild(i);
+                C.get(this, ce, "f").appendChild(i);
                 const r = document.createElement("img");
                 r.src = "images/checkpoint.svg",
                 i.appendChild(r),
-                (0,
-                C.GG)(this, he, document.createElement("span"), "f"),
-                i.appendChild((0,
-                C.gn)(this, he, "f"))
+                C.set(this, he, document.createElement("span"), "f"),
+                i.appendChild(C.get(this, he, "f"))
             }
             dispose() {
-                (0,
-                C.gn)(this, ce, "f").parentElement == (0,
-                C.gn)(this, se, "f") && (0,
-                C.gn)(this, se, "f").removeChild((0,
-                C.gn)(this, ce, "f"))
+                C.get(this, ce, "f").parentElement == C.get(this, se, "f") && C.get(this, se, "f").removeChild(C.get(this, ce, "f"))
             }
             setOverridePosition(e) {
-                const t = (0,
-                C.gn)(this, oe, "f").getSetting(R.A.Checkpoints);
-                0 == (0,
-                C.gn)(this, le, "f") || "off" == t ? (0,
-                C.gn)(this, ce, "f").className = "hidden" : (0,
-                C.gn)(this, ce, "f").className = e ?? "top" == t ? "checkpoint-ui up" : "checkpoint-ui"
+                const t = C.get(this, oe, "f").getSetting(R.A.Checkpoints);
+                0 == C.get(this, le, "f") || "off" == t ? C.get(this, ce, "f").className = "hidden" : C.get(this, ce, "f").className = e ?? "top" == t ? "checkpoint-ui up" : "checkpoint-ui"
             }
             setBottomOffset(e) {
-                (0,
-                C.gn)(this, ce, "f").style.bottom = e.toString() + "px"
+                C.get(this, ce, "f").style.bottom = e.toString() + "px"
             }
             update(e) {
-                const t = e.getNextCheckpointIndex().toString() + "/" + (0,
-                C.gn)(this, le, "f").toString();
-                t != (0,
-                C.gn)(this, de, "f") && ((0,
-                C.gn)(this, he, "f").textContent = t,
-                (0,
-                C.GG)(this, de, t, "f"))
+                const t = e.getNextCheckpointIndex().toString() + "/" + C.get(this, le, "f").toString();
+                t != C.get(this, de, "f") && (C.get(this, he, "f").textContent = t,
+                C.set(this, de, t, "f"))
             }
         }
         ;
@@ -39818,7 +38213,7 @@
         fe.insertStyleElement = h();
         t()(pe.A, fe);
         pe.A && pe.A.locals && pe.A.locals;
-        var ge = i(5818);
+        var KeyBind = i(5818).A;
         const me = new Map([["ArrowUp", "Arrow Up"], ["ArrowDown", "Arrow Down"], ["ArrowLeft", "Arrow Left"], ["ArrowRight", "Arrow Right"], ["ShiftLeft", "Shift Left"], ["ShiftRight", "Shift Right"], ["ControlLeft", "Control Left"], ["ControlRight", "Control Right"], ["AltLeft", "Alt Left"], ["AltRight", "Alt Right"], ["CapsLock", "Caps Lock"], ["ScrollLock", "Scroll Lock"], ["PageUp", "Page Up"], ["PageDown", "Page Down"], ["Equal", "="], ["BracketLeft", "["], ["BracketRight", "]"], ["Semicolon", ";"], ["Quote", "'"], ["Backquote", "`"], ["Backslash", "\\"], ["Comma", ","], ["Period", "."], ["Slash", "/"], ["KeyA", "A"], ["KeyB", "B"], ["KeyC", "C"], ["KeyD", "D"], ["KeyE", "E"], ["KeyF", "F"], ["KeyG", "G"], ["KeyH", "H"], ["KeyI", "I"], ["KeyJ", "J"], ["KeyK", "K"], ["KeyL", "L"], ["KeyM", "M"], ["KeyN", "N"], ["KeyO", "O"], ["KeyP", "P"], ["KeyQ", "Q"], ["KeyR", "R"], ["KeyS", "S"], ["KeyT", "T"], ["KeyU", "U"], ["KeyV", "V"], ["KeyW", "W"], ["KeyX", "X"], ["KeyY", "Y"], ["KeyZ", "Z"], ["Digit0", "0"], ["Digit1", "1"], ["Digit2", "2"], ["Digit3", "3"], ["Digit4", "4"], ["Digit5", "5"], ["Digit6", "6"], ["Digit7", "7"], ["Digit8", "8"], ["Digit9", "9"], ["NumpadMultiply", "Numpad *"], ["NumpadAdd", "Numpad +"], ["NumpadSubtract", "Numpad -"], ["NumpadDivide", "Numpad /"], ["NumpadDecimal", "Numpad ."], ["NumpadEqual", "Numpad ="], ["Numpad0", "Numpad 0"], ["Numpad1", "Numpad 1"], ["Numpad2", "Numpad 2"], ["Numpad3", "Numpad 3"], ["Numpad4", "Numpad 4"], ["Numpad5", "Numpad 5"], ["Numpad6", "Numpad 6"], ["Numpad7", "Numpad 7"], ["Numpad8", "Numpad 8"], ["Numpad9", "Numpad 9"]]);
         function Ae(e) {
             const t = me.get(e);
@@ -39836,17 +38231,13 @@
         Me = new WeakMap,
         ve = new WeakSet,
         _e = function() {
-            (0,
-            C.GG)(this, Te, 2.5, "f"),
-            (0,
-            C.gn)(this, Se, "f").className = "hint-ui hide"
+            C.set(this, Te, 2.5, "f"),
+            C.get(this, Se, "f").className = "hint-ui hide"
         }
         ,
         Ce = function() {
-            (0,
-            C.GG)(this, Te, 2.5, "f"),
-            (0,
-            C.gn)(this, Se, "f").className = "hint-ui"
+            C.set(this, Te, 2.5, "f"),
+            C.get(this, Se, "f").className = "hint-ui"
         }
         ;
         const Re = class {
@@ -39861,90 +38252,48 @@
                 Ee.set(this, void 0),
                 Te.set(this, 2.5),
                 Me.set(this, void 0),
-                (0,
-                C.GG)(this, ye, e, "f"),
-                (0,
-                C.GG)(this, be, t, "f"),
-                (0,
-                C.GG)(this, we, n, "f"),
-                (0,
-                C.GG)(this, xe, i, "f"),
-                (0,
-                C.GG)(this, Se, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, Se, "f").className = "hint-ui",
-                (0,
-                C.gn)(this, ye, "f").appendChild((0,
-                C.gn)(this, Se, "f")),
-                (0,
-                C.GG)(this, ke, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, ke, "f").className = "title",
-                (0,
-                C.gn)(this, Se, "f").appendChild((0,
-                C.gn)(this, ke, "f")),
-                (0,
-                C.GG)(this, Ee, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, Ee, "f").className = "subtitle",
-                (0,
-                C.gn)(this, Se, "f").appendChild((0,
-                C.gn)(this, Ee, "f")),
-                (0,
-                C.GG)(this, Me, ( () => {
-                    (0,
-                    C.gn)(this, ve, "m", Ce).call(this)
+                C.set(this, ye, e, "f"),
+                C.set(this, be, t, "f"),
+                C.set(this, we, n, "f"),
+                C.set(this, xe, i, "f"),
+                C.set(this, Se, document.createElement("div"), "f"),
+                C.get(this, Se, "f").className = "hint-ui",
+                C.get(this, ye, "f").appendChild(C.get(this, Se, "f")),
+                C.set(this, ke, document.createElement("div"), "f"),
+                C.get(this, ke, "f").className = "title",
+                C.get(this, Se, "f").appendChild(C.get(this, ke, "f")),
+                C.set(this, Ee, document.createElement("div"), "f"),
+                C.get(this, Ee, "f").className = "subtitle",
+                C.get(this, Se, "f").appendChild(C.get(this, Ee, "f")),
+                C.set(this, Me, ( () => {
+                    C.get(this, ve, "m", Ce).call(this)
                 }
                 ), "f"),
-                (0,
-                C.gn)(this, we, "f").addChangeListener((0,
-                C.gn)(this, Me, "f"))
+                C.get(this, we, "f").addChangeListener(C.get(this, Me, "f"))
             }
             dispose() {
-                (0,
-                C.gn)(this, ye, "f").removeChild((0,
-                C.gn)(this, Se, "f")),
-                (0,
-                C.gn)(this, we, "f").removeChangeListener((0,
-                C.gn)(this, Me, "f"))
+                C.get(this, ye, "f").removeChild(C.get(this, Se, "f")),
+                C.get(this, we, "f").removeChangeListener(C.get(this, Me, "f"))
             }
             update(e, t, n) {
-                if (e.hasStarted() && !e.getControls().reset && n && (0,
-                C.gn)(this, xe, "f").getSettingBoolean(R.A.ResetHintEnabled))
+                if (e.hasStarted() && !e.getControls().reset && n && C.get(this, xe, "f").getSettingBoolean(R.A.ResetHintEnabled))
                     if (e.getSpeedKmh() < 50 || e.hasFinished()) {
-                        if (0 != (0,
-                        C.gn)(this, Te, "f") && ((0,
-                        C.GG)(this, Te, (0,
-                        C.gn)(this, Te, "f") - t, "f"),
-                        (0,
-                        C.gn)(this, Te, "f") <= 0)) {
-                            if ((0,
-                            C.gn)(this, we, "f").touchEnabled)
-                                (0,
-                                C.gn)(this, ke, "f").textContent = (0,
-                                C.gn)(this, be, "f").get("Reset once to return to the last checkpoint"),
-                                (0,
-                                C.gn)(this, Ee, "f").textContent = (0,
-                                C.gn)(this, be, "f").get("Reset again to start over"),
-                                (0,
-                                C.gn)(this, Se, "f").className = "hint-ui show";
+                        if (0 != C.get(this, Te, "f") && (C.set(this, Te, C.get(this, Te, "f") - t, "f"),
+                        C.get(this, Te, "f") <= 0)) {
+                            if (C.get(this, we, "f").touchEnabled)
+                                C.get(this, ke, "f").textContent = C.get(this, be, "f").get("Reset once to return to the last checkpoint"),
+                                C.get(this, Ee, "f").textContent = C.get(this, be, "f").get("Reset again to start over"),
+                                C.get(this, Se, "f").className = "hint-ui show";
                             else {
-                                const e = (0,
-                                C.gn)(this, xe, "f").getKeyBindings(ge.A.VehicleCheckpointReset).filter((e => null != e))
-                                  , t = (0,
-                                C.gn)(this, xe, "f").getKeyBindings(ge.A.VehicleStartReset).filter((e => null != e));
+                                const e = C.get(this, xe, "f").getKeyBindings(KeyBind.VehicleCheckpointReset).filter((e => null != e))
+                                  , t = C.get(this, xe, "f").getKeyBindings(KeyBind.VehicleStartReset).filter((e => null != e));
                                 let n = null
                                   , i = null;
-                                if (e.length > 0 ? (n = (0,
-                                C.gn)(this, ke, "f"),
-                                i = (0,
-                                C.gn)(this, Ee, "f")) : (n = (0,
-                                C.gn)(this, Ee, "f"),
-                                i = (0,
-                                C.gn)(this, ke, "f")),
+                                if (e.length > 0 ? (n = C.get(this, ke, "f"),
+                                i = C.get(this, Ee, "f")) : (n = C.get(this, Ee, "f"),
+                                i = C.get(this, ke, "f")),
                                 e.length > 0) {
-                                    const t = (0,
-                                    C.gn)(this, be, "f").get("Press {0} to return to the last checkpoint").split("{0}");
+                                    const t = C.get(this, be, "f").get("Press {0} to return to the last checkpoint").split("{0}");
                                     if (2 == t.length) {
                                         n.textContent = t[0];
                                         for (const t of e) {
@@ -39958,8 +38307,7 @@
                                     }
                                 }
                                 if (t.length > 0) {
-                                    const e = (0,
-                                    C.gn)(this, be, "f").get("Press {0} to start over").split("{0}");
+                                    const e = C.get(this, be, "f").get("Press {0} to start over").split("{0}");
                                     if (2 == e.length) {
                                         i.textContent = e[0];
                                         for (const e of t) {
@@ -39972,18 +38320,14 @@
                                         i.appendChild(document.createTextNode(e[1]))
                                     }
                                 }
-                                (0,
-                                C.gn)(this, Se, "f").className = "hint-ui show"
+                                C.get(this, Se, "f").className = "hint-ui show"
                             }
-                            (0,
-                            C.GG)(this, Te, 0, "f")
+                            C.set(this, Te, 0, "f")
                         }
                     } else
-                        (0,
-                        C.gn)(this, ve, "m", _e).call(this);
+                        C.get(this, ve, "m", _e).call(this);
                 else
-                    (0,
-                    C.gn)(this, ve, "m", Ce).call(this)
+                    C.get(this, ve, "m", Ce).call(this)
             }
         }
         ;
@@ -40017,96 +38361,55 @@
                 Ge.set(this, void 0),
                 Fe.set(this, void 0),
                 Oe.set(this, []),
-                (0,
-                C.GG)(this, Le, e, "f"),
-                (0,
-                C.GG)(this, Ue, t, "f"),
-                (0,
-                C.GG)(this, Ge, t.getSettingBoolean(R.A.ImperialUnitsEnabled), "f"),
-                (0,
-                C.GG)(this, ze, document.createElement("div"), "f"),
-                "off" == t.getSetting(R.A.Speedometer) ? (0,
-                C.gn)(this, ze, "f").className = "speedometer-ui hidden" : "top" == t.getSetting(R.A.Speedometer) ? (0,
-                C.gn)(this, ze, "f").className = "speedometer-ui up" : (0,
-                C.gn)(this, ze, "f").className = "speedometer-ui",
-                (0,
-                C.gn)(this, Le, "f").appendChild((0,
-                C.gn)(this, ze, "f")),
-                (0,
-                C.GG)(this, Fe, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, Fe, "f").className = "checkpoint-speed",
-                (0,
-                C.gn)(this, ze, "f").appendChild((0,
-                C.gn)(this, Fe, "f"));
+                C.set(this, Le, e, "f"),
+                C.set(this, Ue, t, "f"),
+                C.set(this, Ge, t.getSettingBoolean(R.A.ImperialUnitsEnabled), "f"),
+                C.set(this, ze, document.createElement("div"), "f"),
+                "off" == t.getSetting(R.A.Speedometer) ? C.get(this, ze, "f").className = "speedometer-ui hidden" : "top" == t.getSetting(R.A.Speedometer) ? C.get(this, ze, "f").className = "speedometer-ui up" : C.get(this, ze, "f").className = "speedometer-ui",
+                C.get(this, Le, "f").appendChild(C.get(this, ze, "f")),
+                C.set(this, Fe, document.createElement("div"), "f"),
+                C.get(this, Fe, "f").className = "checkpoint-speed",
+                C.get(this, ze, "f").appendChild(C.get(this, Fe, "f"));
                 const n = document.createElement("div");
                 n.className = "box",
-                (0,
-                C.gn)(this, ze, "f").appendChild(n);
+                C.get(this, ze, "f").appendChild(n);
                 const i = document.createElement("div");
                 i.className = "container",
                 n.appendChild(i),
-                (0,
-                C.GG)(this, Ne, document.createElement("span"), "f"),
-                (0,
-                C.gn)(this, Ne, "f").textContent = "0",
-                i.appendChild((0,
-                C.gn)(this, Ne, "f")),
-                (0,
-                C.GG)(this, De, document.createElement("span"), "f"),
-                (0,
-                C.gn)(this, Ge, "f") ? (0,
-                C.gn)(this, De, "f").textContent = "mph" : (0,
-                C.gn)(this, De, "f").textContent = "km/h",
-                i.appendChild((0,
-                C.gn)(this, De, "f"))
+                C.set(this, Ne, document.createElement("span"), "f"),
+                C.get(this, Ne, "f").textContent = "0",
+                i.appendChild(C.get(this, Ne, "f")),
+                C.set(this, De, document.createElement("span"), "f"),
+                C.get(this, Ge, "f") ? C.get(this, De, "f").textContent = "mph" : C.get(this, De, "f").textContent = "km/h",
+                i.appendChild(C.get(this, De, "f"))
             }
             dispose() {
-                (0,
-                C.gn)(this, ze, "f").parentElement == (0,
-                C.gn)(this, Le, "f") && (0,
-                C.gn)(this, Le, "f").removeChild((0,
-                C.gn)(this, ze, "f"))
+                C.get(this, ze, "f").parentElement == C.get(this, Le, "f") && C.get(this, Le, "f").removeChild(C.get(this, ze, "f"))
             }
             setOverridePosition(e) {
-                const t = (0,
-                C.gn)(this, Ue, "f").getSetting(R.A.Speedometer);
-                (0,
-                C.gn)(this, ze, "f").className = "off" == t ? "speedometer-ui hidden" : e ?? "top" == t ? "speedometer-ui up" : "speedometer-ui"
+                const t = C.get(this, Ue, "f").getSetting(R.A.Speedometer);
+                C.get(this, ze, "f").className = "off" == t ? "speedometer-ui hidden" : e ?? "top" == t ? "speedometer-ui up" : "speedometer-ui"
             }
             setBottomOffset(e) {
-                (0,
-                C.gn)(this, ze, "f").style.bottom = e.toString() + "px"
+                C.get(this, ze, "f").style.bottom = e.toString() + "px"
             }
             hideCheckpointSpeed() {
-                for (const e of (0,
-                C.gn)(this, Oe, "f"))
+                for (const e of C.get(this, Oe, "f"))
                     e.cancel();
-                (0,
-                C.gn)(this, Oe, "f").length = 0
+                C.get(this, Oe, "f").length = 0
             }
             showCheckpointSpeed(e, t) {
                 const n = Math.abs(e) - Math.abs(t);
                 let i, r;
-                i = (0,
-                C.gn)(this, Ge, "f") ? n / 1.609344 : n,
+                i = C.get(this, Ge, "f") ? n / 1.609344 : n,
                 i = Math.abs(i) >= 1 ? Math.trunc(i) : Math.abs(i) >= .1 ? Math.trunc(10 * i) / 10 : Math.abs(i) >= .01 ? Math.trunc(100 * i) / 100 : Math.trunc(1e3 * i) / 1e3,
-                r = (0,
-                C.gn)(this, Ge, "f") ? "mph" : "km/h",
-                i < 0 ? ((0,
-                C.gn)(this, Fe, "f").classList.add("red"),
-                (0,
-                C.gn)(this, Fe, "f").classList.remove("green"),
-                (0,
-                C.gn)(this, Fe, "f").textContent = i.toString() + " " + r) : ((0,
-                C.gn)(this, Fe, "f").classList.remove("red"),
-                (0,
-                C.gn)(this, Fe, "f").classList.add("green"),
-                (0,
-                C.gn)(this, Fe, "f").textContent = "+" + i.toString() + " " + r),
-                (0,
-                C.gn)(this, Oe, "f").push((0,
-                C.gn)(this, Fe, "f").animate([{
+                r = C.get(this, Ge, "f") ? "mph" : "km/h",
+                i < 0 ? (C.get(this, Fe, "f").classList.add("red"),
+                C.get(this, Fe, "f").classList.remove("green"),
+                C.get(this, Fe, "f").textContent = i.toString() + " " + r) : (C.get(this, Fe, "f").classList.remove("red"),
+                C.get(this, Fe, "f").classList.add("green"),
+                C.get(this, Fe, "f").textContent = "+" + i.toString() + " " + r),
+                C.get(this, Oe, "f").push(C.get(this, Fe, "f").animate([{
                     opacity: 0,
                     transform: "translateX(20px)",
                     offset: 0,
@@ -40133,21 +38436,16 @@
             update(e) {
                 const t = Math.abs(e.getSpeedKmh());
                 let n;
-                n = (0,
-                C.gn)(this, Ge, "f") ? t / 1.609344 : t;
+                n = C.get(this, Ge, "f") ? t / 1.609344 : t;
                 const i = Math.trunc(n).toString();
-                if (i != (0,
-                C.gn)(this, Be, "f")) {
-                    (0,
-                    C.gn)(this, Ne, "f").innerHTML = "";
+                if (i != C.get(this, Be, "f")) {
+                    C.get(this, Ne, "f").innerHTML = "";
                     for (const e of i) {
                         const t = document.createElement("span");
                         t.textContent = e,
-                        (0,
-                        C.gn)(this, Ne, "f").appendChild(t)
+                        C.get(this, Ne, "f").appendChild(t)
                     }
-                    (0,
-                    C.GG)(this, Be, i, "f")
+                    C.set(this, Be, i, "f")
                 }
             }
         }
@@ -40202,8 +38500,7 @@
         $e = new WeakMap,
         Je = new WeakSet,
         et = function(e) {
-            (0,
-            C.GG)(this, Ze, setTimeout(( () => {
+            C.set(this, Ze, setTimeout(( () => {
                 const t = e.getBuffer("record");
                 if (null != t && null != e.context && null != e.destinationSfx) {
                     const n = e.context.createBufferSource();
@@ -40219,19 +38516,16 @@
             ), 600), "f")
         }
         ;
-        const tt = class {
+        const TimeAnnouncerUI = class {
             constructor(e, t, n, i, r, a, s, o, l) {
                 Je.add(this),
                 Xe.set(this, void 0),
                 Ye.set(this, void 0),
                 Ze.set(this, null),
                 $e.set(this, !1),
-                (0,
-                C.GG)(this, Xe, e, "f"),
-                (0,
-                C.GG)(this, Ye, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, Ye, "f").className = "time-announcer-ui";
+                C.set(this, Xe, e, "f"),
+                C.set(this, Ye, document.createElement("div"), "f"),
+                C.get(this, Ye, "f").className = "time-announcer-ui";
                 const c = document.createElement("div");
                 switch (c.className = "record hidden",
                 s) {
@@ -40243,17 +38537,14 @@
                     c.classList.add("session-best"),
                     c.textContent = t.get("NEW SESSION BEST")
                 }
-                (0,
-                C.gn)(this, Ye, "f").appendChild(c);
+                C.get(this, Ye, "f").appendChild(c);
                 const h = document.createElement("div");
                 h.className = "track-name",
                 h.textContent = i,
-                (0,
-                C.gn)(this, Ye, "f").appendChild(h);
+                C.get(this, Ye, "f").appendChild(h);
                 const d = document.createElement("div");
                 d.className = "current",
-                (0,
-                C.gn)(this, Ye, "f").appendChild(d);
+                C.get(this, Ye, "f").appendChild(d);
                 const u = document.createElement("div");
                 u.className = "time",
                 d.appendChild(u);
@@ -40265,34 +38556,28 @@
                 f.className = "position",
                 d.appendChild(f);
                 const g = document.createElement("div");
-                (0,
-                C.gn)(this, Ye, "f").appendChild(g);
+                C.get(this, Ye, "f").appendChild(g);
                 const m = document.createElement("p");
                 g.appendChild(m);
                 const A = document.createElement("div");
-                (0,
-                C.gn)(this, Ye, "f").appendChild(A);
+                C.get(this, Ye, "f").appendChild(A);
                 const v = document.createElement("p");
                 v.className = "title",
                 A.appendChild(v);
                 const y = document.createElement("p");
                 if (A.appendChild(y),
-                (0,
-                C.gn)(this, Xe, "f").appendChild((0,
-                C.gn)(this, Ye, "f")),
+                C.get(this, Xe, "f").appendChild(C.get(this, Ye, "f")),
                 u.textContent = Ve.A.formatTimeString(r),
                 null == a)
                     c.classList.remove("hidden"),
                     g.className = "hidden",
-                    (0,
-                    C.gn)(this, Je, "m", et).call(this, n);
+                    C.get(this, Je, "m", et).call(this, n);
                 else {
                     const e = r.difference(a);
                     m.textContent = Ve.A.formatTimeString(e, !0),
                     e.isNegative() ? (c.classList.remove("hidden"),
                     g.className = "difference",
-                    (0,
-                    C.gn)(this, Je, "m", et).call(this, n)) : g.className = "difference red"
+                    C.get(this, Je, "m", et).call(this, n)) : g.className = "difference red"
                 }
                 if (null == o)
                     A.className = "hidden";
@@ -40318,8 +38603,7 @@
                                     let i = performance.now();
                                     let r = .1;
                                     const a = () => {
-                                        if (!(0,
-                                        C.gn)(this, $e, "f")) {
+                                        if (!C.get(this, $e, "f")) {
                                             const s = performance.now()
                                               , o = (s - i) / 1e3;
                                             i = s;
@@ -40360,79 +38644,59 @@
                 ))
             }
             dispose() {
-                null != (0,
-                C.gn)(this, Ze, "f") && clearTimeout((0,
-                C.gn)(this, Ze, "f")),
-                (0,
-                C.gn)(this, Xe, "f").removeChild((0,
-                C.gn)(this, Ye, "f")),
-                (0,
-                C.GG)(this, $e, !0, "f")
+                null != C.get(this, Ze, "f") && clearTimeout(C.get(this, Ze, "f")),
+                C.get(this, Xe, "f").removeChild(C.get(this, Ye, "f")),
+                C.set(this, $e, !0, "f")
             }
         }
         ;
-        var nt, it, rt, at, st, ot, lt, ct, ht, dt, ut, pt, ft, gt, mt, At = i(2825);
-        nt = new WeakMap,
-        it = new WeakMap,
-        rt = new WeakMap,
-        at = new WeakMap,
-        st = new WeakMap,
-        ot = new WeakMap,
-        lt = new WeakMap,
-        ct = new WeakMap,
-        ht = new WeakMap,
-        dt = new WeakMap,
-        ut = new WeakMap,
-        pt = new WeakMap,
-        ft = new WeakMap,
-        gt = new WeakMap,
-        mt = new WeakMap;
-        const vt = class {
-            constructor(e, t) {
-                nt.set(this, void 0),
-                it.set(this, void 0),
-                rt.set(this, !1),
-                at.set(this, []),
-                st.set(this, void 0),
-                ot.set(this, void 0),
-                lt.set(this, void 0),
-                ct.set(this, void 0),
-                ht.set(this, void 0),
-                dt.set(this, void 0),
-                ut.set(this, !1),
-                pt.set(this, !1),
-                ft.set(this, !1),
-                gt.set(this, !1),
-                mt.set(this, !1),
-                (0,
-                C.GG)(this, nt, e, "f"),
-                (0,
-                C.GG)(this, it, new THREE.PerspectiveCamera(70,1,.5,At.A.maxViewDistance), "f"),
-                (0,
-                C.gn)(this, it, "f").position.set(0, 20, 0),
-                window.addEventListener("keydown", (0,
-                C.GG)(this, st, (e => {
-                    t.checkKeyBinding(e, ge.A.SpectatorMoveForwards) ? ((0,
-                    C.GG)(this, ut, !0, "f"),
-                    e.preventDefault()) : t.checkKeyBinding(e, ge.A.SpectatorMoveRight) ? ((0,
-                    C.GG)(this, pt, !0, "f"),
-                    e.preventDefault()) : t.checkKeyBinding(e, ge.A.SpectatorMoveBackwards) ? ((0,
-                    C.GG)(this, ft, !0, "f"),
-                    e.preventDefault()) : t.checkKeyBinding(e, ge.A.SpectatorMoveLeft) ? ((0,
-                    C.GG)(this, gt, !0, "f"),
-                    e.preventDefault()) : t.checkKeyBinding(e, ge.A.SpectatorSpeedModifier) && ((0,
-                    C.GG)(this, mt, !0, "f"),
+        var _renderer, _camera, _isEnabled, _toggleListeners, _onKeyDown, _onKeyUp, _onMouseDown, _onMouseUp, _onMouseMove, _onContextMenu, _moveForward, _moveRight, _moveBackward, _moveLeft, _speedModifier, At = i(2825);
+        _renderer = new WeakMap,
+        _camera = new WeakMap,
+        _isEnabled = new WeakMap,
+        _toggleListeners = new WeakMap,
+        _onKeyDown = new WeakMap,
+        _onKeyUp = new WeakMap,
+        _onMouseDown = new WeakMap,
+        _onMouseUp = new WeakMap,
+        _onMouseMove = new WeakMap,
+        _onContextMenu = new WeakMap,
+        _moveForward = new WeakMap,
+        _moveRight = new WeakMap,
+        _moveBackward = new WeakMap,
+        _moveLeft = new WeakMap,
+        _speedModifier = new WeakMap;
+        const SpectatorCamera = class {
+            constructor(renderer, inputManager) {
+                _renderer.set(this, void 0),
+                _camera.set(this, void 0),
+                _isEnabled.set(this, !1),
+                _toggleListeners.set(this, []),
+                _onKeyDown.set(this, void 0),
+                _onKeyUp.set(this, void 0),
+                _onMouseDown.set(this, void 0),
+                _onMouseUp.set(this, void 0),
+                _onMouseMove.set(this, void 0),
+                _onContextMenu.set(this, void 0),
+                _moveForward.set(this, !1),
+                _moveRight.set(this, !1),
+                _moveBackward.set(this, !1),
+                _moveLeft.set(this, !1),
+                _speedModifier.set(this, !1),
+                C.set(this, _renderer, renderer, "f"),
+                C.set(this, _camera, new THREE.PerspectiveCamera(70,1,.5,At.A.maxViewDistance), "f"),
+                C.get(this, _camera, "f").position.set(0, 20, 0),
+                window.addEventListener("keydown", C.set(this, _onKeyDown, (e => {
+                    inputManager.checkKeyBinding(e, KeyBind.SpectatorMoveForwards) ? (C.set(this, _moveForward, !0, "f"),
+                    e.preventDefault()) : inputManager.checkKeyBinding(e, KeyBind.SpectatorMoveRight) ? (C.set(this, _moveRight, !0, "f"),
+                    e.preventDefault()) : inputManager.checkKeyBinding(e, KeyBind.SpectatorMoveBackwards) ? (C.set(this, _moveBackward, !0, "f"),
+                    e.preventDefault()) : inputManager.checkKeyBinding(e, KeyBind.SpectatorMoveLeft) ? (C.set(this, _moveLeft, !0, "f"),
+                    e.preventDefault()) : inputManager.checkKeyBinding(e, KeyBind.SpectatorSpeedModifier) && (C.set(this, _speedModifier, !0, "f"),
                     e.preventDefault())
                 }
                 ), "f")),
-                window.addEventListener("keyup", (0,
-                C.GG)(this, ot, (e => {
-                    t.checkKeyBinding(e, ge.A.SpectatorMoveForwards) ? (0,
-                    C.GG)(this, ut, !1, "f") : t.checkKeyBinding(e, ge.A.SpectatorMoveRight) ? (0,
-                    C.GG)(this, pt, !1, "f") : t.checkKeyBinding(e, ge.A.SpectatorMoveBackwards) ? (0,
-                    C.GG)(this, ft, !1, "f") : t.checkKeyBinding(e, ge.A.SpectatorMoveLeft) ? (0,
-                    C.GG)(this, gt, !1, "f") : t.checkKeyBinding(e, ge.A.SpectatorSpeedModifier) && (0,
-                    C.GG)(this, mt, !1, "f")
+                window.addEventListener("keyup", C.set(this, _onKeyUp, (e => {
+                    inputManager.checkKeyBinding(e, KeyBind.SpectatorMoveForwards) ? C.set(this, _moveForward, !1, "f") : inputManager.checkKeyBinding(e, KeyBind.SpectatorMoveRight) ? C.set(this, _moveRight, !1, "f") : inputManager.checkKeyBinding(e, KeyBind.SpectatorMoveBackwards) ? C.set(this, _moveBackward, !1, "f") : inputManager.checkKeyBinding(e, KeyBind.SpectatorMoveLeft) ? C.set(this, _moveLeft, !1, "f") : inputManager.checkKeyBinding(e, KeyBind.SpectatorSpeedModifier) && C.set(this, _speedModifier, !1, "f")
                 }
                 ), "f"));
                 let n = !1
@@ -40442,11 +38706,9 @@
                 }
                   , r = 0
                   , a = 0;
-                e.canvas.addEventListener("mousedown", (0,
-                C.GG)(this, lt, (e => {
+                renderer.canvas.addEventListener("mousedown", C.set(this, _onMouseDown, (e => {
                     n = !0;
-                    const t = (new THREE.Euler).setFromQuaternion((0,
-                    C.gn)(this, it, "f").quaternion, "YXZ");
+                    const t = (new THREE.Euler).setFromQuaternion(C.get(this, _camera, "f").quaternion, "YXZ");
                     r = t.y,
                     a = t.x,
                     i = {
@@ -40455,13 +38717,11 @@
                     }
                 }
                 ), "f")),
-                window.addEventListener("mouseup", (0,
-                C.GG)(this, ct, ( () => {
+                window.addEventListener("mouseup", C.set(this, _onMouseUp, ( () => {
                     n = !1
                 }
                 ), "f")),
-                window.addEventListener("mousemove", (0,
-                C.GG)(this, ht, (e => {
+                window.addEventListener("mousemove", C.set(this, _onMouseMove, (e => {
                     if (n) {
                         const t = Math.max(window.innerWidth, window.innerHeight)
                           , n = (e.clientX - i.x) / t
@@ -40479,95 +38739,63 @@
                         a = Math.round(1e4 * a) / 1e4;
                         const l = (new THREE.Quaternion).setFromAxisAngle(new THREE.Vector3(1,0,0), a)
                           , c = (new THREE.Quaternion).setFromAxisAngle(new THREE.Vector3(0,1,0), r);
-                        (0,
-                        C.gn)(this, it, "f").quaternion.copy(c).multiply(l)
+                        C.get(this, _camera, "f").quaternion.copy(c).multiply(l)
                     }
                 }
                 ), "f")),
-                window.addEventListener("contextmenu", (0,
-                C.GG)(this, dt, (e => {
-                    (0,
-                    C.gn)(this, rt, "f") && e.preventDefault()
+                window.addEventListener("contextmenu", C.set(this, _onContextMenu, (e => {
+                    C.get(this, _isEnabled, "f") && e.preventDefault()
                 }
                 ), "f"))
             }
             dispose() {
-                window.removeEventListener("keydown", (0,
-                C.gn)(this, st, "f")),
-                window.removeEventListener("keyup", (0,
-                C.gn)(this, ot, "f")),
-                (0,
-                C.gn)(this, nt, "f").canvas.removeEventListener("mousedown", (0,
-                C.gn)(this, lt, "f")),
-                window.removeEventListener("mouseup", (0,
-                C.gn)(this, ct, "f")),
-                window.removeEventListener("mousemove", (0,
-                C.gn)(this, ht, "f")),
-                window.removeEventListener("contextmenu", (0,
-                C.gn)(this, dt, "f"))
+                window.removeEventListener("keydown", C.get(this, _onKeyDown, "f")),
+                window.removeEventListener("keyup", C.get(this, _onKeyUp, "f")),
+                C.get(this, _renderer, "f").canvas.removeEventListener("mousedown", C.get(this, _onMouseDown, "f")),
+                window.removeEventListener("mouseup", C.get(this, _onMouseUp, "f")),
+                window.removeEventListener("mousemove", C.get(this, _onMouseMove, "f")),
+                window.removeEventListener("contextmenu", C.get(this, _onContextMenu, "f"))
             }
             addToggleListener(e) {
-                (0,
-                C.gn)(this, at, "f").push(e)
+                C.get(this, _toggleListeners, "f").push(e)
             }
             get isEnabled() {
-                return (0,
-                C.gn)(this, rt, "f")
+                return C.get(this, _isEnabled, "f")
             }
             set isEnabled(e) {
-                if ((0,
-                C.gn)(this, rt, "f") != e) {
-                    (0,
-                    C.GG)(this, rt, e, "f");
-                    for (const e of (0,
-                    C.gn)(this, at, "f"))
-                        e((0,
-                        C.gn)(this, rt, "f"))
+                if (C.get(this, _isEnabled, "f") != e) {
+                    C.set(this, _isEnabled, e, "f");
+                    for (const e of C.get(this, _toggleListeners, "f"))
+                        e(C.get(this, _isEnabled, "f"))
                 }
             }
             toggle() {
-                this.isEnabled = !(0,
-                C.gn)(this, rt, "f")
+                this.isEnabled = !C.get(this, _isEnabled, "f")
             }
             update(e) {
-                if ((0,
-                C.gn)(this, rt, "f")) {
+                if (C.get(this, _isEnabled, "f")) {
                     let t;
-                    if (t = (0,
-                    C.gn)(this, mt, "f") ? 400 * e : 50 * e,
-                    (0,
-                    C.gn)(this, ut, "f")) {
-                        const e = new THREE.Vector3(0,0,-1).applyQuaternion((0,
-                        C.gn)(this, it, "f").quaternion);
-                        (0,
-                        C.gn)(this, it, "f").position.add(e.multiplyScalar(t))
+                    if (t = C.get(this, _speedModifier, "f") ? 400 * e : 50 * e,
+                    C.get(this, _moveForward, "f")) {
+                        const e = new THREE.Vector3(0,0,-1).applyQuaternion(C.get(this, _camera, "f").quaternion);
+                        C.get(this, _camera, "f").position.add(e.multiplyScalar(t))
                     }
-                    if ((0,
-                    C.gn)(this, pt, "f")) {
-                        const e = new THREE.Vector3(1,0,0).applyQuaternion((0,
-                        C.gn)(this, it, "f").quaternion);
-                        (0,
-                        C.gn)(this, it, "f").position.add(e.multiplyScalar(t))
+                    if (C.get(this, _moveRight, "f")) {
+                        const e = new THREE.Vector3(1,0,0).applyQuaternion(C.get(this, _camera, "f").quaternion);
+                        C.get(this, _camera, "f").position.add(e.multiplyScalar(t))
                     }
-                    if ((0,
-                    C.gn)(this, ft, "f")) {
-                        const e = new THREE.Vector3(0,0,1).applyQuaternion((0,
-                        C.gn)(this, it, "f").quaternion);
-                        (0,
-                        C.gn)(this, it, "f").position.add(e.multiplyScalar(t))
+                    if (C.get(this, _moveBackward, "f")) {
+                        const e = new THREE.Vector3(0,0,1).applyQuaternion(C.get(this, _camera, "f").quaternion);
+                        C.get(this, _camera, "f").position.add(e.multiplyScalar(t))
                     }
-                    if ((0,
-                    C.gn)(this, gt, "f")) {
-                        const e = new THREE.Vector3(-1,0,0).applyQuaternion((0,
-                        C.gn)(this, it, "f").quaternion);
-                        (0,
-                        C.gn)(this, it, "f").position.add(e.multiplyScalar(t))
+                    if (C.get(this, _moveLeft, "f")) {
+                        const e = new THREE.Vector3(-1,0,0).applyQuaternion(C.get(this, _camera, "f").quaternion);
+                        C.get(this, _camera, "f").position.add(e.multiplyScalar(t))
                     }
                 }
             }
             get camera() {
-                return (0,
-                C.gn)(this, it, "f")
+                return C.get(this, _camera, "f")
             }
         }
         ;
@@ -40582,8 +38810,7 @@
         t()(bt.A, wt);
         bt.A && bt.A.locals && bt.A.locals;
         i(3693);
-        (0,
-        g.F3)("Haptics", {
+        g.F3("Haptics", {
             web: () => i.e(789).then(i.bind(i, 3789)).then((e => new e.HapticsWeb))
         });
         var xt, St, kt, Et, Tt, Mt, _t;
@@ -40594,8 +38821,7 @@
         Mt = new WeakMap,
         xt = new WeakSet,
         _t = function() {
-            if ((0,
-            C.gn)(this, St, "f").getSettingBoolean(R.A.VibrationEnabled))
+            if (C.get(this, St, "f").getSettingBoolean(R.A.VibrationEnabled))
                 try {
                     navigator.vibrate && navigator.vibrate(11)
                 } catch (e) {
@@ -40611,23 +38837,18 @@
                 Et.set(this, void 0),
                 Tt.set(this, void 0),
                 Mt.set(this, !1),
-                (0,
-                C.GG)(this, St, n, "f");
+                C.set(this, St, n, "f");
                 const s = document.getElementById("ui");
                 if (null == s)
                     throw new Error("UI element not found");
-                (0,
-                C.GG)(this, kt, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, kt, "f").className = "hidden",
-                s.appendChild((0,
-                C.gn)(this, kt, "f"));
+                C.set(this, kt, document.createElement("div"), "f"),
+                C.get(this, kt, "f").className = "hidden",
+                s.appendChild(C.get(this, kt, "f"));
                 const o = document.createElement("button");
                 o.className = "camera",
                 o.innerHTML = '<img src="images/preview.svg">',
                 o.addEventListener("touchstart", ( () => {
-                    (0,
-                    C.gn)(this, xt, "m", _t).call(this),
+                    C.get(this, xt, "m", _t).call(this),
                     o.classList.add("active"),
                     i()
                 }
@@ -40637,45 +38858,32 @@
                     r()
                 }
                 )),
-                (0,
-                C.gn)(this, kt, "f").appendChild(o),
-                (0,
-                C.GG)(this, Et, document.createElement("button"), "f"),
-                (0,
-                C.gn)(this, Et, "f").className = "reset",
-                (0,
-                C.gn)(this, Et, "f").innerHTML = '<img src="images/reset.svg">',
-                (0,
-                C.gn)(this, Et, "f").addEventListener("touchstart", ( () => {
+                C.get(this, kt, "f").appendChild(o),
+                C.set(this, Et, document.createElement("button"), "f"),
+                C.get(this, Et, "f").className = "reset",
+                C.get(this, Et, "f").innerHTML = '<img src="images/reset.svg">',
+                C.get(this, Et, "f").addEventListener("touchstart", ( () => {
                     t.playUIClick(),
-                    (0,
-                    C.gn)(this, xt, "m", _t).call(this),
-                    (0,
-                    C.gn)(this, Et, "f").classList.add("active"),
+                    C.get(this, xt, "m", _t).call(this),
+                    C.get(this, Et, "f").classList.add("active"),
                     a()
                 }
                 )),
-                (0,
-                C.gn)(this, Et, "f").addEventListener("touchend", ( () => {
-                    (0,
-                    C.gn)(this, Et, "f").classList.remove("active")
+                C.get(this, Et, "f").addEventListener("touchend", ( () => {
+                    C.get(this, Et, "f").classList.remove("active")
                 }
                 )),
-                (0,
-                C.gn)(this, kt, "f").appendChild((0,
-                C.gn)(this, Et, "f"));
+                C.get(this, kt, "f").appendChild(C.get(this, Et, "f"));
                 const l = document.createElement("div");
                 l.className = "left-container",
-                (0,
-                C.gn)(this, kt, "f").appendChild(l);
+                C.get(this, kt, "f").appendChild(l);
                 const c = document.createElement("div");
                 c.innerHTML = '<img src="images/arrow_up.svg">';
                 const h = document.createElement("div");
                 h.innerHTML = '<img src="images/arrow_down.svg">';
                 const d = document.createElement("div");
                 d.className = "right-container",
-                (0,
-                C.gn)(this, kt, "f").appendChild(d);
+                C.get(this, kt, "f").appendChild(d);
                 const u = document.createElement("div");
                 u.innerHTML = '<img src="images/arrow_left.svg">';
                 const p = document.createElement("div");
@@ -40689,8 +38897,7 @@
                 l.appendChild(p),
                 d.appendChild(c),
                 d.appendChild(h)),
-                (0,
-                C.GG)(this, Tt, (t => {
+                C.set(this, Tt, (t => {
                     let n = !1
                       , i = !1
                       , r = !1
@@ -40713,8 +38920,7 @@
                             }
                         }
                     }
-                    e.up == n && e.right == i && e.down == r && e.left == a || (0,
-                    C.gn)(this, xt, "m", _t).call(this),
+                    e.up == n && e.right == i && e.down == r && e.left == a || C.get(this, xt, "m", _t).call(this),
                     e.up = n,
                     e.right = i,
                     e.down = r,
@@ -40726,45 +38932,31 @@
                     t.target instanceof HTMLButtonElement || t.preventDefault()
                 }
                 ), "f"),
-                window.addEventListener("touchstart", (0,
-                C.gn)(this, Tt, "f"), {
+                window.addEventListener("touchstart", C.get(this, Tt, "f"), {
                     passive: !1
                 }),
-                window.addEventListener("touchmove", (0,
-                C.gn)(this, Tt, "f"), {
+                window.addEventListener("touchmove", C.get(this, Tt, "f"), {
                     passive: !1
                 }),
-                window.addEventListener("touchend", (0,
-                C.gn)(this, Tt, "f"), {
+                window.addEventListener("touchend", C.get(this, Tt, "f"), {
                     passive: !1
                 })
             }
             get isEnabled() {
-                return (0,
-                C.gn)(this, Mt, "f")
+                return C.get(this, Mt, "f")
             }
             set isEnabled(e) {
-                e != (0,
-                C.gn)(this, Mt, "f") && ((0,
-                C.gn)(this, kt, "f").className = e ? "touch-controls-ui" : "hidden",
-                (0,
-                C.GG)(this, Mt, e, "f"))
+                e != C.get(this, Mt, "f") && (C.get(this, kt, "f").className = e ? "touch-controls-ui" : "hidden",
+                C.set(this, Mt, e, "f"))
             }
             setResetCheckpointAvailable(e) {
-                e ? (0,
-                C.gn)(this, Et, "f").classList.add("checkpoint-available") : (0,
-                C.gn)(this, Et, "f").classList.remove("checkpoint-available")
+                e ? C.get(this, Et, "f").classList.add("checkpoint-available") : C.get(this, Et, "f").classList.remove("checkpoint-available")
             }
             dispose() {
-                (0,
-                C.gn)(this, kt, "f").parentElement?.removeChild((0,
-                C.gn)(this, kt, "f")),
-                window.removeEventListener("touchstart", (0,
-                C.gn)(this, Tt, "f")),
-                window.removeEventListener("touchmove", (0,
-                C.gn)(this, Tt, "f")),
-                window.removeEventListener("touchend", (0,
-                C.gn)(this, Tt, "f"))
+                C.get(this, kt, "f").parentElement?.removeChild(C.get(this, kt, "f")),
+                window.removeEventListener("touchstart", C.get(this, Tt, "f")),
+                window.removeEventListener("touchmove", C.get(this, Tt, "f")),
+                window.removeEventListener("touchend", C.get(this, Tt, "f"))
             }
         }
         ;
@@ -40787,106 +38979,79 @@
                 zt.set(this, void 0),
                 Nt.set(this, void 0),
                 Dt.set(this, []),
-                window.addEventListener("keydown", (0,
-                C.GG)(this, zt, (t => {
-                    e.checkKeyBinding(t, ge.A.VehicleAccelerate) ? (this.up = !0,
-                    t.preventDefault()) : e.checkKeyBinding(t, ge.A.VehicleTurnRight) ? (this.right = !0,
-                    t.preventDefault()) : e.checkKeyBinding(t, ge.A.VehicleBrake) ? (this.down = !0,
-                    t.preventDefault()) : e.checkKeyBinding(t, ge.A.VehicleTurnLeft) && (this.left = !0,
+                window.addEventListener("keydown", C.set(this, zt, (t => {
+                    e.checkKeyBinding(t, KeyBind.VehicleAccelerate) ? (this.up = !0,
+                    t.preventDefault()) : e.checkKeyBinding(t, KeyBind.VehicleTurnRight) ? (this.right = !0,
+                    t.preventDefault()) : e.checkKeyBinding(t, KeyBind.VehicleBrake) ? (this.down = !0,
+                    t.preventDefault()) : e.checkKeyBinding(t, KeyBind.VehicleTurnLeft) && (this.left = !0,
                     t.preventDefault())
                 }
                 ), "f")),
-                window.addEventListener("keyup", (0,
-                C.GG)(this, Nt, (t => {
-                    e.checkKeyBinding(t, ge.A.VehicleAccelerate) ? this.up = !1 : e.checkKeyBinding(t, ge.A.VehicleTurnRight) ? this.right = !1 : e.checkKeyBinding(t, ge.A.VehicleBrake) ? this.down = !1 : e.checkKeyBinding(t, ge.A.VehicleTurnLeft) && (this.left = !1)
+                window.addEventListener("keyup", C.set(this, Nt, (t => {
+                    e.checkKeyBinding(t, KeyBind.VehicleAccelerate) ? this.up = !1 : e.checkKeyBinding(t, KeyBind.VehicleTurnRight) ? this.right = !1 : e.checkKeyBinding(t, KeyBind.VehicleBrake) ? this.down = !1 : e.checkKeyBinding(t, KeyBind.VehicleTurnLeft) && (this.left = !1)
                 }
                 ), "f"))
             }
             get up() {
-                return (0,
-                C.gn)(this, Rt, "f")
+                return C.get(this, Rt, "f")
             }
             set up(e) {
-                if ((0,
-                C.gn)(this, Rt, "f") != e) {
-                    (0,
-                    C.GG)(this, Rt, e, "f");
-                    for (const e of (0,
-                    C.gn)(this, Dt, "f"))
+                if (C.get(this, Rt, "f") != e) {
+                    C.set(this, Rt, e, "f");
+                    for (const e of C.get(this, Dt, "f"))
                         e(this)
                 }
             }
             get right() {
-                return (0,
-                C.gn)(this, Pt, "f")
+                return C.get(this, Pt, "f")
             }
             set right(e) {
-                if ((0,
-                C.gn)(this, Pt, "f") != e) {
-                    (0,
-                    C.GG)(this, Pt, e, "f");
-                    for (const e of (0,
-                    C.gn)(this, Dt, "f"))
+                if (C.get(this, Pt, "f") != e) {
+                    C.set(this, Pt, e, "f");
+                    for (const e of C.get(this, Dt, "f"))
                         e(this)
                 }
             }
             get down() {
-                return (0,
-                C.gn)(this, It, "f")
+                return C.get(this, It, "f")
             }
             set down(e) {
-                if ((0,
-                C.gn)(this, It, "f") != e) {
-                    (0,
-                    C.GG)(this, It, e, "f");
-                    for (const e of (0,
-                    C.gn)(this, Dt, "f"))
+                if (C.get(this, It, "f") != e) {
+                    C.set(this, It, e, "f");
+                    for (const e of C.get(this, Dt, "f"))
                         e(this)
                 }
             }
             get left() {
-                return (0,
-                C.gn)(this, Lt, "f")
+                return C.get(this, Lt, "f")
             }
             set left(e) {
-                if ((0,
-                C.gn)(this, Lt, "f") != e) {
-                    (0,
-                    C.GG)(this, Lt, e, "f");
-                    for (const e of (0,
-                    C.gn)(this, Dt, "f"))
+                if (C.get(this, Lt, "f") != e) {
+                    C.set(this, Lt, e, "f");
+                    for (const e of C.get(this, Dt, "f"))
                         e(this)
                 }
             }
             get reset() {
-                return (0,
-                C.gn)(this, Ut, "f")
+                return C.get(this, Ut, "f")
             }
             set reset(e) {
-                if ((0,
-                C.gn)(this, Ut, "f") != e) {
-                    (0,
-                    C.GG)(this, Ut, e, "f");
-                    for (const e of (0,
-                    C.gn)(this, Dt, "f"))
+                if (C.get(this, Ut, "f") != e) {
+                    C.set(this, Ut, e, "f");
+                    for (const e of C.get(this, Dt, "f"))
                         e(this)
                 }
             }
             addChangeCallback(e) {
-                (0,
-                C.gn)(this, Dt, "f").push(e)
+                C.get(this, Dt, "f").push(e)
             }
             removeChangeCallback(e) {
-                const t = (0,
-                C.gn)(this, Dt, "f").indexOf(e);
-                t >= 0 && (0,
-                C.gn)(this, Dt, "f").splice(t, 1)
+                const t = C.get(this, Dt, "f").indexOf(e);
+                t >= 0 && C.get(this, Dt, "f").splice(t, 1)
             }
             dispose() {
-                window.removeEventListener("keydown", (0,
-                C.gn)(this, zt, "f")),
-                window.removeEventListener("keyup", (0,
-                C.gn)(this, Nt, "f"))
+                window.removeEventListener("keydown", C.get(this, zt, "f")),
+                window.removeEventListener("keyup", C.get(this, Nt, "f"))
             }
             getControls() {
                 return {
@@ -40906,27 +39071,18 @@
                 Gt.set(this, [])
             }
             push(e) {
-                if ((0,
-                C.gn)(this, Gt, "f").length > 0) {
-                    if (e.frames != (0,
-                    C.gn)(this, Gt, "f")[(0,
-                    C.gn)(this, Gt, "f").length - 1].frames + 1)
+                if (C.get(this, Gt, "f").length > 0) {
+                    if (e.frames != C.get(this, Gt, "f")[C.get(this, Gt, "f").length - 1].frames + 1)
                         throw new Error("Car states are not continuous")
                 } else if (e.frames > 0)
                     throw new Error("First frame must be zero");
-                (0,
-                C.gn)(this, Gt, "f").push(e)
+                C.get(this, Gt, "f").push(e)
             }
             getFrame(e) {
-                return e >= 0 && e < (0,
-                C.gn)(this, Gt, "f").length ? (0,
-                C.gn)(this, Gt, "f")[e] : null
+                return e >= 0 && e < C.get(this, Gt, "f").length ? C.get(this, Gt, "f")[e] : null
             }
             getLastFrame() {
-                return 0 == (0,
-                C.gn)(this, Gt, "f").length ? new yt.A(0) : new yt.A((0,
-                C.gn)(this, Gt, "f")[(0,
-                C.gn)(this, Gt, "f").length - 1].frames)
+                return 0 == C.get(this, Gt, "f").length ? new yt.A(0) : new yt.A(C.get(this, Gt, "f")[C.get(this, Gt, "f").length - 1].frames)
             }
         }
         ;
@@ -41022,8 +39178,7 @@
                 return console.error("Failed to send TrackId message:", t),
                 void e.close()
             }
-            const o = (0,
-            C.gn)(this, An, "f") - 1;
+            const o = C.get(this, An, "f") - 1;
             for (let n = 0; n < r.length; n += o) {
                 const i = new Uint8Array(Math.min(1 + o, 1 + r.length - n));
                 i[0] = Jt.TrackChunk;
@@ -41054,23 +39209,16 @@
         }
         ,
         _n = function(e, t) {
-            if ((0,
-            C.gn)(this, un, "f") > 255)
+            if (C.get(this, un, "f") > 255)
                 throw new Error("Max players exceeds 255");
             const n = new Uint8Array(7);
             n[0] = Jt.NewSession,
-            n[1] = 255 & (0,
-            C.gn)(this, hn, "f"),
-            n[2] = (0,
-            C.gn)(this, hn, "f") >> 8 & 255,
-            n[3] = (0,
-            C.gn)(this, hn, "f") >> 16 & 255,
-            n[4] = (0,
-            C.gn)(this, hn, "f") >> 24 & 255,
-            n[5] = (0,
-            C.gn)(this, cn, "f"),
-            n[6] = (0,
-            C.gn)(this, un, "f");
+            n[1] = 255 & C.get(this, hn, "f"),
+            n[2] = C.get(this, hn, "f") >> 8 & 255,
+            n[3] = C.get(this, hn, "f") >> 16 & 255,
+            n[4] = C.get(this, hn, "f") >> 24 & 255,
+            n[5] = C.get(this, cn, "f"),
+            n[6] = C.get(this, un, "f");
             try {
                 t.send(n)
             } catch (t) {
@@ -41082,53 +39230,24 @@
         Cn = function(e, t, n, i) {
             e.onopen = () => {
                 if ("reliable" == i) {
-                    (0,
-                    C.GG)(this, gn, (0,
-                    C.gn)(this, gn, "f").filter((e => e != t)), "f"),
-                    (0,
-                    C.gn)(this, mn, "f").push(t);
-                    for (const e of (0,
-                    C.gn)(this, kn, "f"))
-                        e((0,
-                        C.gn)(this, hn, "f"));
-                    for (const e of (0,
-                    C.gn)(this, En, "f"))
-                        e((0,
-                        C.gn)(this, tn, "f").get('"{0}" joined!', [t.nickname]));
-                    null != (0,
-                    C.gn)(this, ln, "f") && ((0,
-                    C.gn)(this, en, "m", Tn).call(this, t.peerConnection, t.dataChannel, (0,
-                    C.gn)(this, ln, "f").trackMetadata, (0,
-                    C.gn)(this, ln, "f").trackData),
-                    (0,
-                    C.gn)(this, en, "m", _n).call(this, t.peerConnection, t.dataChannel),
-                    null != (0,
-                    C.gn)(this, dn, "f") && ((0,
-                    C.gn)(this, en, "m", Mn).call(this, t.peerConnection, t.dataChannel),
-                    (0,
-                    C.gn)(this, en, "m", Tn).call(this, t.peerConnection, t.dataChannel, (0,
-                    C.gn)(this, dn, "f").track.trackMetadata, (0,
-                    C.gn)(this, dn, "f").track.trackData))),
-                    (0,
-                    C.gn)(this, en, "m", Nn).call(this, t.id, t.nickname, t.countryCode, t.carStyle, null);
-                    for (const n of (0,
-                    C.gn)(this, mn, "f"))
-                        n != t && (0,
-                        C.gn)(this, en, "m", Dn).call(this, t.peerConnection, e, n.id, n.nickname, n.countryCode, n.carStyle, n.record);
-                    if (null == (0,
-                    C.gn)(this, fn, "f").nickname)
+                    C.set(this, gn, C.get(this, gn, "f").filter((e => e != t)), "f"),
+                    C.get(this, mn, "f").push(t);
+                    for (const e of C.get(this, kn, "f"))
+                        e(C.get(this, hn, "f"));
+                    for (const e of C.get(this, En, "f"))
+                        e(C.get(this, tn, "f").get('"{0}" joined!', [t.nickname]));
+                    null != C.get(this, ln, "f") && (C.get(this, en, "m", Tn).call(this, t.peerConnection, t.dataChannel, C.get(this, ln, "f").trackMetadata, C.get(this, ln, "f").trackData),
+                    C.get(this, en, "m", _n).call(this, t.peerConnection, t.dataChannel),
+                    null != C.get(this, dn, "f") && (C.get(this, en, "m", Mn).call(this, t.peerConnection, t.dataChannel),
+                    C.get(this, en, "m", Tn).call(this, t.peerConnection, t.dataChannel, C.get(this, dn, "f").track.trackMetadata, C.get(this, dn, "f").track.trackData))),
+                    C.get(this, en, "m", Nn).call(this, t.id, t.nickname, t.countryCode, t.carStyle, null);
+                    for (const n of C.get(this, mn, "f"))
+                        n != t && C.get(this, en, "m", Dn).call(this, t.peerConnection, e, n.id, n.nickname, n.countryCode, n.carStyle, n.record);
+                    if (null == C.get(this, fn, "f").nickname)
                         throw new Error("Host censored nickname is not initialized");
-                    (0,
-                    C.gn)(this, en, "m", Dn).call(this, t.peerConnection, e, (0,
-                    C.gn)(this, fn, "f").id, (0,
-                    C.gn)(this, fn, "f").nickname, (0,
-                    C.gn)(this, fn, "f").countryCode, (0,
-                    C.gn)(this, fn, "f").carStyle, (0,
-                    C.gn)(this, fn, "f").record);
-                    for (const e of (0,
-                    C.gn)(this, kn, "f"))
-                        e((0,
-                        C.gn)(this, hn, "f"))
+                    C.get(this, en, "m", Dn).call(this, t.peerConnection, e, C.get(this, fn, "f").id, C.get(this, fn, "f").nickname, C.get(this, fn, "f").countryCode, C.get(this, fn, "f").carStyle, C.get(this, fn, "f").record);
+                    for (const e of C.get(this, kn, "f"))
+                        e(C.get(this, hn, "f"))
                 }
             }
             ,
@@ -41163,16 +39282,12 @@
                             void t.peerConnection.close();
                         const a = i[r + 0] | i[r + 1] << 8 | i[r + 2] << 16 | i[r + 3] << 24;
                         if (r += 4,
-                        e == (0,
-                        C.gn)(this, hn, "f") && a > t.resetCounter) {
+                        e == C.get(this, hn, "f") && a > t.resetCounter) {
                             t.unsentCarStates.length = 0,
                             t.resetCounter = a,
-                            (0,
-                            C.gn)(this, en, "m", Pn).call(this, t.id, a);
-                            for (const e of (0,
-                            C.gn)(this, bn, "f"))
-                                e((0,
-                                C.gn)(this, hn, "f"), t.id, a)
+                            C.get(this, en, "m", Pn).call(this, t.id, a);
+                            for (const e of C.get(this, bn, "f"))
+                                e(C.get(this, hn, "f"), t.id, a)
                         }
                         break
                     }
@@ -41197,8 +39312,7 @@
                             void t.peerConnection.close()
                         }
                         if (r += s,
-                        e == (0,
-                        C.gn)(this, hn, "f"))
+                        e == C.get(this, hn, "f"))
                             if (a > t.resetCounter)
                                 t.unsentCarStates.length = 0,
                                 t.resetCounter = a;
@@ -41231,15 +39345,11 @@
                         a <= 0 || a > ie.A.maxFrames)
                             return console.error(n + "Record has invalid number of frames"),
                             void t.peerConnection.close();
-                        if (e == (0,
-                        C.gn)(this, hn, "f")) {
+                        if (e == C.get(this, hn, "f")) {
                             t.record = new yt.A(a),
-                            (0,
-                            C.gn)(this, en, "m", Nn).call(this, t.id, t.nickname, t.countryCode, t.carStyle, t.record);
-                            for (const e of (0,
-                            C.gn)(this, kn, "f"))
-                                e((0,
-                                C.gn)(this, hn, "f"))
+                            C.get(this, en, "m", Nn).call(this, t.id, t.nickname, t.countryCode, t.carStyle, t.record);
+                            for (const e of C.get(this, kn, "f"))
+                                e(C.get(this, hn, "f"))
                         }
                         break
                     }
@@ -41293,15 +39403,12 @@
         }
         ,
         Pn = function(e, t) {
-            for (const n of (0,
-            C.gn)(this, mn, "f"))
-                n.id != e && (0,
-                C.gn)(this, en, "m", Rn).call(this, n.peerConnection, n.dataChannel, e, t)
+            for (const n of C.get(this, mn, "f"))
+                n.id != e && C.get(this, en, "m", Rn).call(this, n.peerConnection, n.dataChannel, e, t)
         }
         ,
         In = function e(t, n, i) {
-            const r = (0,
-            C.gn)(this, An, "f") - 5
+            const r = C.get(this, An, "f") - 5
               , a = i.reduce(( (e, t) => e + t.length), 0)
               , s = new Uint8Array(a);
             let o = 0;
@@ -41318,14 +39425,10 @@
             if (5 + c.length <= r) {
                 const e = new Uint8Array(5 + c.length);
                 e[0] = Jt.CarUpdate,
-                e[1] = 255 & (0,
-                C.gn)(this, hn, "f"),
-                e[2] = (0,
-                C.gn)(this, hn, "f") >> 8 & 255,
-                e[3] = (0,
-                C.gn)(this, hn, "f") >> 16 & 255,
-                e[4] = (0,
-                C.gn)(this, hn, "f") >> 24 & 255,
+                e[1] = 255 & C.get(this, hn, "f"),
+                e[2] = C.get(this, hn, "f") >> 8 & 255,
+                e[3] = C.get(this, hn, "f") >> 16 & 255,
+                e[4] = C.get(this, hn, "f") >> 24 & 255,
                 e.set(c, 5);
                 try {
                     n.send(e)
@@ -41339,16 +39442,13 @@
                   , s = i.slice(r);
                 if (0 == a.length || 0 == s.length)
                     throw new Error("Cannot split car update data further");
-                (0,
-                C.gn)(this, en, "m", e).call(this, t, n, a),
-                (0,
-                C.gn)(this, en, "m", e).call(this, t, n, s)
+                C.get(this, en, "m", e).call(this, t, n, a),
+                C.get(this, en, "m", e).call(this, t, n, s)
             }
         }
         ,
         Ln = function() {
-            for (const e of (0,
-            C.gn)(this, mn, "f")) {
+            for (const e of C.get(this, mn, "f")) {
                 const t = e.pingIdCounter
                   , n = new Uint8Array(2);
                 n[0] = Jt.Ping,
@@ -41370,24 +39470,18 @@
         }
         ,
         Un = function() {
-            const e = (0,
-            C.gn)(this, mn, "f").length + 1
+            const e = C.get(this, mn, "f").length + 1
               , t = new Uint8Array(1 + 6 * e);
             t[0] = Jt.PingData;
             let n = 1;
-            t[n + 0] = 255 & (0,
-            C.gn)(this, fn, "f").id,
-            t[n + 1] = (0,
-            C.gn)(this, fn, "f").id >> 8 & 255,
-            t[n + 2] = (0,
-            C.gn)(this, fn, "f").id >> 16 & 255,
-            t[n + 3] = (0,
-            C.gn)(this, fn, "f").id >> 24 & 255;
+            t[n + 0] = 255 & C.get(this, fn, "f").id,
+            t[n + 1] = C.get(this, fn, "f").id >> 8 & 255,
+            t[n + 2] = C.get(this, fn, "f").id >> 16 & 255,
+            t[n + 3] = C.get(this, fn, "f").id >> 24 & 255;
             t[n + 4] = 0,
             t[n + 5] = 0,
             n += 6;
-            for (const e of (0,
-            C.gn)(this, mn, "f")) {
+            for (const e of C.get(this, mn, "f")) {
                 t[n + 0] = 255 & e.id,
                 t[n + 1] = e.id >> 8 & 255,
                 t[n + 2] = e.id >> 16 & 255,
@@ -41397,8 +39491,7 @@
                 t[n + 5] = i >> 8 & 255,
                 n += 6
             }
-            for (const e of (0,
-            C.gn)(this, mn, "f"))
+            for (const e of C.get(this, mn, "f"))
                 try {
                     e.unreliableDataChannel.send(t)
                 } catch (t) {
@@ -41409,22 +39502,16 @@
         }
         ,
         zn = function() {
-            for (const e of (0,
-            C.gn)(this, mn, "f")) {
+            for (const e of C.get(this, mn, "f")) {
                 const t = [];
-                if ((0,
-                C.gn)(this, fn, "f").unsentCarStates.length > 0)
-                    for (const e of (0,
-                    C.gn)(this, fn, "f").unsentCarStates)
+                if (C.get(this, fn, "f").unsentCarStates.length > 0)
+                    for (const e of C.get(this, fn, "f").unsentCarStates)
                         t.push({
-                            id: (0,
-                            C.gn)(this, fn, "f").id,
-                            resetCounter: (0,
-                            C.gn)(this, fn, "f").resetCounter,
+                            id: C.get(this, fn, "f").id,
+                            resetCounter: C.get(this, fn, "f").resetCounter,
                             carState: e
                         });
-                for (const n of (0,
-                C.gn)(this, mn, "f"))
+                for (const n of C.get(this, mn, "f"))
                     if (n != e && n.unsentCarStates.length > 0)
                         for (const e of n.unsentCarStates)
                             t.push({
@@ -41447,29 +39534,21 @@
                     i.set(t, 8),
                     n.push(i)
                 }
-                (0,
-                C.gn)(this, en, "m", In).call(this, e.peerConnection, e.unreliableDataChannel, n)
+                C.get(this, en, "m", In).call(this, e.peerConnection, e.unreliableDataChannel, n)
             }
-            for (const e of (0,
-            C.gn)(this, wn, "f"))
-                for (const t of (0,
-                C.gn)(this, mn, "f"))
+            for (const e of C.get(this, wn, "f"))
+                for (const t of C.get(this, mn, "f"))
                     if (t.unsentCarStates.length > 0)
                         for (const n of t.unsentCarStates)
-                            e((0,
-                            C.gn)(this, hn, "f"), t.id, t.resetCounter, n);
-            (0,
-            C.gn)(this, fn, "f").unsentCarStates.length = 0;
-            for (const e of (0,
-            C.gn)(this, mn, "f"))
+                            e(C.get(this, hn, "f"), t.id, t.resetCounter, n);
+            C.get(this, fn, "f").unsentCarStates.length = 0;
+            for (const e of C.get(this, mn, "f"))
                 e.unsentCarStates.length = 0
         }
         ,
         Nn = function(e, t, n, i, r) {
-            for (const a of (0,
-            C.gn)(this, mn, "f"))
-                a.id != e && (0,
-                C.gn)(this, en, "m", Dn).call(this, a.peerConnection, a.dataChannel, e, t, n, i, r)
+            for (const a of C.get(this, mn, "f"))
+                a.id != e && C.get(this, en, "m", Dn).call(this, a.peerConnection, a.dataChannel, e, t, n, i, r)
         }
         ,
         Dn = function(e, t, n, i, r, a, s) {
@@ -41507,8 +39586,7 @@
         }
         ,
         Bn = function(e, t) {
-            for (const n of (0,
-            C.gn)(this, mn, "f")) {
+            for (const n of C.get(this, mn, "f")) {
                 if (n.id == e)
                     continue;
                 const i = [];
@@ -41558,16 +39636,11 @@
                 Sn.set(this, []),
                 kn.set(this, []),
                 En.set(this, []),
-                (0,
-                C.GG)(this, tn, e, "f"),
-                (0,
-                C.GG)(this, nn, t, "f");
+                C.set(this, tn, e, "f"),
+                C.set(this, nn, t, "f");
                 const s = i.getCurrentUserProfile();
-                (0,
-                C.GG)(this, fn, {
-                    id: ((0,
-                    C.GG)(this, pn, (a = (0,
-                    C.gn)(this, pn, "f"),
+                C.set(this, fn, {
+                    id: (C.set(this, pn, (a = C.get(this, pn, "f"),
                     r = a++,
                     a), "f"),
                     r),
@@ -41579,161 +39652,92 @@
                     resetCounter: 0,
                     unsentCarStates: []
                 }, "f"),
-                (0,
-                C.GG)(this, un, n, "f"),
-                (0,
-                C.GG)(this, vn, setInterval(( () => {
-                    (0,
-                    C.gn)(this, en, "m", Ln).call(this),
-                    (0,
-                    C.gn)(this, en, "m", Un).call(this)
+                C.set(this, un, n, "f"),
+                C.set(this, vn, setInterval(( () => {
+                    C.get(this, en, "m", Ln).call(this),
+                    C.get(this, en, "m", Un).call(this)
                 }
                 ), 1e3), "f"),
-                (0,
-                C.GG)(this, yn, setInterval(( () => {
-                    (0,
-                    C.gn)(this, en, "m", zn).call(this)
+                C.set(this, yn, setInterval(( () => {
+                    C.get(this, en, "m", zn).call(this)
                 }
                 ), 100), "f")
             }
             dispose() {
-                null != (0,
-                C.gn)(this, dn, "f") && (clearTimeout((0,
-                C.gn)(this, dn, "f").timeout),
-                (0,
-                C.GG)(this, dn, null, "f")),
-                clearInterval((0,
-                C.gn)(this, vn, "f")),
-                clearInterval((0,
-                C.gn)(this, yn, "f")),
-                (0,
-                C.GG)(this, wn, [], "f"),
-                (0,
-                C.GG)(this, Sn, [], "f"),
-                (0,
-                C.GG)(this, kn, [], "f"),
-                (0,
-                C.GG)(this, rn, null, "f"),
-                null != (0,
-                C.gn)(this, on, "f") && ((0,
-                C.gn)(this, on, "f").close(),
-                (0,
-                C.GG)(this, on, null, "f"));
-                for (const e of (0,
-                C.gn)(this, gn, "f"))
+                null != C.get(this, dn, "f") && (clearTimeout(C.get(this, dn, "f").timeout),
+                C.set(this, dn, null, "f")),
+                clearInterval(C.get(this, vn, "f")),
+                clearInterval(C.get(this, yn, "f")),
+                C.set(this, wn, [], "f"),
+                C.set(this, Sn, [], "f"),
+                C.set(this, kn, [], "f"),
+                C.set(this, rn, null, "f"),
+                null != C.get(this, on, "f") && (C.get(this, on, "f").close(),
+                C.set(this, on, null, "f"));
+                for (const e of C.get(this, gn, "f"))
                     e.peerConnection.close();
-                (0,
-                C.GG)(this, gn, [], "f");
-                for (const e of (0,
-                C.gn)(this, mn, "f"))
+                C.set(this, gn, [], "f");
+                for (const e of C.get(this, mn, "f"))
                     e.peerConnection.close();
-                (0,
-                C.GG)(this, mn, [], "f")
+                C.set(this, mn, [], "f")
             }
             addConnectionLostCallback() {}
             removeConnectionLostCallback() {}
             addCarResetCallback(e) {
-                (0,
-                C.gn)(this, bn, "f").push(e)
+                C.get(this, bn, "f").push(e)
             }
             removeCarResetCallback(e) {
-                (0,
-                C.GG)(this, bn, (0,
-                C.gn)(this, bn, "f").filter((t => t != e)), "f")
+                C.set(this, bn, C.get(this, bn, "f").filter((t => t != e)), "f")
             }
             addCarUpdateCallback(e) {
-                (0,
-                C.gn)(this, wn, "f").push(e)
+                C.get(this, wn, "f").push(e)
             }
             removeCarUpdateCallback(e) {
-                (0,
-                C.GG)(this, wn, (0,
-                C.gn)(this, wn, "f").filter((t => t != e)), "f")
+                C.set(this, wn, C.get(this, wn, "f").filter((t => t != e)), "f")
             }
             addEndSessionCallback(e, t) {
-                (0,
-                C.gn)(this, xn, "f").push(t),
-                e == (0,
-                C.gn)(this, hn, "f") && null == (0,
-                C.gn)(this, dn, "f") || t()
+                C.get(this, xn, "f").push(t),
+                e == C.get(this, hn, "f") && null == C.get(this, dn, "f") || t()
             }
             removeEndSessionCallback(e) {
-                (0,
-                C.GG)(this, xn, (0,
-                C.gn)(this, xn, "f").filter((t => t != e)), "f")
+                C.set(this, xn, C.get(this, xn, "f").filter((t => t != e)), "f")
             }
             addNewSessionCallback(e, t) {
-                (0,
-                C.gn)(this, Sn, "f").push(t),
-                e == (0,
-                C.gn)(this, hn, "f") && null != (0,
-                C.gn)(this, ln, "f") && t((0,
-                C.gn)(this, hn, "f"), (0,
-                C.gn)(this, cn, "f"), (0,
-                C.gn)(this, ln, "f").trackMetadata, (0,
-                C.gn)(this, ln, "f").trackData)
+                C.get(this, Sn, "f").push(t),
+                e == C.get(this, hn, "f") && null != C.get(this, ln, "f") && t(C.get(this, hn, "f"), C.get(this, cn, "f"), C.get(this, ln, "f").trackMetadata, C.get(this, ln, "f").trackData)
             }
             removeNewSessionCallback(e) {
-                (0,
-                C.GG)(this, Sn, (0,
-                C.gn)(this, Sn, "f").filter((t => t != e)), "f")
+                C.set(this, Sn, C.get(this, Sn, "f").filter((t => t != e)), "f")
             }
             addServerMessageCallback(e) {
-                (0,
-                C.gn)(this, En, "f").push(e)
+                C.get(this, En, "f").push(e)
             }
             removeServerMessageCallback(e) {
-                (0,
-                C.GG)(this, En, (0,
-                C.gn)(this, En, "f").filter((t => t != e)), "f")
+                C.set(this, En, C.get(this, En, "f").filter((t => t != e)), "f")
             }
             sendCarReset(e, t) {
-                e == (0,
-                C.gn)(this, hn, "f") && t > (0,
-                C.gn)(this, fn, "f").resetCounter && ((0,
-                C.gn)(this, fn, "f").unsentCarStates.length = 0,
-                (0,
-                C.gn)(this, fn, "f").resetCounter = t,
-                (0,
-                C.gn)(this, en, "m", Pn).call(this, (0,
-                C.gn)(this, fn, "f").id, t))
+                e == C.get(this, hn, "f") && t > C.get(this, fn, "f").resetCounter && (C.get(this, fn, "f").unsentCarStates.length = 0,
+                C.get(this, fn, "f").resetCounter = t,
+                C.get(this, en, "m", Pn).call(this, C.get(this, fn, "f").id, t))
             }
             sendCarUpdate(e, t, n) {
-                e == (0,
-                C.gn)(this, hn, "f") && (t > (0,
-                C.gn)(this, fn, "f").resetCounter ? ((0,
-                C.gn)(this, fn, "f").unsentCarStates.length = 0,
-                (0,
-                C.gn)(this, fn, "f").resetCounter = t) : t == (0,
-                C.gn)(this, fn, "f").resetCounter && (0,
-                C.gn)(this, fn, "f").unsentCarStates.push(n))
+                e == C.get(this, hn, "f") && (t > C.get(this, fn, "f").resetCounter ? (C.get(this, fn, "f").unsentCarStates.length = 0,
+                C.get(this, fn, "f").resetCounter = t) : t == C.get(this, fn, "f").resetCounter && C.get(this, fn, "f").unsentCarStates.push(n))
             }
             sendRecord(e, t) {
-                if (e == (0,
-                C.gn)(this, hn, "f")) {
-                    if ((0,
-                    C.gn)(this, fn, "f").record = t.clone(),
-                    (0,
-                    C.gn)(this, mn, "f").length > 0) {
-                        if (null == (0,
-                        C.gn)(this, fn, "f").nickname)
+                if (e == C.get(this, hn, "f")) {
+                    if (C.get(this, fn, "f").record = t.clone(),
+                    C.get(this, mn, "f").length > 0) {
+                        if (null == C.get(this, fn, "f").nickname)
                             throw new Error("Host censored nickname is not initialized");
-                        (0,
-                        C.gn)(this, en, "m", Nn).call(this, (0,
-                        C.gn)(this, fn, "f").id, (0,
-                        C.gn)(this, fn, "f").nickname, (0,
-                        C.gn)(this, fn, "f").countryCode, (0,
-                        C.gn)(this, fn, "f").carStyle, (0,
-                        C.gn)(this, fn, "f").record)
+                        C.get(this, en, "m", Nn).call(this, C.get(this, fn, "f").id, C.get(this, fn, "f").nickname, C.get(this, fn, "f").countryCode, C.get(this, fn, "f").carStyle, C.get(this, fn, "f").record)
                     }
-                    for (const t of (0,
-                    C.gn)(this, kn, "f"))
+                    for (const t of C.get(this, kn, "f"))
                         t(e)
                 }
             }
             kickPlayer(e) {
-                const t = (0,
-                C.gn)(this, mn, "f").find((t => t.id == e));
+                const t = C.get(this, mn, "f").find((t => t.id == e));
                 if (null != t)
                     try {
                         t.dataChannel.send(new Uint8Array([Jt.Kick])),
@@ -41746,10 +39750,8 @@
                         t.peerConnection.close()
                     }
                 else {
-                    const t = (0,
-                    C.gn)(this, gn, "f").find((t => t.id == e));
-                    null != t && ((0,
-                    C.gn)(this, on, "f")?.send(JSON.stringify({
+                    const t = C.get(this, gn, "f").find((t => t.id == e));
+                    null != t && (C.get(this, on, "f")?.send(JSON.stringify({
                         version: "0.6.0",
                         type: "declineJoin",
                         session: t.session,
@@ -41759,16 +39761,13 @@
                 }
             }
             getPing(e) {
-                if (e == (0,
-                C.gn)(this, fn, "f").id)
+                if (e == C.get(this, fn, "f").id)
                     return 0;
-                const t = (0,
-                C.gn)(this, mn, "f").find((t => t.id == e));
+                const t = C.get(this, mn, "f").find((t => t.id == e));
                 return null != t ? t.ping : null
             }
             getPlayers() {
-                return (0,
-                C.gn)(this, mn, "f").map((e => ({
+                return C.get(this, mn, "f").map((e => ({
                     id: e.id,
                     nickname: e.nickname,
                     countryCode: e.countryCode,
@@ -41776,22 +39775,16 @@
                     record: e.record?.clone() ?? null,
                     isSelf: !1
                 }))).concat({
-                    id: (0,
-                    C.gn)(this, fn, "f").id,
-                    nickname: (0,
-                    C.gn)(this, fn, "f").uncensoredNickname,
-                    countryCode: (0,
-                    C.gn)(this, fn, "f").countryCode,
-                    carStyle: (0,
-                    C.gn)(this, fn, "f").carStyle,
-                    record: (0,
-                    C.gn)(this, fn, "f").record?.clone() ?? null,
+                    id: C.get(this, fn, "f").id,
+                    nickname: C.get(this, fn, "f").uncensoredNickname,
+                    countryCode: C.get(this, fn, "f").countryCode,
+                    carStyle: C.get(this, fn, "f").carStyle,
+                    record: C.get(this, fn, "f").record?.clone() ?? null,
                     isSelf: !0
                 })
             }
             getConnectingPlayers() {
-                return (0,
-                C.gn)(this, gn, "f").map((e => ({
+                return C.get(this, gn, "f").map((e => ({
                     id: e.id,
                     nickname: e.nickname,
                     countryCode: e.countryCode,
@@ -41801,60 +39794,36 @@
                 })))
             }
             getMaxPlayers() {
-                return (0,
-                C.gn)(this, un, "f")
+                return C.get(this, un, "f")
             }
             startNewSessionImmediate(e, t, n) {
-                null != (0,
-                C.gn)(this, dn, "f") && (clearTimeout((0,
-                C.gn)(this, dn, "f").timeout),
-                (0,
-                C.GG)(this, dn, null, "f")),
-                (0,
-                C.GG)(this, hn, ((0,
-                C.gn)(this, hn, "f") + 1) % 2 ** 32, "f"),
-                (0,
-                C.GG)(this, cn, e, "f"),
-                (0,
-                C.GG)(this, ln, {
+                null != C.get(this, dn, "f") && (clearTimeout(C.get(this, dn, "f").timeout),
+                C.set(this, dn, null, "f")),
+                C.set(this, hn, (C.get(this, hn, "f") + 1) % 2 ** 32, "f"),
+                C.set(this, cn, e, "f"),
+                C.set(this, ln, {
                     trackMetadata: t,
                     trackData: n
                 }, "f"),
-                (0,
-                C.gn)(this, fn, "f").record = null,
-                (0,
-                C.gn)(this, fn, "f").resetCounter = 0;
-                for (const e of (0,
-                C.gn)(this, mn, "f"))
+                C.get(this, fn, "f").record = null,
+                C.get(this, fn, "f").resetCounter = 0;
+                for (const e of C.get(this, mn, "f"))
                     e.record = null,
                     e.resetCounter = 0;
-                for (const e of (0,
-                C.gn)(this, mn, "f"))
-                    (0,
-                    C.gn)(this, en, "m", _n).call(this, e.peerConnection, e.dataChannel);
-                for (const e of (0,
-                C.gn)(this, Sn, "f"))
-                    e((0,
-                    C.gn)(this, hn, "f"), (0,
-                    C.gn)(this, cn, "f"), t, n);
-                return (0,
-                C.gn)(this, hn, "f")
+                for (const e of C.get(this, mn, "f"))
+                    C.get(this, en, "m", _n).call(this, e.peerConnection, e.dataChannel);
+                for (const e of C.get(this, Sn, "f"))
+                    e(C.get(this, hn, "f"), C.get(this, cn, "f"), t, n);
+                return C.get(this, hn, "f")
             }
             startNewSession(e, t, n) {
-                for (const e of (0,
-                C.gn)(this, mn, "f"))
-                    (0,
-                    C.gn)(this, en, "m", Mn).call(this, e.peerConnection, e.dataChannel),
-                    (0,
-                    C.gn)(this, en, "m", Tn).call(this, e.peerConnection, e.dataChannel, t, n);
-                for (const e of (0,
-                C.gn)(this, xn, "f"))
+                for (const e of C.get(this, mn, "f"))
+                    C.get(this, en, "m", Mn).call(this, e.peerConnection, e.dataChannel),
+                    C.get(this, en, "m", Tn).call(this, e.peerConnection, e.dataChannel, t, n);
+                for (const e of C.get(this, xn, "f"))
                     e();
-                null != (0,
-                C.gn)(this, dn, "f") && clearTimeout((0,
-                C.gn)(this, dn, "f").timeout),
-                (0,
-                C.GG)(this, dn, {
+                null != C.get(this, dn, "f") && clearTimeout(C.get(this, dn, "f").timeout),
+                C.set(this, dn, {
                     track: {
                         trackMetadata: t,
                         trackData: n
@@ -41866,51 +39835,33 @@
                 }, "f")
             }
             resetInvite() {
-                null != (0,
-                C.gn)(this, on, "f") && ((0,
-                C.gn)(this, on, "f").close(),
-                (0,
-                C.GG)(this, on, null, "f")),
-                (0,
-                C.GG)(this, rn, null, "f")
+                null != C.get(this, on, "f") && (C.get(this, on, "f").close(),
+                C.set(this, on, null, "f")),
+                C.set(this, rn, null, "f")
             }
             createInvite(e) {
-                if (null != (0,
-                C.gn)(this, rn, "f"))
-                    return (0,
-                    C.gn)(this, rn, "f");
+                if (null != C.get(this, rn, "f"))
+                    return C.get(this, rn, "f");
                 const t = new Promise(( (n, i) => {
                     let r = !1
                       , a = null;
-                    const s = (0,
-                    C.gn)(this, nn, "f").createMultiplayerHostWebSocket();
-                    (0,
-                    C.GG)(this, on, s, "f"),
+                    const s = C.get(this, nn, "f").createMultiplayerHostWebSocket();
+                    C.set(this, on, s, "f"),
                     s.addEventListener("open", ( () => {
                         const e = {
                             version: "0.6.0",
                             type: "createInvite",
-                            key: (0,
-                            C.gn)(this, sn, "f")
+                            key: C.get(this, sn, "f")
                         };
-                        null == (0,
-                        C.gn)(this, fn, "f").nickname && (e.nickname = (0,
-                        C.gn)(this, fn, "f").uncensoredNickname),
+                        null == C.get(this, fn, "f").nickname && (e.nickname = C.get(this, fn, "f").uncensoredNickname),
                         s.send(JSON.stringify(e))
                     }
                     )),
                     s.addEventListener("close", ( () => {
-                        if ((0,
-                        C.gn)(this, rn, "f") == t && (0,
-                        C.GG)(this, rn, null, "f"),
-                        null != (0,
-                        C.gn)(this, an, "f") && (clearTimeout((0,
-                        C.gn)(this, an, "f")),
-                        (0,
-                        C.GG)(this, an, null, "f")),
-                        (0,
-                        C.gn)(this, on, "f") == s && (0,
-                        C.GG)(this, on, null, "f"),
+                        if (C.get(this, rn, "f") == t && C.set(this, rn, null, "f"),
+                        null != C.get(this, an, "f") && (clearTimeout(C.get(this, an, "f")),
+                        C.set(this, an, null, "f")),
+                        C.get(this, on, "f") == s && C.set(this, on, null, "f"),
                         !r)
                             if (null != a) {
                                 let e;
@@ -41958,8 +39909,7 @@
                                 return console.error(l + "Missing or invalid key"),
                                 void s.close();
                             const t = o.key;
-                            if ((0,
-                            C.GG)(this, sn, t, "f"),
+                            if (C.set(this, sn, t, "f"),
                             !("timeoutMilliseconds"in o) || "number" != typeof o.timeoutMilliseconds && null !== o.timeoutMilliseconds)
                                 return console.error(l + "Missing or invalid timeoutMilliseconds"),
                                 void s.close();
@@ -41971,16 +39921,12 @@
                                 return console.error(l + "Missing or invalid censoredNickname"),
                                 void s.close();
                             const a = o.censoredNickname;
-                            null != a && ((0,
-                            C.gn)(this, fn, "f").nickname = a),
-                            null !== i ? (0,
-                            C.GG)(this, an, setTimeout(( () => {
-                                (0,
-                                C.GG)(this, an, null, "f"),
+                            null != a && (C.get(this, fn, "f").nickname = a),
+                            null !== i ? C.set(this, an, setTimeout(( () => {
+                                C.set(this, an, null, "f"),
                                 s.close()
                             }
-                            ), i), "f") : (0,
-                            C.GG)(this, an, null, "f"),
+                            ), i), "f") : C.set(this, an, null, "f"),
                             r = !0,
                             n({
                                 inviteCode: e,
@@ -42068,10 +40014,7 @@
                                     credential: i
                                 })
                             }
-                            if ((0,
-                            C.gn)(this, mn, "f").length + (0,
-                            C.gn)(this, gn, "f").length + 1 >= (0,
-                            C.gn)(this, un, "f"))
+                            if (C.get(this, mn, "f").length + C.get(this, gn, "f").length + 1 >= C.get(this, un, "f"))
                                 s.send(JSON.stringify({
                                     version: "0.6.0",
                                     type: "declineJoin",
@@ -42083,32 +40026,20 @@
                                 const o = () => {
                                     if (r)
                                         return;
-                                    const e = (0,
-                                    C.gn)(this, mn, "f").findIndex((e => e.peerConnection == g.peerConnection));
+                                    const e = C.get(this, mn, "f").findIndex((e => e.peerConnection == g.peerConnection));
                                     if (e >= 0) {
-                                        (0,
-                                        C.gn)(this, mn, "f").splice(e, 1),
-                                        (0,
-                                        C.gn)(this, en, "m", Bn).call(this, g.id, g.isKicked);
-                                        for (const e of (0,
-                                        C.gn)(this, kn, "f"))
-                                            e((0,
-                                            C.gn)(this, hn, "f"));
-                                        for (const e of (0,
-                                        C.gn)(this, En, "f"))
-                                            g.isKicked ? e((0,
-                                            C.gn)(this, tn, "f").get('"{0}" was kicked!', [g.nickname])) : e((0,
-                                            C.gn)(this, tn, "f").get('"{0}" left!', [g.nickname]))
+                                        C.get(this, mn, "f").splice(e, 1),
+                                        C.get(this, en, "m", Bn).call(this, g.id, g.isKicked);
+                                        for (const e of C.get(this, kn, "f"))
+                                            e(C.get(this, hn, "f"));
+                                        for (const e of C.get(this, En, "f"))
+                                            g.isKicked ? e(C.get(this, tn, "f").get('"{0}" was kicked!', [g.nickname])) : e(C.get(this, tn, "f").get('"{0}" left!', [g.nickname]))
                                     } else {
-                                        const e = (0,
-                                        C.gn)(this, gn, "f").findIndex((e => e.peerConnection == g.peerConnection));
+                                        const e = C.get(this, gn, "f").findIndex((e => e.peerConnection == g.peerConnection));
                                         if (e >= 0) {
-                                            (0,
-                                            C.gn)(this, gn, "f").splice(e, 1);
-                                            for (const e of (0,
-                                            C.gn)(this, kn, "f"))
-                                                e((0,
-                                                C.gn)(this, hn, "f"))
+                                            C.get(this, gn, "f").splice(e, 1);
+                                            for (const e of C.get(this, kn, "f"))
+                                                e(C.get(this, hn, "f"))
                                         }
                                     }
                                     r = !0
@@ -42140,15 +40071,11 @@
                                     maxRetransmits: 0
                                 });
                                 p.binaryType = "arraybuffer";
-                                const f = ((0,
-                                C.GG)(this, pn, (i = (0,
-                                C.gn)(this, pn, "f"),
+                                const f = (C.set(this, pn, (i = C.get(this, pn, "f"),
                                 t = i++,
                                 i), "f"),
                                 t);
-                                (0,
-                                C.gn)(this, pn, "f") > 4294967295 && (0,
-                                C.GG)(this, pn, 1, "f");
+                                C.get(this, pn, "f") > 4294967295 && C.set(this, pn, 1, "f");
                                 const g = {
                                     session: e,
                                     isOfferSet: !1,
@@ -42169,16 +40096,11 @@
                                     pingPackages: [],
                                     unsentCarStates: []
                                 };
-                                (0,
-                                C.gn)(this, en, "m", Cn).call(this, c, g, o, "reliable"),
-                                (0,
-                                C.gn)(this, en, "m", Cn).call(this, p, g, o, "unreliable"),
-                                (0,
-                                C.gn)(this, gn, "f").push(g);
-                                for (const e of (0,
-                                C.gn)(this, kn, "f"))
-                                    e((0,
-                                    C.gn)(this, hn, "f"));
+                                C.get(this, en, "m", Cn).call(this, c, g, o, "reliable"),
+                                C.get(this, en, "m", Cn).call(this, p, g, o, "unreliable"),
+                                C.get(this, gn, "f").push(g);
+                                for (const e of C.get(this, kn, "f"))
+                                    e(C.get(this, hn, "f"));
                                 l.onicecandidate = t => {
                                     s.send(JSON.stringify({
                                         version: "0.6.0",
@@ -42219,14 +40141,10 @@
                                         session: e,
                                         reason: "WebRTCError"
                                     })),
-                                    (0,
-                                    C.GG)(this, gn, (0,
-                                    C.gn)(this, gn, "f").filter((e => e != g)), "f"),
+                                    C.set(this, gn, C.get(this, gn, "f").filter((e => e != g)), "f"),
                                     g.peerConnection.close();
-                                    for (const e of (0,
-                                    C.gn)(this, kn, "f"))
-                                        e((0,
-                                        C.gn)(this, hn, "f"))
+                                    for (const e of C.get(this, kn, "f"))
+                                        e(C.get(this, hn, "f"))
                                 }
                                 ))
                             }
@@ -42240,9 +40158,7 @@
                                 return console.error(l + "Missing or invalid candidate"),
                                 void s.close();
                             const t = o.candidate
-                              , n = (0,
-                            C.gn)(this, gn, "f").find((t => t.session == e)) ?? (0,
-                            C.gn)(this, mn, "f").find((t => t.session == e));
+                              , n = C.get(this, gn, "f").find((t => t.session == e)) ?? C.get(this, mn, "f").find((t => t.session == e));
                             if (null == n)
                                 console.warn(l + "Received ICE candidate for unknown session: " + e);
                             else if (n.isOfferSet)
@@ -42268,8 +40184,7 @@
                                     return console.error(l + "Missing or invalid session"),
                                     void s.close();
                                 const e = o.session
-                                  , t = (0,
-                                C.gn)(this, gn, "f").find((t => t.session == e));
+                                  , t = C.get(this, gn, "f").find((t => t.session == e));
                                 null != t && t.peerConnection.close()
                             }
                         }
@@ -42277,19 +40192,14 @@
                     ))
                 }
                 ));
-                return (0,
-                C.GG)(this, rn, t, "f"),
-                (0,
-                C.gn)(this, rn, "f")
+                return C.set(this, rn, t, "f"),
+                C.get(this, rn, "f")
             }
             addPlayersChangedCallback(e) {
-                (0,
-                C.gn)(this, kn, "f").push(e)
+                C.get(this, kn, "f").push(e)
             }
             removePlayersChangedCallback(e) {
-                (0,
-                C.GG)(this, kn, (0,
-                C.gn)(this, kn, "f").filter((t => t != e)), "f")
+                C.set(this, kn, C.get(this, kn, "f").filter((t => t != e)), "f")
             }
         }
         ;
@@ -42308,15 +40218,8 @@
         $n = new WeakMap,
         On = new WeakSet,
         ei = function() {
-            "top" == (0,
-            C.gn)(this, Vn, "f").getSetting(R.A.Checkpoints) || (0,
-            C.gn)(this, Hn, "f").touchEnabled ? (0,
-            C.gn)(this, Kn, "f").classList.remove("up") : (0,
-            C.gn)(this, Kn, "f").classList.add("up"),
-            (0,
-            C.gn)(this, Hn, "f").touchEnabled ? (0,
-            C.gn)(this, Kn, "f").classList.add("touch") : (0,
-            C.gn)(this, Kn, "f").classList.remove("touch")
+            "top" == C.get(this, Vn, "f").getSetting(R.A.Checkpoints) || C.get(this, Hn, "f").touchEnabled ? C.get(this, Kn, "f").classList.remove("up") : C.get(this, Kn, "f").classList.add("up"),
+            C.get(this, Hn, "f").touchEnabled ? C.get(this, Kn, "f").classList.add("touch") : C.get(this, Kn, "f").classList.remove("touch")
         }
         ;
         const ti = class {
@@ -42334,22 +40237,15 @@
                 Yn.set(this, []),
                 Zn.set(this, !0),
                 $n.set(this, void 0),
-                (0,
-                C.GG)(this, Wn, e, "f"),
-                (0,
-                C.GG)(this, Vn, i, "f"),
-                (0,
-                C.GG)(this, Hn, r, "f"),
-                (0,
-                C.GG)(this, jn, n, "f"),
-                (0,
-                C.GG)(this, Kn, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, Kn, "f").className = "game-toolbar-ui visible";
+                C.set(this, Wn, e, "f"),
+                C.set(this, Vn, i, "f"),
+                C.set(this, Hn, r, "f"),
+                C.set(this, jn, n, "f"),
+                C.set(this, Kn, document.createElement("div"), "f"),
+                C.get(this, Kn, "f").className = "game-toolbar-ui visible";
                 const p = document.createElement("div");
                 p.className = "info-container",
-                (0,
-                C.gn)(this, Kn, "f").appendChild(p);
+                C.get(this, Kn, "f").appendChild(p);
                 const f = document.createElement("div");
                 f.className = "content",
                 p.appendChild(f);
@@ -42376,22 +40272,15 @@
                     t.textContent = e,
                     f.appendChild(t)
                 }
-                (0,
-                C.GG)(this, qn, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, qn, "f").className = "record",
-                f.appendChild((0,
-                C.gn)(this, qn, "f")),
-                (0,
-                C.GG)(this, Qn, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, Qn, "f").className = "position",
-                f.appendChild((0,
-                C.gn)(this, Qn, "f"));
+                C.set(this, qn, document.createElement("div"), "f"),
+                C.get(this, qn, "f").className = "record",
+                f.appendChild(C.get(this, qn, "f")),
+                C.set(this, Qn, document.createElement("div"), "f"),
+                C.get(this, Qn, "f").className = "position",
+                f.appendChild(C.get(this, Qn, "f"));
                 const m = document.createElement("div");
                 m.className = "button-container",
-                (0,
-                C.gn)(this, Kn, "f").appendChild(m);
+                C.get(this, Kn, "f").appendChild(m);
                 const A = document.createElement("button");
                 if (A.className = "button",
                 A.innerHTML = '<img class="button-icon" src="images/quit.svg"> ',
@@ -42402,8 +40291,7 @@
                 }
                 )),
                 m.appendChild(A),
-                (0,
-                C.gn)(this, Yn, "f").push(A),
+                C.get(this, Yn, "f").push(A),
                 null == s) {
                     const e = document.createElement("button");
                     if (e.className = "button",
@@ -42415,10 +40303,8 @@
                     }
                     )),
                     m.appendChild(e),
-                    (0,
-                    C.gn)(this, Yn, "f").push(e),
-                    (0,
-                    C.GG)(this, Jn, e, "f"),
+                    C.get(this, Yn, "f").push(e),
+                    C.set(this, Jn, e, "f"),
                     null != c) {
                         const e = document.createElement("button");
                         e.className = "button",
@@ -42430,12 +40316,10 @@
                         }
                         )),
                         m.appendChild(e),
-                        (0,
-                        C.gn)(this, Yn, "f").push(e)
+                        C.get(this, Yn, "f").push(e)
                     }
                 } else
-                    (0,
-                    C.GG)(this, Jn, null, "f");
+                    C.set(this, Jn, null, "f");
                 if (s?.multiplayerConnection instanceof Fn) {
                     const e = document.createElement("button");
                     e.className = "button",
@@ -42447,8 +40331,7 @@
                     }
                     )),
                     m.appendChild(e),
-                    (0,
-                    C.gn)(this, Yn, "f").push(e)
+                    C.get(this, Yn, "f").push(e)
                 }
                 if (null != s) {
                     const e = document.createElement("button");
@@ -42461,90 +40344,53 @@
                     }
                     )),
                     m.appendChild(e),
-                    (0,
-                    C.gn)(this, Yn, "f").push(e)
+                    C.get(this, Yn, "f").push(e)
                 }
-                s?.multiplayerConnection instanceof Fn && ((0,
-                C.GG)(this, Xn, document.createElement("button"), "f"),
-                (0,
-                C.gn)(this, Xn, "f").className = "button",
-                (0,
-                C.gn)(this, Xn, "f").innerHTML = '<img class="button-icon" src="images/load.svg"> ',
-                (0,
-                C.gn)(this, Xn, "f").append(document.createTextNode(n.get("Change Track"))),
-                (0,
-                C.gn)(this, Xn, "f").addEventListener("click", ( () => {
+                s?.multiplayerConnection instanceof Fn && (C.set(this, Xn, document.createElement("button"), "f"),
+                C.get(this, Xn, "f").className = "button",
+                C.get(this, Xn, "f").innerHTML = '<img class="button-icon" src="images/load.svg"> ',
+                C.get(this, Xn, "f").append(document.createTextNode(n.get("Change Track"))),
+                C.get(this, Xn, "f").addEventListener("click", ( () => {
                     t.playUIClick(),
                     u()
                 }
                 )),
-                m.appendChild((0,
-                C.gn)(this, Xn, "f")),
-                (0,
-                C.gn)(this, Yn, "f").push((0,
-                C.gn)(this, Xn, "f"))),
-                (0,
-                C.gn)(this, Wn, "f").appendChild((0,
-                C.gn)(this, Kn, "f")),
-                (0,
-                C.gn)(this, Hn, "f").addChangeListener((0,
-                C.GG)(this, $n, ( () => {
-                    (0,
-                    C.gn)(this, Hn, "f").touchEnabled ? p.classList.add("hidden") : p.classList.remove("hidden"),
-                    (0,
-                    C.gn)(this, On, "m", ei).call(this)
+                m.appendChild(C.get(this, Xn, "f")),
+                C.get(this, Yn, "f").push(C.get(this, Xn, "f"))),
+                C.get(this, Wn, "f").appendChild(C.get(this, Kn, "f")),
+                C.get(this, Hn, "f").addChangeListener(C.set(this, $n, ( () => {
+                    C.get(this, Hn, "f").touchEnabled ? p.classList.add("hidden") : p.classList.remove("hidden"),
+                    C.get(this, On, "m", ei).call(this)
                 }
                 ), "f"))
             }
             dispose() {
-                (0,
-                C.gn)(this, Wn, "f").removeChild((0,
-                C.gn)(this, Kn, "f")),
-                (0,
-                C.gn)(this, Hn, "f").removeChangeListener((0,
-                C.gn)(this, $n, "f"))
+                C.get(this, Wn, "f").removeChild(C.get(this, Kn, "f")),
+                C.get(this, Hn, "f").removeChangeListener(C.get(this, $n, "f"))
             }
             setRecord(e) {
-                null == e ? ((0,
-                C.gn)(this, qn, "f").textContent = (0,
-                C.gn)(this, jn, "f").get("No record"),
-                (0,
-                C.gn)(this, Qn, "f").textContent = "") : ((0,
-                C.gn)(this, qn, "f").textContent = Ve.A.formatTimeString(e.time),
-                (0,
-                C.gn)(this, Qn, "f").textContent = "",
+                null == e ? (C.get(this, qn, "f").textContent = C.get(this, jn, "f").get("No record"),
+                C.get(this, Qn, "f").textContent = "") : (C.get(this, qn, "f").textContent = Ve.A.formatTimeString(e.time),
+                C.get(this, Qn, "f").textContent = "",
                 e.position.then((e => {
-                    null != e ? ((0,
-                    C.gn)(this, Qn, "f").textContent = Ke(e),
-                    (0,
-                    C.gn)(this, Qn, "f").classList.add("visible")) : ((0,
-                    C.gn)(this, Qn, "f").textContent = "",
-                    (0,
-                    C.gn)(this, Qn, "f").classList.remove("visible"))
+                    null != e ? (C.get(this, Qn, "f").textContent = Ke(e),
+                    C.get(this, Qn, "f").classList.add("visible")) : (C.get(this, Qn, "f").textContent = "",
+                    C.get(this, Qn, "f").classList.remove("visible"))
                 }
                 )))
             }
             setWatchButtonEnabled(e) {
-                null != (0,
-                C.gn)(this, Jn, "f") && ((0,
-                C.gn)(this, Jn, "f").disabled = !e)
+                null != C.get(this, Jn, "f") && (C.get(this, Jn, "f").disabled = !e)
             }
             setChangeTrackEnabled(e) {
-                null != (0,
-                C.gn)(this, Xn, "f") && ((0,
-                C.gn)(this, Xn, "f").disabled = !e)
+                null != C.get(this, Xn, "f") && (C.get(this, Xn, "f").disabled = !e)
             }
             setVisible(e) {
-                (0,
-                C.gn)(this, Zn, "f") != e && (e ? (0,
-                C.gn)(this, Kn, "f").classList.add("visible") : (0,
-                C.gn)(this, Kn, "f").classList.remove("visible"),
-                (0,
-                C.GG)(this, Zn, e, "f"))
+                C.get(this, Zn, "f") != e && (e ? C.get(this, Kn, "f").classList.add("visible") : C.get(this, Kn, "f").classList.remove("visible"),
+                C.set(this, Zn, e, "f"))
             }
             hasFocus() {
-                return document.activeElement instanceof HTMLButtonElement && (0,
-                C.gn)(this, Yn, "f").includes(document.activeElement)
+                return document.activeElement instanceof HTMLButtonElement && C.get(this, Yn, "f").includes(document.activeElement)
             }
         }
         ;
@@ -42566,32 +40412,21 @@
                 ri.set(this, void 0),
                 ai.set(this, void 0),
                 si.set(this, !1),
-                (0,
-                C.GG)(this, ri, e, "f"),
-                (0,
-                C.GG)(this, ai, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, ai, "f").className = "pause-screen-ui",
-                (0,
-                C.gn)(this, ri, "f").appendChild((0,
-                C.gn)(this, ai, "f"));
+                C.set(this, ri, e, "f"),
+                C.set(this, ai, document.createElement("div"), "f"),
+                C.get(this, ai, "f").className = "pause-screen-ui",
+                C.get(this, ri, "f").appendChild(C.get(this, ai, "f"));
                 const n = document.createElement("div");
                 n.className = "title",
                 n.textContent = t.get("Paused"),
-                (0,
-                C.gn)(this, ai, "f").appendChild(n)
+                C.get(this, ai, "f").appendChild(n)
             }
             dispose() {
-                (0,
-                C.gn)(this, ri, "f").removeChild((0,
-                C.gn)(this, ai, "f"))
+                C.get(this, ri, "f").removeChild(C.get(this, ai, "f"))
             }
             startFadeOut(e) {
-                (0,
-                C.gn)(this, si, "f") || ((0,
-                C.GG)(this, si, !0, "f"),
-                (0,
-                C.gn)(this, ai, "f").classList.add("fade-out"),
+                C.get(this, si, "f") || (C.set(this, si, !0, "f"),
+                C.get(this, ai, "f").classList.add("fade-out"),
                 setTimeout(e, 250))
             }
         }
@@ -42616,46 +40451,27 @@
                 di.set(this, void 0),
                 ui.set(this, void 0),
                 pi.set(this, void 0),
-                (0,
-                C.GG)(this, hi, e, "f"),
-                (0,
-                C.GG)(this, di, n, "f"),
-                (0,
-                C.GG)(this, ui, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, ui, "f").className = "ghost-loading-ui",
-                (0,
-                C.gn)(this, ui, "f").textContent = t.get("Loading replay"),
-                (0,
-                C.gn)(this, hi, "f").appendChild((0,
-                C.gn)(this, ui, "f")),
-                (0,
-                C.GG)(this, pi, document.createElement("span"), "f"),
-                (0,
-                C.gn)(this, pi, "f").className = "percentage",
-                (0,
-                C.gn)(this, ui, "f").appendChild((0,
-                C.gn)(this, pi, "f")),
+                C.set(this, hi, e, "f"),
+                C.set(this, di, n, "f"),
+                C.set(this, ui, document.createElement("div"), "f"),
+                C.get(this, ui, "f").className = "ghost-loading-ui",
+                C.get(this, ui, "f").textContent = t.get("Loading replay"),
+                C.get(this, hi, "f").appendChild(C.get(this, ui, "f")),
+                C.set(this, pi, document.createElement("span"), "f"),
+                C.get(this, pi, "f").className = "percentage",
+                C.get(this, ui, "f").appendChild(C.get(this, pi, "f")),
                 this.update(1)
             }
             dispose() {
-                (0,
-                C.gn)(this, hi, "f").removeChild((0,
-                C.gn)(this, ui, "f"))
+                C.get(this, hi, "f").removeChild(C.get(this, ui, "f"))
             }
             setOverridePosition(e) {
-                const t = (0,
-                C.gn)(this, di, "f").getSetting(R.A.Speedometer);
-                e ?? "top" == t ? (0,
-                C.gn)(this, ui, "f").classList.add("down") : (0,
-                C.gn)(this, ui, "f").classList.remove("down")
+                const t = C.get(this, di, "f").getSetting(R.A.Speedometer);
+                e ?? "top" == t ? C.get(this, ui, "f").classList.add("down") : C.get(this, ui, "f").classList.remove("down")
             }
             update(e) {
-                (0,
-                C.gn)(this, pi, "f").textContent = Math.floor(100 * e).toString() + "%",
-                e >= 1 ? (0,
-                C.gn)(this, ui, "f").classList.add("hide") : (0,
-                C.gn)(this, ui, "f").classList.remove("hide")
+                C.get(this, pi, "f").textContent = Math.floor(100 * e).toString() + "%",
+                e >= 1 ? C.get(this, ui, "f").classList.add("hide") : C.get(this, ui, "f").classList.remove("hide")
             }
         }
         ;
@@ -42695,109 +40511,58 @@
         Ii = new WeakMap,
         yi = new WeakSet,
         Li = function(e) {
-            (0,
-            C.gn)(this, Ii, "f") || ((0,
-            C.GG)(this, Ii, !0, "f"),
-            (0,
-            C.gn)(this, Si, "f").prepend((0,
-            C.gn)(this, ki, "f")),
-            null != (0,
-            C.gn)(this, Ti, "f") && ((0,
-            C.gn)(this, Si, "f").removeChild((0,
-            C.gn)(this, Ti, "f")),
-            (0,
-            C.GG)(this, Ti, null, "f")),
-            (0,
-            C.GG)(this, Mi, null, "f"),
-            null != (0,
-            C.gn)(this, _i, "f") && ((0,
-            C.gn)(this, Si, "f").removeChild((0,
-            C.gn)(this, _i, "f")),
-            (0,
-            C.GG)(this, _i, null, "f")),
-            null != (0,
-            C.gn)(this, Pi, "f") && (clearInterval((0,
-            C.gn)(this, Pi, "f")),
-            (0,
-            C.GG)(this, Pi, null, "f")),
-            (0,
-            C.gn)(this, Ci, "f").disabled = !0,
+            C.get(this, Ii, "f") || (C.set(this, Ii, !0, "f"),
+            C.get(this, Si, "f").prepend(C.get(this, ki, "f")),
+            null != C.get(this, Ti, "f") && (C.get(this, Si, "f").removeChild(C.get(this, Ti, "f")),
+            C.set(this, Ti, null, "f")),
+            C.set(this, Mi, null, "f"),
+            null != C.get(this, _i, "f") && (C.get(this, Si, "f").removeChild(C.get(this, _i, "f")),
+            C.set(this, _i, null, "f")),
+            null != C.get(this, Pi, "f") && (clearInterval(C.get(this, Pi, "f")),
+            C.set(this, Pi, null, "f")),
+            C.get(this, Ci, "f").disabled = !0,
             e.createInvite(( () => {
-                (0,
-                C.gn)(this, yi, "m", Ui).call(this, null),
-                null != (0,
-                C.gn)(this, Pi, "f") && (clearInterval((0,
-                C.gn)(this, Pi, "f")),
-                (0,
-                C.GG)(this, Pi, null, "f"))
+                C.get(this, yi, "m", Ui).call(this, null),
+                null != C.get(this, Pi, "f") && (clearInterval(C.get(this, Pi, "f")),
+                C.set(this, Pi, null, "f"))
             }
             )).then(( ({inviteCode: e, timeoutStart: t, timeoutMilliseconds: n}) => {
-                (0,
-                C.gn)(this, Si, "f").removeChild((0,
-                C.gn)(this, ki, "f")),
-                (0,
-                C.GG)(this, Ti, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, Ti, "f").className = "invite-code-container",
-                (0,
-                C.gn)(this, Si, "f").prepend((0,
-                C.gn)(this, Ti, "f"));
+                C.get(this, Si, "f").removeChild(C.get(this, ki, "f")),
+                C.set(this, Ti, document.createElement("div"), "f"),
+                C.get(this, Ti, "f").className = "invite-code-container",
+                C.get(this, Si, "f").prepend(C.get(this, Ti, "f"));
                 const i = document.createElement("div");
                 i.className = "title",
-                i.textContent = (0,
-                C.gn)(this, wi, "f").get("Share the invite code below to invite people to your game"),
-                (0,
-                C.gn)(this, Ti, "f").appendChild(i),
-                (0,
-                C.GG)(this, Mi, document.createElement("input"), "f"),
-                (0,
-                C.gn)(this, Mi, "f").type = "text",
-                (0,
-                C.gn)(this, Mi, "f").value = e,
-                (0,
-                C.gn)(this, Mi, "f").readOnly = !0,
-                (0,
-                C.gn)(this, Ti, "f").appendChild((0,
-                C.gn)(this, Mi, "f")),
-                (0,
-                C.GG)(this, Ri, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, Ri, "f").className = "timeout-timer",
-                (0,
-                C.gn)(this, Ti, "f").appendChild((0,
-                C.gn)(this, Ri, "f")),
-                (0,
-                C.gn)(this, yi, "m", Ui).call(this, {
+                i.textContent = C.get(this, wi, "f").get("Share the invite code below to invite people to your game"),
+                C.get(this, Ti, "f").appendChild(i),
+                C.set(this, Mi, document.createElement("input"), "f"),
+                C.get(this, Mi, "f").type = "text",
+                C.get(this, Mi, "f").value = e,
+                C.get(this, Mi, "f").readOnly = !0,
+                C.get(this, Ti, "f").appendChild(C.get(this, Mi, "f")),
+                C.set(this, Ri, document.createElement("div"), "f"),
+                C.get(this, Ri, "f").className = "timeout-timer",
+                C.get(this, Ti, "f").appendChild(C.get(this, Ri, "f")),
+                C.get(this, yi, "m", Ui).call(this, {
                     timeoutStart: t,
                     timeoutMilliseconds: n
                 }),
-                (0,
-                C.GG)(this, Pi, setInterval(( () => {
-                    (0,
-                    C.gn)(this, yi, "m", Ui).call(this, {
+                C.set(this, Pi, setInterval(( () => {
+                    C.get(this, yi, "m", Ui).call(this, {
                         timeoutStart: t,
                         timeoutMilliseconds: n
                     })
                 }
                 ), 1e3), "f"),
-                (0,
-                C.gn)(this, Ei, "f").element.disabled = !1
+                C.get(this, Ei, "f").element.disabled = !1
             }
             )).catch((e => {
                 if (console.error("Failed to create invite:", e),
-                (0,
-                C.gn)(this, Si, "f").removeChild((0,
-                C.gn)(this, ki, "f")),
-                (0,
-                C.GG)(this, _i, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, _i, "f").className = "error-container",
-                (0,
-                C.gn)(this, _i, "f").textContent = (0,
-                C.gn)(this, wi, "f").get("Failed to create invite"),
-                (0,
-                C.gn)(this, Si, "f").prepend((0,
-                C.gn)(this, _i, "f")),
+                C.get(this, Si, "f").removeChild(C.get(this, ki, "f")),
+                C.set(this, _i, document.createElement("div"), "f"),
+                C.get(this, _i, "f").className = "error-container",
+                C.get(this, _i, "f").textContent = C.get(this, wi, "f").get("Failed to create invite"),
+                C.get(this, Si, "f").prepend(C.get(this, _i, "f")),
                 e instanceof $t) {
                     let t;
                     switch (e.serverError) {
@@ -42805,12 +40570,10 @@
                         t = null;
                         break;
                     case "IpLimit":
-                        t = (0,
-                        C.gn)(this, wi, "f").get("Too many hosts on this IP address");
+                        t = C.get(this, wi, "f").get("Too many hosts on this IP address");
                         break;
                     case "TotalHostLimit":
-                        t = (0,
-                        C.gn)(this, wi, "f").get("The matchmaking server is full");
+                        t = C.get(this, wi, "f").get("The matchmaking server is full");
                         break;
                     default:
                         e.serverError,
@@ -42820,57 +40583,40 @@
                         const e = document.createElement("div");
                         e.className = "error-reason",
                         e.textContent = t,
-                        (0,
-                        C.gn)(this, _i, "f").appendChild(e)
+                        C.get(this, _i, "f").appendChild(e)
                     }
                 }
-                (0,
-                C.gn)(this, Ci, "f").disabled = !1
+                C.get(this, Ci, "f").disabled = !1
             }
             )).finally(( () => {
-                (0,
-                C.GG)(this, Ii, !1, "f")
+                C.set(this, Ii, !1, "f")
             }
             )))
         }
         ,
         Ui = function(e) {
-            if (null == (0,
-            C.gn)(this, Ri, "f"))
+            if (null == C.get(this, Ri, "f"))
                 return;
             const t = new Date;
             let n;
             if (n = null == e ? 0 : null === e.timeoutMilliseconds ? 1 / 0 : e.timeoutStart.getTime() + e.timeoutMilliseconds - t.getTime(),
             n <= 0)
-                (0,
-                C.gn)(this, Ri, "f").textContent = (0,
-                C.gn)(this, wi, "f").get("Invite Expired"),
-                (0,
-                C.gn)(this, Ri, "f").classList.add("expired"),
-                (0,
-                C.gn)(this, Ci, "f").disabled = !1,
-                (0,
-                C.gn)(this, Ci, "f").classList.remove("hidden");
+                C.get(this, Ri, "f").textContent = C.get(this, wi, "f").get("Invite Expired"),
+                C.get(this, Ri, "f").classList.add("expired"),
+                C.get(this, Ci, "f").disabled = !1,
+                C.get(this, Ci, "f").classList.remove("hidden");
             else if (n === 1 / 0)
-                (0,
-                C.gn)(this, Ri, "f").textContent = "",
-                (0,
-                C.gn)(this, Ri, "f").classList.remove("expired"),
-                (0,
-                C.gn)(this, Ci, "f").classList.add("hidden");
+                C.get(this, Ri, "f").textContent = "",
+                C.get(this, Ri, "f").classList.remove("expired"),
+                C.get(this, Ci, "f").classList.add("hidden");
             else {
                 const i = Math.floor(n / 6e4)
                   , r = Math.floor(n / 1e3) - 60 * i;
-                (0,
-                C.gn)(this, Ri, "f").textContent = (0,
-                C.gn)(this, wi, "f").get("Expires in {0}", [i.toString() + ":" + r.toString().padStart(2, "0")]),
-                (0,
-                C.gn)(this, Ri, "f").classList.remove("expired");
+                C.get(this, Ri, "f").textContent = C.get(this, wi, "f").get("Expires in {0}", [i.toString() + ":" + r.toString().padStart(2, "0")]),
+                C.get(this, Ri, "f").classList.remove("expired");
                 const a = 6e4;
-                (0,
-                C.gn)(this, Ci, "f").disabled = null != e && t.getTime() - e.timeoutStart.getTime() < a,
-                (0,
-                C.gn)(this, Ci, "f").classList.remove("hidden")
+                C.get(this, Ci, "f").disabled = null != e && t.getTime() - e.timeoutStart.getTime() < a,
+                C.get(this, Ci, "f").classList.remove("hidden")
             }
         }
         ;
@@ -42890,69 +40636,44 @@
                 Ri.set(this, null),
                 Pi.set(this, null),
                 Ii.set(this, !1),
-                (0,
-                C.GG)(this, bi, e, "f"),
-                (0,
-                C.GG)(this, wi, n, "f"),
-                (0,
-                C.GG)(this, xi, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, xi, "f").className = "invite-ui",
-                (0,
-                C.gn)(this, bi, "f").appendChild((0,
-                C.gn)(this, xi, "f"));
+                C.set(this, bi, e, "f"),
+                C.set(this, wi, n, "f"),
+                C.set(this, xi, document.createElement("div"), "f"),
+                C.get(this, xi, "f").className = "invite-ui",
+                C.get(this, bi, "f").appendChild(C.get(this, xi, "f"));
                 const a = document.createElement("h2");
                 a.textContent = n.get("Invite"),
-                (0,
-                C.gn)(this, xi, "f").appendChild(a),
-                (0,
-                C.GG)(this, Si, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, Si, "f").className = "content",
-                (0,
-                C.gn)(this, xi, "f").appendChild((0,
-                C.gn)(this, Si, "f")),
-                (0,
-                C.GG)(this, ki, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, ki, "f").className = "loading-container";
+                C.get(this, xi, "f").appendChild(a),
+                C.set(this, Si, document.createElement("div"), "f"),
+                C.get(this, Si, "f").className = "content",
+                C.get(this, xi, "f").appendChild(C.get(this, Si, "f")),
+                C.set(this, ki, document.createElement("div"), "f"),
+                C.get(this, ki, "f").className = "loading-container";
                 const s = document.createElement("div");
                 s.className = "loading-text",
                 s.textContent = n.get("Creating invite..."),
-                (0,
-                C.gn)(this, ki, "f").appendChild(s);
+                C.get(this, ki, "f").appendChild(s);
                 const o = document.createElement("div");
                 o.className = "loading-spinner-ui",
-                (0,
-                C.gn)(this, ki, "f").appendChild(o);
+                C.get(this, ki, "f").appendChild(o);
                 const l = document.createElement("div");
                 l.className = "new-code-container",
-                (0,
-                C.gn)(this, Si, "f").appendChild(l),
-                (0,
-                C.GG)(this, Ci, document.createElement("button"), "f"),
-                (0,
-                C.gn)(this, Ci, "f").className = "button new-code-button",
-                (0,
-                C.gn)(this, Ci, "f").innerHTML = '<img class="button-icon" src="images/refresh.svg"> ',
-                (0,
-                C.gn)(this, Ci, "f").disabled = !0,
-                (0,
-                C.gn)(this, Ci, "f").prepend(document.createTextNode(n.get("Renew") + " ")),
-                (0,
-                C.gn)(this, Ci, "f").addEventListener("click", ( () => {
+                C.get(this, Si, "f").appendChild(l),
+                C.set(this, Ci, document.createElement("button"), "f"),
+                C.get(this, Ci, "f").className = "button new-code-button",
+                C.get(this, Ci, "f").innerHTML = '<img class="button-icon" src="images/refresh.svg"> ',
+                C.get(this, Ci, "f").disabled = !0,
+                C.get(this, Ci, "f").prepend(document.createTextNode(n.get("Renew") + " ")),
+                C.get(this, Ci, "f").addEventListener("click", ( () => {
                     t.playUIClick(),
                     i.resetInvite(),
-                    (0,
-                    C.gn)(this, yi, "m", Li).call(this, i)
+                    C.get(this, yi, "m", Li).call(this, i)
                 }
                 )),
-                l.appendChild((0,
-                C.gn)(this, Ci, "f"));
+                l.appendChild(C.get(this, Ci, "f"));
                 const c = document.createElement("div");
                 c.className = "buttons-container",
-                (0,
-                C.gn)(this, xi, "f").appendChild(c);
+                C.get(this, xi, "f").appendChild(c);
                 const h = document.createElement("button");
                 h.className = "button",
                 h.innerHTML = '<img class="button-icon" src="images/cancel.svg"> ',
@@ -42963,25 +40684,15 @@
                 )),
                 h.appendChild(document.createTextNode(n.get("Close"))),
                 c.appendChild(h),
-                (0,
-                C.GG)(this, Ei, new zi.A(t,n,( () => (0,
-                C.gn)(this, Mi, "f")?.value ?? "")), "f"),
-                (0,
-                C.gn)(this, Ei, "f").element.disabled = !0,
-                c.appendChild((0,
-                C.gn)(this, Ei, "f").element),
-                (0,
-                C.gn)(this, yi, "m", Li).call(this, i)
+                C.set(this, Ei, new zi.A(t,n,( () => C.get(this, Mi, "f")?.value ?? "")), "f"),
+                C.get(this, Ei, "f").element.disabled = !0,
+                c.appendChild(C.get(this, Ei, "f").element),
+                C.get(this, yi, "m", Li).call(this, i)
             }
             dispose() {
-                (0,
-                C.gn)(this, bi, "f").removeChild((0,
-                C.gn)(this, xi, "f")),
-                null != (0,
-                C.gn)(this, Pi, "f") && (clearInterval((0,
-                C.gn)(this, Pi, "f")),
-                (0,
-                C.GG)(this, Pi, null, "f"))
+                C.get(this, bi, "f").removeChild(C.get(this, xi, "f")),
+                null != C.get(this, Pi, "f") && (clearInterval(C.get(this, Pi, "f")),
+                C.set(this, Pi, null, "f"))
             }
         }
         ;
@@ -43012,20 +40723,11 @@
         er = new WeakMap,
         Gi = new WeakSet,
         tr = function() {
-            (0,
-            C.gn)(this, qi, "f").innerHTML = "",
-            (0,
-            C.gn)(this, Qi, "f").length = 0;
-            let e = (0,
-            C.gn)(this, Hi, "f").getPlayers();
-            (0,
-            C.gn)(this, Hi, "f")instanceof Fn && (e = e.concat((0,
-            C.gn)(this, Hi, "f").getConnectingPlayers())),
-            (0,
-            C.gn)(this, Zi, "f") || ((0,
-            C.gn)(this, Ki, "f").textContent = (0,
-            C.gn)(this, Wi, "f").get("Players") + " (" + e.length.toString() + "/" + (0,
-            C.gn)(this, Hi, "f").getMaxPlayers().toString() + ")"),
+            C.get(this, qi, "f").innerHTML = "",
+            C.get(this, Qi, "f").length = 0;
+            let e = C.get(this, Hi, "f").getPlayers();
+            C.get(this, Hi, "f")instanceof Fn && (e = e.concat(C.get(this, Hi, "f").getConnectingPlayers())),
+            C.get(this, Zi, "f") || (C.get(this, Ki, "f").textContent = C.get(this, Wi, "f").get("Players") + " (" + e.length.toString() + "/" + C.get(this, Hi, "f").getMaxPlayers().toString() + ")"),
             e.sort(( (e, t) => {
                 let n;
                 return n = null != e.record && null != t.record ? e.record.numberOfFrames - t.record.numberOfFrames : null != e.record && null == t.record ? -1 : null == e.record && null != t.record ? 1 : 0,
@@ -43037,8 +40739,7 @@
                   , i = e[t]
                   , r = document.createElement("div");
                 i.isSelf && r.classList.add("self"),
-                (0,
-                C.gn)(this, qi, "f").appendChild(r);
+                C.get(this, qi, "f").appendChild(r);
                 const a = document.createElement("div");
                 a.className = "position",
                 a.textContent = qe(n),
@@ -43052,18 +40753,15 @@
                 r.appendChild(o);
                 const l = document.createElement("img");
                 l.className = "car-thumbnail";
-                const c = (0,
-                C.gn)(this, Yi, "f").get(i.carStyle.serialize());
+                const c = C.get(this, Yi, "f").get(i.carStyle.serialize());
                 if (null != c)
                     l.src = c;
                 else {
                     l.src = "images/car_thumbnail_placeholder.png";
                     const e = i.carStyle.serialize();
-                    ir.F(i.carStyle, (0,
-                    C.gn)(this, Xi, "f")).then((t => {
+                    ir.F(i.carStyle, C.get(this, Xi, "f")).then((t => {
                         l.src = t,
-                        (0,
-                        C.gn)(this, Yi, "f").set(e, t)
+                        C.get(this, Yi, "f").set(e, t)
                     }
                     ))
                 }
@@ -43088,8 +40786,7 @@
                 i.isSelf) {
                     const e = document.createElement("span");
                     e.className = "self",
-                    e.textContent = "(" + (0,
-                    C.gn)(this, Wi, "f").get("You") + ")",
+                    e.textContent = "(" + C.get(this, Wi, "f").get("You") + ")",
                     h.appendChild(e)
                 }
                 const f = document.createElement("div");
@@ -43100,33 +40797,25 @@
                 const m = document.createElement("span");
                 if (m.textContent = "ms",
                 f.appendChild(m),
-                (0,
-                C.gn)(this, Qi, "f").push({
+                C.get(this, Qi, "f").push({
                     playerId: i.id,
                     textNode: g,
                     unitElement: m
                 }),
-                (0,
-                C.gn)(this, Hi, "f")instanceof Fn)
+                C.get(this, Hi, "f")instanceof Fn)
                     if (i.isSelf) {
                         const e = document.createElement("div");
                         e.className = "kick-button-placeholder",
                         r.appendChild(e)
                     } else {
-                        const e = (0,
-                        C.gn)(this, Hi, "f")
+                        const e = C.get(this, Hi, "f")
                           , t = i.id
                           , n = document.createElement("button");
                         n.className = "button kick-button",
                         n.innerHTML = '<img class="button-icon" src="images/cancel.svg">',
                         n.addEventListener("click", ( () => {
-                            (0,
-                            C.gn)(this, Oi, "f").playUIClick(),
-                            (0,
-                            C.gn)(this, Vi, "f").showConfirm((0,
-                            C.gn)(this, Wi, "f").get('Are you sure you want to kick the player "{0}"?', [i.nickname]), (0,
-                            C.gn)(this, Wi, "f").get("Cancel"), (0,
-                            C.gn)(this, Wi, "f").get("Kick"), null, ( () => {
+                            C.get(this, Oi, "f").playUIClick(),
+                            C.get(this, Vi, "f").showConfirm(C.get(this, Wi, "f").get('Are you sure you want to kick the player "{0}"?', [i.nickname]), C.get(this, Wi, "f").get("Cancel"), C.get(this, Wi, "f").get("Kick"), null, ( () => {
                                 e.kickPlayer(t)
                             }
                             ))
@@ -43135,15 +40824,12 @@
                         r.appendChild(n)
                     }
             }
-            (0,
-            C.gn)(this, Gi, "m", nr).call(this)
+            C.get(this, Gi, "m", nr).call(this)
         }
         ,
         nr = function() {
-            for (const {playerId: e, textNode: t, unitElement: n} of (0,
-            C.gn)(this, Qi, "f")) {
-                const i = (0,
-                C.gn)(this, Hi, "f").getPing(e);
+            for (const {playerId: e, textNode: t, unitElement: n} of C.get(this, Qi, "f")) {
+                const i = C.get(this, Hi, "f").getPing(e);
                 null != i ? (t.textContent = Math.max(0, Math.min(999, i)).toString(),
                 n.style.display = "") : (t.textContent = "-",
                 n.style.display = "none")
@@ -43168,39 +40854,22 @@
                 Zi.set(this, !1),
                 $i.set(this, void 0),
                 er.set(this, void 0),
-                (0,
-                C.GG)(this, Fi, e, "f"),
-                (0,
-                C.GG)(this, Oi, t, "f"),
-                (0,
-                C.GG)(this, Wi, n, "f"),
-                (0,
-                C.GG)(this, Vi, i, "f"),
-                (0,
-                C.GG)(this, Hi, a, "f"),
-                (0,
-                C.GG)(this, ji, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, ji, "f").className = "player-list-ui",
-                (0,
-                C.gn)(this, Fi, "f").appendChild((0,
-                C.gn)(this, ji, "f")),
-                (0,
-                C.GG)(this, Ki, document.createElement("h2"), "f"),
-                (0,
-                C.gn)(this, ji, "f").appendChild((0,
-                C.gn)(this, Ki, "f")),
-                (0,
-                C.GG)(this, qi, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, qi, "f").className = "content",
-                (0,
-                C.gn)(this, ji, "f").appendChild((0,
-                C.gn)(this, qi, "f"));
+                C.set(this, Fi, e, "f"),
+                C.set(this, Oi, t, "f"),
+                C.set(this, Wi, n, "f"),
+                C.set(this, Vi, i, "f"),
+                C.set(this, Hi, a, "f"),
+                C.set(this, ji, document.createElement("div"), "f"),
+                C.get(this, ji, "f").className = "player-list-ui",
+                C.get(this, Fi, "f").appendChild(C.get(this, ji, "f")),
+                C.set(this, Ki, document.createElement("h2"), "f"),
+                C.get(this, ji, "f").appendChild(C.get(this, Ki, "f")),
+                C.set(this, qi, document.createElement("div"), "f"),
+                C.get(this, qi, "f").className = "content",
+                C.get(this, ji, "f").appendChild(C.get(this, qi, "f"));
                 const o = document.createElement("div");
                 o.className = "bottom-container",
-                (0,
-                C.gn)(this, ji, "f").appendChild(o);
+                C.get(this, ji, "f").appendChild(o);
                 const l = document.createElement("button");
                 l.className = "button",
                 l.innerHTML = '<img class="button-icon" src="images/cancel.svg"> ',
@@ -43211,54 +40880,34 @@
                 )),
                 l.appendChild(document.createTextNode(n.get("Close"))),
                 o.appendChild(l),
-                (0,
-                C.gn)(this, Gi, "m", tr).call(this),
-                (0,
-                C.gn)(this, Hi, "f").addPlayersChangedCallback((0,
-                C.GG)(this, er, ( () => {
-                    (0,
-                    C.gn)(this, Gi, "m", tr).call(this)
+                C.get(this, Gi, "m", tr).call(this),
+                C.get(this, Hi, "f").addPlayersChangedCallback(C.set(this, er, ( () => {
+                    C.get(this, Gi, "m", tr).call(this)
                 }
                 ), "f")),
-                (0,
-                C.gn)(this, Hi, "f").addEndSessionCallback(r, (0,
-                C.GG)(this, $i, ( () => {
-                    if ((0,
-                    C.GG)(this, Zi, !0, "f"),
-                    (0,
-                    C.gn)(this, Ki, "f").textContent = (0,
-                    C.gn)(this, Wi, "f").get("Session Results"),
+                C.get(this, Hi, "f").addEndSessionCallback(r, C.set(this, $i, ( () => {
+                    if (C.set(this, Zi, !0, "f"),
+                    C.get(this, Ki, "f").textContent = C.get(this, Wi, "f").get("Session Results"),
                     l.parentElement == o) {
                         o.removeChild(l);
                         const e = document.createElement("div");
                         e.className = "session-ended-text",
-                        e.textContent = (0,
-                        C.gn)(this, Wi, "f").get("A new session will start shortly"),
+                        e.textContent = C.get(this, Wi, "f").get("A new session will start shortly"),
                         o.appendChild(e)
                     }
                 }
                 ), "f")),
-                (0,
-                C.GG)(this, Ji, setInterval(( () => {
-                    (0,
-                    C.gn)(this, Gi, "m", nr).call(this)
+                C.set(this, Ji, setInterval(( () => {
+                    C.get(this, Gi, "m", nr).call(this)
                 }
                 ), 500), "f")
             }
             dispose() {
-                (0,
-                C.gn)(this, Hi, "f").removePlayersChangedCallback((0,
-                C.gn)(this, er, "f")),
-                (0,
-                C.gn)(this, Hi, "f").removeEndSessionCallback((0,
-                C.gn)(this, $i, "f")),
-                clearInterval((0,
-                C.gn)(this, Ji, "f")),
-                (0,
-                C.gn)(this, Fi, "f").removeChild((0,
-                C.gn)(this, ji, "f")),
-                (0,
-                C.gn)(this, Xi, "f").cancel()
+                C.get(this, Hi, "f").removePlayersChangedCallback(C.get(this, er, "f")),
+                C.get(this, Hi, "f").removeEndSessionCallback(C.get(this, $i, "f")),
+                clearInterval(C.get(this, Ji, "f")),
+                C.get(this, Fi, "f").removeChild(C.get(this, ji, "f")),
+                C.get(this, Xi, "f").cancel()
             }
         }
         ;
@@ -43281,27 +40930,18 @@
                 cr.set(this, void 0),
                 hr.set(this, void 0),
                 dr.set(this, void 0),
-                (0,
-                C.GG)(this, cr, e, "f"),
-                (0,
-                C.GG)(this, hr, t, "f"),
-                (0,
-                C.GG)(this, dr, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, dr, "f").className = "server-message-ui",
-                (0,
-                C.gn)(this, cr, "f").appendChild((0,
-                C.gn)(this, dr, "f"))
+                C.set(this, cr, e, "f"),
+                C.set(this, hr, t, "f"),
+                C.set(this, dr, document.createElement("div"), "f"),
+                C.get(this, dr, "f").className = "server-message-ui",
+                C.get(this, cr, "f").appendChild(C.get(this, dr, "f"))
             }
             dispose() {
-                (0,
-                C.gn)(this, cr, "f").removeChild((0,
-                C.gn)(this, dr, "f"))
+                C.get(this, cr, "f").removeChild(C.get(this, dr, "f"))
             }
             show(e) {
                 const t = .03125;
-                (0,
-                C.gn)(this, dr, "f").animate([{
+                C.get(this, dr, "f").animate([{
                     offset: 0,
                     opacity: "0",
                     transform: "translateX(20px)"
@@ -43323,15 +40963,11 @@
                     fill: "forwards",
                     easing: "ease-in-out"
                 }),
-                (0,
-                C.gn)(this, dr, "f").textContent = e
+                C.get(this, dr, "f").textContent = e
             }
             setOverridePosition(e) {
-                const t = (0,
-                C.gn)(this, hr, "f").getSetting(R.A.Speedometer);
-                e ?? "top" == t ? (0,
-                C.gn)(this, dr, "f").classList.add("down") : (0,
-                C.gn)(this, dr, "f").classList.remove("down")
+                const t = C.get(this, hr, "f").getSetting(R.A.Speedometer);
+                e ?? "top" == t ? C.get(this, dr, "f").classList.add("down") : C.get(this, dr, "f").classList.remove("down")
             }
         }
         ;
@@ -43358,36 +40994,23 @@
                 const e = document.getElementById("ui");
                 if (null == e)
                     throw new Error("UI element not found");
-                (0,
-                C.GG)(this, Ar, e, "f"),
-                (0,
-                C.GG)(this, vr, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, vr, "f").className = "game-ui",
-                (0,
-                C.gn)(this, Ar, "f").appendChild((0,
-                C.gn)(this, vr, "f"))
+                C.set(this, Ar, e, "f"),
+                C.set(this, vr, document.createElement("div"), "f"),
+                C.get(this, vr, "f").className = "game-ui",
+                C.get(this, Ar, "f").appendChild(C.get(this, vr, "f"))
             }
             dispose() {
-                (0,
-                C.gn)(this, Ar, "f").removeChild((0,
-                C.gn)(this, vr, "f"))
+                C.get(this, Ar, "f").removeChild(C.get(this, vr, "f"))
             }
             get element() {
-                return (0,
-                C.gn)(this, vr, "f")
+                return C.get(this, vr, "f")
             }
             get isVisible() {
-                return (0,
-                C.gn)(this, yr, "f")
+                return C.get(this, yr, "f")
             }
             set isVisible(e) {
-                (0,
-                C.gn)(this, yr, "f") != e && ((0,
-                C.GG)(this, yr, e, "f"),
-                e ? (0,
-                C.gn)(this, vr, "f").classList.remove("hidden") : (0,
-                C.gn)(this, vr, "f").classList.add("hidden"))
+                C.get(this, yr, "f") != e && (C.set(this, yr, e, "f"),
+                e ? C.get(this, vr, "f").classList.remove("hidden") : C.get(this, vr, "f").classList.add("hidden"))
             }
         }
         ;
@@ -43410,22 +41033,13 @@
                 const e = document.getElementById("ui");
                 if (null == e)
                     throw new Error("UI element not found");
-                (0,
-                C.GG)(this, Sr, e, "f"),
-                (0,
-                C.GG)(this, kr, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, kr, "f").className = "session-end-ui",
-                (0,
-                C.gn)(this, Sr, "f").appendChild((0,
-                C.gn)(this, kr, "f"))
+                C.set(this, Sr, e, "f"),
+                C.set(this, kr, document.createElement("div"), "f"),
+                C.get(this, kr, "f").className = "session-end-ui",
+                C.get(this, Sr, "f").appendChild(C.get(this, kr, "f"))
             }
             dispose() {
-                (0,
-                C.gn)(this, kr, "f").parentElement == (0,
-                C.gn)(this, Sr, "f") && (0,
-                C.gn)(this, Sr, "f").removeChild((0,
-                C.gn)(this, kr, "f"))
+                C.get(this, kr, "f").parentElement == C.get(this, Sr, "f") && C.get(this, Sr, "f").removeChild(C.get(this, kr, "f"))
             }
         }
         ;
@@ -43563,163 +41177,85 @@
         Wa = new WeakMap,
         _r = new WeakSet,
         Va = function() {
-            if (null == (0,
-            C.gn)(this, Sa, "f"))
-                (0,
-                C.gn)(this, Kr, "f").call(this);
+            if (null == C.get(this, Sa, "f"))
+                C.get(this, Kr, "f").call(this);
             else {
                 let e;
-                e = (0,
-                C.gn)(this, Sa, "f").multiplayerConnection instanceof Fn ? (0,
-                C.gn)(this, Ur, "f").get("Are you sure you want to quit?") + "\n\n" + (0,
-                C.gn)(this, Ur, "f").get("All connected players will be disconnected!") : (0,
-                C.gn)(this, Ur, "f").get("Are you sure you want to quit?"),
-                (0,
-                C.gn)(this, Or, "f").showConfirm(e, (0,
-                C.gn)(this, Ur, "f").get("Cancel"), (0,
-                C.gn)(this, Ur, "f").get("Confirm"), null, ( () => {
-                    (0,
-                    C.gn)(this, Kr, "f").call(this)
+                e = C.get(this, Sa, "f").multiplayerConnection instanceof Fn ? C.get(this, Ur, "f").get("Are you sure you want to quit?") + "\n\n" + C.get(this, Ur, "f").get("All connected players will be disconnected!") : C.get(this, Ur, "f").get("Are you sure you want to quit?"),
+                C.get(this, Or, "f").showConfirm(e, C.get(this, Ur, "f").get("Cancel"), C.get(this, Ur, "f").get("Confirm"), null, ( () => {
+                    C.get(this, Kr, "f").call(this)
                 }
                 ))
             }
         }
         ,
         Ha = function() {
-            return null != (0,
-            C.gn)(this, ha, "f") || null != (0,
-            C.gn)(this, da, "f") || null != (0,
-            C.gn)(this, ua, "f") || (0,
-            C.gn)(this, Or, "f").isOpen
+            return null != C.get(this, ha, "f") || null != C.get(this, da, "f") || null != C.get(this, ua, "f") || C.get(this, Or, "f").isOpen
         }
         ,
         ja = function() {
-            return !((0,
-            C.gn)(this, wa, "f").hasFinished() || !(0,
-            C.gn)(this, wa, "f").hasCheckpointToRespawnAt() || !(0,
-            C.gn)(this, va, "f") || null != (0,
-            C.gn)(this, ba, "f") && (new Date).getTime() - (0,
-            C.gn)(this, ba, "f").getTime() < 250)
+            return !(C.get(this, wa, "f").hasFinished() || !C.get(this, wa, "f").hasCheckpointToRespawnAt() || !C.get(this, va, "f") || null != C.get(this, ba, "f") && (new Date).getTime() - C.get(this, ba, "f").getTime() < 250)
         }
         ,
         Ka = function() {
-            null != (0,
-            C.gn)(this, ca, "f") || (0,
-            C.gn)(this, Pa, "f") || (0,
-            C.gn)(this, wa, "f").hasFinished() || ((0,
-            C.gn)(this, Gr, "f").getSettingBoolean(R.A.CockpitCameraToggle) ? (0,
-            C.gn)(this, zr, "f").camera == (0,
-            C.gn)(this, wa, "f").cameraOrbit ? (0,
-            C.gn)(this, zr, "f").setCamera((0,
-            C.gn)(this, wa, "f").cameraCockpit) : (0,
-            C.gn)(this, zr, "f").setCamera((0,
-            C.gn)(this, wa, "f").cameraOrbit) : (0,
-            C.gn)(this, Gr, "f").getSettingBoolean(R.A.DefaultCameraMode) ? (0,
-            C.gn)(this, zr, "f").setCamera((0,
-            C.gn)(this, wa, "f").cameraOrbit) : (0,
-            C.gn)(this, zr, "f").setCamera((0,
-            C.gn)(this, wa, "f").cameraCockpit))
+            null != C.get(this, ca, "f") || C.get(this, Pa, "f") || C.get(this, wa, "f").hasFinished() || (C.get(this, Gr, "f").getSettingBoolean(R.A.CockpitCameraToggle) ? C.get(this, zr, "f").camera == C.get(this, wa, "f").cameraOrbit ? C.get(this, zr, "f").setCamera(C.get(this, wa, "f").cameraCockpit) : C.get(this, zr, "f").setCamera(C.get(this, wa, "f").cameraOrbit) : C.get(this, Gr, "f").getSettingBoolean(R.A.DefaultCameraMode) ? C.get(this, zr, "f").setCamera(C.get(this, wa, "f").cameraOrbit) : C.get(this, zr, "f").setCamera(C.get(this, wa, "f").cameraCockpit))
         }
         ,
         qa = function() {
-            (0,
-            C.gn)(this, Ba, "f").isEnabled || (0,
-            C.gn)(this, wa, "f").hasFinished() || (0,
-            C.gn)(this, Gr, "f").getSettingBoolean(R.A.CockpitCameraToggle) || ((0,
-            C.gn)(this, Gr, "f").getSettingBoolean(R.A.DefaultCameraMode) ? (0,
-            C.gn)(this, zr, "f").setCamera((0,
-            C.gn)(this, wa, "f").cameraCockpit) : (0,
-            C.gn)(this, zr, "f").setCamera((0,
-            C.gn)(this, wa, "f").cameraOrbit))
+            C.get(this, Ba, "f").isEnabled || C.get(this, wa, "f").hasFinished() || C.get(this, Gr, "f").getSettingBoolean(R.A.CockpitCameraToggle) || (C.get(this, Gr, "f").getSettingBoolean(R.A.DefaultCameraMode) ? C.get(this, zr, "f").setCamera(C.get(this, wa, "f").cameraCockpit) : C.get(this, zr, "f").setCamera(C.get(this, wa, "f").cameraOrbit))
         }
         ,
         Qa = function() {
-            P.Xx() || (0,
-            C.gn)(this, Pa, "f") || ((0,
-            C.gn)(this, wa, "f").hasFinished() && (0,
-            C.gn)(this, Sa, "f")?.gameMode != Yt.Competitive ? P.RN("game-finish-reset").finally(( () => {
-                (0,
-                C.gn)(this, Pa, "f") || ((0,
-                C.gn)(this, _r, "m", Ja).call(this),
-                (0,
-                C.gn)(this, _r, "m", Ya).call(this))
+            P.Xx() || C.get(this, Pa, "f") || (C.get(this, wa, "f").hasFinished() && C.get(this, Sa, "f")?.gameMode != Yt.Competitive ? P.RN("game-finish-reset").finally(( () => {
+                C.get(this, Pa, "f") || (C.get(this, _r, "m", Ja).call(this),
+                C.get(this, _r, "m", Ya).call(this))
             }
-            )) : ((0,
-            C.gn)(this, _r, "m", Ja).call(this),
-            (0,
-            C.gn)(this, _r, "m", Ya).call(this)))
+            )) : (C.get(this, _r, "m", Ja).call(this),
+            C.get(this, _r, "m", Ya).call(this)))
         }
         ,
         Ja = function() {
-            const e = (0,
-            C.gn)(this, zr, "f").camera == (0,
-            C.gn)(this, wa, "f").cameraCockpit;
-            (0,
-            C.gn)(this, wa, "f").dispose(),
-            (0,
-            C.GG)(this, wa, (0,
-            C.gn)(this, _r, "m", Xa).call(this, e), "f")
+            const e = C.get(this, zr, "f").camera == C.get(this, wa, "f").cameraCockpit;
+            C.get(this, wa, "f").dispose(),
+            C.set(this, wa, C.get(this, _r, "m", Xa).call(this, e), "f")
         }
         ,
         Xa = function(e) {
             var t;
-            const n = (0,
-            C.gn)(this, Dr, "f").getCurrentUserProfile();
-            (0,
-            C.gn)(this, _r, "m", es).call(this);
-            const i = (0,
-            C.gn)(this, Pr, "f").getStartTransform();
+            const n = C.get(this, Dr, "f").getCurrentUserProfile();
+            C.get(this, _r, "m", es).call(this);
+            const i = C.get(this, Pr, "f").getStartTransform();
             if (null == i)
                 throw new Error("Start transform is null");
-            const r = (0,
-            C.GG)(this, Ia, (t = (0,
-            C.gn)(this, Ia, "f"),
+            const r = C.set(this, Ia, (t = C.get(this, Ia, "f"),
             ++t), "f");
             let a;
-            if (null != (0,
-            C.gn)(this, Sa, "f")) {
-                const e = (0,
-                C.gn)(this, Sa, "f");
+            if (null != C.get(this, Sa, "f")) {
+                const e = C.get(this, Sa, "f");
                 a = t => {
                     e.multiplayerConnection.sendCarUpdate(e.sessionId, r, t)
                 }
                 ,
-                (0,
-                C.gn)(this, Sa, "f").multiplayerConnection.sendCarReset(e.sessionId, r)
+                C.get(this, Sa, "f").multiplayerConnection.sendCarReset(e.sessionId, r)
             } else
                 a = null;
-            const s = new L.A((0,
-            C.gn)(this, Cr, "f"),i,null,(0,
-            C.gn)(this, ya, "f"),(0,
-            C.gn)(this, zr, "f"),(0,
-            C.gn)(this, Nr, "f"),(0,
-            C.gn)(this, Ir, "f"),(0,
-            C.gn)(this, Pr, "f"),(0,
-            C.gn)(this, Yr, "f"),(0,
-            C.gn)(this, Gr, "f"),a);
+            const s = new L.A(C.get(this, Cr, "f"),i,null,C.get(this, ya, "f"),C.get(this, zr, "f"),C.get(this, Nr, "f"),C.get(this, Ir, "f"),C.get(this, Pr, "f"),C.get(this, Yr, "f"),C.get(this, Gr, "f"),a);
             return s.notificationAudioEnabled = !0,
             s.addResetCallback(( () => {
-                (0,
-                C.gn)(this, ya, "f").reset = !1,
-                (0,
-                C.GG)(this, va, s.getControls().up || s.getControls().down, "f"),
-                (0,
-                C.gn)(this, va, "f") && (0,
-                C.GG)(this, ba, new Date, "f")
+                C.get(this, ya, "f").reset = !1,
+                C.set(this, va, s.getControls().up || s.getControls().down, "f"),
+                C.get(this, va, "f") && C.set(this, ba, new Date, "f")
             }
             )),
             s.addCheckpointCallback((e => {
-                const t = (0,
-                C.gn)(this, _r, "m", Za).call(this)
+                const t = C.get(this, _r, "m", Za).call(this)
                   , n = s.getTime();
                 let i = null;
                 if (null != t && t.checkpoints.length > e && (i = t.checkpoints[e].time),
-                (0,
-                C.gn)(this, sa, "f").showCheckpointTime(n, i),
+                C.get(this, sa, "f").showCheckpointTime(n, i),
                 null != t && t.checkpoints.length > e) {
                     const n = t.checkpoints[e].speedKmh;
-                    (0,
-                    C.gn)(this, aa, "f").showCheckpointSpeed(s.getSpeedKmh(), n)
+                    C.get(this, aa, "f").showCheckpointSpeed(s.getSpeedKmh(), n)
                 }
             }
             )),
@@ -43728,37 +41264,23 @@
                   , i = e.getRecording()
                   , r = e.getCarStyle();
                 let a;
-                const s = (0,
-                C.gn)(this, Ua, "f");
-                if (null == (0,
-                C.gn)(this, Ua, "f") || t.lessThan((0,
-                C.gn)(this, Ua, "f").time)) {
+                const s = C.get(this, Ua, "f");
+                if (null == C.get(this, Ua, "f") || t.lessThan(C.get(this, Ua, "f").time)) {
                     if (a = (async () => {
-                        if ((0,
-                        C.gn)(this, jr, "f")) {
-                            const e = (0,
-                            C.gn)(this, Dr, "f").profileSlot
-                              , n = (0,
-                            C.gn)(this, Br, "f").getRecordTime(e, (0,
-                            C.gn)(this, Yr, "f").getId());
+                        if (C.get(this, jr, "f")) {
+                            const e = C.get(this, Dr, "f").profileSlot
+                              , n = C.get(this, Br, "f").getRecordTime(e, C.get(this, Yr, "f").getId());
                             if (null == n || t.lessThan(n)) {
-                                const n = "official" == (0,
-                                C.gn)(this, Zr, "f") || "community" == (0,
-                                C.gn)(this, Zr, "f");
-                                return (0,
-                                C.gn)(this, Br, "f").setRecord(e, (0,
-                                C.gn)(this, Yr, "f").getId(), n, t, i)
+                                const n = "official" == C.get(this, Zr, "f") || "community" == C.get(this, Zr, "f");
+                                return C.get(this, Br, "f").setRecord(e, C.get(this, Yr, "f").getId(), n, t, i)
                             }
                         }
                         return Promise.resolve(null)
                     }
                     )(),
-                    null == (0,
-                    C.gn)(this, Sa, "f"))
-                        if (0 == (0,
-                        C.gn)(this, xa, "f").length)
-                            (0,
-                            C.gn)(this, xa, "f").push({
+                    null == C.get(this, Sa, "f"))
+                        if (0 == C.get(this, xa, "f").length)
+                            C.get(this, xa, "f").push({
                                 car: null,
                                 carId: null,
                                 hasEnded: !1,
@@ -43775,12 +41297,9 @@
                                 checkpoints: [],
                                 finishSpeedKmh: null
                             }),
-                            (0,
-                            C.gn)(this, la, "f").setWatchButtonEnabled(null != (0,
-                            C.gn)(this, qr, "f"));
+                            C.get(this, la, "f").setWatchButtonEnabled(null != C.get(this, qr, "f"));
                         else {
-                            const e = (0,
-                            C.gn)(this, xa, "f").find((e => e.settings.isSelf));
+                            const e = C.get(this, xa, "f").find((e => e.settings.isSelf));
                             null != e && (e.settings = {
                                 recording: i,
                                 carStyle: r,
@@ -43788,60 +41307,38 @@
                                 time: t,
                                 isSelf: !0
                             }),
-                            (0,
-                            C.gn)(this, la, "f").setWatchButtonEnabled(null != (0,
-                            C.gn)(this, qr, "f"))
+                            C.get(this, la, "f").setWatchButtonEnabled(null != C.get(this, qr, "f"))
                         }
-                    (0,
-                    C.GG)(this, Ua, {
+                    C.set(this, Ua, {
                         time: t,
                         position: a.then((e => e?.newPosition ?? null)),
                         recording: i
                     }, "f")
                 } else
                     a = Promise.resolve(null);
-                const o = (0,
-                C.gn)(this, za, "f");
-                if ((null == (0,
-                C.gn)(this, za, "f") || t.lessThan((0,
-                C.gn)(this, za, "f").time)) && (0,
-                C.GG)(this, za, {
+                const o = C.get(this, za, "f");
+                if ((null == C.get(this, za, "f") || t.lessThan(C.get(this, za, "f").time)) && C.set(this, za, {
                     time: t,
                     recording: i
                 }, "f"),
-                null != (0,
-                C.gn)(this, Sa, "f")) {
+                null != C.get(this, Sa, "f")) {
                     let e;
-                    switch ((0,
-                    C.gn)(this, Sa, "f").gameMode) {
+                    switch (C.get(this, Sa, "f").gameMode) {
                     case Yt.Casual:
-                        null != s && (0,
-                        C.gn)(this, Ua, "f").time.equals(s.time) ? e = null : ((0,
-                        C.gn)(this, Sa, "f").multiplayerConnection.sendRecord((0,
-                        C.gn)(this, Sa, "f").sessionId, (0,
-                        C.gn)(this, Ua, "f").time),
-                        e = (0,
-                        C.gn)(this, Ua, "f"));
+                        null != s && C.get(this, Ua, "f").time.equals(s.time) ? e = null : (C.get(this, Sa, "f").multiplayerConnection.sendRecord(C.get(this, Sa, "f").sessionId, C.get(this, Ua, "f").time),
+                        e = C.get(this, Ua, "f"));
                         break;
                     case Yt.Competitive:
-                        null != o && (0,
-                        C.gn)(this, za, "f").time.equals(o.time) ? e = null : ((0,
-                        C.gn)(this, Sa, "f").multiplayerConnection.sendRecord((0,
-                        C.gn)(this, Sa, "f").sessionId, (0,
-                        C.gn)(this, za, "f").time),
-                        e = (0,
-                        C.gn)(this, za, "f"));
+                        null != o && C.get(this, za, "f").time.equals(o.time) ? e = null : (C.get(this, Sa, "f").multiplayerConnection.sendRecord(C.get(this, Sa, "f").sessionId, C.get(this, za, "f").time),
+                        e = C.get(this, za, "f"));
                         break;
                     default:
-                        (0,
-                        C.gn)(this, Sa, "f").gameMode,
+                        C.get(this, Sa, "f").gameMode,
                         e = null
                     }
                     if (null != e)
-                        if (0 == (0,
-                        C.gn)(this, xa, "f").length)
-                            (0,
-                            C.gn)(this, xa, "f").push({
+                        if (0 == C.get(this, xa, "f").length)
+                            C.get(this, xa, "f").push({
                                 car: null,
                                 carId: null,
                                 hasEnded: !1,
@@ -43859,8 +41356,7 @@
                                 finishSpeedKmh: null
                             });
                         else {
-                            const t = (0,
-                            C.gn)(this, xa, "f").find((e => e.settings.isSelf));
+                            const t = C.get(this, xa, "f").find((e => e.settings.isSelf));
                             null != t && (t.settings = {
                                 recording: e.recording,
                                 carStyle: r,
@@ -43871,101 +41367,61 @@
                         }
                 }
                 let l = null;
-                const c = (0,
-                C.gn)(this, _r, "m", Za).call(this);
+                const c = C.get(this, _r, "m", Za).call(this);
                 if (null == c || c.settings.isSelf || (l = {
                     record: c.settings.time,
                     nickname: c.settings.nickname
                 }),
-                null == (0,
-                C.gn)(this, Sa, "f"))
-                    (0,
-                    C.GG)(this, oa, new tt((0,
-                    C.gn)(this, ea, "f").element,(0,
-                    C.gn)(this, Ur, "f"),(0,
-                    C.gn)(this, Nr, "f"),(0,
-                    C.gn)(this, Xr, "f").name,t,s?.time ?? null,"personal-best",l,a), "f");
+                null == C.get(this, Sa, "f"))
+                    C.set(this, oa, new TimeAnnouncerUI(C.get(this, ea, "f").element,C.get(this, Ur, "f"),C.get(this, Nr, "f"),C.get(this, Xr, "f").name,t,s?.time ?? null,"personal-best",l,a), "f");
                 else
-                    switch ((0,
-                    C.gn)(this, Sa, "f").gameMode) {
+                    switch (C.get(this, Sa, "f").gameMode) {
                     case Yt.Casual:
-                        (0,
-                        C.GG)(this, oa, new tt((0,
-                        C.gn)(this, ea, "f").element,(0,
-                        C.gn)(this, Ur, "f"),(0,
-                        C.gn)(this, Nr, "f"),(0,
-                        C.gn)(this, Xr, "f").name,t,s?.time ?? null,"personal-best",l,Promise.resolve(null)), "f");
+                        C.set(this, oa, new TimeAnnouncerUI(C.get(this, ea, "f").element,C.get(this, Ur, "f"),C.get(this, Nr, "f"),C.get(this, Xr, "f").name,t,s?.time ?? null,"personal-best",l,Promise.resolve(null)), "f");
                         break;
                     case Yt.Competitive:
                         {
                             let e;
-                            e = null != s && (0,
-                            C.gn)(this, Ua, "f").time.equals(s.time) ? "session-best" : "personal-best",
-                            (0,
-                            C.GG)(this, oa, new tt((0,
-                            C.gn)(this, ea, "f").element,(0,
-                            C.gn)(this, Ur, "f"),(0,
-                            C.gn)(this, Nr, "f"),(0,
-                            C.gn)(this, Xr, "f").name,t,o?.time ?? null,e,l,Promise.resolve(null)), "f");
+                            e = null != s && C.get(this, Ua, "f").time.equals(s.time) ? "session-best" : "personal-best",
+                            C.set(this, oa, new TimeAnnouncerUI(C.get(this, ea, "f").element,C.get(this, Ur, "f"),C.get(this, Nr, "f"),C.get(this, Xr, "f").name,t,o?.time ?? null,e,l,Promise.resolve(null)), "f");
                             break
                         }
                     default:
-                        (0,
-                        C.gn)(this, Sa, "f").gameMode
+                        C.get(this, Sa, "f").gameMode
                     }
-                null != c?.finishSpeedKmh && (0,
-                C.gn)(this, aa, "f").showCheckpointSpeed(e.getSpeedKmh(), c.finishSpeedKmh)
+                null != c?.finishSpeedKmh && C.get(this, aa, "f").showCheckpointSpeed(e.getSpeedKmh(), c.finishSpeedKmh)
             }
             )),
             s.setCarStyle(n.carStyle),
-            e ? (0,
-            C.gn)(this, zr, "f").setCamera(s.cameraCockpit) : (0,
-            C.gn)(this, zr, "f").setCamera(s.cameraOrbit),
-            (0,
-            C.gn)(this, Ba, "f").isEnabled = !1,
-            (0,
-            C.gn)(this, oa, "f")?.dispose(),
-            (0,
-            C.GG)(this, oa, null, "f"),
-            (0,
-            C.gn)(this, sa, "f").hideCheckpointTime(),
-            (0,
-            C.gn)(this, aa, "f").hideCheckpointSpeed(),
-            (0,
-            C.gn)(this, ya, "f").reset = !1,
-            (0,
-            C.GG)(this, va, !1, "f"),
-            (0,
-            C.GG)(this, ba, null, "f"),
+            e ? C.get(this, zr, "f").setCamera(s.cameraCockpit) : C.get(this, zr, "f").setCamera(s.cameraOrbit),
+            C.get(this, Ba, "f").isEnabled = !1,
+            C.get(this, oa, "f")?.dispose(),
+            C.set(this, oa, null, "f"),
+            C.get(this, sa, "f").hideCheckpointTime(),
+            C.get(this, aa, "f").hideCheckpointSpeed(),
+            C.get(this, ya, "f").reset = !1,
+            C.set(this, va, !1, "f"),
+            C.set(this, ba, null, "f"),
             s
         }
         ,
         Ya = function() {
-            if ((0,
-            C.gn)(this, Gr, "f").getSettingBoolean(R.A.GhostCarEnabled))
-                for (const e of (0,
-                C.gn)(this, xa, "f")) {
+            if (C.get(this, Gr, "f").getSettingBoolean(R.A.GhostCarEnabled))
+                for (const e of C.get(this, xa, "f")) {
                     null != e.car && (e.car.dispose(),
                     e.car = null);
-                    const t = (0,
-                    C.gn)(this, Pr, "f").getStartTransform();
+                    const t = C.get(this, Pr, "f").getStartTransform();
                     if (null == t)
                         throw new Error("Start transform is null");
-                    if (e.settings.recording != e.replay?.recording && (null != e.carId && ((0,
-                    C.gn)(this, Rr, "f").deleteCar(e.carId),
+                    if (e.settings.recording != e.replay?.recording && (null != e.carId && (C.get(this, Rr, "f").deleteCar(e.carId),
                     e.carId = null),
                     e.replay = null),
                     null == e.replay) {
-                        const n = e.settings.time.numberOfFrames + (0,
-                        C.gn)(this, Wa, "f")
+                        const n = e.settings.time.numberOfFrames + C.get(this, Wa, "f")
                           , i = new Ft
                           , r = [];
                         let a = 0;
-                        const s = (0,
-                        C.gn)(this, Rr, "f").createCar(t, (0,
-                        C.gn)(this, Ir, "f").getMountainVertices(), (0,
-                        C.gn)(this, Ir, "f").getMountainOffset(), (0,
-                        C.gn)(this, Yr, "f"), e.settings.recording, (t => {
+                        const s = C.get(this, Rr, "f").createCar(t, C.get(this, Ir, "f").getMountainVertices(), C.get(this, Ir, "f").getMountainOffset(), C.get(this, Yr, "f"), e.settings.recording, (t => {
                             i.push(t),
                             t.nextCheckpointIndex > a && (r.push({
                                 time: new yt.A(t.frames),
@@ -43973,18 +41429,15 @@
                             }),
                             a = t.nextCheckpointIndex),
                             null == e.finishSpeedKmh && null != t.finishFrames && (e.finishSpeedKmh = t.speedKmh),
-                            t.frames >= n && null != e.carId && (null != t.finishFrames && t.finishFrames == e.settings.time.numberOfFrames || (0,
-                            C.GG)(this, La, !0, "f"),
-                            (0,
-                            C.gn)(this, Rr, "f").deleteCar(e.carId),
+                            t.frames >= n && null != e.carId && (null != t.finishFrames && t.finishFrames == e.settings.time.numberOfFrames || C.set(this, La, !0, "f"),
+                            C.get(this, Rr, "f").deleteCar(e.carId),
                             e.carId = null),
                             e.loadedFrames = t.frames,
                             e.maxFrames = n
                         }
                         ));
                         i.push(s.carState),
-                        (0,
-                        C.gn)(this, Rr, "f").startCar(s.id, new yt.A(n)),
+                        C.get(this, Rr, "f").startCar(s.id, new yt.A(n)),
                         e.carId = s.id,
                         e.loadedFrames = 0,
                         e.maxFrames = n,
@@ -43995,20 +41448,11 @@
                         e.checkpoints = r,
                         e.finishSpeedKmh = null
                     }
-                    if (null == (0,
-                    C.gn)(this, Sa, "f")) {
-                        const n = new L.A(null,t,e.settings.recording,null,(0,
-                        C.gn)(this, zr, "f"),(0,
-                        C.gn)(this, Nr, "f"),(0,
-                        C.gn)(this, Ir, "f"),(0,
-                        C.gn)(this, Pr, "f"),(0,
-                        C.gn)(this, Yr, "f"),(0,
-                        C.gn)(this, Gr, "f"),null);
+                    if (null == C.get(this, Sa, "f")) {
+                        const n = new L.A(null,t,e.settings.recording,null,C.get(this, zr, "f"),C.get(this, Nr, "f"),C.get(this, Ir, "f"),C.get(this, Pr, "f"),C.get(this, Yr, "f"),C.get(this, Gr, "f"),null);
                         n.setCarStyle(e.settings.carStyle),
-                        n.audioVolume = (0,
-                        C.gn)(this, Oa, "f"),
-                        (0,
-                        C.gn)(this, _r, "m", $a).call(this),
+                        n.audioVolume = C.get(this, Oa, "f"),
+                        C.get(this, _r, "m", $a).call(this),
                         e.car = n,
                         e.hasEnded = !1
                     }
@@ -44017,18 +41461,14 @@
         ,
         Za = function() {
             let e = null;
-            for (const t of (0,
-            C.gn)(this, xa, "f"))
+            for (const t of C.get(this, xa, "f"))
                 (null == e || t.settings.time.lessThan(e.settings.time) || t.settings.time.equals(e.settings.time) && t.settings.isSelf) && (e = t);
             return e
         }
         ,
         $a = function() {
-            const e = (0,
-            C.gn)(this, wa, "f").getPosition()
-              , t = (0,
-            C.gn)(this, xa, "f").map((e => e.car)).filter((e => null != e)).concat(Array.from((0,
-            C.gn)(this, Ra, "f").values()).map((e => e.car)));
+            const e = C.get(this, wa, "f").getPosition()
+              , t = C.get(this, xa, "f").map((e => e.car)).filter((e => null != e)).concat(Array.from(C.get(this, Ra, "f").values()).map((e => e.car)));
             for (const n of t) {
                 const t = n.getPosition().distanceTo(e)
                   , i = Math.max(0, Math.min(1, t / 5));
@@ -44037,49 +41477,31 @@
         }
         ,
         es = function() {
-            if (null != (0,
-            C.gn)(this, Sa, "f")) {
+            if (null != C.get(this, Sa, "f")) {
                 let e;
-                switch ((0,
-                C.gn)(this, Sa, "f").gameMode) {
+                switch (C.get(this, Sa, "f").gameMode) {
                 case Yt.Casual:
-                    e = (0,
-                    C.gn)(this, Ua, "f")?.time ?? null,
-                    (0,
-                    C.gn)(this, la, "f").setRecord((0,
-                    C.gn)(this, Ua, "f"));
+                    e = C.get(this, Ua, "f")?.time ?? null,
+                    C.get(this, la, "f").setRecord(C.get(this, Ua, "f"));
                     break;
                 case Yt.Competitive:
-                    e = (0,
-                    C.gn)(this, za, "f")?.time ?? null,
-                    (0,
-                    C.gn)(this, la, "f").setRecord(null == (0,
-                    C.gn)(this, za, "f") ? null : {
-                        time: (0,
-                        C.gn)(this, za, "f").time,
+                    e = C.get(this, za, "f")?.time ?? null,
+                    C.get(this, la, "f").setRecord(null == C.get(this, za, "f") ? null : {
+                        time: C.get(this, za, "f").time,
                         position: Promise.resolve(null)
                     });
                     break;
                 default:
-                    (0,
-                    C.gn)(this, Sa, "f").gameMode,
+                    C.get(this, Sa, "f").gameMode,
                     e = null
                 }
-                (0,
-                C.gn)(this, sa, "f").record = e,
-                (0,
-                C.gn)(this, sa, "f").nickname = null
+                C.get(this, sa, "f").record = e,
+                C.get(this, sa, "f").nickname = null
             } else {
-                (0,
-                C.gn)(this, la, "f").setRecord((0,
-                C.gn)(this, Ua, "f"));
-                const e = (0,
-                C.gn)(this, _r, "m", Za).call(this);
-                (0,
-                C.gn)(this, sa, "f").record = e?.settings.time ?? null,
-                null == e || e.settings.isSelf ? (0,
-                C.gn)(this, sa, "f").nickname = null : (0,
-                C.gn)(this, sa, "f").nickname = e.settings.nickname
+                C.get(this, la, "f").setRecord(C.get(this, Ua, "f"));
+                const e = C.get(this, _r, "m", Za).call(this);
+                C.get(this, sa, "f").record = e?.settings.time ?? null,
+                null == e || e.settings.isSelf ? C.get(this, sa, "f").nickname = null : C.get(this, sa, "f").nickname = e.settings.nickname
             }
         }
         ;
@@ -44154,68 +41576,40 @@
                 Fa.set(this, null),
                 Oa.set(this, void 0),
                 Wa.set(this, 1e4),
-                (0,
-                C.GG)(this, Cr, e, "f"),
-                (0,
-                C.GG)(this, Rr, t, "f"),
-                (0,
-                C.GG)(this, Pr, n, "f"),
-                (0,
-                C.GG)(this, Ir, i, "f"),
-                (0,
-                C.GG)(this, Lr, r, "f"),
-                (0,
-                C.GG)(this, Ur, a, "f"),
-                (0,
-                C.GG)(this, zr, s, "f"),
-                (0,
-                C.GG)(this, Nr, o, "f"),
-                (0,
-                C.GG)(this, Dr, l, "f"),
-                (0,
-                C.GG)(this, Br, c, "f"),
-                (0,
-                C.GG)(this, Gr, d, "f"),
-                (0,
-                C.GG)(this, Fr, u, "f"),
-                (0,
-                C.GG)(this, Or, p, "f"),
-                (0,
-                C.GG)(this, Wr, f, "f"),
-                (0,
-                C.GG)(this, Vr, g, "f"),
-                (0,
-                C.GG)(this, Hr, h, "f"),
-                (0,
-                C.GG)(this, jr, x, "f"),
-                (0,
-                C.GG)(this, Kr, k, "f"),
-                (0,
-                C.GG)(this, qr, E, "f"),
-                (0,
-                C.GG)(this, Qr, T, "f"),
-                (0,
-                C.GG)(this, Jr, M, "f"),
-                (0,
-                C.GG)(this, Ua, b, "f"),
-                (0,
-                C.GG)(this, Xr, m, "f"),
-                (0,
-                C.GG)(this, Yr, A, "f"),
-                (0,
-                C.GG)(this, Zr, v, "f"),
-                null != w ? (0,
-                C.GG)(this, Sa, {
+                C.set(this, Cr, e, "f"),
+                C.set(this, Rr, t, "f"),
+                C.set(this, Pr, n, "f"),
+                C.set(this, Ir, i, "f"),
+                C.set(this, Lr, r, "f"),
+                C.set(this, Ur, a, "f"),
+                C.set(this, zr, s, "f"),
+                C.set(this, Nr, o, "f"),
+                C.set(this, Dr, l, "f"),
+                C.set(this, Br, c, "f"),
+                C.set(this, Gr, d, "f"),
+                C.set(this, Fr, u, "f"),
+                C.set(this, Or, p, "f"),
+                C.set(this, Wr, f, "f"),
+                C.set(this, Vr, g, "f"),
+                C.set(this, Hr, h, "f"),
+                C.set(this, jr, x, "f"),
+                C.set(this, Kr, k, "f"),
+                C.set(this, qr, E, "f"),
+                C.set(this, Qr, T, "f"),
+                C.set(this, Jr, M, "f"),
+                C.set(this, Ua, b, "f"),
+                C.set(this, Xr, m, "f"),
+                C.set(this, Yr, A, "f"),
+                C.set(this, Zr, v, "f"),
+                null != w ? C.set(this, Sa, {
                     multiplayerConnection: w.multiplayerConnection,
                     sessionId: w.sessionId,
                     gameMode: w.gameMode
-                }, "f") : (0,
-                C.GG)(this, Sa, null, "f"),
+                }, "f") : C.set(this, Sa, null, "f"),
                 n.loadTrackData(A),
                 n.generateMeshes(),
                 i.generateMountains(n.getBounds()),
-                (0,
-                C.GG)(this, xa, y.map((e => ({
+                C.set(this, xa, y.map((e => ({
                     car: null,
                     carId: null,
                     hasEnded: !1,
@@ -44226,407 +41620,204 @@
                     checkpoints: [],
                     finishSpeedKmh: null
                 }))), "f"),
-                d.getSettingBoolean(R.A.GhostCarSoundsEnabled) ? (0,
-                C.GG)(this, Oa, .35, "f") : (0,
-                C.GG)(this, Oa, 0, "f"),
-                (0,
-                C.GG)(this, ya, new Bt(d), "f"),
-                (0,
-                C.gn)(this, ya, "f").addChangeCallback((e => {
-                    !e.up && !e.down || (0,
-                    C.gn)(this, va, "f") || ((0,
-                    C.GG)(this, va, !0, "f"),
-                    (0,
-                    C.GG)(this, ba, new Date, "f"))
+                d.getSettingBoolean(R.A.GhostCarSoundsEnabled) ? C.set(this, Oa, .35, "f") : C.set(this, Oa, 0, "f"),
+                C.set(this, ya, new Bt(d), "f"),
+                C.get(this, ya, "f").addChangeCallback((e => {
+                    !e.up && !e.down || C.get(this, va, "f") || (C.set(this, va, !0, "f"),
+                    C.set(this, ba, new Date, "f"))
                 }
                 )),
-                (0,
-                C.GG)(this, Ba, new vt(s,d), "f"),
-                (0,
-                C.gn)(this, Ba, "f").addToggleListener((e => {
-                    e ? ((0,
-                    C.gn)(this, ea, "f").isVisible = !1,
-                    s.setCamera((0,
-                    C.gn)(this, Ba, "f").camera)) : ((0,
-                    C.gn)(this, ea, "f").isVisible = (0,
-                    C.gn)(this, $r, "f"),
-                    (0,
-                    C.gn)(this, Gr, "f").getSettingBoolean(R.A.DefaultCameraMode) ? (0,
-                    C.gn)(this, zr, "f").setCamera((0,
-                    C.gn)(this, wa, "f").cameraCockpit) : (0,
-                    C.gn)(this, zr, "f").setCamera((0,
-                    C.gn)(this, wa, "f").cameraOrbit))
+                C.set(this, Ba, new SpectatorCamera(s,d), "f"),
+                C.get(this, Ba, "f").addToggleListener((e => {
+                    e ? (C.get(this, ea, "f").isVisible = !1,
+                    s.setCamera(C.get(this, Ba, "f").camera)) : (C.get(this, ea, "f").isVisible = C.get(this, $r, "f"),
+                    C.get(this, Gr, "f").getSettingBoolean(R.A.DefaultCameraMode) ? C.get(this, zr, "f").setCamera(C.get(this, wa, "f").cameraCockpit) : C.get(this, zr, "f").setCamera(C.get(this, wa, "f").cameraOrbit))
                 }
                 )),
                 u.setCursorHiddenWhenInactive(!0),
-                (0,
-                C.GG)(this, ma, new Ct((0,
-                C.gn)(this, ya, "f"),(0,
-                C.gn)(this, Nr, "f"),(0,
-                C.gn)(this, Gr, "f"),( () => {
-                    (0,
-                    C.gn)(this, _r, "m", Ka).call(this)
+                C.set(this, ma, new Ct(C.get(this, ya, "f"),C.get(this, Nr, "f"),C.get(this, Gr, "f"),( () => {
+                    C.get(this, _r, "m", Ka).call(this)
                 }
                 ),( () => {
-                    (0,
-                    C.gn)(this, _r, "m", qa).call(this)
+                    C.get(this, _r, "m", qa).call(this)
                 }
                 ),( () => {
-                    !P.ip() && (0,
-                    C.gn)(this, wa, "f").hasStarted() && ((0,
-                    C.gn)(this, _r, "m", ja).call(this) ? (0,
-                    C.gn)(this, ya, "f").reset = !0 : ((0,
-                    C.gn)(this, _r, "m", Qa).call(this),
-                    (0,
-                    C.gn)(this, ya, "f").reset = !1))
+                    !P.ip() && C.get(this, wa, "f").hasStarted() && (C.get(this, _r, "m", ja).call(this) ? C.get(this, ya, "f").reset = !0 : (C.get(this, _r, "m", Qa).call(this),
+                    C.get(this, ya, "f").reset = !1))
                 }
                 )), "f"),
-                (0,
-                C.gn)(this, ma, "f").isEnabled = (0,
-                C.gn)(this, Wr, "f").touchEnabled,
-                (0,
-                C.GG)(this, ea, new br, "f"),
-                (0,
-                C.GG)(this, ta, new Re((0,
-                C.gn)(this, ea, "f").element,(0,
-                C.gn)(this, Ur, "f"),(0,
-                C.gn)(this, Wr, "f"),(0,
-                C.gn)(this, Gr, "f")), "f"),
-                null != (0,
-                C.gn)(this, Sa, "f") ? (0,
-                C.GG)(this, ia, new ur((0,
-                C.gn)(this, ea, "f").element,(0,
-                C.gn)(this, Gr, "f")), "f") : (0,
-                C.GG)(this, na, new fi((0,
-                C.gn)(this, ea, "f").element,(0,
-                C.gn)(this, Ur, "f"),(0,
-                C.gn)(this, Gr, "f")), "f"),
-                (0,
-                C.GG)(this, ra, new ue((0,
-                C.gn)(this, ea, "f").element,(0,
-                C.gn)(this, Pr, "f").getTotalNumberOfCheckpointIndices(),(0,
-                C.gn)(this, Gr, "f")), "f"),
-                (0,
-                C.GG)(this, aa, new We((0,
-                C.gn)(this, ea, "f").element,(0,
-                C.gn)(this, Gr, "f")), "f"),
-                (0,
-                C.GG)(this, sa, new Ve.A((0,
-                C.gn)(this, ea, "f").element,(0,
-                C.gn)(this, Ur, "f"),(0,
-                C.gn)(this, Gr, "f")), "f"),
-                (0,
-                C.GG)(this, la, new ti((0,
-                C.gn)(this, ea, "f").element,(0,
-                C.gn)(this, Nr, "f"),(0,
-                C.gn)(this, Ur, "f"),(0,
-                C.gn)(this, Gr, "f"),(0,
-                C.gn)(this, Wr, "f"),(0,
-                C.gn)(this, Xr, "f"),(0,
-                C.gn)(this, Sa, "f"),( () => {
-                    (0,
-                    C.gn)(this, _r, "m", Va).call(this)
+                C.get(this, ma, "f").isEnabled = C.get(this, Wr, "f").touchEnabled,
+                C.set(this, ea, new br, "f"),
+                C.set(this, ta, new Re(C.get(this, ea, "f").element,C.get(this, Ur, "f"),C.get(this, Wr, "f"),C.get(this, Gr, "f")), "f"),
+                null != C.get(this, Sa, "f") ? C.set(this, ia, new ur(C.get(this, ea, "f").element,C.get(this, Gr, "f")), "f") : C.set(this, na, new fi(C.get(this, ea, "f").element,C.get(this, Ur, "f"),C.get(this, Gr, "f")), "f"),
+                C.set(this, ra, new ue(C.get(this, ea, "f").element,C.get(this, Pr, "f").getTotalNumberOfCheckpointIndices(),C.get(this, Gr, "f")), "f"),
+                C.set(this, aa, new We(C.get(this, ea, "f").element,C.get(this, Gr, "f")), "f"),
+                C.set(this, sa, new Ve.A(C.get(this, ea, "f").element,C.get(this, Ur, "f"),C.get(this, Gr, "f")), "f"),
+                C.set(this, la, new ti(C.get(this, ea, "f").element,C.get(this, Nr, "f"),C.get(this, Ur, "f"),C.get(this, Gr, "f"),C.get(this, Wr, "f"),C.get(this, Xr, "f"),C.get(this, Sa, "f"),( () => {
+                    C.get(this, _r, "m", Va).call(this)
                 }
                 ),( () => {
-                    (0,
-                    C.gn)(this, xa, "f").length > 0 && null != (0,
-                    C.gn)(this, qr, "f") && (0,
-                    C.gn)(this, qr, "f").call(this, (0,
-                    C.gn)(this, Xr, "f"), (0,
-                    C.gn)(this, Yr, "f"), (0,
-                    C.gn)(this, Zr, "f"), (0,
-                    C.gn)(this, xa, "f").map((e => e.settings)))
+                    C.get(this, xa, "f").length > 0 && null != C.get(this, qr, "f") && C.get(this, qr, "f").call(this, C.get(this, Xr, "f"), C.get(this, Yr, "f"), C.get(this, Zr, "f"), C.get(this, xa, "f").map((e => e.settings)))
                 }
-                ),(0,
-                C.gn)(this, Qr, "f"),( () => {
-                    if (!((0,
-                    C.gn)(this, Sa, "f")?.multiplayerConnection instanceof Fn))
+                ),C.get(this, Qr, "f"),( () => {
+                    if (!(C.get(this, Sa, "f")?.multiplayerConnection instanceof Fn))
                         throw new Error("Multiplayer connection is not a host");
-                    null != (0,
-                    C.gn)(this, da, "f") && ((0,
-                    C.gn)(this, da, "f").dispose(),
-                    (0,
-                    C.GG)(this, da, null, "f")),
-                    null != (0,
-                    C.gn)(this, ua, "f") && ((0,
-                    C.gn)(this, ua, "f").dispose(),
-                    (0,
-                    C.GG)(this, ua, null, "f")),
-                    null != (0,
-                    C.gn)(this, ha, "f") ? ((0,
-                    C.gn)(this, ha, "f").dispose(),
-                    (0,
-                    C.GG)(this, ha, null, "f")) : (0,
-                    C.GG)(this, ha, new Ni((0,
-                    C.gn)(this, ea, "f").element,(0,
-                    C.gn)(this, Nr, "f"),(0,
-                    C.gn)(this, Ur, "f"),(0,
-                    C.gn)(this, Sa, "f").multiplayerConnection,( () => {
-                        (0,
-                        C.gn)(this, ha, "f")?.dispose(),
-                        (0,
-                        C.GG)(this, ha, null, "f")
+                    null != C.get(this, da, "f") && (C.get(this, da, "f").dispose(),
+                    C.set(this, da, null, "f")),
+                    null != C.get(this, ua, "f") && (C.get(this, ua, "f").dispose(),
+                    C.set(this, ua, null, "f")),
+                    null != C.get(this, ha, "f") ? (C.get(this, ha, "f").dispose(),
+                    C.set(this, ha, null, "f")) : C.set(this, ha, new Ni(C.get(this, ea, "f").element,C.get(this, Nr, "f"),C.get(this, Ur, "f"),C.get(this, Sa, "f").multiplayerConnection,( () => {
+                        C.get(this, ha, "f")?.dispose(),
+                        C.set(this, ha, null, "f")
                     }
                     )), "f")
                 }
                 ),( () => {
-                    if (null == (0,
-                    C.gn)(this, Sa, "f"))
+                    if (null == C.get(this, Sa, "f"))
                         throw new Error("Multiplayer is null");
-                    null != (0,
-                    C.gn)(this, ha, "f") && ((0,
-                    C.gn)(this, ha, "f").dispose(),
-                    (0,
-                    C.GG)(this, ha, null, "f")),
-                    null != (0,
-                    C.gn)(this, ua, "f") && ((0,
-                    C.gn)(this, ua, "f").dispose(),
-                    (0,
-                    C.GG)(this, ua, null, "f")),
-                    null != (0,
-                    C.gn)(this, da, "f") ? ((0,
-                    C.gn)(this, da, "f").dispose(),
-                    (0,
-                    C.GG)(this, da, null, "f")) : (0,
-                    C.GG)(this, da, new ar((0,
-                    C.gn)(this, ea, "f").element,(0,
-                    C.gn)(this, Nr, "f"),(0,
-                    C.gn)(this, Ur, "f"),(0,
-                    C.gn)(this, Or, "f"),(0,
-                    C.gn)(this, Sa, "f").sessionId,(0,
-                    C.gn)(this, Sa, "f").multiplayerConnection,( () => {
-                        (0,
-                        C.gn)(this, da, "f")?.dispose(),
-                        (0,
-                        C.GG)(this, da, null, "f")
+                    null != C.get(this, ha, "f") && (C.get(this, ha, "f").dispose(),
+                    C.set(this, ha, null, "f")),
+                    null != C.get(this, ua, "f") && (C.get(this, ua, "f").dispose(),
+                    C.set(this, ua, null, "f")),
+                    null != C.get(this, da, "f") ? (C.get(this, da, "f").dispose(),
+                    C.set(this, da, null, "f")) : C.set(this, da, new ar(C.get(this, ea, "f").element,C.get(this, Nr, "f"),C.get(this, Ur, "f"),C.get(this, Or, "f"),C.get(this, Sa, "f").sessionId,C.get(this, Sa, "f").multiplayerConnection,( () => {
+                        C.get(this, da, "f")?.dispose(),
+                        C.set(this, da, null, "f")
                     }
                     )), "f")
                 }
                 ),( () => {
-                    const e = (0,
-                    C.gn)(this, Sa, "f");
+                    const e = C.get(this, Sa, "f");
                     if (null == e)
                         throw new Error("Multiplayer is null");
                     const t = e.multiplayerConnection;
                     if (!(t instanceof Fn))
                         throw new Error("Multiplayer connection is not a host");
-                    null != (0,
-                    C.gn)(this, ha, "f") && ((0,
-                    C.gn)(this, ha, "f").dispose(),
-                    (0,
-                    C.GG)(this, ha, null, "f")),
-                    null != (0,
-                    C.gn)(this, da, "f") && ((0,
-                    C.gn)(this, da, "f").dispose(),
-                    (0,
-                    C.GG)(this, da, null, "f")),
-                    null != (0,
-                    C.gn)(this, ua, "f") ? ((0,
-                    C.gn)(this, ua, "f").dispose(),
-                    (0,
-                    C.GG)(this, ua, null, "f")) : ((0,
-                    C.gn)(this, ea, "f").isVisible = !1,
-                    (0,
-                    C.GG)(this, ua, new sr.A(null,(0,
-                    C.gn)(this, Ur, "f"),(0,
-                    C.gn)(this, Nr, "f"),(0,
-                    C.gn)(this, Br, "f"),(0,
-                    C.gn)(this, Vr, "f"),(0,
-                    C.gn)(this, Dr, "f"),(0,
-                    C.gn)(this, Or, "f"),(0,
-                    C.gn)(this, Hr, "f"),"cancel",!0,( () => {
-                        (0,
-                        C.gn)(this, ua, "f")?.dispose(),
-                        (0,
-                        C.GG)(this, ua, null, "f"),
-                        (0,
-                        C.gn)(this, ea, "f").isVisible = !0
+                    null != C.get(this, ha, "f") && (C.get(this, ha, "f").dispose(),
+                    C.set(this, ha, null, "f")),
+                    null != C.get(this, da, "f") && (C.get(this, da, "f").dispose(),
+                    C.set(this, da, null, "f")),
+                    null != C.get(this, ua, "f") ? (C.get(this, ua, "f").dispose(),
+                    C.set(this, ua, null, "f")) : (C.get(this, ea, "f").isVisible = !1,
+                    C.set(this, ua, new sr.A(null,C.get(this, Ur, "f"),C.get(this, Nr, "f"),C.get(this, Br, "f"),C.get(this, Vr, "f"),C.get(this, Dr, "f"),C.get(this, Or, "f"),C.get(this, Hr, "f"),"cancel",!0,( () => {
+                        C.get(this, ua, "f")?.dispose(),
+                        C.set(this, ua, null, "f"),
+                        C.get(this, ea, "f").isVisible = !0
                     }
                     ),( (n, i, r) => {
-                        (0,
-                        C.gn)(this, ua, "f")?.hide(),
-                        (0,
-                        C.GG)(this, pa, new fr.A(!0), "f"),
+                        C.get(this, ua, "f")?.hide(),
+                        C.set(this, pa, new fr.A(!0), "f"),
                         r().then((i => {
                             i.hasStartingPoint() ? (t.startNewSession(e.gameMode, n, i),
-                            (0,
-                            C.gn)(this, ua, "f")?.dispose(),
-                            (0,
-                            C.GG)(this, ua, null, "f"),
-                            (0,
-                            C.gn)(this, ea, "f").isVisible = !0) : (0,
-                            C.gn)(this, Or, "f").show((0,
-                            C.gn)(this, Ur, "f").get("Track is missing starting point"), (0,
-                            C.gn)(this, Ur, "f").get("Ok"), ( () => {
-                                (0,
-                                C.gn)(this, ua, "f")?.show()
+                            C.get(this, ua, "f")?.dispose(),
+                            C.set(this, ua, null, "f"),
+                            C.get(this, ea, "f").isVisible = !0) : C.get(this, Or, "f").show(C.get(this, Ur, "f").get("Track is missing starting point"), C.get(this, Ur, "f").get("Ok"), ( () => {
+                                C.get(this, ua, "f")?.show()
                             }
                             ))
                         }
                         )).catch((e => {
                             if (!(e instanceof pr.A))
                                 throw e;
-                            (0,
-                            C.gn)(this, Or, "f").show((0,
-                            C.gn)(this, Ur, "f").get("Failed to load track"), (0,
-                            C.gn)(this, Ur, "f").get("Ok"), ( () => {
-                                (0,
-                                C.gn)(this, ua, "f")?.show()
+                            C.get(this, Or, "f").show(C.get(this, Ur, "f").get("Failed to load track"), C.get(this, Ur, "f").get("Ok"), ( () => {
+                                C.get(this, ua, "f")?.show()
                             }
                             ))
                         }
                         )).finally(( () => {
-                            (0,
-                            C.gn)(this, pa, "f")?.dispose(),
-                            (0,
-                            C.GG)(this, pa, null, "f")
+                            C.get(this, pa, "f")?.dispose(),
+                            C.set(this, pa, null, "f")
                         }
                         ))
                     }
                     )), "f"),
-                    (0,
-                    C.gn)(this, ua, "f").show())
+                    C.get(this, ua, "f").show())
                 }
                 )), "f"),
-                null == (0,
-                C.gn)(this, Sa, "f"))
-                    (0,
-                    C.gn)(this, la, "f").setRecord((0,
-                    C.gn)(this, Ua, "f"));
+                null == C.get(this, Sa, "f"))
+                    C.get(this, la, "f").setRecord(C.get(this, Ua, "f"));
                 else
-                    switch ((0,
-                    C.gn)(this, Sa, "f").gameMode) {
+                    switch (C.get(this, Sa, "f").gameMode) {
                     case Yt.Casual:
-                        (0,
-                        C.gn)(this, la, "f").setRecord((0,
-                        C.gn)(this, Ua, "f"));
+                        C.get(this, la, "f").setRecord(C.get(this, Ua, "f"));
                         break;
                     case Yt.Competitive:
-                        (0,
-                        C.gn)(this, la, "f").setRecord(null == (0,
-                        C.gn)(this, za, "f") ? null : {
-                            time: (0,
-                            C.gn)(this, za, "f").time,
+                        C.get(this, la, "f").setRecord(null == C.get(this, za, "f") ? null : {
+                            time: C.get(this, za, "f").time,
                             position: Promise.resolve(null)
                         });
                         break;
                     default:
-                        throw (0,
-                        C.gn)(this, Sa, "f").gameMode,
+                        throw C.get(this, Sa, "f").gameMode,
                         new Error("Unknown multiplayer game mode")
                     }
-                if ((0,
-                C.gn)(this, la, "f").setWatchButtonEnabled((0,
-                C.gn)(this, xa, "f").length > 0 && null != (0,
-                C.gn)(this, qr, "f")),
-                (0,
-                C.gn)(this, Wr, "f").touchEnabled ? ((0,
-                C.gn)(this, na, "f")?.setOverridePosition(!0),
-                (0,
-                C.gn)(this, ia, "f")?.setOverridePosition(!0),
-                (0,
-                C.gn)(this, ra, "f").setOverridePosition(!0),
-                (0,
-                C.gn)(this, sa, "f").setOverridePosition(!0),
-                (0,
-                C.gn)(this, aa, "f").setOverridePosition(!0)) : ((0,
-                C.gn)(this, na, "f")?.setOverridePosition(null),
-                (0,
-                C.gn)(this, ia, "f")?.setOverridePosition(null),
-                (0,
-                C.gn)(this, ra, "f").setOverridePosition(null),
-                (0,
-                C.gn)(this, sa, "f").setOverridePosition(null),
-                (0,
-                C.gn)(this, aa, "f").setOverridePosition(null)),
-                (0,
-                C.gn)(this, ma, "f").isEnabled = (0,
-                C.gn)(this, Wr, "f").touchEnabled,
-                (0,
-                C.gn)(this, _r, "m", es).call(this),
-                (0,
-                C.gn)(this, Wr, "f").addChangeListener((0,
-                C.GG)(this, Aa, (e => {
-                    e ? ((0,
-                    C.gn)(this, na, "f")?.setOverridePosition(!0),
-                    (0,
-                    C.gn)(this, ia, "f")?.setOverridePosition(!0),
-                    (0,
-                    C.gn)(this, ra, "f").setOverridePosition(!0),
-                    (0,
-                    C.gn)(this, sa, "f").setOverridePosition(!0),
-                    (0,
-                    C.gn)(this, aa, "f").setOverridePosition(!0)) : ((0,
-                    C.gn)(this, na, "f")?.setOverridePosition(null),
-                    (0,
-                    C.gn)(this, ia, "f")?.setOverridePosition(null),
-                    (0,
-                    C.gn)(this, ra, "f").setOverridePosition(null),
-                    (0,
-                    C.gn)(this, sa, "f").setOverridePosition(null),
-                    (0,
-                    C.gn)(this, aa, "f").setOverridePosition(null))
+                if (C.get(this, la, "f").setWatchButtonEnabled(C.get(this, xa, "f").length > 0 && null != C.get(this, qr, "f")),
+                C.get(this, Wr, "f").touchEnabled ? (C.get(this, na, "f")?.setOverridePosition(!0),
+                C.get(this, ia, "f")?.setOverridePosition(!0),
+                C.get(this, ra, "f").setOverridePosition(!0),
+                C.get(this, sa, "f").setOverridePosition(!0),
+                C.get(this, aa, "f").setOverridePosition(!0)) : (C.get(this, na, "f")?.setOverridePosition(null),
+                C.get(this, ia, "f")?.setOverridePosition(null),
+                C.get(this, ra, "f").setOverridePosition(null),
+                C.get(this, sa, "f").setOverridePosition(null),
+                C.get(this, aa, "f").setOverridePosition(null)),
+                C.get(this, ma, "f").isEnabled = C.get(this, Wr, "f").touchEnabled,
+                C.get(this, _r, "m", es).call(this),
+                C.get(this, Wr, "f").addChangeListener(C.set(this, Aa, (e => {
+                    e ? (C.get(this, na, "f")?.setOverridePosition(!0),
+                    C.get(this, ia, "f")?.setOverridePosition(!0),
+                    C.get(this, ra, "f").setOverridePosition(!0),
+                    C.get(this, sa, "f").setOverridePosition(!0),
+                    C.get(this, aa, "f").setOverridePosition(!0)) : (C.get(this, na, "f")?.setOverridePosition(null),
+                    C.get(this, ia, "f")?.setOverridePosition(null),
+                    C.get(this, ra, "f").setOverridePosition(null),
+                    C.get(this, sa, "f").setOverridePosition(null),
+                    C.get(this, aa, "f").setOverridePosition(null))
                 }
                 ), "f")),
                 null != w) {
                     const e = e => {
-                        const t = (0,
-                        C.gn)(this, Pr, "f").getStartTransform();
+                        const t = C.get(this, Pr, "f").getStartTransform();
                         if (null == t)
                             throw new Error("Track has no start");
                         const n = e.getPlayers();
                         for (const e of n) {
                             if (e.isSelf)
                                 continue;
-                            let n = (0,
-                            C.gn)(this, Ra, "f").get(e.id);
+                            let n = C.get(this, Ra, "f").get(e.id);
                             null == n && (n = {
-                                car: new L.A(null,t,null,null,(0,
-                                C.gn)(this, zr, "f"),(0,
-                                C.gn)(this, Nr, "f"),(0,
-                                C.gn)(this, Ir, "f"),(0,
-                                C.gn)(this, Pr, "f"),(0,
-                                C.gn)(this, Yr, "f"),(0,
-                                C.gn)(this, Gr, "f"),null),
+                                car: new L.A(null,t,null,null,C.get(this, zr, "f"),C.get(this, Nr, "f"),C.get(this, Ir, "f"),C.get(this, Pr, "f"),C.get(this, Yr, "f"),C.get(this, Gr, "f"),null),
                                 time: 0,
                                 resetCounter: 0,
                                 bufferedCarStates: []
                             },
-                            n.car.audioVolume = (0,
-                            C.gn)(this, Oa, "f"),
-                            (0,
-                            C.gn)(this, Ra, "f").set(e.id, n)),
+                            n.car.audioVolume = C.get(this, Oa, "f"),
+                            C.get(this, Ra, "f").set(e.id, n)),
                             n.car.setNameTag(e.countryCode, e.nickname),
                             n.car.setCarStyle(e.carStyle)
                         }
-                        for (const [e,t] of (0,
-                        C.gn)(this, Ra, "f"))
+                        for (const [e,t] of C.get(this, Ra, "f"))
                             n.some((t => t.id == e)) || (t.car.dispose(),
-                            (0,
-                            C.gn)(this, Ra, "f").delete(e))
+                            C.get(this, Ra, "f").delete(e))
                     }
                     ;
                     e(w.multiplayerConnection);
                     const t = .15;
-                    if (w.multiplayerConnection.addConnectionLostCallback((0,
-                    C.GG)(this, ka, (e => {
+                    if (w.multiplayerConnection.addConnectionLostCallback(C.set(this, ka, (e => {
                         S(e)
                     }
                     ), "f")),
-                    w.multiplayerConnection.addPlayersChangedCallback((0,
-                    C.GG)(this, Ea, (t => {
+                    w.multiplayerConnection.addPlayersChangedCallback(C.set(this, Ea, (t => {
                         t == w.sessionId && e(w.multiplayerConnection)
                     }
                     ), "f")),
-                    w.multiplayerConnection.addCarResetCallback((0,
-                    C.GG)(this, Ta, ( (e, n, i) => {
+                    w.multiplayerConnection.addCarResetCallback(C.set(this, Ta, ( (e, n, i) => {
                         if (e != w.sessionId)
                             return;
-                        const r = (0,
-                        C.gn)(this, Ra, "f").get(n);
+                        const r = C.get(this, Ra, "f").get(n);
                         if (null != r && i > r.resetCounter) {
-                            const e = (0,
-                            C.gn)(this, Pr, "f").getStartTransform();
+                            const e = C.get(this, Pr, "f").getStartTransform();
                             if (null == e)
                                 throw new Error("Track has no start");
                             const n = {
@@ -44670,12 +41861,10 @@
                         }
                     }
                     ), "f")),
-                    w.multiplayerConnection.addCarUpdateCallback((0,
-                    C.GG)(this, Ma, ( (e, n, i, r) => {
+                    w.multiplayerConnection.addCarUpdateCallback(C.set(this, Ma, ( (e, n, i, r) => {
                         if (e != w.sessionId)
                             return;
-                        const a = (0,
-                        C.gn)(this, Ra, "f").get(n);
+                        const a = C.get(this, Ra, "f").get(n);
                         if (null != a)
                             if (i > a.resetCounter)
                                 a.car.setCarState(r, !0),
@@ -44693,79 +41882,47 @@
                             }
                     }
                     ), "f")),
-                    w.multiplayerConnection.addEndSessionCallback(w.sessionId, (0,
-                    C.GG)(this, _a, ( () => {
-                        (0,
-                        C.gn)(this, Pa, "f") || ((0,
-                        C.GG)(this, Pa, !0, "f"),
-                        (0,
-                        C.gn)(this, la, "f").setChangeTrackEnabled(!1),
-                        (0,
-                        C.gn)(this, Ba, "f").isEnabled = !1,
-                        (0,
-                        C.GG)(this, $r, !0, "f"),
-                        (0,
-                        C.gn)(this, ea, "f").isVisible = (0,
-                        C.gn)(this, $r, "f"),
-                        (0,
-                        C.gn)(this, ma, "f").dispose(),
-                        (0,
-                        C.gn)(this, ra, "f").dispose(),
-                        (0,
-                        C.gn)(this, sa, "f").dispose(),
-                        (0,
-                        C.gn)(this, aa, "f").dispose(),
-                        (0,
-                        C.gn)(this, oa, "f")?.dispose(),
-                        (0,
-                        C.GG)(this, oa, null, "f"),
-                        (0,
-                        C.GG)(this, fa, new Er, "f"),
-                        null == (0,
-                        C.gn)(this, da, "f") && (0,
-                        C.GG)(this, da, new ar((0,
-                        C.gn)(this, ea, "f").element,(0,
-                        C.gn)(this, Nr, "f"),(0,
-                        C.gn)(this, Ur, "f"),(0,
-                        C.gn)(this, Or, "f"),w.sessionId,w.multiplayerConnection,( () => {
-                            (0,
-                            C.gn)(this, da, "f")?.dispose(),
-                            (0,
-                            C.GG)(this, da, null, "f")
+                    w.multiplayerConnection.addEndSessionCallback(w.sessionId, C.set(this, _a, ( () => {
+                        C.get(this, Pa, "f") || (C.set(this, Pa, !0, "f"),
+                        C.get(this, la, "f").setChangeTrackEnabled(!1),
+                        C.get(this, Ba, "f").isEnabled = !1,
+                        C.set(this, $r, !0, "f"),
+                        C.get(this, ea, "f").isVisible = C.get(this, $r, "f"),
+                        C.get(this, ma, "f").dispose(),
+                        C.get(this, ra, "f").dispose(),
+                        C.get(this, sa, "f").dispose(),
+                        C.get(this, aa, "f").dispose(),
+                        C.get(this, oa, "f")?.dispose(),
+                        C.set(this, oa, null, "f"),
+                        C.set(this, fa, new Er, "f"),
+                        null == C.get(this, da, "f") && C.set(this, da, new ar(C.get(this, ea, "f").element,C.get(this, Nr, "f"),C.get(this, Ur, "f"),C.get(this, Or, "f"),w.sessionId,w.multiplayerConnection,( () => {
+                            C.get(this, da, "f")?.dispose(),
+                            C.set(this, da, null, "f")
                         }
                         )), "f"))
                     }
                     ), "f")),
-                    w.multiplayerConnection.addNewSessionCallback(w.sessionId, (0,
-                    C.gn)(this, Jr, "f")),
-                    w.multiplayerConnection.addServerMessageCallback((0,
-                    C.GG)(this, Ca, (e => {
-                        (0,
-                        C.gn)(this, ia, "f")?.show(e)
+                    w.multiplayerConnection.addNewSessionCallback(w.sessionId, C.get(this, Jr, "f")),
+                    w.multiplayerConnection.addServerMessageCallback(C.set(this, Ca, (e => {
+                        C.get(this, ia, "f")?.show(e)
                     }
                     ), "f")),
                     0 != y.length)
                         throw new Error("Ghost settings should not be provided in multiplayer");
-                    if (w.gameMode == Yt.Casual && null != (0,
-                    C.gn)(this, Ua, "f")) {
-                        w.multiplayerConnection.sendRecord(w.sessionId, (0,
-                        C.gn)(this, Ua, "f").time);
-                        const e = (0,
-                        C.gn)(this, Dr, "f").getCurrentUserProfile();
-                        (0,
-                        C.GG)(this, xa, [{
+                    if (w.gameMode == Yt.Casual && null != C.get(this, Ua, "f")) {
+                        w.multiplayerConnection.sendRecord(w.sessionId, C.get(this, Ua, "f").time);
+                        const e = C.get(this, Dr, "f").getCurrentUserProfile();
+                        C.set(this, xa, [{
                             car: null,
                             carId: null,
                             hasEnded: !1,
                             loadedFrames: 0,
                             maxFrames: 0,
                             settings: {
-                                recording: (0,
-                                C.gn)(this, Ua, "f").recording,
+                                recording: C.get(this, Ua, "f").recording,
                                 carStyle: e.carStyle,
                                 nickname: e.nickname,
-                                time: (0,
-                                C.gn)(this, Ua, "f").time,
+                                time: C.get(this, Ua, "f").time,
                                 isSelf: !0
                             },
                             replay: null,
@@ -44774,139 +41931,70 @@
                         }], "f")
                     }
                 }
-                const I = (0,
-                C.gn)(this, Gr, "f").getSettingBoolean(R.A.DefaultCameraMode);
-                if ((0,
-                C.GG)(this, wa, (0,
-                C.gn)(this, _r, "m", Xa).call(this, I), "f"),
-                (0,
-                C.gn)(this, _r, "m", Ya).call(this),
-                window.addEventListener("keydown", (0,
-                C.GG)(this, Na, (e => {
+                const I = C.get(this, Gr, "f").getSettingBoolean(R.A.DefaultCameraMode);
+                if (C.set(this, wa, C.get(this, _r, "m", Xa).call(this, I), "f"),
+                C.get(this, _r, "m", Ya).call(this),
+                window.addEventListener("keydown", C.set(this, Na, (e => {
                     if (!P.ip()) {
-                        if (!(0,
-                        C.gn)(this, Ba, "f").isEnabled && !(0,
-                        C.gn)(this, _r, "m", Ha).call(this))
-                            if ((0,
-                            C.gn)(this, Gr, "f").checkKeyBinding(e, ge.A.VehicleCheckpointReset))
-                                e.repeat || null != (0,
-                                C.gn)(this, ca, "f") || (0,
-                                C.gn)(this, Pa, "f") || (0,
-                                C.gn)(this, wa, "f").hasStarted() && ((0,
-                                C.gn)(this, _r, "m", ja).call(this) ? (0,
-                                C.gn)(this, ya, "f").reset = !0 : ((0,
-                                C.gn)(this, _r, "m", Qa).call(this),
-                                (0,
-                                C.gn)(this, ya, "f").reset = !1)),
+                        if (!C.get(this, Ba, "f").isEnabled && !C.get(this, _r, "m", Ha).call(this))
+                            if (C.get(this, Gr, "f").checkKeyBinding(e, KeyBind.VehicleCheckpointReset))
+                                e.repeat || null != C.get(this, ca, "f") || C.get(this, Pa, "f") || C.get(this, wa, "f").hasStarted() && (C.get(this, _r, "m", ja).call(this) ? C.get(this, ya, "f").reset = !0 : (C.get(this, _r, "m", Qa).call(this),
+                                C.get(this, ya, "f").reset = !1)),
                                 e.preventDefault();
-                            else if ((0,
-                            C.gn)(this, Gr, "f").checkKeyBinding(e, ge.A.VehicleStartReset))
-                                e.repeat || null != (0,
-                                C.gn)(this, ca, "f") || (0,
-                                C.gn)(this, Pa, "f") || (0,
-                                C.gn)(this, wa, "f").hasStarted() && (0,
-                                C.gn)(this, _r, "m", Qa).call(this),
+                            else if (C.get(this, Gr, "f").checkKeyBinding(e, KeyBind.VehicleStartReset))
+                                e.repeat || null != C.get(this, ca, "f") || C.get(this, Pa, "f") || C.get(this, wa, "f").hasStarted() && C.get(this, _r, "m", Qa).call(this),
                                 e.preventDefault();
-                            else if ((0,
-                            C.gn)(this, Gr, "f").checkKeyBinding(e, ge.A.VehicleCockpitCamera))
-                                e.repeat || (0,
-                                C.gn)(this, _r, "m", Ka).call(this),
+                            else if (C.get(this, Gr, "f").checkKeyBinding(e, KeyBind.VehicleCockpitCamera))
+                                e.repeat || C.get(this, _r, "m", Ka).call(this),
                                 e.preventDefault();
-                            else if (d.checkKeyBinding(e, ge.A.ToggleUI))
-                                null != (0,
-                                C.gn)(this, ca, "f") || (0,
-                                C.gn)(this, Pa, "f") || ((0,
-                                C.GG)(this, $r, !(0,
-                                C.gn)(this, $r, "f"), "f"),
-                                (0,
-                                C.gn)(this, ea, "f").isVisible = (0,
-                                C.gn)(this, $r, "f")),
+                            else if (d.checkKeyBinding(e, KeyBind.ToggleUI))
+                                null != C.get(this, ca, "f") || C.get(this, Pa, "f") || (C.set(this, $r, !C.get(this, $r, "f"), "f"),
+                                C.get(this, ea, "f").isVisible = C.get(this, $r, "f")),
                                 e.preventDefault();
-                            else if (d.checkKeyBinding(e, ge.A.Pause)) {
-                                if (null == (0,
-                                C.gn)(this, ca, "f")) {
-                                    if (null == (0,
-                                    C.gn)(this, Sa, "f") && (0,
-                                    C.gn)(this, wa, "f").hasStarted() && !(0,
-                                    C.gn)(this, wa, "f").hasFinished()) {
+                            else if (d.checkKeyBinding(e, KeyBind.Pause)) {
+                                if (null == C.get(this, ca, "f")) {
+                                    if (null == C.get(this, Sa, "f") && C.get(this, wa, "f").hasStarted() && !C.get(this, wa, "f").hasFinished()) {
                                         const e = new Date;
-                                        (null == (0,
-                                        C.gn)(this, ga, "f") || Math.abs(e.getTime() - (0,
-                                        C.gn)(this, ga, "f").getTime()) > 1e3) && (P.bQ(),
-                                        (0,
-                                        C.GG)(this, ca, new oi((0,
-                                        C.gn)(this, ea, "f").element,a), "f"),
-                                        (0,
-                                        C.GG)(this, ga, e, "f"))
+                                        (null == C.get(this, ga, "f") || Math.abs(e.getTime() - C.get(this, ga, "f").getTime()) > 1e3) && (P.bQ(),
+                                        C.set(this, ca, new oi(C.get(this, ea, "f").element,a), "f"),
+                                        C.set(this, ga, e, "f"))
                                     }
                                 } else
-                                    (0,
-                                    C.gn)(this, ca, "f").startFadeOut(( () => {
+                                    C.get(this, ca, "f").startFadeOut(( () => {
                                         P.tU(),
-                                        (0,
-                                        C.gn)(this, ca, "f")?.dispose(),
-                                        (0,
-                                        C.GG)(this, ca, null, "f")
+                                        C.get(this, ca, "f")?.dispose(),
+                                        C.set(this, ca, null, "f")
                                     }
                                     ));
                                 e.preventDefault()
                             }
-                        if ("Escape" == e.code && ((0,
-                        C.gn)(this, Or, "f").isOpen || ((0,
-                        C.gn)(this, Ba, "f").isEnabled ? (0,
-                        C.gn)(this, Ba, "f").isEnabled = !1 : null != (0,
-                        C.gn)(this, ca, "f") ? (0,
-                        C.gn)(this, ca, "f").startFadeOut(( () => {
-                            (0,
-                            C.gn)(this, ca, "f")?.dispose(),
-                            (0,
-                            C.GG)(this, ca, null, "f")
+                        if ("Escape" == e.code && (C.get(this, Or, "f").isOpen || (C.get(this, Ba, "f").isEnabled ? C.get(this, Ba, "f").isEnabled = !1 : null != C.get(this, ca, "f") ? C.get(this, ca, "f").startFadeOut(( () => {
+                            C.get(this, ca, "f")?.dispose(),
+                            C.set(this, ca, null, "f")
                         }
-                        )) : null != (0,
-                        C.gn)(this, ha, "f") ? ((0,
-                        C.gn)(this, ha, "f").dispose(),
-                        (0,
-                        C.GG)(this, ha, null, "f")) : null != (0,
-                        C.gn)(this, da, "f") ? ((0,
-                        C.gn)(this, da, "f").dispose(),
-                        (0,
-                        C.GG)(this, da, null, "f")) : null != (0,
-                        C.gn)(this, ua, "f") ? ((0,
-                        C.gn)(this, ua, "f").dispose(),
-                        (0,
-                        C.GG)(this, ua, null, "f"),
-                        (0,
-                        C.gn)(this, ea, "f").isVisible = !0) : (0,
-                        C.gn)(this, _r, "m", Va).call(this),
+                        )) : null != C.get(this, ha, "f") ? (C.get(this, ha, "f").dispose(),
+                        C.set(this, ha, null, "f")) : null != C.get(this, da, "f") ? (C.get(this, da, "f").dispose(),
+                        C.set(this, da, null, "f")) : null != C.get(this, ua, "f") ? (C.get(this, ua, "f").dispose(),
+                        C.set(this, ua, null, "f"),
+                        C.get(this, ea, "f").isVisible = !0) : C.get(this, _r, "m", Va).call(this),
                         e.preventDefault())),
-                        d.checkKeyBinding(e, ge.A.ToggleSpectatorCamera) && !(0,
-                        C.gn)(this, _r, "m", Ha).call(this)) {
-                            if (null == (0,
-                            C.gn)(this, ca, "f") && !(0,
-                            C.gn)(this, Pa, "f")) {
-                                (0,
-                                C.gn)(this, Ba, "f").camera.position.copy((0,
-                                C.gn)(this, zr, "f").camera.position);
-                                const e = new THREE.Euler(0,0,0,"YXZ").setFromQuaternion((0,
-                                C.gn)(this, zr, "f").camera.quaternion);
+                        d.checkKeyBinding(e, KeyBind.ToggleSpectatorCamera) && !C.get(this, _r, "m", Ha).call(this)) {
+                            if (null == C.get(this, ca, "f") && !C.get(this, Pa, "f")) {
+                                C.get(this, Ba, "f").camera.position.copy(C.get(this, zr, "f").camera.position);
+                                const e = new THREE.Euler(0,0,0,"YXZ").setFromQuaternion(C.get(this, zr, "f").camera.quaternion);
                                 e.x = Math.round(1e4 * e.x) / 1e4,
                                 e.y = Math.round(1e4 * e.y) / 1e4,
                                 e.z = 0,
-                                (0,
-                                C.gn)(this, Ba, "f").camera.quaternion.setFromEuler(e),
-                                (0,
-                                C.gn)(this, Ba, "f").toggle()
+                                C.get(this, Ba, "f").camera.quaternion.setFromEuler(e),
+                                C.get(this, Ba, "f").toggle()
                             }
                             e.preventDefault()
                         }
                     }
                 }
                 ), "f")),
-                window.addEventListener("keyup", (0,
-                C.GG)(this, Da, (e => {
-                    (0,
-                    C.gn)(this, Gr, "f").checkKeyBinding(e, ge.A.VehicleCockpitCamera) && (0,
-                    C.gn)(this, _r, "m", qa).call(this)
+                window.addEventListener("keyup", C.set(this, Da, (e => {
+                    C.get(this, Gr, "f").checkKeyBinding(e, KeyBind.VehicleCockpitCamera) && C.get(this, _r, "m", qa).call(this)
                 }
                 ), "f")),
                 "official" == v)
@@ -44948,16 +42036,13 @@
                             s.addMaterial(n.material))
                         }
                         )),
-                        (0,
-                        C.GG)(this, Ga, {
+                        C.set(this, Ga, {
                             dispose: () => {
-                                null != t && ((0,
-                                C.gn)(this, zr, "f").scene.remove(t),
+                                null != t && (C.get(this, zr, "f").scene.remove(t),
                                 t.geometry.dispose(),
                                 t.material.dispose(),
                                 s.removeMaterial(t.material)),
-                                null != n && ((0,
-                                C.gn)(this, zr, "f").scene.remove(n),
+                                null != n && (C.get(this, zr, "f").scene.remove(n),
                                 n.geometry.dispose(),
                                 n.material.dispose(),
                                 s.removeMaterial(n.material)),
@@ -44965,10 +42050,8 @@
                             }
                             ,
                             update: () => {
-                                null != t && (t.visible = !(0,
-                                C.gn)(this, Ba, "f").isEnabled),
-                                null != n && (n.visible = !(0,
-                                C.gn)(this, Ba, "f").isEnabled)
+                                null != t && (t.visible = !C.get(this, Ba, "f").isEnabled),
+                                null != n && (n.visible = !C.get(this, Ba, "f").isEnabled)
                             }
                         }, "f")
                     } else if ("Summer 3" == m.name) {
@@ -44981,210 +42064,106 @@
                         i.position.set(-640, 2, -249.95),
                         i.visible = !1,
                         s.scene.add(i),
-                        (0,
-                        C.GG)(this, Ga, {
+                        C.set(this, Ga, {
                             dispose: () => {
-                                (0,
-                                C.gn)(this, zr, "f").scene.remove(i),
+                                C.get(this, zr, "f").scene.remove(i),
                                 n.dispose(),
                                 t.dispose(),
                                 e.dispose()
                             }
                             ,
                             update: () => {
-                                i.visible = !(0,
-                                C.gn)(this, Ba, "f").isEnabled
+                                i.visible = !C.get(this, Ba, "f").isEnabled
                             }
                         }, "f")
                     }
             }
             get multiplayerConnection() {
-                return (0,
-                C.gn)(this, Sa, "f")?.multiplayerConnection ?? null
+                return C.get(this, Sa, "f")?.multiplayerConnection ?? null
             }
             dispose(e=!0, t=!0) {
-                null != (0,
-                C.gn)(this, Sa, "f") && (t ? (0,
-                C.gn)(this, Sa, "f").multiplayerConnection.dispose() : (null != (0,
-                C.gn)(this, ka, "f") && (0,
-                C.gn)(this, Sa, "f").multiplayerConnection.removeConnectionLostCallback((0,
-                C.gn)(this, ka, "f")),
-                null != (0,
-                C.gn)(this, Ea, "f") && (0,
-                C.gn)(this, Sa, "f").multiplayerConnection.removePlayersChangedCallback((0,
-                C.gn)(this, Ea, "f")),
-                null != (0,
-                C.gn)(this, Ta, "f") && (0,
-                C.gn)(this, Sa, "f").multiplayerConnection.removeCarResetCallback((0,
-                C.gn)(this, Ta, "f")),
-                null != (0,
-                C.gn)(this, Ma, "f") && (0,
-                C.gn)(this, Sa, "f").multiplayerConnection.removeCarUpdateCallback((0,
-                C.gn)(this, Ma, "f")),
-                null != (0,
-                C.gn)(this, _a, "f") && (0,
-                C.gn)(this, Sa, "f").multiplayerConnection.removeEndSessionCallback((0,
-                C.gn)(this, _a, "f")),
-                (0,
-                C.gn)(this, Sa, "f").multiplayerConnection.removeNewSessionCallback((0,
-                C.gn)(this, Jr, "f")),
-                null != (0,
-                C.gn)(this, Ca, "f") && (0,
-                C.gn)(this, Sa, "f").multiplayerConnection.removeServerMessageCallback((0,
-                C.gn)(this, Ca, "f"))),
-                (0,
-                C.GG)(this, Sa, null, "f")),
-                (0,
-                C.gn)(this, Fr, "f").setCursorHiddenWhenInactive(!1),
-                (0,
-                C.gn)(this, Or, "f").hide(),
-                (0,
-                C.gn)(this, ma, "f").dispose(),
-                (0,
-                C.gn)(this, Wr, "f").removeChangeListener((0,
-                C.gn)(this, Aa, "f")),
-                (0,
-                C.gn)(this, ea, "f").dispose(),
-                (0,
-                C.gn)(this, ta, "f").dispose(),
-                (0,
-                C.gn)(this, na, "f")?.dispose(),
-                (0,
-                C.GG)(this, na, null, "f"),
-                (0,
-                C.gn)(this, ia, "f")?.dispose(),
-                (0,
-                C.GG)(this, ia, null, "f"),
-                (0,
-                C.gn)(this, ra, "f").dispose(),
-                (0,
-                C.gn)(this, aa, "f").dispose(),
-                (0,
-                C.gn)(this, sa, "f").dispose(),
-                (0,
-                C.gn)(this, oa, "f")?.dispose(),
-                (0,
-                C.GG)(this, oa, null, "f"),
-                (0,
-                C.gn)(this, la, "f").dispose(),
-                (0,
-                C.gn)(this, ca, "f")?.dispose(),
-                (0,
-                C.GG)(this, ca, null, "f"),
-                (0,
-                C.gn)(this, ha, "f")?.dispose(),
-                (0,
-                C.GG)(this, ha, null, "f"),
-                (0,
-                C.gn)(this, da, "f")?.dispose(),
-                (0,
-                C.GG)(this, da, null, "f"),
-                (0,
-                C.gn)(this, ua, "f")?.dispose(),
-                (0,
-                C.GG)(this, ua, null, "f"),
-                (0,
-                C.gn)(this, pa, "f")?.dispose(),
-                (0,
-                C.GG)(this, pa, null, "f"),
-                (0,
-                C.gn)(this, fa, "f")?.dispose(),
-                (0,
-                C.GG)(this, fa, null, "f"),
-                e && (0,
-                C.gn)(this, Pr, "f").clear(),
-                (0,
-                C.gn)(this, Ir, "f").clearMountains(),
-                (0,
-                C.gn)(this, ya, "f").dispose(),
-                (0,
-                C.gn)(this, wa, "f").dispose();
-                for (const e of (0,
-                C.gn)(this, xa, "f"))
+                null != C.get(this, Sa, "f") && (t ? C.get(this, Sa, "f").multiplayerConnection.dispose() : (null != C.get(this, ka, "f") && C.get(this, Sa, "f").multiplayerConnection.removeConnectionLostCallback(C.get(this, ka, "f")),
+                null != C.get(this, Ea, "f") && C.get(this, Sa, "f").multiplayerConnection.removePlayersChangedCallback(C.get(this, Ea, "f")),
+                null != C.get(this, Ta, "f") && C.get(this, Sa, "f").multiplayerConnection.removeCarResetCallback(C.get(this, Ta, "f")),
+                null != C.get(this, Ma, "f") && C.get(this, Sa, "f").multiplayerConnection.removeCarUpdateCallback(C.get(this, Ma, "f")),
+                null != C.get(this, _a, "f") && C.get(this, Sa, "f").multiplayerConnection.removeEndSessionCallback(C.get(this, _a, "f")),
+                C.get(this, Sa, "f").multiplayerConnection.removeNewSessionCallback(C.get(this, Jr, "f")),
+                null != C.get(this, Ca, "f") && C.get(this, Sa, "f").multiplayerConnection.removeServerMessageCallback(C.get(this, Ca, "f"))),
+                C.set(this, Sa, null, "f")),
+                C.get(this, Fr, "f").setCursorHiddenWhenInactive(!1),
+                C.get(this, Or, "f").hide(),
+                C.get(this, ma, "f").dispose(),
+                C.get(this, Wr, "f").removeChangeListener(C.get(this, Aa, "f")),
+                C.get(this, ea, "f").dispose(),
+                C.get(this, ta, "f").dispose(),
+                C.get(this, na, "f")?.dispose(),
+                C.set(this, na, null, "f"),
+                C.get(this, ia, "f")?.dispose(),
+                C.set(this, ia, null, "f"),
+                C.get(this, ra, "f").dispose(),
+                C.get(this, aa, "f").dispose(),
+                C.get(this, sa, "f").dispose(),
+                C.get(this, oa, "f")?.dispose(),
+                C.set(this, oa, null, "f"),
+                C.get(this, la, "f").dispose(),
+                C.get(this, ca, "f")?.dispose(),
+                C.set(this, ca, null, "f"),
+                C.get(this, ha, "f")?.dispose(),
+                C.set(this, ha, null, "f"),
+                C.get(this, da, "f")?.dispose(),
+                C.set(this, da, null, "f"),
+                C.get(this, ua, "f")?.dispose(),
+                C.set(this, ua, null, "f"),
+                C.get(this, pa, "f")?.dispose(),
+                C.set(this, pa, null, "f"),
+                C.get(this, fa, "f")?.dispose(),
+                C.set(this, fa, null, "f"),
+                e && C.get(this, Pr, "f").clear(),
+                C.get(this, Ir, "f").clearMountains(),
+                C.get(this, ya, "f").dispose(),
+                C.get(this, wa, "f").dispose();
+                for (const e of C.get(this, xa, "f"))
                     e.car?.dispose(),
                     e.car = null,
-                    null != e.carId && ((0,
-                    C.gn)(this, Rr, "f").deleteCar(e.carId),
+                    null != e.carId && (C.get(this, Rr, "f").deleteCar(e.carId),
                     e.carId = null),
                     e.replay = null;
-                for (const e of (0,
-                C.gn)(this, Ra, "f").values())
+                for (const e of C.get(this, Ra, "f").values())
                     e.car.dispose();
-                (0,
-                C.gn)(this, Ra, "f").clear(),
-                window.removeEventListener("keydown", (0,
-                C.gn)(this, Na, "f")),
-                window.removeEventListener("keyup", (0,
-                C.gn)(this, Da, "f")),
-                (0,
-                C.gn)(this, Ba, "f").dispose(),
-                (0,
-                C.gn)(this, Ga, "f")?.dispose(),
-                (0,
-                C.gn)(this, Fa, "f")?.dispose()
+                C.get(this, Ra, "f").clear(),
+                window.removeEventListener("keydown", C.get(this, Na, "f")),
+                window.removeEventListener("keyup", C.get(this, Da, "f")),
+                C.get(this, Ba, "f").dispose(),
+                C.get(this, Ga, "f")?.dispose(),
+                C.get(this, Fa, "f")?.dispose()
             }
             update(e) {
-                const t = !P.ip() && null == (0,
-                C.gn)(this, ca, "f") && !(0,
-                C.gn)(this, Pa, "f");
+                const t = !P.ip() && null == C.get(this, ca, "f") && !C.get(this, Pa, "f");
                 let n;
-                if (n = (0,
-                C.gn)(this, Ba, "f").isEnabled && null == (0,
-                C.gn)(this, Sa, "f") || !t ? 0 : e,
+                if (n = C.get(this, Ba, "f").isEnabled && null == C.get(this, Sa, "f") || !t ? 0 : e,
                 t) {
-                    if ((0,
-                    C.gn)(this, wa, "f").update(n),
-                    (0,
-                    C.gn)(this, wa, "f").updateCameras(n),
-                    (0,
-                    C.gn)(this, Ba, "f").isEnabled && null == (0,
-                    C.gn)(this, Sa, "f") ? ((0,
-                    C.gn)(this, wa, "f").isPaused = !0,
-                    (0,
-                    C.gn)(this, wa, "f").audioVolume = 0) : ((0,
-                    C.gn)(this, wa, "f").isPaused = !1,
-                    (0,
-                    C.gn)(this, wa, "f").audioVolume = 1),
-                    (0,
-                    C.gn)(this, wa, "f").isControlsDisabled = (0,
-                    C.gn)(this, Ba, "f").isEnabled || (0,
-                    C.gn)(this, _r, "m", Ha).call(this),
-                    !(0,
-                    C.gn)(this, Ba, "f").isEnabled && !(0,
-                    C.gn)(this, _r, "m", Ha).call(this)) {
-                        const e = (0,
-                        C.gn)(this, ya, "f").getControls();
-                        (e.up || e.down) && ((0,
-                        C.gn)(this, wa, "f").hasStarted() || (0,
-                        C.gn)(this, wa, "f").start()),
-                        (0,
-                        C.gn)(this, wa, "f").hasStarted() && !(0,
-                        C.gn)(this, wa, "f").hasFinished() ? P.tU() : P.bQ(),
-                        (0,
-                        C.gn)(this, wa, "f").hasStarted() || (0,
-                        C.gn)(this, La, "f") && ((0,
-                        C.gn)(this, Or, "f").show((0,
-                        C.gn)(this, Ur, "f").get("Invalid replay detected!"), (0,
-                        C.gn)(this, Ur, "f").get("Ok"), ( () => {
-                            (0,
-                            C.gn)(this, Or, "f").hide()
+                    if (C.get(this, wa, "f").update(n),
+                    C.get(this, wa, "f").updateCameras(n),
+                    C.get(this, Ba, "f").isEnabled && null == C.get(this, Sa, "f") ? (C.get(this, wa, "f").isPaused = !0,
+                    C.get(this, wa, "f").audioVolume = 0) : (C.get(this, wa, "f").isPaused = !1,
+                    C.get(this, wa, "f").audioVolume = 1),
+                    C.get(this, wa, "f").isControlsDisabled = C.get(this, Ba, "f").isEnabled || C.get(this, _r, "m", Ha).call(this),
+                    !C.get(this, Ba, "f").isEnabled && !C.get(this, _r, "m", Ha).call(this)) {
+                        const e = C.get(this, ya, "f").getControls();
+                        (e.up || e.down) && (C.get(this, wa, "f").hasStarted() || C.get(this, wa, "f").start()),
+                        C.get(this, wa, "f").hasStarted() && !C.get(this, wa, "f").hasFinished() ? P.tU() : P.bQ(),
+                        C.get(this, wa, "f").hasStarted() || C.get(this, La, "f") && (C.get(this, Or, "f").show(C.get(this, Ur, "f").get("Invalid replay detected!"), C.get(this, Ur, "f").get("Ok"), ( () => {
+                            C.get(this, Or, "f").hide()
                         }
                         )),
-                        (0,
-                        C.GG)(this, La, !1, "f"))
+                        C.set(this, La, !1, "f"))
                     }
-                    (0,
-                    C.gn)(this, wa, "f").getTime().numberOfFrames >= ie.A.maxFrames && (0,
-                    C.gn)(this, _r, "m", Qa).call(this),
-                    (0,
-                    C.gn)(this, Fa, "f")?.updateCar((0,
-                    C.gn)(this, wa, "f"));
-                    for (const e of (0,
-                    C.gn)(this, xa, "f"))
+                    C.get(this, wa, "f").getTime().numberOfFrames >= ie.A.maxFrames && C.get(this, _r, "m", Qa).call(this),
+                    C.get(this, Fa, "f")?.updateCar(C.get(this, wa, "f"));
+                    for (const e of C.get(this, xa, "f"))
                         if (null != e.car) {
                             if (!e.hasEnded) {
-                                const t = (0,
-                                C.gn)(this, wa, "f").getTime().numberOfFrames;
+                                const t = C.get(this, wa, "f").getTime().numberOfFrames;
                                 for (let n = e.car.getTime().numberOfFrames + 1; n <= t; n++) {
                                     const t = e.replay?.replay.getFrame(n);
                                     if (null == t) {
@@ -45196,15 +42175,11 @@
                                 }
                                 e.car.update(n)
                             }
-                            e.hasEnded || (0,
-                            C.gn)(this, Ba, "f").isEnabled ? e.car.audioVolume = 0 : e.car.audioVolume = (0,
-                            C.gn)(this, Oa, "f")
+                            e.hasEnded || C.get(this, Ba, "f").isEnabled ? e.car.audioVolume = 0 : e.car.audioVolume = C.get(this, Oa, "f")
                         }
-                    for (const e of (0,
-                    C.gn)(this, Ra, "f").values()) {
+                    for (const e of C.get(this, Ra, "f").values()) {
                         if (e.car.isPaused = !1,
-                        e.car.audioVolume = (0,
-                        C.gn)(this, Oa, "f"),
+                        e.car.audioVolume = C.get(this, Oa, "f"),
                         e.bufferedCarStates.length > 0) {
                             const t = e.bufferedCarStates[e.bufferedCarStates.length - 1].frames / 1e3 - e.time
                               , i = .15
@@ -45238,84 +42213,40 @@
                         }
                         e.car.update(n)
                     }
-                    (0,
-                    C.gn)(this, _r, "m", $a).call(this),
-                    (0,
-                    C.gn)(this, Ba, "f").update(e),
-                    (0,
-                    C.gn)(this, la, "f").setVisible(!(0,
-                    C.gn)(this, wa, "f").hasStarted() || (0,
-                    C.gn)(this, wa, "f").hasFinished() || !(0,
-                    C.gn)(this, va, "f") || (0,
-                    C.gn)(this, Wr, "f").touchEnabled || !(0,
-                    C.gn)(this, Fr, "f").isCursorHidden || (0,
-                    C.gn)(this, la, "f").hasFocus())
+                    C.get(this, _r, "m", $a).call(this),
+                    C.get(this, Ba, "f").update(e),
+                    C.get(this, la, "f").setVisible(!C.get(this, wa, "f").hasStarted() || C.get(this, wa, "f").hasFinished() || !C.get(this, va, "f") || C.get(this, Wr, "f").touchEnabled || !C.get(this, Fr, "f").isCursorHidden || C.get(this, la, "f").hasFocus())
                 } else {
-                    (0,
-                    C.gn)(this, wa, "f").isPaused = !0,
-                    (0,
-                    C.gn)(this, wa, "f").audioVolume = 0,
-                    (0,
-                    C.gn)(this, wa, "f").update(n),
-                    (0,
-                    C.gn)(this, wa, "f").updateCameras(n);
-                    for (const e of (0,
-                    C.gn)(this, xa, "f"))
+                    C.get(this, wa, "f").isPaused = !0,
+                    C.get(this, wa, "f").audioVolume = 0,
+                    C.get(this, wa, "f").update(n),
+                    C.get(this, wa, "f").updateCameras(n);
+                    for (const e of C.get(this, xa, "f"))
                         null != e.car && (e.car.isPaused = !0,
                         e.car.audioVolume = 0,
                         e.car.update(n));
-                    for (const e of (0,
-                    C.gn)(this, Ra, "f").values())
+                    for (const e of C.get(this, Ra, "f").values())
                         e.car.isPaused = !0,
                         e.car.audioVolume = 0,
                         e.car.update(n);
-                    (0,
-                    C.gn)(this, la, "f").setVisible(!P.ip())
+                    C.get(this, la, "f").setVisible(!P.ip())
                 }
-                const i = (0,
-                C.gn)(this, xa, "f").reduce(( (e, t) => e + t.loadedFrames), 0)
-                  , r = (0,
-                C.gn)(this, xa, "f").reduce(( (e, t) => e + t.maxFrames), 0);
+                const i = C.get(this, xa, "f").reduce(( (e, t) => e + t.loadedFrames), 0)
+                  , r = C.get(this, xa, "f").reduce(( (e, t) => e + t.maxFrames), 0);
                 let a;
                 a = r > 0 ? i / r : 1,
-                (0,
-                C.gn)(this, ma, "f").isEnabled = (0,
-                C.gn)(this, Wr, "f").touchEnabled && !(0,
-                C.gn)(this, _r, "m", Ha).call(this),
-                (0,
-                C.gn)(this, ta, "f").update((0,
-                C.gn)(this, wa, "f"), e, t && null == (0,
-                C.gn)(this, ha, "f") && null == (0,
-                C.gn)(this, da, "f")),
-                (0,
-                C.gn)(this, na, "f")?.update(a),
-                (0,
-                C.gn)(this, aa, "f").update((0,
-                C.gn)(this, wa, "f")),
-                (0,
-                C.gn)(this, sa, "f").update((0,
-                C.gn)(this, wa, "f")),
-                (0,
-                C.gn)(this, ra, "f").update((0,
-                C.gn)(this, wa, "f")),
-                (0,
-                C.gn)(this, ma, "f").setResetCheckpointAvailable((0,
-                C.gn)(this, _r, "m", ja).call(this)),
-                (0,
-                C.gn)(this, Ga, "f")?.update(),
-                (0,
-                C.gn)(this, Ir, "f").update((0,
-                C.gn)(this, Pr, "f")),
-                (0,
-                C.gn)(this, Lr, "f").update(n, (0,
-                C.gn)(this, zr, "f").camera, (0,
-                C.gn)(this, Pr, "f").sunDirection),
-                (0,
-                C.gn)(this, Nr, "f").update(e, !1, (0,
-                C.gn)(this, zr, "f")),
-                (0,
-                C.gn)(this, zr, "f").update((0,
-                C.gn)(this, Pr, "f").sunDirection)
+                C.get(this, ma, "f").isEnabled = C.get(this, Wr, "f").touchEnabled && !C.get(this, _r, "m", Ha).call(this),
+                C.get(this, ta, "f").update(C.get(this, wa, "f"), e, t && null == C.get(this, ha, "f") && null == C.get(this, da, "f")),
+                C.get(this, na, "f")?.update(a),
+                C.get(this, aa, "f").update(C.get(this, wa, "f")),
+                C.get(this, sa, "f").update(C.get(this, wa, "f")),
+                C.get(this, ra, "f").update(C.get(this, wa, "f")),
+                C.get(this, ma, "f").setResetCheckpointAvailable(C.get(this, _r, "m", ja).call(this)),
+                C.get(this, Ga, "f")?.update(),
+                C.get(this, Ir, "f").update(C.get(this, Pr, "f")),
+                C.get(this, Lr, "f").update(n, C.get(this, zr, "f").camera, C.get(this, Pr, "f").sunDirection),
+                C.get(this, Nr, "f").update(e, !1, C.get(this, zr, "f")),
+                C.get(this, zr, "f").update(C.get(this, Pr, "f").sunDirection)
             }
         }
         ;
@@ -45345,21 +42276,15 @@
             constructor(e, t, n) {
                 os.set(this, void 0),
                 ls.set(this, void 0),
-                (0,
-                C.GG)(this, os, e, "f"),
-                (0,
-                C.GG)(this, ls, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, ls, "f").className = "loading-ui",
-                e.appendChild((0,
-                C.gn)(this, ls, "f"));
+                C.set(this, os, e, "f"),
+                C.set(this, ls, document.createElement("div"), "f"),
+                C.get(this, ls, "f").className = "loading-ui",
+                e.appendChild(C.get(this, ls, "f"));
                 const i = document.createElement("p");
                 i.textContent = t.get("Loading") + "...",
-                (0,
-                C.gn)(this, ls, "f").appendChild(i);
+                C.get(this, ls, "f").appendChild(i);
                 const r = document.createElement("div");
-                (0,
-                C.gn)(this, ls, "f").appendChild(r);
+                C.get(this, ls, "f").appendChild(r);
                 const a = document.createElement("div");
                 r.appendChild(a);
                 const s = document.createElement("div");
@@ -45370,14 +42295,11 @@
                 ))
             }
             fadeOut(e) {
-                (0,
-                C.gn)(this, ls, "f").classList.add("fade-out"),
+                C.get(this, ls, "f").classList.add("fade-out"),
                 setTimeout(e, 250)
             }
             dispose() {
-                (0,
-                C.gn)(this, os, "f").removeChild((0,
-                C.gn)(this, ls, "f"))
+                C.get(this, os, "f").removeChild(C.get(this, ls, "f"))
             }
         }
         ;
@@ -51210,16 +48132,13 @@
         class fs {
             constructor(e) {
                 ps.set(this, void 0),
-                (0,
-                C.GG)(this, ps, e, "f")
+                C.set(this, ps, e, "f")
             }
             set language(e) {
-                (0,
-                C.GG)(this, ps, e, "f")
+                C.set(this, ps, e, "f")
             }
             get(e, t) {
-                return fs.getFromLanguage((0,
-                C.gn)(this, ps, "f"), e, t)
+                return fs.getFromLanguage(C.get(this, ps, "f"), e, t)
             }
             static getFromLanguage(e, t, n) {
                 let i;
@@ -51255,49 +48174,29 @@
         Is = new WeakMap,
         ms = new WeakSet,
         Ls = function() {
-            (0,
-            C.gn)(this, Ss, "f").className = "hidden"
+            C.get(this, Ss, "f").className = "hidden"
         }
         ,
         Us = function() {
-            (0,
-            C.gn)(this, Ss, "f").className = "settings-menu-ui"
+            C.get(this, Ss, "f").className = "settings-menu-ui"
         }
         ,
         zs = function() {
-            (0,
-            C.GG)(this, Cs, (0,
-            C.gn)(this, Ps, "f").get(R.A.Language) ?? (0,
-            C.gn)(this, bs, "f").getSetting(R.A.Language), "f"),
-            (0,
-            C.gn)(this, Es, "f").innerHTML = '<img class="button-icon" src="images/cancel.svg"> ',
-            (0,
-            C.gn)(this, Es, "f").append(document.createTextNode(gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Cancel"))),
-            (0,
-            C.gn)(this, Ts, "f").innerHTML = '<img class="button-icon" src="images/reset_settings.svg"> ',
-            (0,
-            C.gn)(this, Ts, "f").append(document.createTextNode(gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Reset"))),
-            (0,
-            C.gn)(this, Ms, "f").innerHTML = "",
-            (0,
-            C.gn)(this, Ms, "f").append(document.createTextNode(gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Apply"))),
-            (0,
-            C.gn)(this, Ms, "f").innerHTML += ' <img class="button-icon" src="images/apply.svg">',
-            (0,
-            C.gn)(this, ms, "m", Ns).call(this)
+            C.set(this, Cs, C.get(this, Ps, "f").get(R.A.Language) ?? C.get(this, bs, "f").getSetting(R.A.Language), "f"),
+            C.get(this, Es, "f").innerHTML = '<img class="button-icon" src="images/cancel.svg"> ',
+            C.get(this, Es, "f").append(document.createTextNode(gs.getFromLanguage(C.get(this, Cs, "f"), "Cancel"))),
+            C.get(this, Ts, "f").innerHTML = '<img class="button-icon" src="images/reset_settings.svg"> ',
+            C.get(this, Ts, "f").append(document.createTextNode(gs.getFromLanguage(C.get(this, Cs, "f"), "Reset"))),
+            C.get(this, Ms, "f").innerHTML = "",
+            C.get(this, Ms, "f").append(document.createTextNode(gs.getFromLanguage(C.get(this, Cs, "f"), "Apply"))),
+            C.get(this, Ms, "f").innerHTML += ' <img class="button-icon" src="images/apply.svg">',
+            C.get(this, ms, "m", Ns).call(this)
         }
         ,
         Ns = function() {
-            (0,
-            C.gn)(this, ks, "f").innerHTML = "",
-            (0,
-            C.gn)(this, ms, "m", Ds).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Language")),
-            (0,
-            C.gn)(this, ms, "m", Gs).call(this, null, [{
+            C.get(this, ks, "f").innerHTML = "",
+            C.get(this, ms, "m", Ds).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Language")),
+            C.get(this, ms, "m", Gs).call(this, null, [{
                 title: "العربية",
                 value: "ar"
             }, {
@@ -51346,231 +48245,148 @@
                 title: "繁體中文",
                 value: "zh-TW"
             }], R.A.Language, ( () => {
-                (0,
-                C.gn)(this, ms, "m", zs).call(this)
+                C.get(this, ms, "m", zs).call(this)
             }
             )),
-            (0,
-            C.gn)(this, ms, "m", Ds).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Gameplay")),
-            (0,
-            C.gn)(this, ms, "m", Gs).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Units"), [{
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "Metric"),
+            C.get(this, ms, "m", Ds).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Gameplay")),
+            C.get(this, ms, "m", Gs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Units"), [{
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "Metric"),
                 value: "false"
             }, {
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "Imperial"),
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "Imperial"),
                 value: "true"
             }], R.A.ImperialUnitsEnabled),
-            (0,
-            C.gn)(this, ms, "m", Gs).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Reset hint"), [{
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "Disabled"),
+            C.get(this, ms, "m", Gs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Reset hint"), [{
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "Disabled"),
                 value: "false"
             }, {
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "Enabled"),
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "Enabled"),
                 value: "true"
             }], R.A.ResetHintEnabled),
-            (0,
-            C.gn)(this, ms, "m", Gs).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Ghost car"), [{
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "Disabled"),
+            C.get(this, ms, "m", Gs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Ghost car"), [{
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "Disabled"),
                 value: "false"
             }, {
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "Enabled"),
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "Enabled"),
                 value: "true"
             }], R.A.GhostCarEnabled),
-            (0,
-            C.gn)(this, ms, "m", Gs).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Default camera"), [{
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "Default"),
+            C.get(this, ms, "m", Gs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Default camera"), [{
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "Default"),
                 value: "false"
             }, {
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "Cockpit"),
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "Cockpit"),
                 value: "true"
             }], R.A.DefaultCameraMode),
-            (0,
-            C.gn)(this, ms, "m", Gs).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Cockpit camera mode"), [{
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "Hold"),
+            C.get(this, ms, "m", Gs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Cockpit camera mode"), [{
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "Hold"),
                 value: "false"
             }, {
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "Toggle"),
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "Toggle"),
                 value: "true"
             }], R.A.CockpitCameraToggle),
-            (0,
-            C.gn)(this, ms, "m", Gs).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Checkpoints"), [{
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "Off"),
+            C.get(this, ms, "m", Gs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Checkpoints"), [{
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "Off"),
                 value: "off"
             }, {
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "Bottom"),
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "Bottom"),
                 value: "bottom"
             }, {
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "Top"),
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "Top"),
                 value: "top"
             }], R.A.Checkpoints),
-            (0,
-            C.gn)(this, ms, "m", Gs).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Timer"), [{
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "Off"),
+            C.get(this, ms, "m", Gs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Timer"), [{
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "Off"),
                 value: "off"
             }, {
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "Bottom"),
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "Bottom"),
                 value: "bottom"
             }, {
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "Top"),
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "Top"),
                 value: "top"
             }], R.A.Timer),
-            (0,
-            C.gn)(this, ms, "m", Gs).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Speedometer"), [{
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "Off"),
+            C.get(this, ms, "m", Gs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Speedometer"), [{
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "Off"),
                 value: "off"
             }, {
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "Bottom"),
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "Bottom"),
                 value: "bottom"
             }, {
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "Top"),
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "Top"),
                 value: "top"
             }], R.A.Speedometer),
-            (0,
-            C.gn)(this, ms, "m", Bs).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Mobile")),
-            (0,
-            C.gn)(this, ms, "m", Gs).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Vibration"), [{
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "Off"),
+            C.get(this, ms, "m", Bs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Mobile")),
+            C.get(this, ms, "m", Gs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Vibration"), [{
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "Off"),
                 value: "false"
             }, {
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "On"),
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "On"),
                 value: "true"
             }], R.A.VibrationEnabled),
-            (0,
-            C.gn)(this, ms, "m", Gs).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Steering control side"), [{
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "Left"),
+            C.get(this, ms, "m", Gs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Steering control side"), [{
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "Left"),
                 value: "false"
             }, {
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "Right"),
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "Right"),
                 value: "true"
             }], R.A.TouchSteeringSide),
-            (0,
-            C.gn)(this, ms, "m", Ds).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Graphics")),
-            (0,
-            C.gn)(this, ms, "m", Gs).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Shadows"), [{
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "Off"),
+            C.get(this, ms, "m", Ds).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Graphics")),
+            C.get(this, ms, "m", Gs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Shadows"), [{
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "Off"),
                 value: "0",
-                available: (0,
-                C.gn)(this, ys, "f").isShadowQualitySupported(0)
+                available: C.get(this, ys, "f").isShadowQualitySupported(0)
             }, {
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "Minimal"),
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "Minimal"),
                 value: "1",
-                available: (0,
-                C.gn)(this, ys, "f").isShadowQualitySupported(1)
+                available: C.get(this, ys, "f").isShadowQualitySupported(1)
             }, {
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "Low"),
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "Low"),
                 value: "2",
-                available: (0,
-                C.gn)(this, ys, "f").isShadowQualitySupported(2)
+                available: C.get(this, ys, "f").isShadowQualitySupported(2)
             }, {
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "Medium"),
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "Medium"),
                 value: "3",
-                available: (0,
-                C.gn)(this, ys, "f").isShadowQualitySupported(3)
+                available: C.get(this, ys, "f").isShadowQualitySupported(3)
             }, {
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "High"),
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "High"),
                 value: "4",
-                available: (0,
-                C.gn)(this, ys, "f").isShadowQualitySupported(4)
+                available: C.get(this, ys, "f").isShadowQualitySupported(4)
             }, {
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "Ultra"),
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "Ultra"),
                 value: "5",
-                available: (0,
-                C.gn)(this, ys, "f").isShadowQualitySupported(5)
+                available: C.get(this, ys, "f").isShadowQualitySupported(5)
             }], R.A.ShadowQuality, ( () => {
-                (0,
-                C.gn)(this, ws, "f").generateMeshes()
+                C.get(this, ws, "f").generateMeshes()
             }
             )),
-            (0,
-            C.gn)(this, ms, "m", Gs).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Clouds"), [{
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "Off"),
+            C.get(this, ms, "m", Gs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Clouds"), [{
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "Off"),
                 value: "false"
             }, {
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "On"),
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "On"),
                 value: "true"
             }], R.A.CloudsEnabled),
-            (0,
-            C.gn)(this, ms, "m", Gs).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Particles"), [{
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "Off"),
+            C.get(this, ms, "m", Gs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Particles"), [{
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "Off"),
                 value: "false"
             }, {
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "On"),
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "On"),
                 value: "true"
             }], R.A.ParticlesEnabled),
-            (0,
-            C.gn)(this, ms, "m", Gs).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Skidmarks"), [{
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "Off"),
+            C.get(this, ms, "m", Gs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Skidmarks"), [{
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "Off"),
                 value: "false"
             }, {
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "On"),
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "On"),
                 value: "true"
             }], R.A.SkidmarksEnabled),
-            (0,
-            C.gn)(this, ms, "m", Gs).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Fog"), [{
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "Off"),
+            C.get(this, ms, "m", Gs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Fog"), [{
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "Off"),
                 value: "false"
             }, {
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "On"),
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "On"),
                 value: "true"
             }], R.A.FogEnabled),
-            (0,
-            C.gn)(this, ms, "m", Gs).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Render scale"), [{
+            C.get(this, ms, "m", Gs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Render scale"), [{
                 title: "10%",
                 value: "0.10"
             }, {
@@ -51586,191 +48402,87 @@
                 title: "100%",
                 value: "1"
             }], R.A.RenderScale),
-            (0,
-            C.gn)(this, ms, "m", Gs).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Screen Pixel Density"), [{
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "Fixed"),
+            C.get(this, ms, "m", Gs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Screen Pixel Density"), [{
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "Fixed"),
                 value: "false"
             }, {
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "Auto"),
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "Auto"),
                 value: "true"
             }], R.A.ScreenPixelDensity),
-            (0,
-            C.gn)(this, ms, "m", Gs).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Anti-aliasing (requires restart)"), [{
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "Off"),
+            C.get(this, ms, "m", Gs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Anti-aliasing (requires restart)"), [{
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "Off"),
                 value: "false"
             }, {
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "On"),
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "On"),
                 value: "true"
             }], R.A.Antialiasing),
-            (0,
-            C.gn)(this, ms, "m", Ds).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Audio")),
-            (0,
-            C.gn)(this, ms, "m", Fs).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Master volume"), R.A.MasterVolume),
-            (0,
-            C.gn)(this, ms, "m", Fs).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Sound effect volume"), R.A.SoundEffectVolume),
-            (0,
-            C.gn)(this, ms, "m", Fs).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Music volume"), R.A.MusicVolume),
-            (0,
-            C.gn)(this, ms, "m", Fs).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Checkpoint volume"), R.A.CheckpointVolume),
-            (0,
-            C.gn)(this, ms, "m", Gs).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Ghost car sounds"), [{
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "Off"),
+            C.get(this, ms, "m", Ds).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Audio")),
+            C.get(this, ms, "m", Fs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Master volume"), R.A.MasterVolume),
+            C.get(this, ms, "m", Fs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Sound effect volume"), R.A.SoundEffectVolume),
+            C.get(this, ms, "m", Fs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Music volume"), R.A.MusicVolume),
+            C.get(this, ms, "m", Fs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Checkpoint volume"), R.A.CheckpointVolume),
+            C.get(this, ms, "m", Gs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Ghost car sounds"), [{
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "Off"),
                 value: "false"
             }, {
-                title: gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "On"),
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "On"),
                 value: "true"
             }], R.A.GhostCarSoundsEnabled),
-            (0,
-            C.gn)(this, ms, "m", Ds).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Controls")),
-            (0,
-            C.gn)(this, ms, "m", Bs).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Vehicle")),
-            (0,
-            C.gn)(this, ms, "m", Os).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Accelerate"), ge.A.VehicleAccelerate),
-            (0,
-            C.gn)(this, ms, "m", Os).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Brake"), ge.A.VehicleBrake),
-            (0,
-            C.gn)(this, ms, "m", Os).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Turn left"), ge.A.VehicleTurnLeft),
-            (0,
-            C.gn)(this, ms, "m", Os).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Turn right"), ge.A.VehicleTurnRight),
-            (0,
-            C.gn)(this, ms, "m", Os).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Checkpoint reset"), ge.A.VehicleCheckpointReset),
-            (0,
-            C.gn)(this, ms, "m", Os).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Start reset"), ge.A.VehicleStartReset),
-            (0,
-            C.gn)(this, ms, "m", Os).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Cockpit camera"), ge.A.VehicleCockpitCamera),
-            (0,
-            C.gn)(this, ms, "m", Bs).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Editor")),
-            (0,
-            C.gn)(this, ms, "m", Os).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Rotate part"), ge.A.EditorRotatePart),
-            (0,
-            C.gn)(this, ms, "m", Os).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Height modifier"), ge.A.EditorHeightModifier),
-            (0,
-            C.gn)(this, ms, "m", Os).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Delete part"), ge.A.EditorDelete),
-            (0,
-            C.gn)(this, ms, "m", Os).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Move forwards"), ge.A.EditorMoveForwards),
-            (0,
-            C.gn)(this, ms, "m", Os).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Move backwards"), ge.A.EditorMoveBackwards),
-            (0,
-            C.gn)(this, ms, "m", Os).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Move left"), ge.A.EditorMoveLeft),
-            (0,
-            C.gn)(this, ms, "m", Os).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Move right"), ge.A.EditorMoveRight),
-            (0,
-            C.gn)(this, ms, "m", Os).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Rotate view up"), ge.A.EditorRotateViewUp),
-            (0,
-            C.gn)(this, ms, "m", Os).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Rotate view down"), ge.A.EditorRotateViewDown),
-            (0,
-            C.gn)(this, ms, "m", Os).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Rotate view left"), ge.A.EditorRotateViewLeft),
-            (0,
-            C.gn)(this, ms, "m", Os).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Rotate view right"), ge.A.EditorRotateViewRight),
-            (0,
-            C.gn)(this, ms, "m", Os).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Move down"), ge.A.EditorMoveDown),
-            (0,
-            C.gn)(this, ms, "m", Os).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Move up"), ge.A.EditorMoveUp),
-            (0,
-            C.gn)(this, ms, "m", Os).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Test track"), ge.A.EditorTest),
-            (0,
-            C.gn)(this, ms, "m", Os).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Pick part"), ge.A.EditorPick),
-            (0,
-            C.gn)(this, ms, "m", Bs).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Spectator")),
-            (0,
-            C.gn)(this, ms, "m", Os).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Move forwards"), ge.A.SpectatorMoveForwards),
-            (0,
-            C.gn)(this, ms, "m", Os).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Move backwards"), ge.A.SpectatorMoveBackwards),
-            (0,
-            C.gn)(this, ms, "m", Os).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Move left"), ge.A.SpectatorMoveLeft),
-            (0,
-            C.gn)(this, ms, "m", Os).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Move right"), ge.A.SpectatorMoveRight),
-            (0,
-            C.gn)(this, ms, "m", Os).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Speed modifier"), ge.A.SpectatorSpeedModifier),
-            (0,
-            C.gn)(this, ms, "m", Bs).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Replay")),
-            (0,
-            C.gn)(this, ms, "m", Os).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Step forward"), ge.A.PreviewStepForward),
-            (0,
-            C.gn)(this, ms, "m", Os).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Step back"), ge.A.PreviewStepBack),
-            (0,
-            C.gn)(this, ms, "m", Bs).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Other")),
-            (0,
-            C.gn)(this, ms, "m", Os).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Hide UI"), ge.A.ToggleUI),
-            (0,
-            C.gn)(this, ms, "m", Os).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Pause"), ge.A.Pause),
-            (0,
-            C.gn)(this, ms, "m", Os).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Toggle FPS counter"), ge.A.ToggleFpsCounter),
-            (0,
-            C.gn)(this, ms, "m", Os).call(this, gs.getFromLanguage((0,
-            C.gn)(this, Cs, "f"), "Toggle spectator camera"), ge.A.ToggleSpectatorCamera)
+            C.get(this, ms, "m", Ds).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Controls")),
+            C.get(this, ms, "m", Bs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Vehicle")),
+            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Accelerate"), KeyBind.VehicleAccelerate),
+            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Brake"), KeyBind.VehicleBrake),
+            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Turn left"), KeyBind.VehicleTurnLeft),
+            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Turn right"), KeyBind.VehicleTurnRight),
+            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Checkpoint reset"), KeyBind.VehicleCheckpointReset),
+            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Start reset"), KeyBind.VehicleStartReset),
+            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Cockpit camera"), KeyBind.VehicleCockpitCamera),
+            C.get(this, ms, "m", Bs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Editor")),
+            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Rotate part"), KeyBind.EditorRotatePart),
+            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Height modifier"), KeyBind.EditorHeightModifier),
+            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Delete part"), KeyBind.EditorDelete),
+            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Move forwards"), KeyBind.EditorMoveForwards),
+            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Move backwards"), KeyBind.EditorMoveBackwards),
+            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Move left"), KeyBind.EditorMoveLeft),
+            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Move right"), KeyBind.EditorMoveRight),
+            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Rotate view up"), KeyBind.EditorRotateViewUp),
+            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Rotate view down"), KeyBind.EditorRotateViewDown),
+            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Rotate view left"), KeyBind.EditorRotateViewLeft),
+            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Rotate view right"), KeyBind.EditorRotateViewRight),
+            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Move down"), KeyBind.EditorMoveDown),
+            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Move up"), KeyBind.EditorMoveUp),
+            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Test track"), KeyBind.EditorTest),
+            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Pick part"), KeyBind.EditorPick),
+            C.get(this, ms, "m", Bs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Spectator")),
+            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Move forwards"), KeyBind.SpectatorMoveForwards),
+            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Move backwards"), KeyBind.SpectatorMoveBackwards),
+            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Move left"), KeyBind.SpectatorMoveLeft),
+            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Move right"), KeyBind.SpectatorMoveRight),
+            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Speed modifier"), KeyBind.SpectatorSpeedModifier),
+            C.get(this, ms, "m", Bs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Replay")),
+            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Step forward"), KeyBind.PreviewStepForward),
+            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Step back"), KeyBind.PreviewStepBack),
+            C.get(this, ms, "m", Bs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Other")),
+            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Hide UI"), KeyBind.ToggleUI),
+            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Pause"), KeyBind.Pause),
+            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Toggle FPS counter"), KeyBind.ToggleFpsCounter),
+            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Toggle spectator camera"), KeyBind.ToggleSpectatorCamera)
         }
         ,
         Ds = function(e) {
             const t = document.createElement("h2");
             t.textContent = e,
-            (0,
-            C.gn)(this, ks, "f").appendChild(t)
+            C.get(this, ks, "f").appendChild(t)
         }
         ,
         Bs = function(e) {
             const t = document.createElement("h3");
             t.textContent = e,
-            (0,
-            C.gn)(this, ks, "f").appendChild(t)
+            C.get(this, ks, "f").appendChild(t)
         }
         ,
         Gs = function(e, t, n, i) {
-            const r = (0,
-            C.gn)(this, Ps, "f").get(n) ?? (0,
-            C.gn)(this, bs, "f").getSetting(n)
+            const r = C.get(this, Ps, "f").get(n) ?? C.get(this, bs, "f").getSetting(n)
               , a = document.createElement("div");
             if (a.className = "setting",
             null != e) {
@@ -51789,30 +48501,23 @@
                 t.disabled = !1 === l,
                 t.textContent = e,
                 t.addEventListener("click", ( () => {
-                    (0,
-                    C.gn)(this, vs, "f").playUIClick();
+                    C.get(this, vs, "f").playUIClick();
                     for (const e of o)
                         e.className = "button";
                     t.className = "button selected",
-                    (0,
-                    C.gn)(this, Ps, "f").set(n, a),
-                    (0,
-                    C.gn)(this, bs, "f").updateSettings(Array.from((0,
-                    C.gn)(this, Ps, "f"))),
+                    C.get(this, Ps, "f").set(n, a),
+                    C.get(this, bs, "f").updateSettings(Array.from(C.get(this, Ps, "f"))),
                     null != i && i()
                 }
                 )),
                 s.appendChild(t),
                 o.push(t)
             }
-            (0,
-            C.gn)(this, ks, "f").appendChild(a)
+            C.get(this, ks, "f").appendChild(a)
         }
         ,
         Fs = function(e, t, n=0, i=1) {
-            let r = parseFloat((0,
-            C.gn)(this, Ps, "f").get(t) ?? (0,
-            C.gn)(this, bs, "f").getSetting(t));
+            let r = parseFloat(C.get(this, Ps, "f").get(t) ?? C.get(this, bs, "f").getSetting(t));
             Number.isNaN(r) && (r = 0);
             const a = document.createElement("div");
             a.className = "setting";
@@ -51826,16 +48531,12 @@
             o.value = (20 * r).toString(),
             o.addEventListener("input", ( () => {
                 const e = parseFloat(o.value) / 20;
-                (0,
-                C.gn)(this, Ps, "f").set(t, e.toString()),
-                (0,
-                C.gn)(this, bs, "f").updateSettings(Array.from((0,
-                C.gn)(this, Ps, "f")))
+                C.get(this, Ps, "f").set(t, e.toString()),
+                C.get(this, bs, "f").updateSettings(Array.from(C.get(this, Ps, "f")))
             }
             )),
             a.appendChild(o),
-            (0,
-            C.gn)(this, ks, "f").appendChild(a)
+            C.get(this, ks, "f").appendChild(a)
         }
         ,
         Os = function(e, t) {
@@ -51847,44 +48548,32 @@
             const r = document.createElement("div");
             r.className = "button-wrapper",
             n.appendChild(r);
-            const a = (0,
-            C.gn)(this, Is, "f").get(t) ?? (0,
-            C.gn)(this, bs, "f").getKeyBindings(t)
+            const a = C.get(this, Is, "f").get(t) ?? C.get(this, bs, "f").getKeyBindings(t)
               , s = document.createElement("button");
             s.className = "button",
             s.textContent = Ae(a[0] ?? ""),
             s.addEventListener("click", ( () => {
-                (0,
-                C.gn)(this, vs, "f").playUIClick(),
-                (0,
-                C.gn)(this, ms, "m", Ls).call(this);
+                C.get(this, vs, "f").playUIClick(),
+                C.get(this, ms, "m", Ls).call(this);
                 const e = t => {
-                    "Escape" == t.code || "Tab" == t.code || "Enter" == t.code && null != document.activeElement && document.activeElement != document.body || ((0,
-                    C.gn)(this, xs, "f").hide(),
+                    "Escape" == t.code || "Tab" == t.code || "Enter" == t.code && null != document.activeElement && document.activeElement != document.body || (C.get(this, xs, "f").hide(),
                     a[0] = t.code,
                     s.textContent = Ae(t.code),
-                    (0,
-                    C.gn)(this, ms, "m", Us).call(this),
+                    C.get(this, ms, "m", Us).call(this),
                     window.removeEventListener("keydown", e),
                     t.preventDefault())
                 }
                 ;
                 window.addEventListener("keydown", e),
-                (0,
-                C.gn)(this, xs, "f").showConfirm(gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "Press any key...\n\nPress [Escape] to cancel."), gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "Cancel"), gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "Clear"), ( () => {
-                    (0,
-                    C.gn)(this, ms, "m", Us).call(this),
+                C.get(this, xs, "f").showConfirm(gs.getFromLanguage(C.get(this, Cs, "f"), "Press any key...\n\nPress [Escape] to cancel."), gs.getFromLanguage(C.get(this, Cs, "f"), "Cancel"), gs.getFromLanguage(C.get(this, Cs, "f"), "Clear"), ( () => {
+                    C.get(this, ms, "m", Us).call(this),
                     window.removeEventListener("keydown", e)
                 }
                 ), ( () => {
                     s.textContent = "",
                     a[0] = null,
                     window.removeEventListener("keydown", e),
-                    (0,
-                    C.gn)(this, ms, "m", Us).call(this)
+                    C.get(this, ms, "m", Us).call(this)
                 }
                 ))
             }
@@ -51894,44 +48583,33 @@
             o.className = "button",
             o.textContent = Ae(a[1] ?? ""),
             o.addEventListener("click", ( () => {
-                (0,
-                C.gn)(this, vs, "f").playUIClick(),
-                (0,
-                C.gn)(this, ms, "m", Ls).call(this);
+                C.get(this, vs, "f").playUIClick(),
+                C.get(this, ms, "m", Ls).call(this);
                 const e = t => {
-                    "Escape" == t.code || "Tab" == t.code || "Enter" == t.code && null != document.activeElement && document.activeElement != document.body || ((0,
-                    C.gn)(this, xs, "f").hide(),
+                    "Escape" == t.code || "Tab" == t.code || "Enter" == t.code && null != document.activeElement && document.activeElement != document.body || (C.get(this, xs, "f").hide(),
                     a[1] = t.code,
                     o.textContent = Ae(t.code),
-                    (0,
-                    C.gn)(this, ms, "m", Us).call(this),
+                    C.get(this, ms, "m", Us).call(this),
                     window.removeEventListener("keydown", e),
                     t.preventDefault())
                 }
                 ;
                 window.addEventListener("keydown", e),
-                (0,
-                C.gn)(this, xs, "f").showConfirm(gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "Press any key...\n\nPress [Escape] to cancel."), gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "Cancel"), gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "Clear"), ( () => {
-                    (0,
-                    C.gn)(this, ms, "m", Us).call(this),
+                C.get(this, xs, "f").showConfirm(gs.getFromLanguage(C.get(this, Cs, "f"), "Press any key...\n\nPress [Escape] to cancel."), gs.getFromLanguage(C.get(this, Cs, "f"), "Cancel"), gs.getFromLanguage(C.get(this, Cs, "f"), "Clear"), ( () => {
+                    C.get(this, ms, "m", Us).call(this),
                     window.removeEventListener("keydown", e)
                 }
                 ), ( () => {
                     o.textContent = "",
                     a[1] = null,
                     window.removeEventListener("keydown", e),
-                    (0,
-                    C.gn)(this, ms, "m", Us).call(this)
+                    C.get(this, ms, "m", Us).call(this)
                 }
                 ))
             }
             )),
             r.appendChild(o),
-            (0,
-            C.gn)(this, ks, "f").appendChild(n)
+            C.get(this, ks, "f").appendChild(n)
         }
         ;
         const Ws = class {
@@ -51953,118 +48631,73 @@
                 Rs.set(this, new Map),
                 Ps.set(this, new Map),
                 Is.set(this, new Map),
-                (0,
-                C.GG)(this, As, e, "f"),
-                (0,
-                C.GG)(this, vs, n, "f"),
-                (0,
-                C.GG)(this, ys, i, "f"),
-                (0,
-                C.GG)(this, bs, r, "f"),
-                (0,
-                C.GG)(this, ws, a, "f"),
-                (0,
-                C.GG)(this, xs, s, "f"),
-                (0,
-                C.GG)(this, Cs, r.getSetting(R.A.Language), "f"),
-                (0,
-                C.GG)(this, Rs, new Map(r.getSettings()), "f"),
-                (0,
-                C.GG)(this, Ss, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, Ss, "f").className = "settings-menu-ui",
-                e.appendChild((0,
-                C.gn)(this, Ss, "f"));
+                C.set(this, As, e, "f"),
+                C.set(this, vs, n, "f"),
+                C.set(this, ys, i, "f"),
+                C.set(this, bs, r, "f"),
+                C.set(this, ws, a, "f"),
+                C.set(this, xs, s, "f"),
+                C.set(this, Cs, r.getSetting(R.A.Language), "f"),
+                C.set(this, Rs, new Map(r.getSettings()), "f"),
+                C.set(this, Ss, document.createElement("div"), "f"),
+                C.get(this, Ss, "f").className = "settings-menu-ui",
+                e.appendChild(C.get(this, Ss, "f"));
                 const l = document.createElement("h2");
-                l.textContent = gs.getFromLanguage((0,
-                C.gn)(this, Cs, "f"), "Settings"),
-                (0,
-                C.gn)(this, Ss, "f").appendChild(l),
-                (0,
-                C.GG)(this, ks, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, ks, "f").className = "container",
-                (0,
-                C.gn)(this, Ss, "f").appendChild((0,
-                C.gn)(this, ks, "f"));
+                l.textContent = gs.getFromLanguage(C.get(this, Cs, "f"), "Settings"),
+                C.get(this, Ss, "f").appendChild(l),
+                C.set(this, ks, document.createElement("div"), "f"),
+                C.get(this, ks, "f").className = "container",
+                C.get(this, Ss, "f").appendChild(C.get(this, ks, "f"));
                 const c = document.createElement("div");
                 c.className = "button-wrapper",
-                (0,
-                C.gn)(this, Ss, "f").appendChild(c),
-                (0,
-                C.GG)(this, Es, document.createElement("button"), "f"),
-                (0,
-                C.gn)(this, Es, "f").className = "button cancel",
-                (0,
-                C.gn)(this, Es, "f").addEventListener("click", ( () => {
+                C.get(this, Ss, "f").appendChild(c),
+                C.set(this, Es, document.createElement("button"), "f"),
+                C.get(this, Es, "f").className = "button cancel",
+                C.get(this, Es, "f").addEventListener("click", ( () => {
                     n.playUIClick(),
-                    r.updateSettings(Array.from((0,
-                    C.gn)(this, Rs, "f"))),
+                    r.updateSettings(Array.from(C.get(this, Rs, "f"))),
                     a.generateMeshes(),
                     o()
                 }
                 )),
-                c.appendChild((0,
-                C.gn)(this, Es, "f")),
-                (0,
-                C.GG)(this, Ts, document.createElement("button"), "f"),
-                (0,
-                C.gn)(this, Ts, "f").className = "button reset",
-                (0,
-                C.gn)(this, Ts, "f").addEventListener("click", ( () => {
+                c.appendChild(C.get(this, Es, "f")),
+                C.set(this, Ts, document.createElement("button"), "f"),
+                C.get(this, Ts, "f").className = "button reset",
+                C.get(this, Ts, "f").addEventListener("click", ( () => {
                     n.playUIClick(),
-                    (0,
-                    C.GG)(this, Ps, (0,
-                    C.gn)(this, bs, "f").defaultSettings(), "f"),
-                    r.updateSettings(Array.from((0,
-                    C.gn)(this, Ps, "f"))),
-                    (0,
-                    C.GG)(this, Is, (0,
-                    C.gn)(this, bs, "f").defaultKeyBindings(), "f"),
+                    C.set(this, Ps, C.get(this, bs, "f").defaultSettings(), "f"),
+                    r.updateSettings(Array.from(C.get(this, Ps, "f"))),
+                    C.set(this, Is, C.get(this, bs, "f").defaultKeyBindings(), "f"),
                     a.generateMeshes(),
-                    (0,
-                    C.gn)(this, ms, "m", zs).call(this)
+                    C.get(this, ms, "m", zs).call(this)
                 }
                 )),
-                c.appendChild((0,
-                C.gn)(this, Ts, "f")),
-                (0,
-                C.GG)(this, Ms, document.createElement("button"), "f"),
-                (0,
-                C.gn)(this, Ms, "f").className = "button apply",
-                (0,
-                C.gn)(this, Ms, "f").addEventListener("click", ( () => {
+                c.appendChild(C.get(this, Ts, "f")),
+                C.set(this, Ms, document.createElement("button"), "f"),
+                C.get(this, Ms, "f").className = "button apply",
+                C.get(this, Ms, "f").addEventListener("click", ( () => {
                     n.playUIClick(),
-                    r.updateSettings(Array.from((0,
-                    C.gn)(this, Ps, "f"))),
+                    r.updateSettings(Array.from(C.get(this, Ps, "f"))),
                     r.saveSettings(),
-                    r.setKeyBindings(Array.from((0,
-                    C.gn)(this, Is, "f"))),
+                    r.setKeyBindings(Array.from(C.get(this, Is, "f"))),
                     a.generateMeshes(),
                     t.language = r.getSetting(R.A.Language),
                     o()
                 }
                 )),
-                c.appendChild((0,
-                C.gn)(this, Ms, "f")),
-                window.addEventListener("keydown", (0,
-                C.GG)(this, _s, (e => {
-                    "Escape" == e.code && (r.updateSettings(Array.from((0,
-                    C.gn)(this, Rs, "f"))),
+                c.appendChild(C.get(this, Ms, "f")),
+                window.addEventListener("keydown", C.set(this, _s, (e => {
+                    "Escape" == e.code && (r.updateSettings(Array.from(C.get(this, Rs, "f"))),
                     a.generateMeshes(),
                     o(),
                     e.preventDefault())
                 }
                 ), "f")),
-                (0,
-                C.gn)(this, ms, "m", zs).call(this)
+                C.get(this, ms, "m", zs).call(this)
             }
             dispose() {
-                (0,
-                C.gn)(this, As, "f").removeChild((0,
-                C.gn)(this, Ss, "f")),
-                window.removeEventListener("keydown", (0,
-                C.gn)(this, _s, "f"))
+                C.get(this, As, "f").removeChild(C.get(this, Ss, "f")),
+                window.removeEventListener("keydown", C.get(this, _s, "f"))
             }
         }
         ;
@@ -52167,24 +48800,16 @@
         wo = new WeakMap,
         Xs = new WeakSet,
         xo = function(e) {
-            if (null != (0,
-            C.gn)(this, bo, "f"))
-                if ((0,
-                C.gn)(this, lo, "f").scrollTo) {
-                    const t = (0,
-                    C.gn)(this, lo, "f").clientHeight
-                      , n = (0,
-                    C.gn)(this, bo, "f").offsetTop - (0,
-                    C.gn)(this, lo, "f").offsetTop - t / 2 + (0,
-                    C.gn)(this, bo, "f").offsetHeight / 2;
-                    (0,
-                    C.gn)(this, lo, "f").scrollTo({
+            if (null != C.get(this, bo, "f"))
+                if (C.get(this, lo, "f").scrollTo) {
+                    const t = C.get(this, lo, "f").clientHeight
+                      , n = C.get(this, bo, "f").offsetTop - C.get(this, lo, "f").offsetTop - t / 2 + C.get(this, bo, "f").offsetHeight / 2;
+                    C.get(this, lo, "f").scrollTo({
                         top: n,
                         behavior: e
                     })
                 } else
-                    (0,
-                    C.gn)(this, bo, "f").scrollIntoView({
+                    C.get(this, bo, "f").scrollIntoView({
                         behavior: e,
                         block: "nearest",
                         inline: "start"
@@ -52192,68 +48817,36 @@
         }
         ,
         So = function e(t) {
-            (0,
-            C.gn)(this, fo, "f")?.cancel();
+            C.get(this, fo, "f")?.cancel();
             const n = new rr.A;
-            (0,
-            C.GG)(this, fo, n, "f"),
-            (0,
-            C.gn)(this, lo, "f").innerHTML = "",
-            (0,
-            C.gn)(this, lo, "f").appendChild((0,
-            C.gn)(this, co, "f")),
-            (0,
-            C.GG)(this, bo, null, "f"),
+            C.set(this, fo, n, "f"),
+            C.get(this, lo, "f").innerHTML = "",
+            C.get(this, lo, "f").appendChild(C.get(this, co, "f")),
+            C.set(this, bo, null, "f"),
             setTimeout(( () => {
                 if (!n.isCancelled) {
                     const i = 20
-                      , r = (0,
-                    C.gn)(this, Ao, "f") * i;
-                    (0,
-                    C.gn)(this, $s, "f").getLeaderboard((0,
-                    C.gn)(this, to, "f").getCurrentUserProfile().tokenHash, (0,
-                    C.gn)(this, Ys, "f"), r, i, (0,
-                    C.gn)(this, mo, "f")).then(( ({total: a, entries: s, userEntry: o}) => {
+                      , r = C.get(this, Ao, "f") * i;
+                    C.get(this, $s, "f").getLeaderboard(C.get(this, to, "f").getCurrentUserProfile().tokenHash, C.get(this, Ys, "f"), r, i, C.get(this, mo, "f")).then(( ({total: a, entries: s, userEntry: o}) => {
                         if (!n.isCancelled) {
-                            (0,
-                            C.GG)(this, vo, Math.ceil(a / i), "f"),
-                            (0,
-                            C.gn)(this, Xs, "m", Eo).call(this),
-                            (0,
-                            C.gn)(this, oo, "f").textContent = (0,
-                            C.gn)(this, Zs, "f").get("{0} players", [Mo(a)]),
-                            (0,
-                            C.gn)(this, oo, "f").classList.add("fade-in");
+                            C.set(this, vo, Math.ceil(a / i), "f"),
+                            C.get(this, Xs, "m", Eo).call(this),
+                            C.get(this, oo, "f").textContent = C.get(this, Zs, "f").get("{0} players", [Mo(a)]),
+                            C.get(this, oo, "f").classList.add("fade-in");
                             for (let e = 0; e < s.length; e++) {
                                 const {id: t, nickname: i, countryCode: a, time: o, carStyle: l, verifiedState: c, isSelf: h} = s[e]
                                   , d = r + e + 1;
-                                (0,
-                                C.gn)(this, Xs, "m", ko).call(this, d, i, a, o, l, c, h, t, n)
+                                C.get(this, Xs, "m", ko).call(this, d, i, a, o, l, c, h, t, n)
                             }
-                            (0,
-                            C.gn)(this, $s, "f").determinismState == Js.Ok && (null != o ? ((0,
-                            C.GG)(this, yo, Math.floor((o.position - 1) / i), "f"),
-                            (0,
-                            C.gn)(this, ho, "f").disabled = !1,
-                            t && null != (0,
-                            C.gn)(this, bo, "f") && (0,
-                            C.gn)(this, Xs, "m", xo).call(this, "instant"),
-                            (0,
-                            C.gn)(this, ro, "f").call(this, o, a)) : ((0,
-                            C.GG)(this, yo, null, "f"),
-                            (0,
-                            C.gn)(this, ho, "f").disabled = !0,
-                            (0,
-                            C.gn)(this, ro, "f").call(this, null, a)),
-                            (0,
-                            C.gn)(this, go, "f") || ((0,
-                            C.GG)(this, go, !0, "f"),
-                            (0,
-                            C.gn)(this, no, "f").syncRecord((0,
-                            C.gn)(this, to, "f").profileSlot, (0,
-                            C.gn)(this, Ys, "f"), o).then((n => {
-                                "Upload" == n && (0,
-                                C.gn)(this, Xs, "m", e).call(this, t)
+                            C.get(this, $s, "f").determinismState == Js.Ok && (null != o ? (C.set(this, yo, Math.floor((o.position - 1) / i), "f"),
+                            C.get(this, ho, "f").disabled = !1,
+                            t && null != C.get(this, bo, "f") && C.get(this, Xs, "m", xo).call(this, "instant"),
+                            C.get(this, ro, "f").call(this, o, a)) : (C.set(this, yo, null, "f"),
+                            C.get(this, ho, "f").disabled = !0,
+                            C.get(this, ro, "f").call(this, null, a)),
+                            C.get(this, go, "f") || (C.set(this, go, !0, "f"),
+                            C.get(this, no, "f").syncRecord(C.get(this, to, "f").profileSlot, C.get(this, Ys, "f"), o).then((n => {
+                                "Upload" == n && C.get(this, Xs, "m", e).call(this, t)
                             }
                             )).catch((e => {
                                 console.warn(e)
@@ -52265,17 +48858,13 @@
                         if (!n.isCancelled) {
                             const e = document.createElement("p");
                             e.className = "error-message",
-                            e.textContent = (0,
-                            C.gn)(this, Zs, "f").get("Error: Failed to load leaderboard"),
-                            (0,
-                            C.gn)(this, lo, "f").appendChild(e)
+                            e.textContent = C.get(this, Zs, "f").get("Error: Failed to load leaderboard"),
+                            C.get(this, lo, "f").appendChild(e)
                         }
                         console.error(e)
                     }
                     )).finally(( () => {
-                        n.isCancelled || (0,
-                        C.gn)(this, lo, "f").removeChild((0,
-                        C.gn)(this, co, "f"))
+                        n.isCancelled || C.get(this, lo, "f").removeChild(C.get(this, co, "f"))
                     }
                     ))
                 }
@@ -52286,37 +48875,23 @@
         ko = function(e, t, n, i, r, a, s, o, l) {
             const c = document.createElement("button");
             c.className = "button main",
-            s && ((0,
-            C.GG)(this, bo, c, "f"),
+            s && (C.set(this, bo, c, "f"),
             c.classList.add("self")),
             c.addEventListener("click", ( () => {
-                (0,
-                C.gn)(this, eo, "f").playUIClick(),
-                (0,
-                C.gn)(this, wo, "f").some((e => e.recordingId == o)) ? ((0,
-                C.GG)(this, wo, (0,
-                C.gn)(this, wo, "f").filter((e => e.recordingId != o)), "f"),
+                C.get(this, eo, "f").playUIClick(),
+                C.get(this, wo, "f").some((e => e.recordingId == o)) ? (C.set(this, wo, C.get(this, wo, "f").filter((e => e.recordingId != o)), "f"),
                 c.classList.remove("selected"),
-                (0,
-                C.gn)(this, io, "f").call(this, (0,
-                C.gn)(this, wo, "f"))) : (0,
-                C.gn)(this, wo, "f").length < 10 && ((0,
-                C.GG)(this, wo, (0,
-                C.gn)(this, wo, "f").concat([{
+                C.get(this, io, "f").call(this, C.get(this, wo, "f"))) : C.get(this, wo, "f").length < 10 && (C.set(this, wo, C.get(this, wo, "f").concat([{
                     nickname: t,
                     recordingId: o,
                     isSelf: s
                 }]), "f"),
                 c.classList.add("selected"),
-                (0,
-                C.gn)(this, io, "f").call(this, (0,
-                C.gn)(this, wo, "f")))
+                C.get(this, io, "f").call(this, C.get(this, wo, "f")))
             }
             )),
-            (0,
-            C.gn)(this, lo, "f").appendChild(c),
-            (0,
-            C.gn)(this, wo, "f").some((e => e.recordingId == o)) && c.classList.add("selected");
+            C.get(this, lo, "f").appendChild(c),
+            C.get(this, wo, "f").some((e => e.recordingId == o)) && c.classList.add("selected");
             const h = document.createElement("div");
             h.className = "image-container",
             c.appendChild(h);
@@ -52373,94 +48948,63 @@
             s) {
                 const e = document.createElement("span");
                 e.className = "self",
-                e.textContent = "(" + (0,
-                C.gn)(this, Zs, "f").get("You") + ")",
+                e.textContent = "(" + C.get(this, Zs, "f").get("You") + ")",
                 y.appendChild(e)
             }
             const S = document.createElement("p");
             a == To.Y.Pending ? (S.innerHTML = '<img src="images/state_pending.svg">',
-            S.prepend(document.createTextNode((0,
-            C.gn)(this, Zs, "f").get("Pending"))),
+            S.prepend(document.createTextNode(C.get(this, Zs, "f").get("Pending"))),
             S.className = "verified-state pending") : a == To.Y.Verified ? (S.innerHTML = '<img src="images/state_verified.svg">',
-            S.prepend(document.createTextNode((0,
-            C.gn)(this, Zs, "f").get("Verified"))),
+            S.prepend(document.createTextNode(C.get(this, Zs, "f").get("Verified"))),
             S.className = "verified-state verified") : a == To.Y.InvalidDuplicate ? (S.innerHTML = '<img src="images/state_invalid.svg">',
-            S.prepend(document.createTextNode((0,
-            C.gn)(this, Zs, "f").get("Duplicate"))),
+            S.prepend(document.createTextNode(C.get(this, Zs, "f").get("Duplicate"))),
             S.className = "verified-state invalid") : (S.innerHTML = '<img src="images/state_invalid.svg">',
-            S.prepend(document.createTextNode((0,
-            C.gn)(this, Zs, "f").get("Invalid"))),
+            S.prepend(document.createTextNode(C.get(this, Zs, "f").get("Invalid"))),
             S.className = "verified-state invalid"),
             v.appendChild(S)
         }
         ,
         Eo = function e() {
-            (0,
-            C.gn)(this, po, "f").innerHTML = "";
+            C.get(this, po, "f").innerHTML = "";
             const t = document.createElement("button");
             let n;
             t.className = "button",
             t.textContent = "<",
-            (0,
-            C.gn)(this, Ao, "f") > 0 ? t.addEventListener("click", ( () => {
-                (0,
-                C.gn)(this, eo, "f").playUIClick(),
-                (0,
-                C.GG)(this, Ao, (0,
-                C.gn)(this, Ao, "f") - 1, "f"),
-                (0,
-                C.gn)(this, Xs, "m", e).call(this),
-                (0,
-                C.gn)(this, Xs, "m", So).call(this, !1)
+            C.get(this, Ao, "f") > 0 ? t.addEventListener("click", ( () => {
+                C.get(this, eo, "f").playUIClick(),
+                C.set(this, Ao, C.get(this, Ao, "f") - 1, "f"),
+                C.get(this, Xs, "m", e).call(this),
+                C.get(this, Xs, "m", So).call(this, !1)
             }
             )) : t.disabled = !0,
-            (0,
-            C.gn)(this, po, "f").appendChild(t),
-            n = (0,
-            C.gn)(this, Ao, "f") < 1e3 - Math.ceil(3.5) ? 7 : (0,
-            C.gn)(this, Ao, "f") < 1e5 - Math.ceil(2.5) ? 5 : 3;
-            const i = Math.max(0, (0,
-            C.gn)(this, Ao, "f") - Math.floor(n / 2));
+            C.get(this, po, "f").appendChild(t),
+            n = C.get(this, Ao, "f") < 1e3 - Math.ceil(3.5) ? 7 : C.get(this, Ao, "f") < 1e5 - Math.ceil(2.5) ? 5 : 3;
+            const i = Math.max(0, C.get(this, Ao, "f") - Math.floor(n / 2));
             for (let t = i; t < i + n; ++t) {
                 const n = document.createElement("button");
                 n.textContent = (t + 1).toString(),
-                t >= (0,
-                C.gn)(this, vo, "f") ? (n.className = "button page",
-                n.disabled = !0) : t == (0,
-                C.gn)(this, Ao, "f") ? n.className = "button page selected" : (n.className = "button page",
+                t >= C.get(this, vo, "f") ? (n.className = "button page",
+                n.disabled = !0) : t == C.get(this, Ao, "f") ? n.className = "button page selected" : (n.className = "button page",
                 n.addEventListener("click", ( () => {
-                    (0,
-                    C.gn)(this, eo, "f").playUIClick(),
-                    (0,
-                    C.GG)(this, Ao, t, "f"),
-                    (0,
-                    C.gn)(this, Xs, "m", e).call(this),
-                    (0,
-                    C.gn)(this, Xs, "m", So).call(this, !1)
+                    C.get(this, eo, "f").playUIClick(),
+                    C.set(this, Ao, t, "f"),
+                    C.get(this, Xs, "m", e).call(this),
+                    C.get(this, Xs, "m", So).call(this, !1)
                 }
                 ))),
-                (0,
-                C.gn)(this, po, "f").appendChild(n)
+                C.get(this, po, "f").appendChild(n)
             }
             const r = document.createElement("button");
             r.className = "button",
             r.textContent = ">",
-            (0,
-            C.gn)(this, Ao, "f") + 1 >= (0,
-            C.gn)(this, vo, "f") ? r.disabled = !0 : r.addEventListener("click", ( () => {
-                (0,
-                C.gn)(this, eo, "f").playUIClick(),
-                (0,
-                C.GG)(this, Ao, (0,
-                C.gn)(this, Ao, "f") + 1, "f"),
-                (0,
-                C.gn)(this, Xs, "m", e).call(this),
-                (0,
-                C.gn)(this, Xs, "m", So).call(this, !1)
+            C.get(this, Ao, "f") + 1 >= C.get(this, vo, "f") ? r.disabled = !0 : r.addEventListener("click", ( () => {
+                C.get(this, eo, "f").playUIClick(),
+                C.set(this, Ao, C.get(this, Ao, "f") + 1, "f"),
+                C.get(this, Xs, "m", e).call(this),
+                C.get(this, Xs, "m", So).call(this, !1)
             }
             )),
-            (0,
-            C.gn)(this, po, "f").appendChild(r)
+            C.get(this, po, "f").appendChild(r)
         }
         ;
         const Lo = class {
@@ -52490,81 +49034,46 @@
                 yo.set(this, null),
                 bo.set(this, null),
                 wo.set(this, []),
-                (0,
-                C.GG)(this, Ys, t, "f"),
-                (0,
-                C.GG)(this, Zs, n, "f"),
-                (0,
-                C.GG)(this, $s, i, "f"),
-                (0,
-                C.GG)(this, eo, r, "f"),
-                (0,
-                C.GG)(this, to, a, "f"),
-                (0,
-                C.GG)(this, no, s, "f"),
-                (0,
-                C.GG)(this, io, c, "f"),
-                (0,
-                C.GG)(this, ro, h, "f"),
-                (0,
-                C.GG)(this, mo, o.isOfficialTrack(t) || o.isCommunityTrack(t), "f"),
-                (0,
-                C.GG)(this, ao, e, "f"),
-                (0,
-                C.GG)(this, so, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, so, "f").className = "leaderboard-ui",
-                e.appendChild((0,
-                C.gn)(this, so, "f"));
+                C.set(this, Ys, t, "f"),
+                C.set(this, Zs, n, "f"),
+                C.set(this, $s, i, "f"),
+                C.set(this, eo, r, "f"),
+                C.set(this, to, a, "f"),
+                C.set(this, no, s, "f"),
+                C.set(this, io, c, "f"),
+                C.set(this, ro, h, "f"),
+                C.set(this, mo, o.isOfficialTrack(t) || o.isCommunityTrack(t), "f"),
+                C.set(this, ao, e, "f"),
+                C.set(this, so, document.createElement("div"), "f"),
+                C.get(this, so, "f").className = "leaderboard-ui",
+                e.appendChild(C.get(this, so, "f"));
                 const d = document.createElement("h2");
                 d.textContent = n.get("Leaderboard"),
-                (0,
-                C.gn)(this, so, "f").appendChild(d);
+                C.get(this, so, "f").appendChild(d);
                 const u = document.createElement("h3")
                   , p = "0.6.0".replace(/(\d+\.\d+)\.\d+/, "$1");
                 u.textContent = n.get("Version") + " " + p,
-                (0,
-                C.gn)(this, so, "f").appendChild(u),
-                (0,
-                C.GG)(this, oo, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, oo, "f").className = "total-players",
-                (0,
-                C.gn)(this, so, "f").appendChild((0,
-                C.gn)(this, oo, "f")),
-                (0,
-                C.GG)(this, lo, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, lo, "f").className = "container",
-                (0,
-                C.gn)(this, so, "f").appendChild((0,
-                C.gn)(this, lo, "f")),
-                (0,
-                C.GG)(this, co, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, co, "f").className = "loading-spinner-container",
-                (0,
-                C.gn)(this, lo, "f").appendChild((0,
-                C.gn)(this, co, "f"));
+                C.get(this, so, "f").appendChild(u),
+                C.set(this, oo, document.createElement("div"), "f"),
+                C.get(this, oo, "f").className = "total-players",
+                C.get(this, so, "f").appendChild(C.get(this, oo, "f")),
+                C.set(this, lo, document.createElement("div"), "f"),
+                C.get(this, lo, "f").className = "container",
+                C.get(this, so, "f").appendChild(C.get(this, lo, "f")),
+                C.set(this, co, document.createElement("div"), "f"),
+                C.get(this, co, "f").className = "loading-spinner-container",
+                C.get(this, lo, "f").appendChild(C.get(this, co, "f"));
                 const f = document.createElement("div");
                 f.className = "loading-spinner-ui",
-                (0,
-                C.gn)(this, co, "f").appendChild(f),
-                (0,
-                C.gn)(this, Xs, "m", So).call(this, !1),
-                (0,
-                C.GG)(this, po, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, po, "f").className = "pages",
-                (0,
-                C.gn)(this, so, "f").appendChild((0,
-                C.gn)(this, po, "f")),
-                (0,
-                C.gn)(this, Xs, "m", Eo).call(this);
+                C.get(this, co, "f").appendChild(f),
+                C.get(this, Xs, "m", So).call(this, !1),
+                C.set(this, po, document.createElement("div"), "f"),
+                C.get(this, po, "f").className = "pages",
+                C.get(this, so, "f").appendChild(C.get(this, po, "f")),
+                C.get(this, Xs, "m", Eo).call(this);
                 const g = document.createElement("div");
                 g.className = "button-wrapper",
-                (0,
-                C.gn)(this, so, "f").appendChild(g);
+                C.get(this, so, "f").appendChild(g);
                 const m = document.createElement("button");
                 m.className = "button back",
                 m.innerHTML = '<img class="button-icon" src="images/back.svg"> ',
@@ -52575,72 +49084,38 @@
                 }
                 )),
                 g.appendChild(m),
-                (0,
-                C.GG)(this, ho, document.createElement("button"), "f"),
-                (0,
-                C.gn)(this, ho, "f").className = "button icon-button first",
-                (0,
-                C.gn)(this, ho, "f").innerHTML = '<img class="button-icon" src="images/pin.svg">',
-                (0,
-                C.gn)(this, ho, "f").disabled = !0,
-                (0,
-                C.gn)(this, ho, "f").addEventListener("click", ( () => {
+                C.set(this, ho, document.createElement("button"), "f"),
+                C.get(this, ho, "f").className = "button icon-button first",
+                C.get(this, ho, "f").innerHTML = '<img class="button-icon" src="images/pin.svg">',
+                C.get(this, ho, "f").disabled = !0,
+                C.get(this, ho, "f").addEventListener("click", ( () => {
                     r.playUIClick(),
-                    null != (0,
-                    C.gn)(this, bo, "f") ? (0,
-                    C.gn)(this, Xs, "m", xo).call(this, "smooth") : null != (0,
-                    C.gn)(this, yo, "f") && ((0,
-                    C.GG)(this, Ao, (0,
-                    C.gn)(this, yo, "f"), "f"),
-                    (0,
-                    C.gn)(this, Xs, "m", Eo).call(this),
-                    (0,
-                    C.gn)(this, Xs, "m", So).call(this, !0))
+                    null != C.get(this, bo, "f") ? C.get(this, Xs, "m", xo).call(this, "smooth") : null != C.get(this, yo, "f") && (C.set(this, Ao, C.get(this, yo, "f"), "f"),
+                    C.get(this, Xs, "m", Eo).call(this),
+                    C.get(this, Xs, "m", So).call(this, !0))
                 }
                 )),
-                g.appendChild((0,
-                C.gn)(this, ho, "f")),
-                (0,
-                C.GG)(this, uo, document.createElement("button"), "f"),
-                (0,
-                C.gn)(this, uo, "f").className = "button only-verified",
-                (0,
-                C.gn)(this, mo, "f") || (0,
-                C.gn)(this, uo, "f").classList.add("disabled"),
-                (0,
-                C.gn)(this, uo, "f").textContent = (0,
-                C.gn)(this, Zs, "f").get("Only verified"),
-                (0,
-                C.gn)(this, uo, "f").innerHTML += '<img class="button-icon" src="images/verified.svg">',
-                (0,
-                C.gn)(this, uo, "f").addEventListener("click", ( () => {
+                g.appendChild(C.get(this, ho, "f")),
+                C.set(this, uo, document.createElement("button"), "f"),
+                C.get(this, uo, "f").className = "button only-verified",
+                C.get(this, mo, "f") || C.get(this, uo, "f").classList.add("disabled"),
+                C.get(this, uo, "f").textContent = C.get(this, Zs, "f").get("Only verified"),
+                C.get(this, uo, "f").innerHTML += '<img class="button-icon" src="images/verified.svg">',
+                C.get(this, uo, "f").addEventListener("click", ( () => {
                     r.playUIClick(),
-                    (0,
-                    C.GG)(this, mo, !(0,
-                    C.gn)(this, mo, "f"), "f"),
-                    (0,
-                    C.gn)(this, mo, "f") ? (0,
-                    C.gn)(this, uo, "f").classList.remove("disabled") : (0,
-                    C.gn)(this, uo, "f").classList.add("disabled"),
-                    (0,
-                    C.GG)(this, Ao, 0, "f"),
-                    (0,
-                    C.GG)(this, vo, 0, "f"),
-                    (0,
-                    C.gn)(this, Xs, "m", Eo).call(this),
-                    (0,
-                    C.gn)(this, Xs, "m", So).call(this, !1)
+                    C.set(this, mo, !C.get(this, mo, "f"), "f"),
+                    C.get(this, mo, "f") ? C.get(this, uo, "f").classList.remove("disabled") : C.get(this, uo, "f").classList.add("disabled"),
+                    C.set(this, Ao, 0, "f"),
+                    C.set(this, vo, 0, "f"),
+                    C.get(this, Xs, "m", Eo).call(this),
+                    C.get(this, Xs, "m", So).call(this, !1)
                 }
                 )),
-                g.appendChild((0,
-                C.gn)(this, uo, "f"))
+                g.appendChild(C.get(this, uo, "f"))
             }
             dispose() {
-                (0,
-                C.gn)(this, fo, "f")?.cancel(),
-                (0,
-                C.gn)(this, ao, "f").removeChild((0,
-                C.gn)(this, so, "f"))
+                C.get(this, fo, "f")?.cancel(),
+                C.get(this, ao, "f").removeChild(C.get(this, so, "f"))
             }
         }
         ;
@@ -52664,16 +49139,14 @@
         Yo = new WeakMap,
         Uo = new WeakSet,
         Zo = function(e, t) {
-            (0,
-            C.gn)(this, Vo, "f").innerHTML = "";
+            C.get(this, Vo, "f").innerHTML = "";
             const n = document.createElement("div");
             n.innerHTML = '<img src="images/timer.svg">';
             const i = document.createElement("span");
             null == e && (i.className = "faded"),
             i.textContent = Ve.A.formatTimeString(e),
             n.appendChild(i),
-            (0,
-            C.gn)(this, Vo, "f").appendChild(n);
+            C.get(this, Vo, "f").appendChild(n);
             const r = document.createElement("div");
             if (r.innerHTML = '<img src="images/trophy.svg">',
             null != t) {
@@ -52691,32 +49164,14 @@
                 e.textContent = "---",
                 r.appendChild(e)
             }
-            (0,
-            C.gn)(this, Vo, "f").appendChild(r)
+            C.get(this, Vo, "f").appendChild(r)
         }
         ,
         $o = function() {
-            (0,
-            C.gn)(this, Jo, "f").length > 0 ? ((0,
-            C.gn)(this, Ho, "f").classList.remove("no-opponents"),
-            1 == (0,
-            C.gn)(this, Jo, "f").length ? (0,
-            C.gn)(this, Ho, "f").textContent = (0,
-            C.gn)(this, zo, "f").get("{0} opponent selected", [(0,
-            C.gn)(this, Jo, "f").length.toString()]) : (0,
-            C.gn)(this, Ho, "f").textContent = (0,
-            C.gn)(this, zo, "f").get("{0} opponents selected", [(0,
-            C.gn)(this, Jo, "f").length.toString()])) : ((0,
-            C.gn)(this, Ho, "f").classList.add("no-opponents"),
-            (0,
-            C.gn)(this, Ho, "f").textContent = (0,
-            C.gn)(this, zo, "f").get("Select opponents to race against from the leaderboard on the left")),
-            (0,
-            C.gn)(this, jo, "f").disabled = 0 == (0,
-            C.gn)(this, Jo, "f").length && null == (0,
-            C.gn)(this, Do, "f").getRecord((0,
-            C.gn)(this, Bo, "f").profileSlot, (0,
-            C.gn)(this, Go, "f"))
+            C.get(this, Jo, "f").length > 0 ? (C.get(this, Ho, "f").classList.remove("no-opponents"),
+            1 == C.get(this, Jo, "f").length ? C.get(this, Ho, "f").textContent = C.get(this, zo, "f").get("{0} opponent selected", [C.get(this, Jo, "f").length.toString()]) : C.get(this, Ho, "f").textContent = C.get(this, zo, "f").get("{0} opponents selected", [C.get(this, Jo, "f").length.toString()])) : (C.get(this, Ho, "f").classList.add("no-opponents"),
+            C.get(this, Ho, "f").textContent = C.get(this, zo, "f").get("Select opponents to race against from the leaderboard on the left")),
+            C.get(this, jo, "f").disabled = 0 == C.get(this, Jo, "f").length && null == C.get(this, Do, "f").getRecord(C.get(this, Bo, "f").profileSlot, C.get(this, Go, "f"))
         }
         ;
         const nl = class {
@@ -52739,57 +49194,36 @@
                 Jo.set(this, []),
                 Xo.set(this, !1),
                 Yo.set(this, []),
-                (0,
-                C.GG)(this, zo, t, "f"),
-                (0,
-                C.GG)(this, No, n, "f"),
-                (0,
-                C.GG)(this, Do, r, "f"),
-                (0,
-                C.GG)(this, Bo, i, "f"),
-                (0,
-                C.GG)(this, Go, h, "f"),
-                (0,
-                C.GG)(this, Fo, e, "f"),
-                (0,
-                C.GG)(this, Oo, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, Oo, "f").className = "track-info-ui",
-                e.appendChild((0,
-                C.gn)(this, Oo, "f"));
+                C.set(this, zo, t, "f"),
+                C.set(this, No, n, "f"),
+                C.set(this, Do, r, "f"),
+                C.set(this, Bo, i, "f"),
+                C.set(this, Go, h, "f"),
+                C.set(this, Fo, e, "f"),
+                C.set(this, Oo, document.createElement("div"), "f"),
+                C.get(this, Oo, "f").className = "track-info-ui",
+                e.appendChild(C.get(this, Oo, "f"));
                 const v = r.getRecord(i.profileSlot, h);
-                (0,
-                C.GG)(this, Ko, new Lo((0,
-                C.gn)(this, Oo, "f"),h,t,n,a,i,r,u,p,(e => {
-                    (0,
-                    C.GG)(this, Jo, e, "f"),
-                    (0,
-                    C.gn)(this, Uo, "m", $o).call(this)
+                C.set(this, Ko, new Lo(C.get(this, Oo, "f"),h,t,n,a,i,r,u,p,(e => {
+                    C.set(this, Jo, e, "f"),
+                    C.get(this, Uo, "m", $o).call(this)
                 }
                 ),( (e, t) => {
-                    null == e || null != v && !e.time.lessOrEqual(v.time) ? (0,
-                    C.gn)(this, Uo, "m", Zo).call(this, v?.time ?? null, null) : (0,
-                    C.gn)(this, Uo, "m", Zo).call(this, e.time, {
+                    null == e || null != v && !e.time.lessOrEqual(v.time) ? C.get(this, Uo, "m", Zo).call(this, v?.time ?? null, null) : C.get(this, Uo, "m", Zo).call(this, e.time, {
                         position: e.position,
                         total: t
                     })
                 }
                 )), "f"),
-                (0,
-                C.GG)(this, Wo, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, Wo, "f").className = "side-panel",
-                (0,
-                C.gn)(this, Oo, "f").appendChild((0,
-                C.gn)(this, Wo, "f"));
+                C.set(this, Wo, document.createElement("div"), "f"),
+                C.get(this, Wo, "f").className = "side-panel",
+                C.get(this, Oo, "f").appendChild(C.get(this, Wo, "f"));
                 const y = document.createElement("h2");
                 y.textContent = o.name,
-                (0,
-                C.gn)(this, Wo, "f").appendChild(y);
+                C.get(this, Wo, "f").appendChild(y);
                 const b = document.createElement("div");
                 if (b.className = "thumbnail",
-                (0,
-                C.gn)(this, Wo, "f").appendChild(b),
+                C.get(this, Wo, "f").appendChild(b),
                 d instanceof HTMLCanvasElement) {
                     const e = document.createElement("canvas");
                     e.width = d.width,
@@ -52808,35 +49242,27 @@
                 w.innerHTML = '<img src="images/share.svg">',
                 w.addEventListener("click", ( () => {
                     a.playUIClick(),
-                    (0,
-                    C.gn)(this, Oo, "f").className = "hidden",
+                    C.get(this, Oo, "f").className = "hidden",
                     (async () => {
                         try {
                             let e;
                             if (e = c instanceof Function ? await c() : c,
-                            (0,
-                            C.gn)(this, Xo, "f"))
+                            C.get(this, Xo, "f"))
                                 return;
                             const n = e.toExportString(o);
-                            (0,
-                            C.GG)(this, Qo, new el.A(n,( () => {
-                                (0,
-                                C.gn)(this, Qo, "f")?.dispose(),
-                                (0,
-                                C.GG)(this, Qo, null, "f"),
-                                (0,
-                                C.gn)(this, Oo, "f").className = "track-info-ui"
+                            C.set(this, Qo, new el.A(n,( () => {
+                                C.get(this, Qo, "f")?.dispose(),
+                                C.set(this, Qo, null, "f"),
+                                C.get(this, Oo, "f").className = "track-info-ui"
                             }
                             ),null,t,a,u,s), "f")
                         } catch (e) {
-                            if ((0,
-                            C.gn)(this, Xo, "f"))
+                            if (C.get(this, Xo, "f"))
                                 return;
                             if (!(e instanceof pr.A))
                                 throw e;
                             s.show(t.get("Failed to load track"), t.get("Ok"), ( () => {
-                                (0,
-                                C.gn)(this, Oo, "f").className = "track-info-ui"
+                                C.get(this, Oo, "f").className = "track-info-ui"
                             }
                             ))
                         }
@@ -52865,8 +49291,7 @@
                 const E = document.createElement("span");
                 E.textContent = o.author ?? t.get("Unknown"),
                 k.appendChild(E),
-                (0,
-                C.gn)(this, Wo, "f").appendChild(k);
+                C.get(this, Wo, "f").appendChild(k);
                 const T = document.createElement("div");
                 T.className = "last-modified",
                 T.textContent = t.get("Created") + ": ";
@@ -52880,60 +49305,38 @@
                 } else
                     M.textContent += t.get("Unknown");
                 T.appendChild(M),
-                (0,
-                C.gn)(this, Wo, "f").appendChild(T);
+                C.get(this, Wo, "f").appendChild(T);
                 const _ = document.createElement("div");
                 _.className = "divider",
-                (0,
-                C.gn)(this, Wo, "f").appendChild(_);
+                C.get(this, Wo, "f").appendChild(_);
                 const R = document.createElement("div");
                 R.className = "personal-best-title",
                 R.textContent = t.get("Personal best"),
-                (0,
-                C.gn)(this, Wo, "f").appendChild(R),
-                (0,
-                C.GG)(this, Vo, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, Vo, "f").className = "personal-best",
-                (0,
-                C.gn)(this, Wo, "f").appendChild((0,
-                C.gn)(this, Vo, "f")),
-                (0,
-                C.gn)(this, Uo, "m", Zo).call(this, v?.time.clone() ?? null, null);
+                C.get(this, Wo, "f").appendChild(R),
+                C.set(this, Vo, document.createElement("div"), "f"),
+                C.get(this, Vo, "f").className = "personal-best",
+                C.get(this, Wo, "f").appendChild(C.get(this, Vo, "f")),
+                C.get(this, Uo, "m", Zo).call(this, v?.time.clone() ?? null, null);
                 const P = document.createElement("div");
                 P.className = "divider",
-                (0,
-                C.gn)(this, Wo, "f").appendChild(P);
+                C.get(this, Wo, "f").appendChild(P);
                 const I = document.createElement("div");
                 I.className = "opponents-title",
                 I.textContent = t.get("Opponents"),
-                (0,
-                C.gn)(this, Wo, "f").appendChild(I),
-                (0,
-                C.GG)(this, Ho, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, Ho, "f").className = "opponents-container",
-                (0,
-                C.gn)(this, Wo, "f").appendChild((0,
-                C.gn)(this, Ho, "f")),
-                (0,
-                C.GG)(this, jo, document.createElement("button"), "f"),
-                (0,
-                C.gn)(this, jo, "f").className = "button watch",
-                (0,
-                C.gn)(this, jo, "f").innerHTML = '<img src="images/preview.svg">',
-                (0,
-                C.gn)(this, jo, "f").disabled = !0,
-                (0,
-                C.gn)(this, jo, "f").prepend(document.createTextNode(t.get("Watch"))),
-                (0,
-                C.gn)(this, jo, "f").addEventListener("click", ( () => {
+                C.get(this, Wo, "f").appendChild(I),
+                C.set(this, Ho, document.createElement("div"), "f"),
+                C.get(this, Ho, "f").className = "opponents-container",
+                C.get(this, Wo, "f").appendChild(C.get(this, Ho, "f")),
+                C.set(this, jo, document.createElement("button"), "f"),
+                C.get(this, jo, "f").className = "button watch",
+                C.get(this, jo, "f").innerHTML = '<img src="images/preview.svg">',
+                C.get(this, jo, "f").disabled = !0,
+                C.get(this, jo, "f").prepend(document.createTextNode(t.get("Watch"))),
+                C.get(this, jo, "f").addEventListener("click", ( () => {
                     a.playUIClick();
-                    const e = (0,
-                    C.gn)(this, Jo, "f");
+                    const e = C.get(this, Jo, "f");
                     if (e.length > 0)
-                        m((0,
-                        C.gn)(this, No, "f").getRecordings(e.map((e => e.recordingId))).then((t => {
+                        m(C.get(this, No, "f").getRecordings(e.map((e => e.recordingId))).then((t => {
                             if (t.some((e => null == e)))
                                 throw new Error("Failed to load at least one recording.");
                             return t.filter((e => null != e)).map(( (t, n) => ({
@@ -52960,22 +49363,17 @@
                     }
                 }
                 )),
-                (0,
-                C.gn)(this, Wo, "f").appendChild((0,
-                C.gn)(this, jo, "f")),
-                (0,
-                C.gn)(this, Uo, "m", $o).call(this);
+                C.get(this, Wo, "f").appendChild(C.get(this, jo, "f")),
+                C.get(this, Uo, "m", $o).call(this);
                 const L = document.createElement("button");
                 L.className = "button play",
                 L.innerHTML = '<img src="images/play.svg">',
                 L.prepend(document.createTextNode(t.get("Play"))),
                 L.addEventListener("click", ( () => {
                     a.playUIClick();
-                    const e = (0,
-                    C.gn)(this, Jo, "f");
+                    const e = C.get(this, Jo, "f");
                     if (e.length > 0)
-                        f((0,
-                        C.gn)(this, No, "f").getRecordings(e.map((e => e.recordingId))).then((t => {
+                        f(C.get(this, No, "f").getRecordings(e.map((e => e.recordingId))).then((t => {
                             if (t.some((e => null == e)))
                                 throw new Error("Failed to load at least one recording.");
                             return t.filter((e => null != e)).map(( (t, n) => ({
@@ -53003,31 +49401,21 @@
                     }
                 }
                 )),
-                (0,
-                C.gn)(this, Wo, "f").appendChild(L),
-                window.addEventListener("keydown", (0,
-                C.GG)(this, qo, (e => {
-                    "Escape" == e.code && null == (0,
-                    C.gn)(this, Qo, "f") && (p(),
+                C.get(this, Wo, "f").appendChild(L),
+                window.addEventListener("keydown", C.set(this, qo, (e => {
+                    "Escape" == e.code && null == C.get(this, Qo, "f") && (p(),
                     e.preventDefault())
                 }
                 ), "f"))
             }
             dispose() {
-                (0,
-                C.GG)(this, Xo, !0, "f");
-                for (const e of (0,
-                C.gn)(this, Yo, "f"))
+                C.set(this, Xo, !0, "f");
+                for (const e of C.get(this, Yo, "f"))
                     e();
-                (0,
-                C.GG)(this, Yo, [], "f"),
-                (0,
-                C.gn)(this, Ko, "f").dispose(),
-                (0,
-                C.gn)(this, Fo, "f").removeChild((0,
-                C.gn)(this, Oo, "f")),
-                window.removeEventListener("keydown", (0,
-                C.gn)(this, qo, "f"))
+                C.set(this, Yo, [], "f"),
+                C.get(this, Ko, "f").dispose(),
+                C.get(this, Fo, "f").removeChild(C.get(this, Oo, "f")),
+                window.removeEventListener("keydown", C.get(this, qo, "f"))
             }
         }
         ;
@@ -53087,12 +49475,10 @@
                 super(t),
                 sl.set(this, void 0),
                 this.name = "MultiplayerJoinError",
-                (0,
-                C.GG)(this, sl, e, "f")
+                C.set(this, sl, e, "f")
             }
             get errorType() {
-                return (0,
-                C.gn)(this, sl, "f")
+                return C.get(this, sl, "f")
             }
         }
         sl = new WeakMap;
@@ -53129,8 +49515,7 @@
                 id: 0
             });
             t.binaryType = "arraybuffer",
-            (0,
-            C.gn)(this, hl, "m", Nl).call(this, t, e, "reliable");
+            C.get(this, hl, "m", Nl).call(this, t, e, "reliable");
             const n = e.createDataChannel("unreliable", {
                 negotiated: !0,
                 id: 1,
@@ -53138,8 +49523,7 @@
                 maxRetransmits: 0
             });
             return n.binaryType = "arraybuffer",
-            (0,
-            C.gn)(this, hl, "m", Nl).call(this, n, e, "unreliable"),
+            C.get(this, hl, "m", Nl).call(this, n, e, "unreliable"),
             {
                 dataChannel: t,
                 unreliableDataChannel: n
@@ -53150,12 +49534,9 @@
             e.onclose = () => {
                 if (t.close(),
                 "reliable" == n) {
-                    for (const e of (0,
-                    C.gn)(this, yl, "f"))
-                        (0,
-                        C.gn)(this, vl, "f") ? e("kicked") : e("disconnected");
-                    (0,
-                    C.GG)(this, yl, [], "f")
+                    for (const e of C.get(this, yl, "f"))
+                        C.get(this, vl, "f") ? e("kicked") : e("disconnected");
+                    C.set(this, yl, [], "f")
                 }
             }
             ,
@@ -53229,15 +49610,13 @@
                             d = new yt.A(e)
                         } else
                             d = null;
-                        const u = (0,
-                        C.gn)(this, Cl, "f").find((t => t.id == e));
+                        const u = C.get(this, Cl, "f").find((t => t.id == e));
                         if (null != u)
                             u.nickname = s,
                             u.carStyle = l,
                             u.record = d;
                         else {
-                            (0,
-                            C.gn)(this, Cl, "f").push({
+                            C.get(this, Cl, "f").push({
                                 id: e,
                                 nickname: s,
                                 countryCode: o,
@@ -53245,15 +49624,11 @@
                                 record: d,
                                 ping: null
                             });
-                            for (const e of (0,
-                            C.gn)(this, El, "f"))
-                                e((0,
-                                C.gn)(this, dl, "f").get('"{0}" joined!', [s]))
+                            for (const e of C.get(this, El, "f"))
+                                e(C.get(this, dl, "f").get('"{0}" joined!', [s]))
                         }
-                        for (const e of (0,
-                        C.gn)(this, kl, "f"))
-                            e((0,
-                            C.gn)(this, Tl, "f"));
+                        for (const e of C.get(this, kl, "f"))
+                            e(C.get(this, Tl, "f"));
                         break
                     }
                 case Jt.RemovePlayer:
@@ -53278,21 +49653,14 @@
                                 void t.close();
                             s = '"{0}" was kicked!'
                         }
-                        for (let t = 0; t < (0,
-                        C.gn)(this, Cl, "f").length; t++) {
-                            const n = (0,
-                            C.gn)(this, Cl, "f")[t];
+                        for (let t = 0; t < C.get(this, Cl, "f").length; t++) {
+                            const n = C.get(this, Cl, "f")[t];
                             if (n.id == e) {
-                                (0,
-                                C.gn)(this, Cl, "f").splice(t, 1);
-                                for (const e of (0,
-                                C.gn)(this, kl, "f"))
-                                    e((0,
-                                    C.gn)(this, Tl, "f"));
-                                for (const e of (0,
-                                C.gn)(this, El, "f"))
-                                    e((0,
-                                    C.gn)(this, dl, "f").get(s, [n.nickname]));
+                                C.get(this, Cl, "f").splice(t, 1);
+                                for (const e of C.get(this, kl, "f"))
+                                    e(C.get(this, Tl, "f"));
+                                for (const e of C.get(this, El, "f"))
+                                    e(C.get(this, dl, "f").get(s, [n.nickname]));
                                 break
                             }
                         }
@@ -53311,10 +49679,8 @@
                             void t.close();
                         const a = i[r + 0] | i[r + 1] << 8 | i[r + 2] << 16 | i[r + 3] << 24;
                         r += 4;
-                        for (const t of (0,
-                        C.gn)(this, bl, "f"))
-                            t((0,
-                            C.gn)(this, Tl, "f"), e, a);
+                        for (const t of C.get(this, bl, "f"))
+                            t(C.get(this, Tl, "f"), e, a);
                         break
                     }
                 case Jt.CarUpdate:
@@ -53325,8 +49691,7 @@
                             void t.close();
                         const e = i[r + 0] | i[r + 1] << 8 | i[r + 2] << 16 | i[r + 3] << 24;
                         if (r += 4,
-                        e == (0,
-                        C.gn)(this, Tl, "f")) {
+                        e == C.get(this, Tl, "f")) {
                             const a = new Ht.Ay.Inflate;
                             if (a.push(i.subarray(r), !0),
                             a.err)
@@ -53366,8 +49731,7 @@
                                     l.quaternion.y /= c,
                                     l.quaternion.z /= c,
                                     l.quaternion.w /= c);
-                                    for (const t of (0,
-                                    C.gn)(this, wl, "f"))
+                                    for (const t of C.get(this, wl, "f"))
                                         t(e, a, s, l)
                                 }
                             }
@@ -53376,8 +49740,7 @@
                         break
                     }
                 case Jt.Kick:
-                    (0,
-                    C.GG)(this, vl, !0, "f"),
+                    C.set(this, vl, !0, "f"),
                     t.close();
                     break;
                 case Jt.TrackId:
@@ -53387,22 +49750,16 @@
                             void t.close();
                         const e = Array.from(i.slice(r, r + 32)).map((e => e.toString(16).padStart(2, "0"))).join("");
                         if (r += 32,
-                        null != (0,
-                        C.gn)(this, Ll, "f"))
+                        null != C.get(this, Ll, "f"))
                             return console.error(n + "Received TrackId while already receiving a track"),
                             void t.close();
-                        const a = (0,
-                        C.gn)(this, pl, "f").profileSlot
-                          , s = (0,
-                        C.gn)(this, pl, "f").getCurrentUserProfile()
-                          , o = (0,
-                        C.gn)(this, fl, "f").getRecord(a, e);
+                        const a = C.get(this, pl, "f").profileSlot
+                          , s = C.get(this, pl, "f").getCurrentUserProfile()
+                          , o = C.get(this, fl, "f").getRecord(a, e);
                         if (null == o?.uploadId) {
                             const t = !0;
-                            (0,
-                            C.gn)(this, ul, "f").getLeaderboardUserEntry(s.tokenHash, e, t).then((t => {
-                                null != t && (0,
-                                C.gn)(this, fl, "f").syncRecord(a, e, t).catch((e => {
+                            C.get(this, ul, "f").getLeaderboardUserEntry(s.tokenHash, e, t).then((t => {
+                                null != t && C.get(this, fl, "f").syncRecord(a, e, t).catch((e => {
                                     console.warn("Failed to sync multiplayer track record:", e)
                                 }
                                 ))
@@ -53412,28 +49769,23 @@
                             }
                             ))
                         }
-                        (0,
-                        C.GG)(this, Ll, {
+                        C.set(this, Ll, {
                             trackId: e,
                             buffer: ""
                         }, "f");
                         break
                     }
                 case Jt.TrackChunk:
-                    if (null == (0,
-                    C.gn)(this, Ll, "f"))
+                    if (null == C.get(this, Ll, "f"))
                         return console.error(n + "Received TrackChunk before TrackId"),
                         void t.close();
                     for (; r < i.length; )
-                        (0,
-                        C.gn)(this, Ll, "f").buffer += String.fromCharCode(i[r]),
+                        C.get(this, Ll, "f").buffer += String.fromCharCode(i[r]),
                         r += 1;
                     break;
                 case Jt.EndSession:
-                    (0,
-                    C.GG)(this, Ml, !0, "f");
-                    for (const e of (0,
-                    C.gn)(this, xl, "f"))
+                    C.set(this, Ml, !0, "f");
+                    for (const e of C.get(this, xl, "f"))
                         e();
                     break;
                 case Jt.NewSession:
@@ -53444,10 +49796,8 @@
                             void t.close();
                         const e = i[r + 0] | i[r + 1] << 8 | i[r + 2] << 16 | i[r + 3] << 24;
                         if (r += 4,
-                        (0,
-                        C.GG)(this, Tl, e, "f"),
-                        (0,
-                        C.GG)(this, Ml, !1, "f"),
+                        C.set(this, Tl, e, "f"),
+                        C.set(this, Ml, !1, "f"),
                         i.length < r + 1)
                             return console.error(n + "Incomplete (gameMode)"),
                             void t.close();
@@ -53466,34 +49816,24 @@
                             void t.close();
                         const o = i[r];
                         if (r += 1,
-                        null == (0,
-                        C.gn)(this, Ll, "f"))
+                        null == C.get(this, Ll, "f"))
                             return console.error(n + "Started new session without receiving track data"),
                             void t.close();
-                        const l = ol.A.fromExportString((0,
-                        C.gn)(this, Ll, "f").buffer);
+                        const l = ol.A.fromExportString(C.get(this, Ll, "f").buffer);
                         if (null == l)
                             return console.error(n + "Received invalid track data"),
                             void t.close();
-                        if (l.trackData.getId() != (0,
-                        C.gn)(this, Ll, "f").trackId)
+                        if (l.trackData.getId() != C.get(this, Ll, "f").trackId)
                             return console.error(n + "Received track data that doesn't match the sent track ID"),
                             void t.close();
-                        (0,
-                        C.GG)(this, Ll, null, "f");
-                        for (const e of (0,
-                        C.gn)(this, Cl, "f"))
+                        C.set(this, Ll, null, "f");
+                        for (const e of C.get(this, Cl, "f"))
                             e.record = null;
-                        (0,
-                        C.gn)(this, _l, "f").record = null,
-                        (0,
-                        C.GG)(this, Rl, s, "f"),
-                        (0,
-                        C.GG)(this, Pl, o, "f"),
-                        (0,
-                        C.GG)(this, Il, l, "f");
-                        for (const t of (0,
-                        C.gn)(this, Sl, "f"))
+                        C.get(this, _l, "f").record = null,
+                        C.set(this, Rl, s, "f"),
+                        C.set(this, Pl, o, "f"),
+                        C.set(this, Il, l, "f");
+                        for (const t of C.get(this, Sl, "f"))
                             t(e, s, l.trackMetadata, l.trackData);
                         break
                     }
@@ -53505,15 +49845,13 @@
                             void t.close();
                         const e = i[r];
                         if (r += 1,
-                        null == (0,
-                        C.gn)(this, Al, "f"))
+                        null == C.get(this, Al, "f"))
                             throw new Error("Unreliable data channel is not initialized");
                         const a = new Uint8Array(2);
                         a[0] = qt.Pong,
                         a[1] = e;
                         try {
-                            (0,
-                            C.gn)(this, Al, "f").send(a)
+                            C.get(this, Al, "f").send(a)
                         } catch (e) {
                             return console.error(n + "Failed to send Pong message:", e),
                             void t.close()
@@ -53533,13 +49871,10 @@
                         let a = i[r + 0] | i[r + 1] << 8;
                         if (r += 2,
                         65535 == a && (a = null),
-                        (0,
-                        C.gn)(this, _l, "f").id == e)
-                            (0,
-                            C.gn)(this, _l, "f").ping = a;
+                        C.get(this, _l, "f").id == e)
+                            C.get(this, _l, "f").ping = a;
                         else {
-                            const t = (0,
-                            C.gn)(this, Cl, "f").find((t => t.id == e));
+                            const t = C.get(this, Cl, "f").find((t => t.id == e));
                             null != t && (t.ping = a)
                         }
                     }
@@ -53586,46 +49921,31 @@
                 Il.set(this, null),
                 Ll.set(this, null),
                 Ul.set(this, void 0),
-                (0,
-                C.GG)(this, dl, e, "f"),
-                (0,
-                C.GG)(this, ul, t, "f"),
-                (0,
-                C.GG)(this, pl, n, "f"),
-                (0,
-                C.GG)(this, fl, i, "f"),
-                window.addEventListener("pagehide", (0,
-                C.GG)(this, Ul, ( () => {
-                    (0,
-                    C.gn)(this, ml, "f")?.close()
+                C.set(this, dl, e, "f"),
+                C.set(this, ul, t, "f"),
+                C.set(this, pl, n, "f"),
+                C.set(this, fl, i, "f"),
+                window.addEventListener("pagehide", C.set(this, Ul, ( () => {
+                    C.get(this, ml, "f")?.close()
                 }
                 ), "f"))
             }
             dispose() {
-                (0,
-                C.GG)(this, yl, [], "f"),
-                (0,
-                C.GG)(this, wl, [], "f"),
-                (0,
-                C.GG)(this, Sl, [], "f"),
-                (0,
-                C.GG)(this, kl, [], "f"),
-                window.removeEventListener("pagehide", (0,
-                C.gn)(this, Ul, "f")),
-                (0,
-                C.gn)(this, ml, "f")?.close(),
-                (0,
-                C.gn)(this, Al, "f")?.close()
+                C.set(this, yl, [], "f"),
+                C.set(this, wl, [], "f"),
+                C.set(this, Sl, [], "f"),
+                C.set(this, kl, [], "f"),
+                window.removeEventListener("pagehide", C.get(this, Ul, "f")),
+                C.get(this, ml, "f")?.close(),
+                C.get(this, Al, "f")?.close()
             }
             async joinInvite(e, t) {
-                if (null != (0,
-                C.gn)(this, ml, "f"))
+                if (null != C.get(this, ml, "f"))
                     throw new Error("Data channel already created");
                 let n;
                 t.throwIfCancelled();
                 try {
-                    n = await (0,
-                    C.gn)(this, ul, "f").getIceServers()
+                    n = await C.get(this, ul, "f").getIceServers()
                 } catch (e) {
                     throw console.error("Failed to get ICE servers:", e),
                     new cl("server-connection")
@@ -53640,14 +49960,10 @@
                         n.unreliableDataChannel.close())
                     }
                     )),
-                    (0,
-                    C.GG)(this, gl, i, "f");
-                    const n = (0,
-                    C.gn)(this, hl, "m", zl).call(this, i);
-                    (0,
-                    C.GG)(this, ml, n.dataChannel, "f"),
-                    (0,
-                    C.GG)(this, Al, n.unreliableDataChannel, "f");
+                    C.set(this, gl, i, "f");
+                    const n = C.get(this, hl, "m", zl).call(this, i);
+                    C.set(this, ml, n.dataChannel, "f"),
+                    C.set(this, Al, n.unreliableDataChannel, "f");
                     const r = await i.createOffer();
                     if (null == r.sdp)
                         throw i.close(),
@@ -53665,11 +49981,9 @@
                           , c = !1
                           , h = !1;
                         const d = []
-                          , u = (0,
-                        C.gn)(this, ul, "f").createMultiplayerJoinWebSocket();
+                          , u = C.get(this, ul, "f").createMultiplayerJoinWebSocket();
                         u.addEventListener("open", ( () => {
-                            const t = (0,
-                            C.gn)(this, pl, "f").getCurrentUserProfile();
+                            const t = C.get(this, pl, "f").getCurrentUserProfile();
                             u.send(JSON.stringify({
                                 version: "0.6.0",
                                 inviteCode: e,
@@ -53749,8 +50063,7 @@
                                 if (!("clientId"in t) || "number" != typeof t.clientId || !Number.isSafeInteger(t.clientId) || t.clientId < 1)
                                     return console.error(n + "Missing or invalid clientId"),
                                     void u.close();
-                                (0,
-                                C.gn)(this, _l, "f").id = t.clientId,
+                                C.get(this, _l, "f").id = t.clientId,
                                 i.setRemoteDescription(new RTCSessionDescription({
                                     type: "answer",
                                     sdp: e
@@ -53861,78 +50174,45 @@
                 }
             }
             addConnectionLostCallback(e) {
-                null == (0,
-                C.gn)(this, ml, "f") || "closed" != (0,
-                C.gn)(this, ml, "f").readyState && "closing" != (0,
-                C.gn)(this, ml, "f").readyState ? (0,
-                C.gn)(this, yl, "f").push(e) : (0,
-                C.gn)(this, vl, "f") ? e("kicked") : e("disconnected")
+                null == C.get(this, ml, "f") || "closed" != C.get(this, ml, "f").readyState && "closing" != C.get(this, ml, "f").readyState ? C.get(this, yl, "f").push(e) : C.get(this, vl, "f") ? e("kicked") : e("disconnected")
             }
             removeConnectionLostCallback(e) {
-                (0,
-                C.GG)(this, yl, (0,
-                C.gn)(this, yl, "f").filter((t => t != e)), "f")
+                C.set(this, yl, C.get(this, yl, "f").filter((t => t != e)), "f")
             }
             addCarResetCallback(e) {
-                (0,
-                C.gn)(this, bl, "f").push(e)
+                C.get(this, bl, "f").push(e)
             }
             removeCarResetCallback(e) {
-                (0,
-                C.GG)(this, bl, (0,
-                C.gn)(this, bl, "f").filter((t => t != e)), "f")
+                C.set(this, bl, C.get(this, bl, "f").filter((t => t != e)), "f")
             }
             addCarUpdateCallback(e) {
-                (0,
-                C.gn)(this, wl, "f").push(e)
+                C.get(this, wl, "f").push(e)
             }
             removeCarUpdateCallback(e) {
-                (0,
-                C.GG)(this, wl, (0,
-                C.gn)(this, wl, "f").filter((t => t != e)), "f")
+                C.set(this, wl, C.get(this, wl, "f").filter((t => t != e)), "f")
             }
             addEndSessionCallback(e, t) {
-                (0,
-                C.gn)(this, xl, "f").push(t),
-                (e != (0,
-                C.gn)(this, Tl, "f") || (0,
-                C.gn)(this, Ml, "f")) && t()
+                C.get(this, xl, "f").push(t),
+                (e != C.get(this, Tl, "f") || C.get(this, Ml, "f")) && t()
             }
             removeEndSessionCallback(e) {
-                (0,
-                C.GG)(this, xl, (0,
-                C.gn)(this, xl, "f").filter((t => t != e)), "f")
+                C.set(this, xl, C.get(this, xl, "f").filter((t => t != e)), "f")
             }
             addNewSessionCallback(e, t) {
-                (0,
-                C.gn)(this, Sl, "f").push(t),
-                null != e && e != (0,
-                C.gn)(this, Tl, "f") && null != (0,
-                C.gn)(this, Rl, "f") && null != (0,
-                C.gn)(this, Il, "f") && t((0,
-                C.gn)(this, Tl, "f"), (0,
-                C.gn)(this, Rl, "f"), (0,
-                C.gn)(this, Il, "f").trackMetadata, (0,
-                C.gn)(this, Il, "f").trackData)
+                C.get(this, Sl, "f").push(t),
+                null != e && e != C.get(this, Tl, "f") && null != C.get(this, Rl, "f") && null != C.get(this, Il, "f") && t(C.get(this, Tl, "f"), C.get(this, Rl, "f"), C.get(this, Il, "f").trackMetadata, C.get(this, Il, "f").trackData)
             }
             removeNewSessionCallback(e) {
-                (0,
-                C.GG)(this, Sl, (0,
-                C.gn)(this, Sl, "f").filter((t => t != e)), "f")
+                C.set(this, Sl, C.get(this, Sl, "f").filter((t => t != e)), "f")
             }
             addServerMessageCallback(e) {
-                (0,
-                C.gn)(this, El, "f").push(e)
+                C.get(this, El, "f").push(e)
             }
             removeServerMessageCallback(e) {
-                (0,
-                C.GG)(this, El, (0,
-                C.gn)(this, El, "f").filter((t => t != e)), "f")
+                C.set(this, El, C.get(this, El, "f").filter((t => t != e)), "f")
             }
             sendCarReset(e, t) {
-                if (e != (0,
-                C.gn)(this, Tl, "f") || (0,
-                C.gn)(this, Ml, "f"))
+                if (e != C.get(this, Tl, "f") || C.get(this, Ml, "f"))
                     return;
                 const n = new Uint8Array(9);
                 if (n[0] = qt.CarReset,
@@ -53944,25 +50224,19 @@
                 n[6] = t >> 8 & 255,
                 n[7] = t >> 16 & 255,
                 n[8] = t >> 24 & 255,
-                null == (0,
-                C.gn)(this, gl, "f"))
+                null == C.get(this, gl, "f"))
                     throw new Error("Peer connection is not initialized");
-                if (null == (0,
-                C.gn)(this, ml, "f"))
+                if (null == C.get(this, ml, "f"))
                     throw new Error("Data channel is not initialized");
                 try {
-                    (0,
-                    C.gn)(this, ml, "f").send(n)
+                    C.get(this, ml, "f").send(n)
                 } catch (e) {
                     return console.error("Failed to send CarReset message:", e),
-                    void (0,
-                    C.gn)(this, gl, "f").close()
+                    void C.get(this, gl, "f").close()
                 }
             }
             sendCarUpdate(e, t, n) {
-                if (e != (0,
-                C.gn)(this, Tl, "f") || (0,
-                C.gn)(this, Ml, "f"))
+                if (e != C.get(this, Tl, "f") || C.get(this, Ml, "f"))
                     return;
                 const i = Kt._c(n)
                   , r = new Uint8Array(9 + i.length);
@@ -53976,30 +50250,22 @@
                 r[7] = t >> 16 & 255,
                 r[8] = t >> 24 & 255,
                 r.set(i, 9),
-                null == (0,
-                C.gn)(this, gl, "f"))
+                null == C.get(this, gl, "f"))
                     throw new Error("Peer connection is not initialized");
-                if (null == (0,
-                C.gn)(this, Al, "f"))
+                if (null == C.get(this, Al, "f"))
                     throw new Error("Unreliable data channel is not initialized");
                 try {
-                    (0,
-                    C.gn)(this, Al, "f").send(r)
+                    C.get(this, Al, "f").send(r)
                 } catch (e) {
                     return console.error("Failed to send CarUpdate message:", e),
-                    void (0,
-                    C.gn)(this, gl, "f").close()
+                    void C.get(this, gl, "f").close()
                 }
             }
             sendRecord(e, t) {
-                if (e != (0,
-                C.gn)(this, Tl, "f") || (0,
-                C.gn)(this, Ml, "f"))
+                if (e != C.get(this, Tl, "f") || C.get(this, Ml, "f"))
                     return;
-                (0,
-                C.gn)(this, _l, "f").record = t.clone();
-                for (const t of (0,
-                C.gn)(this, kl, "f"))
+                C.get(this, _l, "f").record = t.clone();
+                for (const t of C.get(this, kl, "f"))
                     t(e);
                 const n = t.numberOfFrames
                   , i = new Uint8Array(8);
@@ -54011,35 +50277,26 @@
                 i[5] = 255 & n,
                 i[6] = n >> 8 & 255,
                 i[7] = n >> 16 & 255,
-                null == (0,
-                C.gn)(this, gl, "f"))
+                null == C.get(this, gl, "f"))
                     throw new Error("Peer connection is not initialized");
-                if (null == (0,
-                C.gn)(this, ml, "f"))
+                if (null == C.get(this, ml, "f"))
                     throw new Error("Data channel is not initialized");
                 try {
-                    (0,
-                    C.gn)(this, ml, "f").send(i)
+                    C.get(this, ml, "f").send(i)
                 } catch (e) {
                     return console.error("Failed to send Record message:", e),
-                    void (0,
-                    C.gn)(this, gl, "f").close()
+                    void C.get(this, gl, "f").close()
                 }
             }
             getPing(e) {
-                if ((0,
-                C.gn)(this, _l, "f").id == e)
-                    return (0,
-                    C.gn)(this, _l, "f").ping;
-                const t = (0,
-                C.gn)(this, Cl, "f").find((t => t.id == e));
+                if (C.get(this, _l, "f").id == e)
+                    return C.get(this, _l, "f").ping;
+                const t = C.get(this, Cl, "f").find((t => t.id == e));
                 return null != t ? t.ping : null
             }
             getPlayers() {
-                const e = (0,
-                C.gn)(this, pl, "f").getCurrentUserProfile()
-                  , t = (0,
-                C.gn)(this, Cl, "f").map((e => ({
+                const e = C.get(this, pl, "f").getCurrentUserProfile()
+                  , t = C.get(this, Cl, "f").map((e => ({
                     id: e.id,
                     nickname: e.nickname,
                     countryCode: e.countryCode,
@@ -54047,31 +50304,24 @@
                     record: e.record?.clone() ?? null,
                     isSelf: !1
                 })));
-                return null != (0,
-                C.gn)(this, _l, "f").id && t.push({
-                    id: (0,
-                    C.gn)(this, _l, "f").id,
+                return null != C.get(this, _l, "f").id && t.push({
+                    id: C.get(this, _l, "f").id,
                     nickname: e.nickname,
                     countryCode: e.countryCode,
                     carStyle: e.carStyle,
-                    record: (0,
-                    C.gn)(this, _l, "f").record?.clone() ?? null,
+                    record: C.get(this, _l, "f").record?.clone() ?? null,
                     isSelf: !0
                 }),
                 t
             }
             getMaxPlayers() {
-                return (0,
-                C.gn)(this, Pl, "f")
+                return C.get(this, Pl, "f")
             }
             addPlayersChangedCallback(e) {
-                (0,
-                C.gn)(this, kl, "f").push(e)
+                C.get(this, kl, "f").push(e)
             }
             removePlayersChangedCallback(e) {
-                (0,
-                C.GG)(this, kl, (0,
-                C.gn)(this, kl, "f").filter((t => t != e)), "f")
+                C.set(this, kl, C.get(this, kl, "f").filter((t => t != e)), "f")
             }
         }
         ;
@@ -54102,8 +50352,7 @@
         oc = function() {
             const e = document.createElement("div");
             e.className = "join",
-            (0,
-            C.gn)(this, Xl, "f").appendChild(e);
+            C.get(this, Xl, "f").appendChild(e);
             const t = document.createElement("div");
             t.className = "main-box",
             e.appendChild(t);
@@ -54111,8 +50360,7 @@
             n.className = "error-box",
             e.appendChild(n);
             const i = document.createElement("h2");
-            i.textContent = (0,
-            C.gn)(this, Fl, "f").get("Join Multiplayer Game"),
+            i.textContent = C.get(this, Fl, "f").get("Join Multiplayer Game"),
             t.appendChild(i);
             const r = document.createElement("div");
             r.className = "invite-code-container",
@@ -54120,8 +50368,7 @@
             const a = document.createElement("input");
             a.type = "text",
             a.className = "invite-code",
-            a.placeholder = (0,
-            C.gn)(this, Fl, "f").get("Enter invite code"),
+            a.placeholder = C.get(this, Fl, "f").get("Enter invite code"),
             a.spellcheck = !1,
             a.autocomplete = "off",
             a.maxLength = 32,
@@ -54141,8 +50388,7 @@
             const o = document.createElement("div");
             o.className = "loading-spinner-ui",
             s.appendChild(o),
-            s.appendChild(document.createTextNode((0,
-            C.gn)(this, Fl, "f").get("Connecting..."))),
+            s.appendChild(document.createTextNode(C.get(this, Fl, "f").get("Connecting..."))),
             r.appendChild(s);
             const l = document.createElement("div");
             l.className = "buttons",
@@ -54150,41 +50396,31 @@
             const c = document.createElement("button");
             c.className = "button",
             c.innerHTML = '<img class="button-icon" src="images/back.svg"> ',
-            c.append(document.createTextNode((0,
-            C.gn)(this, Fl, "f").get("Back"))),
+            c.append(document.createTextNode(C.get(this, Fl, "f").get("Back"))),
             c.addEventListener("click", ( () => {
-                (0,
-                C.gn)(this, Gl, "f").playUIClick(),
-                (0,
-                C.gn)(this, Bl, "m", cc).call(this)
+                C.get(this, Gl, "f").playUIClick(),
+                C.get(this, Bl, "m", cc).call(this)
             }
             )),
             l.appendChild(c);
             const h = document.createElement("button");
             h.className = "button",
-            h.textContent = (0,
-            C.gn)(this, Fl, "f").get("Host"),
+            h.textContent = C.get(this, Fl, "f").get("Host"),
             h.addEventListener("click", ( () => {
-                (0,
-                C.gn)(this, Gl, "f").playUIClick(),
-                (0,
-                C.gn)(this, Yl, "f").classList.add("hidden"),
-                (0,
-                C.gn)(this, Zl, "f").classList.remove("hidden"),
-                (0,
-                C.GG)(this, $l, !0, "f")
+                C.get(this, Gl, "f").playUIClick(),
+                C.get(this, Yl, "f").classList.add("hidden"),
+                C.get(this, Zl, "f").classList.remove("hidden"),
+                C.set(this, $l, !0, "f")
             }
             )),
             l.appendChild(h);
             const d = document.createElement("button");
             d.className = "button join",
             d.innerHTML = '<img class="button-icon" src="images/play.svg"> ',
-            d.prepend(document.createTextNode((0,
-            C.gn)(this, Fl, "f").get("Join"))),
+            d.prepend(document.createTextNode(C.get(this, Fl, "f").get("Join"))),
             d.disabled = !0,
             d.addEventListener("click", ( () => {
-                (0,
-                C.gn)(this, Gl, "f").playUIClick(),
+                C.get(this, Gl, "f").playUIClick(),
                 u()
             }
             )),
@@ -54197,18 +50433,11 @@
                 d.disabled = !0;
                 const e = a.value.trim().toUpperCase()
                   , t = performance.now();
-                (0,
-                C.GG)(this, rc, new rr.A, "f");
+                C.set(this, rc, new rr.A, "f");
                 try {
-                    const t = new Dl((0,
-                    C.gn)(this, Fl, "f"),(0,
-                    C.gn)(this, Vl, "f"),(0,
-                    C.gn)(this, Hl, "f"),(0,
-                    C.gn)(this, Wl, "f"));
-                    (0,
-                    C.GG)(this, ic, t, "f"),
-                    await t.joinInvite(e, (0,
-                    C.gn)(this, rc, "f"));
+                    const t = new Dl(C.get(this, Fl, "f"),C.get(this, Vl, "f"),C.get(this, Hl, "f"),C.get(this, Wl, "f"));
+                    C.set(this, ic, t, "f"),
+                    await t.joinInvite(e, C.get(this, rc, "f"));
                     const n = await new Promise(( (e, n) => {
                         const i = (n, a, s, o) => {
                             t.removeNewSessionCallback(i),
@@ -54228,22 +50457,18 @@
                         t.addConnectionLostCallback(r)
                     }
                     ));
-                    if ((0,
-                    C.gn)(this, ac, "f"))
+                    if (C.get(this, ac, "f"))
                         return void t.dispose();
-                    (0,
-                    C.GG)(this, ic, null, "f"),
+                    C.set(this, ic, null, "f"),
                     this.dispose(),
-                    (0,
-                    C.gn)(this, Ql, "f").call(this, n.trackMetadata, n.trackData, "custom", [], {
+                    C.get(this, Ql, "f").call(this, n.trackMetadata, n.trackData, "custom", [], {
                         multiplayerConnection: t,
                         sessionId: n.sessionId,
                         gameMode: n.gameMode
                     })
                 } catch (e) {
                     if (console.error(e),
-                    (0,
-                    C.gn)(this, ac, "f"))
+                    C.get(this, ac, "f"))
                         return;
                     let i;
                     if (await new Promise((e => {
@@ -54254,44 +50479,34 @@
                     e instanceof cl)
                         switch (e.errorType) {
                         case "server-connection":
-                            i = (0,
-                            C.gn)(this, Fl, "f").get("Error: Unable to reach matchmaking server. Check your internet connection and try again");
+                            i = C.get(this, Fl, "f").get("Error: Unable to reach matchmaking server. Check your internet connection and try again");
                             break;
                         case "expired":
-                            i = (0,
-                            C.gn)(this, Fl, "f").get("Error: The invite code has expired or is incorrect");
+                            i = C.get(this, Fl, "f").get("Error: The invite code has expired or is incorrect");
                             break;
                         case "mods-not-vanilla-compatible":
-                            i = (0,
-                            C.gn)(this, Fl, "f").get("Error: The server is using incompatible mods");
+                            i = C.get(this, Fl, "f").get("Error: The server is using incompatible mods");
                             break;
                         case "webrtc":
-                            i = (0,
-                            C.gn)(this, Fl, "f").get("Error: Connection failed. Please check your firewall or network settings");
+                            i = C.get(this, Fl, "f").get("Error: Connection failed. Please check your firewall or network settings");
                             break;
                         case "kicked":
-                            i = (0,
-                            C.gn)(this, Fl, "f").get("Error: You were kicked from the game");
+                            i = C.get(this, Fl, "f").get("Error: You were kicked from the game");
                             break;
                         case "full":
-                            i = (0,
-                            C.gn)(this, Fl, "f").get("Error: The multiplayer server is full");
+                            i = C.get(this, Fl, "f").get("Error: The multiplayer server is full");
                             break;
                         default:
                             e.errorType,
-                            i = (0,
-                            C.gn)(this, Fl, "f").get("Error: Unknown connection error")
+                            i = C.get(this, Fl, "f").get("Error: Unknown connection error")
                         }
                     else
-                        i = (0,
-                        C.gn)(this, Fl, "f").get("Error: Unknown connection error");
+                        i = C.get(this, Fl, "f").get("Error: Unknown connection error");
                     n.textContent = i,
                     n.classList.add("show")
                 } finally {
-                    (0,
-                    C.GG)(this, ic, null, "f"),
-                    (0,
-                    C.GG)(this, rc, null, "f"),
+                    C.set(this, ic, null, "f"),
+                    C.set(this, rc, null, "f"),
                     r.classList.remove("connecting"),
                     a.disabled = !1,
                     a.focus(),
@@ -54306,8 +50521,7 @@
         lc = function() {
             const e = document.createElement("div");
             e.className = "host hidden",
-            (0,
-            C.gn)(this, Xl, "f").appendChild(e);
+            C.get(this, Xl, "f").appendChild(e);
             const t = document.createElement("div");
             t.className = "main-box",
             e.appendChild(t);
@@ -54315,8 +50529,7 @@
             n.className = "error-box",
             t.appendChild(n);
             const i = document.createElement("h2");
-            i.textContent = (0,
-            C.gn)(this, Fl, "f").get("Host Multiplayer Game"),
+            i.textContent = C.get(this, Fl, "f").get("Host Multiplayer Game"),
             t.appendChild(i);
             let r = Yt.Casual;
             const a = document.createElement("div");
@@ -54324,8 +50537,7 @@
             t.appendChild(a);
             const s = document.createElement("div");
             s.className = "title",
-            s.textContent = (0,
-            C.gn)(this, Fl, "f").get("Game Mode"),
+            s.textContent = C.get(this, Fl, "f").get("Game Mode"),
             a.appendChild(s);
             const o = [];
             for (const e of [Yt.Casual, Yt.Competitive]) {
@@ -54333,17 +50545,14 @@
                 switch (t.className = "button",
                 e) {
                 case Yt.Casual:
-                    t.textContent = (0,
-                    C.gn)(this, Fl, "f").get("Casual");
+                    t.textContent = C.get(this, Fl, "f").get("Casual");
                     break;
                 case Yt.Competitive:
-                    t.textContent = (0,
-                    C.gn)(this, Fl, "f").get("Competitive")
+                    t.textContent = C.get(this, Fl, "f").get("Competitive")
                 }
                 e == r && t.classList.add("selected"),
                 t.addEventListener("click", ( () => {
-                    (0,
-                    C.gn)(this, Gl, "f").playUIClick(),
+                    C.get(this, Gl, "f").playUIClick(),
                     r = e,
                     l();
                     for (const e of o)
@@ -54357,12 +50566,10 @@
             const l = () => {
                 switch (r) {
                 case Yt.Casual:
-                    c.textContent = (0,
-                    C.gn)(this, Fl, "f").get("Players play to improve their personal best times.");
+                    c.textContent = C.get(this, Fl, "f").get("Players play to improve their personal best times.");
                     break;
                 case Yt.Competitive:
-                    c.textContent = (0,
-                    C.gn)(this, Fl, "f").get("Players compete to set the best time in the session.")
+                    c.textContent = C.get(this, Fl, "f").get("Players compete to set the best time in the session.")
                 }
             }
               , c = document.createElement("div");
@@ -54374,8 +50581,7 @@
             t.appendChild(h);
             const d = document.createElement("div");
             d.className = "maximum-players-info",
-            d.textContent = (0,
-            C.gn)(this, Fl, "f").get("Maximum Players: {0}", ["8"]),
+            d.textContent = C.get(this, Fl, "f").get("Maximum Players: {0}", ["8"]),
             h.appendChild(d);
             const u = document.createElement("input");
             u.className = "maximum-players",
@@ -54384,8 +50590,7 @@
             u.min = "2",
             u.max = "16",
             u.addEventListener("input", ( () => {
-                d.textContent = (0,
-                C.gn)(this, Fl, "f").get("Maximum Players: {0}", [u.value])
+                d.textContent = C.get(this, Fl, "f").get("Maximum Players: {0}", [u.value])
             }
             )),
             h.appendChild(u);
@@ -54393,30 +50598,16 @@
             const f = document.createElement("button");
             f.className = "button track-button",
             f.addEventListener("click", ( () => {
-                (0,
-                C.gn)(this, Gl, "f").playUIClick(),
+                C.get(this, Gl, "f").playUIClick(),
                 e.classList.add("hidden"),
-                (0,
-                C.GG)(this, tc, new sr.A((0,
-                C.gn)(this, Jl, "f"),(0,
-                C.gn)(this, Fl, "f"),(0,
-                C.gn)(this, Gl, "f"),(0,
-                C.gn)(this, Wl, "f"),(0,
-                C.gn)(this, Ol, "f"),(0,
-                C.gn)(this, Hl, "f"),(0,
-                C.gn)(this, Kl, "f"),(0,
-                C.gn)(this, jl, "f"),"back",!1,( () => {
-                    (0,
-                    C.gn)(this, tc, "f")?.dispose(),
-                    (0,
-                    C.GG)(this, tc, null, "f"),
+                C.set(this, tc, new sr.A(C.get(this, Jl, "f"),C.get(this, Fl, "f"),C.get(this, Gl, "f"),C.get(this, Wl, "f"),C.get(this, Ol, "f"),C.get(this, Hl, "f"),C.get(this, Kl, "f"),C.get(this, jl, "f"),"back",!1,( () => {
+                    C.get(this, tc, "f")?.dispose(),
+                    C.set(this, tc, null, "f"),
                     e.classList.remove("hidden")
                 }
                 ),( (t, n, i, r, a, s) => {
-                    (0,
-                    C.gn)(this, tc, "f")?.dispose(),
-                    (0,
-                    C.GG)(this, tc, null, "f"),
+                    C.get(this, tc, "f")?.dispose(),
+                    C.set(this, tc, null, "f"),
                     e.classList.remove("hidden"),
                     A({
                         trackMetadata: t,
@@ -54424,8 +50615,7 @@
                     }, s)
                 }
                 )), "f"),
-                (0,
-                C.gn)(this, tc, "f").show()
+                C.get(this, tc, "f").show()
             }
             )),
             t.appendChild(f);
@@ -54435,8 +50625,7 @@
             f.appendChild(g);
             const m = document.createElement("div");
             m.className = "name placeholder",
-            m.textContent = (0,
-            C.gn)(this, Fl, "f").get("Select Track"),
+            m.textContent = C.get(this, Fl, "f").get("Select Track"),
             f.appendChild(m);
             const A = (e, t) => {
                 if (f.innerHTML = "",
@@ -54467,81 +50656,57 @@
             const y = document.createElement("button");
             y.className = "button",
             y.innerHTML = '<img class="button-icon" src="images/back.svg"> ',
-            y.append(document.createTextNode((0,
-            C.gn)(this, Fl, "f").get("Back"))),
+            y.append(document.createTextNode(C.get(this, Fl, "f").get("Back"))),
             y.addEventListener("click", ( () => {
-                (0,
-                C.gn)(this, Gl, "f").playUIClick(),
-                (0,
-                C.gn)(this, Bl, "m", cc).call(this)
+                C.get(this, Gl, "f").playUIClick(),
+                C.get(this, Bl, "m", cc).call(this)
             }
             )),
             v.appendChild(y);
             const b = document.createElement("button");
             return b.className = "button",
             b.disabled = !0,
-            b.textContent = (0,
-            C.gn)(this, Fl, "f").get("Host"),
+            b.textContent = C.get(this, Fl, "f").get("Host"),
             b.addEventListener("click", ( () => {
-                if ((0,
-                C.gn)(this, Gl, "f").playUIClick(),
+                if (C.get(this, Gl, "f").playUIClick(),
                 null != p) {
-                    (0,
-                    C.GG)(this, ec, !0, "f"),
-                    (0,
-                    C.gn)(this, Zl, "f").classList.add("hidden");
+                    C.set(this, ec, !0, "f"),
+                    C.get(this, Zl, "f").classList.add("hidden");
                     const e = p.trackMetadata
                       , t = p;
-                    (0,
-                    C.GG)(this, nc, new fr.A(!1), "f"),
+                    C.set(this, nc, new fr.A(!1), "f"),
                     t.trackData().then((t => {
                         if (t.hasStartingPoint()) {
                             const n = parseInt(u.value);
                             if (Number.isNaN(n) || !Number.isSafeInteger(n) || n < 1)
                                 throw new Error("Invalid maximum players: " + u.value);
-                            const i = new Fn((0,
-                            C.gn)(this, Fl, "f"),(0,
-                            C.gn)(this, Vl, "f"),n,(0,
-                            C.gn)(this, Hl, "f"))
+                            const i = new Fn(C.get(this, Fl, "f"),C.get(this, Vl, "f"),n,C.get(this, Hl, "f"))
                               , a = i.startNewSessionImmediate(r, e, t);
                             this.dispose(),
-                            (0,
-                            C.gn)(this, Ql, "f").call(this, e, t, "custom", [], {
+                            C.get(this, Ql, "f").call(this, e, t, "custom", [], {
                                 multiplayerConnection: i,
                                 sessionId: a,
                                 gameMode: r
                             })
                         } else
-                            (0,
-                            C.gn)(this, Kl, "f").show((0,
-                            C.gn)(this, Fl, "f").get("Track is missing starting point"), (0,
-                            C.gn)(this, Fl, "f").get("Ok"), ( () => {
-                                (0,
-                                C.gn)(this, Zl, "f").classList.remove("hidden"),
-                                (0,
-                                C.GG)(this, ec, !1, "f")
+                            C.get(this, Kl, "f").show(C.get(this, Fl, "f").get("Track is missing starting point"), C.get(this, Fl, "f").get("Ok"), ( () => {
+                                C.get(this, Zl, "f").classList.remove("hidden"),
+                                C.set(this, ec, !1, "f")
                             }
                             ))
                     }
                     )).catch((e => {
                         if (!(e instanceof pr.A))
                             throw e;
-                        (0,
-                        C.gn)(this, Kl, "f").show((0,
-                        C.gn)(this, Fl, "f").get("Failed to load track"), (0,
-                        C.gn)(this, Fl, "f").get("Ok"), ( () => {
-                            (0,
-                            C.gn)(this, Zl, "f").classList.remove("hidden"),
-                            (0,
-                            C.GG)(this, ec, !1, "f")
+                        C.get(this, Kl, "f").show(C.get(this, Fl, "f").get("Failed to load track"), C.get(this, Fl, "f").get("Ok"), ( () => {
+                            C.get(this, Zl, "f").classList.remove("hidden"),
+                            C.set(this, ec, !1, "f")
                         }
                         ))
                     }
                     )).finally(( () => {
-                        (0,
-                        C.gn)(this, nc, "f")?.dispose(),
-                        (0,
-                        C.GG)(this, nc, null, "f")
+                        C.get(this, nc, "f")?.dispose(),
+                        C.set(this, nc, null, "f")
                     }
                     ))
                 }
@@ -54552,15 +50717,9 @@
         }
         ,
         cc = function() {
-            null == (0,
-            C.gn)(this, tc, "f") && ((0,
-            C.gn)(this, $l, "f") ? ((0,
-            C.gn)(this, Zl, "f").classList.add("hidden"),
-            (0,
-            C.gn)(this, Yl, "f").classList.remove("hidden"),
-            (0,
-            C.GG)(this, $l, !1, "f")) : (0,
-            C.gn)(this, ql, "f").call(this))
+            null == C.get(this, tc, "f") && (C.get(this, $l, "f") ? (C.get(this, Zl, "f").classList.add("hidden"),
+            C.get(this, Yl, "f").classList.remove("hidden"),
+            C.set(this, $l, !1, "f")) : C.get(this, ql, "f").call(this))
         }
         ;
         const hc = class {
@@ -54588,81 +50747,43 @@
                 rc.set(this, null),
                 ac.set(this, !1),
                 sc.set(this, void 0),
-                (0,
-                C.GG)(this, Gl, e, "f"),
-                (0,
-                C.GG)(this, Fl, t, "f"),
-                (0,
-                C.GG)(this, Ol, n, "f"),
-                (0,
-                C.GG)(this, Wl, i, "f"),
-                (0,
-                C.GG)(this, Vl, r, "f"),
-                (0,
-                C.GG)(this, Hl, a, "f"),
-                (0,
-                C.GG)(this, jl, s, "f"),
-                (0,
-                C.GG)(this, Kl, o, "f"),
-                (0,
-                C.GG)(this, ql, l, "f"),
-                (0,
-                C.GG)(this, Ql, c, "f");
+                C.set(this, Gl, e, "f"),
+                C.set(this, Fl, t, "f"),
+                C.set(this, Ol, n, "f"),
+                C.set(this, Wl, i, "f"),
+                C.set(this, Vl, r, "f"),
+                C.set(this, Hl, a, "f"),
+                C.set(this, jl, s, "f"),
+                C.set(this, Kl, o, "f"),
+                C.set(this, ql, l, "f"),
+                C.set(this, Ql, c, "f");
                 const h = document.getElementById("ui");
                 if (null == h)
                     throw new Error("UI element not found");
-                (0,
-                C.GG)(this, Jl, h, "f"),
-                (0,
-                C.GG)(this, Xl, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, Xl, "f").className = "multiplayer-ui",
-                (0,
-                C.gn)(this, Jl, "f").appendChild((0,
-                C.gn)(this, Xl, "f")),
-                (0,
-                C.GG)(this, Yl, (0,
-                C.gn)(this, Bl, "m", oc).call(this), "f"),
-                (0,
-                C.GG)(this, Zl, (0,
-                C.gn)(this, Bl, "m", lc).call(this), "f"),
-                window.addEventListener("keydown", (0,
-                C.GG)(this, sc, (e => {
-                    "Escape" != e.code || (0,
-                    C.gn)(this, ec, "f") || ((0,
-                    C.gn)(this, Bl, "m", cc).call(this),
+                C.set(this, Jl, h, "f"),
+                C.set(this, Xl, document.createElement("div"), "f"),
+                C.get(this, Xl, "f").className = "multiplayer-ui",
+                C.get(this, Jl, "f").appendChild(C.get(this, Xl, "f")),
+                C.set(this, Yl, C.get(this, Bl, "m", oc).call(this), "f"),
+                C.set(this, Zl, C.get(this, Bl, "m", lc).call(this), "f"),
+                window.addEventListener("keydown", C.set(this, sc, (e => {
+                    "Escape" != e.code || C.get(this, ec, "f") || (C.get(this, Bl, "m", cc).call(this),
                     e.preventDefault())
                 }
                 ), "f"))
             }
             dispose() {
-                (0,
-                C.GG)(this, ac, !0, "f"),
-                (0,
-                C.gn)(this, tc, "f")?.dispose(),
-                (0,
-                C.GG)(this, tc, null, "f"),
-                (0,
-                C.gn)(this, nc, "f")?.dispose(),
-                (0,
-                C.GG)(this, nc, null, "f"),
-                null != (0,
-                C.gn)(this, ic, "f") && ((0,
-                C.gn)(this, ic, "f").dispose(),
-                (0,
-                C.GG)(this, ic, null, "f")),
-                null != (0,
-                C.gn)(this, rc, "f") && ((0,
-                C.gn)(this, rc, "f").cancel(),
-                (0,
-                C.GG)(this, rc, null, "f")),
-                (0,
-                C.gn)(this, Xl, "f").parentElement == (0,
-                C.gn)(this, Jl, "f") && (0,
-                C.gn)(this, Jl, "f").removeChild((0,
-                C.gn)(this, Xl, "f")),
-                window.removeEventListener("keydown", (0,
-                C.gn)(this, sc, "f"))
+                C.set(this, ac, !0, "f"),
+                C.get(this, tc, "f")?.dispose(),
+                C.set(this, tc, null, "f"),
+                C.get(this, nc, "f")?.dispose(),
+                C.set(this, nc, null, "f"),
+                null != C.get(this, ic, "f") && (C.get(this, ic, "f").dispose(),
+                C.set(this, ic, null, "f")),
+                null != C.get(this, rc, "f") && (C.get(this, rc, "f").cancel(),
+                C.set(this, rc, null, "f")),
+                C.get(this, Xl, "f").parentElement == C.get(this, Jl, "f") && C.get(this, Jl, "f").removeChild(C.get(this, Xl, "f")),
+                window.removeEventListener("keydown", C.get(this, sc, "f"))
             }
         }
         ;
@@ -54686,49 +50807,34 @@
                 fc.set(this, void 0),
                 gc.set(this, void 0),
                 mc.set(this, void 0),
-                (0,
-                C.GG)(this, gc, e, "f"),
-                (0,
-                C.GG)(this, pc, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, pc, "f").className = "news-popup-ui",
-                (0,
-                C.gn)(this, gc, "f").appendChild((0,
-                C.gn)(this, pc, "f"));
+                C.set(this, gc, e, "f"),
+                C.set(this, pc, document.createElement("div"), "f"),
+                C.get(this, pc, "f").className = "news-popup-ui",
+                C.get(this, gc, "f").appendChild(C.get(this, pc, "f"));
                 const r = document.createElement("h2");
                 r.textContent = n.get("Update 0.6.0"),
-                (0,
-                C.gn)(this, pc, "f").appendChild(r);
+                C.get(this, pc, "f").appendChild(r);
                 const a = document.createElement("h3");
                 a.textContent = n.get("Multiplayer & More Customization"),
-                (0,
-                C.gn)(this, pc, "f").appendChild(a),
-                (0,
-                C.GG)(this, fc, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, fc, "f").className = "content",
-                (0,
-                C.gn)(this, pc, "f").appendChild((0,
-                C.gn)(this, fc, "f"));
+                C.get(this, pc, "f").appendChild(a),
+                C.set(this, fc, document.createElement("div"), "f"),
+                C.get(this, fc, "f").className = "content",
+                C.get(this, pc, "f").appendChild(C.get(this, fc, "f"));
                 const s = document.createElement("img");
                 s.className = "cover-image",
                 s.style.aspectRatio = "16 / 9",
                 s.src = "images/news_popup.jpg",
-                (0,
-                C.gn)(this, fc, "f").appendChild(s);
+                C.get(this, fc, "f").appendChild(s);
                 const o = document.createElement("p");
                 o.textContent = n.get("Welcome to PolyTrack 0.6.0! This update introduces experimental multiplayer support, more car customization, editor copy/paste, optimizations and more!"),
-                (0,
-                C.gn)(this, fc, "f").appendChild(o);
+                C.get(this, fc, "f").appendChild(o);
                 const l = document.createElement("p");
                 l.className = "small",
                 l.textContent = n.get("Note: As with every major PolyTrack update, physics changes mean that records from previous versions are not compatible."),
-                (0,
-                C.gn)(this, fc, "f").appendChild(l);
+                C.get(this, fc, "f").appendChild(l);
                 const c = document.createElement("div");
                 c.className = "bottom-container",
-                (0,
-                C.gn)(this, pc, "f").appendChild(c);
+                C.get(this, pc, "f").appendChild(c);
                 const h = document.createElement("button");
                 h.className = "button",
                 h.textContent = n.get("Continue"),
@@ -54738,19 +50844,15 @@
                 }
                 )),
                 c.appendChild(h),
-                window.addEventListener("keydown", (0,
-                C.GG)(this, mc, (e => {
+                window.addEventListener("keydown", C.set(this, mc, (e => {
                     "Enter" != e.code && "Escape" != e.code && "Space" != e.code || (t.playUIClick(),
                     i())
                 }
                 ), "f"))
             }
             dispose() {
-                (0,
-                C.gn)(this, gc, "f").removeChild((0,
-                C.gn)(this, pc, "f")),
-                window.removeEventListener("keydown", (0,
-                C.gn)(this, mc, "f"))
+                C.get(this, gc, "f").removeChild(C.get(this, pc, "f")),
+                window.removeEventListener("keydown", C.get(this, mc, "f"))
             }
         }
         ;
@@ -54783,38 +50885,25 @@
         Vc = new WeakMap,
         vc = new WeakSet,
         Hc = function(e, t, n, i, r, a, s, o, l, c) {
-            return new sr.A((0,
-            C.gn)(this, kc, "f"),e,t,n,i,r,a,s,"back",!1,( () => {
-                (0,
-                C.gn)(this, Rc, "f").hide(),
-                (0,
-                C.gn)(this, vc, "m", Qc).call(this),
-                (0,
-                C.gn)(this, vc, "m", Yc).call(this)
+            return new sr.A(C.get(this, kc, "f"),e,t,n,i,r,a,s,"back",!1,( () => {
+                C.get(this, Rc, "f").hide(),
+                C.get(this, vc, "m", Qc).call(this),
+                C.get(this, vc, "m", Yc).call(this)
             }
             ),( (s, h, d, u, p, f) => {
-                (0,
-                C.gn)(this, Rc, "f").hide();
+                C.get(this, Rc, "f").hide();
                 const g = () => {
-                    (0,
-                    C.gn)(this, Rc, "f").show(),
-                    (0,
-                    C.gn)(this, Pc, "f")?.dispose(),
-                    (0,
-                    C.GG)(this, Pc, null, "f")
+                    C.get(this, Rc, "f").show(),
+                    C.get(this, Pc, "f")?.dispose(),
+                    C.set(this, Pc, null, "f")
                 }
                   , m = c => {
-                    (0,
-                    C.gn)(this, Pc, "f")?.dispose(),
-                    (0,
-                    C.GG)(this, Pc, null, "f"),
-                    (0,
-                    C.GG)(this, Ic, new fr.A(!1), "f"),
+                    C.get(this, Pc, "f")?.dispose(),
+                    C.set(this, Pc, null, "f"),
+                    C.set(this, Ic, new fr.A(!1), "f"),
                     d().then((d => {
                         d.hasStartingPoint() ? l(s, d, u, c, null) : a.show(e.get("Track is missing starting point"), e.get("Ok"), ( () => {
-                            (0,
-                            C.GG)(this, Pc, new nl((0,
-                            C.gn)(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
+                            C.set(this, Pc, new nl(C.get(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
                         }
                         ))
                     }
@@ -54822,36 +50911,26 @@
                         if (!(l instanceof pr.A))
                             throw l;
                         a.show(e.get("Failed to load track"), e.get("Ok"), ( () => {
-                            (0,
-                            C.GG)(this, Pc, new nl((0,
-                            C.gn)(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
+                            C.set(this, Pc, new nl(C.get(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
                         }
                         ))
                     }
                     )).finally(( () => {
-                        (0,
-                        C.gn)(this, Ic, "f")?.dispose(),
-                        (0,
-                        C.GG)(this, Ic, null, "f")
+                        C.get(this, Ic, "f")?.dispose(),
+                        C.set(this, Ic, null, "f")
                     }
                     ))
                 }
                   , A = c => {
-                    (0,
-                    C.gn)(this, Pc, "f")?.dispose(),
-                    (0,
-                    C.GG)(this, Pc, null, "f"),
+                    C.get(this, Pc, "f")?.dispose(),
+                    C.set(this, Pc, null, "f"),
                     o.determinismState != Js.Ok ? a.show(e.get("Cannot load recordings due to non-determinism"), e.get("Ok"), ( () => {
-                        (0,
-                        C.GG)(this, Pc, new nl((0,
-                        C.gn)(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
+                        C.set(this, Pc, new nl(C.get(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
                     }
                     )) : c.then((c => {
                         d().then((d => {
                             d.hasStartingPoint() ? l(s, d, u, c, null) : a.show(e.get("Track is missing starting point"), e.get("Ok"), ( () => {
-                                (0,
-                                C.GG)(this, Pc, new nl((0,
-                                C.gn)(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
+                                C.set(this, Pc, new nl(C.get(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
                             }
                             ))
                         }
@@ -54859,9 +50938,7 @@
                             if (!(l instanceof pr.A))
                                 throw l;
                             a.show(e.get("Failed to load track"), e.get("Ok"), ( () => {
-                                (0,
-                                C.GG)(this, Pc, new nl((0,
-                                C.gn)(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
+                                C.set(this, Pc, new nl(C.get(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
                             }
                             ))
                         }
@@ -54869,30 +50946,22 @@
                     }
                     )).catch(( () => {
                         a.show(e.get("Failed to load recordings"), e.get("Ok"), ( () => {
-                            (0,
-                            C.GG)(this, Pc, new nl((0,
-                            C.gn)(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
+                            C.set(this, Pc, new nl(C.get(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
                         }
                         ))
                     }
                     ))
                 }
                   , v = l => {
-                    (0,
-                    C.gn)(this, Pc, "f")?.dispose(),
-                    (0,
-                    C.GG)(this, Pc, null, "f"),
+                    C.get(this, Pc, "f")?.dispose(),
+                    C.set(this, Pc, null, "f"),
                     o.determinismState != Js.Ok ? a.show(e.get("Cannot load recordings due to non-determinism"), e.get("Ok"), ( () => {
-                        (0,
-                        C.GG)(this, Pc, new nl((0,
-                        C.gn)(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
+                        C.set(this, Pc, new nl(C.get(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
                     }
                     )) : l.then((l => {
                         d().then((d => {
                             d.hasStartingPoint() ? c(s, d, u, l) : a.show(e.get("Track is missing starting point"), e.get("Ok"), ( () => {
-                                (0,
-                                C.GG)(this, Pc, new nl((0,
-                                C.gn)(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
+                                C.set(this, Pc, new nl(C.get(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
                             }
                             ))
                         }
@@ -54900,9 +50969,7 @@
                             if (!(l instanceof pr.A))
                                 throw l;
                             a.show(e.get("Failed to load track"), e.get("Ok"), ( () => {
-                                (0,
-                                C.GG)(this, Pc, new nl((0,
-                                C.gn)(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
+                                C.set(this, Pc, new nl(C.get(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
                             }
                             ))
                         }
@@ -54910,24 +50977,18 @@
                     }
                     )).catch(( () => {
                         a.show(e.get("Failed to load recordings"), e.get("Ok"), ( () => {
-                            (0,
-                            C.GG)(this, Pc, new nl((0,
-                            C.gn)(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
+                            C.set(this, Pc, new nl(C.get(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
                         }
                         ))
                     }
                     ))
                 }
                   , y = l => {
-                    (0,
-                    C.gn)(this, Pc, "f")?.dispose(),
-                    (0,
-                    C.GG)(this, Pc, null, "f"),
+                    C.get(this, Pc, "f")?.dispose(),
+                    C.set(this, Pc, null, "f"),
                     d().then((d => {
                         d.hasStartingPoint() ? c(s, d, u, l) : a.show(e.get("Track is missing starting point"), e.get("Ok"), ( () => {
-                            (0,
-                            C.GG)(this, Pc, new nl((0,
-                            C.gn)(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
+                            C.set(this, Pc, new nl(C.get(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
                         }
                         ))
                     }
@@ -54935,37 +50996,26 @@
                         if (!(l instanceof pr.A))
                             throw l;
                         a.show(e.get("Failed to load track"), e.get("Ok"), ( () => {
-                            (0,
-                            C.GG)(this, Pc, new nl((0,
-                            C.gn)(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
+                            C.set(this, Pc, new nl(C.get(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
                         }
                         ))
                     }
                     ))
                 }
                 ;
-                (0,
-                C.GG)(this, Pc, new nl((0,
-                C.gn)(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f"),
-                (0,
-                C.gn)(this, vc, "m", Xc).call(this)
+                C.set(this, Pc, new nl(C.get(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f"),
+                C.get(this, vc, "m", Xc).call(this)
             }
             ))
         }
         ,
         jc = function e(t, n, i, r, a, s, o, l, c, h, d, u, p, f, g, m, A) {
-            for (const e of (0,
-            C.gn)(this, Dc, "f"))
-                (0,
-                C.gn)(this, Nc, "f").removeChild(e);
-            (0,
-            C.GG)(this, Dc, [], "f");
-            for (const e of (0,
-            C.gn)(this, Gc, "f"))
-                (0,
-                C.gn)(this, Bc, "f").removeChild(e);
-            (0,
-            C.GG)(this, Gc, [], "f");
+            for (const e of C.get(this, Dc, "f"))
+                C.get(this, Nc, "f").removeChild(e);
+            C.set(this, Dc, [], "f");
+            for (const e of C.get(this, Gc, "f"))
+                C.get(this, Bc, "f").removeChild(e);
+            C.set(this, Gc, [], "f");
             const v = document.createElement("button");
             v.className = "button button-image",
             v.innerHTML = '<img src="images/customize.svg">',
@@ -54977,10 +51027,8 @@
             const y = document.createElement("p");
             y.textContent = t.get("Garage"),
             v.appendChild(y),
-            (0,
-            C.gn)(this, Nc, "f").appendChild(v),
-            (0,
-            C.gn)(this, Dc, "f").push(v);
+            C.get(this, Nc, "f").appendChild(v),
+            C.get(this, Dc, "f").push(v);
             const b = document.createElement("button");
             b.className = "button button-image",
             b.innerHTML = '<img src="images/editor.svg">',
@@ -54992,39 +51040,24 @@
             const w = document.createElement("p");
             w.textContent = t.get("Editor"),
             b.appendChild(w),
-            (0,
-            C.gn)(this, Nc, "f").appendChild(b),
-            (0,
-            C.gn)(this, Dc, "f").push(b);
+            C.get(this, Nc, "f").appendChild(b),
+            C.get(this, Dc, "f").push(b);
             const x = document.createElement("button");
             x.className = "button button-image",
             x.innerHTML = '<img src="images/settings.svg">',
             x.addEventListener("click", ( () => {
                 n.playUIClick(),
-                (0,
-                C.gn)(this, vc, "m", qc).call(this),
-                (0,
-                C.gn)(this, vc, "m", Xc).call(this),
-                (0,
-                C.GG)(this, Lc, new Ws((0,
-                C.gn)(this, kc, "f"),t,n,i,r,a,d,( () => {
-                    (0,
-                    C.gn)(this, Lc, "f")?.dispose(),
-                    (0,
-                    C.GG)(this, Lc, null, "f"),
-                    (0,
-                    C.gn)(this, Rc, "f").dispose(),
-                    (0,
-                    C.GG)(this, Rc, (0,
-                    C.gn)(this, vc, "m", Hc).call(this, t, n, l, s, o, d, c, h, f, g), "f"),
-                    (0,
-                    C.gn)(this, vc, "m", Kc).call(this, t),
-                    (0,
-                    C.gn)(this, vc, "m", e).call(this, t, n, i, r, a, s, o, l, c, h, d, u, p, f, g, m, A),
-                    (0,
-                    C.gn)(this, vc, "m", Qc).call(this),
-                    (0,
-                    C.gn)(this, vc, "m", Yc).call(this)
+                C.get(this, vc, "m", qc).call(this),
+                C.get(this, vc, "m", Xc).call(this),
+                C.set(this, Lc, new Ws(C.get(this, kc, "f"),t,n,i,r,a,d,( () => {
+                    C.get(this, Lc, "f")?.dispose(),
+                    C.set(this, Lc, null, "f"),
+                    C.get(this, Rc, "f").dispose(),
+                    C.set(this, Rc, C.get(this, vc, "m", Hc).call(this, t, n, l, s, o, d, c, h, f, g), "f"),
+                    C.get(this, vc, "m", Kc).call(this, t),
+                    C.get(this, vc, "m", e).call(this, t, n, i, r, a, s, o, l, c, h, d, u, p, f, g, m, A),
+                    C.get(this, vc, "m", Qc).call(this),
+                    C.get(this, vc, "m", Yc).call(this)
                 }
                 )), "f")
             }
@@ -55032,38 +51065,27 @@
             const S = document.createElement("p");
             S.textContent = t.get("Settings"),
             x.appendChild(S),
-            (0,
-            C.gn)(this, Nc, "f").appendChild(x),
-            (0,
-            C.gn)(this, Dc, "f").push(x);
+            C.get(this, Nc, "f").appendChild(x),
+            C.get(this, Dc, "f").push(x);
             const k = document.createElement("button");
             k.className = "button button-image",
             k.innerHTML = '<img src="images/multiplayer.svg">',
             k.addEventListener("click", ( () => {
                 n.playUIClick(),
-                (0,
-                C.gn)(this, vc, "m", qc).call(this),
-                (0,
-                C.gn)(this, vc, "m", Xc).call(this);
+                C.get(this, vc, "m", qc).call(this),
+                C.get(this, vc, "m", Xc).call(this);
                 "RTCPeerConnection"in window ? d.show(t.get("Multiplayer is experimental!") + "\n\n" + t.get("You may experience connectivity issues or other problems."), t.get("Continue"), ( () => {
-                    (0,
-                    C.GG)(this, Uc, new hc(n,t,s,l,h,o,c,d,( () => {
-                        (0,
-                        C.gn)(this, Uc, "f")?.dispose(),
-                        (0,
-                        C.GG)(this, Uc, null, "f"),
-                        (0,
-                        C.gn)(this, vc, "m", Qc).call(this),
-                        (0,
-                        C.gn)(this, vc, "m", Yc).call(this)
+                    C.set(this, Uc, new hc(n,t,s,l,h,o,c,d,( () => {
+                        C.get(this, Uc, "f")?.dispose(),
+                        C.set(this, Uc, null, "f"),
+                        C.get(this, vc, "m", Qc).call(this),
+                        C.get(this, vc, "m", Yc).call(this)
                     }
                     ),f), "f")
                 }
                 )) : d.show(t.get("WebRTC is not supported in this browser.") + "\n\n" + t.get("Please try another browser or device."), t.get("Ok"), ( () => {
-                    (0,
-                    C.gn)(this, vc, "m", Qc).call(this),
-                    (0,
-                    C.gn)(this, vc, "m", Yc).call(this)
+                    C.get(this, vc, "m", Qc).call(this),
+                    C.get(this, vc, "m", Yc).call(this)
                 }
                 ))
             }
@@ -55071,30 +51093,23 @@
             const E = document.createElement("p");
             E.textContent = t.get("Multiplayer"),
             k.appendChild(E),
-            (0,
-            C.gn)(this, Nc, "f").appendChild(k),
-            (0,
-            C.gn)(this, Dc, "f").push(k);
+            C.get(this, Nc, "f").appendChild(k),
+            C.get(this, Dc, "f").push(k);
             const T = document.createElement("button");
             T.className = "button button-image",
             T.innerHTML = '<img src="images/play.svg">',
             T.addEventListener("click", ( () => {
                 n.playUIClick(),
-                (0,
-                C.gn)(this, vc, "m", qc).call(this),
-                (0,
-                C.gn)(this, vc, "m", Xc).call(this),
-                (0,
-                C.gn)(this, Rc, "f").show()
+                C.get(this, vc, "m", qc).call(this),
+                C.get(this, vc, "m", Xc).call(this),
+                C.get(this, Rc, "f").show()
             }
             ));
             const M = document.createElement("p");
             if (M.textContent = t.get("Play"),
             T.appendChild(M),
-            (0,
-            C.gn)(this, Nc, "f").appendChild(T),
-            (0,
-            C.gn)(this, Dc, "f").push(T),
+            C.get(this, Nc, "f").appendChild(T),
+            C.get(this, Dc, "f").push(T),
             window.electron) {
                 const e = document.createElement("button");
                 e.className = "button",
@@ -55105,10 +51120,8 @@
                     window.electron?.quit()
                 }
                 )),
-                (0,
-                C.gn)(this, Bc, "f").appendChild(e),
-                (0,
-                C.gn)(this, Gc, "f").push(e)
+                C.get(this, Bc, "f").appendChild(e),
+                C.get(this, Gc, "f").push(e)
             }
             {
                 const e = document.createElement("button");
@@ -55116,11 +51129,8 @@
                 i.isFullscreen ? (e.innerHTML = '<img src="images/windowed.svg">',
                 e.appendChild(document.createTextNode(" " + t.get("Windowed")))) : (e.innerHTML = '<img src="images/fullscreen.svg">',
                 e.appendChild(document.createTextNode(" " + t.get("Fullscreen")))),
-                null != (0,
-                C.gn)(this, Vc, "f") && i.removeFullscreenChangeListener((0,
-                C.gn)(this, Vc, "f")),
-                i.addFullscreenChangeListener((0,
-                C.GG)(this, Vc, ( () => {
+                null != C.get(this, Vc, "f") && i.removeFullscreenChangeListener(C.get(this, Vc, "f")),
+                i.addFullscreenChangeListener(C.set(this, Vc, ( () => {
                     i.isFullscreen ? (e.innerHTML = '<img src="images/windowed.svg">',
                     e.appendChild(document.createTextNode(" " + t.get("Windowed")))) : (e.innerHTML = '<img src="images/fullscreen.svg">',
                     e.appendChild(document.createTextNode(" " + t.get("Fullscreen"))))
@@ -55134,14 +51144,11 @@
                     ))
                 }
                 )),
-                (0,
-                C.gn)(this, Bc, "f").appendChild(e),
-                (0,
-                C.gn)(this, Gc, "f").push(e)
+                C.get(this, Bc, "f").appendChild(e),
+                C.get(this, Gc, "f").push(e)
             }
             const _ = () => {
-                (0,
-                C.gn)(this, Fc, "f") ? (R.classList.remove("disabled"),
+                C.get(this, Fc, "f") ? (R.classList.remove("disabled"),
                 R.innerHTML = '<img className="button-icon" src="images/music_on.svg">',
                 R.appendChild(document.createTextNode(" " + t.get("Music: On")))) : (R.classList.add("disabled"),
                 R.innerHTML = '<img className="button-icon" src="images/music_off.svg">',
@@ -55151,20 +51158,14 @@
             R.className = "button",
             R.addEventListener("click", ( () => {
                 n.playUIClick(),
-                (0,
-                C.GG)(this, Fc, !(0,
-                C.gn)(this, Fc, "f"), "f"),
-                $c = (0,
-                C.gn)(this, Fc, "f"),
-                c.saveIsMusicEnabled((0,
-                C.gn)(this, Fc, "f")),
+                C.set(this, Fc, !C.get(this, Fc, "f"), "f"),
+                $c = C.get(this, Fc, "f"),
+                c.saveIsMusicEnabled(C.get(this, Fc, "f")),
                 _()
             }
             )),
-            (0,
-            C.gn)(this, Bc, "f").appendChild(R),
-            (0,
-            C.gn)(this, Gc, "f").push(R),
+            C.get(this, Bc, "f").appendChild(R),
+            C.get(this, Gc, "f").push(R),
             _();
             const P = o.getCurrentUserProfile();
             if (P.isVerifier) {
@@ -55176,10 +51177,8 @@
                     m(P.token)
                 }
                 )),
-                (0,
-                C.gn)(this, Bc, "f").appendChild(e),
-                (0,
-                C.gn)(this, Gc, "f").push(e);
+                C.get(this, Bc, "f").appendChild(e),
+                C.get(this, Gc, "f").push(e);
                 const t = document.createElement("button");
                 t.className = "button",
                 t.textContent = "Admin",
@@ -55188,138 +51187,94 @@
                     A(P.token)
                 }
                 )),
-                (0,
-                C.gn)(this, Bc, "f").appendChild(t),
-                (0,
-                C.gn)(this, Gc, "f").push(t)
+                C.get(this, Bc, "f").appendChild(t),
+                C.get(this, Gc, "f").push(t)
             }
             const I = document.createElement("a");
             I.className = "button right",
             I.href = "https://www.kodub.com/terms/polytrack",
             I.target = "_blank",
             I.innerHTML = '<img className="button-icon" src="images/gavel.svg">',
-            I.appendChild(document.createTextNode(" " + (0,
-            C.gn)(this, yc, "f").get("Terms of Service"))),
-            (0,
-            C.gn)(this, Bc, "f").appendChild(I),
-            (0,
-            C.gn)(this, Gc, "f").push(I);
+            I.appendChild(document.createTextNode(" " + C.get(this, yc, "f").get("Terms of Service"))),
+            C.get(this, Bc, "f").appendChild(I),
+            C.get(this, Gc, "f").push(I);
             const L = document.createElement("a");
             L.className = "button right",
             L.href = "https://www.kodub.com/privacy/polytrack",
             L.target = "_blank",
             L.innerHTML = '<img className="button-icon" src="images/paper.svg">',
-            L.appendChild(document.createTextNode(" " + (0,
-            C.gn)(this, yc, "f").get("Privacy Policy"))),
-            (0,
-            C.gn)(this, Bc, "f").appendChild(L),
-            (0,
-            C.gn)(this, Gc, "f").push(L)
+            L.appendChild(document.createTextNode(" " + C.get(this, yc, "f").get("Privacy Policy"))),
+            C.get(this, Bc, "f").appendChild(L),
+            C.get(this, Gc, "f").push(L)
         }
         ,
         Kc = function(e) {
-            (0,
-            C.gn)(this, Mc, "f").innerHTML = "";
+            C.get(this, Mc, "f").innerHTML = "";
             const t = document.createElement("a");
             t.href = "https://www.kodub.com",
             t.target = "_blank",
             t.textContent = "© 2026 kodub.com - " + e.get("Version") + " 0.6.0",
-            (0,
-            C.gn)(this, Mc, "f").appendChild(t);
+            C.get(this, Mc, "f").appendChild(t);
             const n = document.createElement("a");
             n.href = "https://opengameart.org/content/sci-fi-theme-1",
             n.target = "_blank",
             n.textContent = 'OpenGameArt.org "Sci-fi Theme" by Maou (CC-BY 4.0)',
-            (0,
-            C.gn)(this, Mc, "f").appendChild(n)
+            C.get(this, Mc, "f").appendChild(n)
         }
         ,
         qc = function() {
-            (0,
-            C.gn)(this, zc, "f")?.classList.add("hidden"),
-            (0,
-            C.gn)(this, Nc, "f").classList.add("hidden");
-            for (const e of (0,
-            C.gn)(this, Dc, "f"))
+            C.get(this, zc, "f")?.classList.add("hidden"),
+            C.get(this, Nc, "f").classList.add("hidden");
+            for (const e of C.get(this, Dc, "f"))
                 e.classList.remove("button-spawn");
-            (0,
-            C.gn)(this, Bc, "f").classList.add("hidden"),
-            null != (0,
-            C.gn)(this, Tc, "f") && ((0,
-            C.gn)(this, Tc, "f").className = "hidden"),
-            (0,
-            C.gn)(this, Mc, "f").className = "hidden"
+            C.get(this, Bc, "f").classList.add("hidden"),
+            null != C.get(this, Tc, "f") && (C.get(this, Tc, "f").className = "hidden"),
+            C.get(this, Mc, "f").className = "hidden"
         }
         ,
         Qc = function() {
-            (0,
-            C.gn)(this, vc, "m", Jc).call(this),
-            (0,
-            C.gn)(this, Nc, "f").classList.remove("hidden"),
-            (0,
-            C.gn)(this, Bc, "f").classList.remove("hidden"),
-            null != (0,
-            C.gn)(this, Tc, "f") && ((0,
-            C.gn)(this, Tc, "f").className = "discord-link"),
-            (0,
-            C.gn)(this, Mc, "f").className = "info"
+            C.get(this, vc, "m", Jc).call(this),
+            C.get(this, Nc, "f").classList.remove("hidden"),
+            C.get(this, Bc, "f").classList.remove("hidden"),
+            null != C.get(this, Tc, "f") && (C.get(this, Tc, "f").className = "discord-link"),
+            C.get(this, Mc, "f").className = "info"
         }
         ,
         Jc = function() {
-            if (null != (0,
-            C.gn)(this, zc, "f")) {
+            if (null != C.get(this, zc, "f")) {
                 const e = Co();
-                (0,
-                C.gn)(this, zc, "f").textContent = null != e ? (0,
-                C.gn)(this, yc, "f").get("Unofficial {0} mod by {1}. For the original version please visit:", [e.modName, e.author]) : (0,
-                C.gn)(this, yc, "f").get("It seems like you are playing an unofficial version of {0}. For the most up-to-date version please visit the original source:", ["PolyTrack"]);
+                C.get(this, zc, "f").textContent = null != e ? C.get(this, yc, "f").get("Unofficial {0} mod by {1}. For the original version please visit:", [e.modName, e.author]) : C.get(this, yc, "f").get("It seems like you are playing an unofficial version of {0}. For the most up-to-date version please visit the original source:", ["PolyTrack"]);
                 const t = document.createElement("a");
                 if (t.href = Io(),
                 t.textContent = Io(),
-                (0,
-                C.gn)(this, zc, "f").appendChild(t),
+                C.get(this, zc, "f").appendChild(t),
                 Ro()) {
-                    (0,
-                    C.gn)(this, zc, "f").appendChild(document.createElement("br")),
-                    (0,
-                    C.gn)(this, zc, "f").appendChild(document.createElement("br")),
-                    (0,
-                    C.gn)(this, zc, "f").appendChild(document.createElement("br")),
-                    (0,
-                    C.gn)(this, zc, "f").appendChild(document.createTextNode((0,
-                    C.gn)(this, yc, "f").get("Please read the Terms of Service for more information:")));
+                    C.get(this, zc, "f").appendChild(document.createElement("br")),
+                    C.get(this, zc, "f").appendChild(document.createElement("br")),
+                    C.get(this, zc, "f").appendChild(document.createElement("br")),
+                    C.get(this, zc, "f").appendChild(document.createTextNode(C.get(this, yc, "f").get("Please read the Terms of Service for more information:")));
                     const e = document.createElement("a");
                     e.href = "https://www.kodub.com/terms/polytrack",
                     e.textContent = e.href,
-                    (0,
-                    C.gn)(this, zc, "f").appendChild(e)
+                    C.get(this, zc, "f").appendChild(e)
                 }
-                (0,
-                C.gn)(this, zc, "f").classList.remove("hidden")
+                C.get(this, zc, "f").classList.remove("hidden")
             }
         }
         ,
         Xc = function() {
-            (0,
-            C.gn)(this, Ec, "f").className = "hidden"
+            C.get(this, Ec, "f").className = "hidden"
         }
         ,
         Yc = function() {
-            (0,
-            C.gn)(this, Ec, "f").className = "logo"
+            C.get(this, Ec, "f").className = "logo"
         }
         ,
         Zc = function() {
-            const e = (0,
-            C.gn)(this, wc, "f").getBounds()
+            const e = C.get(this, wc, "f").getBounds()
               , t = new THREE.Vector2((e.min.x + (e.max.x - e.min.x) / 2) * gi.A.partSize,(e.min.y + (e.max.y - e.min.y) / 2) * gi.A.partSize);
-            (0,
-            C.gn)(this, Oc, "f").position.set(t.x + 250 * Math.cos((0,
-            C.gn)(this, Wc, "f")), 100, t.y - 250 * Math.sin((0,
-            C.gn)(this, Wc, "f"))),
-            (0,
-            C.gn)(this, Oc, "f").rotation.y = (0,
-            C.gn)(this, Wc, "f") + Math.PI / 2
+            C.get(this, Oc, "f").position.set(t.x + 250 * Math.cos(C.get(this, Wc, "f")), 100, t.y - 250 * Math.sin(C.get(this, Wc, "f"))),
+            C.get(this, Oc, "f").rotation.y = C.get(this, Wc, "f") + Math.PI / 2
         }
         ;
         const eh = class {
@@ -55350,73 +51305,39 @@
                 Oc.set(this, void 0),
                 Wc.set(this, Math.random() * Math.PI * 2),
                 Vc.set(this, null),
-                (0,
-                C.GG)(this, yc, e, "f"),
-                (0,
-                C.GG)(this, bc, n, "f"),
-                (0,
-                C.GG)(this, wc, r, "f"),
-                (0,
-                C.GG)(this, xc, l, "f"),
-                null == $c ? (0,
-                C.GG)(this, Fc, $c = o.loadIsMusicEnabled(), "f") : (0,
-                C.GG)(this, Fc, $c, "f");
+                C.set(this, yc, e, "f"),
+                C.set(this, bc, n, "f"),
+                C.set(this, wc, r, "f"),
+                C.set(this, xc, l, "f"),
+                null == $c ? C.set(this, Fc, $c = o.loadIsMusicEnabled(), "f") : C.set(this, Fc, $c, "f");
                 const w = document.getElementById("ui");
                 if (null == w)
                     throw new Error("UI element not found");
-                (0,
-                C.GG)(this, Sc, w, "f"),
-                (0,
-                C.GG)(this, kc, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, kc, "f").className = "menu-ui",
-                (0,
-                C.gn)(this, Sc, "f").appendChild((0,
-                C.gn)(this, kc, "f")),
-                (0,
-                C.GG)(this, Ec, document.createElement("img"), "f"),
-                (0,
-                C.gn)(this, Ec, "f").className = "logo",
-                i.hasLoaded() || ((0,
-                C.gn)(this, Ec, "f").classList.add("hidden"),
-                (0,
-                C.gn)(this, Ec, "f").addEventListener("load", ( () => {
-                    (0,
-                    C.gn)(this, Ec, "f").classList.remove("hidden")
+                C.set(this, Sc, w, "f"),
+                C.set(this, kc, document.createElement("div"), "f"),
+                C.get(this, kc, "f").className = "menu-ui",
+                C.get(this, Sc, "f").appendChild(C.get(this, kc, "f")),
+                C.set(this, Ec, document.createElement("img"), "f"),
+                C.get(this, Ec, "f").className = "logo",
+                i.hasLoaded() || (C.get(this, Ec, "f").classList.add("hidden"),
+                C.get(this, Ec, "f").addEventListener("load", ( () => {
+                    C.get(this, Ec, "f").classList.remove("hidden")
                 }
                 ))),
-                (0,
-                C.gn)(this, Ec, "f").src = "images/logo.svg",
-                (0,
-                C.gn)(this, kc, "f").appendChild((0,
-                C.gn)(this, Ec, "f")),
-                _o() || Ro() ? ((0,
-                C.GG)(this, zc, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, zc, "f").className = "warning-message",
-                _o() && (0,
-                C.gn)(this, zc, "f").classList.add("modded"),
-                (0,
-                C.gn)(this, kc, "f").appendChild((0,
-                C.gn)(this, zc, "f")),
-                (0,
-                C.gn)(this, vc, "m", Jc).call(this)) : (0,
-                C.GG)(this, zc, null, "f"),
-                (0,
-                C.GG)(this, Rc, (0,
-                C.gn)(this, vc, "m", Hc).call(this, e, t, s, h, a, u, o, c, A, v), "f");
+                C.get(this, Ec, "f").src = "images/logo.svg",
+                C.get(this, kc, "f").appendChild(C.get(this, Ec, "f")),
+                _o() || Ro() ? (C.set(this, zc, document.createElement("div"), "f"),
+                C.get(this, zc, "f").className = "warning-message",
+                _o() && C.get(this, zc, "f").classList.add("modded"),
+                C.get(this, kc, "f").appendChild(C.get(this, zc, "f")),
+                C.get(this, vc, "m", Jc).call(this)) : C.set(this, zc, null, "f"),
+                C.set(this, Rc, C.get(this, vc, "m", Hc).call(this, e, t, s, h, a, u, o, c, A, v), "f");
                 {
-                    (0,
-                    C.GG)(this, Tc, document.createElement("a"), "f"),
-                    (0,
-                    C.gn)(this, Tc, "f").className = "discord-link",
-                    (0,
-                    C.gn)(this, Tc, "f").href = "https://www.kodub.com/discord/polytrack",
-                    (0,
-                    C.gn)(this, Tc, "f").target = "_blank",
-                    (0,
-                    C.gn)(this, kc, "f").appendChild((0,
-                    C.gn)(this, Tc, "f"));
+                    C.set(this, Tc, document.createElement("a"), "f"),
+                    C.get(this, Tc, "f").className = "discord-link",
+                    C.get(this, Tc, "f").href = "https://www.kodub.com/discord/polytrack",
+                    C.get(this, Tc, "f").target = "_blank",
+                    C.get(this, kc, "f").appendChild(C.get(this, Tc, "f"));
                     const e = document.createElement("img");
                     i.hasLoaded() || (e.classList.add("hidden"),
                     e.addEventListener("load", ( () => {
@@ -55424,159 +51345,93 @@
                     }
                     ))),
                     e.src = "images/discord.svg",
-                    (0,
-                    C.gn)(this, Tc, "f").appendChild(e)
+                    C.get(this, Tc, "f").appendChild(e)
                 }
-                (0,
-                C.GG)(this, Mc, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, Mc, "f").className = "info",
-                (0,
-                C.gn)(this, kc, "f").appendChild((0,
-                C.gn)(this, Mc, "f")),
-                (0,
-                C.gn)(this, vc, "m", Kc).call(this, e),
-                (0,
-                C.GG)(this, Nc, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, Nc, "f").className = "main-buttons-container hidden",
-                (0,
-                C.gn)(this, kc, "f").appendChild((0,
-                C.gn)(this, Nc, "f")),
-                (0,
-                C.GG)(this, Bc, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, Bc, "f").className = "button-bar",
-                (0,
-                C.gn)(this, kc, "f").appendChild((0,
-                C.gn)(this, Bc, "f")),
-                (0,
-                C.gn)(this, vc, "m", jc).call(this, e, t, n, d, r, h, a, s, o, c, u, g, m, A, v, y, b),
-                i.hasLoaded() ? (0,
-                C.gn)(this, vc, "m", Qc).call(this) : ((0,
-                C.gn)(this, kc, "f").classList.add("loading-screen"),
-                (0,
-                C.GG)(this, _c, new cs((0,
-                C.gn)(this, kc, "f"),e,i), "f"),
+                C.set(this, Mc, document.createElement("div"), "f"),
+                C.get(this, Mc, "f").className = "info",
+                C.get(this, kc, "f").appendChild(C.get(this, Mc, "f")),
+                C.get(this, vc, "m", Kc).call(this, e),
+                C.set(this, Nc, document.createElement("div"), "f"),
+                C.get(this, Nc, "f").className = "main-buttons-container hidden",
+                C.get(this, kc, "f").appendChild(C.get(this, Nc, "f")),
+                C.set(this, Bc, document.createElement("div"), "f"),
+                C.get(this, Bc, "f").className = "button-bar",
+                C.get(this, kc, "f").appendChild(C.get(this, Bc, "f")),
+                C.get(this, vc, "m", jc).call(this, e, t, n, d, r, h, a, s, o, c, u, g, m, A, v, y, b),
+                i.hasLoaded() ? C.get(this, vc, "m", Qc).call(this) : (C.get(this, kc, "f").classList.add("loading-screen"),
+                C.set(this, _c, new cs(C.get(this, kc, "f"),e,i), "f"),
                 i.addCompleteListener(( () => {
-                    (0,
-                    C.gn)(this, kc, "f").classList.remove("loading-screen");
-                    const n = (0,
-                    C.gn)(this, _c, "f");
+                    C.get(this, kc, "f").classList.remove("loading-screen");
+                    const n = C.get(this, _c, "f");
                     n?.fadeOut(( () => {
                         n.dispose();
                         const i = () => {
-                            (0,
-                            C.gn)(this, bc, "f").isUsingSoftwareRenderer ? u.show(e.get("Hardware acceleration is disabled. Performance may be reduced.") + "\n\n" + e.get("Please make sure hardware acceleration is enabled in your browser settings."), e.get("Ok"), ( () => {
-                                (0,
-                                C.gn)(this, vc, "m", Yc).call(this),
-                                (0,
-                                C.gn)(this, vc, "m", Qc).call(this)
+                            C.get(this, bc, "f").isUsingSoftwareRenderer ? u.show(e.get("Hardware acceleration is disabled. Performance may be reduced.") + "\n\n" + e.get("Please make sure hardware acceleration is enabled in your browser settings."), e.get("Ok"), ( () => {
+                                C.get(this, vc, "m", Yc).call(this),
+                                C.get(this, vc, "m", Qc).call(this)
                             }
-                            )) : (0,
-                            C.gn)(this, xc, "f").shouldShowUpdatePopup() ? ((0,
-                            C.gn)(this, vc, "m", qc).call(this),
-                            (0,
-                            C.gn)(this, vc, "m", Xc).call(this),
-                            (0,
-                            C.GG)(this, Cc, new Ac((0,
-                            C.gn)(this, kc, "f"),t,e,( () => {
-                                (0,
-                                C.gn)(this, Cc, "f")?.dispose(),
-                                (0,
-                                C.GG)(this, Cc, null, "f"),
-                                (0,
-                                C.gn)(this, vc, "m", Yc).call(this),
-                                (0,
-                                C.gn)(this, vc, "m", Qc).call(this)
+                            )) : C.get(this, xc, "f").shouldShowUpdatePopup() ? (C.get(this, vc, "m", qc).call(this),
+                            C.get(this, vc, "m", Xc).call(this),
+                            C.set(this, Cc, new Ac(C.get(this, kc, "f"),t,e,( () => {
+                                C.get(this, Cc, "f")?.dispose(),
+                                C.set(this, Cc, null, "f"),
+                                C.get(this, vc, "m", Yc).call(this),
+                                C.get(this, vc, "m", Qc).call(this)
                             }
-                            )), "f")) : ((0,
-                            C.gn)(this, vc, "m", Yc).call(this),
-                            (0,
-                            C.gn)(this, vc, "m", Qc).call(this))
+                            )), "f")) : (C.get(this, vc, "m", Yc).call(this),
+                            C.get(this, vc, "m", Qc).call(this))
                         }
                         ;
-                        Ro() && !_o() || (il ? c.determinismState == Js.Ok ? i() : c.determinismState == Js.AssetsFailed ? ((0,
-                        C.gn)(this, vc, "m", Xc).call(this),
+                        Ro() && !_o() || (il ? c.determinismState == Js.Ok ? i() : c.determinismState == Js.AssetsFailed ? (C.get(this, vc, "m", Xc).call(this),
                         u.show(e.get("Non-deterministic game assets found.") + " " + e.get("Some leaderboard features are disabled.") + "\n\n" + e.get("Please try clearing your browser cache."), e.get("Ok"), ( () => {
                             i()
                         }
-                        ))) : ((0,
-                        C.gn)(this, vc, "m", Xc).call(this),
+                        ))) : (C.get(this, vc, "m", Xc).call(this),
                         u.show(e.get("Computer determinism check failed.") + " " + e.get("Some leaderboard features are disabled.") + "\n\n" + e.get("Please try another browser or device."), e.get("Ok"), ( () => {
                             i()
                         }
                         ))) : u.showNoButtons(e.get("You already have another instance of PolyTrack open.") + "\n\n" + e.get("Please switch to that tab or window to continue.")));
-                        for (let e = 0; e < (0,
-                        C.gn)(this, Dc, "f").length; e++) {
-                            const t = (0,
-                            C.gn)(this, Dc, "f")[e];
+                        for (let e = 0; e < C.get(this, Dc, "f").length; e++) {
+                            const t = C.get(this, Dc, "f")[e];
                             t.classList.add("button-spawn"),
                             t.style.animationDelay = (.3 + .1 * e).toString() + "s"
                         }
                     }
                     )),
-                    (0,
-                    C.GG)(this, _c, null, "f")
+                    C.set(this, _c, null, "f")
                 }
                 ))),
-                null != f ? ((0,
-                C.gn)(this, vc, "m", qc).call(this),
-                (0,
-                C.gn)(this, vc, "m", Xc).call(this),
+                null != f ? (C.get(this, vc, "m", qc).call(this),
+                C.get(this, vc, "m", Xc).call(this),
                 u.show(f, e.get("Ok"), ( () => {
-                    p ? (0,
-                    C.gn)(this, Rc, "f").show() : ((0,
-                    C.gn)(this, vc, "m", Qc).call(this),
-                    (0,
-                    C.gn)(this, vc, "m", Yc).call(this))
+                    p ? C.get(this, Rc, "f").show() : (C.get(this, vc, "m", Qc).call(this),
+                    C.get(this, vc, "m", Yc).call(this))
                 }
-                ))) : p && ((0,
-                C.gn)(this, vc, "m", qc).call(this),
-                (0,
-                C.gn)(this, vc, "m", Xc).call(this),
-                (0,
-                C.gn)(this, Rc, "f").show()),
-                (0,
-                C.GG)(this, Oc, new THREE.PerspectiveCamera(70,1,.5,At.A.maxViewDistance), "f"),
-                n.scene.add((0,
-                C.gn)(this, Oc, "f")),
-                (0,
-                C.gn)(this, vc, "m", Zc).call(this)
+                ))) : p && (C.get(this, vc, "m", qc).call(this),
+                C.get(this, vc, "m", Xc).call(this),
+                C.get(this, Rc, "f").show()),
+                C.set(this, Oc, new THREE.PerspectiveCamera(70,1,.5,At.A.maxViewDistance), "f"),
+                n.scene.add(C.get(this, Oc, "f")),
+                C.get(this, vc, "m", Zc).call(this)
             }
             dispose() {
-                (0,
-                C.gn)(this, Sc, "f").removeChild((0,
-                C.gn)(this, kc, "f")),
-                (0,
-                C.gn)(this, Rc, "f").dispose(),
-                (0,
-                C.gn)(this, Pc, "f")?.dispose(),
-                (0,
-                C.GG)(this, Pc, null, "f"),
-                (0,
-                C.gn)(this, Ic, "f")?.dispose(),
-                (0,
-                C.GG)(this, Ic, null, "f"),
-                null != (0,
-                C.gn)(this, Vc, "f") && (0,
-                C.gn)(this, bc, "f").removeFullscreenChangeListener((0,
-                C.gn)(this, Vc, "f"))
+                C.get(this, Sc, "f").removeChild(C.get(this, kc, "f")),
+                C.get(this, Rc, "f").dispose(),
+                C.get(this, Pc, "f")?.dispose(),
+                C.set(this, Pc, null, "f"),
+                C.get(this, Ic, "f")?.dispose(),
+                C.set(this, Ic, null, "f"),
+                null != C.get(this, Vc, "f") && C.get(this, bc, "f").removeFullscreenChangeListener(C.get(this, Vc, "f"))
             }
             get isMusicEnabled() {
-                return (0,
-                C.gn)(this, Fc, "f")
+                return C.get(this, Fc, "f")
             }
             get camera() {
-                return (0,
-                C.gn)(this, Oc, "f")
+                return C.get(this, Oc, "f")
             }
             update(e) {
-                (0,
-                C.GG)(this, Wc, (0,
-                C.gn)(this, Wc, "f") + .05 * e, "f"),
-                (0,
-                C.gn)(this, vc, "m", Zc).call(this)
+                C.set(this, Wc, C.get(this, Wc, "f") + .05 * e, "f"),
+                C.get(this, vc, "m", Zc).call(this)
             }
         }
         ;
@@ -55595,38 +51450,21 @@
         ph = new WeakMap,
         th = new WeakSet,
         fh = function() {
-            const e = (0,
-            C.gn)(this, sh, "f").getRandomOfficialTrackData();
-            (0,
-            C.gn)(this, ih, "f").loadTrackData(e),
-            (0,
-            C.gn)(this, ih, "f").generateMeshes(),
-            (0,
-            C.gn)(this, rh, "f").generateMountains((0,
-            C.gn)(this, ih, "f").getBounds());
+            const e = C.get(this, sh, "f").getRandomOfficialTrackData();
+            C.get(this, ih, "f").loadTrackData(e),
+            C.get(this, ih, "f").generateMeshes(),
+            C.get(this, rh, "f").generateMountains(C.get(this, ih, "f").getBounds());
             let t = null;
             const n = e.getId()
-              , i = (0,
-            C.gn)(this, oh, "f").getRecord((0,
-            C.gn)(this, dh, "f").profileSlot, n);
+              , i = C.get(this, oh, "f").getRecord(C.get(this, dh, "f").profileSlot, n);
             if (null != i && (t = i.recording),
             null != t) {
-                const n = (0,
-                C.gn)(this, ih, "f").getStartTransform();
+                const n = C.get(this, ih, "f").getStartTransform();
                 if (null == n)
                     throw new Error("Start transform is null");
-                (0,
-                C.GG)(this, ph, new L.A((0,
-                C.gn)(this, nh, "f"),n,t,null,(0,
-                C.gn)(this, ch, "f"),(0,
-                C.gn)(this, hh, "f"),(0,
-                C.gn)(this, rh, "f"),(0,
-                C.gn)(this, ih, "f"),e,(0,
-                C.gn)(this, lh, "f"),null), "f"),
-                (0,
-                C.gn)(this, ph, "f").audioVolume = 0,
-                (0,
-                C.gn)(this, ph, "f").start()
+                C.set(this, ph, new L.A(C.get(this, nh, "f"),n,t,null,C.get(this, ch, "f"),C.get(this, hh, "f"),C.get(this, rh, "f"),C.get(this, ih, "f"),e,C.get(this, lh, "f"),null), "f"),
+                C.get(this, ph, "f").audioVolume = 0,
+                C.get(this, ph, "f").start()
             }
         }
         ;
@@ -55645,66 +51483,36 @@
                 dh.set(this, void 0),
                 uh.set(this, void 0),
                 ph.set(this, null),
-                (0,
-                C.GG)(this, nh, e, "f"),
-                (0,
-                C.GG)(this, ih, t, "f"),
-                (0,
-                C.GG)(this, rh, n, "f"),
-                (0,
-                C.GG)(this, ah, i, "f"),
-                (0,
-                C.GG)(this, sh, r, "f"),
-                (0,
-                C.GG)(this, oh, l, "f"),
-                (0,
-                C.GG)(this, lh, p, "f"),
-                (0,
-                C.GG)(this, ch, c, "f"),
-                (0,
-                C.GG)(this, hh, h, "f"),
-                (0,
-                C.GG)(this, dh, o, "f"),
-                (0,
-                C.GG)(this, uh, new eh(a,h,c,g,t,o,l,d,u,f,r,p,s,m,A,v,y,b,w,x,S), "f"),
-                c.setCamera((0,
-                C.gn)(this, uh, "f").camera),
-                g.hasLoaded() ? (0,
-                C.gn)(this, th, "m", fh).call(this) : g.addCompleteListener(( () => {
-                    (0,
-                    C.gn)(this, th, "m", fh).call(this)
+                C.set(this, nh, e, "f"),
+                C.set(this, ih, t, "f"),
+                C.set(this, rh, n, "f"),
+                C.set(this, ah, i, "f"),
+                C.set(this, sh, r, "f"),
+                C.set(this, oh, l, "f"),
+                C.set(this, lh, p, "f"),
+                C.set(this, ch, c, "f"),
+                C.set(this, hh, h, "f"),
+                C.set(this, dh, o, "f"),
+                C.set(this, uh, new eh(a,h,c,g,t,o,l,d,u,f,r,p,s,m,A,v,y,b,w,x,S), "f"),
+                c.setCamera(C.get(this, uh, "f").camera),
+                g.hasLoaded() ? C.get(this, th, "m", fh).call(this) : g.addCompleteListener(( () => {
+                    C.get(this, th, "m", fh).call(this)
                 }
                 ))
             }
             dispose() {
-                (0,
-                C.gn)(this, ph, "f")?.dispose(),
-                (0,
-                C.gn)(this, uh, "f").dispose(),
-                (0,
-                C.gn)(this, ih, "f").clear(),
-                (0,
-                C.gn)(this, rh, "f").clearMountains()
+                C.get(this, ph, "f")?.dispose(),
+                C.get(this, uh, "f").dispose(),
+                C.get(this, ih, "f").clear(),
+                C.get(this, rh, "f").clearMountains()
             }
             update(e) {
-                (0,
-                C.gn)(this, ph, "f")?.update(e),
-                (0,
-                C.gn)(this, uh, "f").update(e),
-                (0,
-                C.gn)(this, rh, "f").update((0,
-                C.gn)(this, ih, "f")),
-                (0,
-                C.gn)(this, ah, "f").update(e, (0,
-                C.gn)(this, ch, "f").camera, (0,
-                C.gn)(this, ih, "f").sunDirection),
-                (0,
-                C.gn)(this, hh, "f").update(e, (0,
-                C.gn)(this, uh, "f").isMusicEnabled, (0,
-                C.gn)(this, ch, "f")),
-                (0,
-                C.gn)(this, ch, "f").update((0,
-                C.gn)(this, ih, "f").sunDirection)
+                C.get(this, ph, "f")?.update(e),
+                C.get(this, uh, "f").update(e),
+                C.get(this, rh, "f").update(C.get(this, ih, "f")),
+                C.get(this, ah, "f").update(e, C.get(this, ch, "f").camera, C.get(this, ih, "f").sunDirection),
+                C.get(this, hh, "f").update(e, C.get(this, uh, "f").isMusicEnabled, C.get(this, ch, "f")),
+                C.get(this, ch, "f").update(C.get(this, ih, "f").sunDirection)
             }
         }
         ;
@@ -55729,17 +51537,11 @@
         Mh = new WeakMap,
         vh = new WeakSet,
         _h = function() {
-            null == (0,
-            C.gn)(this, Mh, "f") && window.addEventListener("keydown", (0,
-            C.GG)(this, Mh, (e => {
-                this.isOpen && ("Escape" == e.code ? (null != (0,
-                C.gn)(this, Eh, "f") && (0,
-                C.gn)(this, Eh, "f").call(this),
+            null == C.get(this, Mh, "f") && window.addEventListener("keydown", C.set(this, Mh, (e => {
+                this.isOpen && ("Escape" == e.code ? (null != C.get(this, Eh, "f") && C.get(this, Eh, "f").call(this),
                 this.hide(),
                 e.stopImmediatePropagation(),
-                e.preventDefault()) : "Enter" == e.code && (null != (0,
-                C.gn)(this, Th, "f") && (0,
-                C.gn)(this, Th, "f").call(this),
+                e.preventDefault()) : "Enter" == e.code && (null != C.get(this, Th, "f") && C.get(this, Th, "f").call(this),
                 this.hide(),
                 e.stopImmediatePropagation(),
                 e.preventDefault()))
@@ -55748,17 +51550,13 @@
         }
         ,
         Ch = function() {
-            null != (0,
-            C.gn)(this, Mh, "f") && (window.removeEventListener("keydown", (0,
-            C.gn)(this, Mh, "f")),
-            (0,
-            C.GG)(this, Mh, null, "f"))
+            null != C.get(this, Mh, "f") && (window.removeEventListener("keydown", C.get(this, Mh, "f")),
+            C.set(this, Mh, null, "f"))
         }
         ,
         Rh = function() {
             const e = Math.max(.01, Math.min(window.innerWidth, 1.4375 * window.innerHeight) / 1150);
-            (0,
-            C.gn)(this, wh, "f").style.transform = e < 1 ? "scale(" + e.toString() + ")" : ""
+            C.get(this, wh, "f").style.transform = e < 1 ? "scale(" + e.toString() + ")" : ""
         }
         ;
         const Ph = class {
@@ -55773,157 +51571,91 @@
                 Eh.set(this, null),
                 Th.set(this, null),
                 Mh.set(this, null),
-                (0,
-                C.GG)(this, bh, document.createElement("dialog"), "f"),
-                (0,
-                C.gn)(this, bh, "f").className = "hidden",
-                document.body.appendChild((0,
-                C.gn)(this, bh, "f")),
-                (0,
-                C.GG)(this, wh, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, bh, "f").appendChild((0,
-                C.gn)(this, wh, "f")),
-                (0,
-                C.GG)(this, xh, document.createElement("p"), "f"),
-                (0,
-                C.gn)(this, wh, "f").appendChild((0,
-                C.gn)(this, xh, "f")),
-                (0,
-                C.GG)(this, Sh, document.createElement("button"), "f"),
-                (0,
-                C.gn)(this, Sh, "f").className = "button",
-                (0,
-                C.gn)(this, Sh, "f").addEventListener("click", ( () => {
+                C.set(this, bh, document.createElement("dialog"), "f"),
+                C.get(this, bh, "f").className = "hidden",
+                document.body.appendChild(C.get(this, bh, "f")),
+                C.set(this, wh, document.createElement("div"), "f"),
+                C.get(this, bh, "f").appendChild(C.get(this, wh, "f")),
+                C.set(this, xh, document.createElement("p"), "f"),
+                C.get(this, wh, "f").appendChild(C.get(this, xh, "f")),
+                C.set(this, Sh, document.createElement("button"), "f"),
+                C.get(this, Sh, "f").className = "button",
+                C.get(this, Sh, "f").addEventListener("click", ( () => {
                     e.playUIClick();
-                    const t = (0,
-                    C.gn)(this, Eh, "f");
+                    const t = C.get(this, Eh, "f");
                     this.hide(),
                     null != t && t()
                 }
                 )),
-                (0,
-                C.gn)(this, wh, "f").appendChild((0,
-                C.gn)(this, Sh, "f")),
-                (0,
-                C.GG)(this, kh, document.createElement("button"), "f"),
-                (0,
-                C.gn)(this, kh, "f").className = "button",
-                (0,
-                C.gn)(this, kh, "f").addEventListener("click", ( () => {
+                C.get(this, wh, "f").appendChild(C.get(this, Sh, "f")),
+                C.set(this, kh, document.createElement("button"), "f"),
+                C.get(this, kh, "f").className = "button",
+                C.get(this, kh, "f").addEventListener("click", ( () => {
                     e.playUIClick();
-                    const t = (0,
-                    C.gn)(this, Th, "f");
+                    const t = C.get(this, Th, "f");
                     this.hide(),
                     null != t && t()
                 }
                 )),
-                (0,
-                C.gn)(this, wh, "f").appendChild((0,
-                C.gn)(this, kh, "f")),
+                C.get(this, wh, "f").appendChild(C.get(this, kh, "f")),
                 window.addEventListener("resize", ( () => {
-                    (0,
-                    C.gn)(this, vh, "m", Rh).call(this)
+                    C.get(this, vh, "m", Rh).call(this)
                 }
                 )),
-                (0,
-                C.gn)(this, vh, "m", Rh).call(this)
+                C.get(this, vh, "m", Rh).call(this)
             }
             get isOpen() {
-                return null != (0,
-                C.gn)(this, yh, "f")
+                return null != C.get(this, yh, "f")
             }
             show(e, t, n) {
-                (0,
-                C.GG)(this, yh, "message", "f"),
-                (0,
-                C.gn)(this, bh, "f").className = "message-box-ui message",
-                (0,
-                C.gn)(this, bh, "f").showModal(),
-                (0,
-                C.gn)(this, xh, "f").textContent = e,
-                (0,
-                C.gn)(this, Sh, "f").textContent = "",
-                (0,
-                C.gn)(this, kh, "f").textContent = t,
-                (0,
-                C.gn)(this, Sh, "f").blur(),
-                (0,
-                C.gn)(this, kh, "f").blur(),
-                (0,
-                C.GG)(this, Eh, n, "f"),
-                (0,
-                C.GG)(this, Th, n, "f"),
-                (0,
-                C.gn)(this, vh, "m", _h).call(this)
+                C.set(this, yh, "message", "f"),
+                C.get(this, bh, "f").className = "message-box-ui message",
+                C.get(this, bh, "f").showModal(),
+                C.get(this, xh, "f").textContent = e,
+                C.get(this, Sh, "f").textContent = "",
+                C.get(this, kh, "f").textContent = t,
+                C.get(this, Sh, "f").blur(),
+                C.get(this, kh, "f").blur(),
+                C.set(this, Eh, n, "f"),
+                C.set(this, Th, n, "f"),
+                C.get(this, vh, "m", _h).call(this)
             }
             showConfirm(e, t, n, i, r) {
-                (0,
-                C.GG)(this, yh, "confirm", "f"),
-                (0,
-                C.gn)(this, bh, "f").className = "message-box-ui confirm",
-                (0,
-                C.gn)(this, bh, "f").showModal(),
-                (0,
-                C.gn)(this, xh, "f").textContent = e,
-                (0,
-                C.gn)(this, Sh, "f").textContent = t,
-                (0,
-                C.gn)(this, kh, "f").textContent = n,
-                (0,
-                C.gn)(this, Sh, "f").blur(),
-                (0,
-                C.gn)(this, kh, "f").blur(),
-                (0,
-                C.GG)(this, Eh, i, "f"),
-                (0,
-                C.GG)(this, Th, r, "f"),
-                (0,
-                C.gn)(this, vh, "m", _h).call(this)
+                C.set(this, yh, "confirm", "f"),
+                C.get(this, bh, "f").className = "message-box-ui confirm",
+                C.get(this, bh, "f").showModal(),
+                C.get(this, xh, "f").textContent = e,
+                C.get(this, Sh, "f").textContent = t,
+                C.get(this, kh, "f").textContent = n,
+                C.get(this, Sh, "f").blur(),
+                C.get(this, kh, "f").blur(),
+                C.set(this, Eh, i, "f"),
+                C.set(this, Th, r, "f"),
+                C.get(this, vh, "m", _h).call(this)
             }
             showNoButtons(e) {
-                (0,
-                C.GG)(this, yh, "no-buttons", "f"),
-                (0,
-                C.gn)(this, bh, "f").className = "message-box-ui no-buttons",
-                (0,
-                C.gn)(this, bh, "f").showModal(),
-                (0,
-                C.gn)(this, xh, "f").textContent = e,
-                (0,
-                C.gn)(this, Sh, "f").textContent = "",
-                (0,
-                C.gn)(this, kh, "f").textContent = "",
-                (0,
-                C.gn)(this, Sh, "f").blur(),
-                (0,
-                C.gn)(this, kh, "f").blur(),
-                (0,
-                C.GG)(this, Eh, null, "f"),
-                (0,
-                C.GG)(this, Th, null, "f"),
-                (0,
-                C.gn)(this, vh, "m", _h).call(this)
+                C.set(this, yh, "no-buttons", "f"),
+                C.get(this, bh, "f").className = "message-box-ui no-buttons",
+                C.get(this, bh, "f").showModal(),
+                C.get(this, xh, "f").textContent = e,
+                C.get(this, Sh, "f").textContent = "",
+                C.get(this, kh, "f").textContent = "",
+                C.get(this, Sh, "f").blur(),
+                C.get(this, kh, "f").blur(),
+                C.set(this, Eh, null, "f"),
+                C.set(this, Th, null, "f"),
+                C.get(this, vh, "m", _h).call(this)
             }
             hide() {
-                (0,
-                C.GG)(this, yh, null, "f"),
-                (0,
-                C.gn)(this, bh, "f").className = "hidden",
-                (0,
-                C.gn)(this, bh, "f").close(),
-                (0,
-                C.gn)(this, xh, "f").textContent = "",
-                (0,
-                C.gn)(this, Sh, "f").textContent = "",
-                (0,
-                C.gn)(this, kh, "f").textContent = "",
-                (0,
-                C.GG)(this, Eh, null, "f"),
-                (0,
-                C.GG)(this, Th, null, "f"),
-                (0,
-                C.gn)(this, vh, "m", Ch).call(this)
+                C.set(this, yh, null, "f"),
+                C.get(this, bh, "f").className = "hidden",
+                C.get(this, bh, "f").close(),
+                C.get(this, xh, "f").textContent = "",
+                C.get(this, Sh, "f").textContent = "",
+                C.get(this, kh, "f").textContent = "",
+                C.set(this, Eh, null, "f"),
+                C.set(this, Th, null, "f"),
+                C.get(this, vh, "m", Ch).call(this)
             }
         }
         ;
@@ -55940,46 +51672,33 @@
                 zh.set(this, [])
             }
             hasLoaded() {
-                return (0,
-                C.gn)(this, Lh, "f") == (0,
-                C.gn)(this, Ih, "f")
+                return C.get(this, Lh, "f") == C.get(this, Ih, "f")
             }
             getProgress() {
-                return (0,
-                C.gn)(this, Lh, "f") / (0,
-                C.gn)(this, Ih, "f")
+                return C.get(this, Lh, "f") / C.get(this, Ih, "f")
             }
             addResource() {
                 var e;
-                if (0 != (0,
-                C.gn)(this, Ih, "f") && this.hasLoaded())
+                if (0 != C.get(this, Ih, "f") && this.hasLoaded())
                     throw new Error("Cannot add resources after loading is complete");
-                (0,
-                C.GG)(this, Ih, (e = (0,
-                C.gn)(this, Ih, "f"),
+                C.set(this, Ih, (e = C.get(this, Ih, "f"),
                 ++e), "f")
             }
             loadedResource() {
                 var e;
-                (0,
-                C.GG)(this, Lh, (e = (0,
-                C.gn)(this, Lh, "f"),
+                C.set(this, Lh, (e = C.get(this, Lh, "f"),
                 ++e), "f");
-                for (const e of (0,
-                C.gn)(this, Uh, "f"))
+                for (const e of C.get(this, Uh, "f"))
                     e(this.getProgress());
                 if (this.hasLoaded())
-                    for (const e of (0,
-                    C.gn)(this, zh, "f"))
+                    for (const e of C.get(this, zh, "f"))
                         e()
             }
             addProgressListener(e) {
-                (0,
-                C.gn)(this, Uh, "f").push(e)
+                C.get(this, Uh, "f").push(e)
             }
             addCompleteListener(e) {
-                (0,
-                C.gn)(this, zh, "f").push(e)
+                C.get(this, zh, "f").push(e)
             }
             preloadImage(e) {
                 this.addResource();
@@ -56005,56 +51724,37 @@
         Vh = new WeakMap,
         Dh = new WeakSet,
         Hh = async function(e, t, n, i, r) {
-            if ((0,
-            C.gn)(this, Fh, "f").determinismState != Js.Ok)
+            if (C.get(this, Fh, "f").determinismState != Js.Ok)
                 return null;
-            const a = (0,
-            C.gn)(this, Oh, "f").getUserProfile(e);
+            const a = C.get(this, Oh, "f").getUserProfile(e);
             if (null == a)
                 return null;
             const s = e.toString() + "_" + t
-              , o = ((0,
-            C.gn)(this, Wh, "f").get(s) ?? 0) + 1;
-            (0,
-            C.gn)(this, Wh, "f").set(s, o);
-            const {uploadId: l, positionChange: c} = await (0,
-            C.gn)(this, Fh, "f").submitLeaderboard(a.token, a.nickname, a.countryCode, a.carStyle, t, n, i, r);
-            return (0,
-            C.gn)(this, Wh, "f").get(s) == o && (0,
-            C.gn)(this, Oh, "f").getUserProfile(e)?.token == a.token && (0,
-            C.gn)(this, Bh, "f").saveRecord(e, a.tokenHash, t, l, i, r, (0,
-            C.gn)(this, Fh, "f").determinismState),
+              , o = (C.get(this, Wh, "f").get(s) ?? 0) + 1;
+            C.get(this, Wh, "f").set(s, o);
+            const {uploadId: l, positionChange: c} = await C.get(this, Fh, "f").submitLeaderboard(a.token, a.nickname, a.countryCode, a.carStyle, t, n, i, r);
+            return C.get(this, Wh, "f").get(s) == o && C.get(this, Oh, "f").getUserProfile(e)?.token == a.token && C.get(this, Bh, "f").saveRecord(e, a.tokenHash, t, l, i, r, C.get(this, Fh, "f").determinismState),
             c
         }
         ,
         jh = async function(e, t, n) {
-            if ((0,
-            C.gn)(this, Fh, "f").determinismState != Js.Ok)
+            if (C.get(this, Fh, "f").determinismState != Js.Ok)
                 return;
-            const i = (0,
-            C.gn)(this, Oh, "f").getUserProfile(e);
+            const i = C.get(this, Oh, "f").getUserProfile(e);
             if (null == i)
                 return;
             const r = e.toString() + "_" + t
-              , a = ((0,
-            C.gn)(this, Wh, "f").get(r) ?? 0) + 1;
-            (0,
-            C.gn)(this, Wh, "f").set(r, a);
-            const s = await (0,
-            C.gn)(this, Fh, "f").getRecordings([n]);
+              , a = (C.get(this, Wh, "f").get(r) ?? 0) + 1;
+            C.get(this, Wh, "f").set(r, a);
+            const s = await C.get(this, Fh, "f").getRecordings([n]);
             if (s.length < 1 || null == s[0])
                 throw new Error("Record not found");
             const o = s[0];
-            if ((0,
-            C.gn)(this, Wh, "f").get(r) == a && (0,
-            C.gn)(this, Oh, "f").getUserProfile(e)?.token == i.token) {
+            if (C.get(this, Wh, "f").get(r) == a && C.get(this, Oh, "f").getUserProfile(e)?.token == i.token) {
                 const r = this.getRecordTime(e, t);
                 if (null == r || o.time.lessThan(r)) {
-                    (0,
-                    C.gn)(this, Bh, "f").saveRecord(e, i.tokenHash, t, n, o.time, o.recording, (0,
-                    C.gn)(this, Fh, "f").determinismState);
-                    for (const e of (0,
-                    C.gn)(this, Vh, "f"))
+                    C.get(this, Bh, "f").saveRecord(e, i.tokenHash, t, n, o.time, o.recording, C.get(this, Fh, "f").determinismState);
+                    for (const e of C.get(this, Vh, "f"))
                         e()
                 }
             }
@@ -56069,72 +51769,49 @@
                 Oh.set(this, void 0),
                 Wh.set(this, new Map),
                 Vh.set(this, []),
-                (0,
-                C.GG)(this, Bh, e, "f"),
-                (0,
-                C.GG)(this, Gh, t, "f"),
-                (0,
-                C.GG)(this, Fh, n, "f"),
-                (0,
-                C.GG)(this, Oh, i, "f")
+                C.set(this, Bh, e, "f"),
+                C.set(this, Gh, t, "f"),
+                C.set(this, Fh, n, "f"),
+                C.set(this, Oh, i, "f")
             }
             addRecordChangedCallback(e) {
-                (0,
-                C.gn)(this, Vh, "f").push(e)
+                C.get(this, Vh, "f").push(e)
             }
             removeRecordChangedCallback(e) {
-                const t = (0,
-                C.gn)(this, Vh, "f").indexOf(e);
-                t >= 0 && (0,
-                C.gn)(this, Vh, "f").splice(t, 1)
+                const t = C.get(this, Vh, "f").indexOf(e);
+                t >= 0 && C.get(this, Vh, "f").splice(t, 1)
             }
             async setRecord(e, t, n, i, r) {
-                const a = (0,
-                C.gn)(this, Oh, "f").getUserProfile(e);
+                const a = C.get(this, Oh, "f").getUserProfile(e);
                 if (null == a)
                     return null;
-                (0,
-                C.gn)(this, Bh, "f").saveRecord(e, a.tokenHash, t, null, i, r, (0,
-                C.gn)(this, Fh, "f").determinismState);
-                const s = await (0,
-                C.gn)(this, Dh, "m", Hh).call(this, e, t, n, i, r).catch((e => (console.warn(e),
+                C.get(this, Bh, "f").saveRecord(e, a.tokenHash, t, null, i, r, C.get(this, Fh, "f").determinismState);
+                const s = await C.get(this, Dh, "m", Hh).call(this, e, t, n, i, r).catch((e => (console.warn(e),
                 null)));
-                for (const e of (0,
-                C.gn)(this, Vh, "f"))
+                for (const e of C.get(this, Vh, "f"))
                     e();
                 return s
             }
             async syncRecord(e, t, n) {
-                if ((0,
-                C.gn)(this, Fh, "f").determinismState != Js.Ok)
+                if (C.get(this, Fh, "f").determinismState != Js.Ok)
                     return null;
                 const i = this.getRecord(e, t);
-                return null != i && (null == n || i.uploadId != n.id && i.time.lessThan(n.time)) ? (await (0,
-                C.gn)(this, Dh, "m", Hh).call(this, e, t, null, i.time, i.recording),
-                "Upload") : null != n && (null == i || i.uploadId != n.id && n.time.lessThan(i.time)) ? (await (0,
-                C.gn)(this, Dh, "m", jh).call(this, e, t, n.id),
+                return null != i && (null == n || i.uploadId != n.id && i.time.lessThan(n.time)) ? (await C.get(this, Dh, "m", Hh).call(this, e, t, null, i.time, i.recording),
+                "Upload") : null != n && (null == i || i.uploadId != n.id && n.time.lessThan(i.time)) ? (await C.get(this, Dh, "m", jh).call(this, e, t, n.id),
                 "Download") : null
             }
             cleanUpRecords() {
-                const e = (0,
-                C.gn)(this, Bh, "f").loadRecordTracks();
+                const e = C.get(this, Bh, "f").loadRecordTracks();
                 for (const t of e)
-                    (0,
-                    C.gn)(this, Gh, "f").isOfficialTrack(t) || (0,
-                    C.gn)(this, Gh, "f").isCommunityTrack(t) || (0,
-                    C.gn)(this, Gh, "f").isCustomTrack(t) || (0,
-                    C.gn)(this, Bh, "f").deleteAllRecordsForTrack(t)
+                    C.get(this, Gh, "f").isOfficialTrack(t) || C.get(this, Gh, "f").isCommunityTrack(t) || C.get(this, Gh, "f").isCustomTrack(t) || C.get(this, Bh, "f").deleteAllRecordsForTrack(t)
             }
             getRecordTime(e, t) {
                 const n = this.getRecord(e, t);
                 return null == n ? null : n.time
             }
             getRecord(e, t) {
-                const n = (0,
-                C.gn)(this, Oh, "f").getUserProfile(e);
-                return null == n ? null : (0,
-                C.gn)(this, Bh, "f").loadRecord(e, n.tokenHash, t, (0,
-                C.gn)(this, Fh, "f").determinismState)
+                const n = C.get(this, Oh, "f").getUserProfile(e);
+                return null == n ? null : C.get(this, Bh, "f").loadRecord(e, n.tokenHash, t, C.get(this, Fh, "f").determinismState)
             }
         }
         ;
@@ -56147,8 +51824,7 @@
         ed = new WeakMap,
         Qh = new WeakSet,
         td = function(e, t) {
-            return (0,
-            C.gn)(this, Qh, "m", nd).call(this, "tracks/official/" + e, t)
+            return C.get(this, Qh, "m", nd).call(this, "tracks/official/" + e, t)
         }
         ,
         nd = function(e, t) {
@@ -56209,8 +51885,7 @@
         rd = function(e) {
             return new Promise((t => {
                 setTimeout(( () => {
-                    const n = (0,
-                    C.gn)(this, $h, "f").loadCustomTrack(e);
+                    const n = C.get(this, $h, "f").loadCustomTrack(e);
                     if (null != n) {
                         const {trackMetadata: e, trackData: i, saveTime: r} = n
                           , a = {
@@ -56230,8 +51905,7 @@
         }
         ,
         ad = function() {
-            for (const e of (0,
-            C.gn)(this, ed, "f"))
+            for (const e of C.get(this, ed, "f"))
                 e()
         }
         ;
@@ -56244,19 +51918,15 @@
                 Zh.set(this, new Map),
                 $h.set(this, void 0),
                 ed.set(this, []),
-                (0,
-                C.GG)(this, $h, t, "f");
-                Promise.all(["summer1.track", "summer2.track", "summer3.track", "summer4.track", "summer5.track", "summer6.track", "summer7.track", "winter1.track", "winter2.track", "winter3.track", "winter4.track", "winter5.track", "desert1.track", "desert2.track", "desert3.track", "desert4.track", "desert5.track"].map((t => (0,
-                C.gn)(this, Qh, "m", td).call(this, t, e)))).then((e => {
-                    (0,
-                    C.GG)(this, Jh, e, "f")
+                C.set(this, $h, t, "f");
+                Promise.all(["summer1.track", "summer2.track", "summer3.track", "summer4.track", "summer5.track", "summer6.track", "summer7.track", "winter1.track", "winter2.track", "winter3.track", "winter4.track", "winter5.track", "desert1.track", "desert2.track", "desert3.track", "desert4.track", "desert5.track"].map((t => C.get(this, Qh, "m", td).call(this, t, e)))).then((e => {
+                    C.set(this, Jh, e, "f")
                 }
                 )).catch((e => {
                     console.error(e)
                 }
                 )),
-                (0,
-                C.GG)(this, Xh, [{
+                C.set(this, Xh, [{
                     id: "64bf7efaed2a47dfb03a6b152e3aef637ac251b68a725a28352f3376ff1384d7",
                     group: "0.6.0",
                     trackMetadata: {
@@ -56834,20 +52504,16 @@
                     trackMetadata: e.trackMetadata,
                     environment: e.environment,
                     trackData: async () => {
-                        const t = (0,
-                        C.gn)(this, Zh, "f").get(e.id);
+                        const t = C.get(this, Zh, "f").get(e.id);
                         if (null != t)
                             return t.then(( ({trackData: e}) => e));
-                        const n = (0,
-                        C.gn)(this, Qh, "m", id).call(this, e.trackUrl);
-                        (0,
-                        C.gn)(this, Zh, "f").set(e.id, n);
+                        const n = C.get(this, Qh, "m", id).call(this, e.trackUrl);
+                        C.get(this, Zh, "f").set(e.id, n);
                         try {
                             const {trackMetadata: e, trackData: t} = await n;
                             return t
                         } catch (t) {
-                            throw (0,
-                            C.gn)(this, Zh, "f").delete(e.id),
+                            throw C.get(this, Zh, "f").delete(e.id),
                             t
                         }
                     }
@@ -56855,16 +52521,13 @@
                     thumbnail: e.thumbnail,
                     saveTime: null
                 }))), "f");
-                const n = (0,
-                C.gn)(this, $h, "f").getAllCustomTrackNames();
+                const n = C.get(this, $h, "f").getAllCustomTrackNames();
                 if (null != n) {
                     const e = [];
                     for (const t of n)
-                        e.push((0,
-                        C.gn)(this, Qh, "m", rd).call(this, t));
+                        e.push(C.get(this, Qh, "m", rd).call(this, t));
                     Promise.all(e).then((e => {
-                        (0,
-                        C.GG)(this, Yh, e.filter((e => null != e)).sort(( (e, t) => (t.saveTime ?? -1 / 0) - (e.saveTime ?? -1 / 0))), "f")
+                        C.set(this, Yh, e.filter((e => null != e)).sort(( (e, t) => (t.saveTime ?? -1 / 0) - (e.saveTime ?? -1 / 0))), "f")
                     }
                     )).catch((e => {
                         console.error(e)
@@ -56874,8 +52537,7 @@
             }
             saveCustomTrack(e, t) {
                 const n = new Date;
-                if ((0,
-                C.gn)(this, $h, "f").saveCustomTrack(e, t, n)) {
+                if (C.get(this, $h, "f").saveCustomTrack(e, t, n)) {
                     const i = {
                         id: t.getId(),
                         trackMetadata: e,
@@ -56883,57 +52545,41 @@
                         thumbnail: t.createThumbnail(),
                         saveTime: n.getTime()
                     }
-                      , r = (0,
-                    C.gn)(this, Yh, "f").findIndex((t => t.trackMetadata.name == e.name));
-                    return r >= 0 ? (0,
-                    C.gn)(this, Yh, "f")[r] = i : (0,
-                    C.gn)(this, Yh, "f").unshift(i),
-                    (0,
-                    C.gn)(this, Qh, "m", ad).call(this),
+                      , r = C.get(this, Yh, "f").findIndex((t => t.trackMetadata.name == e.name));
+                    return r >= 0 ? C.get(this, Yh, "f")[r] = i : C.get(this, Yh, "f").unshift(i),
+                    C.get(this, Qh, "m", ad).call(this),
                     !0
                 }
                 return !1
             }
             deleteCustomTrack(e) {
-                if ((0,
-                C.gn)(this, $h, "f").deleteCustomTrack(e)) {
-                    const t = (0,
-                    C.gn)(this, Yh, "f").findIndex((t => t.trackMetadata.name == e));
+                if (C.get(this, $h, "f").deleteCustomTrack(e)) {
+                    const t = C.get(this, Yh, "f").findIndex((t => t.trackMetadata.name == e));
                     if (t >= 0) {
-                        const e = (0,
-                        C.gn)(this, Yh, "f")[t];
-                        (0,
-                        C.gn)(this, $h, "f").deleteAllRecordsForTrack(e.id),
-                        (0,
-                        C.gn)(this, Yh, "f").splice(t, 1)
+                        const e = C.get(this, Yh, "f")[t];
+                        C.get(this, $h, "f").deleteAllRecordsForTrack(e.id),
+                        C.get(this, Yh, "f").splice(t, 1)
                     }
-                    return (0,
-                    C.gn)(this, Qh, "m", ad).call(this),
+                    return C.get(this, Qh, "m", ad).call(this),
                     !0
                 }
                 return !1
             }
             checkCustomTrackNameExists(e) {
-                return (0,
-                C.gn)(this, Yh, "f").some((t => t.trackMetadata.name == e))
+                return C.get(this, Yh, "f").some((t => t.trackMetadata.name == e))
             }
             addCustomTracksChangedListener(e) {
-                (0,
-                C.gn)(this, ed, "f").push(e)
+                C.get(this, ed, "f").push(e)
             }
             removeCustomTracksChangedListener(e) {
-                const t = (0,
-                C.gn)(this, ed, "f").indexOf(e);
-                t >= 0 && (0,
-                C.gn)(this, ed, "f").splice(t, 1)
+                const t = C.get(this, ed, "f").indexOf(e);
+                t >= 0 && C.get(this, ed, "f").splice(t, 1)
             }
             isCommunityTracksEmpty() {
-                return 0 == (0,
-                C.gn)(this, Xh, "f").length
+                return 0 == C.get(this, Xh, "f").length
             }
             isCustomTracksEmpty() {
-                return 0 == (0,
-                C.gn)(this, Yh, "f").length
+                return 0 == C.get(this, Yh, "f").length
             }
             forEachTrack(e) {
                 this.forEachOfficialTrack(( (t, n, i, r) => {
@@ -56950,32 +52596,26 @@
                 ))
             }
             forEachOfficialTrack(e) {
-                for (const t of (0,
-                C.gn)(this, Jh, "f"))
+                for (const t of C.get(this, Jh, "f"))
                     e(t.id, t.trackMetadata, t.trackData, t.thumbnail)
             }
             forEachCommunityTrack(e) {
-                for (const t of (0,
-                C.gn)(this, Xh, "f"))
+                for (const t of C.get(this, Xh, "f"))
                     e(t.id, t.group, t.trackMetadata, t.environment, t.trackData, t.thumbnail)
             }
             forEachCustomTrack(e) {
-                for (const t of (0,
-                C.gn)(this, Yh, "f"))
+                for (const t of C.get(this, Yh, "f"))
                     e(t.id, t.trackMetadata, t.trackData, t.thumbnail)
             }
             getNextOfficialTrack(e) {
                 const t = e.getId()
-                  , n = (0,
-                C.gn)(this, Jh, "f").findIndex((e => e.id == t));
+                  , n = C.get(this, Jh, "f").findIndex((e => e.id == t));
                 if (n < 0)
                     return null;
                 const i = n + 1;
-                if (i >= (0,
-                C.gn)(this, Jh, "f").length)
+                if (i >= C.get(this, Jh, "f").length)
                     return null;
-                const r = (0,
-                C.gn)(this, Jh, "f")[i];
+                const r = C.get(this, Jh, "f")[i];
                 return {
                     id: r.id,
                     trackMetadata: r.trackMetadata,
@@ -56984,13 +52624,10 @@
                 }
             }
             getRandomOfficialTrackData() {
-                return (0,
-                C.gn)(this, Jh, "f")[Math.floor(Math.random() * (0,
-                C.gn)(this, Jh, "f").length)].trackData
+                return C.get(this, Jh, "f")[Math.floor(Math.random() * C.get(this, Jh, "f").length)].trackData
             }
             getTrackByName(e) {
-                const t = (0,
-                C.gn)(this, Jh, "f").find((t => t.trackMetadata.name == e));
+                const t = C.get(this, Jh, "f").find((t => t.trackMetadata.name == e));
                 if (null != t)
                     return {
                         id: t.id,
@@ -56998,8 +52635,7 @@
                         trackData: () => Promise.resolve(t.trackData),
                         trackCategory: "official"
                     };
-                const n = (0,
-                C.gn)(this, Xh, "f").find((t => t.trackMetadata.name == e));
+                const n = C.get(this, Xh, "f").find((t => t.trackMetadata.name == e));
                 if (null != n)
                     return {
                         id: n.id,
@@ -57007,8 +52643,7 @@
                         trackData: n.trackData,
                         trackCategory: "community"
                     };
-                const i = (0,
-                C.gn)(this, Yh, "f").find((t => t.trackMetadata.name == e));
+                const i = C.get(this, Yh, "f").find((t => t.trackMetadata.name == e));
                 return null != i ? {
                     id: i.id,
                     trackMetadata: i.trackMetadata,
@@ -57017,16 +52652,13 @@
                 } : null
             }
             isOfficialTrack(e) {
-                return (0,
-                C.gn)(this, Jh, "f").some((t => t.id == e))
+                return C.get(this, Jh, "f").some((t => t.id == e))
             }
             isCommunityTrack(e) {
-                return (0,
-                C.gn)(this, Xh, "f").some((t => t.id == e))
+                return C.get(this, Xh, "f").some((t => t.id == e))
             }
             isCustomTrack(e) {
-                return (0,
-                C.gn)(this, Yh, "f").some((t => t.id == e))
+                return C.get(this, Yh, "f").some((t => t.id == e))
             }
         }
         ;
@@ -57062,16 +52694,14 @@
                 e.addMaterial(s);
                 const o = async e => {
                     if (t.addResource(),
-                    (0,
-                    C.gn)(this, ld, "f").has(e.id))
+                    C.get(this, ld, "f").has(e.id))
                         throw new Error("Track part types have same Id");
                     const n = {
                         configuration: e,
                         colors: new Map(e.colors.map(( ({id: e}) => [e, null]))),
                         physicsShapeVertices: null
                     };
-                    (0,
-                    C.gn)(this, ld, "f").set(e.id, n);
+                    C.get(this, ld, "f").set(e.id, n);
                     const i = await r;
                     function a(e, t, n, r, a, s, l, c, h) {
                         const d = i.find((t => t.scene.name == e));
@@ -57188,14 +52818,11 @@
                     n.physicsShapeVertices = new Float32Array(l.attributes.position.array),
                     t.loadedResource()
                 }
-                  , l = await Promise.all(mi.yD.map((e => o(e)))).then((async () => await (0,
-                C.gn)(this, od, "m", dd).call(this)))
+                  , l = await Promise.all(mi.yD.map((e => o(e)))).then((async () => await C.get(this, od, "m", dd).call(this)))
                   , c = (e, t, n=null) => {
-                    let i = (0,
-                    C.gn)(this, cd, "f").get(e);
+                    let i = C.get(this, cd, "f").get(e);
                     null == i && (i = new Map,
-                    (0,
-                    C.gn)(this, cd, "f").set(e, i)),
+                    C.get(this, cd, "f").set(e, i)),
                     n ?? (n = (e, t) => e.x == t.x && e.y == t.y && e.z == t.z && e.rotation == t.rotation && e.rotationAxis == t.rotationAxis),
                     i.set(t, n)
                 }
@@ -57351,18 +52978,15 @@
                 l
             }
             isPartCombinationAllowed(e, t) {
-                const n = (0,
-                C.gn)(this, od, "m", hd).call(this, e.id, t.id);
+                const n = C.get(this, od, "m", hd).call(this, e.id, t.id);
                 if (n?.(e, t))
                     return !0;
-                const i = (0,
-                C.gn)(this, od, "m", hd).call(this, t.id, e.id);
+                const i = C.get(this, od, "m", hd).call(this, t.id, e.id);
                 return !!i?.(t, e)
             }
             getPhysicsParts() {
                 const e = [];
-                for (const {configuration: t, physicsShapeVertices: n} of (0,
-                C.gn)(this, ld, "f").values()) {
+                for (const {configuration: t, physicsShapeVertices: n} of C.get(this, ld, "f").values()) {
                     if (null == n)
                         throw new Error("Part model has not been loaded yet");
                     e.push({
@@ -57375,38 +52999,32 @@
                 return e
             }
             hasPart(e) {
-                return (0,
-                C.gn)(this, ld, "f").has(e)
+                return C.get(this, ld, "f").has(e)
             }
             getPart(e) {
-                const t = (0,
-                C.gn)(this, ld, "f").get(e);
+                const t = C.get(this, ld, "f").get(e);
                 if (null == t)
                     throw new Error('Track part with the id "' + e.toString() + '" does not exist');
                 return t
             }
             getAllParts() {
-                return Array.from((0,
-                C.gn)(this, ld, "f").values())
+                return Array.from(C.get(this, ld, "f").values())
             }
             getPartStartOffset(e) {
-                const t = (0,
-                C.gn)(this, ld, "f").get(e);
+                const t = C.get(this, ld, "f").get(e);
                 if (null == t)
                     throw new Error('Track part with the id "' + e.toString() + '" does not exist');
                 return t.configuration.startOffset?.clone() ?? null
             }
             getPartTypesWithDetector(e) {
                 const t = [];
-                for (const [n,i] of (0,
-                C.gn)(this, ld, "f").entries())
+                for (const [n,i] of C.get(this, ld, "f").entries())
                     i.configuration.detector?.type == e && t.push(n);
                 return t
             }
             getStartPartTypes() {
                 const e = [];
-                for (const [t,n] of (0,
-                C.gn)(this, ld, "f").entries())
+                for (const [t,n] of C.get(this, ld, "f").entries())
                     null != n.configuration.startOffset && e.push(t);
                 return e
             }
@@ -57460,8 +53078,7 @@
         cd = new WeakMap,
         od = new WeakSet,
         hd = function(e, t) {
-            const n = (0,
-            C.gn)(this, cd, "f").get(e);
+            const n = C.get(this, cd, "f").get(e);
             return null == n ? null : n.get(t) ?? null
         }
         ,
@@ -57469,8 +53086,7 @@
             const e = Object.values(fd.A).filter((e => "string" != typeof e));
             let t = !0;
             for (const n of e) {
-                const e = (0,
-                C.gn)(this, ld, "f").get(n);
+                const e = C.get(this, ld, "f").get(n);
                 if (null == e)
                     throw new Error("Part with id " + n.toString() + " does not exist");
                 const i = e.physicsShapeVertices;
@@ -57502,40 +53118,29 @@
                 wd.set(this, void 0),
                 xd.set(this, document.getElementById("transition-layer")),
                 Sd.set(this, null),
-                (0,
-                C.GG)(this, wd, e, "f")
+                C.set(this, wd, e, "f")
             }
             trigger(e) {
-                const t = (0,
-                C.gn)(this, xd, "f");
+                const t = C.get(this, xd, "f");
                 if (null == t)
                     throw new Error("Failed to find transition layer");
-                null == (0,
-                C.gn)(this, Sd, "f") && (t.style.opacity = "1",
-                (0,
-                C.gn)(this, wd, "f").setInert(!0),
+                null == C.get(this, Sd, "f") && (t.style.opacity = "1",
+                C.get(this, wd, "f").setInert(!0),
                 setTimeout(( () => {
-                    if (null != (0,
-                    C.gn)(this, Sd, "f")) {
-                        const e = (0,
-                        C.gn)(this, Sd, "f").call(this);
+                    if (null != C.get(this, Sd, "f")) {
+                        const e = C.get(this, Sd, "f").call(this);
                         null == e ? (t.style.opacity = "0",
-                        (0,
-                        C.gn)(this, wd, "f").setInert(!1),
-                        (0,
-                        C.GG)(this, Sd, null, "f")) : e.finally(( () => {
+                        C.get(this, wd, "f").setInert(!1),
+                        C.set(this, Sd, null, "f")) : e.finally(( () => {
                             t.style.opacity = "0",
-                            (0,
-                            C.gn)(this, wd, "f").setInert(!1),
-                            (0,
-                            C.GG)(this, Sd, null, "f")
+                            C.get(this, wd, "f").setInert(!1),
+                            C.set(this, Sd, null, "f")
                         }
                         ))
                     }
                 }
                 ), 250)),
-                (0,
-                C.GG)(this, Sd, e, "f")
+                C.set(this, Sd, e, "f")
             }
         }
         ;
@@ -57550,8 +53155,7 @@
                 Td.set(this, void 0),
                 Md.set(this, new THREE.Vector2(100 * Math.random(),100 * Math.random())),
                 _d.set(this, new THREE.Vector2(100 * Math.random(),100 * Math.random())),
-                (0,
-                C.GG)(this, Ed, t, "f"),
+                C.set(this, Ed, t, "f"),
                 n.addResource();
                 const i = (new THREE.TextureLoader).load("images/clouds.jpg", ( () => {
                     n.loadedResource()
@@ -57566,12 +53170,10 @@
                     },
                     uniforms: {
                         scrollA: {
-                            value: (0,
-                            C.gn)(this, Md, "f")
+                            value: C.get(this, Md, "f")
                         },
                         scrollB: {
-                            value: (0,
-                            C.gn)(this, _d, "f")
+                            value: C.get(this, _d, "f")
                         },
                         sampler: {
                             value: i
@@ -57591,48 +53193,28 @@
                 });
                 a.side = THREE.BackSide,
                 a.depthWrite = !1,
-                (0,
-                C.GG)(this, Td, new THREE.Mesh(r,a), "f"),
-                (0,
-                C.gn)(this, Td, "f").renderOrder = -3,
-                (0,
-                C.gn)(this, Td, "f").matrixAutoUpdate = !1,
-                (0,
-                C.gn)(this, Td, "f").updateMatrix(),
-                e.scene.add((0,
-                C.gn)(this, Td, "f"))
+                C.set(this, Td, new THREE.Mesh(r,a), "f"),
+                C.get(this, Td, "f").renderOrder = -3,
+                C.get(this, Td, "f").matrixAutoUpdate = !1,
+                C.get(this, Td, "f").updateMatrix(),
+                e.scene.add(C.get(this, Td, "f"))
             }
             update(e, t, n) {
-                (0,
-                C.gn)(this, Ed, "f").getSettingBoolean(R.A.CloudsEnabled) ? ((0,
-                C.gn)(this, Md, "f").x += .00226 * e,
-                (0,
-                C.gn)(this, Md, "f").y += .001646 * e,
-                (0,
-                C.gn)(this, _d, "f").x += .001752 * e,
-                (0,
-                C.gn)(this, _d, "f").y += .001057 * e,
-                1 != (0,
-                C.gn)(this, Td, "f").material.defines.CLOUDS_ENABLED && ((0,
-                C.gn)(this, Td, "f").material.defines.CLOUDS_ENABLED = !0,
-                (0,
-                C.gn)(this, Td, "f").material.needsUpdate = !0)) : 0 != (0,
-                C.gn)(this, Td, "f").material.defines.CLOUDS_ENABLED && ((0,
-                C.gn)(this, Td, "f").material.defines.CLOUDS_ENABLED = !1,
-                (0,
-                C.gn)(this, Td, "f").material.needsUpdate = !0);
+                C.get(this, Ed, "f").getSettingBoolean(R.A.CloudsEnabled) ? (C.get(this, Md, "f").x += .00226 * e,
+                C.get(this, Md, "f").y += .001646 * e,
+                C.get(this, _d, "f").x += .001752 * e,
+                C.get(this, _d, "f").y += .001057 * e,
+                1 != C.get(this, Td, "f").material.defines.CLOUDS_ENABLED && (C.get(this, Td, "f").material.defines.CLOUDS_ENABLED = !0,
+                C.get(this, Td, "f").material.needsUpdate = !0)) : 0 != C.get(this, Td, "f").material.defines.CLOUDS_ENABLED && (C.get(this, Td, "f").material.defines.CLOUDS_ENABLED = !1,
+                C.get(this, Td, "f").material.needsUpdate = !0);
                 const i = n.getSunPosition();
-                (0,
-                C.gn)(this, Td, "f").material.uniforms.sunPosition.value.copy(i.negate()),
-                (0,
-                C.gn)(this, Td, "f").position.copy(t.position),
-                (0,
-                C.gn)(this, Td, "f").updateMatrix()
+                C.get(this, Td, "f").material.uniforms.sunPosition.value.copy(i.negate()),
+                C.get(this, Td, "f").position.copy(t.position),
+                C.get(this, Td, "f").updateMatrix()
             }
         }
         ;
-        (0,
-        g.F3)("CapacitorSQLite", {
+        g.F3("CapacitorSQLite", {
             web: () => i.e(57).then(i.bind(i, 819)).then((e => new e.CapacitorSQLiteWeb)),
             electron: () => window.CapacitorCustomPlatform.plugins.CapacitorSQLite
         });
@@ -57659,9 +53241,7 @@
                 })
             }
             async initialize(e) {
-                null != e ? (0,
-                C.GG)(this, Id, e, "f") : (0,
-                C.GG)(this, Id, {
+                null != e ? C.set(this, Id, e, "f") : C.set(this, Id, {
                     getItem: e => window.localStorage.getItem(e),
                     setItem: (e, t) => {
                         window.localStorage.setItem(e, t)
@@ -57675,34 +53255,20 @@
                 }, "f")
             }
             migrate() {
-                const e = (0,
-                C.gn)(this, Rd, "m", Hd).call(this);
-                "v5" == e || ("v4" == e ? ((0,
-                C.gn)(this, Rd, "m", Bd).call(this),
-                (0,
-                C.gn)(this, Rd, "m", Vd).call(this)) : "v3" == e ? ((0,
-                C.gn)(this, Rd, "m", Dd).call(this),
-                (0,
-                C.gn)(this, Rd, "m", Bd).call(this),
-                (0,
-                C.gn)(this, Rd, "m", Vd).call(this)) : ((0,
-                C.gn)(this, Rd, "m", Ud).call(this),
-                (0,
-                C.gn)(this, Rd, "m", zd).call(this),
-                (0,
-                C.gn)(this, Rd, "m", Nd).call(this),
-                (0,
-                C.gn)(this, Rd, "m", Dd).call(this),
-                (0,
-                C.gn)(this, Rd, "m", Bd).call(this),
-                (0,
-                C.gn)(this, Rd, "m", Vd).call(this)))
+                const e = C.get(this, Rd, "m", Hd).call(this);
+                "v5" == e || ("v4" == e ? (C.get(this, Rd, "m", Bd).call(this),
+                C.get(this, Rd, "m", Vd).call(this)) : "v3" == e ? (C.get(this, Rd, "m", Dd).call(this),
+                C.get(this, Rd, "m", Bd).call(this),
+                C.get(this, Rd, "m", Vd).call(this)) : (C.get(this, Rd, "m", Ud).call(this),
+                C.get(this, Rd, "m", zd).call(this),
+                C.get(this, Rd, "m", Nd).call(this),
+                C.get(this, Rd, "m", Dd).call(this),
+                C.get(this, Rd, "m", Bd).call(this),
+                C.get(this, Rd, "m", Vd).call(this)))
             }
             saveStartupInfo(e) {
                 try {
-                    (0,
-                    C.gn)(this, Id, "f").setItem((0,
-                    C.gn)(Pd, Pd, "f", jd), JSON.stringify({
+                    C.get(this, Id, "f").setItem(C.get(Pd, Pd, "f", jd), JSON.stringify({
                         lastVersion: e
                     }))
                 } catch (e) {
@@ -57711,9 +53277,7 @@
             }
             loadStartupInfo() {
                 try {
-                    const e = (0,
-                    C.gn)(this, Id, "f").getItem((0,
-                    C.gn)(Pd, Pd, "f", jd));
+                    const e = C.get(this, Id, "f").getItem(C.get(Pd, Pd, "f", jd));
                     if (null == e)
                         return null;
                     const t = JSON.parse(e);
@@ -57730,11 +53294,8 @@
                     throw new Error("Profile slot is invalid");
                 try {
                     let o;
-                    o = s == Js.Ok ? (0,
-                    C.gn)(Pd, Pd, "f", Kd) + e.toString() + "_default_" + n : (0,
-                    C.gn)(Pd, Pd, "f", Kd) + e.toString() + "_undeterministic_" + n,
-                    (0,
-                    C.gn)(this, Id, "f").setItem(o, JSON.stringify({
+                    o = s == Js.Ok ? C.get(Pd, Pd, "f", Kd) + e.toString() + "_default_" + n : C.get(Pd, Pd, "f", Kd) + e.toString() + "_undeterministic_" + n,
+                    C.get(this, Id, "f").setItem(o, JSON.stringify({
                         uploadId: i,
                         tokenHash: t,
                         frames: r.numberOfFrames,
@@ -57749,11 +53310,8 @@
                     throw new Error("Profile slot is invalid");
                 try {
                     let r;
-                    r = i == Js.Ok ? (0,
-                    C.gn)(Pd, Pd, "f", Kd) + e.toString() + "_default_" + n : (0,
-                    C.gn)(Pd, Pd, "f", Kd) + e.toString() + "_undeterministic_" + n;
-                    const a = (0,
-                    C.gn)(this, Id, "f").getItem(r);
+                    r = i == Js.Ok ? C.get(Pd, Pd, "f", Kd) + e.toString() + "_default_" + n : C.get(Pd, Pd, "f", Kd) + e.toString() + "_undeterministic_" + n;
+                    const a = C.get(this, Id, "f").getItem(r);
                     if (null == a)
                         return null;
                     const s = JSON.parse(a);
@@ -57798,12 +53356,10 @@
                 return null
             }
             loadRecordTracks() {
-                const e = (0,
-                C.gn)(this, Id, "f").getAllKeys()
+                const e = C.get(this, Id, "f").getAllKeys()
                   , t = new Set;
                 for (const n of e)
-                    if (n.startsWith((0,
-                    C.gn)(Pd, Pd, "f", Kd))) {
+                    if (n.startsWith(C.get(Pd, Pd, "f", Kd))) {
                         const e = n.lastIndexOf("_");
                         if (e >= 0) {
                             const i = n.substring(e + 1);
@@ -57816,12 +53372,9 @@
                 if (!Number.isSafeInteger(e) || e < 0)
                     throw new Error("Profile slot is invalid");
                 try {
-                    const t = (0,
-                    C.gn)(this, Id, "f").getAllKeys();
+                    const t = C.get(this, Id, "f").getAllKeys();
                     for (const n of t)
-                        n.startsWith((0,
-                        C.gn)(Pd, Pd, "f", Kd) + e.toString() + "_") && (0,
-                        C.gn)(this, Id, "f").removeItem(n)
+                        n.startsWith(C.get(Pd, Pd, "f", Kd) + e.toString() + "_") && C.get(this, Id, "f").removeItem(n)
                 } catch (e) {
                     console.error(e)
                 }
@@ -57829,12 +53382,8 @@
             deleteAllRecordsForTrack(e) {
                 for (let t = 0; t < su.A.maxNumberOfProfiles; t++)
                     try {
-                        (0,
-                        C.gn)(this, Id, "f").removeItem((0,
-                        C.gn)(Pd, Pd, "f", Kd) + t.toString() + "_default_" + e),
-                        (0,
-                        C.gn)(this, Id, "f").removeItem((0,
-                        C.gn)(Pd, Pd, "f", Kd) + t.toString() + "_undeterministic_" + e)
+                        C.get(this, Id, "f").removeItem(C.get(Pd, Pd, "f", Kd) + t.toString() + "_default_" + e),
+                        C.get(this, Id, "f").removeItem(C.get(Pd, Pd, "f", Kd) + t.toString() + "_undeterministic_" + e)
                     } catch (e) {
                         console.error(e)
                     }
@@ -57842,9 +53391,7 @@
             saveCustomTrack(e, t, n) {
                 const i = t.toExportString(e);
                 try {
-                    return (0,
-                    C.gn)(this, Id, "f").setItem((0,
-                    C.gn)(Pd, Pd, "f", qd) + e.name, JSON.stringify({
+                    return C.get(this, Id, "f").setItem(C.get(Pd, Pd, "f", qd) + e.name, JSON.stringify({
                         data: i,
                         saveTime: n.getTime()
                     })),
@@ -57857,9 +53404,7 @@
             loadCustomTrack(e) {
                 let t, n;
                 try {
-                    const i = (0,
-                    C.gn)(this, Id, "f").getItem((0,
-                    C.gn)(Pd, Pd, "f", qd) + e);
+                    const i = C.get(this, Id, "f").getItem(C.get(Pd, Pd, "f", qd) + e);
                     if (null == i)
                         return null;
                     const r = JSON.parse(i);
@@ -57884,9 +53429,7 @@
             }
             deleteCustomTrack(e) {
                 try {
-                    return (0,
-                    C.gn)(this, Id, "f").removeItem((0,
-                    C.gn)(Pd, Pd, "f", qd) + e),
+                    return C.get(this, Id, "f").removeItem(C.get(Pd, Pd, "f", qd) + e),
                     !0
                 } catch (e) {
                     return console.error(e),
@@ -57896,32 +53439,25 @@
             getAllCustomTrackNames() {
                 let e;
                 try {
-                    e = (0,
-                    C.gn)(this, Id, "f").getAllKeys()
+                    e = C.get(this, Id, "f").getAllKeys()
                 } catch (e) {
                     return console.error(e),
                     null
                 }
-                return e.filter((e => e.startsWith((0,
-                C.gn)(Pd, Pd, "f", qd)))).map((e => e.substring((0,
-                C.gn)(Pd, Pd, "f", qd).length)))
+                return e.filter((e => e.startsWith(C.get(Pd, Pd, "f", qd)))).map((e => e.substring(C.get(Pd, Pd, "f", qd).length)))
             }
             saveUserProfileSlot(e) {
                 if (!Number.isSafeInteger(e) || e < 0)
                     throw new Error("Profile slot is invalid");
                 try {
-                    (0,
-                    C.gn)(this, Id, "f").setItem((0,
-                    C.gn)(Pd, Pd, "f", Qd), JSON.stringify(e))
+                    C.get(this, Id, "f").setItem(C.get(Pd, Pd, "f", Qd), JSON.stringify(e))
                 } catch (e) {
                     console.error(e)
                 }
             }
             loadUserProfileSlot() {
                 try {
-                    const e = (0,
-                    C.gn)(this, Id, "f").getItem((0,
-                    C.gn)(Pd, Pd, "f", Qd));
+                    const e = C.get(this, Id, "f").getItem(C.get(Pd, Pd, "f", Qd));
                     if (null != e)
                         try {
                             const t = parseInt(e, 10);
@@ -57940,9 +53476,7 @@
                 if (!Number.isSafeInteger(e) || e < 0)
                     throw new Error("Profile slot is invalid");
                 try {
-                    (0,
-                    C.gn)(this, Id, "f").setItem((0,
-                    C.gn)(Pd, Pd, "f", Jd) + e.toString(), JSON.stringify({
+                    C.get(this, Id, "f").setItem(C.get(Pd, Pd, "f", Jd) + e.toString(), JSON.stringify({
                         token: t.token,
                         nickname: t.nickname,
                         countryCode: t.countryCode,
@@ -57957,9 +53491,7 @@
                 if (!Number.isSafeInteger(e) || e < 0)
                     throw new Error("Profile slot is invalid");
                 try {
-                    const t = (0,
-                    C.gn)(this, Id, "f").getItem((0,
-                    C.gn)(Pd, Pd, "f", Jd) + e.toString());
+                    const t = C.get(this, Id, "f").getItem(C.get(Pd, Pd, "f", Jd) + e.toString());
                     if (null != t) {
                         const e = JSON.parse(t);
                         if (null == e || "object" != typeof e)
@@ -57986,27 +53518,21 @@
             }
             deleteUserProfile(e) {
                 try {
-                    (0,
-                    C.gn)(this, Id, "f").removeItem((0,
-                    C.gn)(Pd, Pd, "f", Jd) + e.toString())
+                    C.get(this, Id, "f").removeItem(C.get(Pd, Pd, "f", Jd) + e.toString())
                 } catch (e) {
                     console.error(e)
                 }
             }
             saveIsMusicEnabled(e) {
                 try {
-                    (0,
-                    C.gn)(this, Id, "f").setItem((0,
-                    C.gn)(Pd, Pd, "f", Xd), e.toString())
+                    C.get(this, Id, "f").setItem(C.get(Pd, Pd, "f", Xd), e.toString())
                 } catch (e) {
                     console.error(e)
                 }
             }
             loadIsMusicEnabled() {
                 try {
-                    const e = (0,
-                    C.gn)(this, Id, "f").getItem((0,
-                    C.gn)(Pd, Pd, "f", Xd));
+                    const e = C.get(this, Id, "f").getItem(C.get(Pd, Pd, "f", Xd));
                     return "true" == e || "false" != e
                 } catch (e) {
                     return console.error(e),
@@ -58018,18 +53544,14 @@
                     const t = [];
                     for (const [n,i] of e.entries())
                         t.push([R.A[n], i]);
-                    (0,
-                    C.gn)(this, Id, "f").setItem((0,
-                    C.gn)(Pd, Pd, "f", Yd), JSON.stringify(t))
+                    C.get(this, Id, "f").setItem(C.get(Pd, Pd, "f", Yd), JSON.stringify(t))
                 } catch (e) {
                     console.error(e)
                 }
             }
             loadSettings() {
                 try {
-                    const e = (0,
-                    C.gn)(this, Id, "f").getItem((0,
-                    C.gn)(Pd, Pd, "f", Yd));
+                    const e = C.get(this, Id, "f").getItem(C.get(Pd, Pd, "f", Yd));
                     if (null == e)
                         return null;
                     const t = JSON.parse(e);
@@ -58062,19 +53584,15 @@
                 try {
                     const t = [];
                     for (const [n,i] of e.entries())
-                        t.push([ge.A[n], i]);
-                    (0,
-                    C.gn)(this, Id, "f").setItem((0,
-                    C.gn)(Pd, Pd, "f", Zd), JSON.stringify(t))
+                        t.push([KeyBind[n], i]);
+                    C.get(this, Id, "f").setItem(C.get(Pd, Pd, "f", Zd), JSON.stringify(t))
                 } catch (e) {
                     console.error(e)
                 }
             }
             loadKeyBindings() {
                 try {
-                    const e = (0,
-                    C.gn)(this, Id, "f").getItem((0,
-                    C.gn)(Pd, Pd, "f", Zd));
+                    const e = C.get(this, Id, "f").getItem(C.get(Pd, Pd, "f", Zd));
                     if (null == e)
                         return null;
                     const t = JSON.parse(e);
@@ -58089,9 +53607,9 @@
                         if ("string" != typeof e[0])
                             continue;
                         const t = e[0];
-                        if (!(t in ge.A))
+                        if (!(t in KeyBind))
                             continue;
-                        const i = ge.A[t]
+                        const i = KeyBind[t]
                           , r = e[1];
                         Array.isArray(r) && (2 == r.length && (null !== r[0] && "string" != typeof r[0] || null !== r[1] && "string" != typeof r[1] || n.push([i, [r[0], r[1]]])))
                     }
@@ -58103,18 +53621,14 @@
             }
             saveTrackSelectionTab(e) {
                 try {
-                    (0,
-                    C.gn)(this, Id, "f").setItem((0,
-                    C.gn)(Pd, Pd, "f", $d), e)
+                    C.get(this, Id, "f").setItem(C.get(Pd, Pd, "f", $d), e)
                 } catch (e) {
                     console.error(e)
                 }
             }
             loadTrackSelectionTab() {
                 try {
-                    const e = (0,
-                    C.gn)(this, Id, "f").getItem((0,
-                    C.gn)(Pd, Pd, "f", $d));
+                    const e = C.get(this, Id, "f").getItem(C.get(Pd, Pd, "f", $d));
                     if ("official" == e || "community" == e || "custom" == e)
                         return e
                 } catch (e) {
@@ -58127,9 +53641,7 @@
                     const i = e.map((e => e))
                       , r = t.map((e => e))
                       , a = n.map((e => e));
-                    (0,
-                    C.gn)(this, Id, "f").setItem((0,
-                    C.gn)(Pd, Pd, "f", eu), JSON.stringify({
+                    C.get(this, Id, "f").setItem(C.get(Pd, Pd, "f", eu), JSON.stringify({
                         patterns: i,
                         rims: r,
                         exhausts: a
@@ -58140,9 +53652,7 @@
             }
             loadUnlockedCarStyles() {
                 try {
-                    const e = (0,
-                    C.gn)(this, Id, "f").getItem((0,
-                    C.gn)(Pd, Pd, "f", eu));
+                    const e = C.get(this, Id, "f").getItem(C.get(Pd, Pd, "f", eu));
                     if (null == e)
                         return {
                             patterns: [],
@@ -58281,11 +53791,9 @@
         Rd = new WeakSet,
         Ud = function() {
             try {
-                const e = (0,
-                C.gn)(this, Id, "f").getAllKeys();
+                const e = C.get(this, Id, "f").getAllKeys();
                 try {
-                    const e = (0,
-                    C.gn)(this, Id, "f").getItem("car_colors");
+                    const e = C.get(this, Id, "f").getItem("car_colors");
                     if (null != e) {
                         const t = JSON.parse(e);
                         if (!Array.isArray(t) || 4 != t.length)
@@ -58302,10 +53810,8 @@
                         const a = t[3];
                         if ("string" != typeof a)
                             throw new Error("Old car colors rims color is not a string");
-                        (0,
-                        C.gn)(this, Rd, "m", Fd).call(this, new jt.A(jt.A.defaultPattern,jt.A.defaultRims,jt.A.defaultExhaust,new THREE.Color(n).getHex(),new THREE.Color(i).getHex(),new THREE.Color(r).getHex(),new THREE.Color(a).getHex())),
-                        (0,
-                        C.gn)(this, Id, "f").removeItem("car_colors")
+                        C.get(this, Rd, "m", Fd).call(this, new jt.A(jt.A.defaultPattern,jt.A.defaultRims,jt.A.defaultExhaust,new THREE.Color(n).getHex(),new THREE.Color(i).getHex(),new THREE.Color(r).getHex(),new THREE.Color(a).getHex())),
+                        C.get(this, Id, "f").removeItem("car_colors")
                     }
                 } catch (e) {
                     console.error(e)
@@ -58313,21 +53819,18 @@
                 for (const t of e) {
                     if (t.startsWith("record_"))
                         try {
-                            (0,
-                            C.gn)(this, Id, "f").removeItem(t)
+                            C.get(this, Id, "f").removeItem(t)
                         } catch (e) {
                             console.error(e)
                         }
                     if (t.startsWith("custom_track_"))
                         try {
-                            const e = (0,
-                            C.gn)(this, Id, "f").getItem(t);
+                            const e = C.get(this, Id, "f").getItem(t);
                             if (null != e) {
                                 const n = tu.U(e);
                                 if (null != n) {
                                     const {trackMetadata: e, trackData: i} = n;
-                                    this.saveCustomTrack(e, i, new Date) && (0,
-                                    C.gn)(this, Id, "f").removeItem(t)
+                                    this.saveCustomTrack(e, i, new Date) && C.get(this, Id, "f").removeItem(t)
                                 }
                             }
                         } catch (e) {
@@ -58341,11 +53844,9 @@
         ,
         zd = function() {
             try {
-                const e = (0,
-                C.gn)(this, Id, "f").getAllKeys();
+                const e = C.get(this, Id, "f").getAllKeys();
                 try {
-                    const e = (0,
-                    C.gn)(this, Id, "f").getItem("v1_car");
+                    const e = C.get(this, Id, "f").getItem("v1_car");
                     if (null != e) {
                         const t = JSON.parse(e);
                         if (!Array.isArray(t) || 4 != t.length)
@@ -58362,10 +53863,8 @@
                         const a = t[3];
                         if ("string" != typeof a)
                             throw new Error("Old car colors rims color is not a string");
-                        (0,
-                        C.gn)(this, Rd, "m", Fd).call(this, new jt.A(jt.A.defaultPattern,jt.A.defaultRims,jt.A.defaultExhaust,new THREE.Color(n).getHex(),new THREE.Color(i).getHex(),new THREE.Color(r).getHex(),new THREE.Color(a).getHex())),
-                        (0,
-                        C.gn)(this, Id, "f").removeItem("v1_car")
+                        C.get(this, Rd, "m", Fd).call(this, new jt.A(jt.A.defaultPattern,jt.A.defaultRims,jt.A.defaultExhaust,new THREE.Color(n).getHex(),new THREE.Color(i).getHex(),new THREE.Color(r).getHex(),new THREE.Color(a).getHex())),
+                        C.get(this, Id, "f").removeItem("v1_car")
                     }
                 } catch (e) {
                     console.error(e)
@@ -58373,15 +53872,13 @@
                 for (const t of e) {
                     if (t.startsWith("v1_record_"))
                         try {
-                            (0,
-                            C.gn)(this, Id, "f").removeItem(t)
+                            C.get(this, Id, "f").removeItem(t)
                         } catch (e) {
                             console.error(e)
                         }
                     if (t.startsWith("v1_track_"))
                         try {
-                            const e = (0,
-                            C.gn)(this, Id, "f").getItem(t);
+                            const e = C.get(this, Id, "f").getItem(t);
                             if (null != e) {
                                 const n = {
                                     name: t.substring(9),
@@ -58393,8 +53890,7 @@
                                     throw new Error("Failed to load v1 track for migration");
                                 if (!this.saveCustomTrack(n, i, new Date))
                                     throw new Error("Failed to save v1 track for migration");
-                                (0,
-                                C.gn)(this, Id, "f").removeItem(t)
+                                C.get(this, Id, "f").removeItem(t)
                             }
                         } catch (e) {
                             console.error(e)
@@ -58407,11 +53903,9 @@
         ,
         Nd = function() {
             try {
-                const e = (0,
-                C.gn)(this, Id, "f").getAllKeys();
+                const e = C.get(this, Id, "f").getAllKeys();
                 try {
-                    const e = (0,
-                    C.gn)(this, Id, "f").getItem("v2_user");
+                    const e = C.get(this, Id, "f").getItem("v2_user");
                     if (null != e) {
                         const t = JSON.parse(e);
                         if (null == t || "object" != typeof t)
@@ -58424,52 +53918,42 @@
                         const i = t.nickname
                           , r = null
                           , a = jt.A.default();
-                        (0,
-                        C.gn)(this, Rd, "m", Gd).call(this, n, i, r, a),
-                        (0,
-                        C.gn)(this, Id, "f").removeItem("v2_user")
+                        C.get(this, Rd, "m", Gd).call(this, n, i, r, a),
+                        C.get(this, Id, "f").removeItem("v2_user")
                     }
                 } catch (e) {
                     console.error(e)
                 }
                 try {
-                    const e = (0,
-                    C.gn)(this, Id, "f").getItem("v2_car");
+                    const e = C.get(this, Id, "f").getItem("v2_car");
                     if (null != e) {
-                        const t = (0,
-                        C.gn)(this, Rd, "m", Od).call(this, e);
-                        (0,
-                        C.gn)(this, Rd, "m", Fd).call(this, t),
-                        (0,
-                        C.gn)(this, Id, "f").removeItem("v2_car")
+                        const t = C.get(this, Rd, "m", Od).call(this, e);
+                        C.get(this, Rd, "m", Fd).call(this, t),
+                        C.get(this, Id, "f").removeItem("v2_car")
                     }
                 } catch (e) {
                     console.error(e)
                 }
                 try {
-                    (0,
-                    C.gn)(this, Id, "f").removeItem("v2_settings")
+                    C.get(this, Id, "f").removeItem("v2_settings")
                 } catch (e) {
                     console.error(e)
                 }
                 try {
-                    (0,
-                    C.gn)(this, Id, "f").removeItem("v2_key_bindings")
+                    C.get(this, Id, "f").removeItem("v2_key_bindings")
                 } catch (e) {
                     console.error(e)
                 }
                 for (const t of e)
                     if (t.startsWith("v2_record_"))
                         try {
-                            (0,
-                            C.gn)(this, Id, "f").removeItem(t)
+                            C.get(this, Id, "f").removeItem(t)
                         } catch (e) {
                             console.error(e)
                         }
                     else if (t.startsWith("v2_track_"))
                         try {
-                            const e = (0,
-                            C.gn)(this, Id, "f").getItem(t);
+                            const e = C.get(this, Id, "f").getItem(t);
                             if (null != e) {
                                 const n = {
                                     name: t.substring(9),
@@ -58481,8 +53965,7 @@
                                     throw new Error("Failed to load v2 track for migration");
                                 if (!this.saveCustomTrack(n, i, new Date))
                                     throw new Error("Failed to save v2 track for migration");
-                                (0,
-                                C.gn)(this, Id, "f").removeItem(t)
+                                C.get(this, Id, "f").removeItem(t)
                             }
                         } catch (e) {
                             console.error(e)
@@ -58494,23 +53977,19 @@
         ,
         Dd = function() {
             try {
-                const e = (0,
-                C.gn)(this, Id, "f").getAllKeys();
+                const e = C.get(this, Id, "f").getAllKeys();
                 try {
-                    const e = (0,
-                    C.gn)(this, Id, "f").getItem("polytrack_v3_user_slot");
+                    const e = C.get(this, Id, "f").getItem("polytrack_v3_user_slot");
                     if (null != e) {
                         const t = Number.parseInt(e, 10);
                         Number.isSafeInteger(t) && t >= 0 && t <= 2 && (this.saveUserProfileSlot(t),
-                        (0,
-                        C.gn)(this, Id, "f").removeItem("polytrack_v3_user_slot"))
+                        C.get(this, Id, "f").removeItem("polytrack_v3_user_slot"))
                     }
                 } catch (e) {
                     console.error(e)
                 }
                 try {
-                    const e = (0,
-                    C.gn)(this, Id, "f").getItem("polytrack_v3_settings");
+                    const e = C.get(this, Id, "f").getItem("polytrack_v3_settings");
                     if (null != e) {
                         const t = JSON.parse(e);
                         if (Array.isArray(t)) {
@@ -58525,16 +54004,14 @@
                                 "string" == typeof i && e.set(R.A[t], i)
                             }
                             this.saveSettings(e),
-                            (0,
-                            C.gn)(this, Id, "f").removeItem("polytrack_v3_settings")
+                            C.get(this, Id, "f").removeItem("polytrack_v3_settings")
                         }
                     }
                 } catch (e) {
                     console.error(e)
                 }
                 try {
-                    const e = (0,
-                    C.gn)(this, Id, "f").getItem("polytrack_v3_key_bindings");
+                    const e = C.get(this, Id, "f").getItem("polytrack_v3_key_bindings");
                     if (null != e) {
                         const t = JSON.parse(e);
                         if (Array.isArray(t)) {
@@ -58543,7 +54020,7 @@
                                 if (!Array.isArray(n) || 2 != n.length)
                                     continue;
                                 const t = n[0];
-                                if ("string" != typeof t || !(t in ge.A))
+                                if ("string" != typeof t || !(t in KeyBind))
                                     continue;
                                 const i = n[1];
                                 if (!Array.isArray(i) || 2 != i.length)
@@ -58552,11 +54029,10 @@
                                 if (null !== r && "string" != typeof r)
                                     continue;
                                 const a = i[1];
-                                null !== a && "string" != typeof a || e.set(ge.A[t], [r, a])
+                                null !== a && "string" != typeof a || e.set(KeyBind[t], [r, a])
                             }
                             this.saveKeyBindings(e),
-                            (0,
-                            C.gn)(this, Id, "f").removeItem("polytrack_v3_key_bindings")
+                            C.get(this, Id, "f").removeItem("polytrack_v3_key_bindings")
                         }
                     }
                 } catch (e) {
@@ -58580,8 +54056,7 @@
                         }
                         if (null != e)
                             try {
-                                const n = (0,
-                                C.gn)(this, Id, "f").getItem(t);
+                                const n = C.get(this, Id, "f").getItem(t);
                                 if (null != n) {
                                     const i = JSON.parse(n);
                                     if (null == i || "object" != typeof i)
@@ -58595,26 +54070,22 @@
                                     const r = i.token
                                       , a = i.nickname
                                       , s = null
-                                      , o = (0,
-                                    C.gn)(this, Rd, "m", Od).call(this, i.carColors);
+                                      , o = C.get(this, Rd, "m", Od).call(this, i.carColors);
                                     this.saveUserProfile(e, new ou.A(r ?? su.A.createToken(),a,s,o,!1)),
-                                    (0,
-                                    C.gn)(this, Id, "f").removeItem(t)
+                                    C.get(this, Id, "f").removeItem(t)
                                 }
                             } catch (e) {
                                 console.error(e)
                             }
                     } else if (t.startsWith("polytrack_v3_record_"))
                         try {
-                            (0,
-                            C.gn)(this, Id, "f").removeItem(t)
+                            C.get(this, Id, "f").removeItem(t)
                         } catch (e) {
                             console.error(e)
                         }
                     else if (t.startsWith("polytrack_v3_track_"))
                         try {
-                            const e = (0,
-                            C.gn)(this, Id, "f").getItem(t);
+                            const e = C.get(this, Id, "f").getItem(t);
                             if (null != e) {
                                 const n = {
                                     name: t.substring(19),
@@ -58633,15 +54104,13 @@
                                     throw new Error("Failed to load v3 track for migration");
                                 if (!this.saveCustomTrack(n, r, new Date(i.saveTime)))
                                     throw new Error("Failed to save v3 track for migration");
-                                (0,
-                                C.gn)(this, Id, "f").removeItem(t)
+                                C.get(this, Id, "f").removeItem(t)
                             }
                         } catch (e) {
                             console.error(e)
                         }
                 try {
-                    (0,
-                    C.gn)(this, Id, "f").removeItem("polytrack_v3_migrated")
+                    C.get(this, Id, "f").removeItem("polytrack_v3_migrated")
                 } catch (e) {
                     console.error(e)
                 }
@@ -58652,23 +54121,19 @@
         ,
         Bd = function() {
             try {
-                const e = (0,
-                C.gn)(this, Id, "f").getAllKeys();
+                const e = C.get(this, Id, "f").getAllKeys();
                 try {
-                    const e = (0,
-                    C.gn)(this, Id, "f").getItem("polytrack_v4_prod_user_slot");
+                    const e = C.get(this, Id, "f").getItem("polytrack_v4_prod_user_slot");
                     if (null != e) {
                         const t = Number.parseInt(e, 10);
                         Number.isSafeInteger(t) && t >= 0 && t <= 2 && (this.saveUserProfileSlot(t),
-                        (0,
-                        C.gn)(this, Id, "f").removeItem("polytrack_v4_prod_user_slot"))
+                        C.get(this, Id, "f").removeItem("polytrack_v4_prod_user_slot"))
                     }
                 } catch (e) {
                     console.error(e)
                 }
                 try {
-                    const e = (0,
-                    C.gn)(this, Id, "f").getItem("polytrack_v4_prod_settings");
+                    const e = C.get(this, Id, "f").getItem("polytrack_v4_prod_settings");
                     if (null != e) {
                         const t = JSON.parse(e);
                         if (Array.isArray(t)) {
@@ -58683,16 +54148,14 @@
                                 "string" == typeof i && e.set(R.A[t], i)
                             }
                             this.saveSettings(e),
-                            (0,
-                            C.gn)(this, Id, "f").removeItem("polytrack_v4_prod_settings")
+                            C.get(this, Id, "f").removeItem("polytrack_v4_prod_settings")
                         }
                     }
                 } catch (e) {
                     console.error(e)
                 }
                 try {
-                    const e = (0,
-                    C.gn)(this, Id, "f").getItem("polytrack_v4_prod_key_bindings");
+                    const e = C.get(this, Id, "f").getItem("polytrack_v4_prod_key_bindings");
                     if (null != e) {
                         const t = JSON.parse(e);
                         if (Array.isArray(t)) {
@@ -58701,7 +54164,7 @@
                                 if (!Array.isArray(n) || 2 != n.length)
                                     continue;
                                 const t = n[0];
-                                if ("string" != typeof t || !(t in ge.A))
+                                if ("string" != typeof t || !(t in KeyBind))
                                     continue;
                                 const i = n[1];
                                 if (!Array.isArray(i) || 2 != i.length)
@@ -58712,12 +54175,11 @@
                                 const a = i[1];
                                 if (null !== a && "string" != typeof a)
                                     continue;
-                                const s = ge.A[t];
-                                s != ge.A.ToggleFpsCounter && s != ge.A.ToggleSpectatorCamera && e.set(s, [r, a])
+                                const s = KeyBind[t];
+                                s != KeyBind.ToggleFpsCounter && s != KeyBind.ToggleSpectatorCamera && e.set(s, [r, a])
                             }
                             this.saveKeyBindings(e),
-                            (0,
-                            C.gn)(this, Id, "f").removeItem("polytrack_v4_prod_key_bindings")
+                            C.get(this, Id, "f").removeItem("polytrack_v4_prod_key_bindings")
                         }
                     }
                 } catch (e) {
@@ -58742,8 +54204,7 @@
                         }
                         if (null != e)
                             try {
-                                const i = (0,
-                                C.gn)(this, Id, "f").getItem(n);
+                                const i = C.get(this, Id, "f").getItem(n);
                                 if (null != i) {
                                     const r = JSON.parse(i);
                                     if (null == r || "object" != typeof r)
@@ -58757,11 +54218,9 @@
                                     const a = r.token
                                       , s = r.nickname
                                       , o = null
-                                      , l = (0,
-                                    C.gn)(this, Rd, "m", Od).call(this, r.carColors);
+                                      , l = C.get(this, Rd, "m", Od).call(this, r.carColors);
                                     this.saveUserProfile(e, new ou.A(a,s,o,l,!1)),
-                                    (0,
-                                    C.gn)(this, Id, "f").removeItem(n),
+                                    C.get(this, Id, "f").removeItem(n),
                                     t = !0
                                 }
                             } catch (e) {
@@ -58769,15 +54228,13 @@
                             }
                     } else if (n.startsWith("polytrack_v4_prod_record_"))
                         try {
-                            (0,
-                            C.gn)(this, Id, "f").removeItem(n)
+                            C.get(this, Id, "f").removeItem(n)
                         } catch (e) {
                             console.error(e)
                         }
                     else if (n.startsWith("polytrack_v4_prod_track_"))
                         try {
-                            const e = (0,
-                            C.gn)(this, Id, "f").getItem(n);
+                            const e = C.get(this, Id, "f").getItem(n);
                             if (null != e) {
                                 const t = JSON.parse(e);
                                 if (null == t || "object" != typeof t)
@@ -58791,16 +54248,14 @@
                                     throw new Error("Failed to load p1 track for migration");
                                 if (!this.saveCustomTrack(i.trackMetadata, i.trackData, new Date(t.saveTime)))
                                     throw new Error("Failed to save p1 track for migration");
-                                (0,
-                                C.gn)(this, Id, "f").removeItem(n)
+                                C.get(this, Id, "f").removeItem(n)
                             }
                         } catch (e) {
                             console.error(e)
                         }
                 t && this.saveStartupInfo("0.5.2");
                 try {
-                    (0,
-                    C.gn)(this, Id, "f").removeItem("polytrack_v4_prod_migrated")
+                    C.get(this, Id, "f").removeItem("polytrack_v4_prod_migrated")
                 } catch (e) {
                     console.error(e)
                 }
@@ -58829,9 +54284,7 @@
         ,
         Vd = function() {
             try {
-                (0,
-                C.gn)(this, Id, "f").setItem((0,
-                C.gn)(Pd, Pd, "f", Wd), "")
+                C.get(this, Id, "f").setItem(C.get(Pd, Pd, "f", Wd), "")
             } catch (e) {
                 console.error(e)
             }
@@ -58839,15 +54292,11 @@
         ,
         Hd = function() {
             try {
-                if (null != (0,
-                C.gn)(this, Id, "f").getItem((0,
-                C.gn)(Pd, Pd, "f", Wd)))
+                if (null != C.get(this, Id, "f").getItem(C.get(Pd, Pd, "f", Wd)))
                     return "v5";
-                if (null != (0,
-                C.gn)(this, Id, "f").getItem("polytrack_v4_prod_migrated"))
+                if (null != C.get(this, Id, "f").getItem("polytrack_v4_prod_migrated"))
                     return "v4";
-                if (null != (0,
-                C.gn)(this, Id, "f").getItem("polytrack_v3_migrated"))
+                if (null != C.get(this, Id, "f").getItem("polytrack_v3_migrated"))
                     return "v3"
             } catch (e) {
                 console.error(e)
@@ -58864,48 +54313,37 @@
             )()
         },
         Wd = {
-            value: (0,
-            C.gn)(Pd, Pd, "f", Ld) + "migrated"
+            value: C.get(Pd, Pd, "f", Ld) + "migrated"
         },
         jd = {
-            value: (0,
-            C.gn)(Pd, Pd, "f", Ld) + "startup_info"
+            value: C.get(Pd, Pd, "f", Ld) + "startup_info"
         },
         Kd = {
-            value: (0,
-            C.gn)(Pd, Pd, "f", Ld) + "record_"
+            value: C.get(Pd, Pd, "f", Ld) + "record_"
         },
         qd = {
-            value: (0,
-            C.gn)(Pd, Pd, "f", Ld) + "track_"
+            value: C.get(Pd, Pd, "f", Ld) + "track_"
         },
         Qd = {
-            value: (0,
-            C.gn)(Pd, Pd, "f", Ld) + "user_slot"
+            value: C.get(Pd, Pd, "f", Ld) + "user_slot"
         },
         Jd = {
-            value: (0,
-            C.gn)(Pd, Pd, "f", Ld) + "user_"
+            value: C.get(Pd, Pd, "f", Ld) + "user_"
         },
         Xd = {
-            value: (0,
-            C.gn)(Pd, Pd, "f", Ld) + "is_music_enabled"
+            value: C.get(Pd, Pd, "f", Ld) + "is_music_enabled"
         },
         Yd = {
-            value: (0,
-            C.gn)(Pd, Pd, "f", Ld) + "settings"
+            value: C.get(Pd, Pd, "f", Ld) + "settings"
         },
         Zd = {
-            value: (0,
-            C.gn)(Pd, Pd, "f", Ld) + "key_bindings"
+            value: C.get(Pd, Pd, "f", Ld) + "key_bindings"
         },
         $d = {
-            value: (0,
-            C.gn)(Pd, Pd, "f", Ld) + "selected_track_tab"
+            value: C.get(Pd, Pd, "f", Ld) + "selected_track_tab"
         },
         eu = {
-            value: (0,
-            C.gn)(Pd, Pd, "f", Ld) + "unlocked_car_styles"
+            value: C.get(Pd, Pd, "f", Ld) + "unlocked_car_styles"
         };
         const cu = lu;
         var hu, du, uu, pu, fu, gu, mu, Au, vu;
@@ -58919,26 +54357,17 @@
                 const e = document.getElementById("ui");
                 if (null == e)
                     throw new Error("Failed to find UI element");
-                (0,
-                C.GG)(this, uu, e, "f"),
+                C.set(this, uu, e, "f"),
                 window.addEventListener("mousemove", ( () => {
                     document.body.classList.remove("hide-cursor"),
-                    (0,
-                    C.GG)(this, gu, !1, "f"),
-                    (0,
-                    C.gn)(this, pu, "f") && (null != (0,
-                    C.gn)(this, fu, "f") && clearTimeout((0,
-                    C.gn)(this, fu, "f")),
-                    (0,
-                    C.GG)(this, fu, setTimeout(( () => {
+                    C.set(this, gu, !1, "f"),
+                    C.get(this, pu, "f") && (null != C.get(this, fu, "f") && clearTimeout(C.get(this, fu, "f")),
+                    C.set(this, fu, setTimeout(( () => {
                         document.body.classList.add("hide-cursor"),
-                        (0,
-                        C.GG)(this, gu, !0, "f"),
-                        (0,
-                        C.GG)(this, fu, null, "f")
+                        C.set(this, gu, !0, "f"),
+                        C.set(this, fu, null, "f")
                     }
-                    ), (0,
-                    C.gn)(du, du, "f", mu)), "f"))
+                    ), C.get(du, du, "f", mu)), "f"))
                 }
                 )),
                 document.addEventListener("gesturestart", (function(e) {
@@ -58946,42 +54375,28 @@
                 }
                 )),
                 window.addEventListener("resize", ( () => {
-                    (0,
-                    C.gn)(this, hu, "m", vu).call(this)
+                    C.get(this, hu, "m", vu).call(this)
                 }
                 )),
-                (0,
-                C.gn)(this, hu, "m", vu).call(this)
+                C.get(this, hu, "m", vu).call(this)
             }
             setCursorHiddenWhenInactive(e) {
-                (0,
-                C.GG)(this, pu, e, "f"),
-                e ? (0,
-                C.GG)(this, fu, setTimeout(( () => {
+                C.set(this, pu, e, "f"),
+                e ? C.set(this, fu, setTimeout(( () => {
                     document.body.classList.add("hide-cursor"),
-                    (0,
-                    C.GG)(this, gu, !0, "f"),
-                    (0,
-                    C.GG)(this, fu, null, "f")
+                    C.set(this, gu, !0, "f"),
+                    C.set(this, fu, null, "f")
                 }
-                ), (0,
-                C.gn)(du, du, "f", mu)), "f") : (document.body.classList.remove("hide-cursor"),
-                null != (0,
-                C.gn)(this, fu, "f") && (clearTimeout((0,
-                C.gn)(this, fu, "f")),
-                (0,
-                C.GG)(this, gu, !1, "f"),
-                (0,
-                C.GG)(this, fu, null, "f")))
+                ), C.get(du, du, "f", mu)), "f") : (document.body.classList.remove("hide-cursor"),
+                null != C.get(this, fu, "f") && (clearTimeout(C.get(this, fu, "f")),
+                C.set(this, gu, !1, "f"),
+                C.set(this, fu, null, "f")))
             }
             get isCursorHidden() {
-                return (0,
-                C.gn)(this, gu, "f")
+                return C.get(this, gu, "f")
             }
             setInert(e) {
-                e ? (0,
-                C.gn)(this, uu, "f").setAttribute("inert", "") : (0,
-                C.gn)(this, uu, "f").removeAttribute("inert")
+                e ? C.get(this, uu, "f").setAttribute("inert", "") : C.get(this, uu, "f").removeAttribute("inert")
             }
         }
         du = yu,
@@ -58995,26 +54410,17 @@
         }
         ,
         vu = function() {
-            const e = (0,
-            C.gn)(this, hu, "m", Au).call(this);
-            e < 1 ? ((0,
-            C.gn)(this, uu, "f").style.width = "calc(100% / " + e.toString() + ")",
-            (0,
-            C.gn)(this, uu, "f").style.height = "calc(100% / " + e.toString() + ")",
-            (0,
-            C.gn)(this, uu, "f").style.transform = "scale(" + e.toString() + ")",
-            document.documentElement.style.setProperty("--ui-scale-factor", e.toString())) : ((0,
-            C.gn)(this, uu, "f").style.width = "",
-            (0,
-            C.gn)(this, uu, "f").style.height = "",
-            (0,
-            C.gn)(this, uu, "f").style.transform = "",
+            const e = C.get(this, hu, "m", Au).call(this);
+            e < 1 ? (C.get(this, uu, "f").style.width = "calc(100% / " + e.toString() + ")",
+            C.get(this, uu, "f").style.height = "calc(100% / " + e.toString() + ")",
+            C.get(this, uu, "f").style.transform = "scale(" + e.toString() + ")",
+            document.documentElement.style.setProperty("--ui-scale-factor", e.toString())) : (C.get(this, uu, "f").style.width = "",
+            C.get(this, uu, "f").style.height = "",
+            C.get(this, uu, "f").style.transform = "",
             document.documentElement.style.setProperty("--ui-scale-factor", "1.0"));
             const t = window.getComputedStyle(document.documentElement).getPropertyValue("--safe-area-left-unscaled")
               , n = window.getComputedStyle(document.documentElement).getPropertyValue("--safe-area-right-unscaled");
-            "0px" != t && "0.0px" != t && "0" != t || "0px" != n && "0.0px" != n && "0" != n ? (0,
-            C.gn)(this, uu, "f").classList.add("has-safe-area-horizontal") : (0,
-            C.gn)(this, uu, "f").classList.remove("has-safe-area-horizontal")
+            "0px" != t && "0.0px" != t && "0" != t || "0px" != n && "0.0px" != n && "0" != n ? C.get(this, uu, "f").classList.add("has-safe-area-horizontal") : C.get(this, uu, "f").classList.remove("has-safe-area-horizontal")
         }
         ,
         mu = {
@@ -59035,13 +54441,11 @@
                 ku.set(this, "v6/")
             }
             getLeaderboard(e, t, n, i, r) {
-                let a = "https://vps.kodub.com/" + (0,
-                C.gn)(this, ku, "f") + "leaderboard?version=0.6.0&trackId=" + t + "&skip=" + n.toString() + "&amount=" + i.toString() + "&onlyVerified=" + r.toString();
+                let a = "https://vps.kodub.com/" + C.get(this, ku, "f") + "leaderboard?version=0.6.0&trackId=" + t + "&skip=" + n.toString() + "&amount=" + i.toString() + "&onlyVerified=" + r.toString();
                 return this.determinismState == Js.Ok && (a += "&userTokenHash=" + encodeURIComponent(e)),
                 new Promise(( (t, n) => {
                     const i = new XMLHttpRequest;
-                    i.timeout = (0,
-                    C.gn)(this, wu, "f"),
+                    i.timeout = C.get(this, wu, "f"),
                     i.overrideMimeType("text/plain"),
                     i.onreadystatechange = () => {
                         if (i.readyState == XMLHttpRequest.DONE)
@@ -59154,12 +54558,10 @@
                 ))
             }
             getLeaderboardUserEntry(e, t, n) {
-                const i = "https://vps.kodub.com/" + (0,
-                C.gn)(this, ku, "f") + "leaderboardUserEntry?version=0.6.0&trackId=" + t + "&userTokenHash=" + encodeURIComponent(e) + "&onlyVerified=" + n.toString();
+                const i = "https://vps.kodub.com/" + C.get(this, ku, "f") + "leaderboardUserEntry?version=0.6.0&trackId=" + t + "&userTokenHash=" + encodeURIComponent(e) + "&onlyVerified=" + n.toString();
                 return new Promise(( (e, t) => {
                     const n = new XMLHttpRequest;
-                    n.timeout = (0,
-                    C.gn)(this, wu, "f"),
+                    n.timeout = C.get(this, wu, "f"),
                     n.overrideMimeType("text/plain"),
                     n.onreadystatechange = () => {
                         if (n.readyState == XMLHttpRequest.DONE)
@@ -59204,15 +54606,13 @@
                 ))
             }
             getRecordings(e) {
-                const t = "https://vps.kodub.com/" + (0,
-                C.gn)(this, ku, "f") + "recordings?version=0.6.0&ids=" + e.join(",");
+                const t = "https://vps.kodub.com/" + C.get(this, ku, "f") + "recordings?version=0.6.0&ids=" + e.join(",");
                 return new Promise(( (e, n) => {
                     if (this.determinismState != Js.Ok)
                         n(new Error("Getting recordings not allowed"));
                     else {
                         const i = new XMLHttpRequest;
-                        i.timeout = (0,
-                        C.gn)(this, wu, "f"),
+                        i.timeout = C.get(this, wu, "f"),
                         i.overrideMimeType("text/plain"),
                         i.onreadystatechange = () => {
                             if (i.readyState == XMLHttpRequest.DONE)
@@ -59275,17 +54675,14 @@
                         c(new Error("Submit not allowed"));
                     else {
                         const h = o.serialize();
-                        if (h.length >= (0,
-                        C.gn)(this, Su, "f"))
+                        if (h.length >= C.get(this, Su, "f"))
                             c(new Error("Recording is too large"));
                         else {
-                            const o = "https://vps.kodub.com/" + (0,
-                            C.gn)(this, ku, "f") + "leaderboard";
+                            const o = "https://vps.kodub.com/" + C.get(this, ku, "f") + "leaderboard";
                             let d = "version=0.6.0&userToken=" + encodeURIComponent(e) + "&nickname=" + encodeURIComponent(t) + (null == n ? "" : "&countryCode=" + encodeURIComponent(n)) + "&carStyle=" + i.serialize() + "&trackId=" + r + "&frames=" + s.numberOfFrames.toString() + "&recording=" + h;
                             null != a && (d += "&onlyVerified=" + a.toString());
                             const u = new XMLHttpRequest;
-                            u.timeout = (0,
-                            C.gn)(this, wu, "f"),
+                            u.timeout = C.get(this, wu, "f"),
                             u.overrideMimeType("text/plain"),
                             u.onreadystatechange = () => {
                                 if (4 == u.readyState)
@@ -59353,12 +54750,10 @@
             }
             submitUserProfile(e, t, n, i) {
                 return new Promise(( (r, a) => {
-                    const s = "https://vps.kodub.com/" + (0,
-                    C.gn)(this, ku, "f") + "user"
+                    const s = "https://vps.kodub.com/" + C.get(this, ku, "f") + "user"
                       , o = "version=0.6.0&userToken=" + encodeURIComponent(e) + "&nickname=" + encodeURIComponent(t) + (null == n ? "" : "&countryCode=" + encodeURIComponent(n)) + "&carStyle=" + i.serialize()
                       , l = new XMLHttpRequest;
-                    l.timeout = (0,
-                    C.gn)(this, wu, "f"),
+                    l.timeout = C.get(this, wu, "f"),
                     l.overrideMimeType("text/plain"),
                     l.onreadystatechange = () => {
                         4 == l.readyState && (200 == l.status ? r() : a(new Error("Failed to connect to server")))
@@ -59375,12 +54770,10 @@
                     if (this.determinismState != Js.Ok)
                         s(new Error("Submit not allowed"));
                     else {
-                        const o = "https://vps.kodub.com/" + (0,
-                        C.gn)(this, ku, "f") + "verifyRecordings"
+                        const o = "https://vps.kodub.com/" + C.get(this, ku, "f") + "verifyRecordings"
                           , l = "version=0.6.0&userToken=" + encodeURIComponent(e) + (null != t ? "&trackId=" + t : "") + "&maxFrames=" + n.toString() + "&getEstimatedRemaining=" + i.toString() + "&recordings=" + encodeURIComponent(JSON.stringify(r))
                           , c = new XMLHttpRequest;
-                        c.timeout = (0,
-                        C.gn)(this, xu, "f"),
+                        c.timeout = C.get(this, xu, "f"),
                         c.overrideMimeType("text/plain"),
                         c.onreadystatechange = () => {
                             if (4 == c.readyState)
@@ -59451,11 +54844,9 @@
             }
             getUser(e) {
                 return new Promise(( (t, n) => {
-                    const i = "https://vps.kodub.com/" + (0,
-                    C.gn)(this, ku, "f") + "user?version=0.6.0&userToken=" + encodeURIComponent(e)
+                    const i = "https://vps.kodub.com/" + C.get(this, ku, "f") + "user?version=0.6.0&userToken=" + encodeURIComponent(e)
                       , r = new XMLHttpRequest;
-                    r.timeout = (0,
-                    C.gn)(this, wu, "f"),
+                    r.timeout = C.get(this, wu, "f"),
                     r.overrideMimeType("text/plain"),
                     r.onreadystatechange = () => {
                         if (r.readyState == XMLHttpRequest.DONE)
@@ -59505,22 +54896,18 @@
             createMultiplayerHostWebSocket() {
                 if (this.determinismState != Js.Ok)
                     throw new Error("WebSocket creation not allowed with non-deterministic physics");
-                return new WebSocket("https://vps.kodub.com/" + (0,
-                C.gn)(this, ku, "f") + "multiplayer/host")
+                return new WebSocket("https://vps.kodub.com/" + C.get(this, ku, "f") + "multiplayer/host")
             }
             createMultiplayerJoinWebSocket() {
                 if (this.determinismState != Js.Ok)
                     throw new Error("WebSocket creation not allowed with non-deterministic physics");
-                return new WebSocket("https://vps.kodub.com/" + (0,
-                C.gn)(this, ku, "f") + "multiplayer/join")
+                return new WebSocket("https://vps.kodub.com/" + C.get(this, ku, "f") + "multiplayer/join")
             }
             getIceServers() {
                 return new Promise(( (e, t) => {
-                    const n = "https://vps.kodub.com/" + (0,
-                    C.gn)(this, ku, "f") + "iceServers?version=0.6.0"
+                    const n = "https://vps.kodub.com/" + C.get(this, ku, "f") + "iceServers?version=0.6.0"
                       , i = new XMLHttpRequest;
-                    i.timeout = (0,
-                    C.gn)(this, wu, "f"),
+                    i.timeout = C.get(this, wu, "f"),
                     i.overrideMimeType("text/plain"),
                     i.onreadystatechange = () => {
                         if (i.readyState == XMLHttpRequest.DONE)
@@ -59586,11 +54973,9 @@
         Mu = new WeakSet,
         Pu = function(e) {
             for (const [t,n] of e) {
-                if (!(0,
-                C.gn)(this, Ru, "f").has(t))
+                if (!C.get(this, Ru, "f").has(t))
                     throw new Error("Key binding is missing");
-                (0,
-                C.gn)(this, Ru, "f").set(t, n)
+                C.get(this, Ru, "f").set(t, n)
             }
         }
         ;
@@ -59600,27 +54985,23 @@
                 _u.set(this, void 0),
                 Cu.set(this, this.defaultSettings()),
                 Ru.set(this, this.defaultKeyBindings()),
-                (0,
-                C.GG)(this, _u, e, "f");
+                C.set(this, _u, e, "f");
                 const t = e.loadSettings();
                 null != t && this.updateSettings(t);
                 const n = e.loadKeyBindings();
-                null != n && (0,
-                C.gn)(this, Mu, "m", Pu).call(this, n)
+                null != n && C.get(this, Mu, "m", Pu).call(this, n)
             }
             defaultSettings() {
                 return new Map([[R.A.ImperialUnitsEnabled, "false"], [R.A.ResetHintEnabled, "true"], [R.A.GhostCarEnabled, "true"], [R.A.DefaultCameraMode, "false"], [R.A.CockpitCameraToggle, "true"], [R.A.Checkpoints, "bottom"], [R.A.Timer, "bottom"], [R.A.Speedometer, "bottom"], [R.A.Language, "en-US"], [R.A.ShadowQuality, "2"], [R.A.CloudsEnabled, "true"], [R.A.ParticlesEnabled, "true"], [R.A.SkidmarksEnabled, "true"], [R.A.FogEnabled, "true"], [R.A.RenderScale, "1"], [R.A.ScreenPixelDensity, "true"], [R.A.Antialiasing, "true"], [R.A.MasterVolume, "1"], [R.A.SoundEffectVolume, "1"], [R.A.MusicVolume, "1"], [R.A.CheckpointVolume, "1"], [R.A.GhostCarSoundsEnabled, "true"], [R.A.VibrationEnabled, "false"], [R.A.TouchSteeringSide, "true"]])
             }
             defaultKeyBindings() {
-                return new Map([[ge.A.VehicleAccelerate, ["KeyW", "ArrowUp"]], [ge.A.VehicleTurnRight, ["KeyD", "ArrowRight"]], [ge.A.VehicleBrake, ["KeyS", "ArrowDown"]], [ge.A.VehicleTurnLeft, ["KeyA", "ArrowLeft"]], [ge.A.VehicleCheckpointReset, ["KeyR", "Enter"]], [ge.A.VehicleStartReset, ["KeyT", "Backspace"]], [ge.A.VehicleCockpitCamera, ["KeyC", "KeyM"]], [ge.A.ToggleUI, ["KeyH", null]], [ge.A.Pause, ["KeyP", "Space"]], [ge.A.EditorRotatePart, ["KeyR", "Space"]], [ge.A.EditorHeightModifier, ["ShiftLeft", "ShiftRight"]], [ge.A.EditorDelete, ["Delete", "KeyX"]], [ge.A.EditorMoveForwards, ["KeyW", "ArrowUp"]], [ge.A.EditorMoveRight, ["KeyD", "ArrowRight"]], [ge.A.EditorMoveBackwards, ["KeyS", "ArrowDown"]], [ge.A.EditorMoveLeft, ["KeyA", "ArrowLeft"]], [ge.A.EditorRotateViewUp, ["KeyY", null]], [ge.A.EditorRotateViewDown, ["KeyH", null]], [ge.A.EditorRotateViewLeft, ["KeyQ", null]], [ge.A.EditorRotateViewRight, ["KeyE", null]], [ge.A.EditorMoveDown, ["KeyZ", null]], [ge.A.EditorMoveUp, ["KeyC", null]], [ge.A.EditorTest, ["KeyT", null]], [ge.A.EditorPick, ["KeyG", null]], [ge.A.ToggleFpsCounter, ["Equal", null]], [ge.A.ToggleSpectatorCamera, ["Slash", null]], [ge.A.SpectatorMoveForwards, ["KeyW", "ArrowUp"]], [ge.A.SpectatorMoveRight, ["KeyD", "ArrowRight"]], [ge.A.SpectatorMoveBackwards, ["KeyS", "ArrowDown"]], [ge.A.SpectatorMoveLeft, ["KeyA", "ArrowLeft"]], [ge.A.SpectatorSpeedModifier, ["ShiftLeft", "ShiftRight"]], [ge.A.PreviewStepForward, ["Period", null]], [ge.A.PreviewStepBack, ["Comma", null]]])
+                return new Map([[KeyBind.VehicleAccelerate, ["KeyW", "ArrowUp"]], [KeyBind.VehicleTurnRight, ["KeyD", "ArrowRight"]], [KeyBind.VehicleBrake, ["KeyS", "ArrowDown"]], [KeyBind.VehicleTurnLeft, ["KeyA", "ArrowLeft"]], [KeyBind.VehicleCheckpointReset, ["KeyR", "Enter"]], [KeyBind.VehicleStartReset, ["KeyT", "Backspace"]], [KeyBind.VehicleCockpitCamera, ["KeyC", "KeyM"]], [KeyBind.ToggleUI, ["KeyH", null]], [KeyBind.Pause, ["KeyP", "Space"]], [KeyBind.EditorRotatePart, ["KeyR", "Space"]], [KeyBind.EditorHeightModifier, ["ShiftLeft", "ShiftRight"]], [KeyBind.EditorDelete, ["Delete", "KeyX"]], [KeyBind.EditorMoveForwards, ["KeyW", "ArrowUp"]], [KeyBind.EditorMoveRight, ["KeyD", "ArrowRight"]], [KeyBind.EditorMoveBackwards, ["KeyS", "ArrowDown"]], [KeyBind.EditorMoveLeft, ["KeyA", "ArrowLeft"]], [KeyBind.EditorRotateViewUp, ["KeyY", null]], [KeyBind.EditorRotateViewDown, ["KeyH", null]], [KeyBind.EditorRotateViewLeft, ["KeyQ", null]], [KeyBind.EditorRotateViewRight, ["KeyE", null]], [KeyBind.EditorMoveDown, ["KeyZ", null]], [KeyBind.EditorMoveUp, ["KeyC", null]], [KeyBind.EditorTest, ["KeyT", null]], [KeyBind.EditorPick, ["KeyG", null]], [KeyBind.ToggleFpsCounter, ["Equal", null]], [KeyBind.ToggleSpectatorCamera, ["Slash", null]], [KeyBind.SpectatorMoveForwards, ["KeyW", "ArrowUp"]], [KeyBind.SpectatorMoveRight, ["KeyD", "ArrowRight"]], [KeyBind.SpectatorMoveBackwards, ["KeyS", "ArrowDown"]], [KeyBind.SpectatorMoveLeft, ["KeyA", "ArrowLeft"]], [KeyBind.SpectatorSpeedModifier, ["ShiftLeft", "ShiftRight"]], [KeyBind.PreviewStepForward, ["Period", null]], [KeyBind.PreviewStepBack, ["Comma", null]]])
             }
             getSettings() {
-                return Array.from((0,
-                C.gn)(this, Cu, "f"))
+                return Array.from(C.get(this, Cu, "f"))
             }
             getSetting(e) {
-                const t = (0,
-                C.gn)(this, Cu, "f").get(e);
+                const t = C.get(this, Cu, "f").get(e);
                 if (null == t)
                     throw new Error("Setting name is missing");
                 return t
@@ -59636,32 +55017,23 @@
             }
             updateSettings(e) {
                 for (const [t,n] of e) {
-                    if (!(0,
-                    C.gn)(this, Cu, "f").has(t))
+                    if (!C.get(this, Cu, "f").has(t))
                         throw new Error("Setting name is missing");
-                    (0,
-                    C.gn)(this, Cu, "f").set(t, n)
+                    C.get(this, Cu, "f").set(t, n)
                 }
             }
             saveSettings() {
-                (0,
-                C.gn)(this, _u, "f").saveSettings((0,
-                C.gn)(this, Cu, "f"))
+                C.get(this, _u, "f").saveSettings(C.get(this, Cu, "f"))
             }
             getKeyBindings(e) {
-                return (0,
-                C.gn)(this, Ru, "f").get(e) ?? [null, null]
+                return C.get(this, Ru, "f").get(e) ?? [null, null]
             }
             setKeyBindings(e) {
-                (0,
-                C.gn)(this, Mu, "m", Pu).call(this, e),
-                (0,
-                C.gn)(this, _u, "f").saveKeyBindings((0,
-                C.gn)(this, Ru, "f"))
+                C.get(this, Mu, "m", Pu).call(this, e),
+                C.get(this, _u, "f").saveKeyBindings(C.get(this, Ru, "f"))
             }
             checkKeyBinding(e, t) {
-                const n = (0,
-                C.gn)(this, Ru, "f").get(t) ?? [];
+                const n = C.get(this, Ru, "f").get(t) ?? [];
                 for (const t of n)
                     if (null != t && e.code == t)
                         return !0;
@@ -59694,66 +55066,35 @@
                 Gu.set(this, void 0),
                 Fu.set(this, void 0),
                 Ou.set(this, void 0),
-                (0,
-                C.GG)(this, Nu, e, "f"),
-                (0,
-                C.GG)(this, Du, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, Du, "f").className = "input-visualizer-ui",
-                (0,
-                C.gn)(this, Nu, "f").appendChild((0,
-                C.gn)(this, Du, "f")),
-                (0,
-                C.GG)(this, Bu, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, Bu, "f").className = "arrow-up",
-                (0,
-                C.gn)(this, Bu, "f").innerHTML = '<img src="images/arrow_up.svg">',
-                (0,
-                C.gn)(this, Du, "f").appendChild((0,
-                C.gn)(this, Bu, "f")),
-                (0,
-                C.GG)(this, Gu, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, Gu, "f").className = "arrow-right",
-                (0,
-                C.gn)(this, Gu, "f").innerHTML = '<img src="images/arrow_right.svg">',
-                (0,
-                C.gn)(this, Du, "f").appendChild((0,
-                C.gn)(this, Gu, "f")),
-                (0,
-                C.GG)(this, Fu, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, Fu, "f").className = "arrow-down",
-                (0,
-                C.gn)(this, Fu, "f").innerHTML = '<img src="images/arrow_down.svg">',
-                (0,
-                C.gn)(this, Du, "f").appendChild((0,
-                C.gn)(this, Fu, "f")),
-                (0,
-                C.GG)(this, Ou, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, Ou, "f").className = "arrow-left",
-                (0,
-                C.gn)(this, Ou, "f").innerHTML = '<img src="images/arrow_left.svg">',
-                (0,
-                C.gn)(this, Du, "f").appendChild((0,
-                C.gn)(this, Ou, "f"))
+                C.set(this, Nu, e, "f"),
+                C.set(this, Du, document.createElement("div"), "f"),
+                C.get(this, Du, "f").className = "input-visualizer-ui",
+                C.get(this, Nu, "f").appendChild(C.get(this, Du, "f")),
+                C.set(this, Bu, document.createElement("div"), "f"),
+                C.get(this, Bu, "f").className = "arrow-up",
+                C.get(this, Bu, "f").innerHTML = '<img src="images/arrow_up.svg">',
+                C.get(this, Du, "f").appendChild(C.get(this, Bu, "f")),
+                C.set(this, Gu, document.createElement("div"), "f"),
+                C.get(this, Gu, "f").className = "arrow-right",
+                C.get(this, Gu, "f").innerHTML = '<img src="images/arrow_right.svg">',
+                C.get(this, Du, "f").appendChild(C.get(this, Gu, "f")),
+                C.set(this, Fu, document.createElement("div"), "f"),
+                C.get(this, Fu, "f").className = "arrow-down",
+                C.get(this, Fu, "f").innerHTML = '<img src="images/arrow_down.svg">',
+                C.get(this, Du, "f").appendChild(C.get(this, Fu, "f")),
+                C.set(this, Ou, document.createElement("div"), "f"),
+                C.get(this, Ou, "f").className = "arrow-left",
+                C.get(this, Ou, "f").innerHTML = '<img src="images/arrow_left.svg">',
+                C.get(this, Du, "f").appendChild(C.get(this, Ou, "f"))
             }
             dispose() {
-                (0,
-                C.gn)(this, Nu, "f").removeChild((0,
-                C.gn)(this, Du, "f"))
+                C.get(this, Nu, "f").removeChild(C.get(this, Du, "f"))
             }
             update(e) {
-                (0,
-                C.gn)(this, Bu, "f").className = e.up ? "active arrow-up" : "arrow-up",
-                (0,
-                C.gn)(this, Gu, "f").className = e.right ? "active arrow-right" : "arrow-right",
-                (0,
-                C.gn)(this, Fu, "f").className = e.down ? "active arrow-down" : "arrow-down",
-                (0,
-                C.gn)(this, Ou, "f").className = e.left ? "active arrow-left" : "arrow-left"
+                C.get(this, Bu, "f").className = e.up ? "active arrow-up" : "arrow-up",
+                C.get(this, Gu, "f").className = e.right ? "active arrow-right" : "arrow-right",
+                C.get(this, Fu, "f").className = e.down ? "active arrow-down" : "arrow-down",
+                C.get(this, Ou, "f").className = e.left ? "active arrow-left" : "arrow-left"
             }
         }
         ;
@@ -59791,139 +55132,74 @@
         pp = new WeakMap,
         ju = new WeakSet,
         fp = function() {
-            (0,
-            C.gn)(this, np, "f") && !(0,
-            C.gn)(this, op, "f") && (0,
-            C.gn)(this, ip, "f").numberOfFrames > 0 && (0,
-            C.gn)(this, qu, "f").call(this, new yt.A(Math.max(0, (0,
-            C.gn)(this, ip, "f").numberOfFrames - 1)));
+            C.get(this, np, "f") && !C.get(this, op, "f") && C.get(this, ip, "f").numberOfFrames > 0 && C.get(this, qu, "f").call(this, new yt.A(Math.max(0, C.get(this, ip, "f").numberOfFrames - 1)));
             let e = 0;
             const t = () => {
-                (0,
-                C.gn)(this, np, "f") && !(0,
-                C.gn)(this, op, "f") && (0,
-                C.gn)(this, ip, "f").numberOfFrames > 0 && (0,
-                C.gn)(this, qu, "f").call(this, new yt.A(Math.max(0, (0,
-                C.gn)(this, ip, "f").numberOfFrames - 1))),
+                C.get(this, np, "f") && !C.get(this, op, "f") && C.get(this, ip, "f").numberOfFrames > 0 && C.get(this, qu, "f").call(this, new yt.A(Math.max(0, C.get(this, ip, "f").numberOfFrames - 1))),
                 e++,
-                e < 15 ? (0,
-                C.GG)(this, dp, setTimeout(t, 100), "f") : e < 100 ? (0,
-                C.GG)(this, dp, setTimeout(t, 25), "f") : (0,
-                C.GG)(this, dp, setTimeout(t, 1), "f")
+                e < 15 ? C.set(this, dp, setTimeout(t, 100), "f") : e < 100 ? C.set(this, dp, setTimeout(t, 25), "f") : C.set(this, dp, setTimeout(t, 1), "f")
             }
             ;
-            (0,
-            C.GG)(this, dp, setTimeout(t, 500), "f")
+            C.set(this, dp, setTimeout(t, 500), "f")
         }
         ,
         gp = function() {
-            null != (0,
-            C.gn)(this, dp, "f") && (clearTimeout((0,
-            C.gn)(this, dp, "f")),
-            (0,
-            C.GG)(this, dp, null, "f"))
+            null != C.get(this, dp, "f") && (clearTimeout(C.get(this, dp, "f")),
+            C.set(this, dp, null, "f"))
         }
         ,
         mp = function() {
-            !(0,
-            C.gn)(this, np, "f") || (0,
-            C.gn)(this, op, "f") || (0,
-            C.gn)(this, rp, "f") || (0,
-            C.gn)(this, qu, "f").call(this, new yt.A(Math.min((0,
-            C.gn)(this, ap, "f").numberOfFrames, (0,
-            C.gn)(this, ip, "f").numberOfFrames + 1)));
+            !C.get(this, np, "f") || C.get(this, op, "f") || C.get(this, rp, "f") || C.get(this, qu, "f").call(this, new yt.A(Math.min(C.get(this, ap, "f").numberOfFrames, C.get(this, ip, "f").numberOfFrames + 1)));
             let e = 0;
             const t = () => {
-                !(0,
-                C.gn)(this, np, "f") || (0,
-                C.gn)(this, op, "f") || (0,
-                C.gn)(this, rp, "f") || (0,
-                C.gn)(this, qu, "f").call(this, new yt.A(Math.min((0,
-                C.gn)(this, ap, "f").numberOfFrames, (0,
-                C.gn)(this, ip, "f").numberOfFrames + 1))),
+                !C.get(this, np, "f") || C.get(this, op, "f") || C.get(this, rp, "f") || C.get(this, qu, "f").call(this, new yt.A(Math.min(C.get(this, ap, "f").numberOfFrames, C.get(this, ip, "f").numberOfFrames + 1))),
                 e++,
-                e < 15 ? (0,
-                C.GG)(this, hp, setTimeout(t, 100), "f") : e < 100 ? (0,
-                C.GG)(this, hp, setTimeout(t, 25), "f") : (0,
-                C.GG)(this, hp, setTimeout(t, 1), "f")
+                e < 15 ? C.set(this, hp, setTimeout(t, 100), "f") : e < 100 ? C.set(this, hp, setTimeout(t, 25), "f") : C.set(this, hp, setTimeout(t, 1), "f")
             }
             ;
-            (0,
-            C.GG)(this, hp, setTimeout(t, 500), "f")
+            C.set(this, hp, setTimeout(t, 500), "f")
         }
         ,
         Ap = function() {
-            null != (0,
-            C.gn)(this, hp, "f") && (clearTimeout((0,
-            C.gn)(this, hp, "f")),
-            (0,
-            C.GG)(this, hp, null, "f"))
+            null != C.get(this, hp, "f") && (clearTimeout(C.get(this, hp, "f")),
+            C.set(this, hp, null, "f"))
         }
         ,
         vp = function(e) {
-            const t = (0,
-            C.gn)(this, Zu, "f").getBoundingClientRect()
+            const t = C.get(this, Zu, "f").getBoundingClientRect()
               , n = (e.clientX - t.left) / (t.width - 8)
-              , i = new yt.A(Math.max(0, Math.min((0,
-            C.gn)(this, ap, "f").numberOfFrames, Math.floor(n * (0,
-            C.gn)(this, ap, "f").numberOfFrames))));
-            (0,
-            C.gn)(this, qu, "f").call(this, i)
+              , i = new yt.A(Math.max(0, Math.min(C.get(this, ap, "f").numberOfFrames, Math.floor(n * C.get(this, ap, "f").numberOfFrames))));
+            C.get(this, qu, "f").call(this, i)
         }
         ,
         yp = function() {
-            (0,
-            C.gn)(this, np, "f") ? (0,
-            C.gn)(this, rp, "f") ? ((0,
-            C.gn)(this, Ju, "f").disabled = 0 == (0,
-            C.gn)(this, ip, "f").numberOfFrames,
-            (0,
-            C.gn)(this, Xu, "f").disabled = !0) : ((0,
-            C.gn)(this, Ju, "f").disabled = 0 == (0,
-            C.gn)(this, ip, "f").numberOfFrames,
-            (0,
-            C.gn)(this, Xu, "f").disabled = !1) : ((0,
-            C.gn)(this, Ju, "f").disabled = !0,
-            (0,
-            C.gn)(this, Xu, "f").disabled = !0),
-            (0,
-            C.gn)(this, rp, "f") ? (0,
-            C.gn)(this, Yu, "f").innerHTML = '<img src="images/reset.svg">' : (0,
-            C.gn)(this, np, "f") ? (0,
-            C.gn)(this, Yu, "f").innerHTML = '<img src="images/play.svg">' : (0,
-            C.gn)(this, Yu, "f").innerHTML = '<img src="images/pause.svg">'
+            C.get(this, np, "f") ? C.get(this, rp, "f") ? (C.get(this, Ju, "f").disabled = 0 == C.get(this, ip, "f").numberOfFrames,
+            C.get(this, Xu, "f").disabled = !0) : (C.get(this, Ju, "f").disabled = 0 == C.get(this, ip, "f").numberOfFrames,
+            C.get(this, Xu, "f").disabled = !1) : (C.get(this, Ju, "f").disabled = !0,
+            C.get(this, Xu, "f").disabled = !0),
+            C.get(this, rp, "f") ? C.get(this, Yu, "f").innerHTML = '<img src="images/reset.svg">' : C.get(this, np, "f") ? C.get(this, Yu, "f").innerHTML = '<img src="images/play.svg">' : C.get(this, Yu, "f").innerHTML = '<img src="images/pause.svg">'
         }
         ,
         bp = function() {
-            if ((0,
-            C.gn)(this, tp, "f").innerHTML = "",
-            (0,
-            C.gn)(this, ap, "f").time < 1e4) {
+            if (C.get(this, tp, "f").innerHTML = "",
+            C.get(this, ap, "f").time < 1e4) {
                 let e, t;
-                (0,
-                C.gn)(this, ap, "f").time > 2e3 ? (e = 60,
-                t = 600) : (0,
-                C.gn)(this, ap, "f").time > 200 ? (e = 10,
+                C.get(this, ap, "f").time > 2e3 ? (e = 60,
+                t = 600) : C.get(this, ap, "f").time > 200 ? (e = 10,
                 t = 60) : (e = 1,
                 t = 10);
-                for (let n = e; n < (0,
-                C.gn)(this, ap, "f").time; n += e) {
+                for (let n = e; n < C.get(this, ap, "f").time; n += e) {
                     const e = document.createElement("div");
                     e.className = n % t == 0 ? "dash long" : "dash",
-                    e.style.left = "calc(" + (n / (0,
-                    C.gn)(this, ap, "f").time * 100).toString() + "% - 1px)",
-                    (0,
-                    C.gn)(this, tp, "f").appendChild(e)
+                    e.style.left = "calc(" + (n / C.get(this, ap, "f").time * 100).toString() + "% - 1px)",
+                    C.get(this, tp, "f").appendChild(e)
                 }
             }
-            for (const e of (0,
-            C.gn)(this, sp, "f")) {
+            for (const e of C.get(this, sp, "f")) {
                 const t = document.createElement("div");
                 t.className = "checkpoint-dash",
-                t.style.left = "calc(" + (e.time / (0,
-                C.gn)(this, ap, "f").time * 100).toString() + "% - 1px)",
-                (0,
-                C.gn)(this, tp, "f").appendChild(t)
+                t.style.left = "calc(" + (e.time / C.get(this, ap, "f").time * 100).toString() + "% - 1px)",
+                C.get(this, tp, "f").appendChild(t)
             }
         }
         ;
@@ -59952,38 +55228,23 @@
                 dp.set(this, null),
                 up.set(this, void 0),
                 pp.set(this, void 0),
-                (0,
-                C.GG)(this, Ku, e, "f"),
-                (0,
-                C.GG)(this, np, s, "f"),
-                (0,
-                C.GG)(this, qu, a, "f"),
-                (0,
-                C.GG)(this, ap, i, "f"),
-                (0,
-                C.GG)(this, sp, r.map((e => e.clone())), "f"),
-                (0,
-                C.GG)(this, Qu, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, Qu, "f").className = "time-bar-ui",
-                (0,
-                C.gn)(this, Ku, "f").appendChild((0,
-                C.gn)(this, Qu, "f")),
-                (0,
-                C.GG)(this, Ju, document.createElement("button"), "f"),
-                (0,
-                C.gn)(this, Ju, "f").className = "button",
-                (0,
-                C.gn)(this, Ju, "f").innerHTML = '<img src="images/step_back.svg">',
-                (0,
-                C.gn)(this, Ju, "f").addEventListener("pointerdown", (e => {
+                C.set(this, Ku, e, "f"),
+                C.set(this, np, s, "f"),
+                C.set(this, qu, a, "f"),
+                C.set(this, ap, i, "f"),
+                C.set(this, sp, r.map((e => e.clone())), "f"),
+                C.set(this, Qu, document.createElement("div"), "f"),
+                C.get(this, Qu, "f").className = "time-bar-ui",
+                C.get(this, Ku, "f").appendChild(C.get(this, Qu, "f")),
+                C.set(this, Ju, document.createElement("button"), "f"),
+                C.get(this, Ju, "f").className = "button",
+                C.get(this, Ju, "f").innerHTML = '<img src="images/step_back.svg">',
+                C.get(this, Ju, "f").addEventListener("pointerdown", (e => {
                     if (0 == e.button) {
                         t.playUIClick(),
-                        (0,
-                        C.gn)(this, ju, "m", fp).call(this);
+                        C.get(this, ju, "m", fp).call(this);
                         const e = t => {
-                            0 == t.button && ((0,
-                            C.gn)(this, ju, "m", gp).call(this),
+                            0 == t.button && (C.get(this, ju, "m", gp).call(this),
                             window.removeEventListener("pointerup", e))
                         }
                         ;
@@ -59991,24 +55252,16 @@
                     }
                 }
                 )),
-                (0,
-                C.gn)(this, Qu, "f").appendChild((0,
-                C.gn)(this, Ju, "f")),
-                (0,
-                C.GG)(this, Xu, document.createElement("button"), "f"),
-                (0,
-                C.gn)(this, Xu, "f").className = "button",
-                (0,
-                C.gn)(this, Xu, "f").innerHTML = '<img src="images/step_forward.svg">',
-                (0,
-                C.gn)(this, Xu, "f").addEventListener("pointerdown", (e => {
+                C.get(this, Qu, "f").appendChild(C.get(this, Ju, "f")),
+                C.set(this, Xu, document.createElement("button"), "f"),
+                C.get(this, Xu, "f").className = "button",
+                C.get(this, Xu, "f").innerHTML = '<img src="images/step_forward.svg">',
+                C.get(this, Xu, "f").addEventListener("pointerdown", (e => {
                     if (0 == e.button) {
                         t.playUIClick(),
-                        (0,
-                        C.gn)(this, ju, "m", mp).call(this);
+                        C.get(this, ju, "m", mp).call(this);
                         const e = t => {
-                            0 == t.button && ((0,
-                            C.gn)(this, ju, "m", Ap).call(this),
+                            0 == t.button && (C.get(this, ju, "m", Ap).call(this),
                             window.removeEventListener("pointerup", e))
                         }
                         ;
@@ -60016,164 +55269,92 @@
                     }
                 }
                 )),
-                (0,
-                C.gn)(this, Qu, "f").appendChild((0,
-                C.gn)(this, Xu, "f")),
-                (0,
-                C.GG)(this, Yu, document.createElement("button"), "f"),
-                (0,
-                C.gn)(this, Yu, "f").className = "button",
-                (0,
-                C.gn)(this, Yu, "f").addEventListener("click", ( () => {
+                C.get(this, Qu, "f").appendChild(C.get(this, Xu, "f")),
+                C.set(this, Yu, document.createElement("button"), "f"),
+                C.get(this, Yu, "f").className = "button",
+                C.get(this, Yu, "f").addEventListener("click", ( () => {
                     t.playUIClick(),
-                    (0,
-                    C.gn)(this, rp, "f") ? ((0,
-                    C.gn)(this, qu, "f").call(this, new yt.A(0)),
+                    C.get(this, rp, "f") ? (C.get(this, qu, "f").call(this, new yt.A(0)),
                     this.isPaused = !1) : this.isPaused = !this.isPaused
                 }
                 )),
-                (0,
-                C.gn)(this, Qu, "f").appendChild((0,
-                C.gn)(this, Yu, "f")),
-                (0,
-                C.gn)(this, ju, "m", yp).call(this),
-                (0,
-                C.GG)(this, Zu, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, Zu, "f").className = "bar",
-                (0,
-                C.gn)(this, Zu, "f").addEventListener("pointerdown", (e => {
-                    (0,
-                    C.GG)(this, op, !0, "f"),
-                    (0,
-                    C.gn)(this, ju, "m", vp).call(this, e)
+                C.get(this, Qu, "f").appendChild(C.get(this, Yu, "f")),
+                C.get(this, ju, "m", yp).call(this),
+                C.set(this, Zu, document.createElement("div"), "f"),
+                C.get(this, Zu, "f").className = "bar",
+                C.get(this, Zu, "f").addEventListener("pointerdown", (e => {
+                    C.set(this, op, !0, "f"),
+                    C.get(this, ju, "m", vp).call(this, e)
                 }
                 )),
-                window.addEventListener("pointermove", (0,
-                C.GG)(this, lp, (e => {
-                    (0,
-                    C.gn)(this, op, "f") && (0,
-                    C.gn)(this, ju, "m", vp).call(this, e)
+                window.addEventListener("pointermove", C.set(this, lp, (e => {
+                    C.get(this, op, "f") && C.get(this, ju, "m", vp).call(this, e)
                 }
                 ), "f")),
-                window.addEventListener("pointerup", (0,
-                C.GG)(this, cp, (e => {
-                    (0,
-                    C.gn)(this, op, "f") && ((0,
-                    C.GG)(this, op, !1, "f"),
-                    (0,
-                    C.gn)(this, ju, "m", vp).call(this, e))
+                window.addEventListener("pointerup", C.set(this, cp, (e => {
+                    C.get(this, op, "f") && (C.set(this, op, !1, "f"),
+                    C.get(this, ju, "m", vp).call(this, e))
                 }
                 ), "f")),
-                (0,
-                C.gn)(this, Qu, "f").appendChild((0,
-                C.gn)(this, Zu, "f"));
+                C.get(this, Qu, "f").appendChild(C.get(this, Zu, "f"));
                 const o = document.createElement("div");
-                (0,
-                C.gn)(this, Zu, "f").appendChild(o),
-                (0,
-                C.GG)(this, $u, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, $u, "f").className = "unloaded-fill",
-                o.appendChild((0,
-                C.gn)(this, $u, "f")),
-                (0,
-                C.GG)(this, ep, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, ep, "f").className = "fill",
-                o.appendChild((0,
-                C.gn)(this, ep, "f")),
-                (0,
-                C.GG)(this, tp, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, tp, "f").className = "dash-container",
-                o.appendChild((0,
-                C.gn)(this, tp, "f")),
-                (0,
-                C.gn)(this, ju, "m", bp).call(this),
-                window.addEventListener("keydown", (0,
-                C.GG)(this, up, (e => {
-                    e.repeat || (n.checkKeyBinding(e, ge.A.PreviewStepForward) ? (0,
-                    C.gn)(this, ju, "m", mp).call(this) : n.checkKeyBinding(e, ge.A.PreviewStepBack) && (0,
-                    C.gn)(this, ju, "m", fp).call(this))
+                C.get(this, Zu, "f").appendChild(o),
+                C.set(this, $u, document.createElement("div"), "f"),
+                C.get(this, $u, "f").className = "unloaded-fill",
+                o.appendChild(C.get(this, $u, "f")),
+                C.set(this, ep, document.createElement("div"), "f"),
+                C.get(this, ep, "f").className = "fill",
+                o.appendChild(C.get(this, ep, "f")),
+                C.set(this, tp, document.createElement("div"), "f"),
+                C.get(this, tp, "f").className = "dash-container",
+                o.appendChild(C.get(this, tp, "f")),
+                C.get(this, ju, "m", bp).call(this),
+                window.addEventListener("keydown", C.set(this, up, (e => {
+                    e.repeat || (n.checkKeyBinding(e, KeyBind.PreviewStepForward) ? C.get(this, ju, "m", mp).call(this) : n.checkKeyBinding(e, KeyBind.PreviewStepBack) && C.get(this, ju, "m", fp).call(this))
                 }
                 ), "f")),
-                window.addEventListener("keyup", (0,
-                C.GG)(this, pp, (e => {
-                    n.checkKeyBinding(e, ge.A.PreviewStepForward) ? (0,
-                    C.gn)(this, ju, "m", Ap).call(this) : n.checkKeyBinding(e, ge.A.PreviewStepBack) && (0,
-                    C.gn)(this, ju, "m", gp).call(this)
+                window.addEventListener("keyup", C.set(this, pp, (e => {
+                    n.checkKeyBinding(e, KeyBind.PreviewStepForward) ? C.get(this, ju, "m", Ap).call(this) : n.checkKeyBinding(e, KeyBind.PreviewStepBack) && C.get(this, ju, "m", gp).call(this)
                 }
                 ), "f"))
             }
             dispose() {
-                (0,
-                C.gn)(this, Ku, "f").removeChild((0,
-                C.gn)(this, Qu, "f")),
-                window.removeEventListener("pointermove", (0,
-                C.gn)(this, lp, "f")),
-                window.removeEventListener("pointerup", (0,
-                C.gn)(this, cp, "f")),
-                window.removeEventListener("keydown", (0,
-                C.gn)(this, up, "f")),
-                window.removeEventListener("keyup", (0,
-                C.gn)(this, pp, "f"))
+                C.get(this, Ku, "f").removeChild(C.get(this, Qu, "f")),
+                window.removeEventListener("pointermove", C.get(this, lp, "f")),
+                window.removeEventListener("pointerup", C.get(this, cp, "f")),
+                window.removeEventListener("keydown", C.get(this, up, "f")),
+                window.removeEventListener("keyup", C.get(this, pp, "f"))
             }
             get isDragging() {
-                return (0,
-                C.gn)(this, op, "f")
+                return C.get(this, op, "f")
             }
             get isPaused() {
-                return (0,
-                C.gn)(this, np, "f")
+                return C.get(this, np, "f")
             }
             set isPaused(e) {
-                (0,
-                C.GG)(this, np, e, "f"),
-                (0,
-                C.gn)(this, ju, "m", yp).call(this)
+                C.set(this, np, e, "f"),
+                C.get(this, ju, "m", yp).call(this)
             }
             set time(e) {
-                (0,
-                C.gn)(this, ep, "f").style.width = "calc(8px + " + (e.numberOfFrames / (0,
-                C.gn)(this, ap, "f").numberOfFrames * 100).toString() + "%)",
-                0 == e.numberOfFrames ? (0,
-                C.gn)(this, ep, "f").style.visibility = "hidden" : (0,
-                C.gn)(this, ep, "f").style.visibility = "visible";
-                const t = e.numberOfFrames >= (0,
-                C.gn)(this, ap, "f").numberOfFrames
-                  , n = (0,
-                C.gn)(this, rp, "f") != t || 0 == (0,
-                C.gn)(this, ip, "f").numberOfFrames && 0 != e.numberOfFrames || 0 != (0,
-                C.gn)(this, ip, "f").numberOfFrames && 0 == e.numberOfFrames;
-                (0,
-                C.GG)(this, ip, e.clone(), "f"),
-                (0,
-                C.GG)(this, rp, t, "f"),
-                n && (0,
-                C.gn)(this, ju, "m", yp).call(this)
+                C.get(this, ep, "f").style.width = "calc(8px + " + (e.numberOfFrames / C.get(this, ap, "f").numberOfFrames * 100).toString() + "%)",
+                0 == e.numberOfFrames ? C.get(this, ep, "f").style.visibility = "hidden" : C.get(this, ep, "f").style.visibility = "visible";
+                const t = e.numberOfFrames >= C.get(this, ap, "f").numberOfFrames
+                  , n = C.get(this, rp, "f") != t || 0 == C.get(this, ip, "f").numberOfFrames && 0 != e.numberOfFrames || 0 != C.get(this, ip, "f").numberOfFrames && 0 == e.numberOfFrames;
+                C.set(this, ip, e.clone(), "f"),
+                C.set(this, rp, t, "f"),
+                n && C.get(this, ju, "m", yp).call(this)
             }
             set loadedTime(e) {
-                (0,
-                C.gn)(this, $u, "f").style.width = "calc(8px + " + (100 * (1 - e.numberOfFrames / (0,
-                C.gn)(this, ap, "f").numberOfFrames)).toString() + "%)",
-                e.numberOfFrames >= (0,
-                C.gn)(this, ap, "f").numberOfFrames ? (0,
-                C.gn)(this, $u, "f").style.visibility = "hidden" : (0,
-                C.gn)(this, $u, "f").style.visibility = "visible"
+                C.get(this, $u, "f").style.width = "calc(8px + " + (100 * (1 - e.numberOfFrames / C.get(this, ap, "f").numberOfFrames)).toString() + "%)",
+                e.numberOfFrames >= C.get(this, ap, "f").numberOfFrames ? C.get(this, $u, "f").style.visibility = "hidden" : C.get(this, $u, "f").style.visibility = "visible"
             }
             set totalTime(e) {
-                (0,
-                C.gn)(this, ap, "f").equals(e) || ((0,
-                C.GG)(this, ap, e.clone(), "f"),
-                (0,
-                C.gn)(this, ju, "m", bp).call(this))
+                C.get(this, ap, "f").equals(e) || (C.set(this, ap, e.clone(), "f"),
+                C.get(this, ju, "m", bp).call(this))
             }
             set checkpointTimes(e) {
-                (0,
-                C.GG)(this, sp, e.map((e => e.clone())), "f"),
-                (0,
-                C.gn)(this, ju, "m", bp).call(this)
+                C.set(this, sp, e.map((e => e.clone())), "f"),
+                C.get(this, ju, "m", bp).call(this)
             }
         }
         ;
@@ -60193,12 +55374,9 @@
             constructor(e, t, n, i, r, a) {
                 kp.set(this, void 0),
                 Ep.set(this, void 0),
-                (0,
-                C.GG)(this, kp, e, "f"),
-                (0,
-                C.GG)(this, Ep, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, Ep, "f").className = "preview-toolbar-ui";
+                C.set(this, kp, e, "f"),
+                C.set(this, Ep, document.createElement("div"), "f"),
+                C.get(this, Ep, "f").className = "preview-toolbar-ui";
                 const s = document.createElement("button");
                 s.className = "button",
                 s.innerHTML = '<img class="button-icon" src="images/back.svg"> ',
@@ -60208,8 +55386,7 @@
                     i()
                 }
                 )),
-                (0,
-                C.gn)(this, Ep, "f").appendChild(s);
+                C.get(this, Ep, "f").appendChild(s);
                 const o = document.createElement("button");
                 if (o.className = "button",
                 o.innerHTML = '<img class="button-icon" src="images/graph.svg"> ',
@@ -60219,8 +55396,7 @@
                     r()
                 }
                 )),
-                (0,
-                C.gn)(this, Ep, "f").appendChild(o),
+                C.get(this, Ep, "f").appendChild(o),
                 null != a) {
                     const e = document.createElement("button");
                     e.className = "button",
@@ -60231,17 +55407,12 @@
                         a()
                     }
                     )),
-                    (0,
-                    C.gn)(this, Ep, "f").appendChild(e)
+                    C.get(this, Ep, "f").appendChild(e)
                 }
-                (0,
-                C.gn)(this, kp, "f").appendChild((0,
-                C.gn)(this, Ep, "f"))
+                C.get(this, kp, "f").appendChild(C.get(this, Ep, "f"))
             }
             dispose() {
-                (0,
-                C.gn)(this, kp, "f").removeChild((0,
-                C.gn)(this, Ep, "f"))
+                C.get(this, kp, "f").removeChild(C.get(this, Ep, "f"))
             }
         }
         ;
@@ -60274,11 +55445,8 @@
         jp = new WeakMap,
         Cp = new WeakSet,
         Kp = function(e) {
-            e ? (0,
-            C.gn)(this, Pp, "f").classList.add("type-selection-open") : (0,
-            C.gn)(this, Pp, "f").classList.remove("type-selection-open"),
-            (0,
-            C.GG)(this, Lp, e, "f")
+            e ? C.get(this, Pp, "f").classList.add("type-selection-open") : C.get(this, Pp, "f").classList.remove("type-selection-open"),
+            C.set(this, Lp, e, "f")
         }
         ,
         qp = function(e, t) {
@@ -60343,8 +55511,7 @@
         }
         ,
         Qp = function(e) {
-            (0,
-            C.GG)(this, zp, [], "f");
+            C.set(this, zp, [], "f");
             for (const {name: t, replay: n} of e) {
                 const e = []
                   , i = n.getLastFrame().numberOfFrames;
@@ -60352,202 +55519,95 @@
                     const i = n.getFrame(t);
                     if (null == i)
                         throw new Error("Car Replay missing frame");
-                    if (e.push((0,
-                    C.gn)(this, Ip, "f").calculation(i)),
+                    if (e.push(C.get(this, Ip, "f").calculation(i)),
                     null != i.finishFrames)
                         break
                 }
-                (0,
-                C.gn)(this, zp, "f").push({
+                C.get(this, zp, "f").push({
                     name: t,
                     values: e
                 })
             }
-            (0,
-            C.GG)(this, Np, (0,
-            C.gn)(this, zp, "f").flatMap((e => e.values)).reduce(( (e, t) => Math.min(e, t)), 1 / 0), "f"),
-            (0,
-            C.GG)(this, Dp, (0,
-            C.gn)(this, zp, "f").flatMap((e => e.values)).reduce(( (e, t) => Math.max(e, t)), -1 / 0), "f"),
-            (0,
-            C.GG)(this, Bp, Math.max(...(0,
-            C.gn)(this, zp, "f").map((e => e.values.length - 1))), "f"),
-            (0,
-            C.GG)(this, Bp, 1.05 * (0,
-            C.gn)(this, Bp, "f"), "f"),
-            (0,
-            C.GG)(this, Dp, (0,
-            C.gn)(this, Dp, "f") + .05 * ((0,
-            C.gn)(this, Dp, "f") - (0,
-            C.gn)(this, Np, "f")), "f"),
-            (0,
-            C.gn)(this, Wp, "f").clearRect(0, 0, (0,
-            C.gn)(this, Op, "f").width, (0,
-            C.gn)(this, Op, "f").height),
-            (0,
-            C.gn)(this, Wp, "f").strokeStyle = "rgba(0, 0, 0, 0.4)",
-            (0,
-            C.gn)(this, Wp, "f").fillStyle = "#fff",
-            (0,
-            C.gn)(this, Wp, "f").font = "12px ForcedSquare, Arial, sans-serif";
+            C.set(this, Np, C.get(this, zp, "f").flatMap((e => e.values)).reduce(( (e, t) => Math.min(e, t)), 1 / 0), "f"),
+            C.set(this, Dp, C.get(this, zp, "f").flatMap((e => e.values)).reduce(( (e, t) => Math.max(e, t)), -1 / 0), "f"),
+            C.set(this, Bp, Math.max(...C.get(this, zp, "f").map((e => e.values.length - 1))), "f"),
+            C.set(this, Bp, 1.05 * C.get(this, Bp, "f"), "f"),
+            C.set(this, Dp, C.get(this, Dp, "f") + .05 * (C.get(this, Dp, "f") - C.get(this, Np, "f")), "f"),
+            C.get(this, Wp, "f").clearRect(0, 0, C.get(this, Op, "f").width, C.get(this, Op, "f").height),
+            C.get(this, Wp, "f").strokeStyle = "rgba(0, 0, 0, 0.4)",
+            C.get(this, Wp, "f").fillStyle = "#fff",
+            C.get(this, Wp, "f").font = "12px ForcedSquare, Arial, sans-serif";
             const t = []
-              , n = Math.pow(10, Math.floor(Math.log((0,
-            C.gn)(this, Bp, "f")) / Math.log(10)) - 1);
-            for (let e = 0; e < (0,
-            C.gn)(this, Bp, "f"); e += n)
+              , n = Math.pow(10, Math.floor(Math.log(C.get(this, Bp, "f")) / Math.log(10)) - 1);
+            for (let e = 0; e < C.get(this, Bp, "f"); e += n)
                 t.push(e);
             const i = []
-              , r = Math.pow(5, Math.floor(Math.log((0,
-            C.gn)(this, Dp, "f") - (0,
-            C.gn)(this, Np, "f")) / Math.log(5)) - 1);
-            for (let e = Math.ceil((0,
-            C.gn)(this, Np, "f") / r) * r; e <= (0,
-            C.gn)(this, Dp, "f"); e += r)
+              , r = Math.pow(5, Math.floor(Math.log(C.get(this, Dp, "f") - C.get(this, Np, "f")) / Math.log(5)) - 1);
+            for (let e = Math.ceil(C.get(this, Np, "f") / r) * r; e <= C.get(this, Dp, "f"); e += r)
                 i.push(parseFloat(e.toFixed(4)));
-            (0,
-            C.GG)(this, Vp, 0, "f");
+            C.set(this, Vp, 0, "f");
             for (const e of i) {
-                const t = (0,
-                C.gn)(this, Wp, "f").measureText(e.toString()).width;
-                (0,
-                C.GG)(this, Vp, Math.max((0,
-                C.gn)(this, Vp, "f"), t + 10), "f")
+                const t = C.get(this, Wp, "f").measureText(e.toString()).width;
+                C.set(this, Vp, Math.max(C.get(this, Vp, "f"), t + 10), "f")
             }
             const a = 22;
-            (0,
-            C.gn)(this, Wp, "f").textAlign = "center",
-            (0,
-            C.gn)(this, Wp, "f").textBaseline = "top";
+            C.get(this, Wp, "f").textAlign = "center",
+            C.get(this, Wp, "f").textBaseline = "top";
             let s = -1 / 0;
             for (const e of t) {
-                const t = (0,
-                C.gn)(this, Vp, "f") + e / (0,
-                C.gn)(this, Bp, "f") * ((0,
-                C.gn)(this, Op, "f").width - (0,
-                C.gn)(this, Vp, "f"));
-                (0,
-                C.gn)(this, Wp, "f").lineWidth = 0 == e ? 2 : 1,
-                (0,
-                C.gn)(this, Wp, "f").beginPath(),
-                (0,
-                C.gn)(this, Wp, "f").moveTo(Math.floor(t) + (0,
-                C.gn)(this, Wp, "f").lineWidth / 2, 0),
-                (0,
-                C.gn)(this, Wp, "f").lineTo(Math.floor(t) + (0,
-                C.gn)(this, Wp, "f").lineWidth / 2, (0,
-                C.gn)(this, Op, "f").height - a),
-                (0,
-                C.gn)(this, Wp, "f").stroke();
+                const t = C.get(this, Vp, "f") + e / C.get(this, Bp, "f") * (C.get(this, Op, "f").width - C.get(this, Vp, "f"));
+                C.get(this, Wp, "f").lineWidth = 0 == e ? 2 : 1,
+                C.get(this, Wp, "f").beginPath(),
+                C.get(this, Wp, "f").moveTo(Math.floor(t) + C.get(this, Wp, "f").lineWidth / 2, 0),
+                C.get(this, Wp, "f").lineTo(Math.floor(t) + C.get(this, Wp, "f").lineWidth / 2, C.get(this, Op, "f").height - a),
+                C.get(this, Wp, "f").stroke();
                 const n = Math.floor(e / 6e4)
                   , i = e / 1e3 - 60 * n;
                 let r;
                 r = n > 0 ? n.toString() + ":" + i.toString().padStart(2, "0") : i.toString();
-                const o = (0,
-                C.gn)(this, Wp, "f").measureText(r)
+                const o = C.get(this, Wp, "f").measureText(r)
                   , l = Math.floor(t) - o.width / 2
                   , c = Math.floor(t) + o.width / 2;
-                l > s && c < (0,
-                C.gn)(this, Op, "f").width && ((0,
-                C.gn)(this, Wp, "f").fillText(r, Math.floor(t), (0,
-                C.gn)(this, Op, "f").height - a + 5),
+                l > s && c < C.get(this, Op, "f").width && (C.get(this, Wp, "f").fillText(r, Math.floor(t), C.get(this, Op, "f").height - a + 5),
                 s = c)
             }
-            (0,
-            C.gn)(this, Wp, "f").textAlign = "right",
-            (0,
-            C.gn)(this, Wp, "f").textBaseline = "middle";
+            C.get(this, Wp, "f").textAlign = "right",
+            C.get(this, Wp, "f").textBaseline = "middle";
             for (const e of i) {
-                const t = (0,
-                C.gn)(this, Op, "f").height - a - (e - (0,
-                C.gn)(this, Np, "f")) / ((0,
-                C.gn)(this, Dp, "f") - (0,
-                C.gn)(this, Np, "f")) * ((0,
-                C.gn)(this, Op, "f").height - a);
-                (0,
-                C.gn)(this, Wp, "f").lineWidth = 0 == e ? 2 : 1,
-                (0,
-                C.gn)(this, Wp, "f").beginPath(),
-                (0,
-                C.gn)(this, Wp, "f").moveTo((0,
-                C.gn)(this, Vp, "f"), Math.floor(t) - (0,
-                C.gn)(this, Wp, "f").lineWidth / 2),
-                (0,
-                C.gn)(this, Wp, "f").lineTo((0,
-                C.gn)(this, Wp, "f").canvas.width, Math.floor(t) - (0,
-                C.gn)(this, Wp, "f").lineWidth / 2),
-                (0,
-                C.gn)(this, Wp, "f").stroke();
+                const t = C.get(this, Op, "f").height - a - (e - C.get(this, Np, "f")) / (C.get(this, Dp, "f") - C.get(this, Np, "f")) * (C.get(this, Op, "f").height - a);
+                C.get(this, Wp, "f").lineWidth = 0 == e ? 2 : 1,
+                C.get(this, Wp, "f").beginPath(),
+                C.get(this, Wp, "f").moveTo(C.get(this, Vp, "f"), Math.floor(t) - C.get(this, Wp, "f").lineWidth / 2),
+                C.get(this, Wp, "f").lineTo(C.get(this, Wp, "f").canvas.width, Math.floor(t) - C.get(this, Wp, "f").lineWidth / 2),
+                C.get(this, Wp, "f").stroke();
                 const n = e.toString()
                   , i = Math.floor(t);
-                i > 0 && (0,
-                C.gn)(this, Wp, "f").fillText(n, (0,
-                C.gn)(this, Vp, "f") - 5, i)
+                i > 0 && C.get(this, Wp, "f").fillText(n, C.get(this, Vp, "f") - 5, i)
             }
-            for (let e = (0,
-            C.gn)(this, zp, "f").length - 1; e >= 0; e--) {
-                const t = (0,
-                C.gn)(this, zp, "f")[e].values;
-                (0,
-                C.gn)(this, Wp, "f").strokeStyle = (0,
-                C.gn)(this, Cp, "m", qp).call(this, e, !0),
-                (0,
-                C.gn)(this, Wp, "f").lineWidth = 2,
-                (0,
-                C.gn)(this, Wp, "f").beginPath();
+            for (let e = C.get(this, zp, "f").length - 1; e >= 0; e--) {
+                const t = C.get(this, zp, "f")[e].values;
+                C.get(this, Wp, "f").strokeStyle = C.get(this, Cp, "m", qp).call(this, e, !0),
+                C.get(this, Wp, "f").lineWidth = 2,
+                C.get(this, Wp, "f").beginPath();
                 for (let e = 0; e < t.length; e++) {
-                    const n = (0,
-                    C.gn)(this, Vp, "f") + e / (0,
-                    C.gn)(this, Bp, "f") * ((0,
-                    C.gn)(this, Op, "f").width - (0,
-                    C.gn)(this, Vp, "f"))
-                      , i = (t[e] - (0,
-                    C.gn)(this, Np, "f")) / ((0,
-                    C.gn)(this, Dp, "f") - (0,
-                    C.gn)(this, Np, "f")) * ((0,
-                    C.gn)(this, Op, "f").height - a);
-                    0 == e ? (0,
-                    C.gn)(this, Wp, "f").moveTo(n, (0,
-                    C.gn)(this, Op, "f").height - a - i) : (0,
-                    C.gn)(this, Wp, "f").lineTo(n, (0,
-                    C.gn)(this, Op, "f").height - a - i)
+                    const n = C.get(this, Vp, "f") + e / C.get(this, Bp, "f") * (C.get(this, Op, "f").width - C.get(this, Vp, "f"))
+                      , i = (t[e] - C.get(this, Np, "f")) / (C.get(this, Dp, "f") - C.get(this, Np, "f")) * (C.get(this, Op, "f").height - a);
+                    0 == e ? C.get(this, Wp, "f").moveTo(n, C.get(this, Op, "f").height - a - i) : C.get(this, Wp, "f").lineTo(n, C.get(this, Op, "f").height - a - i)
                 }
-                (0,
-                C.gn)(this, Wp, "f").stroke()
+                C.get(this, Wp, "f").stroke()
             }
-            (0,
-            C.gn)(this, jp, "f").clearRect(0, 0, (0,
-            C.gn)(this, Hp, "f").width, (0,
-            C.gn)(this, Hp, "f").height);
-            for (let e = (0,
-            C.gn)(this, zp, "f").length - 1; e >= 0; e--) {
-                const t = (0,
-                C.gn)(this, zp, "f")[e].values;
-                (0,
-                C.gn)(this, jp, "f").strokeStyle = (0,
-                C.gn)(this, Cp, "m", qp).call(this, e, !1),
-                (0,
-                C.gn)(this, jp, "f").lineWidth = 2,
-                (0,
-                C.gn)(this, jp, "f").beginPath();
+            C.get(this, jp, "f").clearRect(0, 0, C.get(this, Hp, "f").width, C.get(this, Hp, "f").height);
+            for (let e = C.get(this, zp, "f").length - 1; e >= 0; e--) {
+                const t = C.get(this, zp, "f")[e].values;
+                C.get(this, jp, "f").strokeStyle = C.get(this, Cp, "m", qp).call(this, e, !1),
+                C.get(this, jp, "f").lineWidth = 2,
+                C.get(this, jp, "f").beginPath();
                 for (let e = 0; e < t.length; e++) {
-                    const n = (0,
-                    C.gn)(this, Vp, "f") + e / (0,
-                    C.gn)(this, Bp, "f") * ((0,
-                    C.gn)(this, Hp, "f").width - (0,
-                    C.gn)(this, Vp, "f"))
-                      , i = (t[e] - (0,
-                    C.gn)(this, Np, "f")) / ((0,
-                    C.gn)(this, Dp, "f") - (0,
-                    C.gn)(this, Np, "f")) * ((0,
-                    C.gn)(this, Hp, "f").height - a);
-                    0 == e ? (0,
-                    C.gn)(this, jp, "f").moveTo(n, (0,
-                    C.gn)(this, Hp, "f").height - a - i) : (0,
-                    C.gn)(this, jp, "f").lineTo(n, (0,
-                    C.gn)(this, Hp, "f").height - a - i)
+                    const n = C.get(this, Vp, "f") + e / C.get(this, Bp, "f") * (C.get(this, Hp, "f").width - C.get(this, Vp, "f"))
+                      , i = (t[e] - C.get(this, Np, "f")) / (C.get(this, Dp, "f") - C.get(this, Np, "f")) * (C.get(this, Hp, "f").height - a);
+                    0 == e ? C.get(this, jp, "f").moveTo(n, C.get(this, Hp, "f").height - a - i) : C.get(this, jp, "f").lineTo(n, C.get(this, Hp, "f").height - a - i)
                 }
-                (0,
-                C.gn)(this, jp, "f").stroke()
+                C.get(this, jp, "f").stroke()
             }
         }
         ;
@@ -60570,74 +55630,44 @@
                 Vp.set(this, 0),
                 Hp.set(this, void 0),
                 jp.set(this, void 0),
-                (0,
-                C.GG)(this, Rp, e, "f"),
-                (0,
-                C.GG)(this, Pp, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, Pp, "f").className = "graph-ui",
-                (0,
-                C.gn)(this, Rp, "f").appendChild((0,
-                C.gn)(this, Pp, "f"));
+                C.set(this, Rp, e, "f"),
+                C.set(this, Pp, document.createElement("div"), "f"),
+                C.get(this, Pp, "f").className = "graph-ui",
+                C.get(this, Rp, "f").appendChild(C.get(this, Pp, "f"));
                 const s = document.createElement("h2");
                 s.textContent = n.get("Graphs"),
-                (0,
-                C.gn)(this, Pp, "f").appendChild(s);
+                C.get(this, Pp, "f").appendChild(s);
                 const o = document.createElement("div");
                 o.className = "content",
-                (0,
-                C.gn)(this, Pp, "f").appendChild(o);
+                C.get(this, Pp, "f").appendChild(o);
                 const l = document.createElement("div");
                 l.className = "graph-content",
                 o.appendChild(l),
-                (0,
-                C.GG)(this, Up, document.createElement("div"), "f"),
-                (0,
-                C.gn)(this, Up, "f").className = "side-panel",
-                l.appendChild((0,
-                C.gn)(this, Up, "f")),
-                (0,
-                C.GG)(this, Gp, document.createElement("canvas"), "f"),
-                (0,
-                C.gn)(this, Gp, "f").width = 750,
-                (0,
-                C.gn)(this, Gp, "f").height = 500,
-                l.appendChild((0,
-                C.gn)(this, Gp, "f"));
-                const c = (0,
-                C.gn)(this, Gp, "f").getContext("2d");
+                C.set(this, Up, document.createElement("div"), "f"),
+                C.get(this, Up, "f").className = "side-panel",
+                l.appendChild(C.get(this, Up, "f")),
+                C.set(this, Gp, document.createElement("canvas"), "f"),
+                C.get(this, Gp, "f").width = 750,
+                C.get(this, Gp, "f").height = 500,
+                l.appendChild(C.get(this, Gp, "f"));
+                const c = C.get(this, Gp, "f").getContext("2d");
                 if (null == c)
                     throw new Error("Could not get 2D context");
-                (0,
-                C.GG)(this, Fp, c, "f"),
-                (0,
-                C.GG)(this, Op, document.createElement("canvas"), "f"),
-                (0,
-                C.gn)(this, Op, "f").width = (0,
-                C.gn)(this, Gp, "f").width,
-                (0,
-                C.gn)(this, Op, "f").height = (0,
-                C.gn)(this, Gp, "f").height,
-                (0,
-                C.GG)(this, Hp, document.createElement("canvas"), "f"),
-                (0,
-                C.gn)(this, Hp, "f").width = (0,
-                C.gn)(this, Gp, "f").width,
-                (0,
-                C.gn)(this, Hp, "f").height = (0,
-                C.gn)(this, Gp, "f").height;
-                const h = (0,
-                C.gn)(this, Op, "f").getContext("2d");
+                C.set(this, Fp, c, "f"),
+                C.set(this, Op, document.createElement("canvas"), "f"),
+                C.get(this, Op, "f").width = C.get(this, Gp, "f").width,
+                C.get(this, Op, "f").height = C.get(this, Gp, "f").height,
+                C.set(this, Hp, document.createElement("canvas"), "f"),
+                C.get(this, Hp, "f").width = C.get(this, Gp, "f").width,
+                C.get(this, Hp, "f").height = C.get(this, Gp, "f").height;
+                const h = C.get(this, Op, "f").getContext("2d");
                 if (null == h)
                     throw new Error("Could not get 2D context");
-                (0,
-                C.GG)(this, Wp, h, "f");
-                const d = (0,
-                C.gn)(this, Hp, "f").getContext("2d");
+                C.set(this, Wp, h, "f");
+                const d = C.get(this, Hp, "f").getContext("2d");
                 if (null == d)
                     throw new Error("Could not get 2D context");
-                (0,
-                C.GG)(this, jp, d, "f");
+                C.set(this, jp, d, "f");
                 const u = document.createElement("div");
                 u.className = "type-selection-content",
                 o.appendChild(u);
@@ -60723,10 +55753,8 @@
                     unit: "°/s",
                     calculation: e => 1e3 * f(e.wheelDeltaRotation[3])
                 }];
-                (0,
-                C.GG)(this, Ip, g[Jp], "f"),
-                (0,
-                C.gn)(this, Cp, "m", Qp).call(this, r);
+                C.set(this, Ip, g[Jp], "f"),
+                C.get(this, Cp, "m", Qp).call(this, r);
                 for (let e = 0; e < g.length; e++) {
                     const n = g[e]
                       , i = document.createElement("button");
@@ -60735,23 +55763,17 @@
                     i.addEventListener("click", ( () => {
                         t.playUIClick(),
                         Jp = e,
-                        (0,
-                        C.GG)(this, Ip, n, "f"),
-                        v.textContent = (0,
-                        C.gn)(this, Ip, "f").name + " (" + (0,
-                        C.gn)(this, Ip, "f").unit + ")",
-                        (0,
-                        C.gn)(this, Cp, "m", Qp).call(this, r),
-                        (0,
-                        C.gn)(this, Cp, "m", Kp).call(this, !1)
+                        C.set(this, Ip, n, "f"),
+                        v.textContent = C.get(this, Ip, "f").name + " (" + C.get(this, Ip, "f").unit + ")",
+                        C.get(this, Cp, "m", Qp).call(this, r),
+                        C.get(this, Cp, "m", Kp).call(this, !1)
                     }
                     )),
                     u.appendChild(i)
                 }
                 const m = document.createElement("div");
                 m.className = "buttons-container",
-                (0,
-                C.gn)(this, Pp, "f").appendChild(m);
+                C.get(this, Pp, "f").appendChild(m);
                 const A = document.createElement("button");
                 A.className = "button",
                 A.innerHTML = '<img class="button-icon" src="images/cancel.svg">',
@@ -60764,66 +55786,37 @@
                 m.appendChild(A);
                 const v = document.createElement("button");
                 v.className = "button",
-                v.textContent = (0,
-                C.gn)(this, Ip, "f").name + " (" + (0,
-                C.gn)(this, Ip, "f").unit + ")",
+                v.textContent = C.get(this, Ip, "f").name + " (" + C.get(this, Ip, "f").unit + ")",
                 v.addEventListener("click", ( () => {
                     t.playUIClick(),
-                    (0,
-                    C.gn)(this, Cp, "m", Kp).call(this, !(0,
-                    C.gn)(this, Lp, "f"))
+                    C.get(this, Cp, "m", Kp).call(this, !C.get(this, Lp, "f"))
                 }
                 )),
                 m.appendChild(v)
             }
             dispose() {
-                (0,
-                C.gn)(this, Rp, "f").removeChild((0,
-                C.gn)(this, Pp, "f"))
+                C.get(this, Rp, "f").removeChild(C.get(this, Pp, "f"))
             }
             update(e) {
-                (0,
-                C.gn)(this, Up, "f").innerHTML = "";
-                for (let t = 0; t < (0,
-                C.gn)(this, zp, "f").length; t++) {
-                    const {name: n, values: i} = (0,
-                    C.gn)(this, zp, "f")[t];
+                C.get(this, Up, "f").innerHTML = "";
+                for (let t = 0; t < C.get(this, zp, "f").length; t++) {
+                    const {name: n, values: i} = C.get(this, zp, "f")[t];
                     let r;
                     r = 0 == i.length ? null : i[Math.min(i.length - 1, e)];
                     const a = document.createElement("div");
-                    a.style.color = (0,
-                    C.gn)(this, Cp, "m", qp).call(this, t, !1),
-                    (0,
-                    C.gn)(this, Up, "f").appendChild(a);
+                    a.style.color = C.get(this, Cp, "m", qp).call(this, t, !1),
+                    C.get(this, Up, "f").appendChild(a);
                     const s = document.createElement("div");
                     s.textContent = n,
                     a.appendChild(s);
                     const o = document.createElement("div");
-                    o.textContent = null == r ? "- " + (0,
-                    C.gn)(this, Ip, "f").unit : r.toFixed(2) + " " + (0,
-                    C.gn)(this, Ip, "f").unit,
+                    o.textContent = null == r ? "- " + C.get(this, Ip, "f").unit : r.toFixed(2) + " " + C.get(this, Ip, "f").unit,
                     a.appendChild(o)
                 }
-                (0,
-                C.gn)(this, Fp, "f").clearRect(0, 0, (0,
-                C.gn)(this, Gp, "f").width, (0,
-                C.gn)(this, Gp, "f").height),
-                (0,
-                C.gn)(this, Fp, "f").drawImage((0,
-                C.gn)(this, Op, "f"), 0, 0);
-                const t = (0,
-                C.gn)(this, Vp, "f") / (0,
-                C.gn)(this, Gp, "f").width + (1 - (0,
-                C.gn)(this, Vp, "f") / (0,
-                C.gn)(this, Gp, "f").width) * Math.min(1, e / (0,
-                C.gn)(this, Bp, "f"));
-                (0,
-                C.gn)(this, Fp, "f").drawImage((0,
-                C.gn)(this, Hp, "f"), 0, 0, (0,
-                C.gn)(this, Gp, "f").width * t, (0,
-                C.gn)(this, Gp, "f").height, 0, 0, (0,
-                C.gn)(this, Gp, "f").width * t, (0,
-                C.gn)(this, Gp, "f").height)
+                C.get(this, Fp, "f").clearRect(0, 0, C.get(this, Gp, "f").width, C.get(this, Gp, "f").height),
+                C.get(this, Fp, "f").drawImage(C.get(this, Op, "f"), 0, 0);
+                const t = C.get(this, Vp, "f") / C.get(this, Gp, "f").width + (1 - C.get(this, Vp, "f") / C.get(this, Gp, "f").width) * Math.min(1, e / C.get(this, Bp, "f"));
+                C.get(this, Fp, "f").drawImage(C.get(this, Hp, "f"), 0, 0, C.get(this, Gp, "f").width * t, C.get(this, Gp, "f").height, 0, 0, C.get(this, Gp, "f").width * t, C.get(this, Gp, "f").height)
             }
         }
         ;
@@ -60860,8 +55853,7 @@
         _f = new WeakMap,
         Yp = new WeakSet,
         Cf = function(e) {
-            for (const t of (0,
-            C.gn)(this, uf, "f"))
+            for (const t of C.get(this, uf, "f"))
                 if (t.car.getTime().numberOfFrames != e) {
                     const n = t.replay.getFrame(e);
                     null != n && t.car.setCarState(n, n.frames != t.car.getTime().numberOfFrames && n.frames != t.car.getTime().numberOfFrames + 1)
@@ -60901,45 +55893,29 @@
                 Tf.set(this, void 0),
                 Mf.set(this, void 0),
                 _f.set(this, 1e4),
-                (0,
-                C.GG)(this, Zp, e, "f"),
-                (0,
-                C.GG)(this, $p, t, "f"),
-                (0,
-                C.GG)(this, ef, n, "f"),
-                (0,
-                C.GG)(this, tf, i, "f"),
-                (0,
-                C.GG)(this, nf, r, "f"),
-                (0,
-                C.GG)(this, rf, a, "f"),
-                (0,
-                C.GG)(this, af, s, "f"),
-                (0,
-                C.GG)(this, sf, o, "f"),
-                (0,
-                C.GG)(this, of, l, "f"),
-                (0,
-                C.GG)(this, lf, c, "f"),
-                (0,
-                C.GG)(this, cf, h, "f"),
-                (0,
-                C.GG)(this, hf, u, "f"),
+                C.set(this, Zp, e, "f"),
+                C.set(this, $p, t, "f"),
+                C.set(this, ef, n, "f"),
+                C.set(this, tf, i, "f"),
+                C.set(this, nf, r, "f"),
+                C.set(this, rf, a, "f"),
+                C.set(this, af, s, "f"),
+                C.set(this, sf, o, "f"),
+                C.set(this, of, l, "f"),
+                C.set(this, lf, c, "f"),
+                C.set(this, cf, h, "f"),
+                C.set(this, hf, u, "f"),
                 t.loadTrackData(i),
                 t.generateMeshes(),
                 a.generateMountains(t.getBounds());
                 const p = t.getStartTransform();
                 if (null == p)
                     throw new Error("Track has no starting point");
-                const f = new yt.A(d.reduce(( (e, t) => Math.max(e, t.time.numberOfFrames + (0,
-                C.gn)(this, _f, "f"))), 0));
-                (0,
-                C.GG)(this, gf, f.time, "f"),
-                (0,
-                C.GG)(this, uf, d.map(( (n, r) => {
+                const f = new yt.A(d.reduce(( (e, t) => Math.max(e, t.time.numberOfFrames + C.get(this, _f, "f"))), 0));
+                C.set(this, gf, f.time, "f"),
+                C.set(this, uf, d.map(( (n, r) => {
                     const s = new L.A(null,p,n.recording,null,o,l,a,t,i,h,null);
-                    s.notificationAudioEnabled = (0,
-                    C.gn)(this, df, "f") == r,
+                    s.notificationAudioEnabled = C.get(this, df, "f") == r,
                     s.setCarStyle(n.carStyle);
                     const c = {
                         replay: new Ft,
@@ -60953,9 +55929,7 @@
                         null != c.carId && t.frames >= f.numberOfFrames && (e.deleteCar(c.carId),
                         c.carId = null),
                         t.nextCheckpointIndex > g.nextCheckpointIndex && (c.checkpointTimes.push(new yt.A(t.frames)),
-                        r == (0,
-                        C.gn)(this, df, "f") && ((0,
-                        C.gn)(this, vf, "f").checkpointTimes = c.checkpointTimes)),
+                        r == C.get(this, df, "f") && (C.get(this, vf, "f").checkpointTimes = c.checkpointTimes)),
                         g = t
                     }
                     ))
@@ -60967,393 +55941,178 @@
                     c
                 }
                 )), "f"),
-                h.getSettingBoolean(R.A.DefaultCameraMode) ? o.setCamera((0,
-                C.gn)(this, uf, "f")[(0,
-                C.gn)(this, df, "f")].car.cameraCockpit) : o.setCamera((0,
-                C.gn)(this, uf, "f")[(0,
-                C.gn)(this, df, "f")].car.cameraOrbit),
-                (0,
-                C.GG)(this, mf, new vt(o,h), "f"),
-                (0,
-                C.gn)(this, mf, "f").addToggleListener((e => {
-                    e ? o.setCamera((0,
-                    C.gn)(this, mf, "f").camera) : (0,
-                    C.gn)(this, cf, "f").getSettingBoolean(R.A.DefaultCameraMode) ? (0,
-                    C.gn)(this, sf, "f").setCamera((0,
-                    C.gn)(this, uf, "f")[(0,
-                    C.gn)(this, df, "f")].car.cameraCockpit) : (0,
-                    C.gn)(this, sf, "f").setCamera((0,
-                    C.gn)(this, uf, "f")[(0,
-                    C.gn)(this, df, "f")].car.cameraOrbit)
+                h.getSettingBoolean(R.A.DefaultCameraMode) ? o.setCamera(C.get(this, uf, "f")[C.get(this, df, "f")].car.cameraCockpit) : o.setCamera(C.get(this, uf, "f")[C.get(this, df, "f")].car.cameraOrbit),
+                C.set(this, mf, new SpectatorCamera(o,h), "f"),
+                C.get(this, mf, "f").addToggleListener((e => {
+                    e ? o.setCamera(C.get(this, mf, "f").camera) : C.get(this, cf, "f").getSettingBoolean(R.A.DefaultCameraMode) ? C.get(this, sf, "f").setCamera(C.get(this, uf, "f")[C.get(this, df, "f")].car.cameraCockpit) : C.get(this, sf, "f").setCamera(C.get(this, uf, "f")[C.get(this, df, "f")].car.cameraOrbit)
                 }
                 )),
-                (0,
-                C.GG)(this, Af, new br, "f");
-                const g = (0,
-                C.gn)(this, uf, "f")[(0,
-                C.gn)(this, df, "f")]
+                C.set(this, Af, new br, "f");
+                const g = C.get(this, uf, "f")[C.get(this, df, "f")]
                   , m = g.settings.time;
                 let A;
-                (0,
-                C.GG)(this, vf, new wp((0,
-                C.gn)(this, Af, "f").element,(0,
-                C.gn)(this, of, "f"),(0,
-                C.gn)(this, cf, "f"),m,g.checkpointTimes,(e => {
+                C.set(this, vf, new wp(C.get(this, Af, "f").element,C.get(this, of, "f"),C.get(this, cf, "f"),m,g.checkpointTimes,(e => {
                     let t;
-                    !(0,
-                    C.gn)(this, vf, "f").isPaused || (0,
-                    C.gn)(this, vf, "f").isDragging ? t = 0 : (t = Math.max(0, e.time - (0,
-                    C.gn)(this, ff, "f")),
+                    !C.get(this, vf, "f").isPaused || C.get(this, vf, "f").isDragging ? t = 0 : (t = Math.max(0, e.time - C.get(this, ff, "f")),
                     t > .1 && (t = 0)),
-                    (0,
-                    C.GG)(this, ff, Math.max(0, Math.min((0,
-                    C.gn)(this, gf, "f"), e.time)), "f");
-                    const n = Math.round(1e3 * (0,
-                    C.gn)(this, ff, "f"));
-                    (0,
-                    C.gn)(this, Yp, "m", Cf).call(this, n);
-                    for (const e of (0,
-                    C.gn)(this, uf, "f"))
+                    C.set(this, ff, Math.max(0, Math.min(C.get(this, gf, "f"), e.time)), "f");
+                    const n = Math.round(1e3 * C.get(this, ff, "f"));
+                    C.get(this, Yp, "m", Cf).call(this, n);
+                    for (const e of C.get(this, uf, "f"))
                         e.car.update(t);
-                    const i = (0,
-                    C.gn)(this, uf, "f")[(0,
-                    C.gn)(this, df, "f")].car;
-                    (0,
-                    C.gn)(this, vf, "f").time = new yt.A(n),
-                    (0,
-                    C.gn)(this, bf, "f").update(i.getControls()),
-                    (0,
-                    C.gn)(this, wf, "f").update(i),
-                    (0,
-                    C.gn)(this, xf, "f").update(i),
-                    (0,
-                    C.gn)(this, Sf, "f").update(i)
+                    const i = C.get(this, uf, "f")[C.get(this, df, "f")].car;
+                    C.get(this, vf, "f").time = new yt.A(n),
+                    C.get(this, bf, "f").update(i.getControls()),
+                    C.get(this, wf, "f").update(i),
+                    C.get(this, xf, "f").update(i),
+                    C.get(this, Sf, "f").update(i)
                 }
-                ),(0,
-                C.gn)(this, pf, "f")), "f"),
-                A = (0,
-                C.gn)(this, uf, "f").length > 1 ? () => {
-                    (0,
-                    C.GG)(this, df, ((0,
-                    C.gn)(this, df, "f") + 1) % (0,
-                    C.gn)(this, uf, "f").length, "f");
-                    for (let e = 0; e < (0,
-                    C.gn)(this, uf, "f").length; e++)
-                        (0,
-                        C.gn)(this, uf, "f")[e].car.notificationAudioEnabled = e == (0,
-                        C.gn)(this, df, "f");
-                    (0,
-                    C.gn)(this, mf, "f").isEnabled || ((0,
-                    C.gn)(this, cf, "f").getSettingBoolean(R.A.DefaultCameraMode) ? (0,
-                    C.gn)(this, sf, "f").setCamera((0,
-                    C.gn)(this, uf, "f")[(0,
-                    C.gn)(this, df, "f")].car.cameraCockpit) : (0,
-                    C.gn)(this, sf, "f").setCamera((0,
-                    C.gn)(this, uf, "f")[(0,
-                    C.gn)(this, df, "f")].car.cameraOrbit)),
-                    (0,
-                    C.gn)(this, vf, "f").totalTime = (0,
-                    C.gn)(this, uf, "f")[(0,
-                    C.gn)(this, df, "f")].settings.time,
-                    (0,
-                    C.gn)(this, vf, "f").checkpointTimes = (0,
-                    C.gn)(this, uf, "f")[(0,
-                    C.gn)(this, df, "f")].checkpointTimes,
-                    (0,
-                    C.gn)(this, Sf, "f").nickname = (0,
-                    C.gn)(this, uf, "f")[(0,
-                    C.gn)(this, df, "f")].settings.nickname
+                ),C.get(this, pf, "f")), "f"),
+                A = C.get(this, uf, "f").length > 1 ? () => {
+                    C.set(this, df, (C.get(this, df, "f") + 1) % C.get(this, uf, "f").length, "f");
+                    for (let e = 0; e < C.get(this, uf, "f").length; e++)
+                        C.get(this, uf, "f")[e].car.notificationAudioEnabled = e == C.get(this, df, "f");
+                    C.get(this, mf, "f").isEnabled || (C.get(this, cf, "f").getSettingBoolean(R.A.DefaultCameraMode) ? C.get(this, sf, "f").setCamera(C.get(this, uf, "f")[C.get(this, df, "f")].car.cameraCockpit) : C.get(this, sf, "f").setCamera(C.get(this, uf, "f")[C.get(this, df, "f")].car.cameraOrbit)),
+                    C.get(this, vf, "f").totalTime = C.get(this, uf, "f")[C.get(this, df, "f")].settings.time,
+                    C.get(this, vf, "f").checkpointTimes = C.get(this, uf, "f")[C.get(this, df, "f")].checkpointTimes,
+                    C.get(this, Sf, "f").nickname = C.get(this, uf, "f")[C.get(this, df, "f")].settings.nickname
                 }
                 : null,
-                (0,
-                C.GG)(this, yf, new Tp((0,
-                C.gn)(this, Af, "f").element,(0,
-                C.gn)(this, of, "f"),(0,
-                C.gn)(this, lf, "f"),( () => {
-                    (0,
-                    C.gn)(this, hf, "f").call(this, (0,
-                    C.gn)(this, ef, "f"), (0,
-                    C.gn)(this, tf, "f"), (0,
-                    C.gn)(this, nf, "f"), (0,
-                    C.gn)(this, uf, "f").map((e => e.settings)))
+                C.set(this, yf, new Tp(C.get(this, Af, "f").element,C.get(this, of, "f"),C.get(this, lf, "f"),( () => {
+                    C.get(this, hf, "f").call(this, C.get(this, ef, "f"), C.get(this, tf, "f"), C.get(this, nf, "f"), C.get(this, uf, "f").map((e => e.settings)))
                 }
                 ),( () => {
-                    null != (0,
-                    C.gn)(this, kf, "f") ? ((0,
-                    C.gn)(this, kf, "f").dispose(),
-                    (0,
-                    C.GG)(this, kf, null, "f")) : (0,
-                    C.GG)(this, kf, new Xp((0,
-                    C.gn)(this, Af, "f").element,(0,
-                    C.gn)(this, of, "f"),(0,
-                    C.gn)(this, lf, "f"),(0,
-                    C.gn)(this, cf, "f"),(0,
-                    C.gn)(this, uf, "f").map((e => ({
+                    null != C.get(this, kf, "f") ? (C.get(this, kf, "f").dispose(),
+                    C.set(this, kf, null, "f")) : C.set(this, kf, new Xp(C.get(this, Af, "f").element,C.get(this, of, "f"),C.get(this, lf, "f"),C.get(this, cf, "f"),C.get(this, uf, "f").map((e => ({
                         name: e.settings.nickname,
                         replay: e.replay
                     }))),( () => {
-                        (0,
-                        C.gn)(this, kf, "f")?.dispose(),
-                        (0,
-                        C.GG)(this, kf, null, "f")
+                        C.get(this, kf, "f")?.dispose(),
+                        C.set(this, kf, null, "f")
                     }
                     )), "f")
                 }
                 ),A), "f"),
-                (0,
-                C.GG)(this, bf, new Wu((0,
-                C.gn)(this, Af, "f").element), "f"),
-                (0,
-                C.GG)(this, wf, new ue((0,
-                C.gn)(this, Af, "f").element,(0,
-                C.gn)(this, $p, "f").getTotalNumberOfCheckpointIndices(),(0,
-                C.gn)(this, cf, "f")), "f"),
-                (0,
-                C.gn)(this, wf, "f").setOverridePosition(!1),
-                (0,
-                C.gn)(this, wf, "f").setBottomOffset(52),
-                (0,
-                C.GG)(this, xf, new We((0,
-                C.gn)(this, Af, "f").element,(0,
-                C.gn)(this, cf, "f")), "f"),
-                (0,
-                C.gn)(this, xf, "f").setOverridePosition(!1),
-                (0,
-                C.gn)(this, xf, "f").setBottomOffset(52),
-                (0,
-                C.GG)(this, Sf, new Ve.A((0,
-                C.gn)(this, Af, "f").element,(0,
-                C.gn)(this, lf, "f"),(0,
-                C.gn)(this, cf, "f"),!0), "f"),
-                (0,
-                C.gn)(this, Sf, "f").nickname = (0,
-                C.gn)(this, uf, "f")[(0,
-                C.gn)(this, df, "f")].settings.nickname,
-                (0,
-                C.gn)(this, Sf, "f").setOverridePosition(!1),
-                (0,
-                C.gn)(this, Sf, "f").setBottomOffset(52),
-                window.addEventListener("keydown", (0,
-                C.GG)(this, Tf, (e => {
-                    if (!(0,
-                    C.gn)(this, mf, "f").isEnabled)
-                        if (h.checkKeyBinding(e, ge.A.VehicleCheckpointReset) || h.checkKeyBinding(e, ge.A.VehicleStartReset))
-                            e.repeat || (0,
-                            C.GG)(this, ff, 0, "f"),
+                C.set(this, bf, new Wu(C.get(this, Af, "f").element), "f"),
+                C.set(this, wf, new ue(C.get(this, Af, "f").element,C.get(this, $p, "f").getTotalNumberOfCheckpointIndices(),C.get(this, cf, "f")), "f"),
+                C.get(this, wf, "f").setOverridePosition(!1),
+                C.get(this, wf, "f").setBottomOffset(52),
+                C.set(this, xf, new We(C.get(this, Af, "f").element,C.get(this, cf, "f")), "f"),
+                C.get(this, xf, "f").setOverridePosition(!1),
+                C.get(this, xf, "f").setBottomOffset(52),
+                C.set(this, Sf, new Ve.A(C.get(this, Af, "f").element,C.get(this, lf, "f"),C.get(this, cf, "f"),!0), "f"),
+                C.get(this, Sf, "f").nickname = C.get(this, uf, "f")[C.get(this, df, "f")].settings.nickname,
+                C.get(this, Sf, "f").setOverridePosition(!1),
+                C.get(this, Sf, "f").setBottomOffset(52),
+                window.addEventListener("keydown", C.set(this, Tf, (e => {
+                    if (!C.get(this, mf, "f").isEnabled)
+                        if (h.checkKeyBinding(e, KeyBind.VehicleCheckpointReset) || h.checkKeyBinding(e, KeyBind.VehicleStartReset))
+                            e.repeat || C.set(this, ff, 0, "f"),
                             e.preventDefault();
-                        else if ((0,
-                        C.gn)(this, cf, "f").checkKeyBinding(e, ge.A.VehicleCockpitCamera)) {
+                        else if (C.get(this, cf, "f").checkKeyBinding(e, KeyBind.VehicleCockpitCamera)) {
                             if (!e.repeat) {
-                                const e = (0,
-                                C.gn)(this, uf, "f")[(0,
-                                C.gn)(this, df, "f")].car;
-                                e.hasFinished() || ((0,
-                                C.gn)(this, cf, "f").getSettingBoolean(R.A.CockpitCameraToggle) ? (0,
-                                C.gn)(this, sf, "f").camera == e.cameraOrbit ? (0,
-                                C.gn)(this, sf, "f").setCamera(e.cameraCockpit) : (0,
-                                C.gn)(this, sf, "f").setCamera(e.cameraOrbit) : (0,
-                                C.gn)(this, cf, "f").getSettingBoolean(R.A.DefaultCameraMode) ? (0,
-                                C.gn)(this, sf, "f").setCamera(e.cameraOrbit) : (0,
-                                C.gn)(this, sf, "f").setCamera(e.cameraCockpit))
+                                const e = C.get(this, uf, "f")[C.get(this, df, "f")].car;
+                                e.hasFinished() || (C.get(this, cf, "f").getSettingBoolean(R.A.CockpitCameraToggle) ? C.get(this, sf, "f").camera == e.cameraOrbit ? C.get(this, sf, "f").setCamera(e.cameraCockpit) : C.get(this, sf, "f").setCamera(e.cameraOrbit) : C.get(this, cf, "f").getSettingBoolean(R.A.DefaultCameraMode) ? C.get(this, sf, "f").setCamera(e.cameraOrbit) : C.get(this, sf, "f").setCamera(e.cameraCockpit))
                             }
                             e.preventDefault()
                         }
-                    if ("Escape" == e.code && (null != (0,
-                    C.gn)(this, kf, "f") ? ((0,
-                    C.gn)(this, kf, "f").dispose(),
-                    (0,
-                    C.GG)(this, kf, null, "f")) : (0,
-                    C.gn)(this, mf, "f").isEnabled ? (0,
-                    C.gn)(this, mf, "f").isEnabled = !1 : u(n, i, r, (0,
-                    C.gn)(this, uf, "f").map((e => e.settings))),
+                    if ("Escape" == e.code && (null != C.get(this, kf, "f") ? (C.get(this, kf, "f").dispose(),
+                    C.set(this, kf, null, "f")) : C.get(this, mf, "f").isEnabled ? C.get(this, mf, "f").isEnabled = !1 : u(n, i, r, C.get(this, uf, "f").map((e => e.settings))),
                     e.preventDefault()),
-                    h.checkKeyBinding(e, ge.A.ToggleUI) && ((0,
-                    C.gn)(this, Af, "f").isVisible = !(0,
-                    C.gn)(this, Af, "f").isVisible,
+                    h.checkKeyBinding(e, KeyBind.ToggleUI) && (C.get(this, Af, "f").isVisible = !C.get(this, Af, "f").isVisible,
                     e.preventDefault()),
-                    h.checkKeyBinding(e, ge.A.ToggleSpectatorCamera)) {
-                        (0,
-                        C.gn)(this, mf, "f").camera.position.copy((0,
-                        C.gn)(this, sf, "f").camera.position);
-                        const t = new THREE.Euler(0,0,0,"YXZ").setFromQuaternion((0,
-                        C.gn)(this, sf, "f").camera.quaternion);
+                    h.checkKeyBinding(e, KeyBind.ToggleSpectatorCamera)) {
+                        C.get(this, mf, "f").camera.position.copy(C.get(this, sf, "f").camera.position);
+                        const t = new THREE.Euler(0,0,0,"YXZ").setFromQuaternion(C.get(this, sf, "f").camera.quaternion);
                         t.z = 0,
-                        (0,
-                        C.gn)(this, mf, "f").camera.quaternion.setFromEuler(t),
-                        (0,
-                        C.gn)(this, mf, "f").toggle(),
+                        C.get(this, mf, "f").camera.quaternion.setFromEuler(t),
+                        C.get(this, mf, "f").toggle(),
                         e.preventDefault()
                     }
-                    "Space" == e.code && ((0,
-                    C.GG)(this, pf, !(0,
-                    C.gn)(this, pf, "f"), "f"),
-                    (0,
-                    C.gn)(this, vf, "f").isPaused = (0,
-                    C.gn)(this, pf, "f"),
+                    "Space" == e.code && (C.set(this, pf, !C.get(this, pf, "f"), "f"),
+                    C.get(this, vf, "f").isPaused = C.get(this, pf, "f"),
                     e.preventDefault())
                 }
                 ), "f")),
-                window.addEventListener("keyup", (0,
-                C.GG)(this, Mf, (e => {
-                    if (!(0,
-                    C.gn)(this, mf, "f").isEnabled && (0,
-                    C.gn)(this, cf, "f").checkKeyBinding(e, ge.A.VehicleCockpitCamera)) {
-                        const e = (0,
-                        C.gn)(this, uf, "f")[(0,
-                        C.gn)(this, df, "f")].car;
-                        e.hasFinished() || (0,
-                        C.gn)(this, cf, "f").getSettingBoolean(R.A.CockpitCameraToggle) || ((0,
-                        C.gn)(this, cf, "f").getSettingBoolean(R.A.DefaultCameraMode) ? (0,
-                        C.gn)(this, sf, "f").setCamera(e.cameraCockpit) : (0,
-                        C.gn)(this, sf, "f").setCamera(e.cameraOrbit))
+                window.addEventListener("keyup", C.set(this, Mf, (e => {
+                    if (!C.get(this, mf, "f").isEnabled && C.get(this, cf, "f").checkKeyBinding(e, KeyBind.VehicleCockpitCamera)) {
+                        const e = C.get(this, uf, "f")[C.get(this, df, "f")].car;
+                        e.hasFinished() || C.get(this, cf, "f").getSettingBoolean(R.A.CockpitCameraToggle) || (C.get(this, cf, "f").getSettingBoolean(R.A.DefaultCameraMode) ? C.get(this, sf, "f").setCamera(e.cameraCockpit) : C.get(this, sf, "f").setCamera(e.cameraOrbit))
                     }
                 }
                 ), "f"))
             }
             dispose() {
-                (0,
-                C.gn)(this, $p, "f").clear(),
-                (0,
-                C.gn)(this, rf, "f").clearMountains();
-                for (const e of (0,
-                C.gn)(this, uf, "f"))
-                    null != e.carId && ((0,
-                    C.gn)(this, Zp, "f").deleteCar(e.carId),
+                C.get(this, $p, "f").clear(),
+                C.get(this, rf, "f").clearMountains();
+                for (const e of C.get(this, uf, "f"))
+                    null != e.carId && (C.get(this, Zp, "f").deleteCar(e.carId),
                     e.carId = null),
                     e.car.dispose();
-                (0,
-                C.gn)(this, mf, "f").dispose(),
-                (0,
-                C.gn)(this, Af, "f").dispose(),
-                (0,
-                C.gn)(this, vf, "f").dispose(),
-                (0,
-                C.gn)(this, yf, "f").dispose(),
-                (0,
-                C.gn)(this, bf, "f").dispose(),
-                (0,
-                C.gn)(this, wf, "f").dispose(),
-                (0,
-                C.gn)(this, xf, "f").dispose(),
-                (0,
-                C.gn)(this, Sf, "f").dispose(),
-                (0,
-                C.gn)(this, kf, "f")?.dispose(),
-                (0,
-                C.GG)(this, kf, null, "f"),
-                window.removeEventListener("keydown", (0,
-                C.gn)(this, Tf, "f")),
-                window.removeEventListener("keyup", (0,
-                C.gn)(this, Mf, "f")),
-                (0,
-                C.gn)(this, Ef, "f")?.dispose()
+                C.get(this, mf, "f").dispose(),
+                C.get(this, Af, "f").dispose(),
+                C.get(this, vf, "f").dispose(),
+                C.get(this, yf, "f").dispose(),
+                C.get(this, bf, "f").dispose(),
+                C.get(this, wf, "f").dispose(),
+                C.get(this, xf, "f").dispose(),
+                C.get(this, Sf, "f").dispose(),
+                C.get(this, kf, "f")?.dispose(),
+                C.set(this, kf, null, "f"),
+                window.removeEventListener("keydown", C.get(this, Tf, "f")),
+                window.removeEventListener("keyup", C.get(this, Mf, "f")),
+                C.get(this, Ef, "f")?.dispose()
             }
             update(e) {
-                (0,
-                C.GG)(this, pf, (0,
-                C.gn)(this, vf, "f").isPaused, "f");
+                C.set(this, pf, C.get(this, vf, "f").isPaused, "f");
                 let t = 1 / 0;
-                for (const e of (0,
-                C.gn)(this, uf, "f"))
+                for (const e of C.get(this, uf, "f"))
                     t = Math.min(t, e.replay.getLastFrame().numberOfFrames);
                 const n = new yt.A(t);
                 let i;
-                if ((0,
-                C.gn)(this, pf, "f") || (0,
-                C.gn)(this, vf, "f").isDragging) {
+                if (C.get(this, pf, "f") || C.get(this, vf, "f").isDragging) {
                     i = 0;
-                    for (const e of (0,
-                    C.gn)(this, uf, "f"))
+                    for (const e of C.get(this, uf, "f"))
                         e.car.audioVolume = 0
                 } else {
-                    const t = Math.min((0,
-                    C.gn)(this, gf, "f"), (0,
-                    C.gn)(this, ff, "f") + e);
+                    const t = Math.min(C.get(this, gf, "f"), C.get(this, ff, "f") + e);
                     if (n.time >= t) {
-                        (0,
-                        C.GG)(this, ff, t, "f"),
-                        (0,
-                        C.gn)(this, ff, "f") == (0,
-                        C.gn)(this, gf, "f") && ((0,
-                        C.gn)(this, vf, "f").isPaused = !0,
-                        (0,
-                        C.GG)(this, pf, !0, "f")),
+                        C.set(this, ff, t, "f"),
+                        C.get(this, ff, "f") == C.get(this, gf, "f") && (C.get(this, vf, "f").isPaused = !0,
+                        C.set(this, pf, !0, "f")),
                         i = e;
-                        for (const e of (0,
-                        C.gn)(this, uf, "f"))
+                        for (const e of C.get(this, uf, "f"))
                             e.car.audioVolume = 1
                     } else {
                         i = 0;
-                        for (const e of (0,
-                        C.gn)(this, uf, "f"))
+                        for (const e of C.get(this, uf, "f"))
                             e.car.audioVolume = 0
                     }
                 }
-                const r = Math.round(1e3 * (0,
-                C.gn)(this, ff, "f"))
+                const r = Math.round(1e3 * C.get(this, ff, "f"))
                   , a = Math.min(r, n.numberOfFrames);
-                if ((0,
-                C.gn)(this, vf, "f").isDragging || a < (0,
-                C.gn)(this, uf, "f")[(0,
-                C.gn)(this, df, "f")].car.getTime().numberOfFrames || a > (0,
-                C.gn)(this, uf, "f")[(0,
-                C.gn)(this, df, "f")].car.getTime().numberOfFrames + 1e3)
-                    (0,
-                    C.gn)(this, Yp, "m", Cf).call(this, a);
+                if (C.get(this, vf, "f").isDragging || a < C.get(this, uf, "f")[C.get(this, df, "f")].car.getTime().numberOfFrames || a > C.get(this, uf, "f")[C.get(this, df, "f")].car.getTime().numberOfFrames + 1e3)
+                    C.get(this, Yp, "m", Cf).call(this, a);
                 else {
-                    for (let e = (0,
-                    C.gn)(this, uf, "f")[(0,
-                    C.gn)(this, df, "f")].car.getTime().numberOfFrames + 1; e <= a; e++)
-                        (0,
-                        C.gn)(this, Yp, "m", Cf).call(this, e)
+                    for (let e = C.get(this, uf, "f")[C.get(this, df, "f")].car.getTime().numberOfFrames + 1; e <= a; e++)
+                        C.get(this, Yp, "m", Cf).call(this, e)
                 }
-                (0,
-                C.gn)(this, vf, "f").time = (0,
-                C.gn)(this, uf, "f")[(0,
-                C.gn)(this, df, "f")].car.getTime(),
-                (0,
-                C.gn)(this, vf, "f").loadedTime = n,
-                (0,
-                C.gn)(this, bf, "f").update((0,
-                C.gn)(this, uf, "f")[(0,
-                C.gn)(this, df, "f")].car.getControls()),
-                (0,
-                C.gn)(this, wf, "f").update((0,
-                C.gn)(this, uf, "f")[(0,
-                C.gn)(this, df, "f")].car),
-                (0,
-                C.gn)(this, xf, "f").update((0,
-                C.gn)(this, uf, "f")[(0,
-                C.gn)(this, df, "f")].car),
-                (0,
-                C.gn)(this, Sf, "f").update((0,
-                C.gn)(this, uf, "f")[(0,
-                C.gn)(this, df, "f")].car);
-                for (const e of (0,
-                C.gn)(this, uf, "f"))
+                C.get(this, vf, "f").time = C.get(this, uf, "f")[C.get(this, df, "f")].car.getTime(),
+                C.get(this, vf, "f").loadedTime = n,
+                C.get(this, bf, "f").update(C.get(this, uf, "f")[C.get(this, df, "f")].car.getControls()),
+                C.get(this, wf, "f").update(C.get(this, uf, "f")[C.get(this, df, "f")].car),
+                C.get(this, xf, "f").update(C.get(this, uf, "f")[C.get(this, df, "f")].car),
+                C.get(this, Sf, "f").update(C.get(this, uf, "f")[C.get(this, df, "f")].car);
+                for (const e of C.get(this, uf, "f"))
                     e.car.update(i),
                     e.car.updateCameras(i);
-                (0,
-                C.gn)(this, Ef, "f")?.updateCar((0,
-                C.gn)(this, uf, "f")[(0,
-                C.gn)(this, df, "f")].car),
-                (0,
-                C.gn)(this, kf, "f")?.update(r),
-                (0,
-                C.gn)(this, mf, "f").update(e),
-                (0,
-                C.gn)(this, rf, "f").update((0,
-                C.gn)(this, $p, "f")),
-                (0,
-                C.gn)(this, af, "f").update(i, (0,
-                C.gn)(this, sf, "f").camera, (0,
-                C.gn)(this, $p, "f").sunDirection),
-                (0,
-                C.gn)(this, of, "f").update(e, !1, (0,
-                C.gn)(this, sf, "f")),
-                (0,
-                C.gn)(this, sf, "f").update((0,
-                C.gn)(this, $p, "f").sunDirection)
+                C.get(this, Ef, "f")?.updateCar(C.get(this, uf, "f")[C.get(this, df, "f")].car),
+                C.get(this, kf, "f")?.update(r),
+                C.get(this, mf, "f").update(e),
+                C.get(this, rf, "f").update(C.get(this, $p, "f")),
+                C.get(this, af, "f").update(i, C.get(this, sf, "f").camera, C.get(this, $p, "f").sunDirection),
+                C.get(this, of, "f").update(e, !1, C.get(this, sf, "f")),
+                C.get(this, sf, "f").update(C.get(this, $p, "f").sunDirection)
             }
         }
         ;
@@ -61365,45 +56124,32 @@
                 Pf.set(this, !1),
                 If.set(this, []),
                 window.addEventListener("touchstart", ( () => {
-                    if (!(0,
-                    C.gn)(this, Pf, "f")) {
-                        (0,
-                        C.GG)(this, Pf, !0, "f");
-                        for (const e of (0,
-                        C.gn)(this, If, "f"))
-                            e((0,
-                            C.gn)(this, Pf, "f"))
+                    if (!C.get(this, Pf, "f")) {
+                        C.set(this, Pf, !0, "f");
+                        for (const e of C.get(this, If, "f"))
+                            e(C.get(this, Pf, "f"))
                     }
                 }
                 )),
                 window.addEventListener("keydown", ( () => {
-                    if ((0,
-                    C.gn)(this, Pf, "f")) {
-                        (0,
-                        C.GG)(this, Pf, !1, "f");
-                        for (const e of (0,
-                        C.gn)(this, If, "f"))
-                            e((0,
-                            C.gn)(this, Pf, "f"))
+                    if (C.get(this, Pf, "f")) {
+                        C.set(this, Pf, !1, "f");
+                        for (const e of C.get(this, If, "f"))
+                            e(C.get(this, Pf, "f"))
                     }
                 }
                 ))
             }
             get touchEnabled() {
-                return (0,
-                C.gn)(this, Pf, "f")
+                return C.get(this, Pf, "f")
             }
             addChangeListener(e) {
-                (0,
-                C.gn)(this, If, "f").push(e),
-                e((0,
-                C.gn)(this, Pf, "f"))
+                C.get(this, If, "f").push(e),
+                e(C.get(this, Pf, "f"))
             }
             removeChangeListener(e) {
-                const t = (0,
-                C.gn)(this, If, "f").indexOf(e);
-                t >= 0 && (0,
-                C.gn)(this, If, "f").splice(t, 1)
+                const t = C.get(this, If, "f").indexOf(e);
+                t >= 0 && C.get(this, If, "f").splice(t, 1)
             }
         }
         ;
@@ -61426,16 +56172,14 @@
         const Bf = class {
             constructor(e, t) {
                 Df.set(this, void 0),
-                (0,
-                C.GG)(this, Df, e.loadStartupInfo(), "f"),
+                C.set(this, Df, e.loadStartupInfo(), "f"),
                 t.addCompleteListener(( () => {
                     e.saveStartupInfo("0.6.0")
                 }
                 ))
             }
             shouldShowUpdatePopup() {
-                return "0.5.2" == (0,
-                C.gn)(this, Df, "f")?.lastVersion
+                return "0.5.2" == C.get(this, Df, "f")?.lastVersion
             }
         }
         ;
@@ -61782,7 +56526,7 @@
             }
             )),
             window.addEventListener("keyup", (e => {
-                r.checkKeyBinding(e, ge.A.ToggleFpsCounter) && k.toggle()
+                r.checkKeyBinding(e, KeyBind.ToggleFpsCounter) && k.toggle()
             }
             ))
         }()
