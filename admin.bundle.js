@@ -1,5 +1,5 @@
 "use strict";
-(self.webpackChunk = self.webpackChunk || []).push([[982], {
+(self.webpackChunk = self.webpackChunk || []).push([['admin'], {
     5768: (t, e, n) => {
         n.d(e, {
             A: () => l

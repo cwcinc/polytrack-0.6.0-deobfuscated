@@ -1,5 +1,5 @@
 "use strict";
-(self.webpackChunk = self.webpackChunk || []).push([[789], {
+(self.webpackChunk = self.webpackChunk || []).push([['haptics'], {
     3789: (t, e, i) => {
         i.d(e, {
             HapticsWeb: () => r

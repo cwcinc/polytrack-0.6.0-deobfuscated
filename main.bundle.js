@@ -38060,7 +38060,7 @@
         p.A && p.A.locals && p.A.locals;
         var g = i(6546);
         g.F3("App", {
-            web: () => i.e(168).then(i.bind(i, 1168)).then((e => new e.AppWeb))
+            web: () => i.e('app').then(i.bind(i, 1168)).then((e => new e.AppWeb))
         });
         var m, A, v, y, b, w, x, S, k, E, T, M, THREE = i(4922), C = i(1635), R = i(3476), P = i(5387);
         A = new WeakMap,
@@ -39044,7 +39044,7 @@
         bt.A && bt.A.locals && bt.A.locals;
         i(3693);
         g.F3("Haptics", {
-            web: () => i.e(789).then(i.bind(i, 3789)).then((e => new e.HapticsWeb))
+            web: () => i.e('haptics').then(i.bind(i, 3789)).then((e => new e.HapticsWeb))
         });
         var xt, St, kt, Et, Tt, Mt, _t;
         St = new WeakMap,
@@ -53448,7 +53448,7 @@
         }
         ;
         g.F3("CapacitorSQLite", {
-            web: () => i.e(57).then(i.bind(i, 819)).then((e => new e.CapacitorSQLiteWeb)),
+            web: () => i.e('SQLite').then(i.bind(i, 819)).then((e => new e.CapacitorSQLiteWeb)),
             electron: () => window.CapacitorCustomPlatform.plugins.CapacitorSQLite
         });
         var Rd, Pd, Id, Ld, Ud, zd, Nd, Dd, Bd, Gd, Fd, Od, Wd, Vd, Hd, jd, Kd, qd, Qd, Jd, Xd, Yd, Zd, $d, eu, TrackDataImporterLegacy = i(7980), TrackDataImporterV1 = i(666), TrackDataImporterV2 = i(5343), TrackDataImporterV3 = i(8928), TrackDataImporterV4 = i(5440), su = i(2951), ou = i(2387);
@@ -56568,7 +56568,7 @@
                     P.bQ(),
                     P.pS();
                     try {
-                        const {default: t} = await i.e(280).then(i.bind(i, 3280));
+                        const {default: t} = await i.e('garage').then(i.bind(i, 3280));
                         await t.initResources(),
                         Q.dispose(),
                         Q = new t(b,v,A,m,h,l,w,r,x,E,e,( () => {
@@ -56593,7 +56593,7 @@
                     } finally {
                         P.pS();
                         try {
-                            const {default: a} = await i.e(124).then(i.bind(i, 4124));
+                            const {default: a} = await i.e('editor').then(i.bind(i, 4124));
                             await a.initResources(),
                             Q.dispose();
                             const c = Q = new a(v,d,e,A,m,b,l,h,r,o,w,S,y,E,T,( () => {
@@ -56710,7 +56710,7 @@
                 o.trigger((async () => {
                     P.pS();
                     try {
-                        const {default: e} = await i.e(142).then(i.bind(i, 5142));
+                        const {default: e} = await i.e('verifier').then(i.bind(i, 5142));
                         Q.dispose(),
                         Q = new e(l,h,x,w,y,d,t,a,( () => {
                             M(!1, null)
@@ -56731,7 +56731,7 @@
                 o.trigger((async () => {
                     P.pS();
                     try {
-                        const {default: e} = await i.e(982).then(i.bind(i, 9982));
+                        const {default: e} = await i.e('admin').then(i.bind(i, 9982));
                         Q.dispose(),
                         Q = new e(l,h,E,y,x,a,( () => {
                             M(!1, null)

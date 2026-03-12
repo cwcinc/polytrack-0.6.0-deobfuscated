@@ -1,5 +1,5 @@
 "use strict";
-(self.webpackChunk = self.webpackChunk || []).push([[57], {
+(self.webpackChunk = self.webpackChunk || []).push([['SQLite'], {
     819: (e, t, s) => {
         s.d(t, {
             CapacitorSQLiteWeb: () => i

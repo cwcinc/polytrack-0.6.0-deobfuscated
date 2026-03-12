@@ -1,5 +1,5 @@
 "use strict";
-(self.webpackChunk = self.webpackChunk || []).push([[124], {
+(self.webpackChunk = self.webpackChunk || []).push([['editor'], {
     2346: (t, e, n) => {
         n.d(e, {
             A: () => r

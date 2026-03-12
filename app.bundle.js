@@ -1,5 +1,5 @@
 "use strict";
-(self.webpackChunk = self.webpackChunk || []).push([[168], {
+(self.webpackChunk = self.webpackChunk || []).push([['app'], {
     1168: (e, t, n) => {
         n.d(t, {
             AppWeb: () => s
