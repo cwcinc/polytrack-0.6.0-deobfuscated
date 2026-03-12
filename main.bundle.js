@@ -1,16 +1,16 @@
 ( () => {
     var e, t = {
-        77: (e, t, n) => {
+        77: (module, exports, __webpack_require__) => {
             "use strict";
-            e.exports = n.p + "images/rotation_axis_x_positive.svg"
+            module.exports = __webpack_require__.p + "images/rotation_axis_x_positive.svg"
         }
         ,
-        202: (e, t, n) => {
+        202: (module, exports, __webpack_require__) => {
             "use strict";
-            n.d(t, {
+            __webpack_require__.d(exports, {
                 A: () => c
             });
-            var i, r, a, s, o, l = n(1635);
+            var i, r, a, s, o, l = __webpack_require__(1635);
             r = new WeakMap,
             a = new WeakMap,
             s = new WeakMap,
@@ -85,25 +85,25 @@
             }
         }
         ,
-        228: (e, t, n) => {
+        228: (module, exports, __webpack_require__) => {
             "use strict";
-            e.exports = n.p + "images/pattern_diamonds.svg"
+            module.exports = __webpack_require__.p + "images/pattern_diamonds.svg"
         }
         ,
-        405: (e, t, n) => {
+        405: (module, exports, __webpack_require__) => {
             "use strict";
-            n.d(t, {
+            __webpack_require__.d(exports, {
                 Hw: () => f,
                 bK: () => g,
                 l1: () => m,
                 yD: () => u
             });
-            var THREE = n(4922)
-              , r = n(1882)
-              , a = n(4183)
-              , s = n(2203)
-              , o = n(2247)
-              , l = n(7129);
+            var THREE = __webpack_require__(4922)
+              , r = __webpack_require__(1882)
+              , a = __webpack_require__(4183)
+              , s = __webpack_require__(2203)
+              , o = __webpack_require__(2247)
+              , l = __webpack_require__(7129);
             const c = [{
                 id: a.A.Summer,
                 colors: {}
@@ -326,19 +326,19 @@
               , m = u.filter((e => null != e.startOffset)).map((e => e.id))
         }
         ,
-        493: (e, t, n) => {
+        493: (module, exports, __webpack_require__) => {
             "use strict";
-            e.exports = n.p + "images/empty.svg"
+            module.exports = __webpack_require__.p + "images/empty.svg"
         }
         ,
-        516: (e, t, n) => {
+        516: (module, exports, __webpack_require__) => {
             "use strict";
-            e.exports = n.p + "images/arrow_down.svg"
+            module.exports = __webpack_require__.p + "images/arrow_down.svg"
         }
         ,
-        540: e => {
+        540: module => {
             "use strict";
-            e.exports = function(e) {
+            module.exports = function(e) {
                 var t = document.createElement("style");
                 return e.setAttributes(t, e.attributes),
                 e.insert(t, e.options),
@@ -346,35 +346,35 @@
             }
         }
         ,
-        542: (e, t, n) => {
+        542: (module, exports, __webpack_require__) => {
             "use strict";
-            e.exports = n.p + "images/step_back.svg"
+            module.exports = __webpack_require__.p + "images/step_back.svg"
         }
         ,
-        560: (e, t, n) => {
+        560: (module, exports, __webpack_require__) => {
             "use strict";
-            e.exports = n.p + "images/pattern.svg"
+            module.exports = __webpack_require__.p + "images/pattern.svg"
         }
         ,
-        579: (e, t, n) => {
+        579: (module, exports, __webpack_require__) => {
             "use strict";
-            n.d(t, {
+            __webpack_require__.d(exports, {
                 A: () => M
             });
-            var i = n(1635)
-              , r = n(5072)
-              , a = n.n(r)
-              , s = n(7825)
-              , o = n.n(s)
-              , l = n(7659)
-              , c = n.n(l)
-              , h = n(5056)
-              , d = n.n(h)
-              , u = n(540)
-              , p = n.n(u)
-              , f = n(1113)
-              , g = n.n(f)
-              , m = n(7687)
+            var i = __webpack_require__(1635)
+              , r = __webpack_require__(5072)
+              , a = __webpack_require__.n(r)
+              , s = __webpack_require__(7825)
+              , o = __webpack_require__.n(s)
+              , l = __webpack_require__(7659)
+              , c = __webpack_require__.n(l)
+              , h = __webpack_require__(5056)
+              , d = __webpack_require__.n(h)
+              , u = __webpack_require__(540)
+              , p = __webpack_require__.n(u)
+              , f = __webpack_require__(1113)
+              , g = __webpack_require__.n(f)
+              , m = __webpack_require__(7687)
               , A = {};
             A.styleTagTransform = g(),
             A.setAttributes = d(),
@@ -383,7 +383,7 @@
             A.insertStyleElement = p();
             a()(m.A, A);
             m.A && m.A.locals && m.A.locals;
-            var v, y, b, w, x, S, k, E = n(8438), T = n(202);
+            var v, y, b, w, x, S, k, E = __webpack_require__(8438), T = __webpack_require__(202);
             v = new WeakMap,
             y = new WeakMap,
             b = new WeakMap,
@@ -546,20 +546,20 @@
             }
         }
         ,
-        666: (e, t, n) => {
+        666: (module, exports, __webpack_require__) => {
             "use strict";
-            n.d(t, {
+            __webpack_require__.d(exports, {
                 U: () => u,
                 _: () => d
             });
-            var i = n(2244)
-              , r = n(7680)
-              , a = n(8438)
-              , s = n(5169)
-              , o = n(4183)
-              , l = n(2203)
-              , c = n(8566)
-              , h = n(405);
+            var i = __webpack_require__(2244)
+              , r = __webpack_require__(7680)
+              , a = __webpack_require__(8438)
+              , s = __webpack_require__(5169)
+              , o = __webpack_require__(4183)
+              , l = __webpack_require__(2203)
+              , c = __webpack_require__(8566)
+              , h = __webpack_require__(405);
             function d(e) {
                 const t = i.D(e);
                 if (null == t)
@@ -639,25 +639,25 @@
             }
         }
         ,
-        732: (e, t, n) => {
+        732: (module, exports, __webpack_require__) => {
             "use strict";
-            n.d(t, {
+            __webpack_require__.d(exports, {
                 A: () => o
             });
-            var i = n(1601)
-              , r = n.n(i)
-              , a = n(6314)
-              , s = n.n(a)()(r());
-            s.push([e.id, ".invite-ui {\n\tdisplay: flex;\n\tflex-direction: column;\n\tposition: absolute;\n\tleft: calc(50% - 500px / 2);\n\ttop: 30%;\n\tz-index: 2;\n\tmargin: 0;\n\tpadding: 0;\n\twidth: 500px;\n\tbox-sizing: border-box;\n\tbackground-color: var(--surface-color);\n}\n\n.invite-ui > h2 {\n\tmargin: 0;\n\tpadding: 10px 20px;\n\tfont-size: 38px;\n\ttext-align: center;\n\tbackground-color: var(--surface-color);\n\tcolor: var(--text-color);\n}\n\n.invite-ui > .content {\n\tmargin: 0;\n\tdisplay: flex;\n\tflex-direction: column;\n\tflex-grow: 1;\n\theight: 290px;\n\tbackground-color: var(--surface-secondary-color);\n}\n\n.invite-ui > .content > .loading-container {\n\tdisplay: flex;\n\tflex-direction: column;\n\tflex-grow: 1;\n\talign-items: center;\n\tjustify-content: center;\n}\n\n.invite-ui > .content > .loading-container > .loading-text {\n\tmargin: 0 0 20px 0;\n\tfont-size: 38px;\n\ttext-align: center;\n\tcolor: var(--text-color);\n}\n\n.invite-ui > .content > .invite-code-container {\n\tdisplay: flex;\n\tflex-direction: column;\n\tflex-grow: 1;\n\talign-items: center;\n\tjustify-content: center;\n}\n\n.invite-ui > .content > .invite-code-container > .title {\n\tmargin: 0 10px;\n\tfont-size: 26px;\n\ttext-align: center;\n\tcolor: var(--text-color);\n}\n\n.invite-ui > .content > .invite-code-container > input {\n\tmargin: 20px 20px 0 20px;\n\tbox-sizing: border-box;\n\twidth: calc(100% - 2 * 20px);\n\tfont-size: 46px;\n\ttext-align: center;\n}\n\n.invite-ui > .content > .invite-code-container > .timeout-timer {\n\tmargin: 10px 0 0 0;\n\tfont-size: 32px;\n\tcolor: var(--text-color);\n}\n\n.invite-ui > .content > .invite-code-container > .timeout-timer.expired {\n\tcolor: #f55;\n}\n\n.invite-ui > .content > .error-container {\n\tdisplay: flex;\n\tflex-direction: column;\n\tflex-grow: 1;\n\talign-items: center;\n\tjustify-content: center;\n\ttext-align: center;\n\tfont-size: 38px;\n\tcolor: #ff9696;\n}\n\n.invite-ui > .content > .error-container > .error-reason {\n\tfont-size: 22px;\n}\n\n.invite-ui > .content > .new-code-container {\n\tpadding: 10px 0;\n\tdisplay: flex;\n\tjustify-content: center;\n\talign-self: center;\n}\n\n.invite-ui > .buttons-container {\n\tdisplay: flex;\n\tjustify-content: space-between;\n\tpadding: 10px;\n}\n", ""]);
+            var i = __webpack_require__(1601)
+              , r = __webpack_require__.n(i)
+              , a = __webpack_require__(6314)
+              , s = __webpack_require__.n(a)()(r());
+            s.push([module.id, ".invite-ui {\n\tdisplay: flex;\n\tflex-direction: column;\n\tposition: absolute;\n\tleft: calc(50% - 500px / 2);\n\ttop: 30%;\n\tz-index: 2;\n\tmargin: 0;\n\tpadding: 0;\n\twidth: 500px;\n\tbox-sizing: border-box;\n\tbackground-color: var(--surface-color);\n}\n\n.invite-ui > h2 {\n\tmargin: 0;\n\tpadding: 10px 20px;\n\tfont-size: 38px;\n\ttext-align: center;\n\tbackground-color: var(--surface-color);\n\tcolor: var(--text-color);\n}\n\n.invite-ui > .content {\n\tmargin: 0;\n\tdisplay: flex;\n\tflex-direction: column;\n\tflex-grow: 1;\n\theight: 290px;\n\tbackground-color: var(--surface-secondary-color);\n}\n\n.invite-ui > .content > .loading-container {\n\tdisplay: flex;\n\tflex-direction: column;\n\tflex-grow: 1;\n\talign-items: center;\n\tjustify-content: center;\n}\n\n.invite-ui > .content > .loading-container > .loading-text {\n\tmargin: 0 0 20px 0;\n\tfont-size: 38px;\n\ttext-align: center;\n\tcolor: var(--text-color);\n}\n\n.invite-ui > .content > .invite-code-container {\n\tdisplay: flex;\n\tflex-direction: column;\n\tflex-grow: 1;\n\talign-items: center;\n\tjustify-content: center;\n}\n\n.invite-ui > .content > .invite-code-container > .title {\n\tmargin: 0 10px;\n\tfont-size: 26px;\n\ttext-align: center;\n\tcolor: var(--text-color);\n}\n\n.invite-ui > .content > .invite-code-container > input {\n\tmargin: 20px 20px 0 20px;\n\tbox-sizing: border-box;\n\twidth: calc(100% - 2 * 20px);\n\tfont-size: 46px;\n\ttext-align: center;\n}\n\n.invite-ui > .content > .invite-code-container > .timeout-timer {\n\tmargin: 10px 0 0 0;\n\tfont-size: 32px;\n\tcolor: var(--text-color);\n}\n\n.invite-ui > .content > .invite-code-container > .timeout-timer.expired {\n\tcolor: #f55;\n}\n\n.invite-ui > .content > .error-container {\n\tdisplay: flex;\n\tflex-direction: column;\n\tflex-grow: 1;\n\talign-items: center;\n\tjustify-content: center;\n\ttext-align: center;\n\tfont-size: 38px;\n\tcolor: #ff9696;\n}\n\n.invite-ui > .content > .error-container > .error-reason {\n\tfont-size: 22px;\n}\n\n.invite-ui > .content > .new-code-container {\n\tpadding: 10px 0;\n\tdisplay: flex;\n\tjustify-content: center;\n\talign-self: center;\n}\n\n.invite-ui > .buttons-container {\n\tdisplay: flex;\n\tjustify-content: space-between;\n\tpadding: 10px;\n}\n", ""]);
             const o = s
         }
         ,
-        765: (e, t, n) => {
+        765: (module, exports, __webpack_require__) => {
             "use strict";
-            n.d(t, {
+            __webpack_require__.d(exports, {
                 A: () => p
             });
-            var i, r, a, s, o, l, c = n(1635), THREE = n(4922), d = n(2244);
+            var i, r, a, s, o, l, c = __webpack_require__(1635), THREE = __webpack_require__(4922), d = __webpack_require__(2244);
             class u {
                 constructor(e, t, n, i, l, h, d) {
                     r.set(this, void 0),
@@ -962,30 +962,30 @@
             const p = u
         }
         ,
-        798: (e, t, n) => {
+        798: (module, exports, __webpack_require__) => {
             "use strict";
-            e.exports = n.p + "images/pattern_stripe2.svg"
+            module.exports = __webpack_require__.p + "images/pattern_stripe2.svg"
         }
         ,
-        813: (e, t, n) => {
+        813: (module, exports, __webpack_require__) => {
             "use strict";
-            e.exports = n.p + "images/winter.svg"
+            module.exports = __webpack_require__.p + "images/winter.svg"
         }
         ,
-        820: (e, t, n) => {
+        820: (module, exports, __webpack_require__) => {
             "use strict";
-            e.exports = n.p + "images/exhaust.svg"
+            module.exports = __webpack_require__.p + "images/exhaust.svg"
         }
         ,
-        832: (e, t, n) => {
+        832: (module, exports, __webpack_require__) => {
             "use strict";
-            n.d(t, {
+            __webpack_require__.d(exports, {
                 F: () => u
             });
-            var THREE = n(4922)
-              , r = n(4078)
-              , a = n(2825)
-              , s = n(7680);
+            var THREE = __webpack_require__(4922)
+              , r = __webpack_require__(4078)
+              , a = __webpack_require__(2825)
+              , s = __webpack_require__(7680);
             let o = null
               , l = null
               , c = null
@@ -1037,22 +1037,22 @@
             }
         }
         ,
-        853: (e, t, n) => {
+        853: (module, exports, __webpack_require__) => {
             "use strict";
-            e.exports = n.p + "images/icon.svg"
+            module.exports = __webpack_require__.p + "images/icon.svg"
         }
         ,
-        858: (e, t, n) => {
+        858: (module, exports, __webpack_require__) => {
             "use strict";
-            e.exports = n.p + "images/discord.svg"
+            module.exports = __webpack_require__.p + "images/discord.svg"
         }
         ,
-        927: (e, t, n) => {
+        927: (module, exports, __webpack_require__) => {
             "use strict";
-            n.d(t, {
+            __webpack_require__.d(exports, {
                 A: () => v
             });
-            var i, r, a, s, o, l, c, h, d, u, p, f = n(1635), g = n(3075), m = n(2244);
+            var i, r, a, s, o, l, c, h, d, u, p, f = __webpack_require__(1635), g = __webpack_require__(3075), m = __webpack_require__(2244);
             class A {
                 constructor(e) {
                     i.add(this),
@@ -1267,30 +1267,30 @@
             const v = A
         }
         ,
-        964: (e, t, n) => {
+        964: (module, exports, __webpack_require__) => {
             "use strict";
-            n.d(t, {
+            __webpack_require__.d(exports, {
                 A: () => o
             });
-            var i = n(1601)
-              , r = n.n(i)
-              , a = n(6314)
-              , s = n.n(a)()(r());
-            s.push([e.id, ".input-visualizer-ui {\n    position: absolute;\n    left: var(--safe-area-horizontal);\n    bottom: 106px;\n    margin: 20px;\n    padding: 0;\n    --size: 96px;\n    width: calc(var(--size) * 3);\n    height: calc(var(--size) * 2);\n    opacity: 0.9;\n}\n\n.input-visualizer-ui > div {\n    position: absolute;\n    margin: 0;\n    padding: 0;\n    width: var(--size);\n    height: var(--size);\n    background-color: var(--surface-color);\n}\n\n.input-visualizer-ui > .arrow-up {\n    left: var(--size);\n    top: 0;\n}\n\n.input-visualizer-ui > .arrow-right {\n    left: calc(var(--size) * 2);\n    top: var(--size);\n}\n\n.input-visualizer-ui > .arrow-down {\n    left: var(--size);\n    top: var(--size);\n}\n\n.input-visualizer-ui > .arrow-left {\n    left: 0;\n    top: var(--size);\n}\n\n.input-visualizer-ui > div.active {\n    background-color: var(--surface-tertiary-color);\n}\n\n.input-visualizer-ui > div > img {\n    margin: 0;\n    padding: 20px;\n    width: 100%;\n    height: 100%;\n    box-sizing: border-box;\n}\n.input-visualizer-ui > div.active > img {\n    padding: 25px;\n}", ""]);
+            var i = __webpack_require__(1601)
+              , r = __webpack_require__.n(i)
+              , a = __webpack_require__(6314)
+              , s = __webpack_require__.n(a)()(r());
+            s.push([module.id, ".input-visualizer-ui {\n    position: absolute;\n    left: var(--safe-area-horizontal);\n    bottom: 106px;\n    margin: 20px;\n    padding: 0;\n    --size: 96px;\n    width: calc(var(--size) * 3);\n    height: calc(var(--size) * 2);\n    opacity: 0.9;\n}\n\n.input-visualizer-ui > div {\n    position: absolute;\n    margin: 0;\n    padding: 0;\n    width: var(--size);\n    height: var(--size);\n    background-color: var(--surface-color);\n}\n\n.input-visualizer-ui > .arrow-up {\n    left: var(--size);\n    top: 0;\n}\n\n.input-visualizer-ui > .arrow-right {\n    left: calc(var(--size) * 2);\n    top: var(--size);\n}\n\n.input-visualizer-ui > .arrow-down {\n    left: var(--size);\n    top: var(--size);\n}\n\n.input-visualizer-ui > .arrow-left {\n    left: 0;\n    top: var(--size);\n}\n\n.input-visualizer-ui > div.active {\n    background-color: var(--surface-tertiary-color);\n}\n\n.input-visualizer-ui > div > img {\n    margin: 0;\n    padding: 20px;\n    width: 100%;\n    height: 100%;\n    box-sizing: border-box;\n}\n.input-visualizer-ui > div.active > img {\n    padding: 25px;\n}", ""]);
             const o = s
         }
         ,
-        1014: (e, t, n) => {
+        1014: (module, exports, __webpack_require__) => {
             "use strict";
-            e.exports = n.p + "images/step_forward.svg"
+            module.exports = __webpack_require__.p + "images/step_forward.svg"
         }
         ,
-        1055: (e, t, n) => {
+        1055: (module, exports, __webpack_require__) => {
             "use strict";
-            n.d(t, {
+            __webpack_require__.d(exports, {
                 A: () => s
             });
-            var i, r, a = n(1635);
+            var i, r, a = __webpack_require__(1635);
             i = new WeakMap,
             r = new WeakMap;
             const s = class {
@@ -1326,12 +1326,12 @@
             }
         }
         ,
-        1066: (e, t, n) => {
+        1066: (module, exports, __webpack_require__) => {
             "use strict";
-            n.d(t, {
+            __webpack_require__.d(exports, {
                 A: () => f
             });
-            var i, r, a, s, o, l, c, h, d = n(1635), THREE = n(4922);
+            var i, r, a, s, o, l, c, h, d = __webpack_require__(1635), THREE = __webpack_require__(4922);
             class p {
                 constructor(e) {
                     r.set(this, void 0),
@@ -1455,22 +1455,22 @@
             const f = p
         }
         ,
-        1083: (e, t, n) => {
+        1083: (module, exports, __webpack_require__) => {
             "use strict";
-            n.d(t, {
+            __webpack_require__.d(exports, {
                 A: () => o
             });
-            var i = n(1601)
-              , r = n.n(i)
-              , a = n(6314)
-              , s = n.n(a)()(r());
-            s.push([e.id, ".game-ui.hidden {\n\tdisplay: hidden;\n}\n", ""]);
+            var i = __webpack_require__(1601)
+              , r = __webpack_require__.n(i)
+              , a = __webpack_require__(6314)
+              , s = __webpack_require__.n(a)()(r());
+            s.push([module.id, ".game-ui.hidden {\n\tdisplay: hidden;\n}\n", ""]);
             const o = s
         }
         ,
-        1113: e => {
+        1113: module => {
             "use strict";
-            e.exports = function(e, t) {
+            module.exports = function(e, t) {
                 if (t.styleSheet)
                     t.styleSheet.cssText = e;
                 else {
@@ -1481,38 +1481,38 @@
             }
         }
         ,
-        1120: (e, t, n) => {
+        1120: (module, exports, __webpack_require__) => {
             "use strict";
-            n.d(t, {
+            __webpack_require__.d(exports, {
                 A: () => o
             });
-            var i = n(1601)
-              , r = n.n(i)
-              , a = n(6314)
-              , s = n.n(a)()(r());
-            s.push([e.id, ".graph-ui {\n\tdisplay: flex;\n\tflex-direction: column;\n\tposition: absolute;\n\tleft: calc(50% - 900px / 2);\n\ttop: 15%;\n\tz-index: 2;\n\tmargin: 0;\n\tpadding: 0;\n\tbox-sizing: border-box;\n}\n\n.graph-ui > h2 {\n\tmargin: 0;\n\tpadding: 10px 20px;\n\tfont-size: 38px;\n\ttext-align: center;\n\tbackground-color: var(--surface-color);\n\tcolor: var(--text-color);\n}\n\n.graph-ui > .content {\n\twidth: 900px;\n\theight: 500px;\n}\n\n.graph-ui > .content > .graph-content {\n\tdisplay: flex;\n\tflex-grow: 1;\n\tbackground-color: rgba(40, 52, 106, 0.85);\n}\n.graph-ui.type-selection-open > .content > .graph-content {\n\tdisplay: none;\n}\n\n.graph-ui > .content > .graph-content > .side-panel {\n\twidth: 150px;\n\theight: 500px;\n\tbackground-color: var(--surface-secondary-color);\n}\n\n.graph-ui > .content > .graph-content > .side-panel > div {\n\tmargin: 5px;\n\tpadding: 5px;\n\tbackground-color: var(--surface-color);\n}\n\n.graph-ui > .content > .graph-content > .side-panel > div > div {\n\tfont-size: 15px;\n\twhite-space: nowrap;\n\toverflow: hidden;\n\ttext-overflow: ellipsis;\n}\n\n.graph-ui > .content > .graph-content > canvas {\n\tmargin: 0;\n\tpadding: 0;\n}\n\n.graph-ui > .content > .type-selection-content {\n\tdisplay: none;\n\tpadding: 10px;\n\tbox-sizing: border-box;\n\twidth: 900px;\n\theight: 500px;\n\tbackground-color: var(--surface-secondary-color);\n\toverflow-y: auto;\n\tpointer-events: auto;\n}\n\n.graph-ui.type-selection-open > .content > .type-selection-content {\n\tdisplay: block;\n}\n\n.graph-ui > .content > .type-selection-content > button {\n\tmargin: 0 0 10px 0;\n\twidth: calc(100% - 2 * 10px);\n}\n\n.graph-ui > .buttons-container {\n\tdisplay: flex;\n\tjustify-content: space-between;\n\tpadding: 10px;\n\tbackground-color: var(--surface-color);\n}\n", ""]);
+            var i = __webpack_require__(1601)
+              , r = __webpack_require__.n(i)
+              , a = __webpack_require__(6314)
+              , s = __webpack_require__.n(a)()(r());
+            s.push([module.id, ".graph-ui {\n\tdisplay: flex;\n\tflex-direction: column;\n\tposition: absolute;\n\tleft: calc(50% - 900px / 2);\n\ttop: 15%;\n\tz-index: 2;\n\tmargin: 0;\n\tpadding: 0;\n\tbox-sizing: border-box;\n}\n\n.graph-ui > h2 {\n\tmargin: 0;\n\tpadding: 10px 20px;\n\tfont-size: 38px;\n\ttext-align: center;\n\tbackground-color: var(--surface-color);\n\tcolor: var(--text-color);\n}\n\n.graph-ui > .content {\n\twidth: 900px;\n\theight: 500px;\n}\n\n.graph-ui > .content > .graph-content {\n\tdisplay: flex;\n\tflex-grow: 1;\n\tbackground-color: rgba(40, 52, 106, 0.85);\n}\n.graph-ui.type-selection-open > .content > .graph-content {\n\tdisplay: none;\n}\n\n.graph-ui > .content > .graph-content > .side-panel {\n\twidth: 150px;\n\theight: 500px;\n\tbackground-color: var(--surface-secondary-color);\n}\n\n.graph-ui > .content > .graph-content > .side-panel > div {\n\tmargin: 5px;\n\tpadding: 5px;\n\tbackground-color: var(--surface-color);\n}\n\n.graph-ui > .content > .graph-content > .side-panel > div > div {\n\tfont-size: 15px;\n\twhite-space: nowrap;\n\toverflow: hidden;\n\ttext-overflow: ellipsis;\n}\n\n.graph-ui > .content > .graph-content > canvas {\n\tmargin: 0;\n\tpadding: 0;\n}\n\n.graph-ui > .content > .type-selection-content {\n\tdisplay: none;\n\tpadding: 10px;\n\tbox-sizing: border-box;\n\twidth: 900px;\n\theight: 500px;\n\tbackground-color: var(--surface-secondary-color);\n\toverflow-y: auto;\n\tpointer-events: auto;\n}\n\n.graph-ui.type-selection-open > .content > .type-selection-content {\n\tdisplay: block;\n}\n\n.graph-ui > .content > .type-selection-content > button {\n\tmargin: 0 0 10px 0;\n\twidth: calc(100% - 2 * 10px);\n}\n\n.graph-ui > .buttons-container {\n\tdisplay: flex;\n\tjustify-content: space-between;\n\tpadding: 10px;\n\tbackground-color: var(--surface-color);\n}\n", ""]);
             const o = s
         }
         ,
-        1196: (e, t, n) => {
+        1196: (module, exports, __webpack_require__) => {
             "use strict";
-            n.d(t, {
+            __webpack_require__.d(exports, {
                 A: () => o
             });
-            var i = n(1601)
-              , r = n.n(i)
-              , a = n(6314)
-              , s = n.n(a)()(r());
-            s.push([e.id, '.time-announcer-ui {\n\tposition: absolute;\n\tleft: 0;\n\ttop: 35%;\n\twidth: 100%;\n\toverflow: hidden;\n}\n\n.time-announcer-ui > .record {\n\tmargin: 0;\n\tpadding: 0;\n\tfont-size: 64px;\n\tfont-weight: bold;\n\ttext-align: center;\n\topacity: 0;\n}\n.time-announcer-ui > .record.personal-best {\n\ttext-shadow: 3px 3px 0 #660, 0 0 3px #000;\n\tcolor: #ff5;\n\tanimation: 0.25s ease-out 0.6s 1 normal forwards running time-announcer-record-personal-best-animation;\n}\n.time-announcer-ui > .record.session-best {\n\ttext-shadow: 3px 3px 0 #060, 0 0 3px #000;\n\tcolor: #5f5;\n\tanimation: 0.25s ease-out 0.6s 1 normal forwards running time-announcer-record-session-best-animation;\n}\n\n.time-announcer-ui > .track-name {\n\tmargin: 0 0 10px 0;\n\tpadding: 4px 20px;\n\tbox-sizing: border-box;\n\twidth: 100%;\n\tbackground-color: var(--surface-secondary-color);\n\tfont-size: 60px;\n\tcolor: var(--text-color);\n\ttext-align: center;\n\toverflow: hidden;\n\ttext-overflow: ellipsis;\n\tanimation: 0.3s ease-out 0s 1 normal forwards running time-announcer-animation;\n}\n\n.time-announcer-ui > .current {\n\tmargin: 0;\n\tpadding: 0;\n\twidth: 0;\n\tbackground-color: var(--surface-color);\n\tfont-size: 48px;\n\tcolor: var(--text-color);\n\ttext-align: center;\n\tanimation: 0.5s ease-out 0s 1 normal forwards running time-announcer-animation;\n}\n.time-announcer-ui > .current:after {\n\tcontent: "\\200b"; /* Keep height even with absolute elements */\n}\n.time-announcer-ui > .current > div {\n\tposition: absolute;\n\tleft: 50%;\n}\n.time-announcer-ui > .current > .time {\n\ttext-align: right;\n\ttransform: translateX(-50%);\n\ttransition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;\n}\n.time-announcer-ui > .current > .position-dash {\n\ttransform: translateX(-50%);\n\topacity: 0;\n\ttransition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;\n}\n.time-announcer-ui > .current > .position {\n\ttext-align: left;\n\topacity: 0;\n\ttransform: translateX(-50%);\n\ttransition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;\n}\n\n.time-announcer-ui > .current.show-position > .time {\n\ttransform: translateX(calc(-100% - 35px));\n}\n.time-announcer-ui > .current.show-position > .position-dash {\n\topacity: 1;\n}\n.time-announcer-ui > .current.show-position > .position {\n\ttransform: translateX(35px);\n\topacity: 1;\n}\n\n.time-announcer-ui > .difference > p {\n\tmargin: 0 0 0 auto;\n\tpadding: 0;\n\twidth: 0;\n\tbackground-color: var(--surface-secondary-color);\n\tcolor: #5f5;\n\tfont-size: 30px;\n\ttext-align: center;\n\tanimation: 0.4s ease-out 0.5s 1 normal forwards running time-announcer-animation;\n}\n.time-announcer-ui > .difference.red > p {\n\tcolor: #f55;\n}\n.time-announcer-ui > .difference > p.title {\n\tmargin-top: 30px;\n\tbackground-color: transparent;\n\ttext-shadow: 0 0 3px #000;\n}\n\n@keyframes time-announcer-record-personal-best-animation {\n\t0% {\n\t\topacity: 0;\n\t\ttransform: scaleX(0.5);\n\t\tbackground-color: #ffa;\n\t}\n\n\t80% {\n\t\topacity: 1;\n\t\ttransform: scaleX(1.1);\n\t}\n\n\t100% {\n\t\topacity: 1;\n\t\ttransform: scaleX(1);\n\t\tbackground-color: rgba(255, 255, 170, 0.3);\n\t}\n}\n\n@keyframes time-announcer-record-session-best-animation {\n\t0% {\n\t\topacity: 0;\n\t\ttransform: scaleX(0.5);\n\t\tbackground-color: #afa;\n\t}\n\n\t80% {\n\t\topacity: 1;\n\t\ttransform: scaleX(1.1);\n\t}\n\n\t100% {\n\t\topacity: 1;\n\t\ttransform: scaleX(1);\n\t\tbackground-color: rgba(170, 255, 170, 0.3);\n\t}\n}\n\n@keyframes time-announcer-animation {\n\tfrom {\n\t\twidth: 0;\n\t\topacity: 0;\n\t}\n\n\tto {\n\t\twidth: 100%;\n\t\topacity: 1;\n\t}\n}\n', ""]);
+            var i = __webpack_require__(1601)
+              , r = __webpack_require__.n(i)
+              , a = __webpack_require__(6314)
+              , s = __webpack_require__.n(a)()(r());
+            s.push([module.id, '.time-announcer-ui {\n\tposition: absolute;\n\tleft: 0;\n\ttop: 35%;\n\twidth: 100%;\n\toverflow: hidden;\n}\n\n.time-announcer-ui > .record {\n\tmargin: 0;\n\tpadding: 0;\n\tfont-size: 64px;\n\tfont-weight: bold;\n\ttext-align: center;\n\topacity: 0;\n}\n.time-announcer-ui > .record.personal-best {\n\ttext-shadow: 3px 3px 0 #660, 0 0 3px #000;\n\tcolor: #ff5;\n\tanimation: 0.25s ease-out 0.6s 1 normal forwards running time-announcer-record-personal-best-animation;\n}\n.time-announcer-ui > .record.session-best {\n\ttext-shadow: 3px 3px 0 #060, 0 0 3px #000;\n\tcolor: #5f5;\n\tanimation: 0.25s ease-out 0.6s 1 normal forwards running time-announcer-record-session-best-animation;\n}\n\n.time-announcer-ui > .track-name {\n\tmargin: 0 0 10px 0;\n\tpadding: 4px 20px;\n\tbox-sizing: border-box;\n\twidth: 100%;\n\tbackground-color: var(--surface-secondary-color);\n\tfont-size: 60px;\n\tcolor: var(--text-color);\n\ttext-align: center;\n\toverflow: hidden;\n\ttext-overflow: ellipsis;\n\tanimation: 0.3s ease-out 0s 1 normal forwards running time-announcer-animation;\n}\n\n.time-announcer-ui > .current {\n\tmargin: 0;\n\tpadding: 0;\n\twidth: 0;\n\tbackground-color: var(--surface-color);\n\tfont-size: 48px;\n\tcolor: var(--text-color);\n\ttext-align: center;\n\tanimation: 0.5s ease-out 0s 1 normal forwards running time-announcer-animation;\n}\n.time-announcer-ui > .current:after {\n\tcontent: "\\200b"; /* Keep height even with absolute elements */\n}\n.time-announcer-ui > .current > div {\n\tposition: absolute;\n\tleft: 50%;\n}\n.time-announcer-ui > .current > .time {\n\ttext-align: right;\n\ttransform: translateX(-50%);\n\ttransition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;\n}\n.time-announcer-ui > .current > .position-dash {\n\ttransform: translateX(-50%);\n\topacity: 0;\n\ttransition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;\n}\n.time-announcer-ui > .current > .position {\n\ttext-align: left;\n\topacity: 0;\n\ttransform: translateX(-50%);\n\ttransition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;\n}\n\n.time-announcer-ui > .current.show-position > .time {\n\ttransform: translateX(calc(-100% - 35px));\n}\n.time-announcer-ui > .current.show-position > .position-dash {\n\topacity: 1;\n}\n.time-announcer-ui > .current.show-position > .position {\n\ttransform: translateX(35px);\n\topacity: 1;\n}\n\n.time-announcer-ui > .difference > p {\n\tmargin: 0 0 0 auto;\n\tpadding: 0;\n\twidth: 0;\n\tbackground-color: var(--surface-secondary-color);\n\tcolor: #5f5;\n\tfont-size: 30px;\n\ttext-align: center;\n\tanimation: 0.4s ease-out 0.5s 1 normal forwards running time-announcer-animation;\n}\n.time-announcer-ui > .difference.red > p {\n\tcolor: #f55;\n}\n.time-announcer-ui > .difference > p.title {\n\tmargin-top: 30px;\n\tbackground-color: transparent;\n\ttext-shadow: 0 0 3px #000;\n}\n\n@keyframes time-announcer-record-personal-best-animation {\n\t0% {\n\t\topacity: 0;\n\t\ttransform: scaleX(0.5);\n\t\tbackground-color: #ffa;\n\t}\n\n\t80% {\n\t\topacity: 1;\n\t\ttransform: scaleX(1.1);\n\t}\n\n\t100% {\n\t\topacity: 1;\n\t\ttransform: scaleX(1);\n\t\tbackground-color: rgba(255, 255, 170, 0.3);\n\t}\n}\n\n@keyframes time-announcer-record-session-best-animation {\n\t0% {\n\t\topacity: 0;\n\t\ttransform: scaleX(0.5);\n\t\tbackground-color: #afa;\n\t}\n\n\t80% {\n\t\topacity: 1;\n\t\ttransform: scaleX(1.1);\n\t}\n\n\t100% {\n\t\topacity: 1;\n\t\ttransform: scaleX(1);\n\t\tbackground-color: rgba(170, 255, 170, 0.3);\n\t}\n}\n\n@keyframes time-announcer-animation {\n\tfrom {\n\t\twidth: 0;\n\t\topacity: 0;\n\t}\n\n\tto {\n\t\twidth: 100%;\n\t\topacity: 1;\n\t}\n}\n', ""]);
             const o = s
         }
         ,
-        1223: (e, t, n) => {
+        1223: (module, exports, __webpack_require__) => {
             "use strict";
-            n.d(t, {
+            __webpack_require__.d(exports, {
                 A: () => A
             });
-            var i, r = n(1635), a = n(4078), s = n(9507);
+            var i, r = __webpack_require__(1635), a = __webpack_require__(4078), s = __webpack_require__(9507);
             !function(e) {
                 e[e.Init = 0] = "Init",
                 e[e.Verify = 1] = "Verify",
@@ -1527,7 +1527,7 @@
                 e[e.UpdateResult = 10] = "UpdateResult"
             }(i || (i = {}));
             const o = i;
-            var l, c, h, d, u, p, f, g, m = n(2108);
+            var l, c, h, d, u, p, f, g, m = __webpack_require__(2108);
             c = new WeakMap,
             h = new WeakMap,
             d = new WeakMap,
@@ -1795,20 +1795,20 @@
             }
         }
         ,
-        1247: (e, t, n) => {
+        1247: (module, exports, __webpack_require__) => {
             "use strict";
-            n.d(t, {
+            __webpack_require__.d(exports, {
                 A: () => o
             });
-            var i = n(1601)
-              , r = n.n(i)
-              , a = n(6314)
-              , s = n.n(a)()(r());
-            s.push([e.id, ".news-popup-ui {\n\tdisplay: flex;\n\tflex-direction: column;\n\tposition: absolute;\n\tleft: calc(50% - 650px / 2);\n\ttop: calc(50% - 750px / 2);\n\tz-index: 2;\n\tmargin: 0;\n\tpadding: 0;\n\twidth: 650px;\n\tbox-sizing: border-box;\n\tbackground-color: var(--surface-color);\n}\n\n.news-popup-ui > h2 {\n\tmargin: 0;\n\tpadding: 10px 20px 0 20px;\n\tfont-size: 38px;\n\ttext-align: center;\n\tbackground-color: var(--surface-color);\n\tcolor: var(--text-color);\n}\n\n.news-popup-ui > h3 {\n\tmargin: 0;\n\tpadding: 0 20px 10px 20px;\n\tfont-size: 24px;\n\ttext-align: center;\n\tbackground-color: var(--surface-color);\n\tcolor: var(--text-color);\n\topacity: 0.8;\n}\n\n.news-popup-ui > .content {\n\tmargin: 0;\n\tpadding: 0 0 10px 0;\n\tdisplay: flex;\n\tflex-direction: column;\n\tflex-grow: 1;\n\tmin-height: 0;\n\tbackground-color: var(--surface-secondary-color);\n\toverflow-y: auto;\n\tpointer-events: auto;\n}\n\n.news-popup-ui > .content > .cover-image {\n\tmargin: 0 auto;\n\tpadding: 20px 20px 10px 20px;\n\twidth: 100%;\n\tbox-sizing: border-box;\n}\n\n.news-popup-ui > .content > p {\n\tmargin: 0;\n\tpadding: 0 20px 20px 20px;\n\ttext-align: center;\n\tfont-size: 24px;\n\tcolor: var(--text-color);\n}\n\n.news-popup-ui > .content > p.small {\n\tfont-size: 18px;\n\topacity: 0.8;\n}\n\n.news-popup-ui > .content > a {\n\tmargin: 0 20px;\n\tpadding: 0;\n\tfont-size: 24px;\n\tcolor: var(--text-color);\n}\n\n.news-popup-ui > .bottom-container {\n\tdisplay: flex;\n\tjustify-content: space-around;\n\tpadding: 10px;\n}\n", ""]);
+            var i = __webpack_require__(1601)
+              , r = __webpack_require__.n(i)
+              , a = __webpack_require__(6314)
+              , s = __webpack_require__.n(a)()(r());
+            s.push([module.id, ".news-popup-ui {\n\tdisplay: flex;\n\tflex-direction: column;\n\tposition: absolute;\n\tleft: calc(50% - 650px / 2);\n\ttop: calc(50% - 750px / 2);\n\tz-index: 2;\n\tmargin: 0;\n\tpadding: 0;\n\twidth: 650px;\n\tbox-sizing: border-box;\n\tbackground-color: var(--surface-color);\n}\n\n.news-popup-ui > h2 {\n\tmargin: 0;\n\tpadding: 10px 20px 0 20px;\n\tfont-size: 38px;\n\ttext-align: center;\n\tbackground-color: var(--surface-color);\n\tcolor: var(--text-color);\n}\n\n.news-popup-ui > h3 {\n\tmargin: 0;\n\tpadding: 0 20px 10px 20px;\n\tfont-size: 24px;\n\ttext-align: center;\n\tbackground-color: var(--surface-color);\n\tcolor: var(--text-color);\n\topacity: 0.8;\n}\n\n.news-popup-ui > .content {\n\tmargin: 0;\n\tpadding: 0 0 10px 0;\n\tdisplay: flex;\n\tflex-direction: column;\n\tflex-grow: 1;\n\tmin-height: 0;\n\tbackground-color: var(--surface-secondary-color);\n\toverflow-y: auto;\n\tpointer-events: auto;\n}\n\n.news-popup-ui > .content > .cover-image {\n\tmargin: 0 auto;\n\tpadding: 20px 20px 10px 20px;\n\twidth: 100%;\n\tbox-sizing: border-box;\n}\n\n.news-popup-ui > .content > p {\n\tmargin: 0;\n\tpadding: 0 20px 20px 20px;\n\ttext-align: center;\n\tfont-size: 24px;\n\tcolor: var(--text-color);\n}\n\n.news-popup-ui > .content > p.small {\n\tfont-size: 18px;\n\topacity: 0.8;\n}\n\n.news-popup-ui > .content > a {\n\tmargin: 0 20px;\n\tpadding: 0;\n\tfont-size: 24px;\n\tcolor: var(--text-color);\n}\n\n.news-popup-ui > .bottom-container {\n\tdisplay: flex;\n\tjustify-content: space-around;\n\tpadding: 10px;\n}\n", ""]);
             const o = s
         }
         ,
-        1312: (e, t, n) => {
+        1312: (module, exports, __webpack_require__) => {
             var i;
             /**
  * [js-sha256]{@link https://github.com/emn178/js-sha256}
@@ -1826,9 +1826,9 @@
                 a.JS_SHA256_NO_WINDOW && (r = !1);
                 var s = !r && "object" == typeof self
                   , o = !a.JS_SHA256_NO_NODE_JS && "object" == typeof process && process.versions && process.versions.node && "renderer" != process.type;
-                o ? a = n.g : s && (a = self);
-                var l = !a.JS_SHA256_NO_COMMON_JS && e.exports
-                  , c = n.amdO
+                o ? a = __webpack_require__.g : s && (a = self);
+                var l = !a.JS_SHA256_NO_COMMON_JS && module.exports
+                  , c = __webpack_require__.amdO
                   , h = !a.JS_SHA256_NO_ARRAY_BUFFER && "undefined" != typeof ArrayBuffer
                   , d = "0123456789abcdef".split("")
                   , u = [-2147483648, 8388608, 32768, 128]
@@ -1867,7 +1867,7 @@
                     return t
                 }
                   , y = function(e, i) {
-                    var r, s = n(4394), o = n(1903).Buffer, l = i ? "sha224" : "sha256";
+                    var r, s = __webpack_require__(4394), o = __webpack_require__(1903).Buffer, l = i ? "sha224" : "sha256";
                     r = o.from && !a.JS_SHA256_NO_BUFFER_FROM ? o.from : function(e) {
                         return new o(e)
                     }
@@ -2127,26 +2127,26 @@
                 k.sha224 = v(!0),
                 k.sha256.hmac = w(),
                 k.sha224.hmac = w(!0),
-                l ? e.exports = k : (a.sha256 = k.sha256,
+                l ? module.exports = k : (a.sha256 = k.sha256,
                 a.sha224 = k.sha224,
                 c && (void 0 === (i = function() {
                     return k
                 }
-                .call(k, n, k, e)) || (e.exports = i)))
+                .call(k, __webpack_require__, k, module)) || (module.exports = i)))
             }()
         }
         ,
-        1333: (e, t, n) => {
+        1333: (module, t, n) => {
             "use strict";
-            e.exports = n.p + "images/helmet.svg"
+            module.exports = n.p + "images/helmet.svg"
         }
         ,
-        1411: (e, t, n) => {
+        1411: (module, t, n) => {
             "use strict";
-            e.exports = n.p + "images/pattern_horseshoe.svg"
+            module.exports = n.p + "images/pattern_horseshoe.svg"
         }
         ,
-        1566: (e, t, n) => {
+        1566: (module, t, n) => {
             "use strict";
             n.d(t, {
                 _c: () => o,
@@ -2400,16 +2400,16 @@
             }
         }
         ,
-        1601: e => {
+        1601: module => {
             "use strict";
-            e.exports = function(e) {
+            module.exports = function(e) {
                 return e[1]
             }
         }
         ,
-        1635: (e, t, n) => {
+        1635: (module, t, __webpack_require__) => {
             "use strict";
-            n.d(t, {
+            __webpack_require__.d(t, {
                 GG: () => r,
                 gn: () => i
             });
@@ -2435,22 +2435,22 @@
             "function" == typeof SuppressedError && SuppressedError
         }
         ,
-        1705: (e, t, n) => {
+        1705: (module, t, __webpack_require__) => {
             "use strict";
-            e.exports = n.p + "images/desert.svg"
+            module.exports = __webpack_require__.p + "images/desert.svg"
         }
         ,
-        1719: (e, t, n) => {
+        1719: (module, t, __webpack_require__) => {
             "use strict";
-            e.exports = n.p + "images/reset.svg"
+            module.exports = __webpack_require__.p + "images/reset.svg"
         }
         ,
-        1728: (e, t, n) => {
+        1728: (module, t, __webpack_require__) => {
             "use strict";
-            n.d(t, {
+            __webpack_require__.d(t, {
                 Z: () => a
             });
-            var THREE = n(4922);
+            var THREE = __webpack_require__(4922);
             const r = new WeakMap;
             class a extends THREE.Loader {
                 constructor(e) {
@@ -2812,30 +2812,30 @@
             }
         }
         ,
-        1734: (e, t, n) => {
+        1734: (module, t, __webpack_require__) => {
             "use strict";
-            e.exports = n.p + "images/test.svg"
+            module.exports = __webpack_require__.p + "images/test.svg"
         }
         ,
-        1758: (e, t, n) => {
+        1758: (module, t, __webpack_require__) => {
             "use strict";
-            e.exports = n.p + "images/desert_colored.svg"
+            module.exports = __webpack_require__.p + "images/desert_colored.svg"
         }
         ,
-        1784: (e, t, n) => {
+        1784: (module, t, __webpack_require__) => {
             "use strict";
-            e.exports = n.p + "images/cancel.svg"
+            module.exports = __webpack_require__.p + "images/cancel.svg"
         }
         ,
-        1820: (e, t, n) => {
+        1820: (module, t, __webpack_require__) => {
             "use strict";
-            e.exports = n.p + "images/paper.svg"
+            module.exports = __webpack_require__.p + "images/paper.svg"
         }
         ,
-        1882: (e, t, n) => {
+        1882: (module, t, __webpack_require__) => {
             "use strict";
             var i;
-            n.d(t, {
+            __webpack_require__.d(t, {
                 A: () => r
             }),
             function(e) {
@@ -2852,34 +2852,34 @@
             const r = i
         }
         ,
-        1901: (e, t, n) => {
+        1901: (module, t, __webpack_require__) => {
             "use strict";
-            n.d(t, {
+            __webpack_require__.d(t, {
                 A: () => o
             });
-            var i = n(1601)
-              , r = n.n(i)
-              , a = n(6314)
-              , s = n.n(a)()(r());
-            s.push([e.id, ".player-list-ui {\n\tdisplay: flex;\n\tflex-direction: column;\n\tposition: absolute;\n\tleft: calc(50% - 750px / 2);\n\ttop: 150px;\n\tz-index: 2;\n\tmargin: 0;\n\tpadding: 0;\n\twidth: 750px;\n\theight: calc(100% - 150px * 2);\n\tbox-sizing: border-box;\n\tbackground-color: var(--surface-color);\n}\n\n.player-list-ui > h2 {\n\tmargin: 0;\n\tpadding: 10px 20px;\n\tfont-size: 38px;\n\ttext-align: center;\n\tbackground-color: var(--surface-color);\n\tcolor: var(--text-color);\n}\n\n.player-list-ui > .content {\n\tmargin: 0;\n\tpadding: 10px 0;\n\tdisplay: flex;\n\tflex-direction: column;\n\tflex-grow: 1;\n\tmin-height: 0;\n\tbackground-color: var(--surface-secondary-color);\n\toverflow-y: auto;\n\tpointer-events: auto;\n}\n\n.player-list-ui > .content > div {\n\tdisplay: flex;\n\talign-items: stretch;\n\tmargin: 0 10px;\n\tpadding: 0;\n\theight: 50px;\n\tfont-size: 28px;\n\tcolor: var(--text-color);\n}\n.player-list-ui > .content > div:not(:last-of-type) {\n\tmargin: 0 10px 5px 10px;\n}\n\n.player-list-ui > .content > div > div, .player-list-ui > .content > div > .car-thumbnail {\n\tbackground-color: var(--button-color);\n}\n.player-list-ui > .content > div.self > div, .player-list-ui > .content > div.self > .car-thumbnail {\n\tbackground-color: #2e4182;\n}\n\n.player-list-ui > .content > div > .position, .player-list-ui > .content > div > .time {\n\tmargin-right: 5px;\n}\n\n.player-list-ui > .content > div > .car-thumbnail {\n\tdisplay: inline-block;\n\tmargin: 0 5px 0 0;\n\tpadding: 0;\n\tbox-sizing: border-box;\n\twidth: 50px;\n\theight: 50px;\n}\n\n.player-list-ui > .content > div > .position {\n\tdisplay: flex;\n\talign-items: center;\n\tjustify-content: center;\n\tpadding: 0 10px;\n\tflex-shrink: 0;\n\tmin-width: 66px;\n\ttext-align: center;\n}\n\n.player-list-ui > .content > div > .position > span {\n\tfont-size: 20px;\n\topacity: 0.3;\n}\n\n.player-list-ui > .content > div > .time {\n\tdisplay: flex;\n\talign-items: center;\n\tjustify-content: center;\n\tpadding: 0 10px;\n\tflex-shrink: 0;\n\twidth: 110px;\n\ttext-align: center;\n}\n\n.player-list-ui > .content > div > .nickname {\n\tdisplay: flex;\n\talign-items: center;\n\tmargin: 0 5px 0 0;\n\tpadding: 0 10px;\n\tflex-grow: 1;\n\tmin-width: 0;\n}\n\n.player-list-ui > .content > div > .nickname > .country-flag {\n\tmargin: 0 10px 0 0;\n\t/* Flag aspect ratio is 4:3. */\n\twidth: 32px;\n\theight: 24px;\n\tfilter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.5)); /* box-shadow cannot be used because of Nepal. */\n}\n\n.player-list-ui > .content > div > .nickname > span:first-of-type {\n\t/* Prevent italic text from being cut off. */\n\tmargin-right: -4px;\n\tpadding-right: 4px;\n\toverflow: hidden;\n\ttext-overflow: ellipsis;\n\twhite-space: nowrap;\n}\n\n.player-list-ui > .content > div > .nickname > .self {\n\tmargin: 0 0 -2px 0;\n\tpadding: 10px;\n\topacity: 0.5;\n\tfont-size: 16px;\n}\n\n.player-list-ui > .content > div > .ping {\n\tdisplay: flex;\n\talign-items: center;\n\tjustify-content: center;\n\tpadding: 0 10px;\n\tflex-shrink: 0;\n\twidth: 60px;\n\ttext-align: center;\n}\n\n.player-list-ui > .content > div > .ping > span {\n\tfont-size: 20px;\n\topacity: 0.3;\n}\n\n.player-list-ui > .content > div > .kick-button, .player-list-ui > .content > div > .kick-button-placeholder {\n\tflex-shrink: 0;\n\tmargin: 0 0 0 5px;\n\tpadding: 4px;\n\tbox-sizing: border-box;\n\twidth: 50px;\n\theight: 50px;\n\tclip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);\n}\n.player-list-ui > .content > div.self > .kick-button-placeholder {\n\tbackground-color: #2e4182;\n}\n\n.player-list-ui > .bottom-container {\n\tdisplay: flex;\n\tjustify-content: space-between;\n\tpadding: 10px;\n}\n\n.player-list-ui > .bottom-container > .session-ended-text {\n\tflex-grow: 1;\n\talign-self: center;\n\ttext-align: center;\n\tfont-size: 20px;\n\tcolor: var(--text-color);\n\topacity: 0.5;\n}\n", ""]);
+            var i = __webpack_require__(1601)
+              , r = __webpack_require__.n(i)
+              , a = __webpack_require__(6314)
+              , s = __webpack_require__.n(a)()(r());
+            s.push([module.id, ".player-list-ui {\n\tdisplay: flex;\n\tflex-direction: column;\n\tposition: absolute;\n\tleft: calc(50% - 750px / 2);\n\ttop: 150px;\n\tz-index: 2;\n\tmargin: 0;\n\tpadding: 0;\n\twidth: 750px;\n\theight: calc(100% - 150px * 2);\n\tbox-sizing: border-box;\n\tbackground-color: var(--surface-color);\n}\n\n.player-list-ui > h2 {\n\tmargin: 0;\n\tpadding: 10px 20px;\n\tfont-size: 38px;\n\ttext-align: center;\n\tbackground-color: var(--surface-color);\n\tcolor: var(--text-color);\n}\n\n.player-list-ui > .content {\n\tmargin: 0;\n\tpadding: 10px 0;\n\tdisplay: flex;\n\tflex-direction: column;\n\tflex-grow: 1;\n\tmin-height: 0;\n\tbackground-color: var(--surface-secondary-color);\n\toverflow-y: auto;\n\tpointer-events: auto;\n}\n\n.player-list-ui > .content > div {\n\tdisplay: flex;\n\talign-items: stretch;\n\tmargin: 0 10px;\n\tpadding: 0;\n\theight: 50px;\n\tfont-size: 28px;\n\tcolor: var(--text-color);\n}\n.player-list-ui > .content > div:not(:last-of-type) {\n\tmargin: 0 10px 5px 10px;\n}\n\n.player-list-ui > .content > div > div, .player-list-ui > .content > div > .car-thumbnail {\n\tbackground-color: var(--button-color);\n}\n.player-list-ui > .content > div.self > div, .player-list-ui > .content > div.self > .car-thumbnail {\n\tbackground-color: #2e4182;\n}\n\n.player-list-ui > .content > div > .position, .player-list-ui > .content > div > .time {\n\tmargin-right: 5px;\n}\n\n.player-list-ui > .content > div > .car-thumbnail {\n\tdisplay: inline-block;\n\tmargin: 0 5px 0 0;\n\tpadding: 0;\n\tbox-sizing: border-box;\n\twidth: 50px;\n\theight: 50px;\n}\n\n.player-list-ui > .content > div > .position {\n\tdisplay: flex;\n\talign-items: center;\n\tjustify-content: center;\n\tpadding: 0 10px;\n\tflex-shrink: 0;\n\tmin-width: 66px;\n\ttext-align: center;\n}\n\n.player-list-ui > .content > div > .position > span {\n\tfont-size: 20px;\n\topacity: 0.3;\n}\n\n.player-list-ui > .content > div > .time {\n\tdisplay: flex;\n\talign-items: center;\n\tjustify-content: center;\n\tpadding: 0 10px;\n\tflex-shrink: 0;\n\twidth: 110px;\n\ttext-align: center;\n}\n\n.player-list-ui > .content > div > .nickname {\n\tdisplay: flex;\n\talign-items: center;\n\tmargin: 0 5px 0 0;\n\tpadding: 0 10px;\n\tflex-grow: 1;\n\tmin-width: 0;\n}\n\n.player-list-ui > .content > div > .nickname > .country-flag {\n\tmargin: 0 10px 0 0;\n\t/* Flag aspect ratio is 4:3. */\n\twidth: 32px;\n\theight: 24px;\n\tfilter: drop-shadow(2px 2px 1px rgba(0, 0, 0, 0.5)); /* box-shadow cannot be used because of Nepal. */\n}\n\n.player-list-ui > .content > div > .nickname > span:first-of-type {\n\t/* Prevent italic text from being cut off. */\n\tmargin-right: -4px;\n\tpadding-right: 4px;\n\toverflow: hidden;\n\ttext-overflow: ellipsis;\n\twhite-space: nowrap;\n}\n\n.player-list-ui > .content > div > .nickname > .self {\n\tmargin: 0 0 -2px 0;\n\tpadding: 10px;\n\topacity: 0.5;\n\tfont-size: 16px;\n}\n\n.player-list-ui > .content > div > .ping {\n\tdisplay: flex;\n\talign-items: center;\n\tjustify-content: center;\n\tpadding: 0 10px;\n\tflex-shrink: 0;\n\twidth: 60px;\n\ttext-align: center;\n}\n\n.player-list-ui > .content > div > .ping > span {\n\tfont-size: 20px;\n\topacity: 0.3;\n}\n\n.player-list-ui > .content > div > .kick-button, .player-list-ui > .content > div > .kick-button-placeholder {\n\tflex-shrink: 0;\n\tmargin: 0 0 0 5px;\n\tpadding: 4px;\n\tbox-sizing: border-box;\n\twidth: 50px;\n\theight: 50px;\n\tclip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);\n}\n.player-list-ui > .content > div.self > .kick-button-placeholder {\n\tbackground-color: #2e4182;\n}\n\n.player-list-ui > .bottom-container {\n\tdisplay: flex;\n\tjustify-content: space-between;\n\tpadding: 10px;\n}\n\n.player-list-ui > .bottom-container > .session-ended-text {\n\tflex-grow: 1;\n\talign-self: center;\n\ttext-align: center;\n\tfont-size: 20px;\n\tcolor: var(--text-color);\n\topacity: 0.5;\n}\n", ""]);
             const o = s
         }
         ,
         1903: () => {}
         ,
-        1925: (e, t, n) => {
+        1925: (module, t, __webpack_require__) => {
             "use strict";
-            e.exports = n.p + "images/copy.svg"
+            module.exports = __webpack_require__.p + "images/copy.svg"
         }
         ,
-        1936: (e, t, n) => {
+        1936: (module, t, __webpack_require__) => {
             "use strict";
-            e.exports = n.p + "images/erase.svg"
+            module.exports = __webpack_require__.p + "images/erase.svg"
         }
         ,
-        2108: (e, t, n) => {
+        2108: (module, t, __webpack_require__) => {
             "use strict";
-            n.d(t, {
+            __webpack_require__.d(t, {
                 VO: () => r,
                 _c: () => i
             });
@@ -3093,15 +3093,15 @@
             }
         }
         ,
-        2175: (e, t, n) => {
+        2175: (module, t, __webpack_require__) => {
             "use strict";
-            e.exports = n.p + "images/random.svg"
+            module.exports = __webpack_require__.p + "images/random.svg"
         }
         ,
-        2203: (e, t, n) => {
+        2203: (module, t, __webpack_require__) => {
             "use strict";
             var i;
-            n.d(t, {
+            __webpack_require__.d(t, {
                 A: () => r
             }),
             function(e) {
@@ -3295,17 +3295,17 @@
             const r = i
         }
         ,
-        2207: (e, t, n) => {
+        2207: (module, t, __webpack_require__) => {
             "use strict";
-            e.exports = n.p + "images/arrow_up.svg"
+            module.exports = __webpack_require__.p + "images/arrow_up.svg"
         }
         ,
-        2208: (e, t, n) => {
+        2208: (module, t, __webpack_require__) => {
             "use strict";
-            e.exports = n.p + "forced_square.woff"
+            module.exports = __webpack_require__.p + "forced_square.woff"
         }
         ,
-        2244: (e, t, n) => {
+        2244: (module, t, __webpack_require__) => {
             "use strict";
             function i(e) {
                 let t = "";
@@ -3334,7 +3334,7 @@
                 }
                 return n
             }
-            n.d(t, {
+            __webpack_require__.d(t, {
                 D: () => r,
                 l: () => i
             })
@@ -29795,51 +29795,51 @@
             }
         }
         ,
-        8787: (e, t, n) => {
+        8787: (e, t, __webpack_require__) => {
             "use strict";
-            e.exports = n.p + "images/back.svg"
+            e.exports = __webpack_require__.p + "images/back.svg"
         }
         ,
-        8825: (e, t, n) => {
+        8825: (e, t, __webpack_require__) => {
             "use strict";
-            e.exports = n.p + "images/rims.svg"
+            e.exports = __webpack_require__.p + "images/rims.svg"
         }
         ,
-        8875: (e, t, n) => {
+        8875: (e, t, __webpack_require__) => {
             "use strict";
-            e.exports = n.p + "images/clouds.jpg"
+            e.exports = __webpack_require__.p + "images/clouds.jpg"
         }
         ,
-        8879: (e, t, n) => {
+        8879: (e, t, __webpack_require__) => {
             "use strict";
-            e.exports = n.p + "images/gavel.svg"
+            e.exports = __webpack_require__.p + "images/gavel.svg"
         }
         ,
-        8889: (e, t, n) => {
+        8889: (e, t, __webpack_require__) => {
             "use strict";
-            e.exports = n.p + "images/editor.svg"
+            e.exports = __webpack_require__.p + "images/editor.svg"
         }
         ,
-        8903: (e, t, n) => {
+        8903: (e, t, __webpack_require__) => {
             "use strict";
-            e.exports = n.p + "images/logo.svg"
+            e.exports = __webpack_require__.p + "images/logo.svg"
         }
         ,
-        8928: (e, t, n) => {
+        8928: (e, t, __webpack_require__) => {
             "use strict";
-            n.d(t, {
+            __webpack_require__.d(t, {
                 U: () => p,
                 _: () => u
             });
-            var i = n(3075)
-              , r = n(7415)
-              , a = n(8438)
-              , s = n(2203)
-              , o = n(4183)
-              , l = n(5169)
-              , c = n(8566)
-              , h = n(7680)
-              , d = n(405);
+            var i = __webpack_require__(3075)
+              , r = __webpack_require__(7415)
+              , a = __webpack_require__(8438)
+              , s = __webpack_require__(2203)
+              , o = __webpack_require__(4183)
+              , l = __webpack_require__(5169)
+              , c = __webpack_require__(8566)
+              , h = __webpack_require__(7680)
+              , d = __webpack_require__(405);
             function u(e) {
                 const t = r.D(e);
                 if (null == t)
@@ -30187,12 +30187,21 @@
             }
         }
         ,
-        8971: (e, t, n) => {
+        8971: (e, t, __webpack_require__) => {
             "use strict";
-            n.d(t, {
+            __webpack_require__.d(t, {
                 A: () => _
             });
-            var i, r, a, s, o, l, c, h, d, u, p, f, g, m = n(1635), THREE = n(4922), v = n(8438), y = n(2247), b = n(4183), w = n(5169), x = n(7680), S = n(5735), k = n(3476), E = n(8739);
+            var i, r, a, s, o, l, c, h, d, u, p, f, g, m = __webpack_require__(1635), 
+            THREE = __webpack_require__(4922), 
+            v = __webpack_require__(8438), 
+            y = __webpack_require__(2247), 
+            b = __webpack_require__(4183), 
+            w = __webpack_require__(5169), 
+            x = __webpack_require__(7680), 
+            S = __webpack_require__(5735), 
+            k = __webpack_require__(3476), 
+            E = __webpack_require__(8739);
             class T {
                 constructor(e, t, n, i, r, a, s, o, l, c) {
                     if (this.checkpointOrder = null,
@@ -30684,64 +30693,64 @@
             const _ = M
         }
         ,
-        9027: (e, t, n) => {
+        9027: (e, t, __webpack_require__) => {
             "use strict";
-            e.exports = n.p + "images/customize.svg"
+            e.exports = __webpack_require__.p + "images/customize.svg"
         }
         ,
-        9062: (e, t, n) => {
+        9062: (e, t, __webpack_require__) => {
             "use strict";
-            e.exports = n.p + "images/rotation_axis_y_positive.svg"
+            e.exports = __webpack_require__.p + "images/rotation_axis_y_positive.svg"
         }
         ,
-        9077: (e, t, n) => {
+        9077: (e, t, __webpack_require__) => {
             "use strict";
-            e.exports = n.p + "images/import.svg"
+            e.exports = __webpack_require__.p + "images/import.svg"
         }
         ,
-        9178: (e, t, n) => {
+        9178: (e, t, __webpack_require__) => {
             "use strict";
-            n.d(t, {
+            __webpack_require__.d(t, {
                 A: () => o
             });
-            var i = n(1601)
-              , r = n.n(i)
-              , a = n(6314)
-              , s = n.n(a)()(r());
+            var i = __webpack_require__(1601)
+              , r = __webpack_require__.n(i)
+              , a = __webpack_require__(6314)
+              , s = __webpack_require__.n(a)()(r());
             s.push([e.id, ".timer-ui {\n\tposition: absolute;\n\tbottom: 0;\n\tleft: 0;\n\twidth: 100%;\n\ttext-align: center;\n\topacity: 0.9;\n}\n.timer-ui.up {\n\tbottom: auto;\n\ttop: 0;\n}\n.timer-ui.hidden {\n\tdisplay: none;\n}\n\n.timer-ui > div {\n\tmargin: 0;\n\tpadding: 0;\n\tdisplay: inline-flex;\n\tflex-direction: column;\n\twidth: 240px;\n\tvertical-align: bottom;\n}\n.timer-ui.up > div {\n\tflex-direction: column-reverse;\n\tvertical-align: top;\n}\n.timer-ui > div > .title-container {\n\tposition: relative;\n\tmargin: 0 auto;\n\twidth: 220px;\n\theight: 32px;\n}\n.timer-ui > div > .title-container > h2 {\n\tposition: absolute;\n\tmargin: 0;\n\tpadding: 0;\n\twidth: 100%;\n\toverflow: hidden;\n\ttext-overflow: ellipsis;\n\tcolor: var(--text-color);\n\tfont-size: 26px;\n\tfont-weight: normal;\n\ttext-shadow: 1px 1px 1px var(--surface-color), -1px 1px 1px var(--surface-color), -1px -1px 1px var(--surface-color), 1px -1px 1px var(--surface-color);\n}\n.timer-ui:not(.up) > div > .title-container > .title {\n\tmargin-top: 8px;\n}\n.timer-ui > div > .title-container > .checkpoint-time {\n\topacity: 0;\n\tfont-size: 32px;\n}\n.timer-ui > div > .title-container > .checkpoint-time.green {\n\tcolor: #5f5;\n}\n.timer-ui > div > .title-container > .checkpoint-time.red {\n\tcolor: #f55;\n}\n\n.timer-ui > div > .time {\n\tmargin: 0;\n\tpadding: 0;\n\tbackground-color: var(--surface-color);\n}\n.timer-ui > .left > .time {\n\tpadding: 8px 4px 8px 10px;\n\tclip-path: polygon(8px 0, 100% 0, 100% 100%, 0 100%);\n}\n.timer-ui.up > .left > .time {\n\tclip-path: polygon(0 0, 100% 0, 100% 100%, 8px 100%);\n}\n.timer-ui > .center > .time {\n\tposition: relative;\n\tz-index: 1;\n\tmargin: 0 -12px;\n\tpadding: 8px 10px;\n\tclip-path: polygon(8px 0, calc(100% - 8px) 0, 100% 100%, 0 100%);\n}\n.timer-ui.up > .center > .time {\n\tclip-path: polygon(0 0, 100% 0, calc(100% - 8px) 100%, 8px 100%);\n}\n.timer-ui > .right > .time {\n\tpadding: 8px 10px 8px 4px;\n\tclip-path: polygon(0 0, calc(100% - 8px) 0, 100% 100%, 0 100%);\n}\n.timer-ui.up > .right > .time {\n\tclip-path: polygon(0 0, 100% 0, calc(100% - 8px) 100%, 0 100%);\n}\n\n.timer-ui > div > .time > p {\n\tmargin: 0;\n\tpadding: 0;\n\tbackground-color: var(--surface-tertiary-color);\n\tcolor: var(--text-color);\n\tfont-size: 34px;\n}\n.timer-ui > .left > .time > p {\n\tclip-path: polygon(6px 0, 100% 0, 100% 100%, 0 100%);\n}\n.timer-ui.up > .left > .time > p {\n\tclip-path: polygon(0 0, 100% 0, 100% 100%, 6px 100%);\n}\n.timer-ui > .center > .time > p {\n\tfont-size: 46px;\n\tclip-path: polygon(6px 0, calc(100% - 6px) 0, 100% 100%, 0 100%);\n}\n.timer-ui.up > .center > .time > p {\n\tclip-path: polygon(0 0, 100% 0, calc(100% - 6px) 100%, 6px 100%);\n}\n.timer-ui > .right > .time > p {\n\tclip-path: polygon(0 0, calc(100% - 6px) 0, 100% 100%, 0 100%);\n}\n.timer-ui.up > .right > .time > p {\n\tclip-path: polygon(0 0, 100% 0, calc(100% - 6px) 100%, 0 100%);\n}\n\n.timer-ui > div > .time > p.green {\n\tcolor: #5f5;\n}\n.timer-ui > div > .time > p.red {\n\tcolor:#f55;\n}\n\n.timer-ui > div > .time > p > span {\n\tdisplay: inline-block;\n\twidth: 0.5em;\n\ttext-align: center;\n}\n.timer-ui > div > .time > p > span.sign {\n\tmargin-left: -4px;\n\twidth: 0.7em;\n}\n", ""]);
             const o = s
         }
         ,
-        9207: (e, t, n) => {
+        9207: (e, t, __webpack_require__) => {
             "use strict";
-            n.d(t, {
+            __webpack_require__.d(t, {
                 A: () => o
             });
-            var i = n(1601)
-              , r = n.n(i)
-              , a = n(6314)
-              , s = n.n(a)()(r());
+            var i = __webpack_require__(1601)
+              , r = __webpack_require__.n(i)
+              , a = __webpack_require__(6314)
+              , s = __webpack_require__.n(a)()(r());
             s.push([e.id, "#transition-layer {\n\tposition: absolute;\n\tleft: 0;\n\ttop: 0;\n\tz-index: 100;\n\twidth: 100%;\n\theight: 100%;\n\tbackground-color: #000;\n\tpointer-events: none;\n\n\topacity: 0;\n\ttransition: 0.25s ease-in-out opacity;\n}\n", ""]);
             const o = s
         }
         ,
-        9236: (e, t, n) => {
+        9236: (e, t, __webpack_require__) => {
             "use strict";
-            e.exports = n.p + "images/play.svg"
+            e.exports = __webpack_require__.p + "images/play.svg"
         }
         ,
-        9391: (e, t, n) => {
+        9391: (e, t, __webpack_require__) => {
             "use strict";
-            e.exports = n.p + "images/official_tracks.jpg"
+            e.exports = __webpack_require__.p + "images/official_tracks.jpg"
         }
         ,
-        9437: (e, t, n) => {
+        9437: (e, t, __webpack_require__) => {
             "use strict";
-            n.d(t, {
+            __webpack_require__.d(t, {
                 JeP: () => Gt,
                 vxI: () => s
             });
-            var THREE = n(4922);
+            var THREE = __webpack_require__(4922);
             /**
  * @license
  * Copyright 2010-2025 Three.js Authors
