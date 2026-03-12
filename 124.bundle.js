@@ -153,7 +153,7 @@
                 path: a
             }
         }
-        var A, M, E, C, W, L = n(8971), P = n(5735);
+        var A, M, E, C, W, Track = n(8971), TrackPartTransform = n(5735);
         class z {
             constructor(t) {
                 M.set(this, void 0),
@@ -196,9 +196,9 @@
                         color: 16777215
                     });
                     for (const n of e) {
-                        const e = P.hT(n.rotation, n.rotationAxis)
+                        const e = TrackPartTransform.rotationAndAxisToQuaternion(n.rotation, n.rotationAxis)
                           , s = new THREE.Vector3(...n.detector.center).add(new THREE.Vector3(0,-1.3,0)).applyQuaternion(e);
-                        s.add(new THREE.Vector3(n.x * L.A.partSize,n.y * L.A.partSize,n.z * L.A.partSize));
+                        s.add(new THREE.Vector3(n.x * Track.A.partSize,n.y * Track.A.partSize,n.z * Track.A.partSize));
                         const o = i.get(A, A, "f", W).generateShapes((n.checkpointOrder + 1).toString(), 4)
                           , a = new THREE.ShapeGeometry(o);
                         a.computeBoundingBox();
@@ -463,7 +463,7 @@
         var RenderManager = n(2825).A
           , KeyBind = n(5818).A
           , TrackExportUI = n(579).A
-          , PartEnvironment = n(4183).A
+          , TrackPartColorId = n(4183).A
           , Part = n(2203).A
           , TrackPartRotationAxis = n(8566).A;
         var ct = n(4839)
@@ -1189,9 +1189,9 @@
                       , l = Math.max(e.z + n, t.z + n);
                     let c;
                     c = i.get(this, gn, "f") ? 4 : 1;
-                    const d = (r - s + c) * L.A.partSize
-                      , g = (h - o + 1) * L.A.partSize
-                      , f = (l - a + c) * L.A.partSize;
+                    const d = (r - s + c) * Track.A.partSize
+                      , g = (h - o + 1) * Track.A.partSize
+                      , f = (l - a + c) * Track.A.partSize;
                     let p, u;
                     if (i.get(this, Mn, "f"))
                         p = 65280,
@@ -1225,7 +1225,7 @@
                     } else
                         i.get(this, Pn, "f").fill.material.color.setHex(p),
                         i.get(this, Pn, "f").outline.material.color.setHex(u);
-                    i.get(this, Pn, "f").fill.position.set((s + r + c) / 2 * L.A.partSize, (o + h + 1) / 2 * L.A.partSize, (a + l + c) / 2 * L.A.partSize),
+                    i.get(this, Pn, "f").fill.position.set((s + r + c) / 2 * Track.A.partSize, (o + h + 1) / 2 * Track.A.partSize, (a + l + c) / 2 * Track.A.partSize),
                     i.get(this, Pn, "f").fill.scale.set(d, g, f),
                     i.get(this, Pn, "f").fill.visible = !0,
                     i.get(this, Pn, "f").outline.position.copy(i.get(this, Pn, "f").fill.position),
@@ -1345,8 +1345,8 @@
             for (const s of i.get(this, Ln, "f").parts) {
                 let o = null;
                 null != i.get(this, Qt, "f").getPart(s.id).configuration.startOffset && (o = i.get(this, Jt, "f").getNextStartOrder());
-                const {rotation: a, rotationAxis: r} = P.Dr(s.rotation, s.rotationAxis, i.get(this, cn, "f"), i.get(this, dn, "f"))
-                  , h = P.yV(s.offset.x, s.offset.y, s.offset.z, i.get(this, cn, "f"), i.get(this, dn, "f"))
+                const {rotation: a, rotationAxis: r} = TrackPartTransform.combineTwoPartOrientations(s.rotation, s.rotationAxis, i.get(this, cn, "f"), i.get(this, dn, "f"))
+                  , h = TrackPartTransform.rotatePartOffset(s.offset.x, s.offset.y, s.offset.z, i.get(this, cn, "f"), i.get(this, dn, "f"))
                   , l = t.x + h[0]
                   , c = t.y + h[1]
                   , d = t.z + h[2];
@@ -1564,7 +1564,7 @@
                     h = document.createElement("div"),
                     h.className = "color-panel hidden",
                     i.get(this, ue, "f").prepend(h);
-                    const t = [PartEnvironment.Default].concat(Array.from(n.colors.keys()));
+                    const t = [TrackPartColorId.Default].concat(Array.from(n.colors.keys()));
                     for (const e of t) {
                         const t = document.createElement("button");
                         t.addEventListener("click", ( () => {
@@ -1578,7 +1578,7 @@
                                 e != t && e.classList.remove("selected")
                         }
                         )),
-                        e == PartEnvironment.Default && t.classList.add("selected"),
+                        e == TrackPartColorId.Default && t.classList.add("selected"),
                         h.appendChild(t);
                         const n = document.createElement("img");
                         n.className = "loading",
@@ -1604,8 +1604,8 @@
         ,
         Xn = function() {
             if (null == i.get(this, yn, "f"))
-                return PartEnvironment.Default;
-            return i.get(this, xn, "f")[i.get(this, yn, "f")].colorButtons.some(( ([t]) => t == i.get(this, An, "f"))) ? i.get(this, An, "f") : PartEnvironment.Default
+                return TrackPartColorId.Default;
+            return i.get(this, xn, "f")[i.get(this, yn, "f")].colorButtons.some(( ([t]) => t == i.get(this, An, "f"))) ? i.get(this, An, "f") : TrackPartColorId.Default
         }
         ,
         jn = function(t) {
@@ -1628,13 +1628,13 @@
             let t;
             switch (i.get(this, Jt, "f").environment) {
             case TrackEnvironment.Summer:
-                t = PartEnvironment.Summer;
+                t = TrackPartColorId.Summer;
                 break;
             case TrackEnvironment.Winter:
-                t = PartEnvironment.Winter;
+                t = TrackPartColorId.Winter;
                 break;
             case TrackEnvironment.Desert:
-                t = PartEnvironment.Desert
+                t = TrackPartColorId.Desert
             }
             for (const e of i.get(this, xn, "f"))
                 if (null != e.id)
@@ -1680,7 +1680,7 @@
                   , n = 0;
                 const s = new Set;
                 for (const t of i.get(this, Ln, "f").parts) {
-                    const o = i.get(this, Qt, "f").getPart(t.id).colors.get(PartEnvironment.Summer);
+                    const o = i.get(this, Qt, "f").getPart(t.id).colors.get(TrackPartColorId.Summer);
                     if (null == o)
                         throw new Error("Track part mesh has not loaded yet");
                     s.has(o.geometry) || (s.add(o.geometry),
@@ -1690,21 +1690,21 @@
                 const o = new THREE.BatchedMesh(t,e,n,i.get(this, Je, "f"))
                   , a = new Map;
                 for (const t of i.get(this, Ln, "f").parts) {
-                    const e = i.get(this, Qt, "f").getPart(t.id).colors.get(PartEnvironment.Summer);
+                    const e = i.get(this, Qt, "f").getPart(t.id).colors.get(TrackPartColorId.Summer);
                     if (null == e)
                         throw new Error("Track part mesh has not loaded yet");
                     let n = a.get(e.geometry);
                     null == n && (n = o.addGeometry(e.geometry),
                     a.set(e.geometry, n));
                     const s = o.addInstance(n)
-                      , r = (new THREE.Matrix4).makeRotationFromQuaternion(P.hT(t.rotation, t.rotationAxis)).setPosition(t.offset.x * L.A.partSize, t.offset.y * L.A.partSize, t.offset.z * L.A.partSize);
+                      , r = (new THREE.Matrix4).makeRotationFromQuaternion(TrackPartTransform.rotationAndAxisToQuaternion(t.rotation, t.rotationAxis)).setPosition(t.offset.x * Track.A.partSize, t.offset.y * Track.A.partSize, t.offset.z * Track.A.partSize);
                     o.setMatrixAt(s, r)
                 }
                 i.get(this, je, "f").add(o),
                 i.get(this, Qe, "f").push(o);
                 const r = new THREE.InstancedMesh(i.get(this, tn, "f"),i.get(this, $e, "f"),i.get(this, Ln, "f").tiles.length);
                 i.get(this, Ln, "f").tiles.forEach(( (t, e, n, i) => {
-                    const s = (new THREE.Matrix4).makeTranslation(t * L.A.partSize, e * L.A.partSize, n * L.A.partSize);
+                    const s = (new THREE.Matrix4).makeTranslation(t * Track.A.partSize, e * Track.A.partSize, n * Track.A.partSize);
                     r.setMatrixAt(i, s)
                 }
                 )),
@@ -1714,10 +1714,10 @@
                 const t = i.get(this, xn, "f")[i.get(this, yn, "f")];
                 let e;
                 if (null == t.trackPartData) {
-                    const t = new THREE.BoxGeometry(4 * L.A.partSize,L.A.partSize,4 * L.A.partSize);
-                    t.translate(0, L.A.partSize / 2, 0),
+                    const t = new THREE.BoxGeometry(4 * Track.A.partSize,Track.A.partSize,4 * Track.A.partSize);
+                    t.translate(0, Track.A.partSize / 2, 0),
                     e = new THREE.Mesh(t,i.get(this, Je, "f"))
-                } else if (e = t.trackPartData.colors.get(PartEnvironment.Summer)?.clone(),
+                } else if (e = t.trackPartData.colors.get(TrackPartColorId.Summer)?.clone(),
                 null == e)
                     throw new Error("Track part mesh has not loaded yet");
                 e.material = i.get(this, Je, "f"),
@@ -1725,7 +1725,7 @@
                 i.get(this, Qe, "f").push(e);
                 const n = new THREE.InstancedMesh(i.get(this, tn, "f"),i.get(this, $e, "f"),t.tiles.length);
                 t.tiles.forEach(( (t, e, i, s) => {
-                    const o = (new THREE.Matrix4).makeTranslation(t * L.A.partSize, e * L.A.partSize, i * L.A.partSize);
+                    const o = (new THREE.Matrix4).makeTranslation(t * Track.A.partSize, e * Track.A.partSize, i * Track.A.partSize);
                     n.setMatrixAt(s, o)
                 }
                 )),
@@ -1747,13 +1747,13 @@
                     let e;
                     switch (i.get(this, Jt, "f").environment) {
                     case TrackEnvironment.Summer:
-                        e = PartEnvironment.Summer;
+                        e = TrackPartColorId.Summer;
                         break;
                     case TrackEnvironment.Winter:
-                        e = PartEnvironment.Winter;
+                        e = TrackPartColorId.Winter;
                         break;
                     case TrackEnvironment.Desert:
-                        e = PartEnvironment.Desert
+                        e = TrackPartColorId.Desert
                     }
                     for (const n of i.get(this, xn, "f"))
                         if (n.category == t && null != n.id && !n.image.hasAttribute("src")) {
@@ -1800,7 +1800,7 @@
                     for (const [t,s,o] of e.colorButtons)
                         if (t == n ? s.classList.add("selected") : s.classList.remove("selected"),
                         !o.hasAttribute("src"))
-                            if (t == PartEnvironment.Default)
+                            if (t == TrackPartColorId.Default)
                                 o.src = "images/empty.svg",
                                 o.className = "";
                             else {
@@ -1882,7 +1882,7 @@
         ai = function() {
             let t;
             if (i.get(this, se, "f").touchEnabled)
-                t = new THREE.Vector3(i.get(this, Oe, "f").target.x / L.A.partSize,i.get(this, Oe, "f").target.y / L.A.partSize,i.get(this, Oe, "f").target.z / L.A.partSize);
+                t = new THREE.Vector3(i.get(this, Oe, "f").target.x / Track.A.partSize,i.get(this, Oe, "f").target.y / Track.A.partSize,i.get(this, Oe, "f").target.z / Track.A.partSize);
             else {
                 let e;
                 if (null != i.get(this, on, "f") ? (i.get(this, Ze, "f").setFromCamera(i.get(this, on, "f"), i.get(this, Xt, "f").camera),
@@ -1890,7 +1890,7 @@
                 e.length > 0) {
                     const n = e[0]
                       , s = 500 + 2 * i.get(this, Oe, "f").getDistance();
-                    t = n.point.distanceToSquared(i.get(this, Oe, "f").target) <= s ** 2 ? new THREE.Vector3(Math.round(n.point.x / L.A.partSize),Math.floor(i.get(this, Xe, "f").position.y / L.A.partSize),Math.round(n.point.z / L.A.partSize)) : null
+                    t = n.point.distanceToSquared(i.get(this, Oe, "f").target) <= s ** 2 ? new THREE.Vector3(Math.round(n.point.x / Track.A.partSize),Math.floor(i.get(this, Xe, "f").position.y / Track.A.partSize),Math.round(n.point.z / Track.A.partSize)) : null
                 } else
                     t = null
             }
@@ -2081,7 +2081,7 @@
                 Gn.set(this, null),
                 xn.set(this, []),
                 yn.set(this, null),
-                An.set(this, PartEnvironment.Default),
+                An.set(this, TrackPartColorId.Default),
                 Mn.set(this, !1),
                 En.set(this, !1),
                 Cn.set(this, null),
@@ -2128,7 +2128,7 @@
                 i.get(this, je, "f").visible = !1,
                 n.scene.add(i.get(this, je, "f")),
                 n.addMaterial(i.get(this, Je, "f")),
-                i.set(this, tn, (new THREE.BufferGeometry).setFromPoints([new THREE.Vector3(0,0,0), new THREE.Vector3(0,0,0), new THREE.Vector3(0,0,1), new THREE.Vector3(0,0,1), new THREE.Vector3(0,0,1), new THREE.Vector3(1,0,1), new THREE.Vector3(1,0,1), new THREE.Vector3(1,0,1), new THREE.Vector3(1,0,0), new THREE.Vector3(1,0,0), new THREE.Vector3(1,0,0), new THREE.Vector3(0,0,0), new THREE.Vector3(0,1,0), new THREE.Vector3(0,1,0), new THREE.Vector3(0,1,1), new THREE.Vector3(0,1,1), new THREE.Vector3(0,1,1), new THREE.Vector3(1,1,1), new THREE.Vector3(1,1,1), new THREE.Vector3(1,1,1), new THREE.Vector3(1,1,0), new THREE.Vector3(1,1,0), new THREE.Vector3(1,1,0), new THREE.Vector3(0,1,0), new THREE.Vector3(0,0,0), new THREE.Vector3(0,0,0), new THREE.Vector3(0,1,0), new THREE.Vector3(0,0,1), new THREE.Vector3(0,0,1), new THREE.Vector3(0,1,1), new THREE.Vector3(1,0,1), new THREE.Vector3(1,0,1), new THREE.Vector3(1,1,1), new THREE.Vector3(1,0,0), new THREE.Vector3(1,0,0), new THREE.Vector3(1,1,0)]).scale(L.A.partSize, L.A.partSize, L.A.partSize), "f"),
+                i.set(this, tn, (new THREE.BufferGeometry).setFromPoints([new THREE.Vector3(0,0,0), new THREE.Vector3(0,0,0), new THREE.Vector3(0,0,1), new THREE.Vector3(0,0,1), new THREE.Vector3(0,0,1), new THREE.Vector3(1,0,1), new THREE.Vector3(1,0,1), new THREE.Vector3(1,0,1), new THREE.Vector3(1,0,0), new THREE.Vector3(1,0,0), new THREE.Vector3(1,0,0), new THREE.Vector3(0,0,0), new THREE.Vector3(0,1,0), new THREE.Vector3(0,1,0), new THREE.Vector3(0,1,1), new THREE.Vector3(0,1,1), new THREE.Vector3(0,1,1), new THREE.Vector3(1,1,1), new THREE.Vector3(1,1,1), new THREE.Vector3(1,1,1), new THREE.Vector3(1,1,0), new THREE.Vector3(1,1,0), new THREE.Vector3(1,1,0), new THREE.Vector3(0,1,0), new THREE.Vector3(0,0,0), new THREE.Vector3(0,0,0), new THREE.Vector3(0,1,0), new THREE.Vector3(0,0,1), new THREE.Vector3(0,0,1), new THREE.Vector3(0,1,1), new THREE.Vector3(1,0,1), new THREE.Vector3(1,0,1), new THREE.Vector3(1,1,1), new THREE.Vector3(1,0,0), new THREE.Vector3(1,0,0), new THREE.Vector3(1,1,0)]).scale(Track.A.partSize, Track.A.partSize, Track.A.partSize), "f"),
                 i.set(this, $e, new THREE.MeshBasicMaterial({
                     wireframe: !0
                 }), "f"),
@@ -2604,7 +2604,7 @@
                                         if (null != N.type) {
                                             let S = null;
                                             N.type == Part.Start && (S = 0),
-                                            t.setPart(4 * N.x, N.y, 4 * N.z, N.type, N.direction, TrackPartRotationAxis.YPositive, PartEnvironment.Default, null, S)
+                                            t.setPart(4 * N.x, N.y, 4 * N.z, N.type, N.direction, TrackPartRotationAxis.YPositive, TrackPartColorId.Default, null, S)
                                         }
                             } while (e)
                         }(i.get(this, Jt, "f")),
@@ -2833,15 +2833,15 @@
                 C.append(document.createTextNode(i.get(this, Zt, "f").get("Help"))),
                 C.addEventListener("click", ( () => {
                     i.get(this, Yt, "f").playUIClick();
-                    const t = i.get(this, Qt, "f").getPart(Part.Start).colors.get(PartEnvironment.Summer);
+                    const t = i.get(this, Qt, "f").getPart(Part.Start).colors.get(TrackPartColorId.Summer);
                     if (null == t)
                         throw new Error("Starting point mesh is null");
                     const e = Kt(t)
-                      , n = i.get(this, Qt, "f").getPart(Part.Checkpoint).colors.get(PartEnvironment.Summer);
+                      , n = i.get(this, Qt, "f").getPart(Part.Checkpoint).colors.get(TrackPartColorId.Summer);
                     if (null == n)
                         throw new Error("Checkpoint mesh is null");
                     const s = Kt(n)
-                      , o = i.get(this, Qt, "f").getPart(Part.Finish).colors.get(PartEnvironment.Summer);
+                      , o = i.get(this, Qt, "f").getPart(Part.Finish).colors.get(TrackPartColorId.Summer);
                     if (null == o)
                         throw new Error("Finish line mesh is null");
                     const a = Kt(o);
@@ -3107,7 +3107,7 @@
             }
             resetView(t, e, n) {
                 i.set(this, Ft, e, "a", ni);
-                const s = new THREE.Vector3(t * L.A.partSize,e * L.A.partSize,n * L.A.partSize);
+                const s = new THREE.Vector3(t * Track.A.partSize,e * Track.A.partSize,n * Track.A.partSize);
                 i.get(this, De, "f").position.copy(s).add(new THREE.Vector3(40,40,-40)),
                 i.get(this, Oe, "f").target.copy(s),
                 i.get(this, Oe, "f").update()
@@ -3124,8 +3124,8 @@
                     i.get(this, Ft, "m", qn).call(this),
                     i.set(this, hn, i.get(this, Ft, "m", ai).call(this), "f"),
                     null != i.get(this, hn, "f")) {
-                        const t = P.hT(i.get(this, cn, "f"), i.get(this, dn, "f"))
-                          , e = new THREE.Vector3(i.get(this, hn, "f").x * L.A.partSize,i.get(this, hn, "f").y * L.A.partSize,i.get(this, hn, "f").z * L.A.partSize);
+                        const t = TrackPartTransform.rotationAndAxisToQuaternion(i.get(this, cn, "f"), i.get(this, dn, "f"))
+                          , e = new THREE.Vector3(i.get(this, hn, "f").x * Track.A.partSize,i.get(this, hn, "f").y * Track.A.partSize,i.get(this, hn, "f").z * Track.A.partSize);
                         i.get(this, je, "f").position.copy(e),
                         i.get(this, je, "f").quaternion.copy(t),
                         i.get(this, je, "f").visible = !0
@@ -3326,7 +3326,7 @@
                 i.set(this, ki, new pi(a,r,h,c,t,e,n,d,g,f,p,u,l,m), "f"),
                 i.get(this, ki, "f").enable(),
                 i.get(this, ui, "f").clear(),
-                i.get(this, ui, "f").setPart(0, 0, 0, Part.Start, 0, TrackPartRotationAxis.YPositive, PartEnvironment.Default, null, 0),
+                i.get(this, ui, "f").setPart(0, 0, 0, Part.Start, 0, TrackPartRotationAxis.YPositive, TrackPartColorId.Default, null, 0),
                 i.get(this, ui, "f").generateMeshes(),
                 h.setCamera(i.get(this, ki, "f").camera),
                 i.get(this, ki, "f").setTestCallback(( () => {

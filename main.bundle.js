@@ -74,7 +74,7 @@
             module.exports = __webpack_require__.p + "images/pattern_diamonds.svg"
         }
         ,
-        405: (module, exports, __webpack_require__) => { // PartDefs
+        405: (module, exports, __webpack_require__) => { // TrackPartManager
             "use strict";
             __webpack_require__.d(exports, {
                 getPart: () => f,    // Function: PartID -> PartObject
@@ -84,15 +84,15 @@
             });
             var THREE = __webpack_require__(4922)
               , PartCategory = __webpack_require__(1882).A
-              , PartEnvironment = __webpack_require__(4183).A
+              , TrackPartColorId = __webpack_require__(4183).A
               , Part = __webpack_require__(2203).A
               , TrackPartDetectorType = __webpack_require__(2247).A
               , l = __webpack_require__(7129);
             const c = [{
-                id: PartEnvironment.Summer,
+                id: TrackPartColorId.Summer,
                 colors: {}
             }, {
-                id: PartEnvironment.Winter,
+                id: TrackPartColorId.Winter,
                 colors: {
                     Road: "#5077b2",
                     RoadBarrier: "#898989",
@@ -111,7 +111,7 @@
                     SignBlack: "#5077b2"
                 }
             }, {
-                id: PartEnvironment.Desert,
+                id: TrackPartColorId.Desert,
                 colors: {
                     Road: "#997240",
                     RoadBarrier: "#211001",
@@ -131,47 +131,47 @@
                 }
             }]
               , h = c.concat([{
-                id: PartEnvironment.Custom0,
+                id: TrackPartColorId.Custom0,
                 colors: {
                     BlockSurface: "#131313"
                 }
             }, {
-                id: PartEnvironment.Custom1,
+                id: TrackPartColorId.Custom1,
                 colors: {
                     BlockSurface: "#501b1b"
                 }
             }, {
-                id: PartEnvironment.Custom2,
+                id: TrackPartColorId.Custom2,
                 colors: {
                     BlockSurface: "#7f4d2b"
                 }
             }, {
-                id: PartEnvironment.Custom3,
+                id: TrackPartColorId.Custom3,
                 colors: {
                     BlockSurface: "#93862d"
                 }
             }, {
-                id: PartEnvironment.Custom4,
+                id: TrackPartColorId.Custom4,
                 colors: {
                     BlockSurface: "#2a5e30"
                 }
             }, {
-                id: PartEnvironment.Custom5,
+                id: TrackPartColorId.Custom5,
                 colors: {
                     BlockSurface: "#236363"
                 }
             }, {
-                id: PartEnvironment.Custom6,
+                id: TrackPartColorId.Custom6,
                 colors: {
                     BlockSurface: "#20244b"
                 }
             }, {
-                id: PartEnvironment.Custom7,
+                id: TrackPartColorId.Custom7,
                 colors: {
                     BlockSurface: "#592759"
                 }
             }, {
-                id: PartEnvironment.Custom8,
+                id: TrackPartColorId.Custom8,
                 colors: {
                     BlockSurface: "#302318"
                 }
@@ -693,10 +693,10 @@
               , SunDirection = __webpack_require__(7680).A
               , TrackDataModule = __webpack_require__(8438)
               , TrackEnvironment = __webpack_require__(5169).A
-              , PartEnvironment = __webpack_require__(4183).A
+              , TrackPartColorId = __webpack_require__(4183).A
               , Part = __webpack_require__(2203).A
               , TrackPartRotationAxis = __webpack_require__(8566).A
-              , PartDefs = __webpack_require__(405);
+              , TrackPartManager = __webpack_require__(405);
             function d(e) {
                 const t = i.D(e);
                 if (null == t)
@@ -736,12 +736,12 @@
                         if (d += 1,
                         p < 0 || p > 3)
                             return null;
-                        if (PartDefs.checkpointPartIds.includes(e))
+                        if (TrackPartManager.checkpointPartIds.includes(e))
                             return null;
                         let f = null;
-                        PartDefs.startPartIds.includes(e) && (f = a == r - 1 ? 1 : 0),
-                        null != i && n.addPart(4 * s, l, 4 * u, i, p, TrackPartRotationAxis.YPositive, PartEnvironment.Default, null, null),
-                        n.addPart(4 * s, l, 4 * u, e, p, TrackPartRotationAxis.YPositive, PartEnvironment.Default, null, f)
+                        TrackPartManager.startPartIds.includes(e) && (f = a == r - 1 ? 1 : 0),
+                        null != i && n.addPart(4 * s, l, 4 * u, i, p, TrackPartRotationAxis.YPositive, TrackPartColorId.Default, null, null),
+                        n.addPart(4 * s, l, 4 * u, e, p, TrackPartRotationAxis.YPositive, TrackPartColorId.Default, null, f)
                     }
                 }
                 return n
@@ -8545,7 +8545,7 @@
             const ht = VisualCar
         }
         ,
-        4183: (e, t, n) => { // PartEnvironment
+        4183: (e, t, n) => { // TrackPartColorId
             "use strict";
             var i;
             n.d(t, {
@@ -22862,11 +22862,11 @@
               , Base62 = n(7415)
               , TrackDataModule = n(8438)
               , Part = n(2203).A
-              , PartEnvironment = n(4183).A
+              , TrackPartColorId = n(4183).A
               , TrackEnvironment = n(5169).A
               , TrackPartRotationAxis = n(8566).A
               , SunDirection = n(7680).A
-              , PartDefs = n(405);
+              , TrackPartManager = n(405);
             function u(e) {
                 const t = Base62.decode(e);
                 if (null == t)
@@ -22914,16 +22914,16 @@
                         l < 0 || l > 3)
                             return null;
                         let h = null;
-                        if (PartDefs.checkpointPartIds.includes(e)) {
+                        if (TrackPartManager.checkpointPartIds.includes(e)) {
                             if (u.length - f < 2)
                                 return null;
                             h = u[f + 0] | u[f + 1] << 8,
                             f += 2
                         }
                         let g = null;
-                        PartDefs.startPartIds.includes(e) && (g = i == n - 1 ? 1 : 0),
-                        null != t && p.addPart(4 * r, a, 4 * s, t, l, TrackPartRotationAxis.YPositive, PartEnvironment.Default, null, null),
-                        p.addPart(4 * r, a, 4 * s, e, l, TrackPartRotationAxis.YPositive, PartEnvironment.Default, h, g)
+                        TrackPartManager.startPartIds.includes(e) && (g = i == n - 1 ? 1 : 0),
+                        null != t && p.addPart(4 * r, a, 4 * s, t, l, TrackPartRotationAxis.YPositive, TrackPartColorId.Default, null, null),
+                        p.addPart(4 * r, a, 4 * s, e, l, TrackPartRotationAxis.YPositive, TrackPartColorId.Default, h, g)
                     }
                 }
                 return p
@@ -23132,11 +23132,11 @@
               , Base62 = n(7415)
               , TrackDataModule = n(8438)
               , Part = n(2203).A
-              , PartEnvironment = n(4183).A
+              , TrackPartColorId = n(4183).A
               , TrackEnvironment = n(5169).A
               , TrackPartRotationAxis = n(8566).A
               , SunDirection = n(7680).A
-              , PartDefs = n(405);
+              , TrackPartManager = n(405);
             function u(e, t) {
                 let n = e;
                 if (t.length - n < 1)
@@ -23222,17 +23222,17 @@
                             return null;
                         const u = t[n + 0];
                         if (n += 1,
-                        !(u in PartEnvironment))
+                        !(u in TrackPartColorId))
                             return null;
                         let b = null;
-                        if (PartDefs.checkpointPartIds.includes(e)) {
+                        if (TrackPartManager.checkpointPartIds.includes(e)) {
                             if (t.length - n < 2)
                                 return null;
                             b = t[n + 0] | t[n + 1] << 8,
                             n += 2
                         }
                         let w = null;
-                        if (PartDefs.startPartIds.includes(e)) {
+                        if (TrackPartManager.startPartIds.includes(e)) {
                             if (t.length - n < 4)
                                 return null;
                             w = t[n + 0] | t[n + 1] << 8 | t[n + 2] << 16 | t[n + 3] << 24,
@@ -23383,21 +23383,21 @@
             const o = s
         }
         ,
-        5735: (e, t, n) => {
+        5735: (e, t, n) => { // TrackPartTransform
             "use strict";
             n.d(t, {
-                Dr: () => c,
-                hT: () => s,
-                sR: () => o,
-                yV: () => l
+                combineTwoPartOrientations: () => combineTwoPartOrientations,
+                rotationAndAxisToQuaternion: () => rotationAndAxisToQuaternion,
+                rotatePartGridPosition: () => rotatePartGridPosition,
+                rotatePartOffset: () => rotatePartOffset
             });
             var THREE = n(4922)
               , TrackPartRotationAxis = n(8566).A;
             const a = [[new THREE.Quaternion(0,0,0,1), new THREE.Quaternion(0,.7071067811865475,0,.7071067811865476), new THREE.Quaternion(0,1,0,0), new THREE.Quaternion(0,.7071067811865476,0,-.7071067811865475)], [new THREE.Quaternion(0,0,1,0), new THREE.Quaternion(.7071067811865475,0,.7071067811865476,0), new THREE.Quaternion(1,0,0,0), new THREE.Quaternion(.7071067811865476,0,-.7071067811865475,0)], [new THREE.Quaternion(0,0,-.7071067811865477,.7071067811865475), new THREE.Quaternion(.5,.5,-.5,.5), new THREE.Quaternion(.7071067811865475,.7071067811865477,0,0), new THREE.Quaternion(.5,.5,.5,-.5)], [new THREE.Quaternion(0,0,.7071067811865475,.7071067811865476), new THREE.Quaternion(.5,-.5,.5,.5), new THREE.Quaternion(.7071067811865476,-.7071067811865475,0,0), new THREE.Quaternion(.5,-.5,-.5,-.5)], [new THREE.Quaternion(.7071067811865475,0,0,.7071067811865476), new THREE.Quaternion(.5,.5,.5,.5), new THREE.Quaternion(0,.7071067811865476,.7071067811865475,0), new THREE.Quaternion(-.5,.5,.5,-.5)], [new THREE.Quaternion(-.7071067811865477,0,0,.7071067811865475), new THREE.Quaternion(-.5,-.5,.5,.5), new THREE.Quaternion(0,-.7071067811865475,.7071067811865477,0), new THREE.Quaternion(.5,-.5,.5,-.5)]];
-            function s(e, t) {
+            function rotationAndAxisToQuaternion(e, t) {
                 return a[t][e].clone()
             }
-            function o(e, t, n, i, a) {
+            function rotatePartGridPosition(e, t, n, i, a) {
                 if (a == TrackPartRotationAxis.YNegative || a == TrackPartRotationAxis.XNegative || a == TrackPartRotationAxis.ZNegative)
                     switch (i) {
                     case 0:
@@ -23433,9 +23433,9 @@
                 return a == TrackPartRotationAxis.YPositive || (a == TrackPartRotationAxis.YNegative ? [e,t] = [-e - 1, -t - 1] : a == TrackPartRotationAxis.XPositive ? [e,t] = [t, -e - 1] : a == TrackPartRotationAxis.XNegative ? [e,t] = [-t - 1, e] : a == TrackPartRotationAxis.ZPositive ? [t,n] = [-n - 1, t] : [t,n] = [n, -t - 1]),
                 [e, t, n]
             }
-            function l(e, t, n, i, a) {
-                if (a == TrackPartRotationAxis.YNegative || a == TrackPartRotationAxis.XNegative || a == TrackPartRotationAxis.ZNegative)
-                    switch (i) {
+            function rotatePartOffset(e, t, n, rotation, axis) {
+                if (axis == TrackPartRotationAxis.YNegative || axis == TrackPartRotationAxis.XNegative || axis == TrackPartRotationAxis.ZNegative)
+                    switch (rotation) {
                     case 0:
                         break;
                     case 1:
@@ -23451,7 +23451,7 @@
                         throw new Error("Invalid rotation")
                     }
                 else
-                    switch (i) {
+                    switch (rotation) {
                     case 0:
                         break;
                     case 1:
@@ -23466,160 +23466,160 @@
                     default:
                         throw new Error("Invalid rotation")
                     }
-                return a == TrackPartRotationAxis.YPositive || (a == TrackPartRotationAxis.YNegative ? [e,t] = [-e, -t] : a == TrackPartRotationAxis.XPositive ? [e,t] = [t, -e] : a == TrackPartRotationAxis.XNegative ? [e,t] = [-t, e] : a == TrackPartRotationAxis.ZPositive ? [t,n] = [-n, t] : [t,n] = [n, -t]),
+                return axis == TrackPartRotationAxis.YPositive || (axis == TrackPartRotationAxis.YNegative ? [e,t] = [-e, -t] : axis == TrackPartRotationAxis.XPositive ? [e,t] = [t, -e] : axis == TrackPartRotationAxis.XNegative ? [e,t] = [-t, e] : axis == TrackPartRotationAxis.ZPositive ? [t,n] = [-n, t] : [t,n] = [n, -t]),
                 [e, t, n]
             }
-            function c(e, t, n, i) {
-                let a, s;
-                switch (i) {
+            function combineTwoPartOrientations(rotation1, axis1, rotation2, axis2) {
+                let finalRotation, finalAxis;
+                switch (axis2) {
                 case TrackPartRotationAxis.YPositive:
-                    switch (t) {
+                    switch (axis1) {
                     case TrackPartRotationAxis.YPositive:
-                        s = TrackPartRotationAxis.YPositive;
+                        finalAxis = TrackPartRotationAxis.YPositive;
                         break;
                     case TrackPartRotationAxis.YNegative:
-                        s = TrackPartRotationAxis.YNegative;
+                        finalAxis = TrackPartRotationAxis.YNegative;
                         break;
                     case TrackPartRotationAxis.XPositive:
-                        s = [TrackPartRotationAxis.XPositive, TrackPartRotationAxis.ZNegative, TrackPartRotationAxis.XNegative, TrackPartRotationAxis.ZPositive][n];
+                        finalAxis = [TrackPartRotationAxis.XPositive, TrackPartRotationAxis.ZNegative, TrackPartRotationAxis.XNegative, TrackPartRotationAxis.ZPositive][rotation2];
                         break;
                     case TrackPartRotationAxis.XNegative:
-                        s = [TrackPartRotationAxis.XNegative, TrackPartRotationAxis.ZPositive, TrackPartRotationAxis.XPositive, TrackPartRotationAxis.ZNegative][n];
+                        finalAxis = [TrackPartRotationAxis.XNegative, TrackPartRotationAxis.ZPositive, TrackPartRotationAxis.XPositive, TrackPartRotationAxis.ZNegative][rotation2];
                         break;
                     case TrackPartRotationAxis.ZPositive:
-                        s = [TrackPartRotationAxis.ZPositive, TrackPartRotationAxis.XPositive, TrackPartRotationAxis.ZNegative, TrackPartRotationAxis.XNegative][n];
+                        finalAxis = [TrackPartRotationAxis.ZPositive, TrackPartRotationAxis.XPositive, TrackPartRotationAxis.ZNegative, TrackPartRotationAxis.XNegative][rotation2];
                         break;
                     case TrackPartRotationAxis.ZNegative:
-                        s = [TrackPartRotationAxis.ZNegative, TrackPartRotationAxis.XNegative, TrackPartRotationAxis.ZPositive, TrackPartRotationAxis.XPositive][n]
+                        finalAxis = [TrackPartRotationAxis.ZNegative, TrackPartRotationAxis.XNegative, TrackPartRotationAxis.ZPositive, TrackPartRotationAxis.XPositive][rotation2]
                     }
-                    a = s == TrackPartRotationAxis.XNegative || s == TrackPartRotationAxis.ZNegative ? -n : n;
+                    finalRotation = finalAxis == TrackPartRotationAxis.XNegative || finalAxis == TrackPartRotationAxis.ZNegative ? -rotation2 : rotation2;
                     break;
                 case TrackPartRotationAxis.YNegative:
-                    switch (t) {
+                    switch (axis1) {
                     case TrackPartRotationAxis.YPositive:
-                        s = TrackPartRotationAxis.YNegative;
+                        finalAxis = TrackPartRotationAxis.YNegative;
                         break;
                     case TrackPartRotationAxis.YNegative:
-                        s = TrackPartRotationAxis.YPositive;
+                        finalAxis = TrackPartRotationAxis.YPositive;
                         break;
                     case TrackPartRotationAxis.XPositive:
-                        s = [TrackPartRotationAxis.XNegative, TrackPartRotationAxis.ZPositive, TrackPartRotationAxis.XPositive, TrackPartRotationAxis.ZNegative][n];
+                        finalAxis = [TrackPartRotationAxis.XNegative, TrackPartRotationAxis.ZPositive, TrackPartRotationAxis.XPositive, TrackPartRotationAxis.ZNegative][rotation2];
                         break;
                     case TrackPartRotationAxis.XNegative:
-                        s = [TrackPartRotationAxis.XPositive, TrackPartRotationAxis.ZNegative, TrackPartRotationAxis.XNegative, TrackPartRotationAxis.ZPositive][n];
+                        finalAxis = [TrackPartRotationAxis.XPositive, TrackPartRotationAxis.ZNegative, TrackPartRotationAxis.XNegative, TrackPartRotationAxis.ZPositive][rotation2];
                         break;
                     case TrackPartRotationAxis.ZPositive:
-                        s = [TrackPartRotationAxis.ZPositive, TrackPartRotationAxis.XPositive, TrackPartRotationAxis.ZNegative, TrackPartRotationAxis.XNegative][n];
+                        finalAxis = [TrackPartRotationAxis.ZPositive, TrackPartRotationAxis.XPositive, TrackPartRotationAxis.ZNegative, TrackPartRotationAxis.XNegative][rotation2];
                         break;
                     case TrackPartRotationAxis.ZNegative:
-                        s = [TrackPartRotationAxis.ZNegative, TrackPartRotationAxis.XNegative, TrackPartRotationAxis.ZPositive, TrackPartRotationAxis.XPositive][n]
+                        finalAxis = [TrackPartRotationAxis.ZNegative, TrackPartRotationAxis.XNegative, TrackPartRotationAxis.ZPositive, TrackPartRotationAxis.XPositive][rotation2]
                     }
-                    a = t == TrackPartRotationAxis.ZNegative ? -n : n,
-                    t != TrackPartRotationAxis.XPositive && t != TrackPartRotationAxis.XNegative || s != TrackPartRotationAxis.ZNegative ? (t == TrackPartRotationAxis.ZPositive && s != TrackPartRotationAxis.XNegative || t == TrackPartRotationAxis.ZNegative && s != TrackPartRotationAxis.XPositive) && (a += 2) : a += 2;
+                    finalRotation = axis1 == TrackPartRotationAxis.ZNegative ? -rotation2 : rotation2,
+                    axis1 != TrackPartRotationAxis.XPositive && axis1 != TrackPartRotationAxis.XNegative || finalAxis != TrackPartRotationAxis.ZNegative ? (axis1 == TrackPartRotationAxis.ZPositive && finalAxis != TrackPartRotationAxis.XNegative || axis1 == TrackPartRotationAxis.ZNegative && finalAxis != TrackPartRotationAxis.XPositive) && (finalRotation += 2) : finalRotation += 2;
                     break;
                 case TrackPartRotationAxis.XPositive:
-                    switch (t) {
+                    switch (axis1) {
                     case TrackPartRotationAxis.YPositive:
-                        s = TrackPartRotationAxis.XPositive;
+                        finalAxis = TrackPartRotationAxis.XPositive;
                         break;
                     case TrackPartRotationAxis.YNegative:
-                        s = TrackPartRotationAxis.XNegative;
+                        finalAxis = TrackPartRotationAxis.XNegative;
                         break;
                     case TrackPartRotationAxis.XPositive:
-                        s = [TrackPartRotationAxis.YNegative, TrackPartRotationAxis.ZNegative, TrackPartRotationAxis.YPositive, TrackPartRotationAxis.ZPositive][n];
+                        finalAxis = [TrackPartRotationAxis.YNegative, TrackPartRotationAxis.ZNegative, TrackPartRotationAxis.YPositive, TrackPartRotationAxis.ZPositive][rotation2];
                         break;
                     case TrackPartRotationAxis.XNegative:
-                        s = [TrackPartRotationAxis.YPositive, TrackPartRotationAxis.ZPositive, TrackPartRotationAxis.YNegative, TrackPartRotationAxis.ZNegative][n];
+                        finalAxis = [TrackPartRotationAxis.YPositive, TrackPartRotationAxis.ZPositive, TrackPartRotationAxis.YNegative, TrackPartRotationAxis.ZNegative][rotation2];
                         break;
                     case TrackPartRotationAxis.ZPositive:
-                        s = [TrackPartRotationAxis.ZPositive, TrackPartRotationAxis.YNegative, TrackPartRotationAxis.ZNegative, TrackPartRotationAxis.YPositive][n];
+                        finalAxis = [TrackPartRotationAxis.ZPositive, TrackPartRotationAxis.YNegative, TrackPartRotationAxis.ZNegative, TrackPartRotationAxis.YPositive][rotation2];
                         break;
                     case TrackPartRotationAxis.ZNegative:
-                        s = [TrackPartRotationAxis.ZNegative, TrackPartRotationAxis.YPositive, TrackPartRotationAxis.ZPositive, TrackPartRotationAxis.YNegative][n]
+                        finalAxis = [TrackPartRotationAxis.ZNegative, TrackPartRotationAxis.YPositive, TrackPartRotationAxis.ZPositive, TrackPartRotationAxis.YNegative][rotation2]
                     }
-                    a = n,
-                    s == TrackPartRotationAxis.ZPositive ? a -= 1 : s == TrackPartRotationAxis.ZNegative && (a += 1),
-                    (t != TrackPartRotationAxis.ZPositive && t != TrackPartRotationAxis.ZNegative || s != TrackPartRotationAxis.YNegative) && (t != TrackPartRotationAxis.ZPositive && t != TrackPartRotationAxis.ZNegative || s != TrackPartRotationAxis.ZNegative) || (a += 2);
+                    finalRotation = rotation2,
+                    finalAxis == TrackPartRotationAxis.ZPositive ? finalRotation -= 1 : finalAxis == TrackPartRotationAxis.ZNegative && (finalRotation += 1),
+                    (axis1 != TrackPartRotationAxis.ZPositive && axis1 != TrackPartRotationAxis.ZNegative || finalAxis != TrackPartRotationAxis.YNegative) && (axis1 != TrackPartRotationAxis.ZPositive && axis1 != TrackPartRotationAxis.ZNegative || finalAxis != TrackPartRotationAxis.ZNegative) || (finalRotation += 2);
                     break;
                 case TrackPartRotationAxis.XNegative:
-                    switch (t) {
+                    switch (axis1) {
                     case TrackPartRotationAxis.YPositive:
-                        s = TrackPartRotationAxis.XNegative;
+                        finalAxis = TrackPartRotationAxis.XNegative;
                         break;
                     case TrackPartRotationAxis.YNegative:
-                        s = TrackPartRotationAxis.XPositive;
+                        finalAxis = TrackPartRotationAxis.XPositive;
                         break;
                     case TrackPartRotationAxis.XPositive:
-                        s = [TrackPartRotationAxis.YPositive, TrackPartRotationAxis.ZPositive, TrackPartRotationAxis.YNegative, TrackPartRotationAxis.ZNegative][n];
+                        finalAxis = [TrackPartRotationAxis.YPositive, TrackPartRotationAxis.ZPositive, TrackPartRotationAxis.YNegative, TrackPartRotationAxis.ZNegative][rotation2];
                         break;
                     case TrackPartRotationAxis.XNegative:
-                        s = [TrackPartRotationAxis.YNegative, TrackPartRotationAxis.ZNegative, TrackPartRotationAxis.YPositive, TrackPartRotationAxis.ZPositive][n];
+                        finalAxis = [TrackPartRotationAxis.YNegative, TrackPartRotationAxis.ZNegative, TrackPartRotationAxis.YPositive, TrackPartRotationAxis.ZPositive][rotation2];
                         break;
                     case TrackPartRotationAxis.ZPositive:
-                        s = [TrackPartRotationAxis.ZPositive, TrackPartRotationAxis.YNegative, TrackPartRotationAxis.ZNegative, TrackPartRotationAxis.YPositive][n];
+                        finalAxis = [TrackPartRotationAxis.ZPositive, TrackPartRotationAxis.YNegative, TrackPartRotationAxis.ZNegative, TrackPartRotationAxis.YPositive][rotation2];
                         break;
                     case TrackPartRotationAxis.ZNegative:
-                        s = [TrackPartRotationAxis.ZNegative, TrackPartRotationAxis.YPositive, TrackPartRotationAxis.ZPositive, TrackPartRotationAxis.YNegative][n]
+                        finalAxis = [TrackPartRotationAxis.ZNegative, TrackPartRotationAxis.YPositive, TrackPartRotationAxis.ZPositive, TrackPartRotationAxis.YNegative][rotation2]
                     }
-                    a = n,
-                    s == TrackPartRotationAxis.ZPositive ? a -= 1 : s == TrackPartRotationAxis.ZNegative && (a += 1),
-                    (t != TrackPartRotationAxis.ZPositive && t != TrackPartRotationAxis.ZNegative || s != TrackPartRotationAxis.YPositive) && (t != TrackPartRotationAxis.ZPositive && t != TrackPartRotationAxis.ZNegative || s != TrackPartRotationAxis.ZPositive) || (a += 2);
+                    finalRotation = rotation2,
+                    finalAxis == TrackPartRotationAxis.ZPositive ? finalRotation -= 1 : finalAxis == TrackPartRotationAxis.ZNegative && (finalRotation += 1),
+                    (axis1 != TrackPartRotationAxis.ZPositive && axis1 != TrackPartRotationAxis.ZNegative || finalAxis != TrackPartRotationAxis.YPositive) && (axis1 != TrackPartRotationAxis.ZPositive && axis1 != TrackPartRotationAxis.ZNegative || finalAxis != TrackPartRotationAxis.ZPositive) || (finalRotation += 2);
                     break;
                 case TrackPartRotationAxis.ZPositive:
-                    switch (t) {
+                    switch (axis1) {
                     case TrackPartRotationAxis.YPositive:
-                        s = TrackPartRotationAxis.ZPositive;
+                        finalAxis = TrackPartRotationAxis.ZPositive;
                         break;
                     case TrackPartRotationAxis.YNegative:
-                        s = TrackPartRotationAxis.ZNegative;
+                        finalAxis = TrackPartRotationAxis.ZNegative;
                         break;
                     case TrackPartRotationAxis.XPositive:
-                        s = [TrackPartRotationAxis.XPositive, TrackPartRotationAxis.YPositive, TrackPartRotationAxis.XNegative, TrackPartRotationAxis.YNegative][n];
+                        finalAxis = [TrackPartRotationAxis.XPositive, TrackPartRotationAxis.YPositive, TrackPartRotationAxis.XNegative, TrackPartRotationAxis.YNegative][rotation2];
                         break;
                     case TrackPartRotationAxis.XNegative:
-                        s = [TrackPartRotationAxis.XNegative, TrackPartRotationAxis.YNegative, TrackPartRotationAxis.XPositive, TrackPartRotationAxis.YPositive][n];
+                        finalAxis = [TrackPartRotationAxis.XNegative, TrackPartRotationAxis.YNegative, TrackPartRotationAxis.XPositive, TrackPartRotationAxis.YPositive][rotation2];
                         break;
                     case TrackPartRotationAxis.ZPositive:
-                        s = [TrackPartRotationAxis.YNegative, TrackPartRotationAxis.XPositive, TrackPartRotationAxis.YPositive, TrackPartRotationAxis.XNegative][n];
+                        finalAxis = [TrackPartRotationAxis.YNegative, TrackPartRotationAxis.XPositive, TrackPartRotationAxis.YPositive, TrackPartRotationAxis.XNegative][rotation2];
                         break;
                     case TrackPartRotationAxis.ZNegative:
-                        s = [TrackPartRotationAxis.YPositive, TrackPartRotationAxis.XNegative, TrackPartRotationAxis.YNegative, TrackPartRotationAxis.XPositive][n]
+                        finalAxis = [TrackPartRotationAxis.YPositive, TrackPartRotationAxis.XNegative, TrackPartRotationAxis.YNegative, TrackPartRotationAxis.XPositive][rotation2]
                     }
-                    a = n,
-                    t != TrackPartRotationAxis.XPositive || s != TrackPartRotationAxis.XPositive && s != TrackPartRotationAxis.XNegative || (a += 1),
-                    t != TrackPartRotationAxis.XNegative || s != TrackPartRotationAxis.XPositive && s != TrackPartRotationAxis.XNegative || (a += 1),
-                    t != TrackPartRotationAxis.ZPositive && t != TrackPartRotationAxis.ZNegative || (s == TrackPartRotationAxis.YNegative ? a += 2 : s == TrackPartRotationAxis.XPositive ? a += 1 : s == TrackPartRotationAxis.XNegative && (a -= 1)),
-                    t == TrackPartRotationAxis.YNegative && (a += 2);
+                    finalRotation = rotation2,
+                    axis1 != TrackPartRotationAxis.XPositive || finalAxis != TrackPartRotationAxis.XPositive && finalAxis != TrackPartRotationAxis.XNegative || (finalRotation += 1),
+                    axis1 != TrackPartRotationAxis.XNegative || finalAxis != TrackPartRotationAxis.XPositive && finalAxis != TrackPartRotationAxis.XNegative || (finalRotation += 1),
+                    axis1 != TrackPartRotationAxis.ZPositive && axis1 != TrackPartRotationAxis.ZNegative || (finalAxis == TrackPartRotationAxis.YNegative ? finalRotation += 2 : finalAxis == TrackPartRotationAxis.XPositive ? finalRotation += 1 : finalAxis == TrackPartRotationAxis.XNegative && (finalRotation -= 1)),
+                    axis1 == TrackPartRotationAxis.YNegative && (finalRotation += 2);
                     break;
                 case TrackPartRotationAxis.ZNegative:
-                    switch (t) {
+                    switch (axis1) {
                     case TrackPartRotationAxis.YPositive:
-                        s = TrackPartRotationAxis.ZNegative;
+                        finalAxis = TrackPartRotationAxis.ZNegative;
                         break;
                     case TrackPartRotationAxis.YNegative:
-                        s = TrackPartRotationAxis.ZPositive;
+                        finalAxis = TrackPartRotationAxis.ZPositive;
                         break;
                     case TrackPartRotationAxis.XPositive:
-                        s = [TrackPartRotationAxis.XPositive, TrackPartRotationAxis.YPositive, TrackPartRotationAxis.XNegative, TrackPartRotationAxis.YNegative][n];
+                        finalAxis = [TrackPartRotationAxis.XPositive, TrackPartRotationAxis.YPositive, TrackPartRotationAxis.XNegative, TrackPartRotationAxis.YNegative][rotation2];
                         break;
                     case TrackPartRotationAxis.XNegative:
-                        s = [TrackPartRotationAxis.XNegative, TrackPartRotationAxis.YNegative, TrackPartRotationAxis.XPositive, TrackPartRotationAxis.YPositive][n];
+                        finalAxis = [TrackPartRotationAxis.XNegative, TrackPartRotationAxis.YNegative, TrackPartRotationAxis.XPositive, TrackPartRotationAxis.YPositive][rotation2];
                         break;
                     case TrackPartRotationAxis.ZPositive:
-                        s = [TrackPartRotationAxis.YPositive, TrackPartRotationAxis.XNegative, TrackPartRotationAxis.YNegative, TrackPartRotationAxis.XPositive][n];
+                        finalAxis = [TrackPartRotationAxis.YPositive, TrackPartRotationAxis.XNegative, TrackPartRotationAxis.YNegative, TrackPartRotationAxis.XPositive][rotation2];
                         break;
                     case TrackPartRotationAxis.ZNegative:
-                        s = [TrackPartRotationAxis.YNegative, TrackPartRotationAxis.XPositive, TrackPartRotationAxis.YPositive, TrackPartRotationAxis.XNegative][n]
+                        finalAxis = [TrackPartRotationAxis.YNegative, TrackPartRotationAxis.XPositive, TrackPartRotationAxis.YPositive, TrackPartRotationAxis.XNegative][rotation2]
                     }
-                    a = n,
-                    t != TrackPartRotationAxis.XPositive && t != TrackPartRotationAxis.XNegative || (s == TrackPartRotationAxis.YPositive || s == TrackPartRotationAxis.YNegative ? a += 2 : (s == TrackPartRotationAxis.XPositive || s == TrackPartRotationAxis.XNegative) && (a -= 1)),
-                    t != TrackPartRotationAxis.ZPositive && t != TrackPartRotationAxis.ZNegative || (s == TrackPartRotationAxis.YNegative ? a += 2 : s == TrackPartRotationAxis.XPositive ? a += 1 : s == TrackPartRotationAxis.XNegative && (a -= 1)),
-                    t == TrackPartRotationAxis.YNegative && (a += 2)
+                    finalRotation = rotation2,
+                    axis1 != TrackPartRotationAxis.XPositive && axis1 != TrackPartRotationAxis.XNegative || (finalAxis == TrackPartRotationAxis.YPositive || finalAxis == TrackPartRotationAxis.YNegative ? finalRotation += 2 : (finalAxis == TrackPartRotationAxis.XPositive || finalAxis == TrackPartRotationAxis.XNegative) && (finalRotation -= 1)),
+                    axis1 != TrackPartRotationAxis.ZPositive && axis1 != TrackPartRotationAxis.ZNegative || (finalAxis == TrackPartRotationAxis.YNegative ? finalRotation += 2 : finalAxis == TrackPartRotationAxis.XPositive ? finalRotation += 1 : finalAxis == TrackPartRotationAxis.XNegative && (finalRotation -= 1)),
+                    axis1 == TrackPartRotationAxis.YNegative && (finalRotation += 2)
                 }
-                return (t == TrackPartRotationAxis.YNegative || t == TrackPartRotationAxis.XNegative || t == TrackPartRotationAxis.ZNegative) == (s == TrackPartRotationAxis.YNegative || s == TrackPartRotationAxis.XNegative || s == TrackPartRotationAxis.ZNegative) ? a += e : a -= e,
+                return (axis1 == TrackPartRotationAxis.YNegative || axis1 == TrackPartRotationAxis.XNegative || axis1 == TrackPartRotationAxis.ZNegative) == (finalAxis == TrackPartRotationAxis.YNegative || finalAxis == TrackPartRotationAxis.XNegative || finalAxis == TrackPartRotationAxis.ZNegative) ? finalRotation += rotation1 : finalRotation -= rotation1,
                 {
-                    rotation: (a % 4 + 4) % 4,
-                    rotationAxis: s
+                    rotation: (finalRotation % 4 + 4) % 4,
+                    rotationAxis: finalAxis
                 }
             }
         }
@@ -25496,7 +25496,7 @@
             n.d(t, {
                 A: () => o
             });
-            var i, r = n(1635), a = n(5735);
+            var i, r = n(1635), TrackPartTransform = n(5735);
             class s {
                 constructor(e) {
                     i.set(this, void 0);
@@ -25506,7 +25506,7 @@
                     r.set(this, i, t, "f")
                 }
                 rotated(e, t) {
-                    return new s(r.get(this, i, "f").map(( ([n,i,r]) => a.sR(n, i, r, e, t))))
+                    return new s(r.get(this, i, "f").map(( ([n,i,r]) => TrackPartTransform.rotatePartGridPosition(n, i, r, e, t))))
                 }
                 forEach(e) {
                     for (let t = 0; t < r.get(this, i, "f").length; t++) {
@@ -27954,10 +27954,10 @@
             var SunDirection = n(7680).A
               , TrackDataModule = n(8438)
               , TrackEnvironment = n(5169).A
-              , PartEnvironment = n(4183).A
+              , TrackPartColorId = n(4183).A
               , Part = n(2203).A
               , TrackPartRotationAxis = n(8566).A
-              , PartDefs = n(405);
+              , TrackPartManager = n(405);
             function h(e) {
                 if ("object" != typeof e || null == e)
                     return null;
@@ -27988,11 +27988,11 @@
                             if (!(h >= 0 && h <= 3 && Math.abs(r) <= 1e9 && a >= 0 && a <= 1e9 && Math.abs(o) <= 1e9))
                                 return null;
                             {
-                                if (PartDefs.checkpointPartIds.includes(i))
+                                if (TrackPartManager.checkpointPartIds.includes(i))
                                     return null;
                                 let d = null;
-                                PartDefs.startPartIds.includes(i) && (d = t / 4 == e.length / 4 - 1 ? 1 : 0),
-                                n.addPart(4 * r, a, 4 * o, i, h, TrackPartRotationAxis.YPositive, PartEnvironment.Default, null, d)
+                                TrackPartManager.startPartIds.includes(i) && (d = t / 4 == e.length / 4 - 1 ? 1 : 0),
+                                n.addPart(4 * r, a, 4 * o, i, h, TrackPartRotationAxis.YPositive, TrackPartColorId.Default, null, d)
                             }
                         }
                     }
@@ -28095,7 +28095,24 @@
             n.d(t, {
                 A: () => TrackData
             });
-            var i, r, _environment, _sunDirection, o, l, c, h, d = n(1635), u = n(3075), p = n(1312), THREE = n(4922), Base62 = n(7415), TrackDataImporterLegacy = n(7980), TrackDataImporterV1 = n(666), TrackDataImporterV2 = n(5343), TrackDataImporterV3 = n(8928), TrackDataImporterV4 = n(5440), TrackDataImporterV5 = n(9681), TrackPartDetectorType = n(2247).A, S = n(8971), TrackEnvironment = n(5169).A, TrackPartManager = n(405), T = n(5735);
+            var i, r, _environment, _sunDirection, o, l, c, h, 
+            d = n(1635), 
+            u = n(3075), 
+            p = n(1312), 
+            THREE = n(4922), 
+            Base62 = n(7415), 
+            TrackDataImporterLegacy = n(7980), 
+            TrackDataImporterV1 = n(666), 
+            TrackDataImporterV2 = n(5343), 
+            TrackDataImporterV3 = n(8928), 
+            TrackDataImporterV4 = n(5440), 
+            TrackDataImporterV5 = n(9681), 
+            TrackPartDetectorType = n(2247).A, 
+            Track = n(8971), 
+            TrackEnvironment = n(5169).A, 
+            TrackPartManager = n(405), 
+            TrackPartTransform = n(5735);
+
             r = new WeakMap,
             _environment = new WeakMap,
             _sunDirection = new WeakMap,
@@ -28295,14 +28312,14 @@
                     return null != d.get(this, i, "m", c).call(this)
                 }
                 getStartTransform() {
-                    const e = d.get(this, i, "m", c).call(this);
-                    if (null != e) {
-                        const t = T.hT(e.rotation, e.rotationAxis).multiply((new THREE.Quaternion).setFromEuler(new THREE.Euler(0,Math.PI,0)))
-                          , n = e.startOffset;
-                        return n.applyQuaternion(t),
-                        {
-                            position: new THREE.Vector3(e.x * S.A.partSize + n.x,e.y * S.A.partSize + n.y,e.z * S.A.partSize + n.z),
-                            quaternion: t
+                    const start = d.get(this, i, "m", c).call(this);
+                    if (null != start) {
+                        const quaternion = TrackPartTransform.rotationAndAxisToQuaternion(start.rotation, start.rotationAxis).multiply((new THREE.Quaternion).setFromEuler(new THREE.Euler(0,Math.PI,0)));
+                        const offset = start.startOffset;
+                        offset.applyQuaternion(quaternion);
+                        return {
+                            position: new THREE.Vector3(start.x * Track.A.partSize + offset.x,start.y * Track.A.partSize + offset.y,start.z * Track.A.partSize + offset.z),
+                            quaternion: quaternion
                         }
                     }
                     return null
@@ -28648,11 +28665,11 @@
               , Base62 = __webpack_require__(7415)
               , TrackDataModule = __webpack_require__(8438)
               , Part = __webpack_require__(2203).A
-              , PartEnvironment = __webpack_require__(4183).A
+              , TrackPartColorId = __webpack_require__(4183).A
               , TrackEnvironment = __webpack_require__(5169).A
               , TrackPartRotationAxis = __webpack_require__(8566).A
               , SunDirection = __webpack_require__(7680).A
-              , PartDefs = __webpack_require__(405);
+              , TrackPartManager = __webpack_require__(405);
             function u(e) {
                 const t = Base62.decode(e);
                 if (null == t)
@@ -28671,188 +28688,188 @@
                         return null;
                     let e = u[f + 0] | u[f + 1] << 8;
                     f += 2;
-                    let t = PartEnvironment.Default;
+                    let t = TrackPartColorId.Default;
                     if (e >= 134 && e <= 178)
                         switch (e) {
                         case 134:
                             e = Part.Block,
-                            t = PartEnvironment.Custom1;
+                            t = TrackPartColorId.Custom1;
                             break;
                         case 135:
                             e = Part.HalfBlock,
-                            t = PartEnvironment.Custom1;
+                            t = TrackPartColorId.Custom1;
                             break;
                         case 136:
                             e = Part.QuarterBlock,
-                            t = PartEnvironment.Custom1;
+                            t = TrackPartColorId.Custom1;
                             break;
                         case 137:
                             e = Part.BlockSlopedDown,
-                            t = PartEnvironment.Custom1;
+                            t = TrackPartColorId.Custom1;
                             break;
                         case 138:
                             e = Part.BlockSlopedDownInnerCorner,
-                            t = PartEnvironment.Custom1;
+                            t = TrackPartColorId.Custom1;
                             break;
                         case 139:
                             e = Part.BlockSlopedDownOuterCorner,
-                            t = PartEnvironment.Custom1;
+                            t = TrackPartColorId.Custom1;
                             break;
                         case 140:
                             e = Part.BlockSlopedUp,
-                            t = PartEnvironment.Custom1;
+                            t = TrackPartColorId.Custom1;
                             break;
                         case 141:
                             e = Part.BlockSlopedUpInnerCorner,
-                            t = PartEnvironment.Custom1;
+                            t = TrackPartColorId.Custom1;
                             break;
                         case 142:
                             e = Part.BlockSlopedUpOuterCorner,
-                            t = PartEnvironment.Custom1;
+                            t = TrackPartColorId.Custom1;
                             break;
                         case 143:
                             e = Part.BlockSlopeDown,
-                            t = PartEnvironment.Custom1;
+                            t = TrackPartColorId.Custom1;
                             break;
                         case 144:
                             e = Part.BlockSlopeUp,
-                            t = PartEnvironment.Custom1;
+                            t = TrackPartColorId.Custom1;
                             break;
                         case 145:
                             e = Part.BlockBridge,
-                            t = PartEnvironment.Custom1;
+                            t = TrackPartColorId.Custom1;
                             break;
                         case 146:
                             e = Part.BlockBridgeCorner,
-                            t = PartEnvironment.Custom1;
+                            t = TrackPartColorId.Custom1;
                             break;
                         case 147:
                             e = Part.BlockBridgeIntersectionT,
-                            t = PartEnvironment.Custom1;
+                            t = TrackPartColorId.Custom1;
                             break;
                         case 148:
                             e = Part.BlockBridgeIntersectionCross,
-                            t = PartEnvironment.Custom1;
+                            t = TrackPartColorId.Custom1;
                             break;
                         case 149:
                             e = Part.Block,
-                            t = PartEnvironment.Custom6;
+                            t = TrackPartColorId.Custom6;
                             break;
                         case 150:
                             e = Part.HalfBlock,
-                            t = PartEnvironment.Custom6;
+                            t = TrackPartColorId.Custom6;
                             break;
                         case 151:
                             e = Part.QuarterBlock,
-                            t = PartEnvironment.Custom6;
+                            t = TrackPartColorId.Custom6;
                             break;
                         case 152:
                             e = Part.BlockSlopedDown,
-                            t = PartEnvironment.Custom6;
+                            t = TrackPartColorId.Custom6;
                             break;
                         case 153:
                             e = Part.BlockSlopedDownInnerCorner,
-                            t = PartEnvironment.Custom6;
+                            t = TrackPartColorId.Custom6;
                             break;
                         case 154:
                             e = Part.BlockSlopedDownOuterCorner,
-                            t = PartEnvironment.Custom6;
+                            t = TrackPartColorId.Custom6;
                             break;
                         case 155:
                             e = Part.BlockSlopedUp,
-                            t = PartEnvironment.Custom6;
+                            t = TrackPartColorId.Custom6;
                             break;
                         case 156:
                             e = Part.BlockSlopedUpInnerCorner,
-                            t = PartEnvironment.Custom6;
+                            t = TrackPartColorId.Custom6;
                             break;
                         case 157:
                             e = Part.BlockSlopedUpOuterCorner,
-                            t = PartEnvironment.Custom6;
+                            t = TrackPartColorId.Custom6;
                             break;
                         case 158:
                             e = Part.BlockSlopeDown,
-                            t = PartEnvironment.Custom6;
+                            t = TrackPartColorId.Custom6;
                             break;
                         case 159:
                             e = Part.BlockSlopeUp,
-                            t = PartEnvironment.Custom6;
+                            t = TrackPartColorId.Custom6;
                             break;
                         case 160:
                             e = Part.BlockBridge,
-                            t = PartEnvironment.Custom6;
+                            t = TrackPartColorId.Custom6;
                             break;
                         case 161:
                             e = Part.BlockBridgeCorner,
-                            t = PartEnvironment.Custom6;
+                            t = TrackPartColorId.Custom6;
                             break;
                         case 162:
                             e = Part.BlockBridgeIntersectionT,
-                            t = PartEnvironment.Custom6;
+                            t = TrackPartColorId.Custom6;
                             break;
                         case 163:
                             e = Part.BlockBridgeIntersectionCross,
-                            t = PartEnvironment.Custom6;
+                            t = TrackPartColorId.Custom6;
                             break;
                         case 164:
                             e = Part.Block,
-                            t = PartEnvironment.Custom0;
+                            t = TrackPartColorId.Custom0;
                             break;
                         case 165:
                             e = Part.HalfBlock,
-                            t = PartEnvironment.Custom0;
+                            t = TrackPartColorId.Custom0;
                             break;
                         case 166:
                             e = Part.QuarterBlock,
-                            t = PartEnvironment.Custom0;
+                            t = TrackPartColorId.Custom0;
                             break;
                         case 167:
                             e = Part.BlockSlopedDown,
-                            t = PartEnvironment.Custom0;
+                            t = TrackPartColorId.Custom0;
                             break;
                         case 168:
                             e = Part.BlockSlopedDownInnerCorner,
-                            t = PartEnvironment.Custom0;
+                            t = TrackPartColorId.Custom0;
                             break;
                         case 169:
                             e = Part.BlockSlopedDownOuterCorner,
-                            t = PartEnvironment.Custom0;
+                            t = TrackPartColorId.Custom0;
                             break;
                         case 170:
                             e = Part.BlockSlopedUp,
-                            t = PartEnvironment.Custom0;
+                            t = TrackPartColorId.Custom0;
                             break;
                         case 171:
                             e = Part.BlockSlopedUpInnerCorner,
-                            t = PartEnvironment.Custom0;
+                            t = TrackPartColorId.Custom0;
                             break;
                         case 172:
                             e = Part.BlockSlopedUpOuterCorner,
-                            t = PartEnvironment.Custom0;
+                            t = TrackPartColorId.Custom0;
                             break;
                         case 173:
                             e = Part.BlockSlopeDown,
-                            t = PartEnvironment.Custom0;
+                            t = TrackPartColorId.Custom0;
                             break;
                         case 174:
                             e = Part.BlockSlopeUp,
-                            t = PartEnvironment.Custom0;
+                            t = TrackPartColorId.Custom0;
                             break;
                         case 175:
                             e = Part.BlockBridge,
-                            t = PartEnvironment.Custom0;
+                            t = TrackPartColorId.Custom0;
                             break;
                         case 176:
                             e = Part.BlockBridgeCorner,
-                            t = PartEnvironment.Custom0;
+                            t = TrackPartColorId.Custom0;
                             break;
                         case 177:
                             e = Part.BlockBridgeIntersectionT,
-                            t = PartEnvironment.Custom0;
+                            t = TrackPartColorId.Custom0;
                             break;
                         case 178:
                             e = Part.BlockBridgeIntersectionCross,
-                            t = PartEnvironment.Custom0
+                            t = TrackPartColorId.Custom0
                         }
                     let n = null
                       , i = {
@@ -28954,15 +28971,15 @@
                         g < 0 || g > 3)
                             return null;
                         let m = null;
-                        if (PartDefs.checkpointPartIds.includes(e)) {
+                        if (TrackPartManager.checkpointPartIds.includes(e)) {
                             if (u.length - f < 2)
                                 return null;
                             m = u[f + 0] | u[f + 1] << 8,
                             f += 2
                         }
                         let A = null;
-                        PartDefs.startPartIds.includes(e) && (A = a == r - 1 ? 1 : 0),
-                        null != n && p.addPart(4 * s + i.x, l + i.y, 4 * h + i.z, n, g, TrackPartRotationAxis.YPositive, PartEnvironment.Default, null, null),
+                        TrackPartManager.startPartIds.includes(e) && (A = a == r - 1 ? 1 : 0),
+                        null != n && p.addPart(4 * s + i.x, l + i.y, 4 * h + i.z, n, g, TrackPartRotationAxis.YPositive, TrackPartColorId.Default, null, null),
                         p.addPart(4 * s, l, 4 * h, e, g, TrackPartRotationAxis.YPositive, t, m, A)
                     }
                 }
@@ -29000,7 +29017,7 @@
             }
         }
         ,
-        8971: (e, t, __webpack_require__) => {
+        8971: (e, t, __webpack_require__) => { // Track
             "use strict";
             __webpack_require__.d(t, {
                 A: () => _
@@ -29009,10 +29026,10 @@
             THREE = __webpack_require__(4922), 
             TrackDataModule = __webpack_require__(8438), 
             TrackPartDetectorType = __webpack_require__(2247).A, 
-            PartEnvironment = __webpack_require__(4183).A, 
+            TrackPartColorId = __webpack_require__(4183).A, 
             TrackEnvironment = __webpack_require__(5169).A,
             SunDirection = __webpack_require__(7680).A,
-            S = __webpack_require__(5735), 
+            TrackPartTransform = __webpack_require__(5735), 
             k = __webpack_require__(3476), 
             E = __webpack_require__(8739);
             class T {
@@ -29107,9 +29124,9 @@
                 }
                 setPart(e, t, n, i, r, a, o, d, u) {
                     const p = m.get(this, s, "f").getPart(i);
-                    if (o != PartEnvironment.Default && !p.colors.has(o))
+                    if (o != TrackPartColorId.Default && !p.colors.has(o))
                         throw new Error("Track part color does not exist");
-                    const f = S.hT(r, a)
+                    const f = TrackPartTransform.rotationAndAxisToQuaternion(r, a)
                       , g = new THREE.Vector3(e * M.partSize,t * M.partSize,n * M.partSize)
                       , v = (new THREE.Matrix4).compose(g, f, new THREE.Vector3(1,1,1))
                       , y = new T(e,t,n,r,a,o,p,v,d,u);
@@ -29215,13 +29232,13 @@
                         }
                     switch (this.environment) {
                     case TrackEnvironment.Summer:
-                        n = PartEnvironment.Summer;
+                        n = TrackPartColorId.Summer;
                         break;
                     case TrackEnvironment.Winter:
-                        n = PartEnvironment.Winter;
+                        n = TrackPartColorId.Winter;
                         break;
                     case TrackEnvironment.Desert:
-                        n = PartEnvironment.Desert
+                        n = TrackPartColorId.Desert
                     }
                     const h = m.get(this, r, "f").isTrackShadowsEnabled();
                     for (const e of m.get(this, s, "f").getAllParts())
@@ -29229,7 +29246,7 @@
                             const s = [];
                             for (const t of m.get(this, l, "f")) {
                                 let r = t.color;
-                                r == PartEnvironment.Default && (r = n),
+                                r == TrackPartColorId.Default && (r = n),
                                 t.type == e && r == i && s.push(t)
                             }
                             if (s.length > 0) {
@@ -29333,7 +29350,7 @@
                 getStartTransform() {
                     const e = this.getStart();
                     if (null != e) {
-                        const t = S.hT(e.rotation, e.rotationAxis).multiply((new THREE.Quaternion).setFromEuler(new THREE.Euler(0,Math.PI,0)))
+                        const t = TrackPartTransform.rotationAndAxisToQuaternion(e.rotation, e.rotationAxis).multiply((new THREE.Quaternion).setFromEuler(new THREE.Euler(0,Math.PI,0)))
                           , n = e.startOffset;
                         return n.applyQuaternion(t),
                         {
@@ -37492,7 +37509,7 @@
                 value: [.12047764760664692, .19645762332790628, .5525629082262744, .41272626379209965, .7795036003541387, .13367266027110114, .7999601557377349, .9519714253374205, .1735048382917752, .7513367084489158, .6531386724839523, .9026427867068505, .8543272738216994, .11176849958868162, .6705698284858437, .26628732081296946, .31140322993719605, .45170300835470933, .12615515120247944, .0610638094525735, .291990923385425, .4613983868623317, .6615759832726253, .4373182881232056, .7432890501246443, .39316710322388837, .49444122821563297, .5994296685114344, .060050119050233386, .4165885432422003, .43974364800990084, .1628314496954224, .05787972729968116, .225388541259955, .6075775236386991, .8908354370882479, .47072983115144584, .7662003453186828, .20651036895645647, .03724062137286044, .17110277274376795, .7626426077793496, .8372112804261309, .8761690804447455, .13887024930406633, .8287513367412203, .9794446290917873, .807658524448803, .8465629116398186, .5187285629536083, .33962953580139277, .9798419666114342, .6777071959103609, .5388899884934379, .7863389168762325, .4274591420924474, .25631366937500566, .5695289062505289, .026841382754547727, .18267938207996903, .9853642975717878, .24428485895234409, .5322028747608949, .9655065842019517, .043810183244384016, .541216190236913, .05897981610006209, .2849168541804703, .5349823008832073, .9655676144971486, .22831812764497283, .7698701658704175, .4103995069939841, .25782763124411856, .8490222628872495, .39280879489916987, .31999467883347554, .2860820872456349, .9684928577493004, .9973831481899462, .2930912094664657, .4847128131859766, .7218400909709828, .40407009594106236, .7059298060123587, .45362146566562744, .4640974655488792, .16076769483252273, .5989453525750241, .585759299589679, .9417035568973537, .20117930667657413, .5777873180244959, .1991854396549344, .8743781441651348, .624666386634513, .38720573630932886, .9967931526923675, .49817894572849486, .24585267823751833, .8639168275132305, .2865624029759799, .6163605496913385, .5864748073339972, .8781049154377354, .7497547608938613, .7864098057445887, .0334170452332867, .4875588105294657, .6737395339380896, .21851121231639659, .2923739650597854, .6073797612662293, .41823228947229896, .8531029420136382, .3260916332061783, .6306262204574675, .5268576689601923, .3516570914484707, .8659366375222706, .8447448461834428, .3794548980890986, .9832775904115916, .8442256760399809, .3006550591973338, .9718660619781394, .5103245035851833, .794319831388071]
             };
             const h = c;
-            var d, u, p, f, g, m, A, v, y, b, w = n(8971), TrackEnvironment = n(5169).A;
+            var d, u, p, f, g, m, A, v, y, b, Track = n(8971), TrackEnvironment = n(5169).A;
             class S {
                 constructor(e) {
                     d.add(this),
@@ -37536,8 +37553,8 @@
                 }
                 static createMountainVertices(e) {
                     const t = new h
-                      , n = Math.max(200, 160 + Math.max(Math.abs(e.max.x - e.min.x) * w.A.partSize / 2 * Math.SQRT2, Math.abs(e.max.y - e.min.y) * w.A.partSize / 2 * Math.SQRT2))
-                      , i = new THREE.Vector2((e.min.x + (e.max.x - e.min.x) / 2) * w.A.partSize,(e.min.y + (e.max.y - e.min.y) / 2) * w.A.partSize);
+                      , n = Math.max(200, 160 + Math.max(Math.abs(e.max.x - e.min.x) * Track.A.partSize / 2 * Math.SQRT2, Math.abs(e.max.y - e.min.y) * Track.A.partSize / 2 * Math.SQRT2))
+                      , i = new THREE.Vector2((e.min.x + (e.max.x - e.min.x) / 2) * Track.A.partSize,(e.min.y + (e.max.y - e.min.y) / 2) * Track.A.partSize);
                     if (n > 4500)
                         return {
                             vertices: [],
@@ -37633,7 +37650,7 @@
             e.exports = n.p + "images/preview.svg"
         }
         ,
-        9681: (e, t, n) => {
+        9681: (e, t, n) => { // TrackDataImporterV5
             "use strict";
             n.d(t, {
                 withMetadata: () => f,
@@ -37643,76 +37660,76 @@
               , Base62 = n(7415)
               , TrackDataModule = n(8438)
               , Part = n(2203).A
-              , PartEnvironment = n(4183).A
+              , TrackPartColorId = n(4183).A
               , TrackEnvironment = n(5169).A
               , TrackPartRotationAxis = n(8566).A
               , SunDirection = n(7680).A
-              , PartDefs = n(405);
-            function u(e, t) {
-                let n = e;
-                if (t.length - n < 1)
+              , TrackPartManager = n(405);
+            function fromByteArray(offset, data) {
+                let n = offset;
+                if (data.length - n < 1)
                     return null;
-                const i = t[n];
+                const environment = data[n];
                 if (n += 1,
-                !(i in TrackEnvironment))
+                !(environment in TrackEnvironment))
                     return null;
-                if (t.length - n < 1)
+                if (data.length - n < 1)
                     return null;
-                const r = t[n];
+                const r = data[n];
                 if (n += 1,
                 !Number.isSafeInteger(r) || r < 0 || r >= 180)
                     return null;
-                const u = new TrackDataModule.A(i,new SunDirection(r));
-                if (t.length - n < 9)
+                const u = new TrackDataModule.A(environment,new SunDirection(r));
+                if (data.length - n < 9)
                     return null;
-                const p = t[n] | t[n + 1] << 8 | t[n + 2] << 16 | t[n + 3] << 24;
+                const p = data[n] | data[n + 1] << 8 | data[n + 2] << 16 | data[n + 3] << 24;
                 n += 4;
-                const f = t[n] | t[n + 1] << 8 | t[n + 2] << 16 | t[n + 3] << 24;
+                const f = data[n] | data[n + 1] << 8 | data[n + 2] << 16 | data[n + 3] << 24;
                 n += 4;
-                const g = t[n] | t[n + 1] << 8 | t[n + 2] << 16 | t[n + 3] << 24;
+                const g = data[n] | data[n + 1] << 8 | data[n + 2] << 16 | data[n + 3] << 24;
                 n += 4;
-                const m = 3 & t[n]
-                  , A = t[n] >> 2 & 3
-                  , v = t[n] >> 4 & 3;
+                const m = 3 & data[n]
+                  , A = data[n] >> 2 & 3
+                  , v = data[n] >> 4 & 3;
                 if (n += 1,
                 m < 1 || m > 4 || A < 1 || A > 4 || v < 1 || v > 4)
                     return null;
-                for (; n < t.length; ) {
-                    if (t.length - n < 1)
+                for (; n < data.length; ) {
+                    if (data.length - n < 1)
                         return null;
-                    const e = t[n + 0];
+                    const e = data[n + 0];
                     if (n += 1,
                     !(e in Part))
                         return null;
-                    if (t.length - n < 4)
+                    if (data.length - n < 4)
                         return null;
-                    const i = t[n + 0] | t[n + 1] << 8 | t[n + 2] << 16 | t[n + 3] << 24;
+                    const i = data[n + 0] | data[n + 1] << 8 | data[n + 2] << 16 | data[n + 3] << 24;
                     n += 4;
                     for (let r = 0; r < i; ++r) {
-                        if (t.length - n < m)
+                        if (data.length - n < m)
                             return null;
                         let i = 0;
                         for (let e = 0; e < m; ++e)
-                            i |= t[n + e] << 8 * e;
+                            i |= data[n + e] << 8 * e;
                         if (i += p,
                         n += m,
-                        t.length - n < A)
+                        data.length - n < A)
                             return null;
                         let r = 0;
                         for (let e = 0; e < A; ++e)
-                            r |= t[n + e] << 8 * e;
+                            r |= data[n + e] << 8 * e;
                         if (r += f,
                         n += A,
-                        t.length - n < v)
+                        data.length - n < v)
                             return null;
                         let a = 0;
                         for (let e = 0; e < v; ++e)
-                            a |= t[n + e] << 8 * e;
+                            a |= data[n + e] << 8 * e;
                         if (a += g,
                         n += v,
-                        t.length - n < 1)
+                        data.length - n < 1)
                             return null;
-                        const s = t[n];
+                        const s = data[n];
                         n += 1;
                         const l = 3 & s;
                         if (l < 0 || l > 3)
@@ -37720,24 +37737,24 @@
                         const h = s >> 2 & 7;
                         if (!(h in TrackPartRotationAxis))
                             return null;
-                        if (t.length - n < 1)
+                        if (data.length - n < 1)
                             return null;
-                        const y = t[n + 0];
+                        const y = data[n + 0];
                         if (n += 1,
-                        !(y in PartEnvironment))
+                        !(y in TrackPartColorId))
                             return null;
                         let b = null;
-                        if (PartDefs.checkpointPartIds.includes(e)) {
-                            if (t.length - n < 2)
+                        if (TrackPartManager.checkpointPartIds.includes(e)) {
+                            if (data.length - n < 2)
                                 return null;
-                            b = t[n + 0] | t[n + 1] << 8,
+                            b = data[n + 0] | data[n + 1] << 8,
                             n += 2
                         }
                         let w = null;
-                        if (PartDefs.startPartIds.includes(e)) {
-                            if (t.length - n < 4)
+                        if (TrackPartManager.startPartIds.includes(e)) {
+                            if (data.length - n < 4)
                                 return null;
-                            w = t[n + 0] | t[n + 1] << 8 | t[n + 2] << 16 | t[n + 3] << 24,
+                            w = data[n + 0] | data[n + 1] << 8 | data[n + 2] << 16 | data[n + 3] << 24,
                             n += 4
                         }
                         u.addPart(i, r, a, e, l, h, y, b, w)
@@ -37766,7 +37783,7 @@
                 o.err)
                     return null;
                 const l = o.result;
-                return l instanceof Uint8Array ? u(0, l) : null
+                return l instanceof Uint8Array ? fromByteArray(0, l) : null
             }
             function f(e) {
                 const t = "PolyTrack2";
@@ -37833,7 +37850,7 @@
                         A = new Date(1e3 * e)
                     }
                 }
-                const v = u(h, c);
+                const v = fromByteArray(h, c);
                 return null == v ? null : {
                     trackMetadata: {
                         name: p,
@@ -40692,8 +40709,8 @@
         }
         ;
         THREE.Group;
-        var gi = i(8971)
-          , PartDefs = i(405);
+        var Track = i(8971)
+          , TrackPartManager = i(405);
         i(5735);
         new WeakMap,
         new WeakMap,
@@ -51488,7 +51505,7 @@
         ,
         Zc = function() {
             const e = C.get(this, wc, "f").getBounds()
-              , t = new THREE.Vector2((e.min.x + (e.max.x - e.min.x) / 2) * gi.A.partSize,(e.min.y + (e.max.y - e.min.y) / 2) * gi.A.partSize);
+              , t = new THREE.Vector2((e.min.x + (e.max.x - e.min.x) / 2) * Track.A.partSize,(e.min.y + (e.max.y - e.min.y) / 2) * Track.A.partSize);
             C.get(this, Oc, "f").position.set(t.x + 250 * Math.cos(C.get(this, Wc, "f")), 100, t.y - 250 * Math.sin(C.get(this, Wc, "f"))),
             C.get(this, Oc, "f").rotation.y = C.get(this, Wc, "f") + Math.PI / 2
         }
@@ -52878,7 +52895,7 @@
             }
         }
         ;
-        var od, ld, cd, hd, dd, DRACOLoader = i(1728).Z, BufferGeometryUtils = i(1566), Part = i(2203).A, PartCategory = i(1882).A, PartEnvironment = i(4183).A, TrackPartRotationAxis = i(8566).A;
+        var od, ld, cd, hd, dd, DRACOLoader = i(1728).Z, BufferGeometryUtils = i(1566), Part = i(2203).A, PartCategory = i(1882).A, TrackPartColorId = i(4183).A, TrackPartRotationAxis = i(8566).A;
         class vd {
             constructor() {
                 od.add(this),
@@ -53034,7 +53051,7 @@
                     n.physicsShapeVertices = new Float32Array(l.attributes.position.array),
                     t.loadedResource()
                 }
-                  , l = await Promise.all(PartDefs.allParts.map((e => o(e)))).then((async () => await C.get(this, od, "m", dd).call(this)))
+                  , l = await Promise.all(TrackPartManager.allParts.map((e => o(e)))).then((async () => await C.get(this, od, "m", dd).call(this)))
                   , c = (e, t, n=null) => {
                     let i = C.get(this, cd, "f").get(e);
                     null == i && (i = new Map,
@@ -53276,13 +53293,13 @@
                 }
                 switch (t) {
                 case TrackEnvironment.Summer:
-                    i = PartEnvironment.Summer;
+                    i = TrackPartColorId.Summer;
                     break;
                 case TrackEnvironment.Winter:
-                    i = PartEnvironment.Winter;
+                    i = TrackPartColorId.Winter;
                     break;
                 case TrackEnvironment.Desert:
-                    i = PartEnvironment.Desert
+                    i = TrackPartColorId.Desert
                 }
                 const r = n.colors.get(i);
                 if (null == r)
@@ -56526,7 +56543,7 @@
             ));
             const m = new Cd(h,r,t)
               , A = new ns.A(h)
-              , v = new gi.A(h,r,d)
+              , v = new Track.A(h,r,d)
               , y = new sd(t,e)
               , b = new gs(r.getSetting(R.A.Language))
               , w = new su.A(e)
