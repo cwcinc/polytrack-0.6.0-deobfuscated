@@ -465,10 +465,10 @@
           , TrackExportUI = n(579).A
           , PartEnvironment = n(4183).A
           , Part = n(2203).A
-          , lt = n(8566);
+          , TrackPartRotationAxis = n(8566).A;
         var ct = n(4839)
           , dt = n(7129)
-          , gt = n(2247)
+          , TrackPartDetectorType = n(2247).A
           , ft = n(2346)
           , pt = {};
         pt.styleTagTransform = u(),
@@ -543,27 +543,27 @@
                 }
                 )),
                 p.appendChild(i.get(this, kt, "f"));
-                for (const t of [lt.A.YPositive, lt.A.YNegative, lt.A.XPositive, lt.A.XNegative, lt.A.ZPositive, lt.A.ZNegative]) {
+                for (const t of [TrackPartRotationAxis.YPositive, TrackPartRotationAxis.YNegative, TrackPartRotationAxis.XPositive, TrackPartRotationAxis.XNegative, TrackPartRotationAxis.ZPositive, TrackPartRotationAxis.ZNegative]) {
                     const n = document.createElement("button");
                     switch (n.inert = !0,
                     n.tabIndex = -1,
                     t) {
-                    case lt.A.YPositive:
+                    case TrackPartRotationAxis.YPositive:
                         n.innerHTML = '<img src="images/rotation_axis_y_positive.svg">';
                         break;
-                    case lt.A.YNegative:
+                    case TrackPartRotationAxis.YNegative:
                         n.innerHTML = '<img src="images/rotation_axis_y_negative.svg">';
                         break;
-                    case lt.A.XPositive:
+                    case TrackPartRotationAxis.XPositive:
                         n.innerHTML = '<img src="images/rotation_axis_x_positive.svg">';
                         break;
-                    case lt.A.XNegative:
+                    case TrackPartRotationAxis.XNegative:
                         n.innerHTML = '<img src="images/rotation_axis_x_negative.svg">';
                         break;
-                    case lt.A.ZPositive:
+                    case TrackPartRotationAxis.ZPositive:
                         n.innerHTML = '<img src="images/rotation_axis_z_positive.svg">';
                         break;
-                    case lt.A.ZNegative:
+                    case TrackPartRotationAxis.ZNegative:
                         n.innerHTML = '<img src="images/rotation_axis_z_negative.svg">'
                     }
                     n.addEventListener("click", ( () => {
@@ -571,7 +571,7 @@
                         a(t)
                     }
                     )),
-                    t == lt.A.YPositive && n.classList.add("selected"),
+                    t == TrackPartRotationAxis.YPositive && n.classList.add("selected"),
                     p.appendChild(n),
                     i.get(this, Gt, "f").push([t, n])
                 }
@@ -605,22 +605,22 @@
             set rotationAxis(t) {
                 let e;
                 switch (t) {
-                case lt.A.YPositive:
+                case TrackPartRotationAxis.YPositive:
                     e = "images/rotation_axis_y_positive.svg";
                     break;
-                case lt.A.YNegative:
+                case TrackPartRotationAxis.YNegative:
                     e = "images/rotation_axis_y_negative.svg";
                     break;
-                case lt.A.XPositive:
+                case TrackPartRotationAxis.XPositive:
                     e = "images/rotation_axis_x_positive.svg";
                     break;
-                case lt.A.XNegative:
+                case TrackPartRotationAxis.XNegative:
                     e = "images/rotation_axis_x_negative.svg";
                     break;
-                case lt.A.ZPositive:
+                case TrackPartRotationAxis.ZPositive:
                     e = "images/rotation_axis_z_positive.svg";
                     break;
-                case lt.A.ZNegative:
+                case TrackPartRotationAxis.ZNegative:
                     e = "images/rotation_axis_z_negative.svg"
                 }
                 i.get(this, kt, "f").innerHTML = "";
@@ -813,7 +813,7 @@
         zt.insertStyleElement = f();
         o()(Pt.A, zt);
         Pt.A && Pt.A.locals && Pt.A.locals;
-        var Nt, St, Tt, qt, Dt = n(7680), TrackEnvironment = n(5169).A;
+        var Nt, St, Tt, qt, SunDirection = n(7680).A, TrackEnvironment = n(5169).A;
         Nt = new WeakMap,
         St = new WeakMap,
         Tt = new WeakMap,
@@ -962,7 +962,7 @@
                 L.step = "2",
                 L.value = o.sunDirection.toDegrees().toString(),
                 L.addEventListener("input", ( () => {
-                    o.sunDirection = Dt.A.fromDegrees(parseInt(L.value, 10)),
+                    o.sunDirection = SunDirection.fromDegrees(parseInt(L.value, 10)),
                     C.textContent = L.value,
                     W ?? (W = setTimeout(( () => {
                         o.generateMeshes(),
@@ -1071,7 +1071,7 @@
             }
             return n
         }
-        var Ft, Yt, Vt, Zt, Xt, jt, Jt, Qt, $t, te, ee, ne, ie, se, oe, ae, re, he, le, ce, de, ge, fe, pe, ue, me, ve, we, be, ke, Ge, xe, ye, Ae, Me, Ee, Ce, We, Le, Pe, ze, Ne, Se, Te, qe, De, Oe, Ie, Be, _e, Ue, Re, He, Ke, Fe, Ye, Ve, Ze, Xe, je, Je, Qe, $e, tn, en, nn, sn, on, an, rn, hn, ln, cn, dn, gn, fn, pn, un, mn, vn, wn, bn, kn, Gn, xn, yn, An, Mn, En, Cn, Wn, Ln, Pn, zn, Nn, Sn, Tn, qn, Dn, On, In, Bn, _n, Un, Rn, Hn, Kn, Fn, Yn, Vn, Zn, Xn, jn, Jn, Qn, $n, ti, ei, ni, ii, si, oi, ai, ri, hi, li, ci, di, gi = n(6223), fi = n(5302);
+        var Ft, Yt, Vt, Zt, Xt, jt, Jt, Qt, $t, te, ee, ne, ie, se, oe, ae, re, he, le, ce, de, ge, fe, pe, ue, me, ve, we, be, ke, Ge, xe, ye, Ae, Me, Ee, Ce, We, Le, Pe, ze, Ne, Se, Te, qe, De, Oe, Ie, Be, _e, Ue, Re, He, Ke, Fe, Ye, Ve, Ze, Xe, je, Je, Qe, $e, tn, en, nn, sn, on, an, rn, hn, ln, cn, dn, gn, fn, pn, un, mn, vn, wn, bn, kn, Gn, xn, yn, An, Mn, En, Cn, Wn, Ln, Pn, zn, Nn, Sn, Tn, qn, Dn, On, In, Bn, _n, Un, Rn, Hn, Kn, Fn, Yn, Vn, Zn, Xn, jn, Jn, Qn, $n, ti, ei, ni, ii, si, oi, ai, ri, hi, li, ci, di, gi = n(6223), LoadingScreenUI = n(5302).A;
         Yt = new WeakMap,
         Vt = new WeakMap,
         Zt = new WeakMap,
@@ -1308,7 +1308,7 @@
             null != i.get(this, Wn, "f") && (i.get(this, Ft, "m", ti).call(this, null),
             i.set(this, cn, 0, "f"),
             i.get(this, xe, "f").rotation = i.get(this, cn, "f"),
-            i.set(this, dn, lt.A.YPositive, "f"),
+            i.set(this, dn, TrackPartRotationAxis.YPositive, "f"),
             i.get(this, xe, "f").rotationAxis = i.get(this, dn, "f"),
             i.set(this, Ln, i.get(this, Wn, "f"), "f"),
             i.get(this, Ft, "m", Qn).call(this),
@@ -1594,7 +1594,7 @@
                     colorPanel: h,
                     colorButtons: r,
                     tiles: n.configuration.tiles,
-                    isCheckpoint: null != n.configuration.detector && n.configuration.detector.type == gt.A.Checkpoint,
+                    isCheckpoint: null != n.configuration.detector && n.configuration.detector.type == TrackPartDetectorType.Checkpoint,
                     isStart: null != n.configuration.startOffset,
                     category: n.configuration.category
                 };
@@ -1897,10 +1897,10 @@
             if (null != t) {
                 let e, n;
                 e = i.get(this, gn, "f") ? 4 : 1,
-                n = i.get(this, En, "f") || i.get(this, Mn, "f") || i.get(this, dn, "f") != lt.A.XPositive && i.get(this, dn, "f") != lt.A.XNegative ? Math.round(t.x / e) * e : Math.round(t.x);
+                n = i.get(this, En, "f") || i.get(this, Mn, "f") || i.get(this, dn, "f") != TrackPartRotationAxis.XPositive && i.get(this, dn, "f") != TrackPartRotationAxis.XNegative ? Math.round(t.x / e) * e : Math.round(t.x);
                 const s = Math.round(t.y) + i.get(this, ln, "f");
                 let o;
-                return o = i.get(this, En, "f") || i.get(this, Mn, "f") || i.get(this, dn, "f") != lt.A.ZPositive && i.get(this, dn, "f") != lt.A.ZNegative ? Math.round(t.z / e) * e : Math.round(t.z),
+                return o = i.get(this, En, "f") || i.get(this, Mn, "f") || i.get(this, dn, "f") != TrackPartRotationAxis.ZPositive && i.get(this, dn, "f") != TrackPartRotationAxis.ZNegative ? Math.round(t.z / e) * e : Math.round(t.z),
                 new THREE.Vector3(n,s,o)
             }
             return null
@@ -2068,7 +2068,7 @@
                 hn.set(this, null),
                 ln.set(this, 0),
                 cn.set(this, 0),
-                dn.set(this, lt.A.YPositive),
+                dn.set(this, TrackPartRotationAxis.YPositive),
                 gn.set(this, !0),
                 fn.set(this, !1),
                 pn.set(this, null),
@@ -2604,7 +2604,7 @@
                                         if (null != N.type) {
                                             let S = null;
                                             N.type == Part.Start && (S = 0),
-                                            t.setPart(4 * N.x, N.y, 4 * N.z, N.type, N.direction, lt.A.YPositive, PartEnvironment.Default, null, S)
+                                            t.setPart(4 * N.x, N.y, 4 * N.z, N.type, N.direction, TrackPartRotationAxis.YPositive, PartEnvironment.Default, null, S)
                                         }
                             } while (e)
                         }(i.get(this, Jt, "f")),
@@ -2638,7 +2638,7 @@
                 ),( (t, e, n) => {
                     i.get(this, be, "f").hide(),
                     i.set(this, Tn, !0, "f"),
-                    i.set(this, ke, new fi.A(!0), "f"),
+                    i.set(this, ke, new LoadingScreenUI(!0), "f"),
                     n().then((e => {
                         const n = i.get(this, Jt, "f").environment;
                         i.get(this, Jt, "f").loadTrackData(e),
@@ -3326,7 +3326,7 @@
                 i.set(this, ki, new pi(a,r,h,c,t,e,n,d,g,f,p,u,l,m), "f"),
                 i.get(this, ki, "f").enable(),
                 i.get(this, ui, "f").clear(),
-                i.get(this, ui, "f").setPart(0, 0, 0, Part.Start, 0, lt.A.YPositive, PartEnvironment.Default, null, 0),
+                i.get(this, ui, "f").setPart(0, 0, 0, Part.Start, 0, TrackPartRotationAxis.YPositive, PartEnvironment.Default, null, 0),
                 i.get(this, ui, "f").generateMeshes(),
                 h.setCamera(i.get(this, ki, "f").camera),
                 i.get(this, ki, "f").setTestCallback(( () => {

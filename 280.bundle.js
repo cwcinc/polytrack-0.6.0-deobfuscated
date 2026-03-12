@@ -44,7 +44,7 @@
           , THREE = e(4922)
           , DRACOLoader = e(1728).Z
           , a = e(7888)
-          , l = e(4078)
+          , VisualCar = e(4078).A
           , c = e(5072)
           , r = e.n(c)
           , h = e(7825)
@@ -1840,7 +1840,7 @@
             }
         }
         ;
-        var me, ve, we, be, xe, ke, Ge, ye, Ce, Ee, Me, Ne = e(9681);
+        var me, ve, we, be, xe, ke, Ge, ye, Ce, Ee, Me, TrackDataImporterV5 = e(9681);
         class Le {
             constructor(t, n, e, o, a, c, r, h, d, g, f, p) {
                 ve.set(this, void 0),
@@ -1857,7 +1857,7 @@
                 i.set(this, be, e, "f"),
                 i.set(this, xe, o, "f"),
                 i.set(this, ke, a, "f");
-                const u = Ne.U("PolyTrack24pdBBHsYCCCAAA9XK12cdEBcBplkDN42ExQNdSWh5Xf9eEp1009dQICjjB7eqqlx7YH8BnFJzsokZScpwEDHaBDwkHFLDPYfxQPqFblOkZfJVS5YWIfXDZru01TebKuEiCCvXfpfxuTe0adAH1wf51aX4OmtpXr6XJPfHfSPO3CemUiRGceD0OBJGnIjkU5RJaqf8t5u5RFgcOawuRoIeAp088v3gpv4u2fe6kqKyyFaX5HQk17dqpwUldfSAL32crBslQfPAQfwSaC");
+                const u = TrackDataImporterV5.withMetadata("PolyTrack24pdBBHsYCCCAAA9XK12cdEBcBplkDN42ExQNdSWh5Xf9eEp1009dQICjjB7eqqlx7YH8BnFJzsokZScpwEDHaBDwkHFLDPYfxQPqFblOkZfJVS5YWIfXDZru01TebKuEiCCvXfpfxuTe0adAH1wf51aX4OmtpXr6XJPfHfSPO3CemUiRGceD0OBJGnIjkU5RJaqf8t5u5RFgcOawuRoIeAp088v3gpv4u2fe6kqKyyFaX5HQk17dqpwUldfSAL32crBslQfPAQfwSaC");
                 if (null == u)
                     throw new Error("Failed to load track data");
                 if (n.loadTrackData(u.trackData),
@@ -1883,7 +1883,7 @@
                     position: new THREE.Vector3(0,.35,1.35),
                     quaternion: (new THREE.Quaternion).setFromEuler(new THREE.Euler(0,-.24 * Math.PI,0))
                 };
-                i.set(this, Ce, new l.A(null,m,null,null,a,c,e,n,n.getTrackData(),h,null), "f"),
+                i.set(this, Ce, new VisualCar(null,m,null,null,a,c,e,n,n.getTrackData(),h,null), "f"),
                 i.get(this, Ce, "f").audioVolume = 0;
                 const v = i.get(this, Ce, "f").getCarState();
                 i.get(this, Ce, "f").setCarState({
@@ -1897,7 +1897,7 @@
                         position: new THREE.Vector3(10.5 * t - 22,.35,-34),
                         quaternion: (new THREE.Quaternion).setFromEuler(new THREE.Euler(0,0,0))
                     }
-                      , r = new l.A(null,o,null,null,a,c,e,n,n.getTrackData(),h,null);
+                      , r = new VisualCar(null,o,null,null,a,c,e,n,n.getTrackData(),h,null);
                     r.audioVolume = 0,
                     r.update(0),
                     i.get(this, Ee, "f").push(r)

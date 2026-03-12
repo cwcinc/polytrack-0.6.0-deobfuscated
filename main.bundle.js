@@ -74,19 +74,19 @@
             module.exports = __webpack_require__.p + "images/pattern_diamonds.svg"
         }
         ,
-        405: (module, exports, __webpack_require__) => {
+        405: (module, exports, __webpack_require__) => { // PartDefs
             "use strict";
             __webpack_require__.d(exports, {
-                Hw: () => f,
-                bK: () => g,
-                l1: () => m,
-                yD: () => u
+                getPart: () => f,    // Function: PartID -> PartObject
+                checkpointPartIds: () => g,    // All checkpoint part ids
+                startPartIds: () => m,    // All start part ids
+                allParts: () => u     // All parts (array)
             });
             var THREE = __webpack_require__(4922)
               , PartCategory = __webpack_require__(1882).A
               , PartEnvironment = __webpack_require__(4183).A
               , Part = __webpack_require__(2203).A
-              , o = __webpack_require__(2247)
+              , TrackPartDetectorType = __webpack_require__(2247).A
               , l = __webpack_require__(7129);
             const c = [{
                 id: PartEnvironment.Summer,
@@ -204,42 +204,42 @@
                 new PartObject("3c304054f415fbede4f73a43517db04302f38b16fa2cd4e587082b37b75e20e5",PartCategory.Special,Part.PlaneStart,[["Planes", "PlaneStart"]],c,[[[-2, 0, -2], [1, 0, 1]]],null,new THREE.Vector3(0,.35,1.35)),
                 new PartObject("f08710416bdaa3d91d0d43f014e45d421fdb4587a334993bad0056f3dbbcb6bb",PartCategory.Special,Part.PlaneStartWide,[["Planes", "PlaneStartWide"]],c,[[[-2, 0, -2], [5, 0, 1]]],null,new THREE.Vector3(-10,.35,1.35)),
                 new PartObject("223fc87c72bb64b58677062ffa08ab7eafd78071bced7c53233606763cd5316b",PartCategory.Special,Part.Checkpoint,[["Road", "Checkpoint"]],c,[[[-2, 0, -2], [1, 0, 1]]],{
-                                type: o.A.Checkpoint,
+                                type: TrackPartDetectorType.Checkpoint,
                                 center: [0, 2.2, 0],
                                 size: [10.5, 3.8, 1]
                             }),
                 new PartObject("82d9a9879cee92c04c8d4ba2e16fc31bb1917a31f5802a3bb5177ca9a5cfee01",PartCategory.Special,Part.CheckpointWide,[["RoadWide", "CheckpointWide"]],c,[[[-2, 0, -2], [5, 0, 1]]],{
-                                type: o.A.Checkpoint,
+                                type: TrackPartDetectorType.Checkpoint,
                                 center: [10, 2.2, 0],
                                 size: [30.6, 3.8, 1]
                             }),
                 new PartObject("fe8946d7f09724b5e11f493eb5c2a5b5e3d502b15beaad003f8134ac63558948",PartCategory.Special,Part.PlaneCheckpoint,[["Planes", "PlaneCheckpoint"]],c,[[[-2, 0, -2], [1, 0, 1]]],{
-                                type: o.A.Checkpoint,
+                                type: TrackPartDetectorType.Checkpoint,
                                 center: [0, 2.2, 0],
                                 size: [18.25, 3.8, 1]
                             }),
                 new PartObject("d486d9b851db35dd44c15f9e0bb3bf582118daf7be514598a19307f61cf46678",PartCategory.Special,Part.PlaneCheckpointWide,[["Planes", "PlaneCheckpointWide"]],c,[[[-2, 0, -2], [5, 0, 1]]],{
-                                type: o.A.Checkpoint,
+                                type: TrackPartDetectorType.Checkpoint,
                                 center: [10, 2.2, 0],
                                 size: [38.25, 3.8, 1]
                             }),
                 new PartObject("c01200d573a3594a6a4cb73ebb600964d653e4a89267d3297f3969220742aa79",PartCategory.Special,Part.Finish,[["Road", "Finish"]],c,[[[-2, 0, -2], [1, 0, 1]]],{
-                                type: o.A.Finish,
+                                type: TrackPartDetectorType.Finish,
                                 center: [0, 2.2, 0],
                                 size: [10.5, 3.8, 2]
                             }),
                 new PartObject("a9cefdff816e94a643210c58582c2809de0e3e0e0478b8d5baabd7fe81f13e73",PartCategory.Special,Part.FinishWide,[["RoadWide", "FinishWide"]],c,[[[-2, 0, -2], [5, 0, 1]]],{
-                                type: o.A.Finish,
+                                type: TrackPartDetectorType.Finish,
                                 center: [10, 2.2, 0],
                                 size: [30.6, 3.8, 2]
                             }),
                 new PartObject("75e5f09fe8a18ecafaf1fb80929173ef0a7dc0b785596bbe0ccd85a934d79578",PartCategory.Special,Part.PlaneFinish,[["Planes", "PlaneFinish"]],c,[[[-2, 0, -2], [1, 0, 1]]],{
-                                type: o.A.Finish,
+                                type: TrackPartDetectorType.Finish,
                                 center: [0, 2.2, 0],
                                 size: [18.25, 3.8, 2]
                             }),
                 new PartObject("5801b3268c75809728c63450d06000c5f6fcfd5d72691902f99d7d19d25e1d78",PartCategory.Special,Part.PlaneFinishWide,[["Planes", "PlaneFinishWide"]],c,[[[-2, 0, -2], [5, 0, 1]]],{
-                                type: o.A.Finish,
+                                type: TrackPartDetectorType.Finish,
                                 center: [10, 2.2, 0],
                                 size: [38.25, 3.8, 2]
                             }),
@@ -493,7 +493,7 @@
                     throw new Error("Unknown track part id " + e.toString());
                 return t
             }
-            const g = u.filter((e => e.detector?.type == o.A.Checkpoint)).map((e => e.id))
+            const g = u.filter((e => e.detector?.type == TrackPartDetectorType.Checkpoint)).map((e => e.id))
               , m = u.filter((e => null != e.startOffset)).map((e => e.id))
         }
         ,
@@ -554,7 +554,7 @@
             A.insertStyleElement = p();
             a()(m.A, A);
             m.A && m.A.locals && m.A.locals;
-            var v, y, b, w, x, S, k, E = __webpack_require__(8438), T = __webpack_require__(202);
+            var v, y, b, w, x, S, k, TrackDataModule = __webpack_require__(8438), T = __webpack_require__(202);
             v = new WeakMap,
             y = new WeakMap,
             b = new WeakMap,
@@ -626,7 +626,7 @@
                             for (let t = 0; t < e.length; t++)
                                 await new Promise((n => {
                                     const a = e[t]
-                                      , h = E.A.fromExportString(a);
+                                      , h = TrackDataModule.A.fromExportString(a);
                                     if (null == h)
                                         d = t,
                                         1 == e.length ? l(r.get("Invalid track code")) : l(r.get("Invalid track code for track {0}", [(d + 1).toString()])),
@@ -686,22 +686,22 @@
         666: (module, exports, __webpack_require__) => {
             "use strict";
             __webpack_require__.d(exports, {
-                U: () => u,
-                _: () => d
+                withMetadata: () => u,
+                withoutMetadata: () => d
             });
             var i = __webpack_require__(2244)
-              , r = __webpack_require__(7680)
-              , a = __webpack_require__(8438)
+              , SunDirection = __webpack_require__(7680).A
+              , TrackDataModule = __webpack_require__(8438)
               , TrackEnvironment = __webpack_require__(5169).A
               , PartEnvironment = __webpack_require__(4183).A
               , Part = __webpack_require__(2203).A
-              , c = __webpack_require__(8566)
-              , h = __webpack_require__(405);
+              , TrackPartRotationAxis = __webpack_require__(8566).A
+              , PartDefs = __webpack_require__(405);
             function d(e) {
                 const t = i.D(e);
                 if (null == t)
                     return null;
-                const n = new a.A(TrackEnvironment.Summer,new r.A);
+                const n = new TrackDataModule.A(TrackEnvironment.Summer,new SunDirection);
                 let d = 0;
                 for (; d < t.length; ) {
                     if (t.length - d < 2)
@@ -736,12 +736,12 @@
                         if (d += 1,
                         p < 0 || p > 3)
                             return null;
-                        if (h.bK.includes(e))
+                        if (PartDefs.checkpointPartIds.includes(e))
                             return null;
                         let f = null;
-                        h.l1.includes(e) && (f = a == r - 1 ? 1 : 0),
-                        null != i && n.addPart(4 * s, l, 4 * u, i, p, c.A.YPositive, PartEnvironment.Default, null, null),
-                        n.addPart(4 * s, l, 4 * u, e, p, c.A.YPositive, PartEnvironment.Default, null, f)
+                        PartDefs.startPartIds.includes(e) && (f = a == r - 1 ? 1 : 0),
+                        null != i && n.addPart(4 * s, l, 4 * u, i, p, TrackPartRotationAxis.YPositive, PartEnvironment.Default, null, null),
+                        n.addPart(4 * s, l, 4 * u, e, p, TrackPartRotationAxis.YPositive, PartEnvironment.Default, null, f)
                     }
                 }
                 return n
@@ -1086,9 +1086,9 @@
                 F: () => u
             });
             var THREE = __webpack_require__(4922)
-              , r = __webpack_require__(4078)
+              , VisualCar = __webpack_require__(4078).A
               , RenderManager = __webpack_require__(2825).A
-              , s = __webpack_require__(7680);
+              , SunDirection = __webpack_require__(7680).A;
             let o = null
               , l = null
               , c = null
@@ -1107,7 +1107,7 @@
                             h = new THREE.OrthographicCamera(-1,1,1,-1,.1,1e4),
                             c.scene.add(h),
                             c.setCamera(h),
-                            o = new r.A(null,{
+                            o = new VisualCar(null,{
                                 position: new THREE.Vector3,
                                 quaternion: new THREE.Quaternion
                             },null,null,c,null,null,null,null,null,null),
@@ -1117,7 +1117,7 @@
                             h.zoom = n?.zoom ?? .5,
                             h.updateProjectionMatrix(),
                             o.setCarStyle(e),
-                            c.update(new s.A),
+                            c.update(new SunDirection),
                             d(l.toDataURL())
                         }
                         ), 25);
@@ -1504,7 +1504,7 @@
             __webpack_require__.d(exports, {
                 A: () => A
             });
-            var i, r = __webpack_require__(1635), a = __webpack_require__(4078), s = __webpack_require__(9507);
+            var i, r = __webpack_require__(1635), VisualCar = __webpack_require__(4078).A, s = __webpack_require__(9507);
             !function(e) {
                 e[e.Init = 0] = "Init",
                 e[e.Verify = 1] = "Verify",
@@ -1528,7 +1528,7 @@
             f = new WeakMap,
             l = new WeakSet,
             g = function(e, t) {
-                if (null == a.A.models)
+                if (null == VisualCar.models)
                     throw new Error("Car collision model not loaded");
                 const n = t.getPhysicsParts().map((e => ({
                     id: e.id,
@@ -1545,8 +1545,8 @@
                     version: "0.6.0",
                     isRealtime: e,
                     trackParts: n,
-                    carCollisionShapeVertices: a.A.models.collisionShapeVertices,
-                    carMassOffset: a.A.massOffset
+                    carCollisionShapeVertices: VisualCar.models.collisionShapeVertices,
+                    carMassOffset: VisualCar.massOffset
                 };
                 r.get(this, h, "f").postMessage(i)
             }
@@ -1698,7 +1698,7 @@
                             },
                             collisionImpulses: [],
                             wheelContact: [null, null, null, null],
-                            wheelSuspensionLength: [a.A.suspensionResetLengthFront, a.A.suspensionResetLengthFront, a.A.suspensionResetLengthRear, a.A.suspensionResetLengthRear],
+                            wheelSuspensionLength: [VisualCar.suspensionResetLengthFront, VisualCar.suspensionResetLengthFront, VisualCar.suspensionResetLengthRear, VisualCar.suspensionResetLengthRear],
                             wheelSuspensionVelocity: [0, 0, 0, 0],
                             wheelDeltaRotation: [0, 0, 0, 0],
                             wheelSkidInfo: [0, 0, 0, 0],
@@ -3057,7 +3057,7 @@
             module.exports = __webpack_require__.p + "images/random.svg"
         }
         ,
-        2203: (module, t, __webpack_require__) => {
+        2203: (module, t, __webpack_require__) => { // TrackPartId (Part)
             "use strict";
             var i;
             __webpack_require__.d(t, {
@@ -3299,7 +3299,7 @@
             })
         }
         ,
-        2247: (e, t, n) => {
+        2247: (e, t, n) => { // TrackPartDetectorType
             "use strict";
             var i;
             n.d(t, {
@@ -7345,7 +7345,7 @@
             e.exports = n.p + "images/paste.svg"
         }
         ,
-        4078: (e, t, n) => {
+        4078: (e, t, n) => { // VisualCar
             "use strict";
             n.d(t, {
                 A: () => ht
@@ -7535,7 +7535,7 @@
             };
             const B = D;
             var G, F, O, W, V, H, j, K, q, Q, J, X, Y, Z, $, ee, te, ne, ie, re, ae, se, oe, le, ce, he, de, ue, pe, fe, ge, me, Ae, ve, ye, be, we, xe, Se, ke, Ee, Te, Me, _e, Ce, Re, Pe, Ie, Le, Ue, ze, Ne, De, Be, Ge, Fe, Oe, We, Ve, He, je, Ke, qe, Qe, Je, Xe, Ye, Ze, $e, et, tt, nt, it, rt, at, st = n(3476), ot = n(6633), lt = n(927);
-            class ct {
+            class VisualCar {
                 constructor(e, t, n, i, r, a, s, o, h, d, u) {
                     if (G.add(this),
                     O.set(this, void 0),
@@ -8071,7 +8071,7 @@
                     e
                 }
             }
-            F = ct,
+            F = VisualCar,
             O = new WeakMap,
             W = new WeakMap,
             V = new WeakMap,
@@ -8523,14 +8523,14 @@
                 n == i
             }
             ,
-            ct.massOffset = .6,
-            ct.detectorBoxCenter = new THREE.Vector3(0,.48,-.15),
-            ct.detectorBoxSize = new THREE.Vector3(.89,.22,1.8),
+            VisualCar.massOffset = .6,
+            VisualCar.detectorBoxCenter = new THREE.Vector3(0,.48,-.15),
+            VisualCar.detectorBoxSize = new THREE.Vector3(.89,.22,1.8),
             oe = {
                 value: [new THREE.Vector3(.627909,.27,1.3478), new THREE.Vector3(-.627909,.27,1.3478), new THREE.Vector3(.720832,.27,-1.52686), new THREE.Vector3(-.720832,.27,-1.52686)]
             },
-            ct.suspensionResetLengthFront = .07809501004219055,
-            ct.suspensionResetLengthRear = .0781289680480957,
+            VisualCar.suspensionResetLengthFront = .07809501004219055,
+            VisualCar.suspensionResetLengthRear = .0781289680480957,
             le = {
                 value: .08
             },
@@ -8540,12 +8540,12 @@
             he = {
                 value: .5
             },
-            ct.models = null,
-            ct.patterns = null;
-            const ht = ct
+            VisualCar.models = null,
+            VisualCar.patterns = null;
+            const ht = VisualCar
         }
         ,
-        4183: (e, t, n) => {
+        4183: (e, t, n) => { // PartEnvironment
             "use strict";
             var i;
             n.d(t, {
@@ -22783,7 +22783,7 @@
             e.exports = n.p + "images/checkpoint.svg"
         }
         ,
-        5169: (e, t, n) => {
+        5169: (e, t, n) => { // TrackEnvironment
             "use strict";
             var i;
             n.d(t, {
@@ -22797,7 +22797,7 @@
             const r = i
         }
         ,
-        5302: (e, t, n) => {
+        5302: (e, t, n) => { // LoadingScreenUI
             "use strict";
             n.d(t, {
                 A: () => b
@@ -22852,23 +22852,23 @@
             }
         }
         ,
-        5343: (e, t, n) => {
+        5343: (e, t, n) => { // TrackDataImporterV2
             "use strict";
             n.d(t, {
-                U: () => p,
-                _: () => u
+                withMetadata: () => p,
+                withoutMetadata: () => u
             });
             var i = n(3075)
-              , r = n(7415)
-              , a = n(8438)
+              , Base62 = n(7415)
+              , TrackDataModule = n(8438)
               , Part = n(2203).A
               , PartEnvironment = n(4183).A
               , TrackEnvironment = n(5169).A
-              , c = n(8566)
-              , h = n(7680)
-              , d = n(405);
+              , TrackPartRotationAxis = n(8566).A
+              , SunDirection = n(7680).A
+              , PartDefs = n(405);
             function u(e) {
-                const t = r.D(e);
+                const t = Base62.decode(e);
                 if (null == t)
                     return null;
                 const n = new i.Ay.Inflate;
@@ -22878,7 +22878,7 @@
                 const u = n.result;
                 if (!(u instanceof Uint8Array))
                     return null;
-                const p = new a.A(TrackEnvironment.Summer,new h.A);
+                const p = new TrackDataModule.A(TrackEnvironment.Summer,new SunDirection);
                 let f = 0;
                 for (; f < u.length; ) {
                     if (u.length - f < 2)
@@ -22914,16 +22914,16 @@
                         l < 0 || l > 3)
                             return null;
                         let h = null;
-                        if (d.bK.includes(e)) {
+                        if (PartDefs.checkpointPartIds.includes(e)) {
                             if (u.length - f < 2)
                                 return null;
                             h = u[f + 0] | u[f + 1] << 8,
                             f += 2
                         }
                         let g = null;
-                        d.l1.includes(e) && (g = i == n - 1 ? 1 : 0),
-                        null != t && p.addPart(4 * r, a, 4 * s, t, l, c.A.YPositive, PartEnvironment.Default, null, null),
-                        p.addPart(4 * r, a, 4 * s, e, l, c.A.YPositive, PartEnvironment.Default, h, g)
+                        PartDefs.startPartIds.includes(e) && (g = i == n - 1 ? 1 : 0),
+                        null != t && p.addPart(4 * r, a, 4 * s, t, l, TrackPartRotationAxis.YPositive, PartEnvironment.Default, null, null),
+                        p.addPart(4 * r, a, 4 * s, e, l, TrackPartRotationAxis.YPositive, PartEnvironment.Default, h, g)
                     }
                 }
                 return p
@@ -22932,7 +22932,7 @@
                 if (!e.startsWith("v2"))
                     return null;
                 const t = e.substring(2, 4)
-                  , n = r.D(t);
+                  , n = Base62.decode(t);
                 if (null == n)
                     return null;
                 if (1 != n.length)
@@ -22940,7 +22940,7 @@
                 const i = n[0]
                   , a = Math.ceil(i / 3 * 4)
                   , s = e.substring(4, 4 + a)
-                  , o = r.D(s);
+                  , o = Base62.decode(s);
                 if (null == o)
                     return null;
                 let l;
@@ -23125,18 +23125,18 @@
         5440: (e, t, n) => {
             "use strict";
             n.d(t, {
-                U: () => f,
-                _: () => p
+                withMetadata: () => f,
+                withoutMetadata: () => p
             });
             var i = n(3075)
-              , r = n(7415)
-              , a = n(8438)
+              , Base62 = n(7415)
+              , TrackDataModule = n(8438)
               , Part = n(2203).A
               , PartEnvironment = n(4183).A
               , TrackEnvironment = n(5169).A
-              , c = n(8566)
-              , h = n(7680)
-              , d = n(405);
+              , TrackPartRotationAxis = n(8566).A
+              , SunDirection = n(7680).A
+              , PartDefs = n(405);
             function u(e, t) {
                 let n = e;
                 if (t.length - n < 1)
@@ -23151,7 +23151,7 @@
                 if (n += 1,
                 !Number.isSafeInteger(r) || r < 0 || r >= 180)
                     return null;
-                const u = new a.A(i,new h.A(r));
+                const u = new TrackDataModule.A(i,new SunDirection(r));
                 if (t.length - n < 9)
                     return null;
                 const p = t[n] | t[n + 1] << 8 | t[n + 2] << 16 | t[n + 3] << 24;
@@ -23216,7 +23216,7 @@
                             return null;
                         const h = t[n + 0];
                         if (n += 1,
-                        !(h in c.A))
+                        !(h in TrackPartRotationAxis))
                             return null;
                         if (t.length - n < 1)
                             return null;
@@ -23225,14 +23225,14 @@
                         !(u in PartEnvironment))
                             return null;
                         let b = null;
-                        if (d.bK.includes(e)) {
+                        if (PartDefs.checkpointPartIds.includes(e)) {
                             if (t.length - n < 2)
                                 return null;
                             b = t[n + 0] | t[n + 1] << 8,
                             n += 2
                         }
                         let w = null;
-                        if (d.l1.includes(e)) {
+                        if (PartDefs.startPartIds.includes(e)) {
                             if (t.length - n < 4)
                                 return null;
                             w = t[n + 0] | t[n + 1] << 8 | t[n + 2] << 16 | t[n + 3] << 24,
@@ -23278,7 +23278,7 @@
                 return u
             }
             function p(e) {
-                const t = r.D(e);
+                const t = Base62.decode(e);
                 if (null == t)
                     return null;
                 const n = new i.Ay.Inflate({
@@ -23290,7 +23290,7 @@
                 const a = n.result;
                 if ("string" != typeof a)
                     return null;
-                const s = r.D(a);
+                const s = Base62.decode(a);
                 if (null == s)
                     return null;
                 const o = new i.Ay.Inflate;
@@ -23304,7 +23304,7 @@
                 const t = "PolyTrack1";
                 if (!e.startsWith(t))
                     return null;
-                const n = r.D(e.substring(10));
+                const n = Base62.decode(e.substring(10));
                 if (null == n)
                     return null;
                 const a = new i.Ay.Inflate({
@@ -23316,7 +23316,7 @@
                 const s = a.result;
                 if ("string" != typeof s)
                     return null;
-                const o = r.D(s);
+                const o = Base62.decode(s);
                 if (null == o)
                     return null;
                 const l = new i.Ay.Inflate;
@@ -23392,13 +23392,13 @@
                 yV: () => l
             });
             var THREE = n(4922)
-              , r = n(8566);
+              , TrackPartRotationAxis = n(8566).A;
             const a = [[new THREE.Quaternion(0,0,0,1), new THREE.Quaternion(0,.7071067811865475,0,.7071067811865476), new THREE.Quaternion(0,1,0,0), new THREE.Quaternion(0,.7071067811865476,0,-.7071067811865475)], [new THREE.Quaternion(0,0,1,0), new THREE.Quaternion(.7071067811865475,0,.7071067811865476,0), new THREE.Quaternion(1,0,0,0), new THREE.Quaternion(.7071067811865476,0,-.7071067811865475,0)], [new THREE.Quaternion(0,0,-.7071067811865477,.7071067811865475), new THREE.Quaternion(.5,.5,-.5,.5), new THREE.Quaternion(.7071067811865475,.7071067811865477,0,0), new THREE.Quaternion(.5,.5,.5,-.5)], [new THREE.Quaternion(0,0,.7071067811865475,.7071067811865476), new THREE.Quaternion(.5,-.5,.5,.5), new THREE.Quaternion(.7071067811865476,-.7071067811865475,0,0), new THREE.Quaternion(.5,-.5,-.5,-.5)], [new THREE.Quaternion(.7071067811865475,0,0,.7071067811865476), new THREE.Quaternion(.5,.5,.5,.5), new THREE.Quaternion(0,.7071067811865476,.7071067811865475,0), new THREE.Quaternion(-.5,.5,.5,-.5)], [new THREE.Quaternion(-.7071067811865477,0,0,.7071067811865475), new THREE.Quaternion(-.5,-.5,.5,.5), new THREE.Quaternion(0,-.7071067811865475,.7071067811865477,0), new THREE.Quaternion(.5,-.5,.5,-.5)]];
             function s(e, t) {
                 return a[t][e].clone()
             }
             function o(e, t, n, i, a) {
-                if (a == r.A.YNegative || a == r.A.XNegative || a == r.A.ZNegative)
+                if (a == TrackPartRotationAxis.YNegative || a == TrackPartRotationAxis.XNegative || a == TrackPartRotationAxis.ZNegative)
                     switch (i) {
                     case 0:
                         break;
@@ -23430,11 +23430,11 @@
                     default:
                         throw new Error("Invalid rotation")
                     }
-                return a == r.A.YPositive || (a == r.A.YNegative ? [e,t] = [-e - 1, -t - 1] : a == r.A.XPositive ? [e,t] = [t, -e - 1] : a == r.A.XNegative ? [e,t] = [-t - 1, e] : a == r.A.ZPositive ? [t,n] = [-n - 1, t] : [t,n] = [n, -t - 1]),
+                return a == TrackPartRotationAxis.YPositive || (a == TrackPartRotationAxis.YNegative ? [e,t] = [-e - 1, -t - 1] : a == TrackPartRotationAxis.XPositive ? [e,t] = [t, -e - 1] : a == TrackPartRotationAxis.XNegative ? [e,t] = [-t - 1, e] : a == TrackPartRotationAxis.ZPositive ? [t,n] = [-n - 1, t] : [t,n] = [n, -t - 1]),
                 [e, t, n]
             }
             function l(e, t, n, i, a) {
-                if (a == r.A.YNegative || a == r.A.XNegative || a == r.A.ZNegative)
+                if (a == TrackPartRotationAxis.YNegative || a == TrackPartRotationAxis.XNegative || a == TrackPartRotationAxis.ZNegative)
                     switch (i) {
                     case 0:
                         break;
@@ -23466,157 +23466,157 @@
                     default:
                         throw new Error("Invalid rotation")
                     }
-                return a == r.A.YPositive || (a == r.A.YNegative ? [e,t] = [-e, -t] : a == r.A.XPositive ? [e,t] = [t, -e] : a == r.A.XNegative ? [e,t] = [-t, e] : a == r.A.ZPositive ? [t,n] = [-n, t] : [t,n] = [n, -t]),
+                return a == TrackPartRotationAxis.YPositive || (a == TrackPartRotationAxis.YNegative ? [e,t] = [-e, -t] : a == TrackPartRotationAxis.XPositive ? [e,t] = [t, -e] : a == TrackPartRotationAxis.XNegative ? [e,t] = [-t, e] : a == TrackPartRotationAxis.ZPositive ? [t,n] = [-n, t] : [t,n] = [n, -t]),
                 [e, t, n]
             }
             function c(e, t, n, i) {
                 let a, s;
                 switch (i) {
-                case r.A.YPositive:
+                case TrackPartRotationAxis.YPositive:
                     switch (t) {
-                    case r.A.YPositive:
-                        s = r.A.YPositive;
+                    case TrackPartRotationAxis.YPositive:
+                        s = TrackPartRotationAxis.YPositive;
                         break;
-                    case r.A.YNegative:
-                        s = r.A.YNegative;
+                    case TrackPartRotationAxis.YNegative:
+                        s = TrackPartRotationAxis.YNegative;
                         break;
-                    case r.A.XPositive:
-                        s = [r.A.XPositive, r.A.ZNegative, r.A.XNegative, r.A.ZPositive][n];
+                    case TrackPartRotationAxis.XPositive:
+                        s = [TrackPartRotationAxis.XPositive, TrackPartRotationAxis.ZNegative, TrackPartRotationAxis.XNegative, TrackPartRotationAxis.ZPositive][n];
                         break;
-                    case r.A.XNegative:
-                        s = [r.A.XNegative, r.A.ZPositive, r.A.XPositive, r.A.ZNegative][n];
+                    case TrackPartRotationAxis.XNegative:
+                        s = [TrackPartRotationAxis.XNegative, TrackPartRotationAxis.ZPositive, TrackPartRotationAxis.XPositive, TrackPartRotationAxis.ZNegative][n];
                         break;
-                    case r.A.ZPositive:
-                        s = [r.A.ZPositive, r.A.XPositive, r.A.ZNegative, r.A.XNegative][n];
+                    case TrackPartRotationAxis.ZPositive:
+                        s = [TrackPartRotationAxis.ZPositive, TrackPartRotationAxis.XPositive, TrackPartRotationAxis.ZNegative, TrackPartRotationAxis.XNegative][n];
                         break;
-                    case r.A.ZNegative:
-                        s = [r.A.ZNegative, r.A.XNegative, r.A.ZPositive, r.A.XPositive][n]
+                    case TrackPartRotationAxis.ZNegative:
+                        s = [TrackPartRotationAxis.ZNegative, TrackPartRotationAxis.XNegative, TrackPartRotationAxis.ZPositive, TrackPartRotationAxis.XPositive][n]
                     }
-                    a = s == r.A.XNegative || s == r.A.ZNegative ? -n : n;
+                    a = s == TrackPartRotationAxis.XNegative || s == TrackPartRotationAxis.ZNegative ? -n : n;
                     break;
-                case r.A.YNegative:
+                case TrackPartRotationAxis.YNegative:
                     switch (t) {
-                    case r.A.YPositive:
-                        s = r.A.YNegative;
+                    case TrackPartRotationAxis.YPositive:
+                        s = TrackPartRotationAxis.YNegative;
                         break;
-                    case r.A.YNegative:
-                        s = r.A.YPositive;
+                    case TrackPartRotationAxis.YNegative:
+                        s = TrackPartRotationAxis.YPositive;
                         break;
-                    case r.A.XPositive:
-                        s = [r.A.XNegative, r.A.ZPositive, r.A.XPositive, r.A.ZNegative][n];
+                    case TrackPartRotationAxis.XPositive:
+                        s = [TrackPartRotationAxis.XNegative, TrackPartRotationAxis.ZPositive, TrackPartRotationAxis.XPositive, TrackPartRotationAxis.ZNegative][n];
                         break;
-                    case r.A.XNegative:
-                        s = [r.A.XPositive, r.A.ZNegative, r.A.XNegative, r.A.ZPositive][n];
+                    case TrackPartRotationAxis.XNegative:
+                        s = [TrackPartRotationAxis.XPositive, TrackPartRotationAxis.ZNegative, TrackPartRotationAxis.XNegative, TrackPartRotationAxis.ZPositive][n];
                         break;
-                    case r.A.ZPositive:
-                        s = [r.A.ZPositive, r.A.XPositive, r.A.ZNegative, r.A.XNegative][n];
+                    case TrackPartRotationAxis.ZPositive:
+                        s = [TrackPartRotationAxis.ZPositive, TrackPartRotationAxis.XPositive, TrackPartRotationAxis.ZNegative, TrackPartRotationAxis.XNegative][n];
                         break;
-                    case r.A.ZNegative:
-                        s = [r.A.ZNegative, r.A.XNegative, r.A.ZPositive, r.A.XPositive][n]
+                    case TrackPartRotationAxis.ZNegative:
+                        s = [TrackPartRotationAxis.ZNegative, TrackPartRotationAxis.XNegative, TrackPartRotationAxis.ZPositive, TrackPartRotationAxis.XPositive][n]
                     }
-                    a = t == r.A.ZNegative ? -n : n,
-                    t != r.A.XPositive && t != r.A.XNegative || s != r.A.ZNegative ? (t == r.A.ZPositive && s != r.A.XNegative || t == r.A.ZNegative && s != r.A.XPositive) && (a += 2) : a += 2;
+                    a = t == TrackPartRotationAxis.ZNegative ? -n : n,
+                    t != TrackPartRotationAxis.XPositive && t != TrackPartRotationAxis.XNegative || s != TrackPartRotationAxis.ZNegative ? (t == TrackPartRotationAxis.ZPositive && s != TrackPartRotationAxis.XNegative || t == TrackPartRotationAxis.ZNegative && s != TrackPartRotationAxis.XPositive) && (a += 2) : a += 2;
                     break;
-                case r.A.XPositive:
+                case TrackPartRotationAxis.XPositive:
                     switch (t) {
-                    case r.A.YPositive:
-                        s = r.A.XPositive;
+                    case TrackPartRotationAxis.YPositive:
+                        s = TrackPartRotationAxis.XPositive;
                         break;
-                    case r.A.YNegative:
-                        s = r.A.XNegative;
+                    case TrackPartRotationAxis.YNegative:
+                        s = TrackPartRotationAxis.XNegative;
                         break;
-                    case r.A.XPositive:
-                        s = [r.A.YNegative, r.A.ZNegative, r.A.YPositive, r.A.ZPositive][n];
+                    case TrackPartRotationAxis.XPositive:
+                        s = [TrackPartRotationAxis.YNegative, TrackPartRotationAxis.ZNegative, TrackPartRotationAxis.YPositive, TrackPartRotationAxis.ZPositive][n];
                         break;
-                    case r.A.XNegative:
-                        s = [r.A.YPositive, r.A.ZPositive, r.A.YNegative, r.A.ZNegative][n];
+                    case TrackPartRotationAxis.XNegative:
+                        s = [TrackPartRotationAxis.YPositive, TrackPartRotationAxis.ZPositive, TrackPartRotationAxis.YNegative, TrackPartRotationAxis.ZNegative][n];
                         break;
-                    case r.A.ZPositive:
-                        s = [r.A.ZPositive, r.A.YNegative, r.A.ZNegative, r.A.YPositive][n];
+                    case TrackPartRotationAxis.ZPositive:
+                        s = [TrackPartRotationAxis.ZPositive, TrackPartRotationAxis.YNegative, TrackPartRotationAxis.ZNegative, TrackPartRotationAxis.YPositive][n];
                         break;
-                    case r.A.ZNegative:
-                        s = [r.A.ZNegative, r.A.YPositive, r.A.ZPositive, r.A.YNegative][n]
+                    case TrackPartRotationAxis.ZNegative:
+                        s = [TrackPartRotationAxis.ZNegative, TrackPartRotationAxis.YPositive, TrackPartRotationAxis.ZPositive, TrackPartRotationAxis.YNegative][n]
                     }
                     a = n,
-                    s == r.A.ZPositive ? a -= 1 : s == r.A.ZNegative && (a += 1),
-                    (t != r.A.ZPositive && t != r.A.ZNegative || s != r.A.YNegative) && (t != r.A.ZPositive && t != r.A.ZNegative || s != r.A.ZNegative) || (a += 2);
+                    s == TrackPartRotationAxis.ZPositive ? a -= 1 : s == TrackPartRotationAxis.ZNegative && (a += 1),
+                    (t != TrackPartRotationAxis.ZPositive && t != TrackPartRotationAxis.ZNegative || s != TrackPartRotationAxis.YNegative) && (t != TrackPartRotationAxis.ZPositive && t != TrackPartRotationAxis.ZNegative || s != TrackPartRotationAxis.ZNegative) || (a += 2);
                     break;
-                case r.A.XNegative:
+                case TrackPartRotationAxis.XNegative:
                     switch (t) {
-                    case r.A.YPositive:
-                        s = r.A.XNegative;
+                    case TrackPartRotationAxis.YPositive:
+                        s = TrackPartRotationAxis.XNegative;
                         break;
-                    case r.A.YNegative:
-                        s = r.A.XPositive;
+                    case TrackPartRotationAxis.YNegative:
+                        s = TrackPartRotationAxis.XPositive;
                         break;
-                    case r.A.XPositive:
-                        s = [r.A.YPositive, r.A.ZPositive, r.A.YNegative, r.A.ZNegative][n];
+                    case TrackPartRotationAxis.XPositive:
+                        s = [TrackPartRotationAxis.YPositive, TrackPartRotationAxis.ZPositive, TrackPartRotationAxis.YNegative, TrackPartRotationAxis.ZNegative][n];
                         break;
-                    case r.A.XNegative:
-                        s = [r.A.YNegative, r.A.ZNegative, r.A.YPositive, r.A.ZPositive][n];
+                    case TrackPartRotationAxis.XNegative:
+                        s = [TrackPartRotationAxis.YNegative, TrackPartRotationAxis.ZNegative, TrackPartRotationAxis.YPositive, TrackPartRotationAxis.ZPositive][n];
                         break;
-                    case r.A.ZPositive:
-                        s = [r.A.ZPositive, r.A.YNegative, r.A.ZNegative, r.A.YPositive][n];
+                    case TrackPartRotationAxis.ZPositive:
+                        s = [TrackPartRotationAxis.ZPositive, TrackPartRotationAxis.YNegative, TrackPartRotationAxis.ZNegative, TrackPartRotationAxis.YPositive][n];
                         break;
-                    case r.A.ZNegative:
-                        s = [r.A.ZNegative, r.A.YPositive, r.A.ZPositive, r.A.YNegative][n]
+                    case TrackPartRotationAxis.ZNegative:
+                        s = [TrackPartRotationAxis.ZNegative, TrackPartRotationAxis.YPositive, TrackPartRotationAxis.ZPositive, TrackPartRotationAxis.YNegative][n]
                     }
                     a = n,
-                    s == r.A.ZPositive ? a -= 1 : s == r.A.ZNegative && (a += 1),
-                    (t != r.A.ZPositive && t != r.A.ZNegative || s != r.A.YPositive) && (t != r.A.ZPositive && t != r.A.ZNegative || s != r.A.ZPositive) || (a += 2);
+                    s == TrackPartRotationAxis.ZPositive ? a -= 1 : s == TrackPartRotationAxis.ZNegative && (a += 1),
+                    (t != TrackPartRotationAxis.ZPositive && t != TrackPartRotationAxis.ZNegative || s != TrackPartRotationAxis.YPositive) && (t != TrackPartRotationAxis.ZPositive && t != TrackPartRotationAxis.ZNegative || s != TrackPartRotationAxis.ZPositive) || (a += 2);
                     break;
-                case r.A.ZPositive:
+                case TrackPartRotationAxis.ZPositive:
                     switch (t) {
-                    case r.A.YPositive:
-                        s = r.A.ZPositive;
+                    case TrackPartRotationAxis.YPositive:
+                        s = TrackPartRotationAxis.ZPositive;
                         break;
-                    case r.A.YNegative:
-                        s = r.A.ZNegative;
+                    case TrackPartRotationAxis.YNegative:
+                        s = TrackPartRotationAxis.ZNegative;
                         break;
-                    case r.A.XPositive:
-                        s = [r.A.XPositive, r.A.YPositive, r.A.XNegative, r.A.YNegative][n];
+                    case TrackPartRotationAxis.XPositive:
+                        s = [TrackPartRotationAxis.XPositive, TrackPartRotationAxis.YPositive, TrackPartRotationAxis.XNegative, TrackPartRotationAxis.YNegative][n];
                         break;
-                    case r.A.XNegative:
-                        s = [r.A.XNegative, r.A.YNegative, r.A.XPositive, r.A.YPositive][n];
+                    case TrackPartRotationAxis.XNegative:
+                        s = [TrackPartRotationAxis.XNegative, TrackPartRotationAxis.YNegative, TrackPartRotationAxis.XPositive, TrackPartRotationAxis.YPositive][n];
                         break;
-                    case r.A.ZPositive:
-                        s = [r.A.YNegative, r.A.XPositive, r.A.YPositive, r.A.XNegative][n];
+                    case TrackPartRotationAxis.ZPositive:
+                        s = [TrackPartRotationAxis.YNegative, TrackPartRotationAxis.XPositive, TrackPartRotationAxis.YPositive, TrackPartRotationAxis.XNegative][n];
                         break;
-                    case r.A.ZNegative:
-                        s = [r.A.YPositive, r.A.XNegative, r.A.YNegative, r.A.XPositive][n]
+                    case TrackPartRotationAxis.ZNegative:
+                        s = [TrackPartRotationAxis.YPositive, TrackPartRotationAxis.XNegative, TrackPartRotationAxis.YNegative, TrackPartRotationAxis.XPositive][n]
                     }
                     a = n,
-                    t != r.A.XPositive || s != r.A.XPositive && s != r.A.XNegative || (a += 1),
-                    t != r.A.XNegative || s != r.A.XPositive && s != r.A.XNegative || (a += 1),
-                    t != r.A.ZPositive && t != r.A.ZNegative || (s == r.A.YNegative ? a += 2 : s == r.A.XPositive ? a += 1 : s == r.A.XNegative && (a -= 1)),
-                    t == r.A.YNegative && (a += 2);
+                    t != TrackPartRotationAxis.XPositive || s != TrackPartRotationAxis.XPositive && s != TrackPartRotationAxis.XNegative || (a += 1),
+                    t != TrackPartRotationAxis.XNegative || s != TrackPartRotationAxis.XPositive && s != TrackPartRotationAxis.XNegative || (a += 1),
+                    t != TrackPartRotationAxis.ZPositive && t != TrackPartRotationAxis.ZNegative || (s == TrackPartRotationAxis.YNegative ? a += 2 : s == TrackPartRotationAxis.XPositive ? a += 1 : s == TrackPartRotationAxis.XNegative && (a -= 1)),
+                    t == TrackPartRotationAxis.YNegative && (a += 2);
                     break;
-                case r.A.ZNegative:
+                case TrackPartRotationAxis.ZNegative:
                     switch (t) {
-                    case r.A.YPositive:
-                        s = r.A.ZNegative;
+                    case TrackPartRotationAxis.YPositive:
+                        s = TrackPartRotationAxis.ZNegative;
                         break;
-                    case r.A.YNegative:
-                        s = r.A.ZPositive;
+                    case TrackPartRotationAxis.YNegative:
+                        s = TrackPartRotationAxis.ZPositive;
                         break;
-                    case r.A.XPositive:
-                        s = [r.A.XPositive, r.A.YPositive, r.A.XNegative, r.A.YNegative][n];
+                    case TrackPartRotationAxis.XPositive:
+                        s = [TrackPartRotationAxis.XPositive, TrackPartRotationAxis.YPositive, TrackPartRotationAxis.XNegative, TrackPartRotationAxis.YNegative][n];
                         break;
-                    case r.A.XNegative:
-                        s = [r.A.XNegative, r.A.YNegative, r.A.XPositive, r.A.YPositive][n];
+                    case TrackPartRotationAxis.XNegative:
+                        s = [TrackPartRotationAxis.XNegative, TrackPartRotationAxis.YNegative, TrackPartRotationAxis.XPositive, TrackPartRotationAxis.YPositive][n];
                         break;
-                    case r.A.ZPositive:
-                        s = [r.A.YPositive, r.A.XNegative, r.A.YNegative, r.A.XPositive][n];
+                    case TrackPartRotationAxis.ZPositive:
+                        s = [TrackPartRotationAxis.YPositive, TrackPartRotationAxis.XNegative, TrackPartRotationAxis.YNegative, TrackPartRotationAxis.XPositive][n];
                         break;
-                    case r.A.ZNegative:
-                        s = [r.A.YNegative, r.A.XPositive, r.A.YPositive, r.A.XNegative][n]
+                    case TrackPartRotationAxis.ZNegative:
+                        s = [TrackPartRotationAxis.YNegative, TrackPartRotationAxis.XPositive, TrackPartRotationAxis.YPositive, TrackPartRotationAxis.XNegative][n]
                     }
                     a = n,
-                    t != r.A.XPositive && t != r.A.XNegative || (s == r.A.YPositive || s == r.A.YNegative ? a += 2 : (s == r.A.XPositive || s == r.A.XNegative) && (a -= 1)),
-                    t != r.A.ZPositive && t != r.A.ZNegative || (s == r.A.YNegative ? a += 2 : s == r.A.XPositive ? a += 1 : s == r.A.XNegative && (a -= 1)),
-                    t == r.A.YNegative && (a += 2)
+                    t != TrackPartRotationAxis.XPositive && t != TrackPartRotationAxis.XNegative || (s == TrackPartRotationAxis.YPositive || s == TrackPartRotationAxis.YNegative ? a += 2 : (s == TrackPartRotationAxis.XPositive || s == TrackPartRotationAxis.XNegative) && (a -= 1)),
+                    t != TrackPartRotationAxis.ZPositive && t != TrackPartRotationAxis.ZNegative || (s == TrackPartRotationAxis.YNegative ? a += 2 : s == TrackPartRotationAxis.XPositive ? a += 1 : s == TrackPartRotationAxis.XNegative && (a -= 1)),
+                    t == TrackPartRotationAxis.YNegative && (a += 2)
                 }
-                return (t == r.A.YNegative || t == r.A.XNegative || t == r.A.ZNegative) == (s == r.A.YNegative || s == r.A.XNegative || s == r.A.ZNegative) ? a += e : a -= e,
+                return (t == TrackPartRotationAxis.YNegative || t == TrackPartRotationAxis.XNegative || t == TrackPartRotationAxis.ZNegative) == (s == TrackPartRotationAxis.YNegative || s == TrackPartRotationAxis.XNegative || s == TrackPartRotationAxis.ZNegative) ? a += e : a -= e,
                 {
                     rotation: (a % 4 + 4) % 4,
                     rotationAxis: s
@@ -25553,8 +25553,8 @@
         7415: (e, t, n) => {
             "use strict";
             n.d(t, {
-                D: () => o,
-                l: () => s
+                decode: () => o,
+                encode: () => s
             });
             const i = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
               , r = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, -1, -1, -1, -1, -1, -1, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, -1, -1, -1, -1, -1, -1, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51]
@@ -25646,41 +25646,41 @@
             }
         }
         ,
-        7680: (e, t, n) => {
+        7680: (e, t, n) => { // SunDirection
             "use strict";
             n.d(t, {
                 A: () => o
             });
-            var i, r = n(1635), THREE = n(4922);
-            class s {
-                constructor(e=28) {
-                    if (i.set(this, void 0),
-                    !(Number.isSafeInteger(e) && e >= 0 && e < 180))
+            var _representation, r = n(1635), THREE = n(4922);
+            class SunDirection {
+                constructor(representation=28) {
+                    if (_representation.set(this, void 0),
+                    !(Number.isSafeInteger(representation) && representation >= 0 && representation < 180))
                         throw new Error("Representation is not a safe integer or is out of range");
-                    r.set(this, i, e, "f")
+                    r.set(this, _representation, representation, "f")
                 }
                 clone() {
-                    return new s(r.get(this, i, "f"))
+                    return new SunDirection(r.get(this, _representation, "f"))
                 }
                 toDegrees() {
-                    return 2 * r.get(this, i, "f")
+                    return 2 * r.get(this, _representation, "f")
                 }
-                static fromDegrees(e) {
-                    const t = Math.round(e / 2 % 180);
-                    return new s(t)
+                static fromDegrees(degrees) {
+                    const t = Math.round(degrees / 2 % 180);
+                    return new SunDirection(t)
                 }
                 getSunPosition() {
-                    const e = 2 * r.get(this, i, "f") * (Math.PI / 180)
-                      , t = Math.cos(e)
-                      , n = Math.sin(e);
-                    return new THREE.Vector3(t,.78,n).normalize()
+                    const angle = 2 * r.get(this, _representation, "f") * (Math.PI / 180)
+                      , x = Math.cos(angle)
+                      , z = Math.sin(angle);
+                    return new THREE.Vector3(x,.78,z).normalize()
                 }
                 get representation() {
-                    return r.get(this, i, "f")
+                    return r.get(this, _representation, "f")
                 }
             }
-            i = new WeakMap;
-            const o = s
+            _representation = new WeakMap;
+            const o = SunDirection
         }
         ,
         7687: (e, t, n) => {
@@ -27945,26 +27945,26 @@
             e.exports = n.p + "images/pattern_triangle.svg"
         }
         ,
-        7980: (e, t, n) => {
+        7980: (e, t, n) => { // TrackDataImporterLegacy
             "use strict";
             n.d(t, {
-                U: () => d,
-                _: () => h
+                withMetadata: () => d,
+                withoutMetadata: () => h
             });
-            var i = n(7680)
-              , r = n(8438)
+            var SunDirection = n(7680).A
+              , TrackDataModule = n(8438)
               , TrackEnvironment = n(5169).A
               , PartEnvironment = n(4183).A
               , Part = n(2203).A
-              , l = n(8566)
-              , c = n(405);
+              , TrackPartRotationAxis = n(8566).A
+              , PartDefs = n(405);
             function h(e) {
                 if ("object" != typeof e || null == e)
                     return null;
                 if (!("parts"in e) || "object" != typeof e.parts || null == e.parts)
                     return null;
                 const t = e.parts
-                  , n = new r.A(TrackEnvironment.Summer,new i.A)
+                  , n = new TrackDataModule.A(TrackEnvironment.Summer,new SunDirection)
                   , h = Object.keys(t);
                 for (const e of h) {
                     const i = parseInt(e, 10);
@@ -27988,11 +27988,11 @@
                             if (!(h >= 0 && h <= 3 && Math.abs(r) <= 1e9 && a >= 0 && a <= 1e9 && Math.abs(o) <= 1e9))
                                 return null;
                             {
-                                if (c.bK.includes(i))
+                                if (PartDefs.checkpointPartIds.includes(i))
                                     return null;
                                 let d = null;
-                                c.l1.includes(i) && (d = t / 4 == e.length / 4 - 1 ? 1 : 0),
-                                n.addPart(4 * r, a, 4 * o, i, h, l.A.YPositive, PartEnvironment.Default, null, d)
+                                PartDefs.startPartIds.includes(i) && (d = t / 4 == e.length / 4 - 1 ? 1 : 0),
+                                n.addPart(4 * r, a, 4 * o, i, h, TrackPartRotationAxis.YPositive, PartEnvironment.Default, null, d)
                             }
                         }
                     }
@@ -28090,15 +28090,15 @@
             const m = u
         }
         ,
-        8438: (e, t, n) => {
+        8438: (e, t, n) => { // TrackData
             "use strict";
             n.d(t, {
-                A: () => M
+                A: () => TrackData
             });
-            var i, r, a, s, o, l, c, h, d = n(1635), u = n(3075), p = n(1312), THREE = n(4922), g = n(7415), m = n(7980), A = n(666), v = n(5343), y = n(8928), b = n(5440), w = n(9681), x = n(2247), S = n(8971), TrackEnvironment = n(5169).A, E = n(405), T = n(5735);
+            var i, r, _environment, _sunDirection, o, l, c, h, d = n(1635), u = n(3075), p = n(1312), THREE = n(4922), Base62 = n(7415), TrackDataImporterLegacy = n(7980), TrackDataImporterV1 = n(666), TrackDataImporterV2 = n(5343), TrackDataImporterV3 = n(8928), TrackDataImporterV4 = n(5440), TrackDataImporterV5 = n(9681), TrackPartDetectorType = n(2247).A, S = n(8971), TrackEnvironment = n(5169).A, TrackPartManager = n(405), T = n(5735);
             r = new WeakMap,
-            a = new WeakMap,
-            s = new WeakMap,
+            _environment = new WeakMap,
+            _sunDirection = new WeakMap,
             o = new WeakMap,
             l = new WeakMap,
             i = new WeakSet,
@@ -28109,7 +28109,7 @@
                     const i = d.get(this, l, "f").get(n);
                     if (null == i)
                         throw new Error("Part list does not exist");
-                    const r = E.Hw(n).startOffset;
+                    const r = TrackPartManager.getPart(n).startOffset;
                     if (i.length > 0 && null != r)
                         for (const n of i) {
                             if (null == n.startOrder)
@@ -28133,8 +28133,8 @@
             ,
             h = function() {
                 const e = [];
-                e.push(d.get(this, a, "f")),
-                e.push(d.get(this, s, "f").representation);
+                e.push(d.get(this, _environment, "f")),
+                e.push(d.get(this, _sunDirection, "f").representation);
                 let t = 1 / 0
                   , n = 1 / 0
                   , i = 1 / 0
@@ -28178,12 +28178,12 @@
                         1 == m ? e.push(255 & o) : 2 == m ? e.push(255 & o, o >>> 8 & 255) : 3 == m ? e.push(255 & o, o >>> 8 & 255, o >>> 16 & 255) : 4 == m && e.push(255 & o, o >>> 8 & 255, o >>> 16 & 255, o >>> 24 & 255),
                         1 == A ? e.push(255 & l) : 2 == A ? e.push(255 & l, l >>> 8 & 255) : 3 == A ? e.push(255 & l, l >>> 8 & 255, l >>> 16 & 255) : 4 == A && e.push(255 & l, l >>> 8 & 255, l >>> 16 & 255, l >>> 24 & 255),
                         e.push(255 & (3 & s.rotation | (7 & s.rotationAxis) << 2), 255 & s.color),
-                        E.bK.includes(r)) {
+                        TrackPartManager.checkpointPartIds.includes(r)) {
                             if (null == s.checkpointOrder)
                                 throw new Error("Checkpoint has no checkpoint order");
                             e.push(255 & s.checkpointOrder, s.checkpointOrder >>> 8 & 255)
                         }
-                        if (E.l1.includes(r)) {
+                        if (TrackPartManager.startPartIds.includes(r)) {
                             if (null == s.startOrder)
                                 throw new Error("Start has no start order");
                             e.push(255 & s.startOrder, s.startOrder >>> 8 & 255, s.startOrder >>> 16 & 255, s.startOrder >>> 24 & 255)
@@ -28193,30 +28193,30 @@
                 return new Uint8Array(e)
             }
             ;
-            const M = class {
-                constructor(e, t) {
+            const TrackData = class {
+                constructor(environment, sunDirection) {
                     i.add(this),
                     r.set(this, null),
-                    a.set(this, void 0),
-                    s.set(this, void 0),
+                    _environment.set(this, void 0),
+                    _sunDirection.set(this, void 0),
                     o.set(this, []),
                     l.set(this, new Map),
-                    d.set(this, a, e, "f"),
-                    d.set(this, s, t.clone(), "f")
+                    d.set(this, _environment, environment, "f"),
+                    d.set(this, _sunDirection, sunDirection.clone(), "f")
                 }
                 get environment() {
-                    return d.get(this, a, "f")
+                    return d.get(this, _environment, "f")
                 }
                 set environment(e) {
                     d.set(this, r, null, "f"),
-                    d.set(this, a, e, "f")
+                    d.set(this, _environment, e, "f")
                 }
                 get sunDirection() {
-                    return d.get(this, s, "f").clone()
+                    return d.get(this, _sunDirection, "f").clone()
                 }
                 set sunDirection(e) {
                     d.set(this, r, null, "f"),
-                    d.set(this, s, e.clone(), "f")
+                    d.set(this, _sunDirection, e.clone(), "f")
                 }
                 get numberOfParts() {
                     let e = 0;
@@ -28315,14 +28315,14 @@
                         memLevel: 9
                     });
                     t.push(e, !0);
-                    const n = g.l(t.result)
+                    const n = Base62.encode(t.result)
                       , r = new u.Ay.Deflate({
                         level: 9,
                         windowBits: 15,
                         memLevel: 9
                     });
                     return r.push(n, !0),
-                    g.l(r.result)
+                    Base62.encode(r.result)
                 }
                 toExportString(e) {
                     const t = (new TextEncoder).encode(e.name);
@@ -28352,144 +28352,173 @@
                     });
                     l.push(s, !1),
                     l.push(o, !0);
-                    const c = g.l(l.result)
+                    const c = Base62.encode(l.result)
                       , p = new u.Ay.Deflate({
                         level: 9,
                         windowBits: 15,
                         memLevel: 9
                     });
                     return p.push(c, !0),
-                    "PolyTrack2" + g.l(p.result)
+                    "PolyTrack2" + Base62.encode(p.result)
                 }
                 static fromSaveString(e) {
-                    const t = w._(e);
+                    const t = TrackDataImporterV5.withoutMetadata(e);
                     if (null != t)
                         return t;
-                    const n = b._(e);
+                    const n = TrackDataImporterV4.withoutMetadata(e);
                     if (null != n)
                         return n;
-                    const i = y._(e);
+                    const i = TrackDataImporterV3.withoutMetadata(e);
                     if (null != i)
                         return i;
-                    const r = v._(e);
+                    const r = TrackDataImporterV2.withoutMetadata(e);
                     if (null != r)
                         return r;
-                    const a = A._(e);
+                    const a = TrackDataImporterV1.withoutMetadata(e);
                     if (null != a)
                         return a;
-                    const s = m._(e);
+                    const s = TrackDataImporterLegacy.withoutMetadata(e);
                     return null != s ? s : null
                 }
-                static fromExportString(e) {
-                    const t = e.replace(/\s+/g, "")
-                      , n = w.U(t);
-                    if (null != n)
-                        return n;
-                    const i = b.U(t);
-                    if (null != i)
-                        return i;
-                    const r = y.U(t);
-                    if (null != r)
-                        return r;
-                    const a = v.U(t);
-                    if (null != a)
-                        return a;
-                    const s = A.U(t);
-                    if (null != s)
-                        return s;
-                    const o = m.U(e);
-                    return null != o ? o : null
+                static fromExportString(exportString) {
+                    const exportStringWithoutWhitespace = exportString.replace(/\s+/g, "");
+                    
+                    const v5 = TrackDataImporterV5.withMetadata(exportStringWithoutWhitespace);
+                    if (null != v5)
+                        return v5;
+                    const v4 = TrackDataImporterV4.withMetadata(exportStringWithoutWhitespace);
+                    if (null != v4)
+                        return v4;
+                    const v3 = TrackDataImporterV3.withMetadata(exportStringWithoutWhitespace);
+                    if (null != v3)
+                        return v3;
+                    const v2 = TrackDataImporterV2.withMetadata(exportStringWithoutWhitespace);
+                    if (null != v2)
+                        return v2;
+                    const v1 = TrackDataImporterV1.withMetadata(exportStringWithoutWhitespace);
+                    if (null != v1)
+                        return v1;
+                    const legacy = TrackDataImporterLegacy.withMetadata(exportString);
+                    return null != legacy ? legacy : null
                 }
                 createThumbnail() {
-                    let e = 1 / 0
-                      , t = 1 / 0
-                      , n = -1 / 0
-                      , i = -1 / 0;
-                    this.forEachPart(( (r, a, s, o, l, c) => {
-                        E.Hw(o).tiles.rotated(l, c).forEach(( (a, o, l) => {
-                            e = Math.min(e, Math.floor((r + a - 2) / 4)),
-                            t = Math.min(t, Math.floor((s + l - 2) / 4)),
-                            n = Math.max(n, Math.floor((r + a - 2) / 4)),
-                            i = Math.max(i, Math.floor((s + l - 2) / 4))
-                        }
-                        ))
-                    }
-                    )),
-                    Number.isFinite(e) && Number.isFinite(t) && Number.isFinite(n) && Number.isFinite(i) || (e = 0,
-                    t = 0,
-                    n = 0,
-                    i = 0);
-                    const r = 10
-                      , a = n - e + 1;
-                    a <= r && (n += Math.ceil((r - a) / 2),
-                    e -= Math.ceil((r - a) / 2));
-                    const s = i - t + 1;
-                    s <= r && (i += Math.ceil((r - s) / 2),
-                    t -= Math.ceil((r - s) / 2));
-                    const o = document.createElement("canvas");
-                    o.width = Math.min(1024, n - e + 1),
-                    o.height = Math.min(1024, i - t + 1);
-                    const l = o.getContext("2d");
-                    if (null == l)
-                        throw new Error("Failed to get canvas context");
-                    const c = l.createImageData(o.width, o.height)
-                      , h = []
-                      , d = []
-                      , u = [];
-                    let p, f, g;
-                    switch (this.environment) {
-                    case TrackEnvironment.Summer:
-                        p = 255,
-                        f = 255,
-                        g = 255;
-                        break;
-                    case TrackEnvironment.Winter:
-                        p = 190,
-                        f = 216,
-                        g = 247;
-                        break;
-                    case TrackEnvironment.Desert:
-                        p = 237,
-                        f = 226,
-                        g = 175
-                    }
-                    this.forEachPart(( (n, i, r, a, s, l) => {
-                        const m = E.Hw(a);
-                        m.tiles.rotated(s, l).forEach(( (i, a, s) => {
-                            const l = Math.floor((n + i - 2) / 4) - e
-                              , A = Math.floor((r + s - 2) / 4) - t
-                              , v = 4 * (l + A * o.width);
-                            c.data[v + 0] = p,
-                            c.data[v + 1] = f,
-                            c.data[v + 2] = g,
-                            c.data[v + 3] = 255,
-                            null != m.startOffset ? d.push([l, A]) : null != m.detector && m.detector.type == x.A.Checkpoint ? h.push([l, A]) : null != m.detector && m.detector.type == x.A.Finish && u.push([l, A])
+                    let minX = 1 / 0
+                      , minZ = 1 / 0
+                      , maxX = -1 / 0
+                      , maxZ = -1 / 0;
+                    this.forEachPart(( (x, _y, z, typeId, rotation, rotationAxis) => {
+                        TrackPartManager.getPart(typeId).tiles.rotated(rotation, rotationAxis).forEach(( (tx, _ty, tz) => {
+                            minX = Math.min(minX, Math.floor((x + tx - 2) / 4)),
+                            minZ = Math.min(minZ, Math.floor((z + tz - 2) / 4)),
+                            maxX = Math.max(maxX, Math.floor((x + tx - 2) / 4)),
+                            maxZ = Math.max(maxZ, Math.floor((z + tz - 2) / 4))
                         }
                         ))
                     }
                     ));
-                    for (const [e,t] of h)
-                        c.data[4 * (e + t * o.width) + 0] = 226,
-                        c.data[4 * (e + t * o.width) + 1] = 192,
-                        c.data[4 * (e + t * o.width) + 2] = 38,
-                        c.data[4 * (e + t * o.width) + 3] = 255;
-                    for (const [e,t] of d)
-                        c.data[4 * (e + t * o.width) + 0] = 51,
-                        c.data[4 * (e + t * o.width) + 1] = 140,
-                        c.data[4 * (e + t * o.width) + 2] = 224,
-                        c.data[4 * (e + t * o.width) + 3] = 255;
-                    for (const [e,t] of u)
-                        c.data[4 * (e + t * o.width) + 0] = 209,
-                        c.data[4 * (e + t * o.width) + 1] = 41,
-                        c.data[4 * (e + t * o.width) + 2] = 41,
-                        c.data[4 * (e + t * o.width) + 3] = 255;
-                    return l.putImageData(c, 0, 0),
-                    o
+                    if (!Number.isFinite(minX) || !Number.isFinite(minZ) || !Number.isFinite(maxX) || !Number.isFinite(maxZ)) {
+                        minX = 0,
+                        minZ = 0,
+                        maxX = 0,
+                        maxZ = 0
+                    }
+
+                    const minSize = 10
+                    const initialWidth = maxX - minX + 1;
+                    if (initialWidth <= minSize) {
+                        maxX += Math.ceil((minSize - initialWidth) / 2);
+                        minX -= Math.ceil((minSize - initialWidth) / 2);
+                    }
+                    const initialLength = maxZ - minZ + 1;
+                    if (initialLength <= minSize) {
+                        maxZ += Math.ceil((minSize - initialLength) / 2);
+                        minZ -= Math.ceil((minSize - initialLength) / 2);
+                    }
+
+                    const canvas = document.createElement("canvas");
+                    canvas.width = Math.min(1024, maxX - minX + 1),
+                    canvas.height = Math.min(1024, maxZ - minZ + 1);
+
+                    const context = canvas.getContext("2d");
+                    if (null == context)
+                        throw new Error("Failed to get canvas context");
+
+                    const imageData = context.createImageData(canvas.width, canvas.height)
+                      , checkpointPositions = []
+                      , startingPositions = []
+                      , finishPositions = [];
+                    
+                    let r, g, b;
+                    switch (this.environment) {
+                    case TrackEnvironment.Summer:
+                        r = 255,
+                        g = 255,
+                        b = 255;
+                        break;
+                    case TrackEnvironment.Winter:
+                        r = 190,
+                        g = 216,
+                        b = 247;
+                        break;
+                    case TrackEnvironment.Desert:
+                        r = 237,
+                        g = 226,
+                        b = 175
+                    }
+
+                    this.forEachPart((px, _py, pz, typeId, rotation, rotationAxis) => {
+                        const trackPartData = TrackPartManager.getPart(typeId);
+                        const partTiles = trackPartData.tiles.rotated(rotation, rotationAxis);
+                        partTiles.forEach((tx, _ty, tz) => {
+                            const x = Math.floor((px + tx - 2) / 4) - minX;
+                            const z = Math.floor((pz + tz - 2) / 4) - minZ;
+
+                            const i = (x + z * canvas.width) * 4;
+
+                            imageData.data[i + 0] = r;
+                            imageData.data[i + 1] = g;
+                            imageData.data[i + 2] = b;
+                            imageData.data[i + 3] = 255;
+
+                            if (null != trackPartData.startOffset) {
+                                startingPositions.push([x, z]);
+                            } else if (trackPartData.detector != null && trackPartData.detector.type == TrackPartDetectorType.Checkpoint) {
+                                checkpointPositions.push([x, z]);
+                            } else if (trackPartData.detector != null && trackPartData.detector.type == TrackPartDetectorType.Finish) {
+                                finishPositions.push([x, z]);
+                            }
+                        });
+                    });
+                    
+                    for (const [x, z] of checkpointPositions) {
+                        imageData.data[(x + z * canvas.width) * 4 + 0] = 226;
+                        imageData.data[(x + z * canvas.width) * 4 + 1] = 192;
+                        imageData.data[(x + z * canvas.width) * 4 + 2] = 38;
+                        imageData.data[(x + z * canvas.width) * 4 + 3] = 255;
+                    }
+
+                    for (const [x, z] of startingPositions) {
+                        imageData.data[(x + z * canvas.width) * 4 + 0] = 51;
+                        imageData.data[(x + z * canvas.width) * 4 + 1] = 140;
+                        imageData.data[(x + z * canvas.width) * 4 + 2] = 224;
+                        imageData.data[(x + z * canvas.width) * 4 + 3] = 255;
+                    }
+
+                    for (const [x, z] of finishPositions) {
+                        imageData.data[(x + z * canvas.width) * 4 + 0] = 209;
+                        imageData.data[(x + z * canvas.width) * 4 + 1] = 41;
+                        imageData.data[(x + z * canvas.width) * 4 + 2] = 41;
+                        imageData.data[(x + z * canvas.width) * 4 + 3] = 255;
+                    }
+
+                    context.putImageData(imageData, 0, 0);
+
+                    return canvas;
                 }
             }
         }
         ,
-        8566: (e, t, n) => {
+        8566: (e, t, n) => { // TrackPartRotationAxis
             "use strict";
             var i;
             n.d(t, {
@@ -28612,20 +28641,20 @@
         8928: (e, t, __webpack_require__) => {
             "use strict";
             __webpack_require__.d(t, {
-                U: () => p,
-                _: () => u
+                withMetadata: () => p,
+                withoutMetadata: () => u
             });
             var i = __webpack_require__(3075)
-              , r = __webpack_require__(7415)
-              , a = __webpack_require__(8438)
+              , Base62 = __webpack_require__(7415)
+              , TrackDataModule = __webpack_require__(8438)
               , Part = __webpack_require__(2203).A
               , PartEnvironment = __webpack_require__(4183).A
               , TrackEnvironment = __webpack_require__(5169).A
-              , c = __webpack_require__(8566)
-              , h = __webpack_require__(7680)
-              , d = __webpack_require__(405);
+              , TrackPartRotationAxis = __webpack_require__(8566).A
+              , SunDirection = __webpack_require__(7680).A
+              , PartDefs = __webpack_require__(405);
             function u(e) {
-                const t = r.D(e);
+                const t = Base62.decode(e);
                 if (null == t)
                     return null;
                 const n = new i.Ay.Inflate;
@@ -28635,7 +28664,7 @@
                 const u = n.result;
                 if (!(u instanceof Uint8Array))
                     return null;
-                const p = new a.A(TrackEnvironment.Summer,new h.A);
+                const p = new TrackDataModule.A(TrackEnvironment.Summer,new SunDirection);
                 let f = 0;
                 for (; f < u.length; ) {
                     if (u.length - f < 2)
@@ -28925,16 +28954,16 @@
                         g < 0 || g > 3)
                             return null;
                         let m = null;
-                        if (d.bK.includes(e)) {
+                        if (PartDefs.checkpointPartIds.includes(e)) {
                             if (u.length - f < 2)
                                 return null;
                             m = u[f + 0] | u[f + 1] << 8,
                             f += 2
                         }
                         let A = null;
-                        d.l1.includes(e) && (A = a == r - 1 ? 1 : 0),
-                        null != n && p.addPart(4 * s + i.x, l + i.y, 4 * h + i.z, n, g, c.A.YPositive, PartEnvironment.Default, null, null),
-                        p.addPart(4 * s, l, 4 * h, e, g, c.A.YPositive, t, m, A)
+                        PartDefs.startPartIds.includes(e) && (A = a == r - 1 ? 1 : 0),
+                        null != n && p.addPart(4 * s + i.x, l + i.y, 4 * h + i.z, n, g, TrackPartRotationAxis.YPositive, PartEnvironment.Default, null, null),
+                        p.addPart(4 * s, l, 4 * h, e, g, TrackPartRotationAxis.YPositive, t, m, A)
                     }
                 }
                 return p
@@ -28943,14 +28972,14 @@
                 if (!e.startsWith("v3"))
                     return null;
                 const t = e.substring(2, 4)
-                  , n = r.D(t);
+                  , n = Base62.decode(t);
                 if (null == n)
                     return null;
                 if (1 != n.length)
                     return null;
                 const i = n[0]
                   , a = e.substring(4, 4 + i)
-                  , s = r.D(a);
+                  , s = Base62.decode(a);
                 if (null == s)
                     return null;
                 let o;
@@ -28978,11 +29007,11 @@
             });
             var i, r, a, s, o, l, c, h, d, u, p, f, g, m = __webpack_require__(1635), 
             THREE = __webpack_require__(4922), 
-            v = __webpack_require__(8438), 
-            y = __webpack_require__(2247), 
+            TrackDataModule = __webpack_require__(8438), 
+            TrackPartDetectorType = __webpack_require__(2247).A, 
             PartEnvironment = __webpack_require__(4183).A, 
             TrackEnvironment = __webpack_require__(5169).A,
-            x = __webpack_require__(7680), 
+            SunDirection = __webpack_require__(7680).A,
             S = __webpack_require__(5735), 
             k = __webpack_require__(3476), 
             E = __webpack_require__(8739);
@@ -29000,7 +29029,7 @@
                     this.matrix = o,
                     this.checkpointOrder = l,
                     this.startOrder = c,
-                    null != s.configuration.detector && s.configuration.detector.type == y.A.Checkpoint) {
+                    null != s.configuration.detector && s.configuration.detector.type == TrackPartDetectorType.Checkpoint) {
                         if (null == l)
                             throw new Error("Checkpoint has no checkpoint order")
                     } else if (null != l)
@@ -29018,7 +29047,7 @@
                     a.set(this, void 0),
                     s.set(this, void 0),
                     this.environment = TrackEnvironment.Summer,
-                    o.set(this, new x.A),
+                    o.set(this, new SunDirection),
                     l.set(this, []),
                     c.set(this, new Map),
                     h.set(this, new Map),
@@ -29228,7 +29257,7 @@
                 }
                 getCheckpoints() {
                     let e = [];
-                    const t = m.get(this, s, "f").getPartTypesWithDetector(y.A.Checkpoint);
+                    const t = m.get(this, s, "f").getPartTypesWithDetector(TrackPartDetectorType.Checkpoint);
                     for (const n of t) {
                         const t = m.get(this, h, "f").get(n);
                         null != t && (e = e.concat(t))
@@ -29253,7 +29282,7 @@
                 }
                 getCheckpointOrders() {
                     let e = [];
-                    const t = m.get(this, s, "f").getPartTypesWithDetector(y.A.Checkpoint);
+                    const t = m.get(this, s, "f").getPartTypesWithDetector(TrackPartDetectorType.Checkpoint);
                     for (const n of t) {
                         const t = m.get(this, h, "f").get(n);
                         null != t && (e = e.concat(t))
@@ -29269,7 +29298,7 @@
                 }
                 getTotalNumberOfCheckpointIndices() {
                     let e = [];
-                    const t = m.get(this, s, "f").getPartTypesWithDetector(y.A.Checkpoint);
+                    const t = m.get(this, s, "f").getPartTypesWithDetector(TrackPartDetectorType.Checkpoint);
                     for (const n of t) {
                         const t = m.get(this, h, "f").get(n);
                         null != t && (e = e.concat(t))
@@ -29328,7 +29357,7 @@
                     return e
                 }
                 getTrackData() {
-                    const e = new v.A(this.environment,m.get(this, o, "f"));
+                    const e = new TrackDataModule.A(this.environment,m.get(this, o, "f"));
                     for (const t of m.get(this, l, "f"))
                         e.addPart(t.x, t.y, t.z, t.type.configuration.id, t.rotation, t.rotationAxis, t.color, t.checkpointOrder, t.startOrder);
                     return e
@@ -37607,18 +37636,18 @@
         9681: (e, t, n) => {
             "use strict";
             n.d(t, {
-                U: () => f,
-                _: () => p
+                withMetadata: () => f,
+                withoutMetadata: () => p
             });
             var i = n(3075)
-              , r = n(7415)
-              , a = n(8438)
+              , Base62 = n(7415)
+              , TrackDataModule = n(8438)
               , Part = n(2203).A
               , PartEnvironment = n(4183).A
               , TrackEnvironment = n(5169).A
-              , c = n(8566)
-              , h = n(7680)
-              , d = n(405);
+              , TrackPartRotationAxis = n(8566).A
+              , SunDirection = n(7680).A
+              , PartDefs = n(405);
             function u(e, t) {
                 let n = e;
                 if (t.length - n < 1)
@@ -37633,7 +37662,7 @@
                 if (n += 1,
                 !Number.isSafeInteger(r) || r < 0 || r >= 180)
                     return null;
-                const u = new a.A(i,new h.A(r));
+                const u = new TrackDataModule.A(i,new SunDirection(r));
                 if (t.length - n < 9)
                     return null;
                 const p = t[n] | t[n + 1] << 8 | t[n + 2] << 16 | t[n + 3] << 24;
@@ -37689,7 +37718,7 @@
                         if (l < 0 || l > 3)
                             return null;
                         const h = s >> 2 & 7;
-                        if (!(h in c.A))
+                        if (!(h in TrackPartRotationAxis))
                             return null;
                         if (t.length - n < 1)
                             return null;
@@ -37698,14 +37727,14 @@
                         !(y in PartEnvironment))
                             return null;
                         let b = null;
-                        if (d.bK.includes(e)) {
+                        if (PartDefs.checkpointPartIds.includes(e)) {
                             if (t.length - n < 2)
                                 return null;
                             b = t[n + 0] | t[n + 1] << 8,
                             n += 2
                         }
                         let w = null;
-                        if (d.l1.includes(e)) {
+                        if (PartDefs.startPartIds.includes(e)) {
                             if (t.length - n < 4)
                                 return null;
                             w = t[n + 0] | t[n + 1] << 8 | t[n + 2] << 16 | t[n + 3] << 24,
@@ -37717,7 +37746,7 @@
                 return u
             }
             function p(e) {
-                const t = r.D(e);
+                const t = Base62.decode(e);
                 if (null == t)
                     return null;
                 const n = new i.Ay.Inflate({
@@ -37729,7 +37758,7 @@
                 const a = n.result;
                 if ("string" != typeof a)
                     return null;
-                const s = r.D(a);
+                const s = Base62.decode(a);
                 if (null == s)
                     return null;
                 const o = new i.Ay.Inflate;
@@ -37743,7 +37772,7 @@
                 const t = "PolyTrack2";
                 if (!e.startsWith(t))
                     return null;
-                const n = r.D(e.substring(10));
+                const n = Base62.decode(e.substring(10));
                 if (null == n)
                     return null;
                 const a = new i.Ay.Inflate({
@@ -37755,7 +37784,7 @@
                 const s = a.result;
                 if ("string" != typeof s)
                     return null;
-                const o = r.D(s);
+                const o = Base62.decode(s);
                 if (null == o)
                     return null;
                 const l = new i.Ay.Inflate;
@@ -38191,7 +38220,7 @@
             }
         }
         ;
-        var L = i(4078);
+        var VisualCar = i(4078).A;
         const U = 2.718281828459045
           , z = 2.302585092994046
           , N = .6931471805599453
@@ -40664,7 +40693,7 @@
         ;
         THREE.Group;
         var gi = i(8971)
-          , mi = i(405);
+          , PartDefs = i(405);
         i(5735);
         new WeakMap,
         new WeakMap,
@@ -41159,7 +41188,7 @@
         }
         ;
         var pr = i(6223)
-          , fr = i(5302)
+          , LoadingScreenUI = i(5302).A
           , gr = i(1083)
           , mr = {};
         mr.styleTagTransform = u(),
@@ -41426,7 +41455,7 @@
                 C.get(this, Sa, "f").multiplayerConnection.sendCarReset(e.sessionId, r)
             } else
                 a = null;
-            const s = new L.A(C.get(this, Cr, "f"),i,null,C.get(this, ya, "f"),C.get(this, zr, "f"),C.get(this, Nr, "f"),C.get(this, Ir, "f"),C.get(this, Pr, "f"),C.get(this, Yr, "f"),C.get(this, Gr, "f"),a);
+            const s = new VisualCar(C.get(this, Cr, "f"),i,null,C.get(this, ya, "f"),C.get(this, zr, "f"),C.get(this, Nr, "f"),C.get(this, Ir, "f"),C.get(this, Pr, "f"),C.get(this, Yr, "f"),C.get(this, Gr, "f"),a);
             return s.notificationAudioEnabled = !0,
             s.addResetCallback(( () => {
                 C.get(this, ya, "f").reset = !1,
@@ -41636,7 +41665,7 @@
                         e.finishSpeedKmh = null
                     }
                     if (null == C.get(this, Sa, "f")) {
-                        const n = new L.A(null,t,e.settings.recording,null,C.get(this, zr, "f"),C.get(this, Nr, "f"),C.get(this, Ir, "f"),C.get(this, Pr, "f"),C.get(this, Yr, "f"),C.get(this, Gr, "f"),null);
+                        const n = new VisualCar(null,t,e.settings.recording,null,C.get(this, zr, "f"),C.get(this, Nr, "f"),C.get(this, Ir, "f"),C.get(this, Pr, "f"),C.get(this, Yr, "f"),C.get(this, Gr, "f"),null);
                         n.setCarStyle(e.settings.carStyle),
                         n.audioVolume = C.get(this, Oa, "f"),
                         C.get(this, _r, "m", $a).call(this),
@@ -41894,7 +41923,7 @@
                     }
                     ),( (n, i, r) => {
                         C.get(this, ua, "f")?.hide(),
-                        C.set(this, pa, new fr.A(!0), "f"),
+                        C.set(this, pa, new LoadingScreenUI(!0), "f"),
                         r().then((i => {
                             i.hasStartingPoint() ? (t.startNewSession(e.gameMode, n, i),
                             C.get(this, ua, "f")?.dispose(),
@@ -41974,7 +42003,7 @@
                                 continue;
                             let n = C.get(this, Ra, "f").get(e.id);
                             null == n && (n = {
-                                car: new L.A(null,t,null,null,C.get(this, zr, "f"),C.get(this, Nr, "f"),C.get(this, Ir, "f"),C.get(this, Pr, "f"),C.get(this, Yr, "f"),C.get(this, Gr, "f"),null),
+                                car: new VisualCar(null,t,null,null,C.get(this, zr, "f"),C.get(this, Nr, "f"),C.get(this, Ir, "f"),C.get(this, Pr, "f"),C.get(this, Yr, "f"),C.get(this, Gr, "f"),null),
                                 time: 0,
                                 resetCounter: 0,
                                 bufferedCarStates: []
@@ -42027,7 +42056,7 @@
                                 },
                                 collisionImpulses: [],
                                 wheelContact: [null, null, null, null],
-                                wheelSuspensionLength: [L.A.suspensionResetLengthFront, L.A.suspensionResetLengthFront, L.A.suspensionResetLengthRear, L.A.suspensionResetLengthRear],
+                                wheelSuspensionLength: [VisualCar.suspensionResetLengthFront, VisualCar.suspensionResetLengthFront, VisualCar.suspensionResetLengthRear, VisualCar.suspensionResetLengthRear],
                                 wheelSuspensionVelocity: [0, 0, 0, 0],
                                 wheelDeltaRotation: [0, 0, 0, 0],
                                 wheelSkidInfo: [0, 0, 0, 0],
@@ -49633,7 +49662,7 @@
         al.insertStyleElement = h();
         t()(rl.A, al);
         rl.A && rl.A.locals && rl.A.locals;
-        var sl, ol = i(8438);
+        var sl, TrackDataModule = i(8438);
         class ll extends Error {
             constructor(e) {
                 let t;
@@ -50006,7 +50035,7 @@
                         null == C.get(this, Ll, "f"))
                             return console.error(n + "Started new session without receiving track data"),
                             void t.close();
-                        const l = ol.A.fromExportString(C.get(this, Ll, "f").buffer);
+                        const l = TrackDataModule.A.fromExportString(C.get(this, Ll, "f").buffer);
                         if (null == l)
                             return console.error(n + "Received invalid track data"),
                             void t.close();
@@ -50861,7 +50890,7 @@
                     C.get(this, Zl, "f").classList.add("hidden");
                     const e = p.trackMetadata
                       , t = p;
-                    C.set(this, nc, new fr.A(!1), "f"),
+                    C.set(this, nc, new LoadingScreenUI(!1), "f"),
                     t.trackData().then((t => {
                         if (t.hasStartingPoint()) {
                             const n = parseInt(u.value);
@@ -51087,7 +51116,7 @@
                   , m = c => {
                     C.get(this, Pc, "f")?.dispose(),
                     C.set(this, Pc, null, "f"),
-                    C.set(this, Ic, new fr.A(!1), "f"),
+                    C.set(this, Ic, new LoadingScreenUI(!1), "f"),
                     d().then((d => {
                         d.hasStartingPoint() ? l(s, d, u, c, null) : a.show(e.get("Track is missing starting point"), e.get("Ok"), ( () => {
                             C.set(this, Pc, new nl(C.get(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
@@ -51649,7 +51678,7 @@
                 const n = C.get(this, ih, "f").getStartTransform();
                 if (null == n)
                     throw new Error("Start transform is null");
-                C.set(this, ph, new L.A(C.get(this, nh, "f"),n,t,null,C.get(this, ch, "f"),C.get(this, hh, "f"),C.get(this, rh, "f"),C.get(this, ih, "f"),e,C.get(this, lh, "f"),null), "f"),
+                C.set(this, ph, new VisualCar(C.get(this, nh, "f"),n,t,null,C.get(this, ch, "f"),C.get(this, hh, "f"),C.get(this, rh, "f"),C.get(this, ih, "f"),e,C.get(this, lh, "f"),null), "f"),
                 C.get(this, ph, "f").audioVolume = 0,
                 C.get(this, ph, "f").start()
             }
@@ -52023,7 +52052,7 @@
                     if (4 == r.readyState)
                         if (200 == r.status) {
                             t.loadedResource();
-                            const e = ol.A.fromExportString(r.responseText);
+                            const e = TrackDataModule.A.fromExportString(r.responseText);
                             if (null == e)
                                 throw new Error("Failed to load bundled track");
                             const {trackMetadata: i, trackData: a} = e;
@@ -52051,7 +52080,7 @@
                 i.onreadystatechange = () => {
                     if (4 == i.readyState)
                         if (200 == i.status) {
-                            const e = ol.A.fromExportString(i.responseText);
+                            const e = TrackDataModule.A.fromExportString(i.responseText);
                             if (null == e)
                                 throw new pr.A;
                             const {trackMetadata: n, trackData: r} = e;
@@ -52849,7 +52878,7 @@
             }
         }
         ;
-        var od, ld, cd, hd, dd, DRACOLoader = i(1728).Z, BufferGeometryUtils = i(1566), Part = i(2203).A, PartCategory = i(1882).A, PartEnvironment = i(4183).A, Ad = i(8566);
+        var od, ld, cd, hd, dd, DRACOLoader = i(1728).Z, BufferGeometryUtils = i(1566), Part = i(2203).A, PartCategory = i(1882).A, PartEnvironment = i(4183).A, TrackPartRotationAxis = i(8566).A;
         class vd {
             constructor() {
                 od.add(this),
@@ -53005,7 +53034,7 @@
                     n.physicsShapeVertices = new Float32Array(l.attributes.position.array),
                     t.loadedResource()
                 }
-                  , l = await Promise.all(mi.yD.map((e => o(e)))).then((async () => await C.get(this, od, "m", dd).call(this)))
+                  , l = await Promise.all(PartDefs.allParts.map((e => o(e)))).then((async () => await C.get(this, od, "m", dd).call(this)))
                   , c = (e, t, n=null) => {
                     let i = C.get(this, cd, "f").get(e);
                     null == i && (i = new Map,
@@ -53046,7 +53075,7 @@
                 c(Part.BlockOuterCorner, Part.WallTrackCeilingCorner, ( (e, t) => (e.rotation + 2) % 4 == t.rotation && e.x == t.x && e.y == t.y && e.z == t.z && e.rotationAxis == t.rotationAxis)),
                 c(Part.PlaneCorner, Part.WallTrackFloorPlaneCorner, ( (e, t) => (e.rotation + 2) % 4 == t.rotation && e.x == t.x && e.y == t.y && e.z == t.z && e.rotationAxis == t.rotationAxis)),
                 c(Part.PlaneCorner, Part.WallTrackFloorCorner, ( (e, t) => (e.rotation + 2) % 4 == t.rotation && e.x == t.x && e.y == t.y && e.z == t.z && e.rotationAxis == t.rotationAxis));
-                const h = (e, t) => e.x == t.x && e.y == t.y && e.z == t.z && e.rotation == t.rotation && e.rotationAxis == t.rotationAxis || e.x == t.x && e.y == t.y + 3 && e.z == t.z && e.rotation == t.rotation && (e.rotationAxis == Ad.A.YPositive && t.rotationAxis == Ad.A.YNegative || e.rotationAxis == Ad.A.YNegative && t.rotationAxis == Ad.A.YPositive || e.rotationAxis == Ad.A.XPositive && t.rotationAxis == Ad.A.XNegative || e.rotationAxis == Ad.A.XNegative && t.rotationAxis == Ad.A.XPositive || e.rotationAxis == Ad.A.ZPositive && t.rotationAxis == Ad.A.ZNegative || e.rotationAxis == Ad.A.ZNegative && t.rotationAxis == Ad.A.ZPositive);
+                const h = (e, t) => e.x == t.x && e.y == t.y && e.z == t.z && e.rotation == t.rotation && e.rotationAxis == t.rotationAxis || e.x == t.x && e.y == t.y + 3 && e.z == t.z && e.rotation == t.rotation && (e.rotationAxis == TrackPartRotationAxis.YPositive && t.rotationAxis == TrackPartRotationAxis.YNegative || e.rotationAxis == TrackPartRotationAxis.YNegative && t.rotationAxis == TrackPartRotationAxis.YPositive || e.rotationAxis == TrackPartRotationAxis.XPositive && t.rotationAxis == TrackPartRotationAxis.XNegative || e.rotationAxis == TrackPartRotationAxis.XNegative && t.rotationAxis == TrackPartRotationAxis.XPositive || e.rotationAxis == TrackPartRotationAxis.ZPositive && t.rotationAxis == TrackPartRotationAxis.ZNegative || e.rotationAxis == TrackPartRotationAxis.ZNegative && t.rotationAxis == TrackPartRotationAxis.ZPositive);
                 return c(Part.BlockSlopeVerticalBottom, Part.PlaneSlopeVerticalBottom, h),
                 c(Part.BlockSlopeVerticalBottom, Part.WallTrackBottom, h),
                 c(Part.BlockSlopeVerticalBottom, Part.SlopeUpVertical, h),
@@ -53084,22 +53113,22 @@
                 c(Part.WallTrackTopInnerCorner, Part.WallTrackCeilingCorner, ( (e, t) => {
                     let n;
                     switch (e.rotationAxis) {
-                    case Ad.A.YPositive:
+                    case TrackPartRotationAxis.YPositive:
                         n = new THREE.Vector3(0,1,0);
                         break;
-                    case Ad.A.YNegative:
+                    case TrackPartRotationAxis.YNegative:
                         n = new THREE.Vector3(0,-1,0);
                         break;
-                    case Ad.A.XPositive:
+                    case TrackPartRotationAxis.XPositive:
                         n = new THREE.Vector3(1,0,0);
                         break;
-                    case Ad.A.XNegative:
+                    case TrackPartRotationAxis.XNegative:
                         n = new THREE.Vector3(-1,0,0);
                         break;
-                    case Ad.A.ZPositive:
+                    case TrackPartRotationAxis.ZPositive:
                         n = new THREE.Vector3(0,0,1);
                         break;
-                    case Ad.A.ZNegative:
+                    case TrackPartRotationAxis.ZNegative:
                         n = new THREE.Vector3(0,0,-1);
                         break;
                     default:
@@ -53111,22 +53140,22 @@
                 c(Part.WallTrackTopInnerCorner, Part.WallTrackCeilingPlaneCorner, ( (e, t) => {
                     let n;
                     switch (e.rotationAxis) {
-                    case Ad.A.YPositive:
+                    case TrackPartRotationAxis.YPositive:
                         n = new THREE.Vector3(0,1,0);
                         break;
-                    case Ad.A.YNegative:
+                    case TrackPartRotationAxis.YNegative:
                         n = new THREE.Vector3(0,-1,0);
                         break;
-                    case Ad.A.XPositive:
+                    case TrackPartRotationAxis.XPositive:
                         n = new THREE.Vector3(1,0,0);
                         break;
-                    case Ad.A.XNegative:
+                    case TrackPartRotationAxis.XNegative:
                         n = new THREE.Vector3(-1,0,0);
                         break;
-                    case Ad.A.ZPositive:
+                    case TrackPartRotationAxis.ZPositive:
                         n = new THREE.Vector3(0,0,1);
                         break;
-                    case Ad.A.ZNegative:
+                    case TrackPartRotationAxis.ZNegative:
                         n = new THREE.Vector3(0,0,-1);
                         break;
                     default:
@@ -53143,14 +53172,14 @@
                 c(Part.PillarTopSlope, Part.PlaneSlope),
                 c(Part.PillarTopSlope, Part.StraightTilted, ( (e, t) => e.x == t.x && e.y == t.y && e.z == t.z && e.rotation == (t.rotation + 1) % 4 && e.rotationAxis == t.rotationAxis)),
                 c(Part.PillarTopSlope, Part.BlockSlopedDown, ( (e, t) => e.x == t.x && e.y == t.y && e.z == t.z && e.rotation == (t.rotation + 2) % 4 && e.rotationAxis == t.rotationAxis)),
-                c(Part.PillarTopSlope, Part.BlockSlopedUp, ( (e, t) => e.rotation == (t.rotation + 2) % 4 && (e.rotationAxis == Ad.A.YPositive && t.rotationAxis == Ad.A.YNegative ? e.x == t.x && e.y + 2 == t.y && e.z == t.z : e.rotationAxis == Ad.A.YNegative && t.rotationAxis == Ad.A.YPositive ? e.x == t.x && e.y == t.y + 2 && e.z == t.z : e.rotationAxis == Ad.A.XPositive && t.rotationAxis == Ad.A.XNegative ? e.x + 2 == t.x && e.y == t.y && e.z == t.z : e.rotationAxis == Ad.A.XNegative && t.rotationAxis == Ad.A.XPositive ? e.x == t.x + 2 && e.y == t.y && e.z == t.z : e.rotationAxis == Ad.A.ZPositive && t.rotationAxis == Ad.A.ZNegative ? e.x == t.x && e.y == t.y && e.z + 2 == t.z : e.rotationAxis == Ad.A.ZNegative && t.rotationAxis == Ad.A.ZPositive && (e.x == t.x && e.y == t.y && e.z == t.z + 2)))),
+                c(Part.PillarTopSlope, Part.BlockSlopedUp, ( (e, t) => e.rotation == (t.rotation + 2) % 4 && (e.rotationAxis == TrackPartRotationAxis.YPositive && t.rotationAxis == TrackPartRotationAxis.YNegative ? e.x == t.x && e.y + 2 == t.y && e.z == t.z : e.rotationAxis == TrackPartRotationAxis.YNegative && t.rotationAxis == TrackPartRotationAxis.YPositive ? e.x == t.x && e.y == t.y + 2 && e.z == t.z : e.rotationAxis == TrackPartRotationAxis.XPositive && t.rotationAxis == TrackPartRotationAxis.XNegative ? e.x + 2 == t.x && e.y == t.y && e.z == t.z : e.rotationAxis == TrackPartRotationAxis.XNegative && t.rotationAxis == TrackPartRotationAxis.XPositive ? e.x == t.x + 2 && e.y == t.y && e.z == t.z : e.rotationAxis == TrackPartRotationAxis.ZPositive && t.rotationAxis == TrackPartRotationAxis.ZNegative ? e.x == t.x && e.y == t.y && e.z + 2 == t.z : e.rotationAxis == TrackPartRotationAxis.ZNegative && t.rotationAxis == TrackPartRotationAxis.ZPositive && (e.x == t.x && e.y == t.y && e.z == t.z + 2)))),
                 c(Part.PillarShortSlope, Part.Slope),
                 c(Part.PillarShortSlope, Part.SlopeLeftWide),
                 c(Part.PillarShortSlope, Part.SlopeRightWide),
                 c(Part.PillarShortSlope, Part.PlaneSlope),
                 c(Part.PillarShortSlope, Part.StraightTilted, ( (e, t) => e.x == t.x && e.y == t.y && e.z == t.z && e.rotation == (t.rotation + 1) % 4 && e.rotationAxis == t.rotationAxis)),
                 c(Part.PillarShortSlope, Part.BlockSlopedDown, ( (e, t) => e.x == t.x && e.y == t.y && e.z == t.z && e.rotation == (t.rotation + 2) % 4 && e.rotationAxis == t.rotationAxis)),
-                c(Part.PillarShortSlope, Part.BlockSlopedUp, ( (e, t) => e.rotation == (t.rotation + 2) % 4 && (e.rotationAxis == Ad.A.YPositive && t.rotationAxis == Ad.A.YNegative ? e.x == t.x && e.y + 2 == t.y && e.z == t.z : e.rotationAxis == Ad.A.YNegative && t.rotationAxis == Ad.A.YPositive ? e.x == t.x && e.y == t.y + 2 && e.z == t.z : e.rotationAxis == Ad.A.XPositive && t.rotationAxis == Ad.A.XNegative ? e.x + 2 == t.x && e.y == t.y && e.z == t.z : e.rotationAxis == Ad.A.XNegative && t.rotationAxis == Ad.A.XPositive ? e.x == t.x + 2 && e.y == t.y && e.z == t.z : e.rotationAxis == Ad.A.ZPositive && t.rotationAxis == Ad.A.ZNegative ? e.x == t.x && e.y == t.y && e.z + 2 == t.z : e.rotationAxis == Ad.A.ZNegative && t.rotationAxis == Ad.A.ZPositive && (e.x == t.x && e.y == t.y && e.z == t.z + 2)))),
+                c(Part.PillarShortSlope, Part.BlockSlopedUp, ( (e, t) => e.rotation == (t.rotation + 2) % 4 && (e.rotationAxis == TrackPartRotationAxis.YPositive && t.rotationAxis == TrackPartRotationAxis.YNegative ? e.x == t.x && e.y + 2 == t.y && e.z == t.z : e.rotationAxis == TrackPartRotationAxis.YNegative && t.rotationAxis == TrackPartRotationAxis.YPositive ? e.x == t.x && e.y == t.y + 2 && e.z == t.z : e.rotationAxis == TrackPartRotationAxis.XPositive && t.rotationAxis == TrackPartRotationAxis.XNegative ? e.x + 2 == t.x && e.y == t.y && e.z == t.z : e.rotationAxis == TrackPartRotationAxis.XNegative && t.rotationAxis == TrackPartRotationAxis.XPositive ? e.x == t.x + 2 && e.y == t.y && e.z == t.z : e.rotationAxis == TrackPartRotationAxis.ZPositive && t.rotationAxis == TrackPartRotationAxis.ZNegative ? e.x == t.x && e.y == t.y && e.z + 2 == t.z : e.rotationAxis == TrackPartRotationAxis.ZNegative && t.rotationAxis == TrackPartRotationAxis.ZPositive && (e.x == t.x && e.y == t.y && e.z == t.z + 2)))),
                 c(Part.PlaneWallSlopeLeft, Part.PlaneWallSlopeLeft, ( (e, t) => e.x == t.x && e.y == t.y + 1 && e.z == t.z && e.rotation == t.rotation && e.rotationAxis == t.rotationAxis)),
                 c(Part.PlaneWallSlopeRight, Part.PlaneWallSlopeRight, ( (e, t) => e.x == t.x && e.y == t.y + 1 && e.z == t.z && e.rotation == t.rotation && e.rotationAxis == t.rotationAxis)),
                 c(Part.PlaneWallSlopeUpLeft, Part.PlaneWallSlopeUpLeft, ( (e, t) => e.x == t.x && e.y == t.y + 1 && e.z == t.z && e.rotation == t.rotation && e.rotationAxis == t.rotationAxis)),
@@ -53405,7 +53434,7 @@
             web: () => i.e(57).then(i.bind(i, 819)).then((e => new e.CapacitorSQLiteWeb)),
             electron: () => window.CapacitorCustomPlatform.plugins.CapacitorSQLite
         });
-        var Rd, Pd, Id, Ld, Ud, zd, Nd, Dd, Bd, Gd, Fd, Od, Wd, Vd, Hd, jd, Kd, qd, Qd, Jd, Xd, Yd, Zd, $d, eu, tu = i(7980), nu = i(666), iu = i(5343), ru = i(8928), au = i(5440), su = i(2951), ou = i(2387);
+        var Rd, Pd, Id, Ld, Ud, zd, Nd, Dd, Bd, Gd, Fd, Od, Wd, Vd, Hd, jd, Kd, qd, Qd, Jd, Xd, Yd, Zd, $d, eu, TrackDataImporterLegacy = i(7980), TrackDataImporterV1 = i(666), TrackDataImporterV2 = i(5343), TrackDataImporterV3 = i(8928), TrackDataImporterV4 = i(5440), su = i(2951), ou = i(2387);
         class lu {
             constructor() {
                 Rd.add(this),
@@ -53607,7 +53636,7 @@
                     return console.error(e),
                     null
                 }
-                const i = ol.A.fromExportString(t);
+                const i = TrackDataModule.A.fromExportString(t);
                 return null == i ? null : {
                     trackMetadata: i.trackMetadata,
                     trackData: i.trackData,
@@ -54014,7 +54043,7 @@
                         try {
                             const e = C.get(this, Id, "f").getItem(t);
                             if (null != e) {
-                                const n = tu.U(e);
+                                const n = TrackDataImporterLegacy.withMetadata(e);
                                 if (null != n) {
                                     const {trackMetadata: e, trackData: i} = n;
                                     this.saveCustomTrack(e, i, new Date) && C.get(this, Id, "f").removeItem(t)
@@ -54072,7 +54101,7 @@
                                     author: null,
                                     lastModified: null
                                 }
-                                  , i = nu._(e);
+                                  , i = TrackDataImporterV1.withoutMetadata(e);
                                 if (null == i)
                                     throw new Error("Failed to load v1 track for migration");
                                 if (!this.saveCustomTrack(n, i, new Date))
@@ -54147,7 +54176,7 @@
                                     author: null,
                                     lastModified: null
                                 }
-                                  , i = iu._(e);
+                                  , i = TrackDataImporterV2.withoutMetadata(e);
                                 if (null == i)
                                     throw new Error("Failed to load v2 track for migration");
                                 if (!this.saveCustomTrack(n, i, new Date))
@@ -54286,7 +54315,7 @@
                                     throw new Error("Track data field is invalid");
                                 if (!("saveTime"in i) || "number" != typeof i.saveTime || !Number.isSafeInteger(i.saveTime) || i.saveTime < 0)
                                     throw new Error("Track save time field is invalid");
-                                const r = ru._(i.data);
+                                const r = TrackDataImporterV3.withoutMetadata(i.data);
                                 if (null == r)
                                     throw new Error("Failed to load v3 track for migration");
                                 if (!this.saveCustomTrack(n, r, new Date(i.saveTime)))
@@ -54430,7 +54459,7 @@
                                     throw new Error("Track data field is invalid");
                                 if (!("saveTime"in t) || "number" != typeof t.saveTime || !Number.isSafeInteger(t.saveTime) || t.saveTime < 0)
                                     throw new Error("Track save time field is invalid");
-                                const i = au.U(t.data);
+                                const i = TrackDataImporterV4.withMetadata(t.data);
                                 if (null == i)
                                     throw new Error("Failed to load p1 track for migration");
                                 if (!this.saveCustomTrack(i.trackMetadata, i.trackData, new Date(t.saveTime)))
@@ -56101,7 +56130,7 @@
                 const f = new yt.A(d.reduce(( (e, t) => Math.max(e, t.time.numberOfFrames + C.get(this, _f, "f"))), 0));
                 C.set(this, gf, f.time, "f"),
                 C.set(this, uf, d.map(( (n, r) => {
-                    const s = new L.A(null,p,n.recording,null,o,l,a,t,i,h,null);
+                    const s = new VisualCar(null,p,n.recording,null,o,l,a,t,i,h,null);
                     s.notificationAudioEnabled = C.get(this, df, "f") == r,
                     s.setCarStyle(n.carStyle);
                     const c = {
@@ -56482,7 +56511,7 @@
             t.addResource(),
             t.addResource(),
             t.addResource(),
-            L.A.initResources().then((e => {
+            VisualCar.initResources().then((e => {
                 t.loadedResource(),
                 u.then((n => {
                     t.loadedResource(),

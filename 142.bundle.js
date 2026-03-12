@@ -8,7 +8,7 @@
           , s = n(927)
           , a = n(6633)
           , r = n(1223)
-          , o = n(8438)
+          , TrackDataModule = n(8438)
           , d = n(5072)
           , l = n.n(d)
           , h = n(7825)
@@ -389,7 +389,7 @@
                             i.set(this, K, (n = i.get(this, K, "f"),
                             ++n), "f");
                             try {
-                                l.trackData instanceof o.A ? e = l.trackData : (e = await l.trackData(),
+                                l.trackData instanceof TrackDataModule.A ? e = l.trackData : (e = await l.trackData(),
                                 l.trackData = e)
                             } catch (t) {
                                 console.error('Failed to load track data for track "' + l.name + '":', t),
