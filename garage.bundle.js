@@ -66,7 +66,7 @@
         k.insertStyleElement = v();
         r()(x.A, k);
         x.A && x.A.locals && x.A.locals;
-        var G = e(7024)
+        var OrbitControls = e(7024).N
           , y = e(765)
           , RenderManager = e(2825).A
           , E = e(2951)
@@ -1678,7 +1678,7 @@
                 i.set(this, Xn, new THREE.PerspectiveCamera(70,1,.1,RenderManager.maxViewDistance), "f"),
                 i.get(this, Xn, "f").position.set(0, 2, 6),
                 o.scene.add(i.get(this, Xn, "f")),
-                i.set(this, Yn, new G.N(i.get(this, Xn, "f"),o.canvas), "f"),
+                i.set(this, Yn, new OrbitControls(i.get(this, Xn, "f"),o.canvas), "f"),
                 i.get(this, Yn, "f").addEventListener("start", ( () => {
                     i.set(this, Qn, null, "f")
                 }

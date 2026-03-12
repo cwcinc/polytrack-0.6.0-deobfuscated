@@ -24093,7 +24093,7 @@
             e.exports = n.p + "images/arrow_left.svg"
         }
         ,
-        6104: (e, t, n) => {
+        6104: (e, t, n) => { // hintUIStyles
             "use strict";
             n.d(t, {
                 A: () => o
@@ -24778,10 +24778,10 @@
             const o = s
         }
         ,
-        7024: (e, t, n) => {
+        7024: (e, t, n) => { // OrbitControls
             "use strict";
             n.d(t, {
-                N: () => w
+                N: () => OrbitControls
             });
             var THREE = n(4922);
             const r = {
@@ -24807,7 +24807,7 @@
               , v = 5
               , y = 6
               , b = 1e-6;
-            class w extends THREE.Controls {
+            class OrbitControls extends THREE.Controls {
                 constructor(e, t=null) {
                     super(e, t),
                     this.state = u,
@@ -38383,156 +38383,156 @@
         var ne = i(7888)
           , ie = i(927)
           , re = i(5811)
-          , ae = {};
-        ae.styleTagTransform = u(),
-        ae.setAttributes = l(),
-        ae.insert = s().bind(null, "head"),
-        ae.domAPI = r(),
-        ae.insertStyleElement = h();
-        t()(re.A, ae);
+          , checkpointUIStylesConfig = {};
+        checkpointUIStylesConfig.styleTagTransform = u(),
+        checkpointUIStylesConfig.setAttributes = l(),
+        checkpointUIStylesConfig.insert = s().bind(null, "head"),
+        checkpointUIStylesConfig.domAPI = r(),
+        checkpointUIStylesConfig.insertStyleElement = h();
+        t()(re.A, checkpointUIStylesConfig);
         re.A && re.A.locals && re.A.locals;
-        var se, oe, le, ce, he, de;
-        se = new WeakMap,
-        oe = new WeakMap,
-        le = new WeakMap,
-        ce = new WeakMap,
-        he = new WeakMap,
-        de = new WeakMap;
-        const ue = class {
+        var cp_parentElement, cp_settings, cp_totalCheckpoints, cp_element, cp_labelElement, cp_lastDisplayText;
+        cp_parentElement = new WeakMap,
+        cp_settings = new WeakMap,
+        cp_totalCheckpoints = new WeakMap,
+        cp_element = new WeakMap,
+        cp_labelElement = new WeakMap,
+        cp_lastDisplayText = new WeakMap;
+        const CheckpointUI = class {
             constructor(e, t, n) {
-                se.set(this, void 0),
-                oe.set(this, void 0),
-                le.set(this, void 0),
-                ce.set(this, void 0),
-                he.set(this, void 0),
-                de.set(this, null),
-                C.set(this, se, e, "f"),
-                C.set(this, oe, n, "f"),
-                C.set(this, le, t, "f"),
-                C.set(this, ce, document.createElement("div"), "f"),
-                0 == C.get(this, le, "f") || "off" == n.getSetting(R.A.Checkpoints) ? "top" == n.getSetting(R.A.Checkpoints) ? C.get(this, ce, "f").className = "checkpoint-ui up" : C.get(this, ce, "f").className = "checkpoint-ui" : C.get(this, ce, "f").className = "hidden",
-                C.get(this, se, "f").appendChild(C.get(this, ce, "f"));
+                cp_parentElement.set(this, void 0),
+                cp_settings.set(this, void 0),
+                cp_totalCheckpoints.set(this, void 0),
+                cp_element.set(this, void 0),
+                cp_labelElement.set(this, void 0),
+                cp_lastDisplayText.set(this, null),
+                C.set(this, cp_parentElement, e, "f"),
+                C.set(this, cp_settings, n, "f"),
+                C.set(this, cp_totalCheckpoints, t, "f"),
+                C.set(this, cp_element, document.createElement("div"), "f"),
+                0 == C.get(this, cp_totalCheckpoints, "f") || "off" == n.getSetting(R.A.Checkpoints) ? "top" == n.getSetting(R.A.Checkpoints) ? C.get(this, cp_element, "f").className = "checkpoint-ui up" : C.get(this, cp_element, "f").className = "checkpoint-ui" : C.get(this, cp_element, "f").className = "hidden",
+                C.get(this, cp_parentElement, "f").appendChild(C.get(this, cp_element, "f"));
                 const i = document.createElement("div");
-                C.get(this, ce, "f").appendChild(i);
+                C.get(this, cp_element, "f").appendChild(i);
                 const r = document.createElement("img");
                 r.src = "images/checkpoint.svg",
                 i.appendChild(r),
-                C.set(this, he, document.createElement("span"), "f"),
-                i.appendChild(C.get(this, he, "f"))
+                C.set(this, cp_labelElement, document.createElement("span"), "f"),
+                i.appendChild(C.get(this, cp_labelElement, "f"))
             }
             dispose() {
-                C.get(this, ce, "f").parentElement == C.get(this, se, "f") && C.get(this, se, "f").removeChild(C.get(this, ce, "f"))
+                C.get(this, cp_element, "f").parentElement == C.get(this, cp_parentElement, "f") && C.get(this, cp_parentElement, "f").removeChild(C.get(this, cp_element, "f"))
             }
             setOverridePosition(e) {
-                const t = C.get(this, oe, "f").getSetting(R.A.Checkpoints);
-                0 == C.get(this, le, "f") || "off" == t ? C.get(this, ce, "f").className = "hidden" : C.get(this, ce, "f").className = e ?? "top" == t ? "checkpoint-ui up" : "checkpoint-ui"
+                const t = C.get(this, cp_settings, "f").getSetting(R.A.Checkpoints);
+                0 == C.get(this, cp_totalCheckpoints, "f") || "off" == t ? C.get(this, cp_element, "f").className = "hidden" : C.get(this, cp_element, "f").className = e ?? "top" == t ? "checkpoint-ui up" : "checkpoint-ui"
             }
             setBottomOffset(e) {
-                C.get(this, ce, "f").style.bottom = e.toString() + "px"
+                C.get(this, cp_element, "f").style.bottom = e.toString() + "px"
             }
             update(e) {
-                const t = e.getNextCheckpointIndex().toString() + "/" + C.get(this, le, "f").toString();
-                t != C.get(this, de, "f") && (C.get(this, he, "f").textContent = t,
-                C.set(this, de, t, "f"))
+                const t = e.getNextCheckpointIndex().toString() + "/" + C.get(this, cp_totalCheckpoints, "f").toString();
+                t != C.get(this, cp_lastDisplayText, "f") && (C.get(this, cp_labelElement, "f").textContent = t,
+                C.set(this, cp_lastDisplayText, t, "f"))
             }
         }
         ;
-        var pe = i(6104)
+        var hintUIStyles = i(6104).A
           , fe = {};
         fe.styleTagTransform = u(),
         fe.setAttributes = l(),
         fe.insert = s().bind(null, "head"),
         fe.domAPI = r(),
         fe.insertStyleElement = h();
-        t()(pe.A, fe);
-        pe.A && pe.A.locals && pe.A.locals;
+        t()(hintUIStyles, fe);
+        hintUIStyles && hintUIStyles.locals && hintUIStyles.locals;
         var KeyBind = i(5818).A;
-        const me = new Map([["ArrowUp", "Arrow Up"], ["ArrowDown", "Arrow Down"], ["ArrowLeft", "Arrow Left"], ["ArrowRight", "Arrow Right"], ["ShiftLeft", "Shift Left"], ["ShiftRight", "Shift Right"], ["ControlLeft", "Control Left"], ["ControlRight", "Control Right"], ["AltLeft", "Alt Left"], ["AltRight", "Alt Right"], ["CapsLock", "Caps Lock"], ["ScrollLock", "Scroll Lock"], ["PageUp", "Page Up"], ["PageDown", "Page Down"], ["Equal", "="], ["BracketLeft", "["], ["BracketRight", "]"], ["Semicolon", ";"], ["Quote", "'"], ["Backquote", "`"], ["Backslash", "\\"], ["Comma", ","], ["Period", "."], ["Slash", "/"], ["KeyA", "A"], ["KeyB", "B"], ["KeyC", "C"], ["KeyD", "D"], ["KeyE", "E"], ["KeyF", "F"], ["KeyG", "G"], ["KeyH", "H"], ["KeyI", "I"], ["KeyJ", "J"], ["KeyK", "K"], ["KeyL", "L"], ["KeyM", "M"], ["KeyN", "N"], ["KeyO", "O"], ["KeyP", "P"], ["KeyQ", "Q"], ["KeyR", "R"], ["KeyS", "S"], ["KeyT", "T"], ["KeyU", "U"], ["KeyV", "V"], ["KeyW", "W"], ["KeyX", "X"], ["KeyY", "Y"], ["KeyZ", "Z"], ["Digit0", "0"], ["Digit1", "1"], ["Digit2", "2"], ["Digit3", "3"], ["Digit4", "4"], ["Digit5", "5"], ["Digit6", "6"], ["Digit7", "7"], ["Digit8", "8"], ["Digit9", "9"], ["NumpadMultiply", "Numpad *"], ["NumpadAdd", "Numpad +"], ["NumpadSubtract", "Numpad -"], ["NumpadDivide", "Numpad /"], ["NumpadDecimal", "Numpad ."], ["NumpadEqual", "Numpad ="], ["Numpad0", "Numpad 0"], ["Numpad1", "Numpad 1"], ["Numpad2", "Numpad 2"], ["Numpad3", "Numpad 3"], ["Numpad4", "Numpad 4"], ["Numpad5", "Numpad 5"], ["Numpad6", "Numpad 6"], ["Numpad7", "Numpad 7"], ["Numpad8", "Numpad 8"], ["Numpad9", "Numpad 9"]]);
-        function Ae(e) {
-            const t = me.get(e);
+        const KEY_DISPLAY_NAMES = new Map([["ArrowUp", "Arrow Up"], ["ArrowDown", "Arrow Down"], ["ArrowLeft", "Arrow Left"], ["ArrowRight", "Arrow Right"], ["ShiftLeft", "Shift Left"], ["ShiftRight", "Shift Right"], ["ControlLeft", "Control Left"], ["ControlRight", "Control Right"], ["AltLeft", "Alt Left"], ["AltRight", "Alt Right"], ["CapsLock", "Caps Lock"], ["ScrollLock", "Scroll Lock"], ["PageUp", "Page Up"], ["PageDown", "Page Down"], ["Equal", "="], ["BracketLeft", "["], ["BracketRight", "]"], ["Semicolon", ";"], ["Quote", "'"], ["Backquote", "`"], ["Backslash", "\\"], ["Comma", ","], ["Period", "."], ["Slash", "/"], ["KeyA", "A"], ["KeyB", "B"], ["KeyC", "C"], ["KeyD", "D"], ["KeyE", "E"], ["KeyF", "F"], ["KeyG", "G"], ["KeyH", "H"], ["KeyI", "I"], ["KeyJ", "J"], ["KeyK", "K"], ["KeyL", "L"], ["KeyM", "M"], ["KeyN", "N"], ["KeyO", "O"], ["KeyP", "P"], ["KeyQ", "Q"], ["KeyR", "R"], ["KeyS", "S"], ["KeyT", "T"], ["KeyU", "U"], ["KeyV", "V"], ["KeyW", "W"], ["KeyX", "X"], ["KeyY", "Y"], ["KeyZ", "Z"], ["Digit0", "0"], ["Digit1", "1"], ["Digit2", "2"], ["Digit3", "3"], ["Digit4", "4"], ["Digit5", "5"], ["Digit6", "6"], ["Digit7", "7"], ["Digit8", "8"], ["Digit9", "9"], ["NumpadMultiply", "Numpad *"], ["NumpadAdd", "Numpad +"], ["NumpadSubtract", "Numpad -"], ["NumpadDivide", "Numpad /"], ["NumpadDecimal", "Numpad ."], ["NumpadEqual", "Numpad ="], ["Numpad0", "Numpad 0"], ["Numpad1", "Numpad 1"], ["Numpad2", "Numpad 2"], ["Numpad3", "Numpad 3"], ["Numpad4", "Numpad 4"], ["Numpad5", "Numpad 5"], ["Numpad6", "Numpad 6"], ["Numpad7", "Numpad 7"], ["Numpad8", "Numpad 8"], ["Numpad9", "Numpad 9"]]);
+        function getKeyDisplayName(e) {
+            const t = KEY_DISPLAY_NAMES.get(e);
             return null != t ? t : e
         }
-        var ve, ye, be, we, xe, Se, ke, Ee, Te, Me, _e, Ce;
-        ye = new WeakMap,
-        be = new WeakMap,
-        we = new WeakMap,
-        xe = new WeakMap,
-        Se = new WeakMap,
-        ke = new WeakMap,
-        Ee = new WeakMap,
-        Te = new WeakMap,
-        Me = new WeakMap,
+        var ve, hint_parentElement, hint_localization, hint_inputManager, hint_settings, hint_element, hint_titleElement, hint_subtitleElement, hint_delayTimer, hint_onInputChanged, hint_hide, hint_resetTimer;
+        hint_parentElement = new WeakMap,
+        hint_localization = new WeakMap,
+        hint_inputManager = new WeakMap,
+        hint_settings = new WeakMap,
+        hint_element = new WeakMap,
+        hint_titleElement = new WeakMap,
+        hint_subtitleElement = new WeakMap,
+        hint_delayTimer = new WeakMap,
+        hint_onInputChanged = new WeakMap,
         ve = new WeakSet,
-        _e = function() {
-            C.set(this, Te, 2.5, "f"),
-            C.get(this, Se, "f").className = "hint-ui hide"
+        hint_hide = function() {
+            C.set(this, hint_delayTimer, 2.5, "f"),
+            C.get(this, hint_element, "f").className = "hint-ui hide"
         }
         ,
-        Ce = function() {
-            C.set(this, Te, 2.5, "f"),
-            C.get(this, Se, "f").className = "hint-ui"
+        hint_resetTimer = function() {
+            C.set(this, hint_delayTimer, 2.5, "f"),
+            C.get(this, hint_element, "f").className = "hint-ui"
         }
         ;
-        const Re = class {
+        const ResetHintUI = class {
             constructor(e, t, n, i) {
                 ve.add(this),
-                ye.set(this, void 0),
-                be.set(this, void 0),
-                we.set(this, void 0),
-                xe.set(this, void 0),
-                Se.set(this, void 0),
-                ke.set(this, void 0),
-                Ee.set(this, void 0),
-                Te.set(this, 2.5),
-                Me.set(this, void 0),
-                C.set(this, ye, e, "f"),
-                C.set(this, be, t, "f"),
-                C.set(this, we, n, "f"),
-                C.set(this, xe, i, "f"),
-                C.set(this, Se, document.createElement("div"), "f"),
-                C.get(this, Se, "f").className = "hint-ui",
-                C.get(this, ye, "f").appendChild(C.get(this, Se, "f")),
-                C.set(this, ke, document.createElement("div"), "f"),
-                C.get(this, ke, "f").className = "title",
-                C.get(this, Se, "f").appendChild(C.get(this, ke, "f")),
-                C.set(this, Ee, document.createElement("div"), "f"),
-                C.get(this, Ee, "f").className = "subtitle",
-                C.get(this, Se, "f").appendChild(C.get(this, Ee, "f")),
-                C.set(this, Me, ( () => {
-                    C.get(this, ve, "m", Ce).call(this)
+                hint_parentElement.set(this, void 0),
+                hint_localization.set(this, void 0),
+                hint_inputManager.set(this, void 0),
+                hint_settings.set(this, void 0),
+                hint_element.set(this, void 0),
+                hint_titleElement.set(this, void 0),
+                hint_subtitleElement.set(this, void 0),
+                hint_delayTimer.set(this, 2.5),
+                hint_onInputChanged.set(this, void 0),
+                C.set(this, hint_parentElement, e, "f"),
+                C.set(this, hint_localization, t, "f"),
+                C.set(this, hint_inputManager, n, "f"),
+                C.set(this, hint_settings, i, "f"),
+                C.set(this, hint_element, document.createElement("div"), "f"),
+                C.get(this, hint_element, "f").className = "hint-ui",
+                C.get(this, hint_parentElement, "f").appendChild(C.get(this, hint_element, "f")),
+                C.set(this, hint_titleElement, document.createElement("div"), "f"),
+                C.get(this, hint_titleElement, "f").className = "title",
+                C.get(this, hint_element, "f").appendChild(C.get(this, hint_titleElement, "f")),
+                C.set(this, hint_subtitleElement, document.createElement("div"), "f"),
+                C.get(this, hint_subtitleElement, "f").className = "subtitle",
+                C.get(this, hint_element, "f").appendChild(C.get(this, hint_subtitleElement, "f")),
+                C.set(this, hint_onInputChanged, ( () => {
+                    C.get(this, ve, "m", hint_resetTimer).call(this)
                 }
                 ), "f"),
-                C.get(this, we, "f").addChangeListener(C.get(this, Me, "f"))
+                C.get(this, hint_inputManager, "f").addChangeListener(C.get(this, hint_onInputChanged, "f"))
             }
             dispose() {
-                C.get(this, ye, "f").removeChild(C.get(this, Se, "f")),
-                C.get(this, we, "f").removeChangeListener(C.get(this, Me, "f"))
+                C.get(this, hint_parentElement, "f").removeChild(C.get(this, hint_element, "f")),
+                C.get(this, hint_inputManager, "f").removeChangeListener(C.get(this, hint_onInputChanged, "f"))
             }
             update(e, t, n) {
-                if (e.hasStarted() && !e.getControls().reset && n && C.get(this, xe, "f").getSettingBoolean(R.A.ResetHintEnabled))
+                if (e.hasStarted() && !e.getControls().reset && n && C.get(this, hint_settings, "f").getSettingBoolean(R.A.ResetHintEnabled))
                     if (e.getSpeedKmh() < 50 || e.hasFinished()) {
-                        if (0 != C.get(this, Te, "f") && (C.set(this, Te, C.get(this, Te, "f") - t, "f"),
-                        C.get(this, Te, "f") <= 0)) {
-                            if (C.get(this, we, "f").touchEnabled)
-                                C.get(this, ke, "f").textContent = C.get(this, be, "f").get("Reset once to return to the last checkpoint"),
-                                C.get(this, Ee, "f").textContent = C.get(this, be, "f").get("Reset again to start over"),
-                                C.get(this, Se, "f").className = "hint-ui show";
+                        if (0 != C.get(this, hint_delayTimer, "f") && (C.set(this, hint_delayTimer, C.get(this, hint_delayTimer, "f") - t, "f"),
+                        C.get(this, hint_delayTimer, "f") <= 0)) {
+                            if (C.get(this, hint_inputManager, "f").touchEnabled)
+                                C.get(this, hint_titleElement, "f").textContent = C.get(this, hint_localization, "f").get("Reset once to return to the last checkpoint"),
+                                C.get(this, hint_subtitleElement, "f").textContent = C.get(this, hint_localization, "f").get("Reset again to start over"),
+                                C.get(this, hint_element, "f").className = "hint-ui show";
                             else {
-                                const e = C.get(this, xe, "f").getKeyBindings(KeyBind.VehicleCheckpointReset).filter((e => null != e))
-                                  , t = C.get(this, xe, "f").getKeyBindings(KeyBind.VehicleStartReset).filter((e => null != e));
+                                const e = C.get(this, hint_settings, "f").getKeyBindings(KeyBind.VehicleCheckpointReset).filter((e => null != e))
+                                  , t = C.get(this, hint_settings, "f").getKeyBindings(KeyBind.VehicleStartReset).filter((e => null != e));
                                 let n = null
                                   , i = null;
-                                if (e.length > 0 ? (n = C.get(this, ke, "f"),
-                                i = C.get(this, Ee, "f")) : (n = C.get(this, Ee, "f"),
-                                i = C.get(this, ke, "f")),
+                                if (e.length > 0 ? (n = C.get(this, hint_titleElement, "f"),
+                                i = C.get(this, hint_subtitleElement, "f")) : (n = C.get(this, hint_subtitleElement, "f"),
+                                i = C.get(this, hint_titleElement, "f")),
                                 e.length > 0) {
-                                    const t = C.get(this, be, "f").get("Press {0} to return to the last checkpoint").split("{0}");
+                                    const t = C.get(this, hint_localization, "f").get("Press {0} to return to the last checkpoint").split("{0}");
                                     if (2 == t.length) {
                                         n.textContent = t[0];
                                         for (const t of e) {
                                             const i = document.createElement("div");
                                             i.className = "key-binding",
-                                            i.textContent = Ae(t),
+                                            i.textContent = getKeyDisplayName(t),
                                             n.appendChild(i),
                                             t != e[e.length - 1] && n.appendChild(document.createTextNode(" / "))
                                         }
@@ -38540,27 +38540,27 @@
                                     }
                                 }
                                 if (t.length > 0) {
-                                    const e = C.get(this, be, "f").get("Press {0} to start over").split("{0}");
+                                    const e = C.get(this, hint_localization, "f").get("Press {0} to start over").split("{0}");
                                     if (2 == e.length) {
                                         i.textContent = e[0];
                                         for (const e of t) {
                                             const n = document.createElement("div");
                                             n.className = "key-binding",
-                                            n.textContent = Ae(e),
+                                            n.textContent = getKeyDisplayName(e),
                                             i.appendChild(n),
                                             e != t[t.length - 1] && i.appendChild(document.createTextNode(" / "))
                                         }
                                         i.appendChild(document.createTextNode(e[1]))
                                     }
                                 }
-                                C.get(this, Se, "f").className = "hint-ui show"
+                                C.get(this, hint_element, "f").className = "hint-ui show"
                             }
-                            C.set(this, Te, 0, "f")
+                            C.set(this, hint_delayTimer, 0, "f")
                         }
                     } else
-                        C.get(this, ve, "m", _e).call(this);
+                        C.get(this, ve, "m", hint_hide).call(this);
                 else
-                    C.get(this, ve, "m", Ce).call(this)
+                    C.get(this, ve, "m", hint_resetTimer).call(this)
             }
         }
         ;
@@ -41881,9 +41881,9 @@
                 )), "f"),
                 C.get(this, ma, "f").isEnabled = C.get(this, Wr, "f").touchEnabled,
                 C.set(this, ea, new br, "f"),
-                C.set(this, ta, new Re(C.get(this, ea, "f").element,C.get(this, Ur, "f"),C.get(this, Wr, "f"),C.get(this, Gr, "f")), "f"),
+                C.set(this, ta, new ResetHintUI(C.get(this, ea, "f").element,C.get(this, Ur, "f"),C.get(this, Wr, "f"),C.get(this, Gr, "f")), "f"),
                 null != C.get(this, Sa, "f") ? C.set(this, ia, new ur(C.get(this, ea, "f").element,C.get(this, Gr, "f")), "f") : C.set(this, na, new fi(C.get(this, ea, "f").element,C.get(this, Ur, "f"),C.get(this, Gr, "f")), "f"),
-                C.set(this, ra, new ue(C.get(this, ea, "f").element,C.get(this, Pr, "f").getTotalNumberOfCheckpointIndices(),C.get(this, Gr, "f")), "f"),
+                C.set(this, ra, new CheckpointUI(C.get(this, ea, "f").element,C.get(this, Pr, "f").getTotalNumberOfCheckpointIndices(),C.get(this, Gr, "f")), "f"),
                 C.set(this, aa, new We(C.get(this, ea, "f").element,C.get(this, Gr, "f")), "f"),
                 C.set(this, sa, new Ve.A(C.get(this, ea, "f").element,C.get(this, Ur, "f"),C.get(this, Gr, "f")), "f"),
                 C.set(this, la, new ti(C.get(this, ea, "f").element,C.get(this, Nr, "f"),C.get(this, Ur, "f"),C.get(this, Gr, "f"),C.get(this, Wr, "f"),C.get(this, Xr, "f"),C.get(this, Sa, "f"),( () => {
@@ -48784,14 +48784,14 @@
             const a = C.get(this, Is, "f").get(t) ?? C.get(this, bs, "f").getKeyBindings(t)
               , s = document.createElement("button");
             s.className = "button",
-            s.textContent = Ae(a[0] ?? ""),
+            s.textContent = getKeyDisplayName(a[0] ?? ""),
             s.addEventListener("click", ( () => {
                 C.get(this, vs, "f").playUIClick(),
                 C.get(this, ms, "m", Ls).call(this);
                 const e = t => {
                     "Escape" == t.code || "Tab" == t.code || "Enter" == t.code && null != document.activeElement && document.activeElement != document.body || (C.get(this, xs, "f").hide(),
                     a[0] = t.code,
-                    s.textContent = Ae(t.code),
+                    s.textContent = getKeyDisplayName(t.code),
                     C.get(this, ms, "m", Us).call(this),
                     window.removeEventListener("keydown", e),
                     t.preventDefault())
@@ -48814,14 +48814,14 @@
             r.appendChild(s);
             const o = document.createElement("button");
             o.className = "button",
-            o.textContent = Ae(a[1] ?? ""),
+            o.textContent = getKeyDisplayName(a[1] ?? ""),
             o.addEventListener("click", ( () => {
                 C.get(this, vs, "f").playUIClick(),
                 C.get(this, ms, "m", Ls).call(this);
                 const e = t => {
                     "Escape" == t.code || "Tab" == t.code || "Enter" == t.code && null != document.activeElement && document.activeElement != document.body || (C.get(this, xs, "f").hide(),
                     a[1] = t.code,
-                    o.textContent = Ae(t.code),
+                    o.textContent = getKeyDisplayName(t.code),
                     C.get(this, ms, "m", Us).call(this),
                     window.removeEventListener("keydown", e),
                     t.preventDefault())
@@ -56227,7 +56227,7 @@
                 }
                 ),A), "f"),
                 C.set(this, bf, new Wu(C.get(this, Af, "f").element), "f"),
-                C.set(this, wf, new ue(C.get(this, Af, "f").element,C.get(this, $p, "f").getTotalNumberOfCheckpointIndices(),C.get(this, cf, "f")), "f"),
+                C.set(this, wf, new CheckpointUI(C.get(this, Af, "f").element,C.get(this, $p, "f").getTotalNumberOfCheckpointIndices(),C.get(this, cf, "f")), "f"),
                 C.get(this, wf, "f").setOverridePosition(!1),
                 C.get(this, wf, "f").setBottomOffset(52),
                 C.set(this, xf, new We(C.get(this, Af, "f").element,C.get(this, cf, "f")), "f"),

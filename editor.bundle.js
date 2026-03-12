@@ -16,7 +16,7 @@
         n.d(e, {
             default: () => xi
         });
-        var i = n(1635)
+        var privateMethods = n(1635)
           , s = n(5072)
           , o = n.n(s)
           , a = n(7825)
@@ -29,18 +29,18 @@
           , f = n.n(g)
           , p = n(1113)
           , u = n.n(p)
-          , m = n(6057)
-          , v = {};
-        v.styleTagTransform = u(),
-        v.setAttributes = d(),
-        v.insert = l().bind(null, "head"),
-        v.domAPI = r(),
-        v.insertStyleElement = f();
-        o()(m.A, v);
-        m.A && m.A.locals && m.A.locals;
+          , editorStyles = n(6057).A
+          , editorStylesConfig = {};
+        editorStylesConfig.styleTagTransform = u(),
+        editorStylesConfig.setAttributes = d(),
+        editorStylesConfig.insert = l().bind(null, "head"),
+        editorStylesConfig.domAPI = r(),
+        editorStylesConfig.insertStyleElement = f();
+        o()(editorStyles, editorStylesConfig);
+        editorStyles && editorStyles.locals && editorStyles.locals;
         var THREE = n(4922)
-          , b = n(7024);
-        class k extends b.N {
+          , OrbitControls = n(7024).N;
+        class EditorOrbitControls extends OrbitControls {
             constructor(t, e) {
                 super(t, e),
                 this.screenSpacePanning = !1,
@@ -55,7 +55,7 @@
                 }
             }
         }
-        class G extends THREE.Loader {
+        class FontLoader extends THREE.Loader {
             constructor(t) {
                 super(t)
             }
@@ -72,10 +72,10 @@
                 ), n, i)
             }
             parse(t) {
-                return new x(t)
+                return new Font(t)
             }
         }
-        class x {
+        class Font {
             constructor(t) {
                 this.isFont = !0,
                 this.type = "Font",
@@ -97,7 +97,7 @@
                             h = 0,
                             l -= a;
                         else {
-                            const t = y(e, o, h, l, n);
+                            const t = createGlyphPath(e, o, h, l, n);
                             "tb" == i ? (h = 0,
                             l += n.ascender * o) : h += t.offsetX,
                             r.push(t.path)
@@ -110,7 +110,7 @@
                 return i
             }
         }
-        function y(t, e, n, i, s) {
+        function createGlyphPath(t, e, n, i, s) {
             const o = s.glyphs[t] || s.glyphs["?"];
             if (!o)
                 return void console.error('THREE.Font: character "' + t + '" does not exists in font family ' + s.familyName + ".");
@@ -153,35 +153,35 @@
                 path: a
             }
         }
-        var A, M, E, C, W, Track = n(8971), TrackPartTransform = n(5735);
-        class z {
+        var A, labels3d_renderer, labels3d_meshes, labels3d_cachedCheckpoints, labels3d_font, Track = n(8971), TrackPartTransform = n(5735);
+        class CheckpointLabels3D {
             constructor(t) {
-                M.set(this, void 0),
-                E.set(this, []),
-                C.set(this, []),
-                i.set(this, M, t, "f")
+                labels3d_renderer.set(this, void 0),
+                labels3d_meshes.set(this, []),
+                labels3d_cachedCheckpoints.set(this, []),
+                privateMethods.set(this, labels3d_renderer, t, "f")
             }
             dispose() {
-                for (const t of i.get(this, E, "f")) {
+                for (const t of privateMethods.get(this, labels3d_meshes, "f")) {
                     if (Array.isArray(t.material))
                         for (const e of t.material)
                             e.dispose();
                     else
                         t.material.dispose();
                     t.geometry.dispose(),
-                    i.get(this, M, "f").scene.remove(t)
+                    privateMethods.get(this, labels3d_renderer, "f").scene.remove(t)
                 }
-                i.get(this, E, "f").length = 0
+                privateMethods.get(this, labels3d_meshes, "f").length = 0
             }
             refresh(t) {
-                if (null == i.get(A, A, "f", W))
+                if (null == privateMethods.get(A, A, "f", labels3d_font))
                     throw new Error("Font is not loaded yet");
                 const e = t.getCheckpoints();
                 let n = !1;
-                if (e.length == i.get(this, C, "f").length)
+                if (e.length == privateMethods.get(this, labels3d_cachedCheckpoints, "f").length)
                     for (let t = 0; t < e.length; t++) {
                         const s = e[t]
-                          , o = i.get(this, C, "f")[t];
+                          , o = privateMethods.get(this, labels3d_cachedCheckpoints, "f")[t];
                         if (s.x != o.x || s.y != o.y || s.z != o.z || s.rotation != o.rotation || s.rotationAxis != o.rotationAxis || s.type != o.type || s.checkpointOrder != o.checkpointOrder) {
                             n = !0;
                             break
@@ -191,7 +191,7 @@
                     n = !0;
                 if (n) {
                     this.dispose(),
-                    i.set(this, C, e, "f");
+                    privateMethods.set(this, labels3d_cachedCheckpoints, e, "f");
                     const t = new THREE.MeshBasicMaterial({
                         color: 16777215
                     });
@@ -199,7 +199,7 @@
                         const e = TrackPartTransform.rotationAndAxisToQuaternion(n.rotation, n.rotationAxis)
                           , s = new THREE.Vector3(...n.detector.center).add(new THREE.Vector3(0,-1.3,0)).applyQuaternion(e);
                         s.add(new THREE.Vector3(n.x * Track.A.partSize,n.y * Track.A.partSize,n.z * Track.A.partSize));
-                        const o = i.get(A, A, "f", W).generateShapes((n.checkpointOrder + 1).toString(), 4)
+                        const o = privateMethods.get(A, A, "f", labels3d_font).generateShapes((n.checkpointOrder + 1).toString(), 4)
                           , a = new THREE.ShapeGeometry(o);
                         a.computeBoundingBox();
                         const r = a.boundingBox;
@@ -210,20 +210,20 @@
                         const l = new THREE.Mesh(a,t);
                         l.position.copy(s),
                         l.quaternion.copy(e),
-                        i.get(this, M, "f").scene.add(l),
-                        i.get(this, E, "f").push(l);
+                        privateMethods.get(this, labels3d_renderer, "f").scene.add(l),
+                        privateMethods.get(this, labels3d_meshes, "f").push(l);
                         const c = new THREE.Mesh(a,t);
                         c.position.copy(s),
                         c.quaternion.copy(e).multiply((new THREE.Quaternion).setFromEuler(new THREE.Euler(0,Math.PI,0))),
-                        i.get(this, M, "f").scene.add(c),
-                        i.get(this, E, "f").push(c)
+                        privateMethods.get(this, labels3d_renderer, "f").scene.add(c),
+                        privateMethods.get(this, labels3d_meshes, "f").push(c)
                     }
                 }
             }
             static initResources() {
-                return null == i.get(this, A, "f", W) ? new Promise(( (t, e) => {
-                    (new G).load("forced_square.json", (e => {
-                        i.set(this, A, e, "f", W),
+                return null == privateMethods.get(this, A, "f", labels3d_font) ? new Promise(( (t, e) => {
+                    (new FontLoader).load("forced_square.json", (e => {
+                        privateMethods.set(this, A, e, "f", labels3d_font),
                         t()
                     }
                     ), void 0, e)
@@ -231,37 +231,37 @@
                 )) : Promise.resolve()
             }
         }
-        A = z,
-        M = new WeakMap,
-        E = new WeakMap,
-        C = new WeakMap,
-        W = {
+        A = CheckpointLabels3D,
+        labels3d_renderer = new WeakMap,
+        labels3d_meshes = new WeakMap,
+        labels3d_cachedCheckpoints = new WeakMap,
+        labels3d_font = {
             value: null
         };
-        const N = z;
-        var S = n(7296)
-          , T = {};
-        T.styleTagTransform = u(),
-        T.setAttributes = d(),
-        T.insert = l().bind(null, "head"),
-        T.domAPI = r(),
-        T.insertStyleElement = f();
-        o()(S.A, T);
-        S.A && S.A.locals && S.A.locals;
-        var q, D, O, I, B, _, U, R, H, K;
-        D = new WeakMap,
-        O = new WeakMap,
-        I = new WeakMap,
-        B = new WeakMap,
-        _ = new WeakMap,
-        U = new WeakMap,
-        R = new WeakMap,
+        const N = CheckpointLabels3D;
+        var checkpointOrderStyles = n(7296).A
+          , checkpointOrderStylesConfig = {};
+        checkpointOrderStylesConfig.styleTagTransform = u(),
+        checkpointOrderStylesConfig.setAttributes = d(),
+        checkpointOrderStylesConfig.insert = l().bind(null, "head"),
+        checkpointOrderStylesConfig.domAPI = r(),
+        checkpointOrderStylesConfig.insertStyleElement = f();
+        o()(checkpointOrderStyles, checkpointOrderStylesConfig);
+        checkpointOrderStyles && checkpointOrderStyles.locals && checkpointOrderStyles.locals;
+        var q, cpOrder_parentElement, cpOrder_localization, cpOrder_inputManager, cpOrder_element, cpOrder_labelElement, cpOrder_value, cpOrder_onInputChanged, cpOrder_updateLabel, cpOrder_findNextAvailable;
+        cpOrder_parentElement = new WeakMap,
+        cpOrder_localization = new WeakMap,
+        cpOrder_inputManager = new WeakMap,
+        cpOrder_element = new WeakMap,
+        cpOrder_labelElement = new WeakMap,
+        cpOrder_value = new WeakMap,
+        cpOrder_onInputChanged = new WeakMap,
         q = new WeakSet,
-        H = function() {
-            i.get(this, _, "f").textContent = i.get(this, O, "f").get("Checkpoint order") + ": " + (this.checkpointOrder + 1).toString()
+        cpOrder_updateLabel = function() {
+            privateMethods.get(this, cpOrder_labelElement, "f").textContent = privateMethods.get(this, cpOrder_localization, "f").get("Checkpoint order") + ": " + (this.checkpointOrder + 1).toString()
         }
         ,
-        K = function(t) {
+        cpOrder_findNextAvailable = function(t) {
             const e = t.getCheckpointOrders()
               , n = new Set;
             for (const t of e)
@@ -272,29 +272,29 @@
             return 65535
         }
         ;
-        const F = class {
+        const CheckpointOrderEditorUI = class {
             constructor(t, e, n, s) {
                 q.add(this),
-                D.set(this, void 0),
-                O.set(this, void 0),
-                I.set(this, void 0),
-                B.set(this, void 0),
-                _.set(this, void 0),
-                U.set(this, 0),
-                R.set(this, void 0),
-                i.set(this, D, t, "f"),
-                i.set(this, O, e, "f"),
-                i.set(this, I, s, "f"),
-                i.set(this, B, document.createElement("div"), "f"),
-                i.get(this, B, "f").className = "hidden",
-                t.appendChild(i.get(this, B, "f")),
-                i.get(this, I, "f").addChangeListener(i.set(this, R, (t => {
-                    t ? i.get(this, B, "f").classList.add("touch") : i.get(this, B, "f").classList.remove("touch")
+                cpOrder_parentElement.set(this, void 0),
+                cpOrder_localization.set(this, void 0),
+                cpOrder_inputManager.set(this, void 0),
+                cpOrder_element.set(this, void 0),
+                cpOrder_labelElement.set(this, void 0),
+                cpOrder_value.set(this, 0),
+                cpOrder_onInputChanged.set(this, void 0),
+                privateMethods.set(this, cpOrder_parentElement, t, "f"),
+                privateMethods.set(this, cpOrder_localization, e, "f"),
+                privateMethods.set(this, cpOrder_inputManager, s, "f"),
+                privateMethods.set(this, cpOrder_element, document.createElement("div"), "f"),
+                privateMethods.get(this, cpOrder_element, "f").className = "hidden",
+                t.appendChild(privateMethods.get(this, cpOrder_element, "f")),
+                privateMethods.get(this, cpOrder_inputManager, "f").addChangeListener(privateMethods.set(this, cpOrder_onInputChanged, (t => {
+                    t ? privateMethods.get(this, cpOrder_element, "f").classList.add("touch") : privateMethods.get(this, cpOrder_element, "f").classList.remove("touch")
                 }
                 ), "f"));
                 const o = document.createElement("div");
                 o.className = "buttons",
-                i.get(this, B, "f").appendChild(o);
+                privateMethods.get(this, cpOrder_element, "f").appendChild(o);
                 const a = document.createElement("button");
                 a.addEventListener("click", ( () => {
                     n.playUIClick(),
@@ -323,89 +323,89 @@
                 const l = document.createElement("img");
                 l.src = "images/arrow_down.svg",
                 h.appendChild(l),
-                i.set(this, _, document.createElement("p"), "f"),
-                i.get(this, B, "f").appendChild(i.get(this, _, "f")),
-                i.get(this, q, "m", H).call(this)
+                privateMethods.set(this, cpOrder_labelElement, document.createElement("p"), "f"),
+                privateMethods.get(this, cpOrder_element, "f").appendChild(privateMethods.get(this, cpOrder_labelElement, "f")),
+                privateMethods.get(this, q, "m", cpOrder_updateLabel).call(this)
             }
             dispose() {
-                i.get(this, D, "f").removeChild(i.get(this, B, "f")),
-                i.get(this, I, "f").removeChangeListener(i.get(this, R, "f"))
+                privateMethods.get(this, cpOrder_parentElement, "f").removeChild(privateMethods.get(this, cpOrder_element, "f")),
+                privateMethods.get(this, cpOrder_inputManager, "f").removeChangeListener(privateMethods.get(this, cpOrder_onInputChanged, "f"))
             }
             hide() {
-                i.get(this, B, "f").classList.add("hidden"),
-                i.get(this, B, "f").classList.remove("editor-checkpoint-order-ui")
+                privateMethods.get(this, cpOrder_element, "f").classList.add("hidden"),
+                privateMethods.get(this, cpOrder_element, "f").classList.remove("editor-checkpoint-order-ui")
             }
             show() {
-                i.get(this, B, "f").classList.remove("hidden"),
-                i.get(this, B, "f").classList.add("editor-checkpoint-order-ui")
+                privateMethods.get(this, cpOrder_element, "f").classList.remove("hidden"),
+                privateMethods.get(this, cpOrder_element, "f").classList.add("editor-checkpoint-order-ui")
             }
             reset() {
                 this.checkpointOrder = 0
             }
             get checkpointOrder() {
-                return i.get(this, U, "f")
+                return privateMethods.get(this, cpOrder_value, "f")
             }
             set checkpointOrder(t) {
-                i.set(this, U, Math.max(0, Math.min(65535, t)), "f"),
-                i.get(this, q, "m", H).call(this)
+                privateMethods.set(this, cpOrder_value, Math.max(0, Math.min(65535, t)), "f"),
+                privateMethods.get(this, q, "m", cpOrder_updateLabel).call(this)
             }
             setFromExistingCheckpoints(t) {
-                this.checkpointOrder = i.get(this, q, "m", K).call(this, t)
+                this.checkpointOrder = privateMethods.get(this, q, "m", cpOrder_findNextAvailable).call(this, t)
             }
         }
         ;
-        var Y = n(5298)
-          , V = {};
-        V.styleTagTransform = u(),
-        V.setAttributes = d(),
-        V.insert = l().bind(null, "head"),
-        V.domAPI = r(),
-        V.insertStyleElement = f();
-        o()(Y.A, V);
-        Y.A && Y.A.locals && Y.A.locals;
-        var Z, X, j, J, Q, $, tt, et, nt;
-        Z = new WeakMap,
-        X = new WeakMap,
-        j = new WeakMap,
-        J = new WeakMap,
-        Q = new WeakMap,
-        $ = new WeakMap,
-        tt = new WeakMap,
-        et = new WeakMap,
-        nt = new WeakMap;
-        const it = class {
+        var heightSelectorStyles = n(5298).A
+          , heightSelectorStylesConfig = {};
+        heightSelectorStylesConfig.styleTagTransform = u(),
+        heightSelectorStylesConfig.setAttributes = d(),
+        heightSelectorStylesConfig.insert = l().bind(null, "head"),
+        heightSelectorStylesConfig.domAPI = r(),
+        heightSelectorStylesConfig.insertStyleElement = f();
+        o()(heightSelectorStyles, heightSelectorStylesConfig);
+        heightSelectorStyles && heightSelectorStyles.locals && heightSelectorStyles.locals;
+        var height_parentElement, height_localization, height_inputManager, height_element, height_labelElement, height_onInputChanged, height_isUpHeld, height_isDownHeld, height_onPointerUp;
+        height_parentElement = new WeakMap,
+        height_localization = new WeakMap,
+        height_inputManager = new WeakMap,
+        height_element = new WeakMap,
+        height_labelElement = new WeakMap,
+        height_onInputChanged = new WeakMap,
+        height_isUpHeld = new WeakMap,
+        height_isDownHeld = new WeakMap,
+        height_onPointerUp = new WeakMap;
+        const HeightSelectorUI = class {
             constructor(t, e, n, s, o) {
-                Z.set(this, void 0),
-                X.set(this, void 0),
-                j.set(this, void 0),
-                J.set(this, void 0),
-                Q.set(this, void 0),
-                $.set(this, void 0),
-                tt.set(this, !1),
-                et.set(this, !1),
-                nt.set(this, void 0),
-                i.set(this, Z, t, "f"),
-                i.set(this, X, e, "f"),
-                i.set(this, j, n, "f"),
-                i.set(this, J, document.createElement("div"), "f"),
-                i.get(this, J, "f").className = "editor-height-selector-ui",
-                t.appendChild(i.get(this, J, "f")),
-                i.get(this, j, "f").addChangeListener(i.set(this, $, (t => {
-                    t ? i.get(this, J, "f").classList.add("touch") : i.get(this, J, "f").classList.remove("touch")
+                height_parentElement.set(this, void 0),
+                height_localization.set(this, void 0),
+                height_inputManager.set(this, void 0),
+                height_element.set(this, void 0),
+                height_labelElement.set(this, void 0),
+                height_onInputChanged.set(this, void 0),
+                height_isUpHeld.set(this, !1),
+                height_isDownHeld.set(this, !1),
+                height_onPointerUp.set(this, void 0),
+                privateMethods.set(this, height_parentElement, t, "f"),
+                privateMethods.set(this, height_localization, e, "f"),
+                privateMethods.set(this, height_inputManager, n, "f"),
+                privateMethods.set(this, height_element, document.createElement("div"), "f"),
+                privateMethods.get(this, height_element, "f").className = "editor-height-selector-ui",
+                t.appendChild(privateMethods.get(this, height_element, "f")),
+                privateMethods.get(this, height_inputManager, "f").addChangeListener(privateMethods.set(this, height_onInputChanged, (t => {
+                    t ? privateMethods.get(this, height_element, "f").classList.add("touch") : privateMethods.get(this, height_element, "f").classList.remove("touch")
                 }
                 ), "f")),
-                i.set(this, Q, document.createElement("p"), "f"),
-                i.get(this, J, "f").appendChild(i.get(this, Q, "f"));
+                privateMethods.set(this, height_labelElement, document.createElement("p"), "f"),
+                privateMethods.get(this, height_element, "f").appendChild(privateMethods.get(this, height_labelElement, "f"));
                 const a = document.createElement("div");
                 a.className = "buttons",
-                i.get(this, J, "f").appendChild(a);
+                privateMethods.get(this, height_element, "f").appendChild(a);
                 const r = document.createElement("button");
                 r.addEventListener("pointerdown", ( () => {
                     if (s(),
-                    !i.get(this, tt, "f")) {
-                        i.set(this, tt, !0, "f");
+                    !privateMethods.get(this, height_isUpHeld, "f")) {
+                        privateMethods.set(this, height_isUpHeld, !0, "f");
                         const t = () => {
-                            i.get(this, tt, "f") && (s(),
+                            privateMethods.get(this, height_isUpHeld, "f") && (s(),
                             setTimeout(t, 50))
                         }
                         ;
@@ -424,10 +424,10 @@
                 const l = document.createElement("button");
                 l.addEventListener("pointerdown", ( () => {
                     if (o(),
-                    !i.get(this, et, "f")) {
-                        i.set(this, et, !0, "f");
+                    !privateMethods.get(this, height_isDownHeld, "f")) {
+                        privateMethods.set(this, height_isDownHeld, !0, "f");
                         const t = () => {
-                            i.get(this, et, "f") && (o(),
+                            privateMethods.get(this, height_isDownHeld, "f") && (o(),
                             setTimeout(t, 50))
                         }
                         ;
@@ -443,20 +443,20 @@
                 const c = document.createElement("img");
                 c.src = "images/arrow_down.svg",
                 l.appendChild(c),
-                i.set(this, nt, ( () => {
-                    i.set(this, tt, !1, "f"),
-                    i.set(this, et, !1, "f")
+                privateMethods.set(this, height_onPointerUp, ( () => {
+                    privateMethods.set(this, height_isUpHeld, !1, "f"),
+                    privateMethods.set(this, height_isDownHeld, !1, "f")
                 }
                 ), "f"),
-                window.addEventListener("pointerup", i.get(this, nt, "f"))
+                window.addEventListener("pointerup", privateMethods.get(this, height_onPointerUp, "f"))
             }
             refresh(t) {
-                i.get(this, Q, "f").textContent = i.get(this, X, "f").get("Height") + ": " + t.toString()
+                privateMethods.get(this, height_labelElement, "f").textContent = privateMethods.get(this, height_localization, "f").get("Height") + ": " + t.toString()
             }
             dispose() {
-                i.get(this, Z, "f").removeChild(i.get(this, J, "f")),
-                i.get(this, j, "f").removeChangeListener(i.get(this, $, "f")),
-                window.removeEventListener("pointerup", i.get(this, nt, "f"))
+                privateMethods.get(this, height_parentElement, "f").removeChild(privateMethods.get(this, height_element, "f")),
+                privateMethods.get(this, height_inputManager, "f").removeChangeListener(privateMethods.get(this, height_onInputChanged, "f")),
+                window.removeEventListener("pointerup", privateMethods.get(this, height_onPointerUp, "f"))
             }
         }
         ;
@@ -478,30 +478,30 @@
         pt.insertStyleElement = f();
         o()(ft.A, pt);
         ft.A && ft.A.locals && ft.A.locals;
-        var ut, mt, vt, wt, bt, kt, Gt, xt;
-        ut = new WeakMap,
-        mt = new WeakMap,
-        vt = new WeakMap,
-        wt = new WeakMap,
-        bt = new WeakMap,
-        kt = new WeakMap,
-        Gt = new WeakMap,
-        xt = new WeakMap;
-        const yt = class {
+        var toolbar_parentElement, toolbar_inputManager, toolbar_element, toolbar_rotateIcon, toolbar_rotateLabel, toolbar_axisButton, toolbar_axisButtonPairs, toolbar_onInputChanged;
+        toolbar_parentElement = new WeakMap,
+        toolbar_inputManager = new WeakMap,
+        toolbar_element = new WeakMap,
+        toolbar_rotateIcon = new WeakMap,
+        toolbar_rotateLabel = new WeakMap,
+        toolbar_axisButton = new WeakMap,
+        toolbar_axisButtonPairs = new WeakMap,
+        toolbar_onInputChanged = new WeakMap;
+        const EditorSideToolbarUI = class {
             constructor(t, e, n, s, o, a, r) {
-                ut.set(this, void 0),
-                mt.set(this, void 0),
-                vt.set(this, void 0),
-                wt.set(this, void 0),
-                bt.set(this, void 0),
-                kt.set(this, void 0),
-                Gt.set(this, []),
-                xt.set(this, void 0),
-                i.set(this, ut, t, "f"),
-                i.set(this, mt, n, "f"),
-                i.set(this, vt, document.createElement("div"), "f"),
-                i.get(this, vt, "f").className = "editor-side-toolbar-ui",
-                i.get(this, ut, "f").appendChild(i.get(this, vt, "f"));
+                toolbar_parentElement.set(this, void 0),
+                toolbar_inputManager.set(this, void 0),
+                toolbar_element.set(this, void 0),
+                toolbar_rotateIcon.set(this, void 0),
+                toolbar_rotateLabel.set(this, void 0),
+                toolbar_axisButton.set(this, void 0),
+                toolbar_axisButtonPairs.set(this, []),
+                toolbar_onInputChanged.set(this, void 0),
+                privateMethods.set(this, toolbar_parentElement, t, "f"),
+                privateMethods.set(this, toolbar_inputManager, n, "f"),
+                privateMethods.set(this, toolbar_element, document.createElement("div"), "f"),
+                privateMethods.get(this, toolbar_element, "f").className = "editor-side-toolbar-ui",
+                privateMethods.get(this, toolbar_parentElement, "f").appendChild(privateMethods.get(this, toolbar_element, "f"));
                 let h = !1;
                 const l = document.createElement("button")
                   , c = document.createElement("img");
@@ -514,7 +514,7 @@
                     s(h)
                 }
                 )),
-                i.get(this, vt, "f").appendChild(l);
+                privateMethods.get(this, toolbar_element, "f").appendChild(l);
                 let d = !0;
                 const g = document.createElement("button")
                   , f = document.createElement("img");
@@ -527,22 +527,22 @@
                     o(d)
                 }
                 )),
-                i.get(this, vt, "f").appendChild(g);
+                privateMethods.get(this, toolbar_element, "f").appendChild(g);
                 const p = document.createElement("div");
                 p.className = "accordion",
-                i.get(this, vt, "f").appendChild(p),
-                i.set(this, kt, document.createElement("button"), "f"),
-                i.get(this, kt, "f").innerHTML = '<img src="images/rotation_axis_y_positive.svg">',
-                i.get(this, kt, "f").addEventListener("click", ( () => {
+                privateMethods.get(this, toolbar_element, "f").appendChild(p),
+                privateMethods.set(this, toolbar_axisButton, document.createElement("button"), "f"),
+                privateMethods.get(this, toolbar_axisButton, "f").innerHTML = '<img src="images/rotation_axis_y_positive.svg">',
+                privateMethods.get(this, toolbar_axisButton, "f").addEventListener("click", ( () => {
                     e.playUIClick(),
                     p.classList.toggle("open");
                     for (const t of p.children)
-                        t != i.get(this, kt, "f") && t instanceof HTMLButtonElement && (p.classList.contains("open") ? (t.inert = !1,
+                        t != privateMethods.get(this, toolbar_axisButton, "f") && t instanceof HTMLButtonElement && (p.classList.contains("open") ? (t.inert = !1,
                         t.tabIndex = 0) : (t.inert = !0,
                         t.tabIndex = -1))
                 }
                 )),
-                p.appendChild(i.get(this, kt, "f"));
+                p.appendChild(privateMethods.get(this, toolbar_axisButton, "f"));
                 for (const t of [TrackPartRotationAxis.YPositive, TrackPartRotationAxis.YNegative, TrackPartRotationAxis.XPositive, TrackPartRotationAxis.XNegative, TrackPartRotationAxis.ZPositive, TrackPartRotationAxis.ZNegative]) {
                     const n = document.createElement("button");
                     switch (n.inert = !0,
@@ -573,7 +573,7 @@
                     )),
                     t == TrackPartRotationAxis.YPositive && n.classList.add("selected"),
                     p.appendChild(n),
-                    i.get(this, Gt, "f").push([t, n])
+                    privateMethods.get(this, toolbar_axisButtonPairs, "f").push([t, n])
                 }
                 const u = document.createElement("button");
                 u.className = "rotate",
@@ -582,25 +582,25 @@
                     r()
                 }
                 )),
-                i.get(this, vt, "f").appendChild(u),
-                i.set(this, wt, document.createElement("div"), "f"),
-                i.get(this, wt, "f").innerHTML = '<img src="images/rotate.svg">',
-                u.appendChild(i.get(this, wt, "f")),
-                i.set(this, bt, document.createElement("span"), "f"),
-                i.get(this, bt, "f").textContent = "0°",
-                u.appendChild(i.get(this, bt, "f")),
-                n.addChangeListener(i.set(this, xt, (t => {
-                    t ? i.get(this, vt, "f").classList.add("touch") : i.get(this, vt, "f").classList.remove("touch")
+                privateMethods.get(this, toolbar_element, "f").appendChild(u),
+                privateMethods.set(this, toolbar_rotateIcon, document.createElement("div"), "f"),
+                privateMethods.get(this, toolbar_rotateIcon, "f").innerHTML = '<img src="images/rotate.svg">',
+                u.appendChild(privateMethods.get(this, toolbar_rotateIcon, "f")),
+                privateMethods.set(this, toolbar_rotateLabel, document.createElement("span"), "f"),
+                privateMethods.get(this, toolbar_rotateLabel, "f").textContent = "0°",
+                u.appendChild(privateMethods.get(this, toolbar_rotateLabel, "f")),
+                n.addChangeListener(privateMethods.set(this, toolbar_onInputChanged, (t => {
+                    t ? privateMethods.get(this, toolbar_element, "f").classList.add("touch") : privateMethods.get(this, toolbar_element, "f").classList.remove("touch")
                 }
                 ), "f"))
             }
             dispose() {
-                i.get(this, ut, "f").removeChild(i.get(this, vt, "f")),
-                i.get(this, mt, "f").removeChangeListener(i.get(this, xt, "f"))
+                privateMethods.get(this, toolbar_parentElement, "f").removeChild(privateMethods.get(this, toolbar_element, "f")),
+                privateMethods.get(this, toolbar_inputManager, "f").removeChangeListener(privateMethods.get(this, toolbar_onInputChanged, "f"))
             }
             set rotation(t) {
-                i.get(this, wt, "f").style.transform = `rotate(${(90 * -t).toString()}deg)`,
-                i.get(this, bt, "f").textContent = (90 * t).toString() + "°"
+                privateMethods.get(this, toolbar_rotateIcon, "f").style.transform = `rotate(${(90 * -t).toString()}deg)`,
+                privateMethods.get(this, toolbar_rotateLabel, "f").textContent = (90 * t).toString() + "°"
             }
             set rotationAxis(t) {
                 let e;
@@ -623,18 +623,18 @@
                 case TrackPartRotationAxis.ZNegative:
                     e = "images/rotation_axis_z_negative.svg"
                 }
-                i.get(this, kt, "f").innerHTML = "";
+                privateMethods.get(this, toolbar_axisButton, "f").innerHTML = "";
                 const n = document.createElement("img");
                 n.src = e,
-                i.get(this, kt, "f").appendChild(n);
-                for (const [e,n] of i.get(this, Gt, "f"))
+                privateMethods.get(this, toolbar_axisButton, "f").appendChild(n);
+                for (const [e,n] of privateMethods.get(this, toolbar_axisButtonPairs, "f"))
                     e == t ? n.classList.add("selected") : n.classList.remove("selected")
             }
             hide() {
-                i.get(this, vt, "f").classList.add("hidden")
+                privateMethods.get(this, toolbar_element, "f").classList.add("hidden")
             }
             show() {
-                i.get(this, vt, "f").classList.remove("hidden")
+                privateMethods.get(this, toolbar_element, "f").classList.remove("hidden")
             }
         }
         ;
@@ -659,16 +659,16 @@
                 const l = document.getElementById("ui");
                 if (null == l)
                     throw new Error("UI element not found");
-                i.set(this, Et, l, "f"),
-                i.set(this, Ct, document.createElement("div"), "f"),
-                i.get(this, Ct, "f").className = "editor-help-ui",
-                i.get(this, Et, "f").appendChild(i.get(this, Ct, "f"));
+                privateMethods.set(this, Et, l, "f"),
+                privateMethods.set(this, Ct, document.createElement("div"), "f"),
+                privateMethods.get(this, Ct, "f").className = "editor-help-ui",
+                privateMethods.get(this, Et, "f").appendChild(privateMethods.get(this, Ct, "f"));
                 const c = document.createElement("div");
                 c.className = "background",
-                i.get(this, Ct, "f").appendChild(c);
+                privateMethods.get(this, Ct, "f").appendChild(c);
                 const d = document.createElement("section");
                 d.className = "container",
-                i.get(this, Ct, "f").appendChild(d);
+                privateMethods.get(this, Ct, "f").appendChild(d);
                 const g = document.createElement("h1");
                 g.textContent = e.get("How to use the editor"),
                 d.appendChild(g);
@@ -792,15 +792,15 @@
                 }
                 )),
                 O.appendChild(I),
-                window.addEventListener("keydown", i.set(this, Wt, (t => {
+                window.addEventListener("keydown", privateMethods.set(this, Wt, (t => {
                     "Escape" == t.code && (h(),
                     t.preventDefault())
                 }
                 ), "f"))
             }
             dispose() {
-                i.get(this, Et, "f").removeChild(i.get(this, Ct, "f")),
-                window.removeEventListener("keydown", i.get(this, Wt, "f"))
+                privateMethods.get(this, Et, "f").removeChild(privateMethods.get(this, Ct, "f")),
+                window.removeEventListener("keydown", privateMethods.get(this, Wt, "f"))
             }
         }
         ;
@@ -827,16 +827,16 @@
                 const l = document.getElementById("ui");
                 if (null == l)
                     throw new Error("UI element not found");
-                i.set(this, Nt, l, "f"),
-                i.set(this, St, document.createElement("div"), "f"),
-                i.get(this, St, "f").className = "editor-track-settings-ui",
-                i.get(this, Nt, "f").appendChild(i.get(this, St, "f"));
+                privateMethods.set(this, Nt, l, "f"),
+                privateMethods.set(this, St, document.createElement("div"), "f"),
+                privateMethods.get(this, St, "f").className = "editor-track-settings-ui",
+                privateMethods.get(this, Nt, "f").appendChild(privateMethods.get(this, St, "f"));
                 const c = document.createElement("div");
                 c.className = "background",
-                i.get(this, St, "f").appendChild(c);
+                privateMethods.get(this, St, "f").appendChild(c);
                 const d = document.createElement("section");
                 d.className = "container",
-                i.get(this, St, "f").appendChild(d);
+                privateMethods.get(this, St, "f").appendChild(d);
                 const g = document.createElement("h1");
                 g.textContent = e.get("Track settings"),
                 d.appendChild(g);
@@ -856,8 +856,8 @@
                 m.spellcheck = !1,
                 m.value = n ?? "",
                 m.addEventListener("input", ( () => {
-                    0 == m.value.trim().length ? (null != i.get(this, Tt, "f") && (i.get(this, Tt, "f").disabled = !0),
-                    p.classList.add("error")) : (null != i.get(this, Tt, "f") && (i.get(this, Tt, "f").disabled = !1),
+                    0 == m.value.trim().length ? (null != privateMethods.get(this, Tt, "f") && (privateMethods.get(this, Tt, "f").disabled = !0),
+                    p.classList.add("error")) : (null != privateMethods.get(this, Tt, "f") && (privateMethods.get(this, Tt, "f").disabled = !1),
                     p.classList.remove("error"))
                 }
                 )),
@@ -986,19 +986,19 @@
                 }
                 )),
                 P.appendChild(z),
-                null != h && (i.set(this, Tt, document.createElement("button"), "f"),
-                i.get(this, Tt, "f").disabled = null == n || 0 == n.length,
-                i.get(this, Tt, "f").className = "button",
-                i.get(this, Tt, "f").innerHTML = '<img class="button-icon" src="images/save.svg"> ',
-                i.get(this, Tt, "f").append(document.createTextNode(e.get("Save"))),
-                i.get(this, Tt, "f").addEventListener("click", ( () => {
+                null != h && (privateMethods.set(this, Tt, document.createElement("button"), "f"),
+                privateMethods.get(this, Tt, "f").disabled = null == n || 0 == n.length,
+                privateMethods.get(this, Tt, "f").className = "button",
+                privateMethods.get(this, Tt, "f").innerHTML = '<img class="button-icon" src="images/save.svg"> ',
+                privateMethods.get(this, Tt, "f").append(document.createTextNode(e.get("Save"))),
+                privateMethods.get(this, Tt, "f").addEventListener("click", ( () => {
                     t.playUIClick();
                     const e = m.value.trim();
                     0 == e.length || h(e, s)
                 }
                 )),
-                P.appendChild(i.get(this, Tt, "f"))),
-                window.addEventListener("keydown", i.set(this, qt, (t => {
+                P.appendChild(privateMethods.get(this, Tt, "f"))),
+                window.addEventListener("keydown", privateMethods.set(this, qt, (t => {
                     if ("Escape" == t.code) {
                         const e = m.value.trim();
                         0 == e.length ? r(null, s) : r(e, s),
@@ -1008,8 +1008,8 @@
                 ), "f"))
             }
             dispose() {
-                i.get(this, Nt, "f").removeChild(i.get(this, St, "f")),
-                window.removeEventListener("keydown", i.get(this, qt, "f"))
+                privateMethods.get(this, Nt, "f").removeChild(privateMethods.get(this, St, "f")),
+                window.removeEventListener("keydown", privateMethods.get(this, qt, "f"))
             }
         }
         ;
@@ -1170,17 +1170,17 @@
         Tn = new WeakMap,
         Ft = new WeakSet,
         qn = function() {
-            if (i.get(this, Mn, "f") || i.get(this, En, "f")) {
-                const t = i.get(this, Ft, "m", ai).call(this);
+            if (privateMethods.get(this, Mn, "f") || privateMethods.get(this, En, "f")) {
+                const t = privateMethods.get(this, Ft, "m", ai).call(this);
                 if (null != t) {
                     let e;
-                    e = null != i.get(this, Cn, "f") ? i.get(this, Cn, "f") : {
+                    e = null != privateMethods.get(this, Cn, "f") ? privateMethods.get(this, Cn, "f") : {
                         x: t.x,
                         y: t.y,
                         z: t.z
                     };
                     let n = 0;
-                    n = i.get(this, gn, "f") ? -2 : 0;
+                    n = privateMethods.get(this, gn, "f") ? -2 : 0;
                     const s = Math.min(e.x + n, t.x + n)
                       , o = Math.min(e.y, t.y)
                       , a = Math.min(e.z + n, t.z + n)
@@ -1188,23 +1188,23 @@
                       , h = Math.max(e.y, t.y)
                       , l = Math.max(e.z + n, t.z + n);
                     let c;
-                    c = i.get(this, gn, "f") ? 4 : 1;
+                    c = privateMethods.get(this, gn, "f") ? 4 : 1;
                     const d = (r - s + c) * Track.A.partSize
                       , g = (h - o + 1) * Track.A.partSize
                       , f = (l - a + c) * Track.A.partSize;
                     let p, u;
-                    if (i.get(this, Mn, "f"))
+                    if (privateMethods.get(this, Mn, "f"))
                         p = 65280,
                         u = 21760;
                     else {
-                        if (!i.get(this, En, "f"))
+                        if (!privateMethods.get(this, En, "f"))
                             throw new Error("Invalid copy/cut state");
                         p = 16776960,
                         u = 5592320
                     }
-                    if (null == i.get(this, Pn, "f")) {
+                    if (null == privateMethods.get(this, Pn, "f")) {
                         const t = (new THREE.BufferGeometry).setFromPoints([new THREE.Vector3(0,0,0), new THREE.Vector3(0,0,0), new THREE.Vector3(0,0,1), new THREE.Vector3(0,0,1), new THREE.Vector3(0,0,1), new THREE.Vector3(1,0,1), new THREE.Vector3(1,0,1), new THREE.Vector3(1,0,1), new THREE.Vector3(1,0,0), new THREE.Vector3(1,0,0), new THREE.Vector3(1,0,0), new THREE.Vector3(0,0,0), new THREE.Vector3(0,1,0), new THREE.Vector3(0,1,0), new THREE.Vector3(0,1,1), new THREE.Vector3(0,1,1), new THREE.Vector3(0,1,1), new THREE.Vector3(1,1,1), new THREE.Vector3(1,1,1), new THREE.Vector3(1,1,1), new THREE.Vector3(1,1,0), new THREE.Vector3(1,1,0), new THREE.Vector3(1,1,0), new THREE.Vector3(0,1,0), new THREE.Vector3(0,0,0), new THREE.Vector3(0,0,0), new THREE.Vector3(0,1,0), new THREE.Vector3(0,0,1), new THREE.Vector3(0,0,1), new THREE.Vector3(0,1,1), new THREE.Vector3(1,0,1), new THREE.Vector3(1,0,1), new THREE.Vector3(1,1,1), new THREE.Vector3(1,0,0), new THREE.Vector3(1,0,0), new THREE.Vector3(1,1,0)].map((t => t.addScalar(-.5))));
-                        i.set(this, Pn, {
+                        privateMethods.set(this, Pn, {
                             fill: new THREE.Mesh(new THREE.BoxGeometry(1,1,1),new THREE.MeshBasicMaterial({
                                 color: p,
                                 transparent: !0,
@@ -1220,52 +1220,52 @@
                                 polygonOffsetFactor: -.3
                             }))
                         }, "f"),
-                        i.get(this, Xt, "f").scene.add(i.get(this, Pn, "f").fill),
-                        i.get(this, Xt, "f").scene.add(i.get(this, Pn, "f").outline)
+                        privateMethods.get(this, Xt, "f").scene.add(privateMethods.get(this, Pn, "f").fill),
+                        privateMethods.get(this, Xt, "f").scene.add(privateMethods.get(this, Pn, "f").outline)
                     } else
-                        i.get(this, Pn, "f").fill.material.color.setHex(p),
-                        i.get(this, Pn, "f").outline.material.color.setHex(u);
-                    i.get(this, Pn, "f").fill.position.set((s + r + c) / 2 * Track.A.partSize, (o + h + 1) / 2 * Track.A.partSize, (a + l + c) / 2 * Track.A.partSize),
-                    i.get(this, Pn, "f").fill.scale.set(d, g, f),
-                    i.get(this, Pn, "f").fill.visible = !0,
-                    i.get(this, Pn, "f").outline.position.copy(i.get(this, Pn, "f").fill.position),
-                    i.get(this, Pn, "f").outline.scale.copy(i.get(this, Pn, "f").fill.scale),
-                    i.get(this, Pn, "f").outline.visible = !0
+                        privateMethods.get(this, Pn, "f").fill.material.color.setHex(p),
+                        privateMethods.get(this, Pn, "f").outline.material.color.setHex(u);
+                    privateMethods.get(this, Pn, "f").fill.position.set((s + r + c) / 2 * Track.A.partSize, (o + h + 1) / 2 * Track.A.partSize, (a + l + c) / 2 * Track.A.partSize),
+                    privateMethods.get(this, Pn, "f").fill.scale.set(d, g, f),
+                    privateMethods.get(this, Pn, "f").fill.visible = !0,
+                    privateMethods.get(this, Pn, "f").outline.position.copy(privateMethods.get(this, Pn, "f").fill.position),
+                    privateMethods.get(this, Pn, "f").outline.scale.copy(privateMethods.get(this, Pn, "f").fill.scale),
+                    privateMethods.get(this, Pn, "f").outline.visible = !0
                 } else
-                    null != i.get(this, Pn, "f") && (i.get(this, Pn, "f").fill.visible = !1,
-                    i.get(this, Pn, "f").outline.visible = !1)
+                    null != privateMethods.get(this, Pn, "f") && (privateMethods.get(this, Pn, "f").fill.visible = !1,
+                    privateMethods.get(this, Pn, "f").outline.visible = !1)
             } else
-                null != i.get(this, Pn, "f") && (i.get(this, Xt, "f").scene.remove(i.get(this, Pn, "f").fill),
-                i.get(this, Pn, "f").fill.geometry.dispose(),
-                i.get(this, Pn, "f").fill.material.dispose(),
-                i.get(this, Xt, "f").scene.remove(i.get(this, Pn, "f").outline),
-                i.get(this, Pn, "f").outline.geometry.dispose(),
-                i.get(this, Pn, "f").outline.material.dispose(),
-                i.set(this, Pn, null, "f"))
+                null != privateMethods.get(this, Pn, "f") && (privateMethods.get(this, Xt, "f").scene.remove(privateMethods.get(this, Pn, "f").fill),
+                privateMethods.get(this, Pn, "f").fill.geometry.dispose(),
+                privateMethods.get(this, Pn, "f").fill.material.dispose(),
+                privateMethods.get(this, Xt, "f").scene.remove(privateMethods.get(this, Pn, "f").outline),
+                privateMethods.get(this, Pn, "f").outline.geometry.dispose(),
+                privateMethods.get(this, Pn, "f").outline.material.dispose(),
+                privateMethods.set(this, Pn, null, "f"))
         }
         ,
         Dn = function(t, e, n, s, o, a, r) {
             t > s && ([t,s] = [s, t]),
             e > o && ([e,o] = [o, e]),
             n > a && ([n,a] = [a, n]),
-            i.get(this, gn, "f") && (t -= 2,
+            privateMethods.get(this, gn, "f") && (t -= 2,
             n -= 2,
             s += 1,
             a += 1);
-            const h = i.get(this, Jt, "f").getPartsWithin(t, e, n, s, o, a);
+            const h = privateMethods.get(this, Jt, "f").getPartsWithin(t, e, n, s, o, a);
             if (0 == h.length)
                 return;
             if (r) {
-                const r = i.get(this, Jt, "f").deletePartsWithin(t, e, n, s, o, a);
-                r.length > 0 && (i.get(this, bn, "f").push({
+                const r = privateMethods.get(this, Jt, "f").deletePartsWithin(t, e, n, s, o, a);
+                r.length > 0 && (privateMethods.get(this, bn, "f").push({
                     removed: r,
                     added: []
                 }),
-                i.get(this, kn, "f").length = 0,
-                i.get(this, fe, "f").disabled = 0 == i.get(this, bn, "f").length,
-                i.get(this, pe, "f").disabled = 0 == i.get(this, kn, "f").length),
-                i.get(this, Ft, "m", oi).call(this),
-                i.get(this, Ft, "m", si).call(this)
+                privateMethods.get(this, kn, "f").length = 0,
+                privateMethods.get(this, fe, "f").disabled = 0 == privateMethods.get(this, bn, "f").length,
+                privateMethods.get(this, pe, "f").disabled = 0 == privateMethods.get(this, kn, "f").length),
+                privateMethods.get(this, Ft, "m", oi).call(this),
+                privateMethods.get(this, Ft, "m", si).call(this)
             }
             const l = h.reduce(( (t, e) => Math.min(t, e.x)), 1 / 0)
               , c = h.reduce(( (t, e) => Math.min(t, e.y)), 1 / 0)
@@ -1290,43 +1290,43 @@
             })))
               , b = [];
             for (const t of w) {
-                i.get(this, Qt, "f").getPart(t.id).configuration.tiles.rotated(t.rotation, t.rotationAxis).forEach(( (e, n, i) => {
+                privateMethods.get(this, Qt, "f").getPart(t.id).configuration.tiles.rotated(t.rotation, t.rotationAxis).forEach(( (e, n, i) => {
                     b.push([e + t.offset.x, n + t.offset.y, i + t.offset.z])
                 }
                 ))
             }
             const k = new dt.A(b);
-            i.set(this, Wn, {
+            privateMethods.set(this, Wn, {
                 parts: w,
                 tiles: k
             }, "f"),
-            i.get(this, ge, "f").disabled = !1,
-            i.get(this, Ft, "m", On).call(this)
+            privateMethods.get(this, ge, "f").disabled = !1,
+            privateMethods.get(this, Ft, "m", On).call(this)
         }
         ,
         On = function() {
-            null != i.get(this, Wn, "f") && (i.get(this, Ft, "m", ti).call(this, null),
-            i.set(this, cn, 0, "f"),
-            i.get(this, xe, "f").rotation = i.get(this, cn, "f"),
-            i.set(this, dn, TrackPartRotationAxis.YPositive, "f"),
-            i.get(this, xe, "f").rotationAxis = i.get(this, dn, "f"),
-            i.set(this, Ln, i.get(this, Wn, "f"), "f"),
-            i.get(this, Ft, "m", Qn).call(this),
-            i.get(this, Ft, "m", ii).call(this))
+            null != privateMethods.get(this, Wn, "f") && (privateMethods.get(this, Ft, "m", ti).call(this, null),
+            privateMethods.set(this, cn, 0, "f"),
+            privateMethods.get(this, xe, "f").rotation = privateMethods.get(this, cn, "f"),
+            privateMethods.set(this, dn, TrackPartRotationAxis.YPositive, "f"),
+            privateMethods.get(this, xe, "f").rotationAxis = privateMethods.get(this, dn, "f"),
+            privateMethods.set(this, Ln, privateMethods.get(this, Wn, "f"), "f"),
+            privateMethods.get(this, Ft, "m", Qn).call(this),
+            privateMethods.get(this, Ft, "m", ii).call(this))
         }
         ,
         In = function() {
-            if (null == i.get(this, Ln, "f") || null == i.get(this, hn, "f"))
+            if (null == privateMethods.get(this, Ln, "f") || null == privateMethods.get(this, hn, "f"))
                 return;
-            const t = i.get(this, hn, "f")
+            const t = privateMethods.get(this, hn, "f")
               , e = []
               , n = [];
-            if (!i.get(this, fn, "f")) {
-                i.get(this, Ln, "f").tiles.rotated(i.get(this, cn, "f"), i.get(this, dn, "f")).forEach(( (n, s, o) => {
+            if (!privateMethods.get(this, fn, "f")) {
+                privateMethods.get(this, Ln, "f").tiles.rotated(privateMethods.get(this, cn, "f"), privateMethods.get(this, dn, "f")).forEach(( (n, s, o) => {
                     const a = t.x + n
                       , r = t.y + s
                       , h = t.z + o
-                      , l = i.get(this, Jt, "f").deletePartsAt(a, r, h);
+                      , l = privateMethods.get(this, Jt, "f").deletePartsAt(a, r, h);
                     for (const t of l)
                         e.push({
                             id: t.id,
@@ -1342,16 +1342,16 @@
                 }
                 ))
             }
-            for (const s of i.get(this, Ln, "f").parts) {
+            for (const s of privateMethods.get(this, Ln, "f").parts) {
                 let o = null;
-                null != i.get(this, Qt, "f").getPart(s.id).configuration.startOffset && (o = i.get(this, Jt, "f").getNextStartOrder());
-                const {rotation: a, rotationAxis: r} = TrackPartTransform.combineTwoPartOrientations(s.rotation, s.rotationAxis, i.get(this, cn, "f"), i.get(this, dn, "f"))
-                  , h = TrackPartTransform.rotatePartOffset(s.offset.x, s.offset.y, s.offset.z, i.get(this, cn, "f"), i.get(this, dn, "f"))
+                null != privateMethods.get(this, Qt, "f").getPart(s.id).configuration.startOffset && (o = privateMethods.get(this, Jt, "f").getNextStartOrder());
+                const {rotation: a, rotationAxis: r} = TrackPartTransform.combineTwoPartOrientations(s.rotation, s.rotationAxis, privateMethods.get(this, cn, "f"), privateMethods.get(this, dn, "f"))
+                  , h = TrackPartTransform.rotatePartOffset(s.offset.x, s.offset.y, s.offset.z, privateMethods.get(this, cn, "f"), privateMethods.get(this, dn, "f"))
                   , l = t.x + h[0]
                   , c = t.y + h[1]
                   , d = t.z + h[2];
-                if (i.get(this, fn, "f")) {
-                    const t = i.get(this, Jt, "f").deleteSpecificPart(s.id, l, c, d, a, r);
+                if (privateMethods.get(this, fn, "f")) {
+                    const t = privateMethods.get(this, Jt, "f").deleteSpecificPart(s.id, l, c, d, a, r);
                     null != t && e.push({
                         id: t.id,
                         x: t.x,
@@ -1364,7 +1364,7 @@
                         startOrder: t.startOrder
                     })
                 }
-                i.get(this, Jt, "f").setPart(l, c, d, s.id, a, r, s.color, s.checkpointOrder, o),
+                privateMethods.get(this, Jt, "f").setPart(l, c, d, s.id, a, r, s.color, s.checkpointOrder, o),
                 n.push({
                     id: s.id,
                     x: l,
@@ -1377,49 +1377,49 @@
                     startOrder: o
                 })
             }
-            i.get(this, Ft, "m", oi).call(this),
-            i.get(this, Ft, "m", si).call(this),
-            (e.length > 0 || n.length > 0) && (i.get(this, bn, "f").push({
+            privateMethods.get(this, Ft, "m", oi).call(this),
+            privateMethods.get(this, Ft, "m", si).call(this),
+            (e.length > 0 || n.length > 0) && (privateMethods.get(this, bn, "f").push({
                 removed: e,
                 added: n
             }),
-            i.get(this, kn, "f").length = 0,
-            i.get(this, fe, "f").disabled = 0 == i.get(this, bn, "f").length,
-            i.get(this, pe, "f").disabled = 0 == i.get(this, kn, "f").length)
+            privateMethods.get(this, kn, "f").length = 0,
+            privateMethods.get(this, fe, "f").disabled = 0 == privateMethods.get(this, bn, "f").length,
+            privateMethods.get(this, pe, "f").disabled = 0 == privateMethods.get(this, kn, "f").length)
         }
         ,
         Bn = function(t) {
-            i.get(this, Ft, "m", _n).call(this, t.name),
-            i.get(this, Ft, "m", Un).call(this, t.author),
-            i.set(this, wn, t.lastModified, "f")
+            privateMethods.get(this, Ft, "m", _n).call(this, t.name),
+            privateMethods.get(this, Ft, "m", Un).call(this, t.author),
+            privateMethods.set(this, wn, t.lastModified, "f")
         }
         ,
         _n = function(t) {
-            i.get(this, mn, "f") != t && (i.set(this, mn, t, "f"),
-            i.set(this, wn, new Date, "f"),
-            i.get(this, Me, "f").innerHTML = '<img class="button-icon" src="images/settings.svg"> ',
-            i.get(this, Me, "f").append(document.createTextNode(i.get(this, mn, "f") ?? i.get(this, Zt, "f").get("Unnamed Track"))))
+            privateMethods.get(this, mn, "f") != t && (privateMethods.set(this, mn, t, "f"),
+            privateMethods.set(this, wn, new Date, "f"),
+            privateMethods.get(this, Me, "f").innerHTML = '<img class="button-icon" src="images/settings.svg"> ',
+            privateMethods.get(this, Me, "f").append(document.createTextNode(privateMethods.get(this, mn, "f") ?? privateMethods.get(this, Zt, "f").get("Unnamed Track"))))
         }
         ,
         Un = function(t) {
-            i.get(this, vn, "f") != t && (i.set(this, vn, t, "f"),
-            i.set(this, wn, new Date, "f"))
+            privateMethods.get(this, vn, "f") != t && (privateMethods.set(this, vn, t, "f"),
+            privateMethods.set(this, wn, new Date, "f"))
         }
         ,
         Rn = function(t) {
             const e = () => {
-                i.get(this, jt, "f").trigger(( () => {
-                    i.set(this, Ve, !0, "f"),
-                    i.get(this, Ft, "m", _n).call(this, null),
+                privateMethods.get(this, jt, "f").trigger(( () => {
+                    privateMethods.set(this, Ve, !0, "f"),
+                    privateMethods.get(this, Ft, "m", _n).call(this, null),
                     t(),
-                    i.get(this, he, "f").inert = !1
+                    privateMethods.get(this, he, "f").inert = !1
                 }
                 ))
             }
             ;
-            i.get(this, Ve, "f") ? e() : (i.get(this, he, "f").inert = !0,
-            i.get(this, ie, "f").showConfirm(i.get(this, Zt, "f").get("Are you sure you want to exit the editor?") + "\n\n" + i.get(this, Zt, "f").get("All unsaved data will be lost!"), i.get(this, Zt, "f").get("Cancel"), i.get(this, Zt, "f").get("Confirm"), ( () => {
-                i.get(this, he, "f").inert = !1
+            privateMethods.get(this, Ve, "f") ? e() : (privateMethods.get(this, he, "f").inert = !0,
+            privateMethods.get(this, ie, "f").showConfirm(privateMethods.get(this, Zt, "f").get("Are you sure you want to exit the editor?") + "\n\n" + privateMethods.get(this, Zt, "f").get("All unsaved data will be lost!"), privateMethods.get(this, Zt, "f").get("Cancel"), privateMethods.get(this, Zt, "f").get("Confirm"), ( () => {
+                privateMethods.get(this, he, "f").inert = !1
             }
             ), ( () => {
                 e()
@@ -1428,21 +1428,21 @@
         }
         ,
         Hn = function() {
-            if (null != i.get(this, Jt, "f").getStartTransform()) {
-                if (null == i.get(this, ae, "f"))
+            if (null != privateMethods.get(this, Jt, "f").getStartTransform()) {
+                if (null == privateMethods.get(this, ae, "f"))
                     throw new Error("Test callback is null");
-                i.get(this, ae, "f").call(this)
+                privateMethods.get(this, ae, "f").call(this)
             } else
-                i.get(this, Ft, "m", Vn).call(this, i.get(this, Zt, "f").get("Starting point is missing!"), !1)
+                privateMethods.get(this, Ft, "m", Vn).call(this, privateMethods.get(this, Zt, "f").get("Starting point is missing!"), !1)
         }
         ,
         Kn = function() {
-            if (null != i.get(this, hn, "f") && null != i.get(this, yn, "f")) {
-                const t = i.get(this, xn, "f")[i.get(this, yn, "f")]
-                  , e = i.get(this, Ft, "m", ri).call(this, i.get(this, hn, "f"), t.tiles);
+            if (null != privateMethods.get(this, hn, "f") && null != privateMethods.get(this, yn, "f")) {
+                const t = privateMethods.get(this, xn, "f")[privateMethods.get(this, yn, "f")]
+                  , e = privateMethods.get(this, Ft, "m", ri).call(this, privateMethods.get(this, hn, "f"), t.tiles);
                 if (e.length > 0) {
                     let t;
-                    t = i.get(this, gn, "f") ? new THREE.Vector3(i.get(this, hn, "f").x + 2,i.get(this, hn, "f").y,i.get(this, hn, "f").z + 2) : new THREE.Vector3(i.get(this, hn, "f").x,i.get(this, hn, "f").y,Math.floor(i.get(this, hn, "f").z));
+                    t = privateMethods.get(this, gn, "f") ? new THREE.Vector3(privateMethods.get(this, hn, "f").x + 2,privateMethods.get(this, hn, "f").y,privateMethods.get(this, hn, "f").z + 2) : new THREE.Vector3(privateMethods.get(this, hn, "f").x,privateMethods.get(this, hn, "f").y,Math.floor(privateMethods.get(this, hn, "f").z));
                     let n = e[0]
                       , s = t.distanceToSquared(new THREE.Vector3(n.x,n.y,n.z));
                     for (let i = 1; i < e.length; i++) {
@@ -1452,61 +1452,61 @@
                         s = a)
                     }
                     const o = n.parts[n.parts.length - 1]
-                      , a = i.get(this, xn, "f").findIndex((t => t.id == o.id));
+                      , a = privateMethods.get(this, xn, "f").findIndex((t => t.id == o.id));
                     if (a >= 0) {
-                        const t = i.get(this, xn, "f")[a];
-                        i.set(this, cn, o.rotation, "f"),
-                        i.get(this, xe, "f").rotation = i.get(this, cn, "f"),
-                        i.set(this, dn, o.rotationAxis, "f"),
-                        i.get(this, xe, "f").rotationAxis = i.get(this, dn, "f"),
-                        i.set(this, An, o.color, "f"),
-                        i.get(this, Ft, "m", $n).call(this, t.category),
-                        i.get(this, Ft, "m", ti).call(this, a)
+                        const t = privateMethods.get(this, xn, "f")[a];
+                        privateMethods.set(this, cn, o.rotation, "f"),
+                        privateMethods.get(this, xe, "f").rotation = privateMethods.get(this, cn, "f"),
+                        privateMethods.set(this, dn, o.rotationAxis, "f"),
+                        privateMethods.get(this, xe, "f").rotationAxis = privateMethods.get(this, dn, "f"),
+                        privateMethods.set(this, An, o.color, "f"),
+                        privateMethods.get(this, Ft, "m", $n).call(this, t.category),
+                        privateMethods.get(this, Ft, "m", ti).call(this, a)
                     }
                 }
             }
         }
         ,
         Fn = function() {
-            const t = i.get(this, bn, "f").pop();
+            const t = privateMethods.get(this, bn, "f").pop();
             if (null != t) {
                 for (const e of t.added)
-                    i.get(this, Jt, "f").deleteSpecificPart(e.id, e.x, e.y, e.z, e.rotation, e.rotationAxis);
+                    privateMethods.get(this, Jt, "f").deleteSpecificPart(e.id, e.x, e.y, e.z, e.rotation, e.rotationAxis);
                 for (const e of t.removed)
-                    i.get(this, Jt, "f").setPart(e.x, e.y, e.z, e.id, e.rotation, e.rotationAxis, e.color, e.checkpointOrder, e.startOrder);
-                i.get(this, Ft, "m", si).call(this),
-                i.get(this, kn, "f").push(t)
+                    privateMethods.get(this, Jt, "f").setPart(e.x, e.y, e.z, e.id, e.rotation, e.rotationAxis, e.color, e.checkpointOrder, e.startOrder);
+                privateMethods.get(this, Ft, "m", si).call(this),
+                privateMethods.get(this, kn, "f").push(t)
             }
-            i.get(this, fe, "f").disabled = 0 == i.get(this, bn, "f").length,
-            i.get(this, pe, "f").disabled = 0 == i.get(this, kn, "f").length
+            privateMethods.get(this, fe, "f").disabled = 0 == privateMethods.get(this, bn, "f").length,
+            privateMethods.get(this, pe, "f").disabled = 0 == privateMethods.get(this, kn, "f").length
         }
         ,
         Yn = function() {
-            const t = i.get(this, kn, "f").pop();
+            const t = privateMethods.get(this, kn, "f").pop();
             if (null != t) {
                 for (const e of t.added)
-                    i.get(this, Jt, "f").setPart(e.x, e.y, e.z, e.id, e.rotation, e.rotationAxis, e.color, e.checkpointOrder, e.startOrder);
+                    privateMethods.get(this, Jt, "f").setPart(e.x, e.y, e.z, e.id, e.rotation, e.rotationAxis, e.color, e.checkpointOrder, e.startOrder);
                 for (const e of t.removed)
-                    i.get(this, Jt, "f").deleteSpecificPart(e.id, e.x, e.y, e.z, e.rotation, e.rotationAxis);
-                i.get(this, Ft, "m", si).call(this),
-                i.get(this, bn, "f").push(t)
+                    privateMethods.get(this, Jt, "f").deleteSpecificPart(e.id, e.x, e.y, e.z, e.rotation, e.rotationAxis);
+                privateMethods.get(this, Ft, "m", si).call(this),
+                privateMethods.get(this, bn, "f").push(t)
             }
-            i.get(this, fe, "f").disabled = 0 == i.get(this, bn, "f").length,
-            i.get(this, pe, "f").disabled = 0 == i.get(this, kn, "f").length
+            privateMethods.get(this, fe, "f").disabled = 0 == privateMethods.get(this, bn, "f").length,
+            privateMethods.get(this, pe, "f").disabled = 0 == privateMethods.get(this, kn, "f").length
         }
         ,
         Vn = function(t, e) {
-            null != i.get(this, de, "f") && (clearTimeout(i.get(this, de, "f")),
-            i.set(this, de, null, "f")),
-            e ? i.get(this, ce, "f").classList.add("green") : i.get(this, ce, "f").classList.remove("green"),
-            i.get(this, ce, "f").classList.remove("show"),
-            i.get(this, ce, "f").classList.remove("hide"),
-            i.set(this, de, window.setTimeout(( () => {
-                i.get(this, ce, "f").textContent = t,
-                i.get(this, ce, "f").classList.add("show"),
-                i.set(this, de, window.setTimeout(( () => {
-                    i.get(this, ce, "f").classList.remove("show"),
-                    i.get(this, ce, "f").classList.add("hide")
+            null != privateMethods.get(this, de, "f") && (clearTimeout(privateMethods.get(this, de, "f")),
+            privateMethods.set(this, de, null, "f")),
+            e ? privateMethods.get(this, ce, "f").classList.add("green") : privateMethods.get(this, ce, "f").classList.remove("green"),
+            privateMethods.get(this, ce, "f").classList.remove("show"),
+            privateMethods.get(this, ce, "f").classList.remove("hide"),
+            privateMethods.set(this, de, window.setTimeout(( () => {
+                privateMethods.get(this, ce, "f").textContent = t,
+                privateMethods.get(this, ce, "f").classList.add("show"),
+                privateMethods.set(this, de, window.setTimeout(( () => {
+                    privateMethods.get(this, ce, "f").classList.remove("show"),
+                    privateMethods.get(this, ce, "f").classList.add("hide")
                 }
                 ), 3e3), "f")
             }
@@ -1514,22 +1514,22 @@
         }
         ,
         Zn = function() {
-            const t = i.get(this, Qt, "f").getAllParts();
+            const t = privateMethods.get(this, Qt, "f").getAllParts();
             for (let e = 0; e < t.length; e++) {
                 const n = t[e];
-                let s = i.get(this, Nn, "f").find((t => t.category == n.configuration.category))?.partPanel;
+                let s = privateMethods.get(this, Nn, "f").find((t => t.category == n.configuration.category))?.partPanel;
                 if (null == s) {
                     s = document.createElement("div"),
                     s.className = "part-panel hidden",
-                    i.get(this, ue, "f").prepend(s);
-                    const t = i.get(this, Qt, "f").getCategoryMesh(n.configuration.category, i.get(this, Jt, "f").environment)
+                    privateMethods.get(this, ue, "f").prepend(s);
+                    const t = privateMethods.get(this, Qt, "f").getCategoryMesh(n.configuration.category, privateMethods.get(this, Jt, "f").environment)
                       , e = document.createElement("button");
                     e.addEventListener("click", ( () => {
-                        i.get(this, Ft, "m", $n).call(this, n.configuration.category),
-                        i.get(this, Yt, "f").playUIClick()
+                        privateMethods.get(this, Ft, "m", $n).call(this, n.configuration.category),
+                        privateMethods.get(this, Yt, "f").playUIClick()
                     }
                     )),
-                    i.get(this, me, "f").appendChild(e);
+                    privateMethods.get(this, me, "f").appendChild(e);
                     const o = document.createElement("img");
                     o.className = "loading",
                     Kt(t).then((t => {
@@ -1538,7 +1538,7 @@
                     }
                     )),
                     e.appendChild(o),
-                    i.get(this, Nn, "f").push({
+                    privateMethods.get(this, Nn, "f").push({
                         category: n.configuration.category,
                         button: e,
                         image: o,
@@ -1548,8 +1548,8 @@
                 }
                 const o = document.createElement("button");
                 o.addEventListener("click", ( () => {
-                    i.get(this, Yt, "f").playUIClick(),
-                    i.get(this, Ft, "m", ti).call(this, 1 + e)
+                    privateMethods.get(this, Yt, "f").playUIClick(),
+                    privateMethods.get(this, Ft, "m", ti).call(this, 1 + e)
                 }
                 )),
                 s.appendChild(o);
@@ -1563,13 +1563,13 @@
                 else {
                     h = document.createElement("div"),
                     h.className = "color-panel hidden",
-                    i.get(this, ue, "f").prepend(h);
+                    privateMethods.get(this, ue, "f").prepend(h);
                     const t = [TrackPartColorId.Default].concat(Array.from(n.colors.keys()));
                     for (const e of t) {
                         const t = document.createElement("button");
                         t.addEventListener("click", ( () => {
-                            i.get(this, Yt, "f").playUIClick(),
-                            i.set(this, An, e, "f"),
+                            privateMethods.get(this, Yt, "f").playUIClick(),
+                            privateMethods.set(this, An, e, "f"),
                             t.classList.add("selected");
                             const n = t.parentElement;
                             if (null == n)
@@ -1598,25 +1598,25 @@
                     isStart: null != n.configuration.startOffset,
                     category: n.configuration.category
                 };
-                i.get(this, xn, "f").push(l)
+                privateMethods.get(this, xn, "f").push(l)
             }
         }
         ,
         Xn = function() {
-            if (null == i.get(this, yn, "f"))
+            if (null == privateMethods.get(this, yn, "f"))
                 return TrackPartColorId.Default;
-            return i.get(this, xn, "f")[i.get(this, yn, "f")].colorButtons.some(( ([t]) => t == i.get(this, An, "f"))) ? i.get(this, An, "f") : TrackPartColorId.Default
+            return privateMethods.get(this, xn, "f")[privateMethods.get(this, yn, "f")].colorButtons.some(( ([t]) => t == privateMethods.get(this, An, "f"))) ? privateMethods.get(this, An, "f") : TrackPartColorId.Default
         }
         ,
         jn = function(t) {
-            i.get(this, Jt, "f").environment != t && (i.get(this, Jt, "f").environment = t,
-            i.get(this, Ft, "m", Jn).call(this),
-            i.get(this, Ft, "m", si).call(this))
+            privateMethods.get(this, Jt, "f").environment != t && (privateMethods.get(this, Jt, "f").environment = t,
+            privateMethods.get(this, Ft, "m", Jn).call(this),
+            privateMethods.get(this, Ft, "m", si).call(this))
         }
         ,
         Jn = function() {
-            for (const t of i.get(this, Nn, "f")) {
-                const e = i.get(this, Qt, "f").getCategoryMesh(t.category, i.get(this, Jt, "f").environment);
+            for (const t of privateMethods.get(this, Nn, "f")) {
+                const e = privateMethods.get(this, Qt, "f").getCategoryMesh(t.category, privateMethods.get(this, Jt, "f").environment);
                 t.image.removeAttribute("src"),
                 t.image.className = "loading",
                 Kt(e).then((e => {
@@ -1626,7 +1626,7 @@
                 ))
             }
             let t;
-            switch (i.get(this, Jt, "f").environment) {
+            switch (privateMethods.get(this, Jt, "f").environment) {
             case TrackEnvironment.Summer:
                 t = TrackPartColorId.Summer;
                 break;
@@ -1636,10 +1636,10 @@
             case TrackEnvironment.Desert:
                 t = TrackPartColorId.Desert
             }
-            for (const e of i.get(this, xn, "f"))
+            for (const e of privateMethods.get(this, xn, "f"))
                 if (null != e.id)
-                    if (e.category == i.get(this, Sn, "f")) {
-                        const n = i.get(this, Qt, "f").getPart(e.id).colors.get(t);
+                    if (e.category == privateMethods.get(this, Sn, "f")) {
+                        const n = privateMethods.get(this, Qt, "f").getPart(e.id).colors.get(t);
                         if (null == n)
                             throw new Error("Mesh is not loaded");
                         e.image.removeAttribute("src"),
@@ -1655,42 +1655,42 @@
         }
         ,
         Qn = function() {
-            for (const t of i.get(this, Qe, "f"))
-                if (i.get(this, je, "f").remove(t),
+            for (const t of privateMethods.get(this, Qe, "f"))
+                if (privateMethods.get(this, je, "f").remove(t),
                 t.geometry.dispose(),
                 Array.isArray(t.material))
                     for (const e of t.material)
                         e.dispose();
                 else
                     t.material.dispose();
-            if (null != i.get(this, en, "f")) {
-                if (i.get(this, je, "f").remove(i.get(this, en, "f")),
-                i.get(this, en, "f").geometry.dispose(),
-                Array.isArray(i.get(this, en, "f").material))
-                    for (const t of i.get(this, en, "f").material)
+            if (null != privateMethods.get(this, en, "f")) {
+                if (privateMethods.get(this, je, "f").remove(privateMethods.get(this, en, "f")),
+                privateMethods.get(this, en, "f").geometry.dispose(),
+                Array.isArray(privateMethods.get(this, en, "f").material))
+                    for (const t of privateMethods.get(this, en, "f").material)
                         t.dispose();
                 else
-                    i.get(this, en, "f").material.dispose();
-                i.get(this, en, "f").dispose(),
-                i.set(this, en, null, "f")
+                    privateMethods.get(this, en, "f").material.dispose();
+                privateMethods.get(this, en, "f").dispose(),
+                privateMethods.set(this, en, null, "f")
             }
-            if (null != i.get(this, Ln, "f")) {
-                const t = i.get(this, Ln, "f").parts.length;
+            if (null != privateMethods.get(this, Ln, "f")) {
+                const t = privateMethods.get(this, Ln, "f").parts.length;
                 let e = 0
                   , n = 0;
                 const s = new Set;
-                for (const t of i.get(this, Ln, "f").parts) {
-                    const o = i.get(this, Qt, "f").getPart(t.id).colors.get(TrackPartColorId.Summer);
+                for (const t of privateMethods.get(this, Ln, "f").parts) {
+                    const o = privateMethods.get(this, Qt, "f").getPart(t.id).colors.get(TrackPartColorId.Summer);
                     if (null == o)
                         throw new Error("Track part mesh has not loaded yet");
                     s.has(o.geometry) || (s.add(o.geometry),
                     e += o.geometry.attributes.position.count,
                     null != o.geometry.index && (n += o.geometry.index.count))
                 }
-                const o = new THREE.BatchedMesh(t,e,n,i.get(this, Je, "f"))
+                const o = new THREE.BatchedMesh(t,e,n,privateMethods.get(this, Je, "f"))
                   , a = new Map;
-                for (const t of i.get(this, Ln, "f").parts) {
-                    const e = i.get(this, Qt, "f").getPart(t.id).colors.get(TrackPartColorId.Summer);
+                for (const t of privateMethods.get(this, Ln, "f").parts) {
+                    const e = privateMethods.get(this, Qt, "f").getPart(t.id).colors.get(TrackPartColorId.Summer);
                     if (null == e)
                         throw new Error("Track part mesh has not loaded yet");
                     let n = a.get(e.geometry);
@@ -1700,52 +1700,52 @@
                       , r = (new THREE.Matrix4).makeRotationFromQuaternion(TrackPartTransform.rotationAndAxisToQuaternion(t.rotation, t.rotationAxis)).setPosition(t.offset.x * Track.A.partSize, t.offset.y * Track.A.partSize, t.offset.z * Track.A.partSize);
                     o.setMatrixAt(s, r)
                 }
-                i.get(this, je, "f").add(o),
-                i.get(this, Qe, "f").push(o);
-                const r = new THREE.InstancedMesh(i.get(this, tn, "f"),i.get(this, $e, "f"),i.get(this, Ln, "f").tiles.length);
-                i.get(this, Ln, "f").tiles.forEach(( (t, e, n, i) => {
+                privateMethods.get(this, je, "f").add(o),
+                privateMethods.get(this, Qe, "f").push(o);
+                const r = new THREE.InstancedMesh(privateMethods.get(this, tn, "f"),privateMethods.get(this, $e, "f"),privateMethods.get(this, Ln, "f").tiles.length);
+                privateMethods.get(this, Ln, "f").tiles.forEach(( (t, e, n, i) => {
                     const s = (new THREE.Matrix4).makeTranslation(t * Track.A.partSize, e * Track.A.partSize, n * Track.A.partSize);
                     r.setMatrixAt(i, s)
                 }
                 )),
-                i.get(this, je, "f").add(r),
-                i.set(this, en, r, "f")
-            } else if (null != i.get(this, yn, "f")) {
-                const t = i.get(this, xn, "f")[i.get(this, yn, "f")];
+                privateMethods.get(this, je, "f").add(r),
+                privateMethods.set(this, en, r, "f")
+            } else if (null != privateMethods.get(this, yn, "f")) {
+                const t = privateMethods.get(this, xn, "f")[privateMethods.get(this, yn, "f")];
                 let e;
                 if (null == t.trackPartData) {
                     const t = new THREE.BoxGeometry(4 * Track.A.partSize,Track.A.partSize,4 * Track.A.partSize);
                     t.translate(0, Track.A.partSize / 2, 0),
-                    e = new THREE.Mesh(t,i.get(this, Je, "f"))
+                    e = new THREE.Mesh(t,privateMethods.get(this, Je, "f"))
                 } else if (e = t.trackPartData.colors.get(TrackPartColorId.Summer)?.clone(),
                 null == e)
                     throw new Error("Track part mesh has not loaded yet");
-                e.material = i.get(this, Je, "f"),
-                i.get(this, je, "f").add(e),
-                i.get(this, Qe, "f").push(e);
-                const n = new THREE.InstancedMesh(i.get(this, tn, "f"),i.get(this, $e, "f"),t.tiles.length);
+                e.material = privateMethods.get(this, Je, "f"),
+                privateMethods.get(this, je, "f").add(e),
+                privateMethods.get(this, Qe, "f").push(e);
+                const n = new THREE.InstancedMesh(privateMethods.get(this, tn, "f"),privateMethods.get(this, $e, "f"),t.tiles.length);
                 t.tiles.forEach(( (t, e, i, s) => {
                     const o = (new THREE.Matrix4).makeTranslation(t * Track.A.partSize, e * Track.A.partSize, i * Track.A.partSize);
                     n.setMatrixAt(s, o)
                 }
                 )),
-                i.get(this, je, "f").add(n),
-                i.set(this, en, n, "f")
+                privateMethods.get(this, je, "f").add(n),
+                privateMethods.set(this, en, n, "f")
             }
         }
         ,
         $n = function(t) {
-            if (i.get(this, Sn, "f") != t || null == t) {
-                i.set(this, Sn, t, "f");
-                for (const e of i.get(this, Nn, "f"))
+            if (privateMethods.get(this, Sn, "f") != t || null == t) {
+                privateMethods.set(this, Sn, t, "f");
+                for (const e of privateMethods.get(this, Nn, "f"))
                     e.category == t ? (e.button.classList.add("selected"),
                     e.partPanel.classList.remove("hidden")) : (e.button.classList.remove("selected"),
                     e.partPanel.classList.add("hidden"));
                 if (null == t)
-                    i.get(this, Ft, "m", ti).call(this, 0);
+                    privateMethods.get(this, Ft, "m", ti).call(this, 0);
                 else {
                     let e;
-                    switch (i.get(this, Jt, "f").environment) {
+                    switch (privateMethods.get(this, Jt, "f").environment) {
                     case TrackEnvironment.Summer:
                         e = TrackPartColorId.Summer;
                         break;
@@ -1755,9 +1755,9 @@
                     case TrackEnvironment.Desert:
                         e = TrackPartColorId.Desert
                     }
-                    for (const n of i.get(this, xn, "f"))
+                    for (const n of privateMethods.get(this, xn, "f"))
                         if (n.category == t && null != n.id && !n.image.hasAttribute("src")) {
-                            const t = i.get(this, Qt, "f").getPart(n.id).colors.get(e);
+                            const t = privateMethods.get(this, Qt, "f").getPart(n.id).colors.get(e);
                             if (null == t)
                                 throw new Error("Mesh is not loaded");
                             n.image.className = "loading",
@@ -1767,35 +1767,35 @@
                             }
                             ))
                         }
-                    let n = i.get(this, Nn, "f").find((e => e.category == t))?.selectedIndex;
-                    if (null == n && (n = i.get(this, xn, "f").findIndex((e => e.category == t)),
+                    let n = privateMethods.get(this, Nn, "f").find((e => e.category == t))?.selectedIndex;
+                    if (null == n && (n = privateMethods.get(this, xn, "f").findIndex((e => e.category == t)),
                     n < 0))
                         throw new Error("Empty category");
-                    i.get(this, Ft, "m", ti).call(this, n)
+                    privateMethods.get(this, Ft, "m", ti).call(this, n)
                 }
             }
         }
         ,
         ti = function(t) {
-            null != t && (i.set(this, Mn, !1, "f"),
-            i.set(this, En, !1, "f"),
-            i.set(this, Cn, null, "f"),
-            i.set(this, Ln, null, "f"));
-            for (let e = 0; e < i.get(this, xn, "f").length; e++) {
-                const {button: n, colorPanel: s} = i.get(this, xn, "f")[e];
+            null != t && (privateMethods.set(this, Mn, !1, "f"),
+            privateMethods.set(this, En, !1, "f"),
+            privateMethods.set(this, Cn, null, "f"),
+            privateMethods.set(this, Ln, null, "f"));
+            for (let e = 0; e < privateMethods.get(this, xn, "f").length; e++) {
+                const {button: n, colorPanel: s} = privateMethods.get(this, xn, "f")[e];
                 e == t ? (n.className = "selected",
                 s?.classList.remove("hidden")) : (n.className = "",
                 s?.classList.add("hidden"))
             }
-            i.set(this, yn, t, "f");
-            const e = i.get(this, Nn, "f").find((t => t.category == i.get(this, Sn, "f")));
+            privateMethods.set(this, yn, t, "f");
+            const e = privateMethods.get(this, Nn, "f").find((t => t.category == privateMethods.get(this, Sn, "f")));
             if (null != e && (e.selectedIndex = t),
             null != t) {
-                if (t < 0 && t >= i.get(this, xn, "f").length)
+                if (t < 0 && t >= privateMethods.get(this, xn, "f").length)
                     throw new Error("Part index out of bounds");
-                const e = i.get(this, xn, "f")[t];
-                e.isCheckpoint ? i.get(this, we, "f").show() : i.get(this, we, "f").hide();
-                const n = i.get(this, Ft, "m", Xn).call(this);
+                const e = privateMethods.get(this, xn, "f")[t];
+                e.isCheckpoint ? privateMethods.get(this, we, "f").show() : privateMethods.get(this, we, "f").hide();
+                const n = privateMethods.get(this, Ft, "m", Xn).call(this);
                 if (null != e.id)
                     for (const [t,s,o] of e.colorButtons)
                         if (t == n ? s.classList.add("selected") : s.classList.remove("selected"),
@@ -1804,7 +1804,7 @@
                                 o.src = "images/empty.svg",
                                 o.className = "";
                             else {
-                                const n = i.get(this, Qt, "f").getPart(e.id).colors.get(t);
+                                const n = privateMethods.get(this, Qt, "f").getPart(e.id).colors.get(t);
                                 if (null == n)
                                     throw new Error("Mesh is not loaded");
                                 o.className = "loading",
@@ -1815,92 +1815,92 @@
                                 ))
                             }
             } else
-                i.get(this, we, "f").hide();
-            i.get(this, Ft, "m", Qn).call(this),
-            i.get(this, Ft, "m", ii).call(this)
+                privateMethods.get(this, we, "f").hide();
+            privateMethods.get(this, Ft, "m", Qn).call(this),
+            privateMethods.get(this, Ft, "m", ii).call(this)
         }
         ,
         ei = function() {
-            return Math.floor(i.get(this, Xe, "f").position.y / 5)
+            return Math.floor(privateMethods.get(this, Xe, "f").position.y / 5)
         }
         ,
         ni = function(t) {
-            const e = i.get(this, Ft, "a", ei);
-            i.get(this, Xe, "f").position.y = 5 * t,
-            i.get(this, De, "f").position.y += 5 * (t - e),
-            i.get(this, Oe, "f").target.y = 5 * t,
-            i.get(this, ve, "f").refresh(t),
-            i.get(this, Xe, "f").updateWorldMatrix(!0, !0),
-            i.get(this, Oe, "f").update()
+            const e = privateMethods.get(this, Ft, "a", ei);
+            privateMethods.get(this, Xe, "f").position.y = 5 * t,
+            privateMethods.get(this, De, "f").position.y += 5 * (t - e),
+            privateMethods.get(this, Oe, "f").target.y = 5 * t,
+            privateMethods.get(this, ve, "f").refresh(t),
+            privateMethods.get(this, Xe, "f").updateWorldMatrix(!0, !0),
+            privateMethods.get(this, Oe, "f").update()
         }
         ,
         ii = function() {
-            if (null != i.get(this, Ln, "f"))
-                i.set(this, ln, 0, "f"),
-                i.get(this, Ln, "f").tiles.rotated(i.get(this, cn, "f"), i.get(this, dn, "f")).forEach(( (t, e) => {
-                    i.set(this, ln, Math.max(i.get(this, ln, "f"), -e), "f")
+            if (null != privateMethods.get(this, Ln, "f"))
+                privateMethods.set(this, ln, 0, "f"),
+                privateMethods.get(this, Ln, "f").tiles.rotated(privateMethods.get(this, cn, "f"), privateMethods.get(this, dn, "f")).forEach(( (t, e) => {
+                    privateMethods.set(this, ln, Math.max(privateMethods.get(this, ln, "f"), -e), "f")
                 }
                 ));
-            else if (null != i.get(this, yn, "f") && i.get(this, yn, "f") >= 0 && i.get(this, yn, "f") < i.get(this, xn, "f").length) {
-                const t = i.get(this, xn, "f")[i.get(this, yn, "f")];
-                i.set(this, ln, 0, "f"),
-                t.tiles.rotated(i.get(this, cn, "f"), i.get(this, dn, "f")).forEach(( (t, e) => {
-                    i.set(this, ln, Math.max(i.get(this, ln, "f"), -e), "f")
+            else if (null != privateMethods.get(this, yn, "f") && privateMethods.get(this, yn, "f") >= 0 && privateMethods.get(this, yn, "f") < privateMethods.get(this, xn, "f").length) {
+                const t = privateMethods.get(this, xn, "f")[privateMethods.get(this, yn, "f")];
+                privateMethods.set(this, ln, 0, "f"),
+                t.tiles.rotated(privateMethods.get(this, cn, "f"), privateMethods.get(this, dn, "f")).forEach(( (t, e) => {
+                    privateMethods.set(this, ln, Math.max(privateMethods.get(this, ln, "f"), -e), "f")
                 }
                 ))
             } else
-                i.set(this, ln, 0, "f")
+                privateMethods.set(this, ln, 0, "f")
         }
         ,
         si = function() {
-            i.get(this, Jt, "f").generateMeshes(),
-            i.get(this, Gn, "f")?.refresh(i.get(this, Jt, "f")),
-            i.get(this, we, "f").setFromExistingCheckpoints(i.get(this, Jt, "f")),
-            i.set(this, zn, null, "f"),
-            i.set(this, wn, new Date, "f"),
-            i.set(this, Ve, !1, "f")
+            privateMethods.get(this, Jt, "f").generateMeshes(),
+            privateMethods.get(this, Gn, "f")?.refresh(privateMethods.get(this, Jt, "f")),
+            privateMethods.get(this, we, "f").setFromExistingCheckpoints(privateMethods.get(this, Jt, "f")),
+            privateMethods.set(this, zn, null, "f"),
+            privateMethods.set(this, wn, new Date, "f"),
+            privateMethods.set(this, Ve, !1, "f")
         }
         ,
         oi = function() {
             const t = performance.now();
-            if (t - i.get(this, Vt, "f") > 35) {
-                const e = i.get(this, Yt, "f").getBuffer("editor_edit");
-                if (null != e && null != i.get(this, Yt, "f").context && null != i.get(this, Yt, "f").destinationSfx) {
-                    const t = i.get(this, Yt, "f").context.createBufferSource();
+            if (t - privateMethods.get(this, Vt, "f") > 35) {
+                const e = privateMethods.get(this, Yt, "f").getBuffer("editor_edit");
+                if (null != e && null != privateMethods.get(this, Yt, "f").context && null != privateMethods.get(this, Yt, "f").destinationSfx) {
+                    const t = privateMethods.get(this, Yt, "f").context.createBufferSource();
                     t.buffer = e,
                     t.playbackRate.value = .7;
-                    const n = i.get(this, Yt, "f").context.createGain();
+                    const n = privateMethods.get(this, Yt, "f").context.createGain();
                     n.gain.value = .05,
                     t.connect(n),
-                    n.connect(i.get(this, Yt, "f").destinationSfx),
+                    n.connect(privateMethods.get(this, Yt, "f").destinationSfx),
                     t.start(0)
                 }
-                i.set(this, Vt, t, "f")
+                privateMethods.set(this, Vt, t, "f")
             }
         }
         ,
         ai = function() {
             let t;
-            if (i.get(this, se, "f").touchEnabled)
-                t = new THREE.Vector3(i.get(this, Oe, "f").target.x / Track.A.partSize,i.get(this, Oe, "f").target.y / Track.A.partSize,i.get(this, Oe, "f").target.z / Track.A.partSize);
+            if (privateMethods.get(this, se, "f").touchEnabled)
+                t = new THREE.Vector3(privateMethods.get(this, Oe, "f").target.x / Track.A.partSize,privateMethods.get(this, Oe, "f").target.y / Track.A.partSize,privateMethods.get(this, Oe, "f").target.z / Track.A.partSize);
             else {
                 let e;
-                if (null != i.get(this, on, "f") ? (i.get(this, Ze, "f").setFromCamera(i.get(this, on, "f"), i.get(this, Xt, "f").camera),
-                e = i.get(this, Ze, "f").intersectObjects([i.get(this, Xe, "f")])) : e = [],
+                if (null != privateMethods.get(this, on, "f") ? (privateMethods.get(this, Ze, "f").setFromCamera(privateMethods.get(this, on, "f"), privateMethods.get(this, Xt, "f").camera),
+                e = privateMethods.get(this, Ze, "f").intersectObjects([privateMethods.get(this, Xe, "f")])) : e = [],
                 e.length > 0) {
                     const n = e[0]
-                      , s = 500 + 2 * i.get(this, Oe, "f").getDistance();
-                    t = n.point.distanceToSquared(i.get(this, Oe, "f").target) <= s ** 2 ? new THREE.Vector3(Math.round(n.point.x / Track.A.partSize),Math.floor(i.get(this, Xe, "f").position.y / Track.A.partSize),Math.round(n.point.z / Track.A.partSize)) : null
+                      , s = 500 + 2 * privateMethods.get(this, Oe, "f").getDistance();
+                    t = n.point.distanceToSquared(privateMethods.get(this, Oe, "f").target) <= s ** 2 ? new THREE.Vector3(Math.round(n.point.x / Track.A.partSize),Math.floor(privateMethods.get(this, Xe, "f").position.y / Track.A.partSize),Math.round(n.point.z / Track.A.partSize)) : null
                 } else
                     t = null
             }
             if (null != t) {
                 let e, n;
-                e = i.get(this, gn, "f") ? 4 : 1,
-                n = i.get(this, En, "f") || i.get(this, Mn, "f") || i.get(this, dn, "f") != TrackPartRotationAxis.XPositive && i.get(this, dn, "f") != TrackPartRotationAxis.XNegative ? Math.round(t.x / e) * e : Math.round(t.x);
-                const s = Math.round(t.y) + i.get(this, ln, "f");
+                e = privateMethods.get(this, gn, "f") ? 4 : 1,
+                n = privateMethods.get(this, En, "f") || privateMethods.get(this, Mn, "f") || privateMethods.get(this, dn, "f") != TrackPartRotationAxis.XPositive && privateMethods.get(this, dn, "f") != TrackPartRotationAxis.XNegative ? Math.round(t.x / e) * e : Math.round(t.x);
+                const s = Math.round(t.y) + privateMethods.get(this, ln, "f");
                 let o;
-                return o = i.get(this, En, "f") || i.get(this, Mn, "f") || i.get(this, dn, "f") != TrackPartRotationAxis.ZPositive && i.get(this, dn, "f") != TrackPartRotationAxis.ZNegative ? Math.round(t.z / e) * e : Math.round(t.z),
+                return o = privateMethods.get(this, En, "f") || privateMethods.get(this, Mn, "f") || privateMethods.get(this, dn, "f") != TrackPartRotationAxis.ZPositive && privateMethods.get(this, dn, "f") != TrackPartRotationAxis.ZNegative ? Math.round(t.z / e) * e : Math.round(t.z),
                 new THREE.Vector3(n,s,o)
             }
             return null
@@ -1908,11 +1908,11 @@
         ,
         ri = function(t, e) {
             const n = [];
-            return e.rotated(i.get(this, cn, "f"), i.get(this, dn, "f")).forEach(( (e, s, o) => {
+            return e.rotated(privateMethods.get(this, cn, "f"), privateMethods.get(this, dn, "f")).forEach(( (e, s, o) => {
                 const a = t.x + e
                   , r = t.y + s
                   , h = t.z + o
-                  , l = i.get(this, Jt, "f").getPartsAt(a, r, h);
+                  , l = privateMethods.get(this, Jt, "f").getPartsAt(a, r, h);
                 l.length > 0 && n.push({
                     x: a,
                     y: r,
@@ -1925,11 +1925,11 @@
         }
         ,
         hi = function(t, e) {
-            return e.rotated(i.get(this, cn, "f"), i.get(this, dn, "f")).some(( (e, n, s) => {
+            return e.rotated(privateMethods.get(this, cn, "f"), privateMethods.get(this, dn, "f")).some(( (e, n, s) => {
                 const o = t.x + e
                   , a = t.y + n
                   , r = t.z + s;
-                return i.get(this, Jt, "f").getPartsAt(o, a, r).length > 0
+                return privateMethods.get(this, Jt, "f").getPartsAt(o, a, r).length > 0
             }
             ))
         }
@@ -1937,7 +1937,7 @@
         li = function(t, e) {
             let n = !1;
             for (const s of t)
-                null != i.get(this, Jt, "f").deleteSpecificPart(s.id, s.x, s.y, s.z, s.rotation, s.rotationAxis) && (n = !0,
+                null != privateMethods.get(this, Jt, "f").deleteSpecificPart(s.id, s.x, s.y, s.z, s.rotation, s.rotationAxis) && (n = !0,
                 e.push({
                     id: s.id,
                     x: s.x,
@@ -1949,48 +1949,48 @@
                     checkpointOrder: s.checkpointOrder,
                     startOrder: s.startOrder
                 }));
-            n && (i.get(this, Ft, "m", oi).call(this),
-            i.get(this, Ft, "m", si).call(this))
+            n && (privateMethods.get(this, Ft, "m", oi).call(this),
+            privateMethods.get(this, Ft, "m", si).call(this))
         }
         ,
         ci = function(t) {
-            const e = 4 * i.get(this, Oe, "f").getDistance();
-            if (i.get(this, re, "f") && i.get(this, Ft, "m", di).call(this)) {
+            const e = 4 * privateMethods.get(this, Oe, "f").getDistance();
+            if (privateMethods.get(this, re, "f") && privateMethods.get(this, Ft, "m", di).call(this)) {
                 const n = new THREE.Vector3;
-                if (i.get(this, Be, "f") && (n.z = -1),
-                i.get(this, _e, "f") && (n.x = 1),
-                i.get(this, Ue, "f") && (n.z = 1),
-                i.get(this, Re, "f") && (n.x = -1),
+                if (privateMethods.get(this, Be, "f") && (n.z = -1),
+                privateMethods.get(this, _e, "f") && (n.x = 1),
+                privateMethods.get(this, Ue, "f") && (n.z = 1),
+                privateMethods.get(this, Re, "f") && (n.x = -1),
                 0 != n.x || 0 != n.z) {
-                    const s = n.applyQuaternion(i.get(this, De, "f").quaternion)
+                    const s = n.applyQuaternion(privateMethods.get(this, De, "f").quaternion)
                       , o = new THREE.Vector2(s.x,s.z).normalize()
                       , a = new THREE.Vector3(o.x,0,o.y).multiplyScalar(e * t);
-                    i.get(this, De, "f").position.add(a),
-                    i.get(this, Oe, "f").target.add(a)
+                    privateMethods.get(this, De, "f").position.add(a),
+                    privateMethods.get(this, Oe, "f").target.add(a)
                 }
                 let s = 0;
-                i.get(this, He, "f") && (s += 1.5 * Math.PI * t),
-                i.get(this, Ke, "f") && (s -= 1.5 * Math.PI * t);
+                privateMethods.get(this, He, "f") && (s += 1.5 * Math.PI * t),
+                privateMethods.get(this, Ke, "f") && (s -= 1.5 * Math.PI * t);
                 let o = 0;
-                if (i.get(this, Fe, "f") && (o += 1.5 * Math.PI * t),
-                i.get(this, Ye, "f") && (o -= 1.5 * Math.PI * t),
+                if (privateMethods.get(this, Fe, "f") && (o += 1.5 * Math.PI * t),
+                privateMethods.get(this, Ye, "f") && (o -= 1.5 * Math.PI * t),
                 0 != s || 0 != o) {
-                    const t = new THREE.Vector2(i.get(this, De, "f").position.x,i.get(this, De, "f").position.z).distanceTo(new THREE.Vector2(i.get(this, Oe, "f").target.x,i.get(this, Oe, "f").target.z))
-                      , e = i.get(this, De, "f").position.y - i.get(this, Oe, "f").target.y
+                    const t = new THREE.Vector2(privateMethods.get(this, De, "f").position.x,privateMethods.get(this, De, "f").position.z).distanceTo(new THREE.Vector2(privateMethods.get(this, Oe, "f").target.x,privateMethods.get(this, Oe, "f").target.z))
+                      , e = privateMethods.get(this, De, "f").position.y - privateMethods.get(this, Oe, "f").target.y
                       , n = Math.sqrt(t * t + e * e)
-                      , a = Math.atan2(i.get(this, De, "f").position.z - i.get(this, Oe, "f").target.z, i.get(this, De, "f").position.x - i.get(this, Oe, "f").target.x) + o;
+                      , a = Math.atan2(privateMethods.get(this, De, "f").position.z - privateMethods.get(this, Oe, "f").target.z, privateMethods.get(this, De, "f").position.x - privateMethods.get(this, Oe, "f").target.x) + o;
                     let r = Math.asin(e / n) + s;
                     r = Math.max(-Math.PI / 2 + .001, Math.min(Math.PI / 2 - .001, r)),
-                    i.get(this, De, "f").position.x = i.get(this, Oe, "f").target.x + Math.cos(r) * Math.cos(a) * n,
-                    i.get(this, De, "f").position.y = i.get(this, Oe, "f").target.y + Math.sin(r) * n,
-                    i.get(this, De, "f").position.z = i.get(this, Oe, "f").target.z + Math.cos(r) * Math.sin(a) * n,
-                    i.get(this, Oe, "f").update()
+                    privateMethods.get(this, De, "f").position.x = privateMethods.get(this, Oe, "f").target.x + Math.cos(r) * Math.cos(a) * n,
+                    privateMethods.get(this, De, "f").position.y = privateMethods.get(this, Oe, "f").target.y + Math.sin(r) * n,
+                    privateMethods.get(this, De, "f").position.z = privateMethods.get(this, Oe, "f").target.z + Math.cos(r) * Math.sin(a) * n,
+                    privateMethods.get(this, Oe, "f").update()
                 }
             }
         }
         ,
         di = function() {
-            return !!i.get(this, re, "f") && (!i.get(this, Tn, "f") && (!i.get(this, ie, "f").isOpen && null == i.get(this, Ge, "f") && !i.get(this, be, "f").isOpen && null == i.get(this, ye, "f") && null == i.get(this, Ae, "f")))
+            return !!privateMethods.get(this, re, "f") && (!privateMethods.get(this, Tn, "f") && (!privateMethods.get(this, ie, "f").isOpen && null == privateMethods.get(this, Ge, "f") && !privateMethods.get(this, be, "f").isOpen && null == privateMethods.get(this, ye, "f") && null == privateMethods.get(this, Ae, "f")))
         }
         ;
         const pi = class {
@@ -2092,211 +2092,211 @@
                 Nn.set(this, []),
                 Sn.set(this, null),
                 Tn.set(this, !1),
-                i.set(this, Zt, t, "f"),
-                i.set(this, Yt, e, "f"),
-                i.set(this, Xt, n, "f"),
-                i.set(this, jt, s, "f"),
-                i.set(this, Jt, o, "f"),
-                i.set(this, Qt, a, "f"),
-                i.set(this, ee, r, "f"),
-                i.set(this, ne, h, "f"),
-                i.set(this, $t, l, "f"),
-                i.set(this, te, c, "f"),
-                i.set(this, ie, d, "f"),
-                i.set(this, se, g, "f"),
-                i.set(this, oe, f, "f"),
-                i.set(this, De, new THREE.PerspectiveCamera(70,1,.5,RenderManager.maxViewDistance), "f"),
-                i.get(this, De, "f").position.set(40, 40, -40),
-                n.scene.add(i.get(this, De, "f")),
-                i.set(this, Oe, new k(i.get(this, De, "f"),n.canvas), "f"),
-                i.get(this, Oe, "f").mouseButtons = {
+                privateMethods.set(this, Zt, t, "f"),
+                privateMethods.set(this, Yt, e, "f"),
+                privateMethods.set(this, Xt, n, "f"),
+                privateMethods.set(this, jt, s, "f"),
+                privateMethods.set(this, Jt, o, "f"),
+                privateMethods.set(this, Qt, a, "f"),
+                privateMethods.set(this, ee, r, "f"),
+                privateMethods.set(this, ne, h, "f"),
+                privateMethods.set(this, $t, l, "f"),
+                privateMethods.set(this, te, c, "f"),
+                privateMethods.set(this, ie, d, "f"),
+                privateMethods.set(this, se, g, "f"),
+                privateMethods.set(this, oe, f, "f"),
+                privateMethods.set(this, De, new THREE.PerspectiveCamera(70,1,.5,RenderManager.maxViewDistance), "f"),
+                privateMethods.get(this, De, "f").position.set(40, 40, -40),
+                n.scene.add(privateMethods.get(this, De, "f")),
+                privateMethods.set(this, Oe, new EditorOrbitControls(privateMethods.get(this, De, "f"),n.canvas), "f"),
+                privateMethods.get(this, Oe, "f").mouseButtons = {
                     MIDDLE: THREE.MOUSE.ROTATE,
                     RIGHT: THREE.MOUSE.PAN
                 },
-                i.get(this, Oe, "f").minDistance = 4,
-                i.get(this, Oe, "f").maxDistance = 3e3,
-                i.set(this, Ze, new THREE.Raycaster, "f"),
-                i.set(this, vn, h.getCurrentUserProfile().nickname, "f"),
-                i.set(this, Je, new THREE.MeshLambertMaterial({
+                privateMethods.get(this, Oe, "f").minDistance = 4,
+                privateMethods.get(this, Oe, "f").maxDistance = 3e3,
+                privateMethods.set(this, Ze, new THREE.Raycaster, "f"),
+                privateMethods.set(this, vn, h.getCurrentUserProfile().nickname, "f"),
+                privateMethods.set(this, Je, new THREE.MeshLambertMaterial({
                     transparent: !0,
                     opacity: .3,
                     polygonOffset: !0,
                     polygonOffsetFactor: -.3,
                     depthWrite: !1
                 }), "f"),
-                i.set(this, je, new THREE.Group, "f"),
-                i.get(this, je, "f").visible = !1,
-                n.scene.add(i.get(this, je, "f")),
-                n.addMaterial(i.get(this, Je, "f")),
-                i.set(this, tn, (new THREE.BufferGeometry).setFromPoints([new THREE.Vector3(0,0,0), new THREE.Vector3(0,0,0), new THREE.Vector3(0,0,1), new THREE.Vector3(0,0,1), new THREE.Vector3(0,0,1), new THREE.Vector3(1,0,1), new THREE.Vector3(1,0,1), new THREE.Vector3(1,0,1), new THREE.Vector3(1,0,0), new THREE.Vector3(1,0,0), new THREE.Vector3(1,0,0), new THREE.Vector3(0,0,0), new THREE.Vector3(0,1,0), new THREE.Vector3(0,1,0), new THREE.Vector3(0,1,1), new THREE.Vector3(0,1,1), new THREE.Vector3(0,1,1), new THREE.Vector3(1,1,1), new THREE.Vector3(1,1,1), new THREE.Vector3(1,1,1), new THREE.Vector3(1,1,0), new THREE.Vector3(1,1,0), new THREE.Vector3(1,1,0), new THREE.Vector3(0,1,0), new THREE.Vector3(0,0,0), new THREE.Vector3(0,0,0), new THREE.Vector3(0,1,0), new THREE.Vector3(0,0,1), new THREE.Vector3(0,0,1), new THREE.Vector3(0,1,1), new THREE.Vector3(1,0,1), new THREE.Vector3(1,0,1), new THREE.Vector3(1,1,1), new THREE.Vector3(1,0,0), new THREE.Vector3(1,0,0), new THREE.Vector3(1,1,0)]).scale(Track.A.partSize, Track.A.partSize, Track.A.partSize), "f"),
-                i.set(this, $e, new THREE.MeshBasicMaterial({
+                privateMethods.set(this, je, new THREE.Group, "f"),
+                privateMethods.get(this, je, "f").visible = !1,
+                n.scene.add(privateMethods.get(this, je, "f")),
+                n.addMaterial(privateMethods.get(this, Je, "f")),
+                privateMethods.set(this, tn, (new THREE.BufferGeometry).setFromPoints([new THREE.Vector3(0,0,0), new THREE.Vector3(0,0,0), new THREE.Vector3(0,0,1), new THREE.Vector3(0,0,1), new THREE.Vector3(0,0,1), new THREE.Vector3(1,0,1), new THREE.Vector3(1,0,1), new THREE.Vector3(1,0,1), new THREE.Vector3(1,0,0), new THREE.Vector3(1,0,0), new THREE.Vector3(1,0,0), new THREE.Vector3(0,0,0), new THREE.Vector3(0,1,0), new THREE.Vector3(0,1,0), new THREE.Vector3(0,1,1), new THREE.Vector3(0,1,1), new THREE.Vector3(0,1,1), new THREE.Vector3(1,1,1), new THREE.Vector3(1,1,1), new THREE.Vector3(1,1,1), new THREE.Vector3(1,1,0), new THREE.Vector3(1,1,0), new THREE.Vector3(1,1,0), new THREE.Vector3(0,1,0), new THREE.Vector3(0,0,0), new THREE.Vector3(0,0,0), new THREE.Vector3(0,1,0), new THREE.Vector3(0,0,1), new THREE.Vector3(0,0,1), new THREE.Vector3(0,1,1), new THREE.Vector3(1,0,1), new THREE.Vector3(1,0,1), new THREE.Vector3(1,1,1), new THREE.Vector3(1,0,0), new THREE.Vector3(1,0,0), new THREE.Vector3(1,1,0)]).scale(Track.A.partSize, Track.A.partSize, Track.A.partSize), "f"),
+                privateMethods.set(this, $e, new THREE.MeshBasicMaterial({
                     wireframe: !0
                 }), "f"),
-                i.set(this, Xe, new THREE.Mesh(new THREE.PlaneGeometry(1e6,1e6),new THREE.MeshBasicMaterial({
+                privateMethods.set(this, Xe, new THREE.Mesh(new THREE.PlaneGeometry(1e6,1e6),new THREE.MeshBasicMaterial({
                     side: THREE.DoubleSide
                 })), "f"),
-                i.get(this, Xe, "f").rotation.x = -Math.PI / 2,
-                i.get(this, Xe, "f").updateWorldMatrix(!0, !0),
-                n.canvas.addEventListener("mousemove", i.set(this, Ee, (t => {
+                privateMethods.get(this, Xe, "f").rotation.x = -Math.PI / 2,
+                privateMethods.get(this, Xe, "f").updateWorldMatrix(!0, !0),
+                n.canvas.addEventListener("mousemove", privateMethods.set(this, Ee, (t => {
                     const e = t.clientX / window.innerWidth * 2 - 1
                       , n = -t.clientY / window.innerHeight * 2 + 1;
-                    null == i.get(this, on, "f") ? i.set(this, on, new THREE.Vector2(e,n), "f") : i.get(this, on, "f").set(e, n)
+                    null == privateMethods.get(this, on, "f") ? privateMethods.set(this, on, new THREE.Vector2(e,n), "f") : privateMethods.get(this, on, "f").set(e, n)
                 }
                 ), "f")),
-                n.canvas.addEventListener("mousedown", i.set(this, Ce, (t => {
-                    0 == t.button && i.set(this, sn, !0, "f"),
+                n.canvas.addEventListener("mousedown", privateMethods.set(this, Ce, (t => {
+                    0 == t.button && privateMethods.set(this, sn, !0, "f"),
                     1 == t.button && t.preventDefault()
                 }
                 ), "f")),
-                window.addEventListener("mouseup", i.set(this, We, (t => {
-                    0 == t.button && i.set(this, sn, !1, "f")
+                window.addEventListener("mouseup", privateMethods.set(this, We, (t => {
+                    0 == t.button && privateMethods.set(this, sn, !1, "f")
                 }
                 ), "f")),
-                n.canvas.addEventListener("mouseout", i.set(this, Le, ( () => {
-                    i.set(this, on, null, "f")
+                n.canvas.addEventListener("mouseout", privateMethods.set(this, Le, ( () => {
+                    privateMethods.set(this, on, null, "f")
                 }
                 ), "f")),
-                n.canvas.addEventListener("touchstart", i.set(this, Pe, ( () => {
-                    i.get(this, se, "f").touchEnabled && i.set(this, an, Date.now(), "f")
+                n.canvas.addEventListener("touchstart", privateMethods.set(this, Pe, ( () => {
+                    privateMethods.get(this, se, "f").touchEnabled && privateMethods.set(this, an, Date.now(), "f")
                 }
                 ), "f")),
-                n.canvas.addEventListener("click", i.set(this, ze, ( () => {
-                    if (i.get(this, se, "f").touchEnabled && null != i.get(this, an, "f") && Date.now() - i.get(this, an, "f") < 200 && (i.set(this, an, null, "f"),
-                    i.set(this, rn, !0, "f")),
-                    i.get(this, Mn, "f") || i.get(this, En, "f")) {
-                        const t = i.get(this, Ft, "m", ai).call(this);
-                        null != t && (null == i.get(this, Cn, "f") ? i.set(this, Cn, {
+                n.canvas.addEventListener("click", privateMethods.set(this, ze, ( () => {
+                    if (privateMethods.get(this, se, "f").touchEnabled && null != privateMethods.get(this, an, "f") && Date.now() - privateMethods.get(this, an, "f") < 200 && (privateMethods.set(this, an, null, "f"),
+                    privateMethods.set(this, rn, !0, "f")),
+                    privateMethods.get(this, Mn, "f") || privateMethods.get(this, En, "f")) {
+                        const t = privateMethods.get(this, Ft, "m", ai).call(this);
+                        null != t && (null == privateMethods.get(this, Cn, "f") ? privateMethods.set(this, Cn, {
                             x: t.x,
                             y: t.y,
                             z: t.z
-                        }, "f") : (i.get(this, Ft, "m", Dn).call(this, Math.min(i.get(this, Cn, "f").x, t.x), Math.min(i.get(this, Cn, "f").y, t.y), Math.min(i.get(this, Cn, "f").z, t.z), Math.max(i.get(this, Cn, "f").x, t.x), Math.max(i.get(this, Cn, "f").y, t.y), Math.max(i.get(this, Cn, "f").z, t.z), i.get(this, En, "f")),
-                        i.set(this, Mn, !1, "f"),
-                        i.set(this, En, !1, "f"),
-                        i.set(this, Cn, null, "f")))
+                        }, "f") : (privateMethods.get(this, Ft, "m", Dn).call(this, Math.min(privateMethods.get(this, Cn, "f").x, t.x), Math.min(privateMethods.get(this, Cn, "f").y, t.y), Math.min(privateMethods.get(this, Cn, "f").z, t.z), Math.max(privateMethods.get(this, Cn, "f").x, t.x), Math.max(privateMethods.get(this, Cn, "f").y, t.y), Math.max(privateMethods.get(this, Cn, "f").z, t.z), privateMethods.get(this, En, "f")),
+                        privateMethods.set(this, Mn, !1, "f"),
+                        privateMethods.set(this, En, !1, "f"),
+                        privateMethods.set(this, Cn, null, "f")))
                     } else
-                        null != i.get(this, Ln, "f") && i.get(this, Ft, "m", In).call(this)
+                        null != privateMethods.get(this, Ln, "f") && privateMethods.get(this, Ft, "m", In).call(this)
                 }
                 ), "f")),
-                window.addEventListener("keydown", i.set(this, Ne, (t => {
-                    i.get(this, Ft, "m", di).call(this) && ("Escape" == t.code && (i.get(this, Mn, "f") || i.get(this, En, "f") ? (i.set(this, Mn, !1, "f"),
-                    i.set(this, En, !1, "f"),
-                    i.set(this, Cn, null, "f")) : null != i.get(this, Ln, "f") ? (i.set(this, Ln, null, "f"),
-                    i.get(this, Ft, "m", Qn).call(this)) : i.get(this, Ft, "m", Rn).call(this, p),
+                window.addEventListener("keydown", privateMethods.set(this, Ne, (t => {
+                    privateMethods.get(this, Ft, "m", di).call(this) && ("Escape" == t.code && (privateMethods.get(this, Mn, "f") || privateMethods.get(this, En, "f") ? (privateMethods.set(this, Mn, !1, "f"),
+                    privateMethods.set(this, En, !1, "f"),
+                    privateMethods.set(this, Cn, null, "f")) : null != privateMethods.get(this, Ln, "f") ? (privateMethods.set(this, Ln, null, "f"),
+                    privateMethods.get(this, Ft, "m", Qn).call(this)) : privateMethods.get(this, Ft, "m", Rn).call(this, p),
                     t.preventDefault()),
-                    f.checkKeyBinding(t, KeyBind.EditorHeightModifier) && (i.set(this, Ie, !0, "f"),
-                    i.get(this, Oe, "f").enableZoom = !1,
+                    f.checkKeyBinding(t, KeyBind.EditorHeightModifier) && (privateMethods.set(this, Ie, !0, "f"),
+                    privateMethods.get(this, Oe, "f").enableZoom = !1,
                     t.preventDefault()),
-                    t.ctrlKey ? ("KeyZ" == t.code && (t.shiftKey ? i.get(this, Ft, "m", Yn).call(this) : i.get(this, Ft, "m", Fn).call(this),
+                    t.ctrlKey ? ("KeyZ" == t.code && (t.shiftKey ? privateMethods.get(this, Ft, "m", Yn).call(this) : privateMethods.get(this, Ft, "m", Fn).call(this),
                     t.preventDefault()),
-                    "KeyY" == t.code && (i.get(this, Ft, "m", Yn).call(this),
+                    "KeyY" == t.code && (privateMethods.get(this, Ft, "m", Yn).call(this),
                     t.preventDefault()),
-                    "KeyX" == t.code ? (i.set(this, Mn, !1, "f"),
-                    i.set(this, En, !0, "f"),
-                    i.set(this, Cn, null, "f"),
-                    i.set(this, Ln, null, "f"),
-                    i.get(this, Ft, "m", ti).call(this, null),
-                    t.preventDefault()) : "KeyC" == t.code ? (i.set(this, Mn, !0, "f"),
-                    i.set(this, En, !1, "f"),
-                    i.set(this, Cn, null, "f"),
-                    i.set(this, Ln, null, "f"),
-                    i.get(this, Ft, "m", ti).call(this, null),
-                    t.preventDefault()) : "KeyV" == t.code && (null != i.get(this, Ln, "f") ? i.get(this, Ft, "m", In).call(this) : null != i.get(this, Wn, "f") && i.get(this, Ft, "m", On).call(this),
-                    i.get(this, Ft, "m", ti).call(this, null))) : (f.checkKeyBinding(t, KeyBind.EditorRotatePart) && (i.set(this, cn, (i.get(this, cn, "f") + 1) % 4, "f"),
-                    i.get(this, xe, "f").rotation = i.get(this, cn, "f"),
-                    i.get(this, Ft, "m", ii).call(this),
+                    "KeyX" == t.code ? (privateMethods.set(this, Mn, !1, "f"),
+                    privateMethods.set(this, En, !0, "f"),
+                    privateMethods.set(this, Cn, null, "f"),
+                    privateMethods.set(this, Ln, null, "f"),
+                    privateMethods.get(this, Ft, "m", ti).call(this, null),
+                    t.preventDefault()) : "KeyC" == t.code ? (privateMethods.set(this, Mn, !0, "f"),
+                    privateMethods.set(this, En, !1, "f"),
+                    privateMethods.set(this, Cn, null, "f"),
+                    privateMethods.set(this, Ln, null, "f"),
+                    privateMethods.get(this, Ft, "m", ti).call(this, null),
+                    t.preventDefault()) : "KeyV" == t.code && (null != privateMethods.get(this, Ln, "f") ? privateMethods.get(this, Ft, "m", In).call(this) : null != privateMethods.get(this, Wn, "f") && privateMethods.get(this, Ft, "m", On).call(this),
+                    privateMethods.get(this, Ft, "m", ti).call(this, null))) : (f.checkKeyBinding(t, KeyBind.EditorRotatePart) && (privateMethods.set(this, cn, (privateMethods.get(this, cn, "f") + 1) % 4, "f"),
+                    privateMethods.get(this, xe, "f").rotation = privateMethods.get(this, cn, "f"),
+                    privateMethods.get(this, Ft, "m", ii).call(this),
                     t.preventDefault()),
-                    f.checkKeyBinding(t, KeyBind.EditorDelete) && (i.set(this, nn, !0, "f"),
+                    f.checkKeyBinding(t, KeyBind.EditorDelete) && (privateMethods.set(this, nn, !0, "f"),
                     t.preventDefault()),
-                    f.checkKeyBinding(t, KeyBind.EditorMoveForwards) && (i.set(this, Be, !0, "f"),
+                    f.checkKeyBinding(t, KeyBind.EditorMoveForwards) && (privateMethods.set(this, Be, !0, "f"),
                     t.preventDefault()),
-                    f.checkKeyBinding(t, KeyBind.EditorMoveRight) && (i.set(this, _e, !0, "f"),
+                    f.checkKeyBinding(t, KeyBind.EditorMoveRight) && (privateMethods.set(this, _e, !0, "f"),
                     t.preventDefault()),
-                    f.checkKeyBinding(t, KeyBind.EditorMoveBackwards) && (i.set(this, Ue, !0, "f"),
+                    f.checkKeyBinding(t, KeyBind.EditorMoveBackwards) && (privateMethods.set(this, Ue, !0, "f"),
                     t.preventDefault()),
-                    f.checkKeyBinding(t, KeyBind.EditorMoveLeft) && (i.set(this, Re, !0, "f"),
+                    f.checkKeyBinding(t, KeyBind.EditorMoveLeft) && (privateMethods.set(this, Re, !0, "f"),
                     t.preventDefault()),
-                    f.checkKeyBinding(t, KeyBind.EditorRotateViewUp) && (i.set(this, He, !0, "f"),
+                    f.checkKeyBinding(t, KeyBind.EditorRotateViewUp) && (privateMethods.set(this, He, !0, "f"),
                     t.preventDefault()),
-                    f.checkKeyBinding(t, KeyBind.EditorRotateViewDown) && (i.set(this, Ke, !0, "f"),
+                    f.checkKeyBinding(t, KeyBind.EditorRotateViewDown) && (privateMethods.set(this, Ke, !0, "f"),
                     t.preventDefault()),
-                    f.checkKeyBinding(t, KeyBind.EditorRotateViewLeft) && (i.set(this, Fe, !0, "f"),
+                    f.checkKeyBinding(t, KeyBind.EditorRotateViewLeft) && (privateMethods.set(this, Fe, !0, "f"),
                     t.preventDefault()),
-                    f.checkKeyBinding(t, KeyBind.EditorRotateViewRight) && (i.set(this, Ye, !0, "f"),
+                    f.checkKeyBinding(t, KeyBind.EditorRotateViewRight) && (privateMethods.set(this, Ye, !0, "f"),
                     t.preventDefault()),
-                    f.checkKeyBinding(t, KeyBind.EditorMoveDown) && (i.set(this, Ft, Math.max(0, i.get(this, Ft, "a", ei) - 1), "a", ni),
+                    f.checkKeyBinding(t, KeyBind.EditorMoveDown) && (privateMethods.set(this, Ft, Math.max(0, privateMethods.get(this, Ft, "a", ei) - 1), "a", ni),
                     t.preventDefault()),
-                    f.checkKeyBinding(t, KeyBind.EditorMoveUp) && (i.set(this, Ft, i.get(this, Ft, "a", ei) + 1, "a", ni),
+                    f.checkKeyBinding(t, KeyBind.EditorMoveUp) && (privateMethods.set(this, Ft, privateMethods.get(this, Ft, "a", ei) + 1, "a", ni),
                     t.preventDefault()),
-                    f.checkKeyBinding(t, KeyBind.EditorTest) && (i.get(this, Ft, "m", Hn).call(this),
+                    f.checkKeyBinding(t, KeyBind.EditorTest) && (privateMethods.get(this, Ft, "m", Hn).call(this),
                     t.preventDefault()),
-                    f.checkKeyBinding(t, KeyBind.EditorPick) && (i.get(this, Ft, "m", Kn).call(this),
+                    f.checkKeyBinding(t, KeyBind.EditorPick) && (privateMethods.get(this, Ft, "m", Kn).call(this),
                     t.preventDefault())))
                 }
                 ), "f")),
-                window.addEventListener("keyup", i.set(this, Se, (t => {
-                    f.checkKeyBinding(t, KeyBind.EditorHeightModifier) && (i.set(this, Ie, !1, "f"),
-                    i.get(this, Oe, "f").enableZoom = !0),
-                    t.ctrlKey || (f.checkKeyBinding(t, KeyBind.EditorDelete) && i.set(this, nn, !1, "f"),
-                    f.checkKeyBinding(t, KeyBind.EditorMoveForwards) && i.set(this, Be, !1, "f"),
-                    f.checkKeyBinding(t, KeyBind.EditorMoveRight) && i.set(this, _e, !1, "f"),
-                    f.checkKeyBinding(t, KeyBind.EditorMoveBackwards) && i.set(this, Ue, !1, "f"),
-                    f.checkKeyBinding(t, KeyBind.EditorMoveLeft) && i.set(this, Re, !1, "f"),
-                    f.checkKeyBinding(t, KeyBind.EditorRotateViewUp) && i.set(this, He, !1, "f"),
-                    f.checkKeyBinding(t, KeyBind.EditorRotateViewDown) && i.set(this, Ke, !1, "f"),
-                    f.checkKeyBinding(t, KeyBind.EditorRotateViewLeft) && i.set(this, Fe, !1, "f"),
-                    f.checkKeyBinding(t, KeyBind.EditorRotateViewRight) && i.set(this, Ye, !1, "f"))
+                window.addEventListener("keyup", privateMethods.set(this, Se, (t => {
+                    f.checkKeyBinding(t, KeyBind.EditorHeightModifier) && (privateMethods.set(this, Ie, !1, "f"),
+                    privateMethods.get(this, Oe, "f").enableZoom = !0),
+                    t.ctrlKey || (f.checkKeyBinding(t, KeyBind.EditorDelete) && privateMethods.set(this, nn, !1, "f"),
+                    f.checkKeyBinding(t, KeyBind.EditorMoveForwards) && privateMethods.set(this, Be, !1, "f"),
+                    f.checkKeyBinding(t, KeyBind.EditorMoveRight) && privateMethods.set(this, _e, !1, "f"),
+                    f.checkKeyBinding(t, KeyBind.EditorMoveBackwards) && privateMethods.set(this, Ue, !1, "f"),
+                    f.checkKeyBinding(t, KeyBind.EditorMoveLeft) && privateMethods.set(this, Re, !1, "f"),
+                    f.checkKeyBinding(t, KeyBind.EditorRotateViewUp) && privateMethods.set(this, He, !1, "f"),
+                    f.checkKeyBinding(t, KeyBind.EditorRotateViewDown) && privateMethods.set(this, Ke, !1, "f"),
+                    f.checkKeyBinding(t, KeyBind.EditorRotateViewLeft) && privateMethods.set(this, Fe, !1, "f"),
+                    f.checkKeyBinding(t, KeyBind.EditorRotateViewRight) && privateMethods.set(this, Ye, !1, "f"))
                 }
                 ), "f")),
-                window.addEventListener("wheel", i.set(this, Te, (t => {
-                    i.get(this, Ie, "f") && i.get(this, re, "f") && (t.deltaY > 0 ? i.set(this, Ft, i.get(this, Ft, "a", ei) + 1, "a", ni) : t.deltaY < 0 && i.set(this, Ft, Math.max(0, i.get(this, Ft, "a", ei) - 1), "a", ni))
+                window.addEventListener("wheel", privateMethods.set(this, Te, (t => {
+                    privateMethods.get(this, Ie, "f") && privateMethods.get(this, re, "f") && (t.deltaY > 0 ? privateMethods.set(this, Ft, privateMethods.get(this, Ft, "a", ei) + 1, "a", ni) : t.deltaY < 0 && privateMethods.set(this, Ft, Math.max(0, privateMethods.get(this, Ft, "a", ei) - 1), "a", ni))
                 }
                 ), "f")),
-                window.addEventListener("beforeunload", i.set(this, qe, (t => !i.get(this, Ve, "f") && (t.preventDefault(),
+                window.addEventListener("beforeunload", privateMethods.set(this, qe, (t => !privateMethods.get(this, Ve, "f") && (t.preventDefault(),
                 !0)), "f"));
                 const u = document.getElementById("ui");
                 if (null == u)
                     throw new Error("Failed to find UI element");
-                i.set(this, he, document.createElement("div"), "f"),
-                i.get(this, he, "f").className = "hidden",
-                u.appendChild(i.get(this, he, "f"));
+                privateMethods.set(this, he, document.createElement("div"), "f"),
+                privateMethods.get(this, he, "f").className = "hidden",
+                u.appendChild(privateMethods.get(this, he, "f"));
                 const m = document.createElement("div");
                 m.className = "safe-area-left",
-                i.get(this, he, "f").appendChild(m);
+                privateMethods.get(this, he, "f").appendChild(m);
                 const v = document.createElement("div");
                 v.className = "safe-area-right",
-                i.get(this, he, "f").appendChild(v),
-                i.set(this, le, document.createElement("div"), "f"),
-                i.get(this, le, "f").className = "top",
-                i.get(this, he, "f").appendChild(i.get(this, le, "f"));
+                privateMethods.get(this, he, "f").appendChild(v),
+                privateMethods.set(this, le, document.createElement("div"), "f"),
+                privateMethods.get(this, le, "f").className = "top",
+                privateMethods.get(this, he, "f").appendChild(privateMethods.get(this, le, "f"));
                 const b = document.createElement("div");
                 b.className = "button-bar",
-                i.get(this, le, "f").appendChild(b);
+                privateMethods.get(this, le, "f").appendChild(b);
                 const G = document.createElement("button");
                 G.className = "button",
                 G.innerHTML = '<img class="button-icon" src="images/quit.svg"> ',
-                G.append(document.createTextNode(i.get(this, Zt, "f").get("Exit"))),
+                G.append(document.createTextNode(privateMethods.get(this, Zt, "f").get("Exit"))),
                 G.addEventListener("click", ( () => {
-                    i.get(this, Yt, "f").playUIClick(),
-                    i.get(this, Ft, "m", Rn).call(this, p)
+                    privateMethods.get(this, Yt, "f").playUIClick(),
+                    privateMethods.get(this, Ft, "m", Rn).call(this, p)
                 }
                 )),
                 b.appendChild(G);
                 const x = document.createElement("button");
                 x.className = "button",
                 x.innerHTML = '<img class="button-icon" src="images/test.svg"> ',
-                x.append(i.get(this, Zt, "f").get("Test")),
+                x.append(privateMethods.get(this, Zt, "f").get("Test")),
                 x.addEventListener("click", ( () => {
-                    i.get(this, Yt, "f").playUIClick(),
-                    i.get(this, Ft, "m", Hn).call(this)
+                    privateMethods.get(this, Yt, "f").playUIClick(),
+                    privateMethods.get(this, Ft, "m", Hn).call(this)
                 }
                 )),
                 b.appendChild(x);
                 const y = document.createElement("button");
                 y.className = "button",
                 y.innerHTML = '<img class="button-icon" src="images/random.svg"> ',
-                y.append(i.get(this, Zt, "f").get("Generate")),
+                y.append(privateMethods.get(this, Zt, "f").get("Generate")),
                 y.addEventListener("click", ( () => {
-                    i.get(this, Yt, "f").playUIClick();
+                    privateMethods.get(this, Yt, "f").playUIClick();
                     const t = () => {
                         !function(t) {
                             let e;
@@ -2607,113 +2607,113 @@
                                             t.setPart(4 * N.x, N.y, 4 * N.z, N.type, N.direction, TrackPartRotationAxis.YPositive, TrackPartColorId.Default, null, S)
                                         }
                             } while (e)
-                        }(i.get(this, Jt, "f")),
-                        i.get(this, Ft, "m", si).call(this),
-                        i.set(this, Ve, !0, "f"),
-                        i.set(this, Mn, !1, "f"),
-                        i.set(this, En, !1, "f"),
-                        i.set(this, Cn, null, "f"),
-                        i.get(this, bn, "f").length = 0,
-                        i.get(this, kn, "f").length = 0,
-                        i.get(this, fe, "f").disabled = !0,
-                        i.get(this, pe, "f").disabled = !0
+                        }(privateMethods.get(this, Jt, "f")),
+                        privateMethods.get(this, Ft, "m", si).call(this),
+                        privateMethods.set(this, Ve, !0, "f"),
+                        privateMethods.set(this, Mn, !1, "f"),
+                        privateMethods.set(this, En, !1, "f"),
+                        privateMethods.set(this, Cn, null, "f"),
+                        privateMethods.get(this, bn, "f").length = 0,
+                        privateMethods.get(this, kn, "f").length = 0,
+                        privateMethods.get(this, fe, "f").disabled = !0,
+                        privateMethods.get(this, pe, "f").disabled = !0
                     }
                     ;
-                    i.get(this, Ve, "f") ? t() : (i.get(this, he, "f").inert = !0,
-                    i.get(this, ie, "f").showConfirm(i.get(this, Zt, "f").get("Are you sure you want to generate a new track?\n\nYour current track will be lost!"), i.get(this, Zt, "f").get("Cancel"), i.get(this, Zt, "f").get("Confirm"), ( () => {
-                        i.get(this, he, "f").inert = !1
+                    privateMethods.get(this, Ve, "f") ? t() : (privateMethods.get(this, he, "f").inert = !0,
+                    privateMethods.get(this, ie, "f").showConfirm(privateMethods.get(this, Zt, "f").get("Are you sure you want to generate a new track?\n\nYour current track will be lost!"), privateMethods.get(this, Zt, "f").get("Cancel"), privateMethods.get(this, Zt, "f").get("Confirm"), ( () => {
+                        privateMethods.get(this, he, "f").inert = !1
                     }
                     ), ( () => {
                         t(),
-                        i.get(this, he, "f").inert = !1
+                        privateMethods.get(this, he, "f").inert = !1
                     }
                     )))
                 }
                 )),
                 b.appendChild(y),
-                i.set(this, be, new ct.A(u,i.get(this, Zt, "f"),i.get(this, Yt, "f"),i.get(this, $t, "f"),i.get(this, te, "f"),i.get(this, ne, "f"),i.get(this, ie, "f"),i.get(this, ee, "f"),"cancel",!0,( () => {
-                    i.get(this, he, "f").className = "editor-ui",
-                    i.get(this, be, "f").hide()
+                privateMethods.set(this, be, new ct.A(u,privateMethods.get(this, Zt, "f"),privateMethods.get(this, Yt, "f"),privateMethods.get(this, $t, "f"),privateMethods.get(this, te, "f"),privateMethods.get(this, ne, "f"),privateMethods.get(this, ie, "f"),privateMethods.get(this, ee, "f"),"cancel",!0,( () => {
+                    privateMethods.get(this, he, "f").className = "editor-ui",
+                    privateMethods.get(this, be, "f").hide()
                 }
                 ),( (t, e, n) => {
-                    i.get(this, be, "f").hide(),
-                    i.set(this, Tn, !0, "f"),
-                    i.set(this, ke, new LoadingScreenUI(!0), "f"),
+                    privateMethods.get(this, be, "f").hide(),
+                    privateMethods.set(this, Tn, !0, "f"),
+                    privateMethods.set(this, ke, new LoadingScreenUI(!0), "f"),
                     n().then((e => {
-                        const n = i.get(this, Jt, "f").environment;
-                        i.get(this, Jt, "f").loadTrackData(e),
-                        i.get(this, Jt, "f").environment != n && i.get(this, Ft, "m", Jn).call(this),
-                        i.get(this, Ft, "m", si).call(this),
-                        i.set(this, Mn, !1, "f"),
-                        i.set(this, En, !1, "f"),
-                        i.set(this, Cn, null, "f"),
-                        i.get(this, bn, "f").length = 0,
-                        i.get(this, kn, "f").length = 0,
-                        i.get(this, fe, "f").disabled = !0,
-                        i.get(this, pe, "f").disabled = !0,
-                        i.get(this, Ft, "m", Bn).call(this, t),
-                        i.set(this, Ve, !0, "f");
-                        const s = i.get(this, Jt, "f").getStart();
+                        const n = privateMethods.get(this, Jt, "f").environment;
+                        privateMethods.get(this, Jt, "f").loadTrackData(e),
+                        privateMethods.get(this, Jt, "f").environment != n && privateMethods.get(this, Ft, "m", Jn).call(this),
+                        privateMethods.get(this, Ft, "m", si).call(this),
+                        privateMethods.set(this, Mn, !1, "f"),
+                        privateMethods.set(this, En, !1, "f"),
+                        privateMethods.set(this, Cn, null, "f"),
+                        privateMethods.get(this, bn, "f").length = 0,
+                        privateMethods.get(this, kn, "f").length = 0,
+                        privateMethods.get(this, fe, "f").disabled = !0,
+                        privateMethods.get(this, pe, "f").disabled = !0,
+                        privateMethods.get(this, Ft, "m", Bn).call(this, t),
+                        privateMethods.set(this, Ve, !0, "f");
+                        const s = privateMethods.get(this, Jt, "f").getStart();
                         if (null != s)
                             this.resetView(s.x, s.y, s.z);
                         else {
-                            const t = i.get(this, Jt, "f").getBounds();
+                            const t = privateMethods.get(this, Jt, "f").getBounds();
                             this.resetView(t.min.x + Math.floor((t.max.x - t.min.x) / 2), 0, t.min.y + Math.floor((t.max.y - t.min.y) / 2))
                         }
-                        i.get(this, he, "f").className = "editor-ui",
-                        i.set(this, Tn, !1, "f")
+                        privateMethods.get(this, he, "f").className = "editor-ui",
+                        privateMethods.set(this, Tn, !1, "f")
                     }
                     )).catch((t => {
                         if (!(t instanceof gi.A))
                             throw t;
-                        i.get(this, ie, "f").show(i.get(this, Zt, "f").get("Failed to load track"), i.get(this, Zt, "f").get("Ok"), ( () => {
-                            i.set(this, Tn, !1, "f"),
-                            i.get(this, be, "f").show()
+                        privateMethods.get(this, ie, "f").show(privateMethods.get(this, Zt, "f").get("Failed to load track"), privateMethods.get(this, Zt, "f").get("Ok"), ( () => {
+                            privateMethods.set(this, Tn, !1, "f"),
+                            privateMethods.get(this, be, "f").show()
                         }
                         ))
                     }
                     )).finally(( () => {
-                        i.get(this, ke, "f")?.dispose(),
-                        i.set(this, ke, null, "f")
+                        privateMethods.get(this, ke, "f")?.dispose(),
+                        privateMethods.set(this, ke, null, "f")
                     }
                     ))
                 }
                 )), "f"),
-                i.set(this, xe, new yt(i.get(this, he, "f"),i.get(this, Yt, "f"),i.get(this, se, "f"),(t => {
-                    i.set(this, fn, t, "f")
+                privateMethods.set(this, xe, new EditorSideToolbarUI(privateMethods.get(this, he, "f"),privateMethods.get(this, Yt, "f"),privateMethods.get(this, se, "f"),(t => {
+                    privateMethods.set(this, fn, t, "f")
                 }
                 ),(t => {
-                    i.set(this, gn, t, "f"),
-                    i.set(this, Mn, !1, "f"),
-                    i.set(this, En, !1, "f"),
-                    i.set(this, Cn, null, "f")
+                    privateMethods.set(this, gn, t, "f"),
+                    privateMethods.set(this, Mn, !1, "f"),
+                    privateMethods.set(this, En, !1, "f"),
+                    privateMethods.set(this, Cn, null, "f")
                 }
                 ),(t => {
-                    i.set(this, dn, t, "f"),
-                    i.get(this, xe, "f").rotationAxis = i.get(this, dn, "f"),
-                    i.get(this, Ft, "m", ii).call(this)
+                    privateMethods.set(this, dn, t, "f"),
+                    privateMethods.get(this, xe, "f").rotationAxis = privateMethods.get(this, dn, "f"),
+                    privateMethods.get(this, Ft, "m", ii).call(this)
                 }
                 ),( () => {
-                    i.set(this, cn, (i.get(this, cn, "f") + 1) % 4, "f"),
-                    i.get(this, xe, "f").rotation = i.get(this, cn, "f"),
-                    i.get(this, Ft, "m", ii).call(this)
+                    privateMethods.set(this, cn, (privateMethods.get(this, cn, "f") + 1) % 4, "f"),
+                    privateMethods.get(this, xe, "f").rotation = privateMethods.get(this, cn, "f"),
+                    privateMethods.get(this, Ft, "m", ii).call(this)
                 }
                 )), "f");
                 const A = document.createElement("button");
                 A.className = "button",
                 A.innerHTML = '<img class="button-icon" src="images/load.svg"> ',
-                A.append(document.createTextNode(i.get(this, Zt, "f").get("Load"))),
+                A.append(document.createTextNode(privateMethods.get(this, Zt, "f").get("Load"))),
                 A.addEventListener("click", ( () => {
-                    i.get(this, Yt, "f").playUIClick(),
-                    i.get(this, Ve, "f") ? (i.get(this, be, "f").show(),
-                    i.get(this, he, "f").className = "hidden") : (i.get(this, he, "f").inert = !0,
-                    i.get(this, ie, "f").showConfirm(i.get(this, Zt, "f").get("Are you sure you want to load a new track?\n\nYour current track will be lost!"), i.get(this, Zt, "f").get("Cancel"), i.get(this, Zt, "f").get("Confirm"), ( () => {
-                        i.get(this, he, "f").inert = !1
+                    privateMethods.get(this, Yt, "f").playUIClick(),
+                    privateMethods.get(this, Ve, "f") ? (privateMethods.get(this, be, "f").show(),
+                    privateMethods.get(this, he, "f").className = "hidden") : (privateMethods.get(this, he, "f").inert = !0,
+                    privateMethods.get(this, ie, "f").showConfirm(privateMethods.get(this, Zt, "f").get("Are you sure you want to load a new track?\n\nYour current track will be lost!"), privateMethods.get(this, Zt, "f").get("Cancel"), privateMethods.get(this, Zt, "f").get("Confirm"), ( () => {
+                        privateMethods.get(this, he, "f").inert = !1
                     }
                     ), ( () => {
-                        i.get(this, be, "f").show(),
-                        i.get(this, he, "f").className = "hidden",
-                        i.get(this, he, "f").inert = !1
+                        privateMethods.get(this, be, "f").show(),
+                        privateMethods.get(this, he, "f").className = "hidden",
+                        privateMethods.get(this, he, "f").inert = !1
                     }
                     )))
                 }
@@ -2722,49 +2722,49 @@
                 const M = document.createElement("button");
                 M.className = "button",
                 M.innerHTML = '<img class="button-icon" src="images/save.svg"> ',
-                M.append(document.createTextNode(i.get(this, Zt, "f").get("Save"))),
+                M.append(document.createTextNode(privateMethods.get(this, Zt, "f").get("Save"))),
                 M.addEventListener("click", ( () => {
-                    i.get(this, Yt, "f").playUIClick();
+                    privateMethods.get(this, Yt, "f").playUIClick();
                     const t = t => {
                         const e = {
                             name: t,
-                            author: i.get(this, vn, "f"),
-                            lastModified: i.get(this, wn, "f")
+                            author: privateMethods.get(this, vn, "f"),
+                            lastModified: privateMethods.get(this, wn, "f")
                         }
-                          , n = i.get(this, Jt, "f").getTrackData();
-                        i.get(this, te, "f").saveCustomTrack(e, n) ? (i.get(this, Ft, "m", Vn).call(this, i.get(this, Zt, "f").get("Track saved!"), !0),
-                        i.set(this, Ve, !0, "f")) : i.get(this, Ft, "m", Vn).call(this, i.get(this, Zt, "f").get("Failed to save!"), !1)
+                          , n = privateMethods.get(this, Jt, "f").getTrackData();
+                        privateMethods.get(this, te, "f").saveCustomTrack(e, n) ? (privateMethods.get(this, Ft, "m", Vn).call(this, privateMethods.get(this, Zt, "f").get("Track saved!"), !0),
+                        privateMethods.set(this, Ve, !0, "f")) : privateMethods.get(this, Ft, "m", Vn).call(this, privateMethods.get(this, Zt, "f").get("Failed to save!"), !1)
                     }
-                      , e = i.get(this, mn, "f");
+                      , e = privateMethods.get(this, mn, "f");
                     if (null == e)
-                        i.get(this, he, "f").className = "hidden",
-                        i.set(this, Ae, new It(i.get(this, Yt, "f"),i.get(this, Zt, "f"),i.get(this, mn, "f"),i.get(this, vn, "f"),i.get(this, Jt, "f"),(t => {
-                            i.get(this, Ft, "m", jn).call(this, t)
+                        privateMethods.get(this, he, "f").className = "hidden",
+                        privateMethods.set(this, Ae, new It(privateMethods.get(this, Yt, "f"),privateMethods.get(this, Zt, "f"),privateMethods.get(this, mn, "f"),privateMethods.get(this, vn, "f"),privateMethods.get(this, Jt, "f"),(t => {
+                            privateMethods.get(this, Ft, "m", jn).call(this, t)
                         }
                         ),( (t, e) => {
-                            i.get(this, Ft, "m", _n).call(this, t),
-                            i.get(this, Ft, "m", Un).call(this, e),
-                            i.get(this, Ae, "f")?.dispose(),
-                            i.set(this, Ae, null, "f"),
-                            i.get(this, he, "f").className = "editor-ui"
+                            privateMethods.get(this, Ft, "m", _n).call(this, t),
+                            privateMethods.get(this, Ft, "m", Un).call(this, e),
+                            privateMethods.get(this, Ae, "f")?.dispose(),
+                            privateMethods.set(this, Ae, null, "f"),
+                            privateMethods.get(this, he, "f").className = "editor-ui"
                         }
                         ),( (e, n) => {
-                            i.get(this, Ft, "m", _n).call(this, e),
-                            i.get(this, Ft, "m", Un).call(this, n),
-                            i.get(this, Ae, "f")?.dispose(),
-                            i.set(this, Ae, null, "f"),
+                            privateMethods.get(this, Ft, "m", _n).call(this, e),
+                            privateMethods.get(this, Ft, "m", Un).call(this, n),
+                            privateMethods.get(this, Ae, "f")?.dispose(),
+                            privateMethods.set(this, Ae, null, "f"),
                             t(e),
-                            i.get(this, he, "f").className = "editor-ui"
+                            privateMethods.get(this, he, "f").className = "editor-ui"
                         }
                         )), "f");
                     else {
-                        i.get(this, te, "f").checkCustomTrackNameExists(e) ? (i.get(this, he, "f").inert = !0,
-                        i.get(this, ie, "f").showConfirm(i.get(this, Zt, "f").get('Are you sure you want to overwrite "{0}"?', [e]), i.get(this, Zt, "f").get("Cancel"), i.get(this, Zt, "f").get("Confirm"), ( () => {
-                            i.get(this, he, "f").inert = !1
+                        privateMethods.get(this, te, "f").checkCustomTrackNameExists(e) ? (privateMethods.get(this, he, "f").inert = !0,
+                        privateMethods.get(this, ie, "f").showConfirm(privateMethods.get(this, Zt, "f").get('Are you sure you want to overwrite "{0}"?', [e]), privateMethods.get(this, Zt, "f").get("Cancel"), privateMethods.get(this, Zt, "f").get("Confirm"), ( () => {
+                            privateMethods.get(this, he, "f").inert = !1
                         }
                         ), ( () => {
                             t(e),
-                            i.get(this, he, "f").inert = !1
+                            privateMethods.get(this, he, "f").inert = !1
                         }
                         ))) : t(e)
                     }
@@ -2774,55 +2774,55 @@
                 const E = document.createElement("button");
                 E.className = "button",
                 E.innerHTML = '<img class="button-icon" src="images/export.svg"> ',
-                E.append(document.createTextNode(i.get(this, Zt, "f").get("Export"))),
+                E.append(document.createTextNode(privateMethods.get(this, Zt, "f").get("Export"))),
                 E.addEventListener("click", ( () => {
-                    i.get(this, Yt, "f").playUIClick();
-                    const t = i.get(this, mn, "f");
+                    privateMethods.get(this, Yt, "f").playUIClick();
+                    const t = privateMethods.get(this, mn, "f");
                     if (null == t)
-                        i.get(this, he, "f").className = "hidden",
-                        i.set(this, Ae, new It(i.get(this, Yt, "f"),i.get(this, Zt, "f"),i.get(this, mn, "f"),i.get(this, vn, "f"),i.get(this, Jt, "f"),(t => {
-                            i.get(this, Ft, "m", jn).call(this, t)
+                        privateMethods.get(this, he, "f").className = "hidden",
+                        privateMethods.set(this, Ae, new It(privateMethods.get(this, Yt, "f"),privateMethods.get(this, Zt, "f"),privateMethods.get(this, mn, "f"),privateMethods.get(this, vn, "f"),privateMethods.get(this, Jt, "f"),(t => {
+                            privateMethods.get(this, Ft, "m", jn).call(this, t)
                         }
                         ),( (t, e) => {
-                            i.get(this, Ft, "m", _n).call(this, t),
-                            i.get(this, Ft, "m", Un).call(this, e),
-                            i.get(this, Ae, "f")?.dispose(),
-                            i.set(this, Ae, null, "f"),
-                            i.get(this, he, "f").className = "editor-ui"
+                            privateMethods.get(this, Ft, "m", _n).call(this, t),
+                            privateMethods.get(this, Ft, "m", Un).call(this, e),
+                            privateMethods.get(this, Ae, "f")?.dispose(),
+                            privateMethods.set(this, Ae, null, "f"),
+                            privateMethods.get(this, he, "f").className = "editor-ui"
                         }
                         ),( (t, e) => {
-                            i.get(this, Ft, "m", _n).call(this, t),
-                            i.get(this, Ft, "m", Un).call(this, e),
-                            i.get(this, Ae, "f")?.dispose(),
-                            i.set(this, Ae, null, "f");
+                            privateMethods.get(this, Ft, "m", _n).call(this, t),
+                            privateMethods.get(this, Ft, "m", Un).call(this, e),
+                            privateMethods.get(this, Ae, "f")?.dispose(),
+                            privateMethods.set(this, Ae, null, "f");
                             const n = {
                                 name: t,
-                                author: i.get(this, vn, "f"),
-                                lastModified: i.get(this, wn, "f")
+                                author: privateMethods.get(this, vn, "f"),
+                                lastModified: privateMethods.get(this, wn, "f")
                             }
-                              , s = i.get(this, Jt, "f").getTrackData().toExportString(n);
-                            i.set(this, Ge, new TrackExportUI(s,( () => {
-                                i.get(this, Ge, "f")?.dispose(),
-                                i.set(this, Ge, null, "f"),
-                                i.get(this, he, "f").className = "editor-ui"
+                              , s = privateMethods.get(this, Jt, "f").getTrackData().toExportString(n);
+                            privateMethods.set(this, Ge, new TrackExportUI(s,( () => {
+                                privateMethods.get(this, Ge, "f")?.dispose(),
+                                privateMethods.set(this, Ge, null, "f"),
+                                privateMethods.get(this, he, "f").className = "editor-ui"
                             }
-                            ),null,i.get(this, Zt, "f"),i.get(this, Yt, "f"),i.get(this, te, "f"),i.get(this, ie, "f")), "f")
+                            ),null,privateMethods.get(this, Zt, "f"),privateMethods.get(this, Yt, "f"),privateMethods.get(this, te, "f"),privateMethods.get(this, ie, "f")), "f")
                         }
                         )), "f");
                     else {
-                        i.get(this, he, "f").className = "hidden";
+                        privateMethods.get(this, he, "f").className = "hidden";
                         const e = {
                             name: t,
-                            author: i.get(this, vn, "f"),
-                            lastModified: i.get(this, wn, "f")
+                            author: privateMethods.get(this, vn, "f"),
+                            lastModified: privateMethods.get(this, wn, "f")
                         }
-                          , n = i.get(this, Jt, "f").getTrackData().toExportString(e);
-                        i.set(this, Ge, new TrackExportUI(n,( () => {
-                            i.get(this, Ge, "f")?.dispose(),
-                            i.set(this, Ge, null, "f"),
-                            i.get(this, he, "f").className = "editor-ui"
+                          , n = privateMethods.get(this, Jt, "f").getTrackData().toExportString(e);
+                        privateMethods.set(this, Ge, new TrackExportUI(n,( () => {
+                            privateMethods.get(this, Ge, "f")?.dispose(),
+                            privateMethods.set(this, Ge, null, "f"),
+                            privateMethods.get(this, he, "f").className = "editor-ui"
                         }
-                        ),null,i.get(this, Zt, "f"),i.get(this, Yt, "f"),i.get(this, te, "f"),i.get(this, ie, "f")), "f")
+                        ),null,privateMethods.get(this, Zt, "f"),privateMethods.get(this, Yt, "f"),privateMethods.get(this, te, "f"),privateMethods.get(this, ie, "f")), "f")
                     }
                 }
                 )),
@@ -2830,26 +2830,26 @@
                 const C = document.createElement("button");
                 C.className = "button",
                 C.innerHTML = '<img class="button-icon" src="images/help.svg"> ',
-                C.append(document.createTextNode(i.get(this, Zt, "f").get("Help"))),
+                C.append(document.createTextNode(privateMethods.get(this, Zt, "f").get("Help"))),
                 C.addEventListener("click", ( () => {
-                    i.get(this, Yt, "f").playUIClick();
-                    const t = i.get(this, Qt, "f").getPart(Part.Start).colors.get(TrackPartColorId.Summer);
+                    privateMethods.get(this, Yt, "f").playUIClick();
+                    const t = privateMethods.get(this, Qt, "f").getPart(Part.Start).colors.get(TrackPartColorId.Summer);
                     if (null == t)
                         throw new Error("Starting point mesh is null");
                     const e = Kt(t)
-                      , n = i.get(this, Qt, "f").getPart(Part.Checkpoint).colors.get(TrackPartColorId.Summer);
+                      , n = privateMethods.get(this, Qt, "f").getPart(Part.Checkpoint).colors.get(TrackPartColorId.Summer);
                     if (null == n)
                         throw new Error("Checkpoint mesh is null");
                     const s = Kt(n)
-                      , o = i.get(this, Qt, "f").getPart(Part.Finish).colors.get(TrackPartColorId.Summer);
+                      , o = privateMethods.get(this, Qt, "f").getPart(Part.Finish).colors.get(TrackPartColorId.Summer);
                     if (null == o)
                         throw new Error("Finish line mesh is null");
                     const a = Kt(o);
-                    i.get(this, he, "f").className = "hidden",
-                    i.set(this, ye, new Lt(i.get(this, Yt, "f"),i.get(this, Zt, "f"),i.get(this, oe, "f"),i.get(this, se, "f"),e,s,a,( () => {
-                        i.get(this, ye, "f")?.dispose(),
-                        i.set(this, ye, null, "f"),
-                        i.get(this, he, "f").className = "editor-ui"
+                    privateMethods.get(this, he, "f").className = "hidden",
+                    privateMethods.set(this, ye, new Lt(privateMethods.get(this, Yt, "f"),privateMethods.get(this, Zt, "f"),privateMethods.get(this, oe, "f"),privateMethods.get(this, se, "f"),e,s,a,( () => {
+                        privateMethods.get(this, ye, "f")?.dispose(),
+                        privateMethods.set(this, ye, null, "f"),
+                        privateMethods.get(this, he, "f").className = "editor-ui"
                     }
                     )), "f")
                 }
@@ -2857,34 +2857,34 @@
                 b.appendChild(C);
                 const W = document.createElement("div");
                 W.className = "track-settings-container",
-                i.get(this, le, "f").appendChild(W),
-                i.set(this, Me, document.createElement("button"), "f"),
-                i.get(this, Me, "f").className = "button",
-                i.get(this, Me, "f").innerHTML = '<img class="button-icon" src="images/settings.svg"> ',
-                i.get(this, Me, "f").append(document.createTextNode(i.get(this, mn, "f") ?? i.get(this, Zt, "f").get("Unnamed Track"))),
-                i.get(this, Me, "f").addEventListener("click", ( () => {
-                    i.get(this, Yt, "f").playUIClick(),
-                    i.get(this, he, "f").className = "hidden",
-                    i.set(this, Ae, new It(i.get(this, Yt, "f"),i.get(this, Zt, "f"),i.get(this, mn, "f"),i.get(this, vn, "f"),i.get(this, Jt, "f"),(t => {
-                        i.get(this, Ft, "m", jn).call(this, t)
+                privateMethods.get(this, le, "f").appendChild(W),
+                privateMethods.set(this, Me, document.createElement("button"), "f"),
+                privateMethods.get(this, Me, "f").className = "button",
+                privateMethods.get(this, Me, "f").innerHTML = '<img class="button-icon" src="images/settings.svg"> ',
+                privateMethods.get(this, Me, "f").append(document.createTextNode(privateMethods.get(this, mn, "f") ?? privateMethods.get(this, Zt, "f").get("Unnamed Track"))),
+                privateMethods.get(this, Me, "f").addEventListener("click", ( () => {
+                    privateMethods.get(this, Yt, "f").playUIClick(),
+                    privateMethods.get(this, he, "f").className = "hidden",
+                    privateMethods.set(this, Ae, new It(privateMethods.get(this, Yt, "f"),privateMethods.get(this, Zt, "f"),privateMethods.get(this, mn, "f"),privateMethods.get(this, vn, "f"),privateMethods.get(this, Jt, "f"),(t => {
+                        privateMethods.get(this, Ft, "m", jn).call(this, t)
                     }
                     ),( (t, e) => {
-                        i.get(this, Ft, "m", _n).call(this, t),
-                        i.get(this, Ft, "m", Un).call(this, e),
-                        i.get(this, Ae, "f")?.dispose(),
-                        i.set(this, Ae, null, "f"),
-                        i.get(this, he, "f").className = "editor-ui"
+                        privateMethods.get(this, Ft, "m", _n).call(this, t),
+                        privateMethods.get(this, Ft, "m", Un).call(this, e),
+                        privateMethods.get(this, Ae, "f")?.dispose(),
+                        privateMethods.set(this, Ae, null, "f"),
+                        privateMethods.get(this, he, "f").className = "editor-ui"
                     }
                     ),null), "f")
                 }
                 )),
-                W.appendChild(i.get(this, Me, "f")),
-                i.set(this, ce, document.createElement("div"), "f"),
-                i.get(this, ce, "f").className = "message",
-                i.get(this, he, "f").appendChild(i.get(this, ce, "f"));
+                W.appendChild(privateMethods.get(this, Me, "f")),
+                privateMethods.set(this, ce, document.createElement("div"), "f"),
+                privateMethods.get(this, ce, "f").className = "message",
+                privateMethods.get(this, he, "f").appendChild(privateMethods.get(this, ce, "f"));
                 const P = document.createElement("side");
                 P.className = "side",
-                i.get(this, he, "f").appendChild(P);
+                privateMethods.get(this, he, "f").appendChild(P);
                 const z = document.createElement("div");
                 z.className = "container",
                 P.appendChild(z);
@@ -2895,11 +2895,11 @@
                 S.className = "button",
                 S.innerHTML = '<img class="button-icon" src="images/cut.svg">',
                 S.addEventListener("click", ( () => {
-                    i.set(this, Mn, !1, "f"),
-                    i.set(this, En, !0, "f"),
-                    i.set(this, Cn, null, "f"),
-                    i.set(this, Ln, null, "f"),
-                    i.get(this, Ft, "m", ti).call(this, null)
+                    privateMethods.set(this, Mn, !1, "f"),
+                    privateMethods.set(this, En, !0, "f"),
+                    privateMethods.set(this, Cn, null, "f"),
+                    privateMethods.set(this, Ln, null, "f"),
+                    privateMethods.get(this, Ft, "m", ti).call(this, null)
                 }
                 )),
                 N.appendChild(S);
@@ -2907,66 +2907,66 @@
                 T.className = "button",
                 T.innerHTML = '<img class="button-icon" src="images/copy.svg">',
                 T.addEventListener("click", ( () => {
-                    i.get(this, Yt, "f").playUIClick(),
-                    i.set(this, Mn, !0, "f"),
-                    i.set(this, En, !1, "f"),
-                    i.set(this, Cn, null, "f"),
-                    i.set(this, Ln, null, "f"),
-                    i.get(this, Ft, "m", ti).call(this, null)
+                    privateMethods.get(this, Yt, "f").playUIClick(),
+                    privateMethods.set(this, Mn, !0, "f"),
+                    privateMethods.set(this, En, !1, "f"),
+                    privateMethods.set(this, Cn, null, "f"),
+                    privateMethods.set(this, Ln, null, "f"),
+                    privateMethods.get(this, Ft, "m", ti).call(this, null)
                 }
                 )),
                 N.appendChild(T),
-                i.set(this, ge, document.createElement("button"), "f"),
-                i.get(this, ge, "f").className = "button",
-                i.get(this, ge, "f").disabled = !0,
-                i.get(this, ge, "f").innerHTML = '<img class="button-icon" src="images/paste.svg">',
-                i.get(this, ge, "f").addEventListener("click", ( () => {
-                    null != i.get(this, Ln, "f") ? i.get(this, Ft, "m", In).call(this) : null != i.get(this, Wn, "f") && i.get(this, Ft, "m", On).call(this),
-                    i.get(this, Ft, "m", ti).call(this, null)
+                privateMethods.set(this, ge, document.createElement("button"), "f"),
+                privateMethods.get(this, ge, "f").className = "button",
+                privateMethods.get(this, ge, "f").disabled = !0,
+                privateMethods.get(this, ge, "f").innerHTML = '<img class="button-icon" src="images/paste.svg">',
+                privateMethods.get(this, ge, "f").addEventListener("click", ( () => {
+                    null != privateMethods.get(this, Ln, "f") ? privateMethods.get(this, Ft, "m", In).call(this) : null != privateMethods.get(this, Wn, "f") && privateMethods.get(this, Ft, "m", On).call(this),
+                    privateMethods.get(this, Ft, "m", ti).call(this, null)
                 }
                 )),
-                N.appendChild(i.get(this, ge, "f"));
+                N.appendChild(privateMethods.get(this, ge, "f"));
                 const q = document.createElement("div");
                 q.className = "undo-container",
                 N.appendChild(q),
-                i.set(this, fe, document.createElement("button"), "f"),
-                i.get(this, fe, "f").disabled = !0,
-                i.get(this, fe, "f").className = "button",
-                i.get(this, fe, "f").innerHTML = '<img class="button-icon" src="images/undo.svg">',
-                i.get(this, fe, "f").addEventListener("click", ( () => {
-                    i.get(this, Yt, "f").playUIClick(),
-                    i.get(this, Ft, "m", Fn).call(this)
+                privateMethods.set(this, fe, document.createElement("button"), "f"),
+                privateMethods.get(this, fe, "f").disabled = !0,
+                privateMethods.get(this, fe, "f").className = "button",
+                privateMethods.get(this, fe, "f").innerHTML = '<img class="button-icon" src="images/undo.svg">',
+                privateMethods.get(this, fe, "f").addEventListener("click", ( () => {
+                    privateMethods.get(this, Yt, "f").playUIClick(),
+                    privateMethods.get(this, Ft, "m", Fn).call(this)
                 }
                 )),
-                q.appendChild(i.get(this, fe, "f")),
-                i.set(this, pe, document.createElement("button"), "f"),
-                i.get(this, pe, "f").disabled = !0,
-                i.get(this, pe, "f").className = "button",
-                i.get(this, pe, "f").innerHTML = '<img class="button-icon" src="images/redo.svg">',
-                i.get(this, pe, "f").addEventListener("click", ( () => {
-                    i.get(this, Yt, "f").playUIClick(),
-                    i.get(this, Ft, "m", Yn).call(this)
+                q.appendChild(privateMethods.get(this, fe, "f")),
+                privateMethods.set(this, pe, document.createElement("button"), "f"),
+                privateMethods.get(this, pe, "f").disabled = !0,
+                privateMethods.get(this, pe, "f").className = "button",
+                privateMethods.get(this, pe, "f").innerHTML = '<img class="button-icon" src="images/redo.svg">',
+                privateMethods.get(this, pe, "f").addEventListener("click", ( () => {
+                    privateMethods.get(this, Yt, "f").playUIClick(),
+                    privateMethods.get(this, Ft, "m", Yn).call(this)
                 }
                 )),
-                q.appendChild(i.get(this, pe, "f")),
-                i.set(this, we, new F(z,i.get(this, Zt, "f"),i.get(this, Yt, "f"),i.get(this, se, "f")), "f"),
-                i.set(this, ue, document.createElement("div"), "f"),
-                i.get(this, ue, "f").className = "side-panel",
-                P.appendChild(i.get(this, ue, "f")),
-                i.set(this, me, document.createElement("div"), "f"),
-                i.get(this, me, "f").className = "category-panel",
-                i.get(this, ue, "f").appendChild(i.get(this, me, "f"));
+                q.appendChild(privateMethods.get(this, pe, "f")),
+                privateMethods.set(this, we, new CheckpointOrderEditorUI(z,privateMethods.get(this, Zt, "f"),privateMethods.get(this, Yt, "f"),privateMethods.get(this, se, "f")), "f"),
+                privateMethods.set(this, ue, document.createElement("div"), "f"),
+                privateMethods.get(this, ue, "f").className = "side-panel",
+                P.appendChild(privateMethods.get(this, ue, "f")),
+                privateMethods.set(this, me, document.createElement("div"), "f"),
+                privateMethods.get(this, me, "f").className = "category-panel",
+                privateMethods.get(this, ue, "f").appendChild(privateMethods.get(this, me, "f"));
                 const D = document.createElement("button");
                 D.addEventListener("click", ( () => {
-                    i.get(this, Yt, "f").playUIClick(),
-                    i.get(this, Ft, "m", $n).call(this, null)
+                    privateMethods.get(this, Yt, "f").playUIClick(),
+                    privateMethods.get(this, Ft, "m", $n).call(this, null)
                 }
                 )),
-                i.get(this, me, "f").appendChild(D);
+                privateMethods.get(this, me, "f").appendChild(D);
                 const O = document.createElement("img");
                 O.src = "images/erase.svg",
                 D.appendChild(O),
-                i.get(this, xn, "f").push({
+                privateMethods.get(this, xn, "f").push({
                     id: null,
                     trackPartData: null,
                     button: D,
@@ -2978,40 +2978,40 @@
                     isStart: !1,
                     category: null
                 }),
-                i.set(this, ve, new it(i.get(this, he, "f"),i.get(this, Zt, "f"),i.get(this, se, "f"),( () => {
-                    i.get(this, Yt, "f").playUIClick(),
-                    i.set(this, Ft, i.get(this, Ft, "a", ei) + 1, "a", ni)
+                privateMethods.set(this, ve, new HeightSelectorUI(privateMethods.get(this, he, "f"),privateMethods.get(this, Zt, "f"),privateMethods.get(this, se, "f"),( () => {
+                    privateMethods.get(this, Yt, "f").playUIClick(),
+                    privateMethods.set(this, Ft, privateMethods.get(this, Ft, "a", ei) + 1, "a", ni)
                 }
                 ),( () => {
-                    i.get(this, Yt, "f").playUIClick(),
-                    i.set(this, Ft, Math.max(0, i.get(this, Ft, "a", ei) - 1), "a", ni)
+                    privateMethods.get(this, Yt, "f").playUIClick(),
+                    privateMethods.set(this, Ft, Math.max(0, privateMethods.get(this, Ft, "a", ei) - 1), "a", ni)
                 }
                 )), "f"),
-                i.get(this, ve, "f").refresh(i.get(this, Ft, "a", ei))
+                privateMethods.get(this, ve, "f").refresh(privateMethods.get(this, Ft, "a", ei))
             }
             dispose() {
-                i.set(this, re, !1, "f"),
-                i.get(this, Gn, "f")?.dispose(),
-                i.get(this, ve, "f").dispose(),
-                i.get(this, we, "f").dispose(),
-                i.get(this, Ge, "f")?.dispose(),
-                i.set(this, Ge, null, "f"),
-                i.get(this, be, "f").dispose(),
-                i.get(this, ke, "f")?.dispose(),
-                i.set(this, ke, null, "f"),
-                i.get(this, xe, "f").dispose(),
-                i.get(this, ye, "f")?.dispose(),
-                i.set(this, ye, null, "f");
+                privateMethods.set(this, re, !1, "f"),
+                privateMethods.get(this, Gn, "f")?.dispose(),
+                privateMethods.get(this, ve, "f").dispose(),
+                privateMethods.get(this, we, "f").dispose(),
+                privateMethods.get(this, Ge, "f")?.dispose(),
+                privateMethods.set(this, Ge, null, "f"),
+                privateMethods.get(this, be, "f").dispose(),
+                privateMethods.get(this, ke, "f")?.dispose(),
+                privateMethods.set(this, ke, null, "f"),
+                privateMethods.get(this, xe, "f").dispose(),
+                privateMethods.get(this, ye, "f")?.dispose(),
+                privateMethods.set(this, ye, null, "f");
                 const t = document.getElementById("ui");
                 if (null == t)
                     throw new Error("Failed to find UI element");
-                t.removeChild(i.get(this, he, "f")),
-                i.get(this, Xt, "f").scene.remove(i.get(this, De, "f")),
-                i.get(this, Oe, "f").dispose(),
-                i.get(this, Xt, "f").canvas.style.touchAction = "",
-                i.get(this, Je, "f").dispose(),
-                i.get(this, Xt, "f").removeMaterial(i.get(this, Je, "f"));
-                for (const t of i.get(this, je, "f").children) {
+                t.removeChild(privateMethods.get(this, he, "f")),
+                privateMethods.get(this, Xt, "f").scene.remove(privateMethods.get(this, De, "f")),
+                privateMethods.get(this, Oe, "f").dispose(),
+                privateMethods.get(this, Xt, "f").canvas.style.touchAction = "",
+                privateMethods.get(this, Je, "f").dispose(),
+                privateMethods.get(this, Xt, "f").removeMaterial(privateMethods.get(this, Je, "f"));
+                for (const t of privateMethods.get(this, je, "f").children) {
                     if (!(t instanceof THREE.Mesh))
                         throw new Error("Object is not a mesh");
                     const e = t;
@@ -3025,145 +3025,145 @@
                     else
                         e.material.dispose()
                 }
-                if (i.get(this, Xt, "f").scene.remove(i.get(this, je, "f")),
-                null != i.get(this, en, "f") && (i.get(this, Xt, "f").scene.remove(i.get(this, en, "f")),
-                i.get(this, en, "f").dispose(),
-                i.get(this, tn, "f").dispose(),
-                i.get(this, $e, "f").dispose(),
-                i.set(this, en, null, "f")),
-                null != i.get(this, Pn, "f") && (i.get(this, Xt, "f").scene.remove(i.get(this, Pn, "f").fill),
-                i.get(this, Pn, "f").fill.geometry.dispose(),
-                i.get(this, Pn, "f").fill.material.dispose(),
-                i.get(this, Xt, "f").scene.remove(i.get(this, Pn, "f").outline),
-                i.get(this, Pn, "f").outline.geometry.dispose(),
-                i.get(this, Pn, "f").outline.material.dispose(),
-                i.set(this, Pn, null, "f")),
-                i.get(this, Xe, "f").geometry.dispose(),
-                Array.isArray(i.get(this, Xe, "f").material))
-                    for (const t of i.get(this, Xe, "f").material) {
+                if (privateMethods.get(this, Xt, "f").scene.remove(privateMethods.get(this, je, "f")),
+                null != privateMethods.get(this, en, "f") && (privateMethods.get(this, Xt, "f").scene.remove(privateMethods.get(this, en, "f")),
+                privateMethods.get(this, en, "f").dispose(),
+                privateMethods.get(this, tn, "f").dispose(),
+                privateMethods.get(this, $e, "f").dispose(),
+                privateMethods.set(this, en, null, "f")),
+                null != privateMethods.get(this, Pn, "f") && (privateMethods.get(this, Xt, "f").scene.remove(privateMethods.get(this, Pn, "f").fill),
+                privateMethods.get(this, Pn, "f").fill.geometry.dispose(),
+                privateMethods.get(this, Pn, "f").fill.material.dispose(),
+                privateMethods.get(this, Xt, "f").scene.remove(privateMethods.get(this, Pn, "f").outline),
+                privateMethods.get(this, Pn, "f").outline.geometry.dispose(),
+                privateMethods.get(this, Pn, "f").outline.material.dispose(),
+                privateMethods.set(this, Pn, null, "f")),
+                privateMethods.get(this, Xe, "f").geometry.dispose(),
+                Array.isArray(privateMethods.get(this, Xe, "f").material))
+                    for (const t of privateMethods.get(this, Xe, "f").material) {
                         if (!(t instanceof THREE.Material))
                             throw new Error("Material is not a THREE.Material");
                         t.dispose()
                     }
                 else
-                    i.get(this, Xe, "f").material.dispose();
-                i.set(this, Mn, !1, "f"),
-                i.set(this, En, !1, "f"),
-                i.set(this, Cn, null, "f"),
-                i.set(this, Ln, null, "f"),
-                i.get(this, Ft, "m", Qn).call(this),
-                i.get(this, bn, "f").length = 0,
-                i.get(this, kn, "f").length = 0,
-                i.get(this, fe, "f").disabled = !0,
-                i.get(this, pe, "f").disabled = !0,
-                i.get(this, Xt, "f").canvas.removeEventListener("mousemove", i.get(this, Ee, "f")),
-                i.get(this, Xt, "f").canvas.removeEventListener("mousedown", i.get(this, Ce, "f")),
-                window.removeEventListener("mouseup", i.get(this, We, "f")),
-                i.get(this, Xt, "f").canvas.removeEventListener("mouseout", i.get(this, Le, "f")),
-                i.get(this, Xt, "f").canvas.removeEventListener("touchstart", i.get(this, Pe, "f")),
-                i.get(this, Xt, "f").canvas.removeEventListener("click", i.get(this, ze, "f")),
-                window.removeEventListener("keydown", i.get(this, Ne, "f")),
-                window.removeEventListener("keyup", i.get(this, Se, "f")),
-                window.removeEventListener("wheel", i.get(this, Te, "f")),
-                window.removeEventListener("beforeunload", i.get(this, qe, "f"))
+                    privateMethods.get(this, Xe, "f").material.dispose();
+                privateMethods.set(this, Mn, !1, "f"),
+                privateMethods.set(this, En, !1, "f"),
+                privateMethods.set(this, Cn, null, "f"),
+                privateMethods.set(this, Ln, null, "f"),
+                privateMethods.get(this, Ft, "m", Qn).call(this),
+                privateMethods.get(this, bn, "f").length = 0,
+                privateMethods.get(this, kn, "f").length = 0,
+                privateMethods.get(this, fe, "f").disabled = !0,
+                privateMethods.get(this, pe, "f").disabled = !0,
+                privateMethods.get(this, Xt, "f").canvas.removeEventListener("mousemove", privateMethods.get(this, Ee, "f")),
+                privateMethods.get(this, Xt, "f").canvas.removeEventListener("mousedown", privateMethods.get(this, Ce, "f")),
+                window.removeEventListener("mouseup", privateMethods.get(this, We, "f")),
+                privateMethods.get(this, Xt, "f").canvas.removeEventListener("mouseout", privateMethods.get(this, Le, "f")),
+                privateMethods.get(this, Xt, "f").canvas.removeEventListener("touchstart", privateMethods.get(this, Pe, "f")),
+                privateMethods.get(this, Xt, "f").canvas.removeEventListener("click", privateMethods.get(this, ze, "f")),
+                window.removeEventListener("keydown", privateMethods.get(this, Ne, "f")),
+                window.removeEventListener("keyup", privateMethods.get(this, Se, "f")),
+                window.removeEventListener("wheel", privateMethods.get(this, Te, "f")),
+                window.removeEventListener("beforeunload", privateMethods.get(this, qe, "f"))
             }
             getTrackMetadata() {
                 return {
-                    name: i.get(this, mn, "f") ?? i.get(this, Zt, "f").get("Unnamed Track"),
-                    author: i.get(this, vn, "f"),
-                    lastModified: i.get(this, wn, "f")
+                    name: privateMethods.get(this, mn, "f") ?? privateMethods.get(this, Zt, "f").get("Unnamed Track"),
+                    author: privateMethods.get(this, vn, "f"),
+                    lastModified: privateMethods.get(this, wn, "f")
                 }
             }
             setTestCallback(t) {
-                i.set(this, ae, t, "f")
+                privateMethods.set(this, ae, t, "f")
             }
             enable() {
-                i.set(this, re, !0, "f"),
-                1 == i.get(this, xn, "f").length && i.get(this, Ft, "m", Zn).call(this),
-                i.get(this, Gn, "f")?.dispose(),
-                i.set(this, Gn, new N(i.get(this, Xt, "f")), "f"),
-                i.get(this, Gn, "f").refresh(i.get(this, Jt, "f")),
-                i.get(this, xe, "f").show(),
-                i.get(this, he, "f").className = "editor-ui"
+                privateMethods.set(this, re, !0, "f"),
+                1 == privateMethods.get(this, xn, "f").length && privateMethods.get(this, Ft, "m", Zn).call(this),
+                privateMethods.get(this, Gn, "f")?.dispose(),
+                privateMethods.set(this, Gn, new N(privateMethods.get(this, Xt, "f")), "f"),
+                privateMethods.get(this, Gn, "f").refresh(privateMethods.get(this, Jt, "f")),
+                privateMethods.get(this, xe, "f").show(),
+                privateMethods.get(this, he, "f").className = "editor-ui"
             }
             disable() {
-                i.set(this, re, !1, "f"),
-                i.get(this, je, "f").visible = !1,
-                i.set(this, Mn, !1, "f"),
-                i.set(this, En, !1, "f"),
-                i.set(this, Cn, null, "f"),
-                i.get(this, Ft, "m", qn).call(this),
-                i.get(this, Gn, "f")?.dispose(),
-                i.get(this, he, "f").className = "hidden",
-                i.get(this, Ge, "f")?.dispose(),
-                i.set(this, Ge, null, "f"),
-                i.get(this, be, "f").hide(),
-                i.get(this, xe, "f").hide(),
-                i.get(this, ye, "f")?.dispose(),
-                i.set(this, ye, null, "f")
+                privateMethods.set(this, re, !1, "f"),
+                privateMethods.get(this, je, "f").visible = !1,
+                privateMethods.set(this, Mn, !1, "f"),
+                privateMethods.set(this, En, !1, "f"),
+                privateMethods.set(this, Cn, null, "f"),
+                privateMethods.get(this, Ft, "m", qn).call(this),
+                privateMethods.get(this, Gn, "f")?.dispose(),
+                privateMethods.get(this, he, "f").className = "hidden",
+                privateMethods.get(this, Ge, "f")?.dispose(),
+                privateMethods.set(this, Ge, null, "f"),
+                privateMethods.get(this, be, "f").hide(),
+                privateMethods.get(this, xe, "f").hide(),
+                privateMethods.get(this, ye, "f")?.dispose(),
+                privateMethods.set(this, ye, null, "f")
             }
             isEnabled() {
-                return i.get(this, re, "f")
+                return privateMethods.get(this, re, "f")
             }
             resetView(t, e, n) {
-                i.set(this, Ft, e, "a", ni);
+                privateMethods.set(this, Ft, e, "a", ni);
                 const s = new THREE.Vector3(t * Track.A.partSize,e * Track.A.partSize,n * Track.A.partSize);
-                i.get(this, De, "f").position.copy(s).add(new THREE.Vector3(40,40,-40)),
-                i.get(this, Oe, "f").target.copy(s),
-                i.get(this, Oe, "f").update()
+                privateMethods.get(this, De, "f").position.copy(s).add(new THREE.Vector3(40,40,-40)),
+                privateMethods.get(this, Oe, "f").target.copy(s),
+                privateMethods.get(this, Oe, "f").update()
             }
             get camera() {
-                return i.get(this, De, "f")
+                return privateMethods.get(this, De, "f")
             }
             update(t) {
-                if (i.get(this, Ft, "m", ci).call(this, t),
-                i.get(this, Oe, "f").enabled = i.get(this, Ft, "m", di).call(this),
-                i.get(this, re, "f")) {
-                    if (i.get(this, De, "f").position.y < .499 && (i.get(this, De, "f").position.y = .5,
-                    i.get(this, Oe, "f").update()),
-                    i.get(this, Ft, "m", qn).call(this),
-                    i.set(this, hn, i.get(this, Ft, "m", ai).call(this), "f"),
-                    null != i.get(this, hn, "f")) {
-                        const t = TrackPartTransform.rotationAndAxisToQuaternion(i.get(this, cn, "f"), i.get(this, dn, "f"))
-                          , e = new THREE.Vector3(i.get(this, hn, "f").x * Track.A.partSize,i.get(this, hn, "f").y * Track.A.partSize,i.get(this, hn, "f").z * Track.A.partSize);
-                        i.get(this, je, "f").position.copy(e),
-                        i.get(this, je, "f").quaternion.copy(t),
-                        i.get(this, je, "f").visible = !0
+                if (privateMethods.get(this, Ft, "m", ci).call(this, t),
+                privateMethods.get(this, Oe, "f").enabled = privateMethods.get(this, Ft, "m", di).call(this),
+                privateMethods.get(this, re, "f")) {
+                    if (privateMethods.get(this, De, "f").position.y < .499 && (privateMethods.get(this, De, "f").position.y = .5,
+                    privateMethods.get(this, Oe, "f").update()),
+                    privateMethods.get(this, Ft, "m", qn).call(this),
+                    privateMethods.set(this, hn, privateMethods.get(this, Ft, "m", ai).call(this), "f"),
+                    null != privateMethods.get(this, hn, "f")) {
+                        const t = TrackPartTransform.rotationAndAxisToQuaternion(privateMethods.get(this, cn, "f"), privateMethods.get(this, dn, "f"))
+                          , e = new THREE.Vector3(privateMethods.get(this, hn, "f").x * Track.A.partSize,privateMethods.get(this, hn, "f").y * Track.A.partSize,privateMethods.get(this, hn, "f").z * Track.A.partSize);
+                        privateMethods.get(this, je, "f").position.copy(e),
+                        privateMethods.get(this, je, "f").quaternion.copy(t),
+                        privateMethods.get(this, je, "f").visible = !0
                     } else
-                        i.get(this, je, "f").visible = !1;
-                    const t = i.get(this, hn, "f");
-                    if (null != t && null != i.get(this, Ln, "f")) {
-                        if (null == i.get(this, zn, "f") || i.get(this, zn, "f").x != t.x || i.get(this, zn, "f").y != t.y || i.get(this, zn, "f").z != t.z) {
+                        privateMethods.get(this, je, "f").visible = !1;
+                    const t = privateMethods.get(this, hn, "f");
+                    if (null != t && null != privateMethods.get(this, Ln, "f")) {
+                        if (null == privateMethods.get(this, zn, "f") || privateMethods.get(this, zn, "f").x != t.x || privateMethods.get(this, zn, "f").y != t.y || privateMethods.get(this, zn, "f").z != t.z) {
                             let e;
-                            i.set(this, zn, t, "f"),
-                            e = !i.get(this, fn, "f") && i.get(this, Ft, "m", hi).call(this, t, i.get(this, Ln, "f").tiles),
-                            e ? (i.get(this, Je, "f").color.set(12303104),
-                            i.get(this, $e, "f").color.set(12303104)) : (i.get(this, Je, "f").color.set(187),
-                            i.get(this, $e, "f").color.set(187))
+                            privateMethods.set(this, zn, t, "f"),
+                            e = !privateMethods.get(this, fn, "f") && privateMethods.get(this, Ft, "m", hi).call(this, t, privateMethods.get(this, Ln, "f").tiles),
+                            e ? (privateMethods.get(this, Je, "f").color.set(12303104),
+                            privateMethods.get(this, $e, "f").color.set(12303104)) : (privateMethods.get(this, Je, "f").color.set(187),
+                            privateMethods.get(this, $e, "f").color.set(187))
                         }
-                    } else if (null != t && null != i.get(this, yn, "f")) {
-                        const e = i.get(this, xn, "f")[i.get(this, yn, "f")]
-                          , n = i.get(this, Ft, "m", ri).call(this, t, e.tiles);
-                        if (null == e.id || i.get(this, nn, "f"))
-                            n.length > 0 ? (i.get(this, Je, "f").color.set(12255232),
-                            i.get(this, $e, "f").color.set(12255232)) : (i.get(this, Je, "f").color.set(12263970),
-                            i.get(this, $e, "f").color.set(12263970));
+                    } else if (null != t && null != privateMethods.get(this, yn, "f")) {
+                        const e = privateMethods.get(this, xn, "f")[privateMethods.get(this, yn, "f")]
+                          , n = privateMethods.get(this, Ft, "m", ri).call(this, t, e.tiles);
+                        if (null == e.id || privateMethods.get(this, nn, "f"))
+                            n.length > 0 ? (privateMethods.get(this, Je, "f").color.set(12255232),
+                            privateMethods.get(this, $e, "f").color.set(12255232)) : (privateMethods.get(this, Je, "f").color.set(12263970),
+                            privateMethods.get(this, $e, "f").color.set(12263970));
                         else {
                             let s, o;
-                            if (i.get(this, fn, "f"))
-                                s = n.some(( ({parts: n}) => n.some((n => n.id == e.id && n.x == t.x && n.y == t.y && n.z == t.z && n.rotation == i.get(this, cn, "f") && n.rotationAxis == i.get(this, dn, "f"))))),
+                            if (privateMethods.get(this, fn, "f"))
+                                s = n.some(( ({parts: n}) => n.some((n => n.id == e.id && n.x == t.x && n.y == t.y && n.z == t.z && n.rotation == privateMethods.get(this, cn, "f") && n.rotationAxis == privateMethods.get(this, dn, "f"))))),
                                 o = !1;
                             else {
                                 s = !1;
                                 for (const {parts: a} of n)
                                     for (const n of a) {
-                                        if (!i.get(this, Qt, "f").isPartCombinationAllowed({
+                                        if (!privateMethods.get(this, Qt, "f").isPartCombinationAllowed({
                                             id: e.id,
                                             x: t.x,
                                             y: t.y,
                                             z: t.z,
-                                            rotation: i.get(this, cn, "f"),
-                                            rotationAxis: i.get(this, dn, "f")
+                                            rotation: privateMethods.get(this, cn, "f"),
+                                            rotationAxis: privateMethods.get(this, dn, "f")
                                         }, {
                                             id: n.id,
                                             x: n.x,
@@ -3178,45 +3178,45 @@
                                         o = !0
                                     }
                             }
-                            s ? (i.get(this, Je, "f").color.set(12303104),
-                            i.get(this, $e, "f").color.set(12303104)) : o ? (i.get(this, Je, "f").color.set(48059),
-                            i.get(this, $e, "f").color.set(48059)) : (i.get(this, Je, "f").color.set(187),
-                            i.get(this, $e, "f").color.set(187))
+                            s ? (privateMethods.get(this, Je, "f").color.set(12303104),
+                            privateMethods.get(this, $e, "f").color.set(12303104)) : o ? (privateMethods.get(this, Je, "f").color.set(48059),
+                            privateMethods.get(this, $e, "f").color.set(48059)) : (privateMethods.get(this, Je, "f").color.set(187),
+                            privateMethods.get(this, $e, "f").color.set(187))
                         }
                         const s = []
                           , o = [];
-                        if (i.get(this, nn, "f")) {
-                            if (null == i.get(this, un, "f") || i.get(this, un, "f").x != t.x || i.get(this, un, "f").y != t.y || i.get(this, un, "f").z != t.z) {
+                        if (privateMethods.get(this, nn, "f")) {
+                            if (null == privateMethods.get(this, un, "f") || privateMethods.get(this, un, "f").x != t.x || privateMethods.get(this, un, "f").y != t.y || privateMethods.get(this, un, "f").z != t.z) {
                                 let o = null;
                                 for (const {parts: s} of n) {
                                     for (const n of s)
-                                        if (n.id == e.id && n.x == t.x && n.y == t.y && n.z == t.z && n.rotation == i.get(this, cn, "f") && n.rotationAxis == i.get(this, dn, "f")) {
+                                        if (n.id == e.id && n.x == t.x && n.y == t.y && n.z == t.z && n.rotation == privateMethods.get(this, cn, "f") && n.rotationAxis == privateMethods.get(this, dn, "f")) {
                                             o = [n];
                                             break
                                         }
                                     if (null != o)
                                         break
                                 }
-                                i.get(this, Ft, "m", li).call(this, o ?? n.flatMap(( ({parts: t}) => t)), s),
-                                i.set(this, un, {
+                                privateMethods.get(this, Ft, "m", li).call(this, o ?? n.flatMap(( ({parts: t}) => t)), s),
+                                privateMethods.set(this, un, {
                                     x: t.x,
                                     y: t.y,
                                     z: t.z
                                 }, "f")
                             }
-                        } else if (i.get(this, sn, "f") || i.get(this, rn, "f")) {
+                        } else if (privateMethods.get(this, sn, "f") || privateMethods.get(this, rn, "f")) {
                             if (null == e.id)
-                                null != i.get(this, un, "f") && i.get(this, un, "f").x == t.x && i.get(this, un, "f").y == t.y && i.get(this, un, "f").z == t.z || (i.get(this, Ft, "m", li).call(this, n.flatMap(( ({parts: t}) => t)), s),
-                                i.set(this, un, {
+                                null != privateMethods.get(this, un, "f") && privateMethods.get(this, un, "f").x == t.x && privateMethods.get(this, un, "f").y == t.y && privateMethods.get(this, un, "f").z == t.z || (privateMethods.get(this, Ft, "m", li).call(this, n.flatMap(( ({parts: t}) => t)), s),
+                                privateMethods.set(this, un, {
                                     x: t.x,
                                     y: t.y,
                                     z: t.z
                                 }, "f"));
-                            else if (null == i.get(this, pn, "f") || i.get(this, pn, "f").x != t.x || i.get(this, pn, "f").y != t.y || i.get(this, pn, "f").z != t.z || i.get(this, pn, "f").id != e.id || i.get(this, pn, "f").rotation != i.get(this, cn, "f") || i.get(this, pn, "f").rotationAxis != i.get(this, dn, "f")) {
-                                if (i.get(this, fn, "f"))
+                            else if (null == privateMethods.get(this, pn, "f") || privateMethods.get(this, pn, "f").x != t.x || privateMethods.get(this, pn, "f").y != t.y || privateMethods.get(this, pn, "f").z != t.z || privateMethods.get(this, pn, "f").id != e.id || privateMethods.get(this, pn, "f").rotation != privateMethods.get(this, cn, "f") || privateMethods.get(this, pn, "f").rotationAxis != privateMethods.get(this, dn, "f")) {
+                                if (privateMethods.get(this, fn, "f"))
                                     for (const {parts: o} of n) {
-                                        const n = o.find((n => n.id == e.id && n.x == t.x && n.y == t.y && n.z == t.z && n.rotation == i.get(this, cn, "f") && n.rotationAxis == i.get(this, dn, "f")));
-                                        null != n && null != i.get(this, Jt, "f").deleteSpecificPart(n.id, n.x, n.y, n.z, n.rotation, n.rotationAxis) && s.push({
+                                        const n = o.find((n => n.id == e.id && n.x == t.x && n.y == t.y && n.z == t.z && n.rotation == privateMethods.get(this, cn, "f") && n.rotationAxis == privateMethods.get(this, dn, "f")));
+                                        null != n && null != privateMethods.get(this, Jt, "f").deleteSpecificPart(n.id, n.x, n.y, n.z, n.rotation, n.rotationAxis) && s.push({
                                             id: n.id,
                                             x: n.x,
                                             y: n.y,
@@ -3231,13 +3231,13 @@
                                 else
                                     for (const {parts: o} of n)
                                         for (const n of o)
-                                            i.get(this, Qt, "f").isPartCombinationAllowed({
+                                            privateMethods.get(this, Qt, "f").isPartCombinationAllowed({
                                                 id: e.id,
                                                 x: t.x,
                                                 y: t.y,
                                                 z: t.z,
-                                                rotation: i.get(this, cn, "f"),
-                                                rotationAxis: i.get(this, dn, "f")
+                                                rotation: privateMethods.get(this, cn, "f"),
+                                                rotationAxis: privateMethods.get(this, dn, "f")
                                             }, {
                                                 id: n.id,
                                                 x: n.x,
@@ -3245,7 +3245,7 @@
                                                 z: n.z,
                                                 rotation: n.rotation,
                                                 rotationAxis: n.rotationAxis
-                                            }) || null != i.get(this, Jt, "f").deleteSpecificPart(n.id, n.x, n.y, n.z, n.rotation, n.rotationAxis) && s.push({
+                                            }) || null != privateMethods.get(this, Jt, "f").deleteSpecificPart(n.id, n.x, n.y, n.z, n.rotation, n.rotationAxis) && s.push({
                                                 id: n.id,
                                                 x: n.x,
                                                 y: n.y,
@@ -3257,48 +3257,48 @@
                                                 startOrder: n.startOrder
                                             });
                                 let a = null;
-                                e.isCheckpoint && (a = i.get(this, we, "f").checkpointOrder);
+                                e.isCheckpoint && (a = privateMethods.get(this, we, "f").checkpointOrder);
                                 let r = null;
-                                e.isStart && (r = i.get(this, Jt, "f").getNextStartOrder()),
-                                i.get(this, Jt, "f").setPart(t.x, t.y, t.z, e.id, i.get(this, cn, "f"), i.get(this, dn, "f"), i.get(this, Ft, "m", Xn).call(this), a, r),
-                                i.get(this, Ft, "m", oi).call(this),
+                                e.isStart && (r = privateMethods.get(this, Jt, "f").getNextStartOrder()),
+                                privateMethods.get(this, Jt, "f").setPart(t.x, t.y, t.z, e.id, privateMethods.get(this, cn, "f"), privateMethods.get(this, dn, "f"), privateMethods.get(this, Ft, "m", Xn).call(this), a, r),
+                                privateMethods.get(this, Ft, "m", oi).call(this),
                                 o.push({
                                     id: e.id,
                                     x: t.x,
                                     y: t.y,
                                     z: t.z,
-                                    rotation: i.get(this, cn, "f"),
-                                    rotationAxis: i.get(this, dn, "f"),
-                                    color: i.get(this, Ft, "m", Xn).call(this),
+                                    rotation: privateMethods.get(this, cn, "f"),
+                                    rotationAxis: privateMethods.get(this, dn, "f"),
+                                    color: privateMethods.get(this, Ft, "m", Xn).call(this),
                                     checkpointOrder: a,
                                     startOrder: r
                                 }),
-                                i.set(this, pn, {
+                                privateMethods.set(this, pn, {
                                     x: t.x,
                                     y: t.y,
                                     z: t.z,
                                     id: e.id,
-                                    rotation: i.get(this, cn, "f"),
-                                    rotationAxis: i.get(this, dn, "f")
+                                    rotation: privateMethods.get(this, cn, "f"),
+                                    rotationAxis: privateMethods.get(this, dn, "f")
                                 }, "f"),
-                                i.get(this, Ft, "m", si).call(this)
+                                privateMethods.get(this, Ft, "m", si).call(this)
                             }
-                            i.set(this, rn, !1, "f")
+                            privateMethods.set(this, rn, !1, "f")
                         } else
-                            i.set(this, pn, null, "f"),
-                            i.set(this, un, null, "f");
-                        (s.length > 0 || o.length > 0) && (i.get(this, bn, "f").push({
+                            privateMethods.set(this, pn, null, "f"),
+                            privateMethods.set(this, un, null, "f");
+                        (s.length > 0 || o.length > 0) && (privateMethods.get(this, bn, "f").push({
                             removed: s,
                             added: o
                         }),
-                        i.get(this, kn, "f").length = 0,
-                        i.get(this, fe, "f").disabled = 0 == i.get(this, bn, "f").length,
-                        i.get(this, pe, "f").disabled = 0 == i.get(this, kn, "f").length),
-                        i.get(this, je, "f").visible = !0
+                        privateMethods.get(this, kn, "f").length = 0,
+                        privateMethods.get(this, fe, "f").disabled = 0 == privateMethods.get(this, bn, "f").length,
+                        privateMethods.get(this, pe, "f").disabled = 0 == privateMethods.get(this, kn, "f").length),
+                        privateMethods.get(this, je, "f").visible = !0
                     } else
-                        i.get(this, je, "f").visible = !1,
-                        i.set(this, pn, null, "f"),
-                        i.set(this, un, null, "f")
+                        privateMethods.get(this, je, "f").visible = !1,
+                        privateMethods.set(this, pn, null, "f"),
+                        privateMethods.set(this, un, null, "f")
                 }
             }
         }
@@ -3318,38 +3318,38 @@
                 wi.set(this, void 0),
                 bi.set(this, void 0),
                 ki.set(this, void 0),
-                i.set(this, ui, t, "f"),
-                i.set(this, mi, s, "f"),
-                i.set(this, vi, o, "f"),
-                i.set(this, wi, r, "f"),
-                i.set(this, bi, h, "f"),
-                i.set(this, ki, new pi(a,r,h,c,t,e,n,d,g,f,p,u,l,m), "f"),
-                i.get(this, ki, "f").enable(),
-                i.get(this, ui, "f").clear(),
-                i.get(this, ui, "f").setPart(0, 0, 0, Part.Start, 0, TrackPartRotationAxis.YPositive, TrackPartColorId.Default, null, 0),
-                i.get(this, ui, "f").generateMeshes(),
-                h.setCamera(i.get(this, ki, "f").camera),
-                i.get(this, ki, "f").setTestCallback(( () => {
-                    i.get(this, ki, "f").disable();
-                    const t = i.get(this, ki, "f").getTrackMetadata();
-                    v(t, i.get(this, ui, "f").getTrackData(), ( () => {
-                        i.get(this, ki, "f").enable(),
-                        h.setCamera(i.get(this, ki, "f").camera)
+                privateMethods.set(this, ui, t, "f"),
+                privateMethods.set(this, mi, s, "f"),
+                privateMethods.set(this, vi, o, "f"),
+                privateMethods.set(this, wi, r, "f"),
+                privateMethods.set(this, bi, h, "f"),
+                privateMethods.set(this, ki, new pi(a,r,h,c,t,e,n,d,g,f,p,u,l,m), "f"),
+                privateMethods.get(this, ki, "f").enable(),
+                privateMethods.get(this, ui, "f").clear(),
+                privateMethods.get(this, ui, "f").setPart(0, 0, 0, Part.Start, 0, TrackPartRotationAxis.YPositive, TrackPartColorId.Default, null, 0),
+                privateMethods.get(this, ui, "f").generateMeshes(),
+                h.setCamera(privateMethods.get(this, ki, "f").camera),
+                privateMethods.get(this, ki, "f").setTestCallback(( () => {
+                    privateMethods.get(this, ki, "f").disable();
+                    const t = privateMethods.get(this, ki, "f").getTrackMetadata();
+                    v(t, privateMethods.get(this, ui, "f").getTrackData(), ( () => {
+                        privateMethods.get(this, ki, "f").enable(),
+                        h.setCamera(privateMethods.get(this, ki, "f").camera)
                     }
                     ))
                 }
                 ))
             }
             dispose() {
-                i.get(this, ki, "f").dispose(),
-                i.get(this, ui, "f").clear()
+                privateMethods.get(this, ki, "f").dispose(),
+                privateMethods.get(this, ui, "f").clear()
             }
             update(t) {
-                Gi.ip() || i.get(this, ki, "f").update(t),
-                i.get(this, mi, "f").update(i.get(this, ui, "f")),
-                i.get(this, vi, "f").update(t, i.get(this, bi, "f").camera, i.get(this, ui, "f").sunDirection),
-                i.get(this, wi, "f").update(t, !1, i.get(this, bi, "f")),
-                i.get(this, bi, "f").update(i.get(this, ui, "f").sunDirection)
+                Gi.ip() || privateMethods.get(this, ki, "f").update(t),
+                privateMethods.get(this, mi, "f").update(privateMethods.get(this, ui, "f")),
+                privateMethods.get(this, vi, "f").update(t, privateMethods.get(this, bi, "f").camera, privateMethods.get(this, ui, "f").sunDirection),
+                privateMethods.get(this, wi, "f").update(t, !1, privateMethods.get(this, bi, "f")),
+                privateMethods.get(this, bi, "f").update(privateMethods.get(this, ui, "f").sunDirection)
             }
             static async initResources() {
                 await N.initResources()
@@ -3369,7 +3369,7 @@
         const r = a
     }
     ,
-    5298: (t, e, n) => {
+    5298: (t, e, n) => { // heightSelectorStyles
         n.d(e, {
             A: () => r
         });
@@ -3381,7 +3381,7 @@
         const r = a
     }
     ,
-    6057: (t, e, n) => {
+    6057: (t, e, n) => { // editorStyles
         n.d(e, {
             A: () => r
         });
@@ -3393,7 +3393,7 @@
         const r = a
     }
     ,
-    7296: (t, e, n) => {
+    7296: (t, e, n) => { // checkpointOrderStyles
         n.d(e, {
             A: () => r
         });
