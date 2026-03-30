@@ -7534,7 +7534,7 @@
                 })
             };
             const B = D;
-            var G, F, O, W, V, H, j, K, q, Q, J, X, Y, Z, $, ee, te, ne, ie, re, ae, se, oe, le, ce, he, de, ue, pe, fe, ge, me, Ae, ve, ye, be, we, xe, Se, ke, Ee, Te, Me, _e, Ce, Re, Pe, Ie, Le, Ue, ze, Ne, De, Be, Ge, Fe, Oe, We, Ve, He, je, Ke, qe, Qe, Je, Xe, Ye, Ze, $e, et, tt, nt, it, rt, at, st = n(3476), ot = n(6633), lt = n(927);
+            var G, F, O, W, V, H, j, K, q, Q, J, X, Y, Z, $, ee, te, ne, ie, re, ae, se, oe, le, ce, he, de, ue, pe, fe, ge, me, Ae, ve, ye, be, we, xe, Se, ke, Ee, Te, Me, _e, Ce, Re, Pe, Ie, Le, Ue, ze, Ne, De, Be, Ge, Fe, Oe, setCarDisabled, We, Ve, He, je, Ke, qe, Qe, Je, Xe, Ye, Ze, $e, et, tt, nt, it, rt, at, carDisabled, st = n(3476), ot = n(6633), lt = n(927);
             class VisualCar {
                 constructor(e, t, n, i, r, a, s, o, h, d, u) {
                     if (G.add(this),
@@ -7589,6 +7589,7 @@
                     Be.set(this, null),
                     Ge.set(this, void 0),
                     Fe.set(this, !1),
+                    carDisabled.set(this, !1),
                     l.set(this, O, a, "f"),
                     l.set(this, Ae, r, "f"),
                     l.set(this, Re, s, "f"),
@@ -7904,7 +7905,19 @@
                     }
                     (t || l.get(this, ie, "f").frames % 50 == 0) && l.get(this, $, "f")?.call(this, l.get(this, ie, "f"))
                 }
+                setCarDisabled(e) {
+                    if (l.get(this, carDisabled, "f") == e)
+                        return;
+
+                    l.set(this, carDisabled, e, "f");
+                    this.update(10);
+                    this.setVisible(!e);
+                }
                 update(e) {
+                    if (l.get(this, carDisabled, "f")) {
+                        return;
+                    }
+
                     if (l.get(this, G, "m", Xe).call(this),
                     l.get(this, De, "f")?.update(e),
                     null != l.get(this, be, "f")) {
@@ -8122,6 +8135,7 @@
             Be = new WeakMap,
             Ge = new WeakMap,
             Fe = new WeakMap,
+            carDisabled = new WeakMap,
             G = new WeakSet,
             Oe = function() {
                 l.get(this, G, "m", qe).call(this),
@@ -23696,7 +23710,9 @@
                 e[e.SpectatorMoveLeft = 29] = "SpectatorMoveLeft",
                 e[e.SpectatorSpeedModifier = 30] = "SpectatorSpeedModifier",
                 e[e.PreviewStepForward = 31] = "PreviewStepForward",
-                e[e.PreviewStepBack = 32] = "PreviewStepBack"
+                e[e.PreviewStepBack = 32] = "PreviewStepBack",
+
+                e[e.ToggleGhost = 33] = "ToggleGhost"
             }(i || (i = {}));
             const r = i
         }
@@ -41339,7 +41355,7 @@
                 }
             }
         }
-        var _r, Cr, Rr, Pr, Ir, Lr, Ur, zr, Nr, Dr, Br, Gr, Fr, Or, Wr, Vr, Hr, jr, Kr, qr, Qr, Jr, Xr, Yr, Zr, $r, ea, ta, na, ia, ra, aa, sa, oa, la, ca, ha, da, ua, pa, fa, ga, ma, Aa, va, ya, ba, wa, xa, Sa, ka, Ea, Ta, Ma, _a, Ca, Ra, Pa, Ia, La, Ua, za, Na, Da, Ba, Ga, Fa, Oa, Wa, Va, Ha, ja, Ka, qa, Qa, Ja, Xa, Ya, Za, $a, es;
+        var _r, Cr, Rr, Pr, Ir, Lr, Ur, zr, Nr, Dr, Br, Gr, Fr, Or, Wr, Vr, Hr, jr, Kr, qr, Qr, Jr, Xr, Yr, Zr, drivingUIVisible, ea, ta, na, ia, ra, aa, sa, oa, la, ca, ha, da, ua, pa, fa, ga, ma, Aa, va, ya, ba, wa, xa, Sa, ka, Ea, Ta, Ma, _a, Ca, Ra, Pa, Ia, La, Ua, za, Na, Da, Ba, Ga, Fa, Oa, Wa, Va, Ha, ja, Ka, qa, Qa, Ja, Xa, Ya, Za, updateGhostOpacity, es, m_ghostsVisible;
         Cr = new WeakMap,
         Rr = new WeakMap,
         Pr = new WeakMap,
@@ -41364,7 +41380,7 @@
         Xr = new WeakMap,
         Yr = new WeakMap,
         Zr = new WeakMap,
-        $r = new WeakMap,
+        drivingUIVisible = new WeakMap,
         ea = new WeakMap,
         ta = new WeakMap,
         na = new WeakMap,
@@ -41409,6 +41425,7 @@
         Oa = new WeakMap,
         Wa = new WeakMap,
         _r = new WeakSet,
+        m_ghostsVisible = new WeakMap,
         Va = function() {
             if (null == C.get(this, Sa, "f"))
                 C.get(this, Kr, "f").call(this);
@@ -41685,7 +41702,7 @@
                         const n = new VisualCar(null,t,e.settings.recording,null,C.get(this, zr, "f"),C.get(this, Nr, "f"),C.get(this, Ir, "f"),C.get(this, Pr, "f"),C.get(this, Yr, "f"),C.get(this, Gr, "f"),null);
                         n.setCarStyle(e.settings.carStyle),
                         n.audioVolume = C.get(this, Oa, "f"),
-                        C.get(this, _r, "m", $a).call(this),
+                        C.get(this, _r, "m", updateGhostOpacity).call(this),
                         e.car = n,
                         e.hasEnded = !1
                     }
@@ -41699,7 +41716,16 @@
             return e
         }
         ,
-        $a = function() {
+        updateGhostOpacity = function() {
+            for (const e of C.get(this, xa, "f")) {
+                if (null != e.car) {
+                    e.car.setCarDisabled(!C.get(this, m_ghostsVisible, "f"));
+                }
+            }
+            if (!C.get(this, m_ghostsVisible, "f")) {
+                return;
+            }
+
             const e = C.get(this, wa, "f").getPosition()
               , t = C.get(this, xa, "f").map((e => e.car)).filter((e => null != e)).concat(Array.from(C.get(this, Ra, "f").values()).map((e => e.car)));
             for (const n of t) {
@@ -41765,7 +41791,7 @@
                 Xr.set(this, void 0),
                 Yr.set(this, void 0),
                 Zr.set(this, void 0),
-                $r.set(this, !0),
+                drivingUIVisible.set(this, !0),
                 ea.set(this, void 0),
                 ta.set(this, void 0),
                 na.set(this, null),
@@ -41809,6 +41835,7 @@
                 Fa.set(this, null),
                 Oa.set(this, void 0),
                 Wa.set(this, 1e4),
+                m_ghostsVisible.set(this, !0),
                 C.set(this, Cr, e, "f"),
                 C.set(this, Rr, t, "f"),
                 C.set(this, Pr, n, "f"),
@@ -41863,7 +41890,7 @@
                 C.set(this, Ba, new SpectatorCamera(s,d), "f"),
                 C.get(this, Ba, "f").addToggleListener((e => {
                     e ? (C.get(this, ea, "f").isVisible = !1,
-                    s.setCamera(C.get(this, Ba, "f").camera)) : (C.get(this, ea, "f").isVisible = C.get(this, $r, "f"),
+                    s.setCamera(C.get(this, Ba, "f").camera)) : (C.get(this, ea, "f").isVisible = C.get(this, drivingUIVisible, "f"),
                     C.get(this, Gr, "f").getSettingBoolean(R.A.DefaultCameraMode) ? C.get(this, zr, "f").setCamera(C.get(this, wa, "f").cameraCockpit) : C.get(this, zr, "f").setCamera(C.get(this, wa, "f").cameraOrbit))
                 }
                 )),
@@ -42119,8 +42146,8 @@
                         C.get(this, Pa, "f") || (C.set(this, Pa, !0, "f"),
                         C.get(this, la, "f").setChangeTrackEnabled(!1),
                         C.get(this, Ba, "f").isEnabled = !1,
-                        C.set(this, $r, !0, "f"),
-                        C.get(this, ea, "f").isVisible = C.get(this, $r, "f"),
+                        C.set(this, drivingUIVisible, !0, "f"),
+                        C.get(this, ea, "f").isVisible = C.get(this, drivingUIVisible, "f"),
                         C.get(this, ma, "f").dispose(),
                         C.get(this, ra, "f").dispose(),
                         C.get(this, sa, "f").dispose(),
@@ -42181,8 +42208,11 @@
                                 e.repeat || C.get(this, _r, "m", Ka).call(this),
                                 e.preventDefault();
                             else if (d.checkKeyBinding(e, KeyBind.ToggleUI))
-                                null != C.get(this, ca, "f") || C.get(this, Pa, "f") || (C.set(this, $r, !C.get(this, $r, "f"), "f"),
-                                C.get(this, ea, "f").isVisible = C.get(this, $r, "f")),
+                                // Toggle UI while driving
+                                null != C.get(this, ca, "f") || C.get(this, Pa, "f") || (
+                                    C.set(this, drivingUIVisible, !C.get(this, drivingUIVisible, "f"), "f"),
+                                    C.get(this, ea, "f").isVisible = C.get(this, drivingUIVisible, "f")
+                                ),
                                 e.preventDefault();
                             else if (d.checkKeyBinding(e, KeyBind.Pause)) {
                                 if (null == C.get(this, ca, "f")) {
@@ -42200,6 +42230,12 @@
                                     }
                                     ));
                                 e.preventDefault()
+                            } else if (d.checkKeyBinding(e, KeyBind.ToggleGhost)) {
+                                // Toggle Ghost while driving
+                                if (null == C.get(this, ca, "f") && !C.get(this, Pa, "f")) {
+                                    C.set(this, m_ghostsVisible, !C.get(this, m_ghostsVisible, "f"), "f");
+                                };
+                                e.preventDefault();
                             }
                         if ("Escape" == e.code && (C.get(this, Or, "f").isOpen || (C.get(this, Ba, "f").isEnabled ? C.get(this, Ba, "f").isEnabled = !1 : null != C.get(this, ca, "f") ? C.get(this, ca, "f").startFadeOut(( () => {
                             C.get(this, ca, "f")?.dispose(),
@@ -42446,7 +42482,7 @@
                         }
                         e.car.update(n)
                     }
-                    C.get(this, _r, "m", $a).call(this),
+                    C.get(this, _r, "m", updateGhostOpacity).call(this),
                     C.get(this, Ba, "f").update(e),
                     C.get(this, la, "f").setVisible(!C.get(this, wa, "f").hasStarted() || C.get(this, wa, "f").hasFinished() || !C.get(this, va, "f") || C.get(this, Wr, "f").touchEnabled || !C.get(this, Fr, "f").isCursorHidden || C.get(this, la, "f").hasFocus())
                 } else {
@@ -48699,7 +48735,9 @@
             C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Hide UI"), KeyBind.ToggleUI),
             C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Pause"), KeyBind.Pause),
             C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Toggle FPS counter"), KeyBind.ToggleFpsCounter),
-            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Toggle spectator camera"), KeyBind.ToggleSpectatorCamera)
+            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Toggle spectator camera"), KeyBind.ToggleSpectatorCamera),
+            C.get(this, ms, "m", Bs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Modded")),
+            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Toggle Ghost"), KeyBind.ToggleGhost)
         }
         ,
         Ds = function(e) {
@@ -55228,7 +55266,43 @@
                 return new Map([[R.A.ImperialUnitsEnabled, "false"], [R.A.ResetHintEnabled, "true"], [R.A.GhostCarEnabled, "true"], [R.A.DefaultCameraMode, "false"], [R.A.CockpitCameraToggle, "true"], [R.A.Checkpoints, "bottom"], [R.A.Timer, "bottom"], [R.A.Speedometer, "bottom"], [R.A.Language, "en-US"], [R.A.ShadowQuality, "2"], [R.A.CloudsEnabled, "true"], [R.A.ParticlesEnabled, "true"], [R.A.SkidmarksEnabled, "true"], [R.A.FogEnabled, "true"], [R.A.RenderScale, "1"], [R.A.ScreenPixelDensity, "true"], [R.A.Antialiasing, "true"], [R.A.MasterVolume, "1"], [R.A.SoundEffectVolume, "1"], [R.A.MusicVolume, "1"], [R.A.CheckpointVolume, "1"], [R.A.GhostCarSoundsEnabled, "true"], [R.A.VibrationEnabled, "false"], [R.A.TouchSteeringSide, "true"]])
             }
             defaultKeyBindings() {
-                return new Map([[KeyBind.VehicleAccelerate, ["KeyW", "ArrowUp"]], [KeyBind.VehicleTurnRight, ["KeyD", "ArrowRight"]], [KeyBind.VehicleBrake, ["KeyS", "ArrowDown"]], [KeyBind.VehicleTurnLeft, ["KeyA", "ArrowLeft"]], [KeyBind.VehicleCheckpointReset, ["KeyR", "Enter"]], [KeyBind.VehicleStartReset, ["KeyT", "Backspace"]], [KeyBind.VehicleCockpitCamera, ["KeyC", "KeyM"]], [KeyBind.ToggleUI, ["KeyH", null]], [KeyBind.Pause, ["KeyP", "Space"]], [KeyBind.EditorRotatePart, ["KeyR", "Space"]], [KeyBind.EditorHeightModifier, ["ShiftLeft", "ShiftRight"]], [KeyBind.EditorDelete, ["Delete", "KeyX"]], [KeyBind.EditorMoveForwards, ["KeyW", "ArrowUp"]], [KeyBind.EditorMoveRight, ["KeyD", "ArrowRight"]], [KeyBind.EditorMoveBackwards, ["KeyS", "ArrowDown"]], [KeyBind.EditorMoveLeft, ["KeyA", "ArrowLeft"]], [KeyBind.EditorRotateViewUp, ["KeyY", null]], [KeyBind.EditorRotateViewDown, ["KeyH", null]], [KeyBind.EditorRotateViewLeft, ["KeyQ", null]], [KeyBind.EditorRotateViewRight, ["KeyE", null]], [KeyBind.EditorMoveDown, ["KeyZ", null]], [KeyBind.EditorMoveUp, ["KeyC", null]], [KeyBind.EditorTest, ["KeyT", null]], [KeyBind.EditorPick, ["KeyG", null]], [KeyBind.ToggleFpsCounter, ["Equal", null]], [KeyBind.ToggleSpectatorCamera, ["Slash", null]], [KeyBind.SpectatorMoveForwards, ["KeyW", "ArrowUp"]], [KeyBind.SpectatorMoveRight, ["KeyD", "ArrowRight"]], [KeyBind.SpectatorMoveBackwards, ["KeyS", "ArrowDown"]], [KeyBind.SpectatorMoveLeft, ["KeyA", "ArrowLeft"]], [KeyBind.SpectatorSpeedModifier, ["ShiftLeft", "ShiftRight"]], [KeyBind.PreviewStepForward, ["Period", null]], [KeyBind.PreviewStepBack, ["Comma", null]]])
+                return new Map([
+                    [KeyBind.VehicleAccelerate, ["KeyW", "ArrowUp"]],
+                    [KeyBind.VehicleTurnRight, ["KeyD", "ArrowRight"]],
+                    [KeyBind.VehicleBrake, ["KeyS", "ArrowDown"]],
+                    [KeyBind.VehicleTurnLeft, ["KeyA", "ArrowLeft"]],
+                    [KeyBind.VehicleCheckpointReset, ["KeyR", "Enter"]],
+                    [KeyBind.VehicleStartReset, ["KeyT", "Backspace"]],
+                    [KeyBind.VehicleCockpitCamera, ["KeyC", "KeyM"]],
+                    [KeyBind.ToggleUI, ["KeyH", null]],
+                    [KeyBind.Pause, ["KeyP", "Space"]],
+                    [KeyBind.EditorRotatePart, ["KeyR", "Space"]],
+                    [KeyBind.EditorHeightModifier, ["ShiftLeft", "ShiftRight"]],
+                    [KeyBind.EditorDelete, ["Delete", "KeyX"]],
+                    [KeyBind.EditorMoveForwards, ["KeyW", "ArrowUp"]],
+                    [KeyBind.EditorMoveRight, ["KeyD", "ArrowRight"]],
+                    [KeyBind.EditorMoveBackwards, ["KeyS", "ArrowDown"]],
+                    [KeyBind.EditorMoveLeft, ["KeyA", "ArrowLeft"]],
+                    [KeyBind.EditorRotateViewUp, ["KeyY", null]],
+                    [KeyBind.EditorRotateViewDown, ["KeyH", null]],
+                    [KeyBind.EditorRotateViewLeft, ["KeyQ", null]],
+                    [KeyBind.EditorRotateViewRight, ["KeyE", null]],
+                    [KeyBind.EditorMoveDown, ["KeyZ", null]],
+                    [KeyBind.EditorMoveUp, ["KeyC", null]],
+                    [KeyBind.EditorTest, ["KeyT", null]],
+                    [KeyBind.EditorPick, ["KeyG", null]],
+                    [KeyBind.ToggleFpsCounter, ["Equal", null]],
+                    [KeyBind.ToggleSpectatorCamera, ["Slash", null]],
+                    [KeyBind.SpectatorMoveForwards, ["KeyW", "ArrowUp"]],
+                    [KeyBind.SpectatorMoveRight, ["KeyD", "ArrowRight"]],
+                    [KeyBind.SpectatorMoveBackwards, ["KeyS", "ArrowDown"]],
+                    [KeyBind.SpectatorMoveLeft, ["KeyA", "ArrowLeft"]],
+                    [KeyBind.SpectatorSpeedModifier, ["ShiftLeft", "ShiftRight"]],
+                    [KeyBind.PreviewStepForward, ["Period", null]], 
+                    [KeyBind.PreviewStepBack, ["Comma", null]],
+
+                    [KeyBind.ToggleGhost, ["KeyL", null]]
+                ])
             }
             getSettings() {
                 return Array.from(C.get(this, Cu, "f"))
@@ -56252,8 +56326,11 @@
                     if ("Escape" == e.code && (null != C.get(this, kf, "f") ? (C.get(this, kf, "f").dispose(),
                     C.set(this, kf, null, "f")) : C.get(this, mf, "f").isEnabled ? C.get(this, mf, "f").isEnabled = !1 : u(n, i, r, C.get(this, uf, "f").map((e => e.settings))),
                     e.preventDefault()),
-                    h.checkKeyBinding(e, KeyBind.ToggleUI) && (C.get(this, Af, "f").isVisible = !C.get(this, Af, "f").isVisible,
-                    e.preventDefault()),
+                    // Toggle UI in replay mode
+                    h.checkKeyBinding(e, KeyBind.ToggleUI) && (
+                        C.get(this, Af, "f").isVisible = !C.get(this, Af, "f").isVisible,
+                        e.preventDefault()
+                    ),
                     h.checkKeyBinding(e, KeyBind.ToggleSpectatorCamera)) {
                         C.get(this, mf, "f").camera.position.copy(C.get(this, sf, "f").camera.position);
                         const t = new THREE.Euler(0,0,0,"YXZ").setFromQuaternion(C.get(this, sf, "f").camera.quaternion);
