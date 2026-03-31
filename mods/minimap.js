@@ -1,6 +1,8 @@
 class Minimap {
+  // upscale factor compared to regular thumbnail scale
   static SCALE = 8;
-  static DOT_RADIUS = 5;
+  static MAIN_DOT_RADIUS = 5;
+  static MULTIPLAYER_DOT_RADIUS = 3;
   static DOT_COLOR = "red";
 
   constructor(soundManager) {
@@ -16,7 +18,8 @@ class Minimap {
       this.trackPreviewDiv.classList.toggle("hidden");
     });
 
-    this.playerPos = { x: 0, y: 0, z: 0 };
+    this.playerMap = new Map();
+    this.mainPlayerPos = {x: 0, y: 0, z: 0};
     this.minX = 0;
     this.minZ = 0;
   }
@@ -54,9 +57,27 @@ class Minimap {
     };
   }
 
+  setPlayerCar(id, carObject) {
+    // random color seeded by id
+    console.log(id);
+    this.playerMap.set(id, {car: carObject, color: `hsl(${id * 137 % 360}, 50%, 50%)`});
+  }
+
   updatePlayerPos(pos) {
-    this.playerPos = pos;
+    this.mainPlayerPos = pos;
     this.renderPlayer();
+  }
+
+  drawPlayerDot(x, z, color = Minimap.DOT_COLOR, radius = Minimap.MAIN_DOT_RADIUS) {
+    const { width, height } = this.displayCanvas;
+    const { x: x1, y: y1 } = this.worldToDisplayCoords(x, z);
+
+    if (x1 >= 0 && x1 < width && y1 >= 0 && y1 < height) {
+      this.ctx.fillStyle = color;
+      this.ctx.beginPath();
+      this.ctx.arc(x1, y1, radius, 0, 2 * Math.PI);
+      this.ctx.fill();
+    }
   }
 
   renderPlayer() {
@@ -65,13 +86,14 @@ class Minimap {
     this.ctx.clearRect(0, 0, width, height);
     this.ctx.drawImage(this.thumbCanvas, 0, 0, width, height);
 
-    const { x, y } = this.worldToDisplayCoords(this.playerPos.x, this.playerPos.z);
+    this.drawPlayerDot(this.mainPlayerPos.x, this.mainPlayerPos.z, Minimap.DOT_COLOR, Minimap.MAIN_DOT_RADIUS);
 
-    if (x >= 0 && x < width && y >= 0 && y < height) {
-      this.ctx.fillStyle = Minimap.DOT_COLOR;
-      this.ctx.beginPath();
-      this.ctx.arc(x, y, Minimap.DOT_RADIUS, 0, 2 * Math.PI);
-      this.ctx.fill();
+    for (const [id, obj] of this.playerMap.entries()) {
+      if (obj.car) {
+        const carPos = obj.car.getPosition();
+
+        this.drawPlayerDot(carPos.x, carPos.z, obj.color, Minimap.MULTIPLAYER_DOT_RADIUS);
+      }
     }
   }
 }
