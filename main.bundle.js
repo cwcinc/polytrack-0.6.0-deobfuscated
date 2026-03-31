@@ -7534,7 +7534,7 @@
                 })
             };
             const B = D;
-            var G, F, O, W, V, H, j, K, q, Q, J, X, Y, Z, $, ee, te, ne, ie, re, ae, se, oe, le, ce, he, de, ue, pe, fe, ge, me, Ae, ve, ye, be, we, xe, Se, ke, Ee, Te, Me, _e, Ce, Re, Pe, Ie, Le, Ue, ze, Ne, De, Be, Ge, Fe, Oe, setCarDisabled, We, Ve, He, je, Ke, qe, Qe, Je, Xe, Ye, Ze, $e, et, tt, nt, it, rt, at, carDisabled, st = n(3476), ot = n(6633), lt = n(927);
+            var G, F, O, W, V, H, j, K, q, Q, J, X, Y, Z, $, ee, te, ne, ie, re, ae, se, oe, le, ce, he, de, ue, pe, m_positionListeners, fe, ge, me, Ae, ve, ye, be, we, xe, Se, ke, Ee, Te, Me, _e, Ce, Re, Pe, Ie, Le, Ue, ze, Ne, De, Be, Ge, Fe, Oe, setCarDisabled, We, Ve, He, je, Ke, qe, Qe, Je, Xe, Ye, Ze, $e, et, tt, nt, it, rt, at, carDisabled, st = n(3476), ot = n(6633), lt = n(927);
             class VisualCar {
                 constructor(e, t, n, i, r, a, s, o, h, d, u) {
                     if (G.add(this),
@@ -7562,6 +7562,7 @@
                     de.set(this, []),
                     ue.set(this, []),
                     pe.set(this, []),
+                    m_positionListeners.set(this, []),
                     fe.set(this, [0, 0, 0, 0]),
                     ge.set(this, [0, 0, 0, 0]),
                     me.set(this, [0, 0, 0, 0]),
@@ -7737,6 +7738,9 @@
                 addFinishCallback(e) {
                     l.get(this, pe, "f").push(e)
                 }
+                addPositionCallback(e) {
+                    l.get(this, m_positionListeners, "f").push(e)
+                }
                 getChassisMatrix() {
                     return l.get(this, we, "f").matrix
                 }
@@ -7904,6 +7908,9 @@
                             e(this)
                     }
                     (t || l.get(this, ie, "f").frames % 50 == 0) && l.get(this, $, "f")?.call(this, l.get(this, ie, "f"))
+
+                    for (const e of l.get(this, m_positionListeners, "f"))
+                        e(this.getPosition())
                 }
                 setCarDisabled(e) {
                     if (l.get(this, carDisabled, "f") == e)
@@ -8108,6 +8115,7 @@
             de = new WeakMap,
             ue = new WeakMap,
             pe = new WeakMap,
+            m_positionListeners = new WeakMap,
             fe = new WeakMap,
             ge = new WeakMap,
             me = new WeakMap,
@@ -28546,6 +28554,9 @@
 
                     context.putImageData(imageData, 0, 0);
 
+                    this.m_storedMinX = minX,
+                    this.m_storedMinZ = minZ;
+
                     return canvas;
                 }
             }
@@ -40471,7 +40482,7 @@
             C.get(this, Hn, "f").touchEnabled ? C.get(this, Kn, "f").classList.add("touch") : C.get(this, Kn, "f").classList.remove("touch")
         }
         ;
-        const ti = class {
+        const TopDrivingUI = class {
             constructor(e, t, n, i, r, a, s, o, l, c, h, d, u) {
                 On.add(this),
                 Wn.set(this, void 0),
@@ -40521,6 +40532,9 @@
                     t.textContent = e,
                     f.appendChild(t)
                 }
+
+                this.trackMinimap = new Minimap(t);
+
                 C.set(this, qn, document.createElement("div"), "f"),
                 C.get(this, qn, "f").className = "record",
                 f.appendChild(C.get(this, qn, "f")),
@@ -40531,6 +40545,7 @@
                 m.className = "button-container",
                 C.get(this, Kn, "f").appendChild(m);
                 const A = document.createElement("button");
+
                 if (A.className = "button",
                 A.innerHTML = '<img class="button-icon" src="images/quit.svg"> ',
                 A.append(document.createTextNode(n.get("Exit"))),
@@ -40567,6 +40582,8 @@
                         m.appendChild(e),
                         C.get(this, Yn, "f").push(e)
                     }
+                    this.trackMinimap.appendButton(m);
+
                 } else
                     C.set(this, Jn, null, "f");
                 if (s?.multiplayerConnection instanceof Fn) {
@@ -40607,6 +40624,9 @@
                 m.appendChild(C.get(this, Xn, "f")),
                 C.get(this, Yn, "f").push(C.get(this, Xn, "f"))),
                 C.get(this, Wn, "f").appendChild(C.get(this, Kn, "f")),
+
+                this.trackMinimap.appendMinimap(C.get(this, Wn, "f")),
+
                 C.get(this, Hn, "f").addChangeListener(C.set(this, $n, ( () => {
                     C.get(this, Hn, "f").touchEnabled ? p.classList.add("hidden") : p.classList.remove("hidden"),
                     C.get(this, On, "m", ei).call(this)
@@ -41489,6 +41509,7 @@
                 C.get(this, Sa, "f").multiplayerConnection.sendCarReset(e.sessionId, r)
             } else
                 a = null;
+            // Primary controlled polycar instantiation
             const s = new VisualCar(C.get(this, Cr, "f"),i,null,C.get(this, ya, "f"),C.get(this, zr, "f"),C.get(this, Nr, "f"),C.get(this, Ir, "f"),C.get(this, Pr, "f"),C.get(this, Yr, "f"),C.get(this, Gr, "f"),a);
             return s.notificationAudioEnabled = !0,
             s.addResetCallback(( () => {
@@ -41913,7 +41934,7 @@
                 C.set(this, ra, new CheckpointUI(C.get(this, ea, "f").element,C.get(this, Pr, "f").getTotalNumberOfCheckpointIndices(),C.get(this, Gr, "f")), "f"),
                 C.set(this, aa, new We(C.get(this, ea, "f").element,C.get(this, Gr, "f")), "f"),
                 C.set(this, sa, new Ve.A(C.get(this, ea, "f").element,C.get(this, Ur, "f"),C.get(this, Gr, "f")), "f"),
-                C.set(this, la, new ti(C.get(this, ea, "f").element,C.get(this, Nr, "f"),C.get(this, Ur, "f"),C.get(this, Gr, "f"),C.get(this, Wr, "f"),C.get(this, Xr, "f"),C.get(this, Sa, "f"),( () => {
+                C.set(this, la, new TopDrivingUI(C.get(this, ea, "f").element,C.get(this, Nr, "f"),C.get(this, Ur, "f"),C.get(this, Gr, "f"),C.get(this, Wr, "f"),C.get(this, Xr, "f"),C.get(this, Sa, "f"),( () => {
                     C.get(this, _r, "m", Va).call(this)
                 }
                 ),( () => {
@@ -42012,6 +42033,9 @@
                         throw C.get(this, Sa, "f").gameMode,
                         new Error("Unknown multiplayer game mode")
                     }
+
+                C.get(this, la, "f").trackMinimap.initTrackPreview(n);
+
                 if (C.get(this, la, "f").setWatchButtonEnabled(C.get(this, xa, "f").length > 0 && null != C.get(this, qr, "f")),
                 C.get(this, Wr, "f").touchEnabled ? (C.get(this, na, "f")?.setOverridePosition(!0),
                 C.get(this, ia, "f")?.setOverridePosition(!0),
@@ -42510,6 +42534,7 @@
                 C.get(this, aa, "f").update(C.get(this, wa, "f")),
                 C.get(this, sa, "f").update(C.get(this, wa, "f")),
                 C.get(this, ra, "f").update(C.get(this, wa, "f")),
+                C.get(this, la, "f").trackMinimap.updatePlayerPos(C.get(this, wa, "f").getPosition()),
                 C.get(this, ma, "f").setResetCheckpointAvailable(C.get(this, _r, "m", ja).call(this)),
                 C.get(this, Ga, "f")?.update(),
                 C.get(this, Ir, "f").update(C.get(this, Pr, "f")),

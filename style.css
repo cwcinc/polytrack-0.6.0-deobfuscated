@@ -1,0 +1,22 @@
+.track-preview-container {
+    margin: 0;
+    padding: 6px 7px;
+    font-size: 30px;
+    color: var(--text-color);
+    background-color: var(--button-color);
+    border-color: var(--surface-secondary-color);
+    border-width: 10px;
+    float: right;
+    border-style: solid;
+}
+
+.track-preview-container canvas {
+    margin: 0;
+    padding: 5px 5px;
+    width: 228px;
+    height: 228px;
+    object-fit: contain;
+    -webkit-filter: drop-shadow(0 0 3px #000);
+    filter: drop-shadow(0 0 3px #000);
+    image-rendering: pixelated;
+}
