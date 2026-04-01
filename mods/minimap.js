@@ -76,7 +76,6 @@ class Minimap {
 
   setPlayerCar(id, carObject) {
     // random color seeded by id
-    console.log(id);
     this.playerMap.set(id, {car: carObject, color: `hsl(${id * 137 % 360}, 50%, 50%)`});
   }
 
