@@ -15,7 +15,7 @@ class Minimap {
     this.minimapButton.append(document.createTextNode("Minimap"));
     this.minimapButton.addEventListener("click", () => {
       soundManager.playUIClick();
-      this.trackPreviewDiv.classList.toggle("hidden");
+      this.trackPreviewDiv.classList.toggle("closed");
     });
 
     this.playerMap = new Map();
