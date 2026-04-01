@@ -15,15 +15,22 @@ class Minimap {
     this.minimapButton.className = "button";
     this.minimapButton.innerHTML = '<img class="button-icon" src="images/search.svg"> ';
     this.minimapButton.append(document.createTextNode("Minimap"));
+    this.isClosed = false;
     this.minimapButton.addEventListener("click", () => {
       soundManager.playUIClick();
       this.trackPreviewDiv.classList.toggle("closed");
+      this.isClosed = this.trackPreviewDiv.classList.contains("closed");
     });
 
     this.playerMap = new Map();
     this.mainPlayerPos = {x: 0, y: 0, z: 0};
     this.minX = 0;
     this.minZ = 0;
+    this.showPlayerDots = true;
+  }
+
+  setShowPlayerDots(show) {
+    this.showPlayerDots = show;
   }
 
   appendButton(container) {
@@ -35,6 +42,8 @@ class Minimap {
   }
 
   initTrackPreview(trackObject) {
+    if (this.isClosed) return;
+
     const trackData = trackObject.getTrackData();
     this.thumbCanvas = trackData.createThumbnail();
     this.minX = trackData.m_storedMinX;
@@ -63,6 +72,13 @@ class Minimap {
 
     this.ctx = this.displayCanvas.getContext("2d");
     this.ctx.imageSmoothingEnabled = false;
+
+    this.ctx.drawImage(
+      this.thumbCanvas,
+      this.offsetX, this.offsetY,
+      this.thumbCanvas.width * this.scale,
+      this.thumbCanvas.height * this.scale
+    );
 
     this.renderPlayer();
   }
@@ -94,6 +110,7 @@ class Minimap {
   }
 
   renderPlayer() {
+    if (!this.showPlayerDots || this.isClosed) return;
     const { width, height } = this.displayCanvas;
 
     this.ctx.clearRect(0, 0, width, height);
