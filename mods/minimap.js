@@ -1,3 +1,5 @@
+// Copyright (c) 2026 cwcinc. All rights reserved. Unauthorized use prohibited.
+
 class Minimap {
   // upscale factor compared to regular thumbnail scale
   static SCALE = 8;
@@ -38,22 +40,37 @@ class Minimap {
     this.minX = trackData.m_storedMinX;
     this.minZ = trackData.m_storedMinZ;
 
+    this.trackPreviewDiv.innerHTML = "";
+
     this.displayCanvas = document.createElement("canvas");
-    this.displayCanvas.width = this.thumbCanvas.width * Minimap.SCALE;
-    this.displayCanvas.height = this.thumbCanvas.height * Minimap.SCALE;
+    this.trackPreviewDiv.appendChild(this.displayCanvas);
+
+    const rect = this.trackPreviewDiv.getBoundingClientRect();
+    this.displayCanvas.width = rect.width;
+    this.displayCanvas.height = rect.height;
+
+    // fit the track within the container, leaving room for off-track dots
+    const padding = 20;
+    this.scale = Math.min(
+      (rect.width - padding * 2) / this.thumbCanvas.width,
+      (rect.height - padding * 2) / this.thumbCanvas.height
+    );
+
+    const trackW = this.thumbCanvas.width * this.scale;
+    const trackH = this.thumbCanvas.height * this.scale;
+    this.offsetX = (rect.width - trackW) / 2;
+    this.offsetY = (rect.height - trackH) / 2;
 
     this.ctx = this.displayCanvas.getContext("2d");
     this.ctx.imageSmoothingEnabled = false;
-    this.ctx.drawImage(this.thumbCanvas, 0, 0, this.displayCanvas.width, this.displayCanvas.height);
 
-    this.trackPreviewDiv.innerHTML = "";
-    this.trackPreviewDiv.appendChild(this.displayCanvas);
+    this.renderPlayer();
   }
 
   worldToDisplayCoords(worldX, worldZ) {
     return {
-      x: (worldX / 20 - this.minX - 0.5) * Minimap.SCALE,
-      y: (worldZ / 20 - this.minZ - 0.5) * Minimap.SCALE,
+      x: (worldX / 20 - this.minX - 0.5) * this.scale + this.offsetX,
+      y: (worldZ / 20 - this.minZ - 0.5) * this.scale + this.offsetY,
     };
   }
 
@@ -69,29 +86,30 @@ class Minimap {
   }
 
   drawPlayerDot(x, z, color = Minimap.DOT_COLOR, radius = Minimap.MAIN_DOT_RADIUS) {
-    const { width, height } = this.displayCanvas;
-    const { x: x1, y: y1 } = this.worldToDisplayCoords(x, z);
+    const { x: dx, y: dy } = this.worldToDisplayCoords(x, z);
 
-    if (x1 >= 0 && x1 < width && y1 >= 0 && y1 < height) {
-      this.ctx.fillStyle = color;
-      this.ctx.beginPath();
-      this.ctx.arc(x1, y1, radius, 0, 2 * Math.PI);
-      this.ctx.fill();
-    }
+    this.ctx.fillStyle = color;
+    this.ctx.beginPath();
+    this.ctx.arc(dx, dy, radius, 0, 2 * Math.PI);
+    this.ctx.fill();
   }
 
   renderPlayer() {
     const { width, height } = this.displayCanvas;
 
     this.ctx.clearRect(0, 0, width, height);
-    this.ctx.drawImage(this.thumbCanvas, 0, 0, width, height);
+    this.ctx.drawImage(
+      this.thumbCanvas,
+      this.offsetX, this.offsetY,
+      this.thumbCanvas.width * this.scale,
+      this.thumbCanvas.height * this.scale
+    );
 
     this.drawPlayerDot(this.mainPlayerPos.x, this.mainPlayerPos.z, Minimap.DOT_COLOR, Minimap.MAIN_DOT_RADIUS);
 
     for (const [id, obj] of this.playerMap.entries()) {
       if (obj.car) {
         const carPos = obj.car.getPosition();
-
         this.drawPlayerDot(carPos.x, carPos.z, obj.color, Minimap.MULTIPLAYER_DOT_RADIUS);
       }
     }
