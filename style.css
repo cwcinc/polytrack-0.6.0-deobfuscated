@@ -43,3 +43,33 @@
     filter: drop-shadow(0 0 3px #000);
     image-rendering: pixelated;
 }
+
+.date-created {
+    position: absolute;
+    font-size: medium;
+    width: 100%;
+    bottom: 35px;
+    opacity: 20%;
+}
+
+.load-backup-button {
+    position: absolute;
+    top: 7px;
+    left: 11px;
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+    border-radius: 2px;
+    border: none;
+    background-color: var(--button-color);
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+.load-backup-button > img {
+    margin: 0;
+    padding: 0;
+    height: 20px;
+    vertical-align: top;
+    pointer-events: none;
+}

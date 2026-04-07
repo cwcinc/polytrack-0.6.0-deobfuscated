@@ -8729,7 +8729,7 @@
             A.insertStyleElement = p();
             a()(m.A, A);
             m.A && m.A.locals && m.A.locals;
-            var v, y, b, w, x, S, k, E, T, M, _, C, R, P, I, L, U, z, N, D, B, G, F, O, W, V, H, j, K, q, Q, J, X = n(5839), TrackExportUI = n(579).A, TrackEnvironment = n(5169).A;
+            var v, y, b, w, x, S, k, E, T, LoadIntoTrackFromMenu, _, C, R, P, I, L, U, z, N, D, B, G, F, O, W, V, H, j, K, createTrackUIPanel, Q, J, X = n(5839), TrackExportUI = n(579).A, TrackEnvironment = n(5169).A;
             let $ = null
               , ee = 0
               , te = 0
@@ -8742,7 +8742,7 @@
             k = new WeakMap,
             E = new WeakMap,
             T = new WeakMap,
-            M = new WeakMap,
+            LoadIntoTrackFromMenu = new WeakMap,
             _ = new WeakMap,
             C = new WeakMap,
             R = new WeakMap,
@@ -8763,11 +8763,11 @@
             j = new WeakMap,
             K = new WeakMap,
             v = new WeakSet,
-            q = function(e, t, n, r, a, s, o, l=null) {
+            createTrackUIPanel = function(trackCategory, environmentContainerType, trackMetadata, trackEnvironment, trackDataGetter, trackId, trackThumbnail, deleteTrackCallback=null, dateCreated=null, backup=null) {
                 const c = document.createElement("div");
                 let h, d;
                 switch (c.className = "track",
-                e) {
+                trackCategory) {
                 case "official":
                     h = i.get(this, I, "f"),
                     d = i.get(this, z, "f");
@@ -8780,21 +8780,21 @@
                     h = i.get(this, U, "f"),
                     d = i.get(this, D, "f")
                 }
-                if (null == t)
+                if (null == environmentContainerType)
                     h.appendChild(c);
                 else {
-                    let e = d.get(t);
+                    let e = d.get(environmentContainerType);
                     if (null == e)
                         if (e = document.createElement("div"),
-                        d.set(t, e),
-                        "string" == typeof t) {
+                        d.set(environmentContainerType, e),
+                        "string" == typeof environmentContainerType) {
                             h.appendChild(e);
                             const n = document.createElement("div");
                             n.className = "group-title",
-                            n.textContent = t,
+                            n.textContent = environmentContainerType,
                             e.appendChild(n)
                         } else {
-                            switch (t) {
+                            switch (environmentContainerType) {
                             case TrackEnvironment.Summer:
                                 h.prepend(e);
                                 break;
@@ -8808,7 +8808,7 @@
                                 h.appendChild(e)
                             }
                             let n, a, s;
-                            switch (r) {
+                            switch (trackEnvironment) {
                             case TrackEnvironment.Summer:
                                 n = "",
                                 a = i.get(this, b, "f").get("Summer"),
@@ -8838,7 +8838,7 @@
                 u.className = "button",
                 u.addEventListener("click", ( () => {
                     i.get(this, w, "f").playUIClick(),
-                    i.get(this, M, "f").call(this, n, r, a, e, s, o)
+                    i.get(this, LoadIntoTrackFromMenu, "f").call(this, trackMetadata, trackEnvironment, trackDataGetter, trackCategory, trackId, trackThumbnail)
                 }
                 )),
                 c.appendChild(u);
@@ -8846,10 +8846,10 @@
                 p.className = "track-title",
                 u.appendChild(p);
                 const f = document.createElement("p");
-                if (f.textContent = n.name,
+                if (f.textContent = trackMetadata.name,
                 p.appendChild(f),
-                o instanceof HTMLCanvasElement)
-                    u.appendChild(o);
+                trackThumbnail instanceof HTMLCanvasElement)
+                    u.appendChild(trackThumbnail);
                 else {
                     const e = document.createElement("img");
                     e.loading = "lazy",
@@ -8858,11 +8858,11 @@
                         e.classList.remove("loading")
                     }
                     )),
-                    e.src = o,
+                    e.src = trackThumbnail,
                     u.appendChild(e)
                 }
                 let g;
-                switch (r) {
+                switch (trackEnvironment) {
                 case TrackEnvironment.Summer:
                     g = "images/summer.svg";
                     break;
@@ -8876,28 +8876,58 @@
                 m.className = "environment",
                 m.src = g,
                 u.appendChild(m);
-                const A = i.get(this, x, "f").getRecordTime(i.get(this, k, "f").profileSlot, s)
+
+                if (dateCreated != null) {
+                    const dateCreatedPanel = document.createElement("div");
+                    dateCreatedPanel.className = "date-created";
+                    const dateCreatedObj = new Date(dateCreated);
+                    dateCreatedPanel.textContent = dateCreatedObj.toLocaleDateString();
+                    u.appendChild(dateCreatedPanel);
+                }
+
+                const A = i.get(this, x, "f").getRecordTime(i.get(this, k, "f").profileSlot, trackId)
                   , v = document.createElement("div");
                 if (v.className = "record",
                 v.textContent = null != A ? X.A.formatTimeString(A) : i.get(this, b, "f").get("No record"),
                 u.appendChild(v),
-                null != l) {
+                null != deleteTrackCallback) {
                     const e = document.createElement("button");
                     e.className = "delete-button",
                     e.innerHTML = '<img src="images/erase.svg">',
                     e.addEventListener("click", ( () => {
                         i.get(this, w, "f").playUIClick(),
-                        l()
+                        deleteTrackCallback()
                     }
                     )),
                     c.appendChild(e)
                 }
+
+                if (backup != null) {
+                    const e = document.createElement("button");
+                    e.className = "load-backup-button",
+                    e.innerHTML = '<img src="images/export.svg">',
+                    e.addEventListener("click", ( () => {
+                        i.get(this, w, "f").playUIClick(),
+                        i.get(this, LoadIntoTrackFromMenu, "f").call(
+                            this, 
+                            backup.trackMetadata, 
+                            backup.trackData.environment, 
+                            ( () => Promise.resolve(backup.trackData)), 
+                            "custom", 
+                            backup.id, 
+                            backup.thumbnail
+                        )
+                    }
+                    )),
+                    c.appendChild(e)
+                }
+
                 i.get(this, B, "f").push({
-                    category: e,
-                    group: t,
-                    trackMetadata: n,
-                    trackEnvironment: r,
-                    trackData: a,
+                    category: trackCategory,
+                    group: environmentContainerType,
+                    trackMetadata: trackMetadata,
+                    trackEnvironment: trackEnvironment,
+                    trackData: trackDataGetter,
                     buttonContainer: c
                 })
             }
@@ -8962,7 +8992,7 @@
                     k.set(this, void 0),
                     E.set(this, void 0),
                     T.set(this, void 0),
-                    M.set(this, void 0),
+                    LoadIntoTrackFromMenu.set(this, void 0),
                     _.set(this, void 0),
                     C.set(this, void 0),
                     R.set(this, void 0),
@@ -8996,7 +9026,7 @@
                     i.set(this, k, s, "f"),
                     i.set(this, E, o, "f"),
                     i.set(this, T, l, "f"),
-                    i.set(this, M, u, "f"),
+                    i.set(this, LoadIntoTrackFromMenu, u, "f"),
                     i.set(this, _, document.createElement("div"), "f"),
                     i.get(this, _, "f").className = h ? "track-selection-ui with-background hidden" : "track-selection-ui hidden",
                     e.appendChild(i.get(this, _, "f"));
@@ -9141,7 +9171,7 @@
                                 this.show();
                             else {
                                 const {trackMetadata: t, trackData: n, trackId: r, trackThumbnail: a} = e[0];
-                                i.get(this, M, "f").call(this, t, n.environment, ( () => Promise.resolve(n)), "custom", r, a)
+                                i.get(this, LoadIntoTrackFromMenu, "f").call(this, t, n.environment, ( () => Promise.resolve(n)), "custom", r, a)
                             }
                         }
                         ),t,n,a,o), "f")
@@ -9235,7 +9265,7 @@
                     i.get(this, N, "f").clear(),
                     i.get(this, D, "f").clear(),
                     i.get(this, S, "f").forEachOfficialTrack(( (e, t, n, r) => {
-                        i.get(this, v, "m", q).call(this, "official", n.environment, t, n.environment, ( () => Promise.resolve(n)), e, r)
+                        i.get(this, v, "m", createTrackUIPanel).call(this, "official", n.environment, t, n.environment, ( () => Promise.resolve(n)), e, r)
                     }
                     )),
                     i.get(this, S, "f").isCommunityTracksEmpty()) {
@@ -9252,7 +9282,7 @@
                         i.get(this, L, "f").appendChild(e)
                     } else
                         i.get(this, S, "f").forEachCommunityTrack(( (e, t, n, r, a, s) => {
-                            i.get(this, v, "m", q).call(this, "community", t, n, r, a, e, s)
+                            i.get(this, v, "m", createTrackUIPanel).call(this, "community", t, n, r, a, e, s)
                         }
                         ));
                     if (i.get(this, S, "f").isCustomTracksEmpty()) {
@@ -9268,19 +9298,19 @@
                         e.appendChild(n),
                         i.get(this, U, "f").appendChild(e)
                     } else
-                        i.get(this, S, "f").forEachCustomTrack(( (e, t, n, r) => {
-                            i.get(this, v, "m", q).call(this, "custom", null, t, n.environment, ( () => Promise.resolve(n)), e, r, ( () => {
-                                i.get(this, W, "f") ? i.get(this, S, "f").deleteCustomTrack(t.name) : (this.hide(),
-                                i.get(this, E, "f").showConfirm(i.get(this, b, "f").get('Are you sure you want to delete "{0}"?', [t.name]), i.get(this, b, "f").get("Cancel"), i.get(this, b, "f").get("Delete"), ( () => {
+                        i.get(this, S, "f").forEachCustomTrack(( (id, trackMetadata, trackData, thumbnail, saveTime, backup) => {
+                            i.get(this, v, "m", createTrackUIPanel).call(this, "custom", null, trackMetadata, trackData.environment, ( () => Promise.resolve(trackData)), id, thumbnail, ( () => {
+                                i.get(this, W, "f") ? i.get(this, S, "f").deleteCustomTrack(trackMetadata.name) : (this.hide(),
+                                i.get(this, E, "f").showConfirm(i.get(this, b, "f").get('Are you sure you want to delete "{0}"?', [trackMetadata.name]), i.get(this, b, "f").get("Cancel"), i.get(this, b, "f").get("Delete"), ( () => {
                                     this.show()
                                 }
                                 ), ( () => {
-                                    i.get(this, S, "f").deleteCustomTrack(t.name),
+                                    i.get(this, S, "f").deleteCustomTrack(trackMetadata.name),
                                     this.show()
                                 }
                                 )))
                             }
-                            ))
+                            ), saveTime, backup)
                         }
                         ));
                     i.get(this, v, "m", J).call(this)
@@ -38069,8 +38099,8 @@
           , t = i.n(e)
           , n = i(7825)
           , r = i.n(n)
-          , a = i(7659)
-          , s = i.n(a)
+          , trackResponseCollection = i(7659)
+          , s = i.n(trackResponseCollection)
           , o = i(5056)
           , l = i.n(o)
           , c = i(540)
@@ -52118,10 +52148,10 @@
             }
         }
         ;
-        var Qh, Jh, Xh, Yh, Zh, $h, ed, td, nd, id, rd, ad;
+        var Qh, Jh, Xh, loadedCustomTracks, Zh, $h, ed, td, nd, id, loadCustomTrackIntoGame, loadCustomTrackIntoGameWithBackup, ad;
         Jh = new WeakMap,
         Xh = new WeakMap,
-        Yh = new WeakMap,
+        loadedCustomTracks = new WeakMap,
         Zh = new WeakMap,
         $h = new WeakMap,
         ed = new WeakMap,
@@ -52185,7 +52215,7 @@
             ))
         }
         ,
-        rd = function(e) {
+        loadCustomTrackIntoGame = function(e) {
             return new Promise((t => {
                 setTimeout(( () => {
                     const n = C.get(this, $h, "f").loadCustomTrack(e);
@@ -52207,6 +52237,49 @@
             ))
         }
         ,
+        loadCustomTrackIntoGameWithBackup = function(e) {
+            return new Promise((resolve => {
+                setTimeout(( () => {
+                    (async () => {
+                        const mainTrackData = C.get(this, $h, "f").loadCustomTrack(e);
+                        const backupData = await C.get(this, $h, "f").loadTrackBackup(e);
+                        if (null != mainTrackData) {
+                            const {trackMetadata: e, trackData: i, saveTime: r} = mainTrackData
+
+                            let backupResponseCollection = null;
+                            if (null != backupData) {
+                                const {trackMetadata: backupMetadata, trackData: backupTrackData, saveTime: backupSaveTime} = backupData
+                                backupResponseCollection = {
+                                    id: i.getId(),
+                                    trackMetadata: backupMetadata,
+                                    trackData: backupTrackData,
+                                    thumbnail: backupTrackData.createThumbnail(),
+                                    saveTime: backupSaveTime
+                                }
+                                if (backupSaveTime > r) {
+                                    console.warn(`A backup for track ${e.name} was found that is newer than the main track data. Loading from backup.`);
+                                    resolve(backupResponseCollection)
+                                }
+                            }
+
+                            const trackResponseCollection = {
+                                id: i.getId(),
+                                trackMetadata: e,
+                                trackData: i,
+                                thumbnail: i.createThumbnail(),
+                                saveTime: r,
+                                backup: backupResponseCollection
+                            };
+                            resolve(trackResponseCollection)
+                        } else
+                            resolve(null)
+                    })()
+                }
+                ))
+            }
+            ))
+        }
+        ,
         ad = function() {
             for (const e of C.get(this, ed, "f"))
                 e()
@@ -52217,7 +52290,7 @@
                 Qh.add(this),
                 Jh.set(this, []),
                 Xh.set(this, []),
-                Yh.set(this, []),
+                loadedCustomTracks.set(this, []),
                 Zh.set(this, new Map),
                 $h.set(this, void 0),
                 ed.set(this, []),
@@ -52828,9 +52901,9 @@
                 if (null != n) {
                     const e = [];
                     for (const t of n)
-                        e.push(C.get(this, Qh, "m", rd).call(this, t));
+                        e.push(C.get(this, Qh, "m", loadCustomTrackIntoGameWithBackup).call(this, t));
                     Promise.all(e).then((e => {
-                        C.set(this, Yh, e.filter((e => null != e)).sort(( (e, t) => (t.saveTime ?? -1 / 0) - (e.saveTime ?? -1 / 0))), "f")
+                        C.set(this, loadedCustomTracks, e.filter((e => null != e)).sort(( (e, t) => (t.saveTime ?? -1 / 0) - (e.saveTime ?? -1 / 0))), "f")
                     }
                     )).catch((e => {
                         console.error(e)
@@ -52848,8 +52921,8 @@
                         thumbnail: t.createThumbnail(),
                         saveTime: n.getTime()
                     }
-                      , r = C.get(this, Yh, "f").findIndex((t => t.trackMetadata.name == e.name));
-                    return r >= 0 ? C.get(this, Yh, "f")[r] = i : C.get(this, Yh, "f").unshift(i),
+                      , r = C.get(this, loadedCustomTracks, "f").findIndex((t => t.trackMetadata.name == e.name));
+                    return r >= 0 ? C.get(this, loadedCustomTracks, "f")[r] = i : C.get(this, loadedCustomTracks, "f").unshift(i),
                     C.get(this, Qh, "m", ad).call(this),
                     !0
                 }
@@ -52857,11 +52930,11 @@
             }
             deleteCustomTrack(e) {
                 if (C.get(this, $h, "f").deleteCustomTrack(e)) {
-                    const t = C.get(this, Yh, "f").findIndex((t => t.trackMetadata.name == e));
+                    const t = C.get(this, loadedCustomTracks, "f").findIndex((t => t.trackMetadata.name == e));
                     if (t >= 0) {
-                        const e = C.get(this, Yh, "f")[t];
+                        const e = C.get(this, loadedCustomTracks, "f")[t];
                         C.get(this, $h, "f").deleteAllRecordsForTrack(e.id),
-                        C.get(this, Yh, "f").splice(t, 1)
+                        C.get(this, loadedCustomTracks, "f").splice(t, 1)
                     }
                     return C.get(this, Qh, "m", ad).call(this),
                     !0
@@ -52869,7 +52942,7 @@
                 return !1
             }
             checkCustomTrackNameExists(e) {
-                return C.get(this, Yh, "f").some((t => t.trackMetadata.name == e))
+                return C.get(this, loadedCustomTracks, "f").some((t => t.trackMetadata.name == e))
             }
             addCustomTracksChangedListener(e) {
                 C.get(this, ed, "f").push(e)
@@ -52882,7 +52955,7 @@
                 return 0 == C.get(this, Xh, "f").length
             }
             isCustomTracksEmpty() {
-                return 0 == C.get(this, Yh, "f").length
+                return 0 == C.get(this, loadedCustomTracks, "f").length
             }
             forEachTrack(e) {
                 this.forEachOfficialTrack(( (t, n, i, r) => {
@@ -52893,7 +52966,7 @@
                     e(t, i, r, a, s)
                 }
                 )),
-                this.forEachCustomTrack(( (t, n, i, r) => {
+                this.forEachCustomTrack(( (t, n, i, r, saveTime, backup) => {
                     e(t, n, i.environment, ( () => Promise.resolve(i)), r)
                 }
                 ))
@@ -52907,8 +52980,8 @@
                     e(t.id, t.group, t.trackMetadata, t.environment, t.trackData, t.thumbnail)
             }
             forEachCustomTrack(e) {
-                for (const t of C.get(this, Yh, "f"))
-                    e(t.id, t.trackMetadata, t.trackData, t.thumbnail)
+                for (const t of C.get(this, loadedCustomTracks, "f"))
+                    e(t.id, t.trackMetadata, t.trackData, t.thumbnail, t.saveTime, t.backup)
             }
             getNextOfficialTrack(e) {
                 const t = e.getId()
@@ -52946,7 +53019,7 @@
                         trackData: n.trackData,
                         trackCategory: "community"
                     };
-                const i = C.get(this, Yh, "f").find((t => t.trackMetadata.name == e));
+                const i = C.get(this, loadedCustomTracks, "f").find((t => t.trackMetadata.name == e));
                 return null != i ? {
                     id: i.id,
                     trackMetadata: i.trackMetadata,
@@ -52961,7 +53034,7 @@
                 return C.get(this, Xh, "f").some((t => t.id == e))
             }
             isCustomTrack(e) {
-                return C.get(this, Yh, "f").some((t => t.id == e))
+                return C.get(this, loadedCustomTracks, "f").some((t => t.id == e))
             }
         }
         ;
@@ -53521,9 +53594,10 @@
             web: () => i.e('SQLite').then(i.bind(i, 819)).then((e => new e.CapacitorSQLiteWeb)),
             electron: () => window.CapacitorCustomPlatform.plugins.CapacitorSQLite
         });
-        var Rd, Pd, Id, Ld, Ud, zd, Nd, Dd, Bd, Gd, Fd, Od, Wd, Vd, Hd, jd, Kd, qd, Qd, Jd, Xd, Yd, Zd, $d, eu, TrackDataImporterLegacy = i(7980), TrackDataImporterV1 = i(666), TrackDataImporterV2 = i(5343), TrackDataImporterV3 = i(8928), TrackDataImporterV4 = i(5440), su = i(2951), ou = i(2387);
+        var Rd, Pd, Id, Ld, Ud, zd, Nd, Dd, Bd, Gd, Fd, Od, Wd, Vd, Hd, jd, Kd, TRACK_SAVE_KEY_PREFIX, TRACK_BACKUP_KEY_PREFIX, Qd, Jd, Xd, Yd, Zd, $d, eu, TrackDataImporterLegacy = i(7980), TrackDataImporterV1 = i(666), TrackDataImporterV2 = i(5343), TrackDataImporterV3 = i(8928), TrackDataImporterV4 = i(5440), su = i(2951), ou = i(2387);
         class lu {
             constructor() {
+                this.m_backupManager = new TrackBackupManager();
                 Rd.add(this),
                 Id.set(this, {
                     getItem: () => {
@@ -53693,9 +53767,10 @@
                     }
             }
             saveCustomTrack(e, t, n) {
+                this.saveTrackBackup(e, t, n);
                 const i = t.toExportString(e);
                 try {
-                    return C.get(this, Id, "f").setItem(C.get(Pd, Pd, "f", qd) + e.name, JSON.stringify({
+                    return C.get(this, Id, "f").setItem(C.get(Pd, Pd, "f", TRACK_SAVE_KEY_PREFIX) + e.name, JSON.stringify({
                         data: i,
                         saveTime: n.getTime()
                     })),
@@ -53705,10 +53780,49 @@
                     !1
                 }
             }
+            async saveTrackBackup(e, t, n) {
+                const i = t.toExportString(e);
+                try {
+                    await this.m_backupManager.backupTrack(C.get(Pd, Pd, "f", TRACK_BACKUP_KEY_PREFIX) + e.name, JSON.stringify({
+                        data: i,
+                        saveTime: n.getTime()
+                    })),
+                    !0
+                } catch (e) {
+                    return console.error(e),
+                    !1
+                }
+            }
+            async loadTrackBackup(e) {
+                let saveData, saveTime;
+                try {
+                    const i = await this.m_backupManager.getBackup(C.get(Pd, Pd, "f", TRACK_BACKUP_KEY_PREFIX) + e);
+                    if (null == i)
+                        return null;
+                    const r = JSON.parse(i);
+                    if (null == r || "object" != typeof r)
+                        return null;
+                    if (!("data"in r) || "string" != typeof r.data)
+                        return null;
+                    if (!("saveTime"in r) || "number" != typeof r.saveTime)
+                        return null;
+                    saveData = r.data,
+                    saveTime = r.saveTime
+                } catch (e) {
+                    return console.error(e),
+                    null
+                }
+                const trackObject = TrackDataModule.A.fromExportString(saveData);
+                return null == trackObject ? null : {
+                    trackMetadata: trackObject.trackMetadata,
+                    trackData: trackObject.trackData,
+                    saveTime: saveTime
+                };
+            }
             loadCustomTrack(e) {
                 let t, n;
                 try {
-                    const i = C.get(this, Id, "f").getItem(C.get(Pd, Pd, "f", qd) + e);
+                    const i = C.get(this, Id, "f").getItem(C.get(Pd, Pd, "f", TRACK_SAVE_KEY_PREFIX) + e);
                     if (null == i)
                         return null;
                     const r = JSON.parse(i);
@@ -53733,7 +53847,7 @@
             }
             deleteCustomTrack(e) {
                 try {
-                    return C.get(this, Id, "f").removeItem(C.get(Pd, Pd, "f", qd) + e),
+                    return C.get(this, Id, "f").removeItem(C.get(Pd, Pd, "f", TRACK_SAVE_KEY_PREFIX) + e),
                     !0
                 } catch (e) {
                     return console.error(e),
@@ -53748,7 +53862,7 @@
                     return console.error(e),
                     null
                 }
-                return e.filter((e => e.startsWith(C.get(Pd, Pd, "f", qd)))).map((e => e.substring(C.get(Pd, Pd, "f", qd).length)))
+                return e.filter((e => e.startsWith(C.get(Pd, Pd, "f", TRACK_SAVE_KEY_PREFIX)))).map((e => e.substring(C.get(Pd, Pd, "f", TRACK_SAVE_KEY_PREFIX).length)))
             }
             saveUserProfileSlot(e) {
                 if (!Number.isSafeInteger(e) || e < 0)
@@ -54625,8 +54739,11 @@
         Kd = {
             value: C.get(Pd, Pd, "f", Ld) + "record_"
         },
-        qd = {
+        TRACK_SAVE_KEY_PREFIX = {
             value: C.get(Pd, Pd, "f", Ld) + "track_"
+        },
+        TRACK_BACKUP_KEY_PREFIX = {
+            value: C.get(Pd, Pd, "f", Ld) + "backup_"
         },
         Qd = {
             value: C.get(Pd, Pd, "f", Ld) + "user_slot"

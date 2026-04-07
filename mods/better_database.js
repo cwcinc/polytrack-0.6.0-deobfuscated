@@ -42,15 +42,23 @@ class CombinedPolyTrackStorage {
 
 
 class BetterPolyTrackStorage {
-  constructor() {
+  constructor(database_name = "PolyTrackDatabase") {
     this.dbPromise = new Promise((resolve, reject) => {
-      const request = window.indexedDB.open("PolyTrackDatabase", 1);
+      const request = window.indexedDB.open(database_name, 3);
       request.onerror = (event) => {
         reject(new Error("Failed to open IndexedDB"));
       }
       request.onsuccess = (event) => {
         resolve(request.result);
       }
+      request.onupgradeneeded = (event) => {
+        const db = event.target.result;
+        
+        if (!db.objectStoreNames.contains("tracks")) {
+          db.createObjectStore("tracks");
+        }
+      };
+
     });
   }
   async getItem(key) {
@@ -108,6 +116,10 @@ class BetterPolyTrackStorage {
         resolve(request.result);
       }
     });
+  }
+  async closeDatabase() {
+    const db = await this.dbPromise;
+    db.close();
   }
 }
 
