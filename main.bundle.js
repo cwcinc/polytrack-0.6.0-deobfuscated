@@ -38139,7 +38139,7 @@
         M = function(e, t) {
             if (t && C.get(this, A, "f").hasLoaded()) {
                 if (null == C.get(this, b, "f")) {
-                    const e = this.getBuffer("music");
+                    const e = this.getBuffer("betterMusic");
                     if (null != e && null != this.context && null != this.destinationMaster) {
                         const t = this.context.createBufferSource();
                         t.buffer = e,
@@ -56615,6 +56615,7 @@
               , o = new kd(s)
               , l = new I(t,settingsManager);
             l.load("music", ["audio/music.ogg", "audio/music.mp3"]),
+            l.load("betterMusic", ["mods/betterMusic.mp3"]),
             l.load("click", ["audio/click.ogg", "audio/click.mp3"]),
             l.load("engine", ["audio/engine.ogg", "audio/engine.mp3"]),
             l.load("suspension", ["audio/suspension.ogg", "audio/suspension.mp3"]),
