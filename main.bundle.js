@@ -40582,7 +40582,6 @@
                         m.appendChild(e),
                         C.get(this, Yn, "f").push(e)
                     }
-                    this.trackMinimap.appendButton(m);
 
                 } else
                     C.set(this, Jn, null, "f");
@@ -40624,7 +40623,8 @@
                 m.appendChild(C.get(this, Xn, "f")),
                 C.get(this, Yn, "f").push(C.get(this, Xn, "f"))),
                 C.get(this, Wn, "f").appendChild(C.get(this, Kn, "f")),
-
+                
+                this.trackMinimap.appendButton(m);
                 this.trackMinimap.appendMinimap(C.get(this, Wn, "f")),
 
                 C.get(this, Hn, "f").addChangeListener(C.set(this, $n, ( () => {
