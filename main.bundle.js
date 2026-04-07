@@ -53541,17 +53541,18 @@
                 })
             }
             async initialize(e) {
+                const ptStorage = new DefaultPolyTrackStorage();
                 null != e ? C.set(this, Id, e, "f") : C.set(this, Id, {
-                    getItem: e => window.localStorage.getItem(e),
+                    getItem: e => ptStorage.getItem(e),
                     setItem: (e, t) => {
-                        window.localStorage.setItem(e, t)
+                        return ptStorage.setItem(e, t)
                     }
                     ,
                     removeItem: e => {
-                        window.localStorage.removeItem(e)
+                        return ptStorage.removeItem(e)
                     }
                     ,
-                    getAllKeys: () => Object.keys(window.localStorage)
+                    getAllKeys: () => ptStorage.getAllKeys()
                 }, "f")
             }
             migrate() {
