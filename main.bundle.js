@@ -7258,7 +7258,8 @@
                 e[e.CheckpointVolume = 20] = "CheckpointVolume",
                 e[e.GhostCarSoundsEnabled = 21] = "GhostCarSoundsEnabled",
                 e[e.VibrationEnabled = 22] = "VibrationEnabled",
-                e[e.TouchSteeringSide = 23] = "TouchSteeringSide"
+                e[e.TouchSteeringSide = 23] = "TouchSteeringSide",
+                e[e.MaxGhostOpacity = 24] = "MaxGhostOpacity"
             }(i || (i = {}));
             const r = i
         }
@@ -41738,6 +41739,7 @@
         }
         ,
         updateGhostOpacity = function() {
+            const maxGhostOpacitySetting = C.get(this, Gr, "f")?.getSettingFloat(R.A.MaxGhostOpacity) ?? 1;
             for (const e of C.get(this, xa, "f")) {
                 if (null != e.car) {
                     e.car.setCarDisabled(!C.get(this, m_ghostsVisible, "f"));
@@ -41751,7 +41753,7 @@
               , t = C.get(this, xa, "f").map((e => e.car)).filter((e => null != e)).concat(Array.from(C.get(this, Ra, "f").values()).map((e => e.car)));
             for (const n of t) {
                 const t = n.getPosition().distanceTo(e)
-                  , i = Math.max(0, Math.min(1, t / 5));
+                  , i = Math.max(0, Math.min(maxGhostOpacitySetting, t / 5));
                 n.setOpacity(i)
             }
         }
@@ -48766,7 +48768,8 @@
             C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Toggle FPS counter"), KeyBind.ToggleFpsCounter),
             C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Toggle spectator camera"), KeyBind.ToggleSpectatorCamera),
             C.get(this, ms, "m", Bs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Modded")),
-            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Toggle Ghost"), KeyBind.ToggleGhost)
+            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Toggle Ghost"), KeyBind.ToggleGhost),
+            C.get(this, ms, "m", Fs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Ghost Opacity"), R.A.MaxGhostOpacity)
         }
         ,
         Ds = function(e) {
@@ -55280,7 +55283,7 @@
             }
         }
         ;
-        const Iu = class {
+        const SettingsClass = class {
             constructor(e) {
                 Mu.add(this),
                 _u.set(this, void 0),
@@ -55293,7 +55296,7 @@
                 null != n && C.get(this, Mu, "m", Pu).call(this, n)
             }
             defaultSettings() {
-                return new Map([[R.A.ImperialUnitsEnabled, "false"], [R.A.ResetHintEnabled, "true"], [R.A.GhostCarEnabled, "true"], [R.A.DefaultCameraMode, "false"], [R.A.CockpitCameraToggle, "true"], [R.A.Checkpoints, "bottom"], [R.A.Timer, "bottom"], [R.A.Speedometer, "bottom"], [R.A.Language, "en-US"], [R.A.ShadowQuality, "2"], [R.A.CloudsEnabled, "true"], [R.A.ParticlesEnabled, "true"], [R.A.SkidmarksEnabled, "true"], [R.A.FogEnabled, "true"], [R.A.RenderScale, "1"], [R.A.ScreenPixelDensity, "true"], [R.A.Antialiasing, "true"], [R.A.MasterVolume, "1"], [R.A.SoundEffectVolume, "1"], [R.A.MusicVolume, "1"], [R.A.CheckpointVolume, "1"], [R.A.GhostCarSoundsEnabled, "true"], [R.A.VibrationEnabled, "false"], [R.A.TouchSteeringSide, "true"]])
+                return new Map([[R.A.ImperialUnitsEnabled, "false"], [R.A.ResetHintEnabled, "true"], [R.A.GhostCarEnabled, "true"], [R.A.DefaultCameraMode, "false"], [R.A.CockpitCameraToggle, "true"], [R.A.Checkpoints, "bottom"], [R.A.Timer, "bottom"], [R.A.Speedometer, "bottom"], [R.A.Language, "en-US"], [R.A.ShadowQuality, "2"], [R.A.CloudsEnabled, "true"], [R.A.ParticlesEnabled, "true"], [R.A.SkidmarksEnabled, "true"], [R.A.FogEnabled, "true"], [R.A.RenderScale, "1"], [R.A.ScreenPixelDensity, "true"], [R.A.Antialiasing, "true"], [R.A.MasterVolume, "1"], [R.A.SoundEffectVolume, "1"], [R.A.MusicVolume, "1"], [R.A.CheckpointVolume, "1"], [R.A.MaxGhostOpacity, "1"], [R.A.GhostCarSoundsEnabled, "true"], [R.A.VibrationEnabled, "false"], [R.A.TouchSteeringSide, "true"]])
             }
             defaultKeyBindings() {
                 return new Map([
@@ -56585,7 +56588,7 @@
             e.migrate();
             const t = new Nh
               , n = new Bf(e,t)
-              , r = new Iu(e);
+              , settingsManager = new SettingsClass(e);
             t.addResource(),
             P.n_().then(( () => {
                 t.loadedResource()
@@ -56610,7 +56613,7 @@
                 t.preloadImage("images/" + e.substring(2));
             const s = new bu
               , o = new kd(s)
-              , l = new I(t,r);
+              , l = new I(t,settingsManager);
             l.load("music", ["audio/music.ogg", "audio/music.mp3"]),
             l.load("click", ["audio/click.ogg", "audio/click.mp3"]),
             l.load("engine", ["audio/engine.ogg", "audio/engine.mp3"]),
@@ -56626,7 +56629,7 @@
             const c = document.getElementById("screen");
             if (!(c instanceof HTMLCanvasElement))
                 throw new Error("Screen is not a canvas element");
-            const h = new RenderManager(c,r)
+            const h = new RenderManager(c,settingsManager)
               , d = new vd
               , u = d.init(h, t)
               , p = new Lu.A(!0,d,t)
@@ -56648,11 +56651,11 @@
                 ))
             }
             ));
-            const m = new Cd(h,r,t)
+            const m = new Cd(h,settingsManager,t)
               , A = new ns.A(h)
-              , v = new Track.A(h,r,d)
+              , v = new Track.A(h,settingsManager,d)
               , y = new sd(t,e)
-              , b = new gs(r.getSetting(R.A.Language))
+              , b = new gs(settingsManager.getSetting(R.A.Language))
               , w = new su.A(e)
               , x = new Tu;
             w.syncUserProfile(x);
@@ -56665,7 +56668,7 @@
                     P.bQ(),
                     P.pS(),
                     Q.dispose(),
-                    Q = new gh(p,v,A,m,y,b,E,w,S,h,l,e,n,r,x,t,i,a,_,C,W,j,K,q),
+                    Q = new gh(p,v,A,m,y,b,E,w,S,h,l,e,n,settingsManager,x,t,i,a,_,C,W,j,K,q),
                     P.PM()
                 }
                 ))
@@ -56678,7 +56681,7 @@
                         const {default: t} = await i.e('garage').then(i.bind(i, 3280));
                         await t.initResources(),
                         Q.dispose(),
-                        Q = new t(b,v,A,m,h,l,w,r,x,E,e,( () => {
+                        Q = new t(b,v,A,m,h,l,w,settingsManager,x,E,e,( () => {
                             M(!1, null)
                         }
                         )),
@@ -56687,7 +56690,7 @@
                         console.error("Failed to load customization state: ", i);
                         const a = b.get("Failed to load garage.") + "\n\n" + b.get("Check your internet connection and try again.");
                         Q.dispose(),
-                        Q = new gh(p,v,A,m,y,b,E,w,S,h,l,e,n,r,x,t,!1,a,_,C,W,j,K,q),
+                        Q = new gh(p,v,A,m,y,b,E,w,S,h,l,e,n,settingsManager,x,t,!1,a,_,C,W,j,K,q),
                         P.PM()
                     }
                 }
@@ -56703,15 +56706,15 @@
                             const {default: a} = await i.e('editor').then(i.bind(i, 4124));
                             await a.initResources(),
                             Q.dispose();
-                            const c = Q = new a(v,d,e,A,m,b,l,h,r,o,w,S,y,E,T,( () => {
+                            const c = Q = new a(v,d,e,A,m,b,l,h,settingsManager,o,w,S,y,E,T,( () => {
                                 P.bQ(),
                                 P.pS(),
                                 Q.dispose(),
-                                Q = new gh(p,v,A,m,y,b,E,w,S,h,l,e,n,r,x,t,!1,null,_,C,W,j,K,q),
+                                Q = new gh(p,v,A,m,y,b,E,w,S,h,l,e,n,settingsManager,x,t,!1,null,_,C,W,j,K,q),
                                 P.PM()
                             }
                             ),( (t, n, i) => {
-                                const a = Q = new ts(p,f,v,A,m,b,h,l,w,S,e,r,s,E,T,y,t,n,"custom",[],null,null,!1,( () => {
+                                const a = Q = new ts(p,f,v,A,m,b,h,l,w,S,e,settingsManager,s,E,T,y,t,n,"custom",[],null,null,!1,( () => {
                                     throw new Error("Multiplayer connection lost should never be called from the editor")
                                 }
                                 ),( () => {
@@ -56732,7 +56735,7 @@
                             console.error("Failed to load editor state: ", i);
                             const a = b.get("Failed to load editor.") + "\n\n" + b.get("Check your internet connection and try again.");
                             Q.dispose(),
-                            Q = new gh(p,v,A,m,y,b,E,w,S,h,l,e,n,r,x,t,!1,a,_,C,W,j,K,q),
+                            Q = new gh(p,v,A,m,y,b,E,w,S,h,l,e,n,settingsManager,x,t,!1,a,_,C,W,j,K,q),
                             P.PM()
                         }
                     }
@@ -56772,7 +56775,7 @@
                         null))),
                         recording: k.recording
                     } : null,
-                    Q = new ts(p,f,v,A,m,b,h,l,w,S,e,r,s,E,T,y,t,n,i,a,_,c,!0,(e => {
+                    Q = new ts(p,f,v,A,m,b,h,l,w,S,e,settingsManager,s,E,T,y,t,n,i,a,_,c,!0,(e => {
                         let t;
                         switch (e) {
                         case "kicked":
@@ -56804,7 +56807,7 @@
                 o.trigger(( () => {
                     P.pS(),
                     Q.dispose(),
-                    Q = new Rf(f,v,e,t,n,A,m,h,l,b,r,i,( (e, t, n, i) => {
+                    Q = new Rf(f,v,e,t,n,A,m,h,l,b,settingsManager,i,( (e, t, n, i) => {
                         W(e, t, n, i, null)
                     }
                     )),
@@ -56828,7 +56831,7 @@
                     } catch (i) {
                         console.error("Failed to load verifier state: ", i),
                         Q.dispose(),
-                        Q = new gh(p,v,A,m,y,b,E,w,S,h,l,e,n,r,x,t,!1,null,_,C,W,j,K,q),
+                        Q = new gh(p,v,A,m,y,b,E,w,S,h,l,e,n,settingsManager,x,t,!1,null,_,C,W,j,K,q),
                         P.PM()
                     }
                 }
@@ -56849,14 +56852,14 @@
                     } catch (i) {
                         console.error("Failed to load admin state: ", i),
                         Q.dispose(),
-                        Q = new gh(p,v,A,m,y,b,E,w,S,h,l,e,n,r,x,t,!1,null,_,C,W,j,K,q),
+                        Q = new gh(p,v,A,m,y,b,E,w,S,h,l,e,n,settingsManager,x,t,!1,null,_,C,W,j,K,q),
                         P.PM()
                     }
                 }
                 ))
             }
             ;
-            let Q = new gh(p,v,A,m,y,b,E,w,S,h,l,e,n,r,x,t,!1,null,_,C,W,j,K,q)
+            let Q = new gh(p,v,A,m,y,b,E,w,S,h,l,e,n,settingsManager,x,t,!1,null,_,C,W,j,K,q)
               , J = 0;
             h.setAnimationLoop((function(e) {
                 const t = Math.max(e - J, 0) / 1e3;
@@ -56866,7 +56869,7 @@
             }
             )),
             window.addEventListener("keyup", (e => {
-                r.checkKeyBinding(e, KeyBind.ToggleFpsCounter) && k.toggle()
+                settingsManager.checkKeyBinding(e, KeyBind.ToggleFpsCounter) && k.toggle()
             }
             ))
         }()
