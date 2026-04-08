@@ -42593,6 +42593,7 @@
                 
                 C.get(this, la, "f").trackMinimap.updatePlayerPos(C.get(this, wa, "f").getPosition()),
                 C.get(this, multiplayerInstanceInfo, "f")?.multiplayerConnection.hostVoiceChat?.setHostPos(C.get(this, wa, "f").getPosition()),
+                C.get(this, multiplayerInstanceInfo, "f")?.multiplayerConnection.hostVoiceChat?.setHostQuat(C.get(this, wa, "f").getQuaternion()),
 
                 C.get(this, ma, "f").setResetCheckpointAvailable(C.get(this, _r, "m", ja).call(this)),
                 C.get(this, Ga, "f")?.update(),
