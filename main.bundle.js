@@ -39931,7 +39931,7 @@
                 C.set(this, tn, e, "f"),
                 C.set(this, nn, t, "f");
                 this.hostVoiceChat = new HostVoiceChat({
-                    maxDistance: 60,
+                    maxDistance: 100,
                     falloff: 1.5,
                 });
                 m_hostVoiceChat.set(this, this.hostVoiceChat);
