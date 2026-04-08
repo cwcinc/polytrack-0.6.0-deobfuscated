@@ -40652,6 +40652,15 @@
                     )),
                     m.appendChild(e),
                     C.get(this, Yn, "f").push(e)
+
+                    const micButton = document.createElement("button");
+                    micButton.className = "button";
+                    micButton.innerHTML = '<img class="button-icon" src="mods/microphone.svg"> ';
+                    micButton.addEventListener("click", ( () => {
+                        t.playUIClick();
+                    }));
+                    m.appendChild(micButton);
+                    C.get(this, Yn, "f").push(micButton);
                 }
                 s?.multiplayerConnection instanceof HostMultiplayerConnection && (C.set(this, Xn, document.createElement("button"), "f"),
                 C.get(this, Xn, "f").className = "button",
