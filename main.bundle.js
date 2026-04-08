@@ -39425,7 +39425,7 @@
             }
         }
         const $t = Zt;
-        var en, tn, nn, rn, an, sn, on, ln, cn, hn, dn, un, pn, fn, gn, mn, An, vn, yn, bn, wn, xn, Sn, kn, En, Tn, Mn, _n, Cn, Rn, Pn, In, Ln, Un, zn, Nn, Dn, Bn, Gn = i(2970);
+        var en, tn, nn, rn, an, sn, on, ln, cn, hn, dn, un, pn, fn, gn, connectedPlayers, m_hostVoiceChat, An, vn, yn, bn, wn, xn, Sn, kn, En, Tn, Mn, _n, Cn, Rn, Pn, In, Ln, Un, zn, Nn, Dn, Bn, Gn = i(2970);
         tn = new WeakMap,
         nn = new WeakMap,
         rn = new WeakMap,
@@ -39440,7 +39440,8 @@
         pn = new WeakMap,
         fn = new WeakMap,
         gn = new WeakMap,
-        mn = new WeakMap,
+        connectedPlayers = new WeakMap,
+        m_hostVoiceChat = new WeakMap,
         An = new WeakMap,
         vn = new WeakMap,
         yn = new WeakMap,
@@ -39518,45 +39519,45 @@
             }
         }
         ,
-        Cn = function(e, t, n, i) {
-            e.onopen = () => {
-                if ("reliable" == i) {
-                    C.set(this, gn, C.get(this, gn, "f").filter((e => e != t)), "f"),
-                    C.get(this, mn, "f").push(t);
+        Cn = function(dataChannel, connectionPacket, connectionClosedCallback, connectionType) {
+            dataChannel.onopen = () => {
+                if ("reliable" == connectionType) {
+                    C.set(this, gn, C.get(this, gn, "f").filter((e => e != connectionPacket)), "f"),
+                    C.get(this, connectedPlayers, "f").push(connectionPacket);
                     for (const e of C.get(this, kn, "f"))
                         e(C.get(this, hn, "f"));
                     for (const e of C.get(this, En, "f"))
-                        e(C.get(this, tn, "f").get('"{0}" joined!', [t.nickname]));
-                    null != C.get(this, ln, "f") && (C.get(this, en, "m", Tn).call(this, t.peerConnection, t.dataChannel, C.get(this, ln, "f").trackMetadata, C.get(this, ln, "f").trackData),
-                    C.get(this, en, "m", _n).call(this, t.peerConnection, t.dataChannel),
-                    null != C.get(this, dn, "f") && (C.get(this, en, "m", Mn).call(this, t.peerConnection, t.dataChannel),
-                    C.get(this, en, "m", Tn).call(this, t.peerConnection, t.dataChannel, C.get(this, dn, "f").track.trackMetadata, C.get(this, dn, "f").track.trackData))),
-                    C.get(this, en, "m", Nn).call(this, t.id, t.nickname, t.countryCode, t.carStyle, null);
-                    for (const n of C.get(this, mn, "f"))
-                        n != t && C.get(this, en, "m", Dn).call(this, t.peerConnection, e, n.id, n.nickname, n.countryCode, n.carStyle, n.record);
+                        e(C.get(this, tn, "f").get('"{0}" joined!', [connectionPacket.nickname]));
+                    null != C.get(this, ln, "f") && (C.get(this, en, "m", Tn).call(this, connectionPacket.peerConnection, connectionPacket.dataChannel, C.get(this, ln, "f").trackMetadata, C.get(this, ln, "f").trackData),
+                    C.get(this, en, "m", _n).call(this, connectionPacket.peerConnection, connectionPacket.dataChannel),
+                    null != C.get(this, dn, "f") && (C.get(this, en, "m", Mn).call(this, connectionPacket.peerConnection, connectionPacket.dataChannel),
+                    C.get(this, en, "m", Tn).call(this, connectionPacket.peerConnection, connectionPacket.dataChannel, C.get(this, dn, "f").track.trackMetadata, C.get(this, dn, "f").track.trackData))),
+                    C.get(this, en, "m", Nn).call(this, connectionPacket.id, connectionPacket.nickname, connectionPacket.countryCode, connectionPacket.carStyle, null);
+                    for (const n of C.get(this, connectedPlayers, "f"))
+                        n != connectionPacket && C.get(this, en, "m", Dn).call(this, connectionPacket.peerConnection, dataChannel, n.id, n.nickname, n.countryCode, n.carStyle, n.record);
                     if (null == C.get(this, fn, "f").nickname)
                         throw new Error("Host censored nickname is not initialized");
-                    C.get(this, en, "m", Dn).call(this, t.peerConnection, e, C.get(this, fn, "f").id, C.get(this, fn, "f").nickname, C.get(this, fn, "f").countryCode, C.get(this, fn, "f").carStyle, C.get(this, fn, "f").record);
+                    C.get(this, en, "m", Dn).call(this, connectionPacket.peerConnection, dataChannel, C.get(this, fn, "f").id, C.get(this, fn, "f").nickname, C.get(this, fn, "f").countryCode, C.get(this, fn, "f").carStyle, C.get(this, fn, "f").record);
                     for (const e of C.get(this, kn, "f"))
                         e(C.get(this, hn, "f"))
                 }
             }
             ,
-            e.onclose = () => {
-                t.peerConnection.close(),
-                "reliable" == i && n()
+            dataChannel.onclose = () => {
+                connectionPacket.peerConnection.close(),
+                "reliable" == connectionType && connectionClosedCallback()
             }
             ,
-            e.onmessage = e => {
+            dataChannel.onmessage = e => {
                 let n = "Host data channel error: ";
                 if (!(e.data instanceof ArrayBuffer))
                     return console.error(n + "Received non-ArrayBuffer data"),
-                    void t.peerConnection.close();
+                    void connectionPacket.peerConnection.close();
                 const i = new Uint8Array(e.data);
                 let r = 0;
                 if (i.length < r + 1)
                     return console.error(n + "Received empty message"),
-                    void t.peerConnection.close();
+                    void connectionPacket.peerConnection.close();
                 const a = i[0];
                 switch (r++,
                 a) {
@@ -39565,20 +39566,20 @@
                         if (n += "CarReset: ",
                         i.length < r + 4)
                             return console.error(n + "Incomplete (sessionId)"),
-                            void t.peerConnection.close();
+                            void connectionPacket.peerConnection.close();
                         const e = i[r + 0] | i[r + 1] << 8 | i[r + 2] << 16 | i[r + 3] << 24;
                         if (r += 4,
                         i.length < r + 4)
                             return console.error(n + "Incomplete (resetCounter)"),
-                            void t.peerConnection.close();
+                            void connectionPacket.peerConnection.close();
                         const a = i[r + 0] | i[r + 1] << 8 | i[r + 2] << 16 | i[r + 3] << 24;
                         if (r += 4,
-                        e == C.get(this, hn, "f") && a > t.resetCounter) {
-                            t.unsentCarStates.length = 0,
-                            t.resetCounter = a,
-                            C.get(this, en, "m", Pn).call(this, t.id, a);
+                        e == C.get(this, hn, "f") && a > connectionPacket.resetCounter) {
+                            connectionPacket.unsentCarStates.length = 0,
+                            connectionPacket.resetCounter = a,
+                            C.get(this, en, "m", Pn).call(this, connectionPacket.id, a);
                             for (const e of C.get(this, bn, "f"))
-                                e(C.get(this, hn, "f"), t.id, a)
+                                e(C.get(this, hn, "f"), connectionPacket.id, a)
                         }
                         break
                     }
@@ -39587,12 +39588,12 @@
                         if (n += "CarUpdate: ",
                         i.length < r + 4)
                             return console.error(n + "Incomplete (sessionId)"),
-                            void t.peerConnection.close();
+                            void connectionPacket.peerConnection.close();
                         const e = i[r + 0] | i[r + 1] << 8 | i[r + 2] << 16 | i[r + 3] << 24;
                         if (r += 4,
                         i.length < r + 4)
                             return console.error(n + "Incomplete (resetCounter)"),
-                            void t.peerConnection.close();
+                            void connectionPacket.peerConnection.close();
                         const a = i[r + 0] | i[r + 1] << 8 | i[r + 2] << 16 | i[r + 3] << 24;
                         let s, o;
                         r += 4;
@@ -39600,14 +39601,14 @@
                             ({numberOfBytes: s, carState: o} = Kt.VO(i.slice(r)))
                         } catch {
                             return console.error(n + "Failed to deserialize CarState"),
-                            void t.peerConnection.close()
+                            void connectionPacket.peerConnection.close()
                         }
                         if (r += s,
                         e == C.get(this, hn, "f"))
-                            if (a > t.resetCounter)
-                                t.unsentCarStates.length = 0,
-                                t.resetCounter = a;
-                            else if (a == t.resetCounter) {
+                            if (a > connectionPacket.resetCounter)
+                                connectionPacket.unsentCarStates.length = 0,
+                                connectionPacket.resetCounter = a;
+                            else if (a == connectionPacket.resetCounter) {
                                 const e = Math.sqrt(o.quaternion.x * o.quaternion.x + o.quaternion.y * o.quaternion.y + o.quaternion.z * o.quaternion.z + o.quaternion.w * o.quaternion.w);
                                 0 == e ? (o.quaternion.x = 0,
                                 o.quaternion.y = 0,
@@ -39616,7 +39617,7 @@
                                 o.quaternion.y /= e,
                                 o.quaternion.z /= e,
                                 o.quaternion.w /= e),
-                                t.unsentCarStates.push(o)
+                                connectionPacket.unsentCarStates.push(o)
                             }
                         break
                     }
@@ -39625,20 +39626,20 @@
                         if (n += "Record: ",
                         i.length < r + 4)
                             return console.error(n + "Incomplete (sessionId)"),
-                            void t.peerConnection.close();
+                            void connectionPacket.peerConnection.close();
                         const e = i[r + 0] | i[r + 1] << 8 | i[r + 2] << 16 | i[r + 3] << 24;
                         if (r += 4,
                         i.length < r + 3)
                             return console.error(n + "Incomplete (frames)"),
-                            void t.peerConnection.close();
+                            void connectionPacket.peerConnection.close();
                         const a = i[r + 0] | i[r + 1] << 8 | i[r + 2] << 16;
                         if (r += 3,
                         a <= 0 || a > ie.A.maxFrames)
                             return console.error(n + "Record has invalid number of frames"),
-                            void t.peerConnection.close();
+                            void connectionPacket.peerConnection.close();
                         if (e == C.get(this, hn, "f")) {
-                            t.record = new yt.A(a),
-                            C.get(this, en, "m", Nn).call(this, t.id, t.nickname, t.countryCode, t.carStyle, t.record);
+                            connectionPacket.record = new yt.A(a),
+                            C.get(this, en, "m", Nn).call(this, connectionPacket.id, connectionPacket.nickname, connectionPacket.countryCode, connectionPacket.carStyle, connectionPacket.record);
                             for (const e of C.get(this, kn, "f"))
                                 e(C.get(this, hn, "f"))
                         }
@@ -39649,16 +39650,16 @@
                         if (n += "Pong: ",
                         i.length < r + 1)
                             return console.error(n + "Incomplete (pingId)"),
-                            void t.peerConnection.close();
+                            void connectionPacket.peerConnection.close();
                         const e = i[r];
                         if (r += 1,
-                        t.pingPackages.length > 0) {
-                            const n = t.pingPackages.findIndex((t => t.pingId == e));
+                        connectionPacket.pingPackages.length > 0) {
+                            const n = connectionPacket.pingPackages.findIndex((t => t.pingId == e));
                             if (n >= 0) {
-                                const e = t.pingPackages[n]
+                                const e = connectionPacket.pingPackages[n]
                                   , i = performance.now();
-                                t.ping = Math.max(0, Math.round(i - e.sentTime)),
-                                t.pingPackages.splice(n, 1)
+                                connectionPacket.ping = Math.max(0, Math.round(i - e.sentTime)),
+                                connectionPacket.pingPackages.splice(n, 1)
                             }
                         }
                         break
@@ -39667,10 +39668,10 @@
                     break;
                 default:
                     return console.error(n + "Received unknown message type"),
-                    void t.peerConnection.close()
+                    void connectionPacket.peerConnection.close()
                 }
                 return i.length != r ? (console.error(n + "Leftover data"),
-                void t.peerConnection.close()) : void 0
+                void connectionPacket.peerConnection.close()) : void 0
             }
         }
         ,
@@ -39694,7 +39695,7 @@
         }
         ,
         Pn = function(e, t) {
-            for (const n of C.get(this, mn, "f"))
+            for (const n of C.get(this, connectedPlayers, "f"))
                 n.id != e && C.get(this, en, "m", Rn).call(this, n.peerConnection, n.dataChannel, e, t)
         }
         ,
@@ -39739,7 +39740,7 @@
         }
         ,
         Ln = function() {
-            for (const e of C.get(this, mn, "f")) {
+            for (const e of C.get(this, connectedPlayers, "f")) {
                 const t = e.pingIdCounter
                   , n = new Uint8Array(2);
                 n[0] = Jt.Ping,
@@ -39761,7 +39762,7 @@
         }
         ,
         Un = function() {
-            const e = C.get(this, mn, "f").length + 1
+            const e = C.get(this, connectedPlayers, "f").length + 1
               , t = new Uint8Array(1 + 6 * e);
             t[0] = Jt.PingData;
             let n = 1;
@@ -39772,7 +39773,7 @@
             t[n + 4] = 0,
             t[n + 5] = 0,
             n += 6;
-            for (const e of C.get(this, mn, "f")) {
+            for (const e of C.get(this, connectedPlayers, "f")) {
                 t[n + 0] = 255 & e.id,
                 t[n + 1] = e.id >> 8 & 255,
                 t[n + 2] = e.id >> 16 & 255,
@@ -39782,7 +39783,7 @@
                 t[n + 5] = i >> 8 & 255,
                 n += 6
             }
-            for (const e of C.get(this, mn, "f"))
+            for (const e of C.get(this, connectedPlayers, "f"))
                 try {
                     e.unreliableDataChannel.send(t)
                 } catch (t) {
@@ -39793,7 +39794,7 @@
         }
         ,
         zn = function() {
-            for (const e of C.get(this, mn, "f")) {
+            for (const e of C.get(this, connectedPlayers, "f")) {
                 const t = [];
                 if (C.get(this, fn, "f").unsentCarStates.length > 0)
                     for (const e of C.get(this, fn, "f").unsentCarStates)
@@ -39802,7 +39803,7 @@
                             resetCounter: C.get(this, fn, "f").resetCounter,
                             carState: e
                         });
-                for (const n of C.get(this, mn, "f"))
+                for (const n of C.get(this, connectedPlayers, "f"))
                     if (n != e && n.unsentCarStates.length > 0)
                         for (const e of n.unsentCarStates)
                             t.push({
@@ -39828,17 +39829,17 @@
                 C.get(this, en, "m", In).call(this, e.peerConnection, e.unreliableDataChannel, n)
             }
             for (const e of C.get(this, wn, "f"))
-                for (const t of C.get(this, mn, "f"))
+                for (const t of C.get(this, connectedPlayers, "f"))
                     if (t.unsentCarStates.length > 0)
                         for (const n of t.unsentCarStates)
                             e(C.get(this, hn, "f"), t.id, t.resetCounter, n);
             C.get(this, fn, "f").unsentCarStates.length = 0;
-            for (const e of C.get(this, mn, "f"))
+            for (const e of C.get(this, connectedPlayers, "f"))
                 e.unsentCarStates.length = 0
         }
         ,
         Nn = function(e, t, n, i, r) {
-            for (const a of C.get(this, mn, "f"))
+            for (const a of C.get(this, connectedPlayers, "f"))
                 a.id != e && C.get(this, en, "m", Dn).call(this, a.peerConnection, a.dataChannel, e, t, n, i, r)
         }
         ,
@@ -39877,7 +39878,7 @@
         }
         ,
         Bn = function(e, t) {
-            for (const n of C.get(this, mn, "f")) {
+            for (const n of C.get(this, connectedPlayers, "f")) {
                 if (n.id == e)
                     continue;
                 const i = [];
@@ -39899,7 +39900,7 @@
             }
         }
         ;
-        const Fn = class {
+        const HostMultiplayerConnection = class {
             constructor(e, t, n, i) {
                 var r, a;
                 en.add(this),
@@ -39917,7 +39918,7 @@
                 pn.set(this, 1),
                 fn.set(this, void 0),
                 gn.set(this, []),
-                mn.set(this, []),
+                connectedPlayers.set(this, []),
                 An.set(this, 16384),
                 vn.set(this, void 0),
                 yn.set(this, void 0),
@@ -39929,6 +39930,12 @@
                 En.set(this, []),
                 C.set(this, tn, e, "f"),
                 C.set(this, nn, t, "f");
+                this.hostVoiceChat = new HostVoiceChat({
+                    maxDistance: 60,
+                    falloff: 1.5,
+                });
+                m_hostVoiceChat.set(this, this.hostVoiceChat);
+
                 const s = i.getCurrentUserProfile();
                 C.set(this, fn, {
                     id: (C.set(this, pn, (a = C.get(this, pn, "f"),
@@ -39968,9 +39975,9 @@
                 for (const e of C.get(this, gn, "f"))
                     e.peerConnection.close();
                 C.set(this, gn, [], "f");
-                for (const e of C.get(this, mn, "f"))
+                for (const e of C.get(this, connectedPlayers, "f"))
                     e.peerConnection.close();
-                C.set(this, mn, [], "f")
+                C.set(this, connectedPlayers, [], "f")
             }
             addConnectionLostCallback() {}
             removeConnectionLostCallback() {}
@@ -40018,7 +40025,7 @@
             sendRecord(e, t) {
                 if (e == C.get(this, hn, "f")) {
                     if (C.get(this, fn, "f").record = t.clone(),
-                    C.get(this, mn, "f").length > 0) {
+                    C.get(this, connectedPlayers, "f").length > 0) {
                         if (null == C.get(this, fn, "f").nickname)
                             throw new Error("Host censored nickname is not initialized");
                         C.get(this, en, "m", Nn).call(this, C.get(this, fn, "f").id, C.get(this, fn, "f").nickname, C.get(this, fn, "f").countryCode, C.get(this, fn, "f").carStyle, C.get(this, fn, "f").record)
@@ -40028,7 +40035,7 @@
                 }
             }
             kickPlayer(e) {
-                const t = C.get(this, mn, "f").find((t => t.id == e));
+                const t = C.get(this, connectedPlayers, "f").find((t => t.id == e));
                 if (null != t)
                     try {
                         t.dataChannel.send(new Uint8Array([Jt.Kick])),
@@ -40054,11 +40061,11 @@
             getPing(e) {
                 if (e == C.get(this, fn, "f").id)
                     return 0;
-                const t = C.get(this, mn, "f").find((t => t.id == e));
+                const t = C.get(this, connectedPlayers, "f").find((t => t.id == e));
                 return null != t ? t.ping : null
             }
             getPlayers() {
-                return C.get(this, mn, "f").map((e => ({
+                return C.get(this, connectedPlayers, "f").map((e => ({
                     id: e.id,
                     nickname: e.nickname,
                     countryCode: e.countryCode,
@@ -40098,17 +40105,17 @@
                 }, "f"),
                 C.get(this, fn, "f").record = null,
                 C.get(this, fn, "f").resetCounter = 0;
-                for (const e of C.get(this, mn, "f"))
+                for (const e of C.get(this, connectedPlayers, "f"))
                     e.record = null,
                     e.resetCounter = 0;
-                for (const e of C.get(this, mn, "f"))
+                for (const e of C.get(this, connectedPlayers, "f"))
                     C.get(this, en, "m", _n).call(this, e.peerConnection, e.dataChannel);
                 for (const e of C.get(this, Sn, "f"))
                     e(C.get(this, hn, "f"), C.get(this, cn, "f"), t, n);
                 return C.get(this, hn, "f")
             }
             startNewSession(e, t, n) {
-                for (const e of C.get(this, mn, "f"))
+                for (const e of C.get(this, connectedPlayers, "f"))
                     C.get(this, en, "m", Mn).call(this, e.peerConnection, e.dataChannel),
                     C.get(this, en, "m", Tn).call(this, e.peerConnection, e.dataChannel, t, n);
                 for (const e of C.get(this, xn, "f"))
@@ -40133,6 +40140,9 @@
             createInvite(e) {
                 if (null != C.get(this, rn, "f"))
                     return C.get(this, rn, "f");
+                
+                this.hostVoiceChat.startHostMic();
+
                 const t = new Promise(( (n, i) => {
                     let r = !1
                       , a = null;
@@ -40305,7 +40315,7 @@
                                     credential: i
                                 })
                             }
-                            if (C.get(this, mn, "f").length + C.get(this, gn, "f").length + 1 >= C.get(this, un, "f"))
+                            if (C.get(this, connectedPlayers, "f").length + C.get(this, gn, "f").length + 1 >= C.get(this, un, "f"))
                                 s.send(JSON.stringify({
                                     version: "0.6.0",
                                     type: "declineJoin",
@@ -40317,9 +40327,9 @@
                                 const o = () => {
                                     if (r)
                                         return;
-                                    const e = C.get(this, mn, "f").findIndex((e => e.peerConnection == g.peerConnection));
+                                    const e = C.get(this, connectedPlayers, "f").findIndex((e => e.peerConnection == g.peerConnection));
                                     if (e >= 0) {
-                                        C.get(this, mn, "f").splice(e, 1),
+                                        C.get(this, connectedPlayers, "f").splice(e, 1),
                                         C.get(this, en, "m", Bn).call(this, g.id, g.isKicked);
                                         for (const e of C.get(this, kn, "f"))
                                             e(C.get(this, hn, "f"));
@@ -40335,34 +40345,34 @@
                                     }
                                     r = !0
                                 }
-                                  , l = new RTCPeerConnection({
+                                  , peerConnection = new RTCPeerConnection({
                                     iceServers: u
                                 });
-                                l.addEventListener("iceconnectionstatechange", ( () => {
-                                    "disconnected" != l.iceConnectionState && "failed" != l.iceConnectionState && "closed" != l.iceConnectionState || (c.close(),
+                                peerConnection.addEventListener("iceconnectionstatechange", ( () => {
+                                    "disconnected" != peerConnection.iceConnectionState && "failed" != peerConnection.iceConnectionState && "closed" != peerConnection.iceConnectionState || (c.close(),
                                     p.close(),
                                     o())
                                 }
                                 )),
-                                l.addEventListener("connectionstatechange", ( () => {
-                                    "disconnected" != l.connectionState && "failed" != l.connectionState && "closed" != l.connectionState || (c.close(),
+                                peerConnection.addEventListener("connectionstatechange", ( () => {
+                                    "disconnected" != peerConnection.connectionState && "failed" != peerConnection.connectionState && "closed" != peerConnection.connectionState || (c.close(),
                                     p.close(),
                                     o())
                                 }
                                 ));
-                                const c = l.createDataChannel("reliable", {
+                                const c = peerConnection.createDataChannel("reliable", {
                                     negotiated: !0,
                                     id: 0
                                 });
                                 c.binaryType = "arraybuffer";
-                                const p = l.createDataChannel("unreliable", {
+                                const p = peerConnection.createDataChannel("unreliable", {
                                     negotiated: !0,
                                     id: 1,
                                     ordered: !1,
                                     maxRetransmits: 0
                                 });
                                 p.binaryType = "arraybuffer";
-                                const f = (C.set(this, pn, (i = C.get(this, pn, "f"),
+                                const clientId = (C.set(this, pn, (i = C.get(this, pn, "f"),
                                 t = i++,
                                 i), "f"),
                                 t);
@@ -40371,12 +40381,12 @@
                                     session: e,
                                     isOfferSet: !1,
                                     remoteIceCandidates: [],
-                                    peerConnection: l,
+                                    peerConnection: peerConnection,
                                     dataChannel: c,
                                     unreliableDataChannel: p,
                                     isInitialized: !1,
                                     isKicked: !1,
-                                    id: f,
+                                    id: clientId,
                                     nickname: a,
                                     countryCode: h,
                                     resetCounter: 0,
@@ -40392,7 +40402,7 @@
                                 C.get(this, gn, "f").push(g);
                                 for (const e of C.get(this, kn, "f"))
                                     e(C.get(this, hn, "f"));
-                                l.onicecandidate = t => {
+                                peerConnection.onicecandidate = t => {
                                     s.send(JSON.stringify({
                                         version: "0.6.0",
                                         type: "iceCandidate",
@@ -40402,12 +40412,13 @@
                                 }
                                 ,
                                 (async () => {
-                                    await l.setRemoteDescription(new RTCSessionDescription({
+                                    C.get(this, m_hostVoiceChat, "f").registerClient(clientId, peerConnection);
+                                    await peerConnection.setRemoteDescription(new RTCSessionDescription({
                                         type: "offer",
                                         sdp: n
                                     }));
-                                    const t = await l.createAnswer();
-                                    await l.setLocalDescription(t),
+                                    const t = await peerConnection.createAnswer();
+                                    await peerConnection.setLocalDescription(t),
                                     s.send(JSON.stringify({
                                         version: "0.6.0",
                                         type: "acceptJoin",
@@ -40415,7 +40426,7 @@
                                         answer: t.sdp,
                                         mods: [],
                                         isModsVanillaCompatible: !0,
-                                        clientId: f
+                                        clientId: clientId
                                     })),
                                     g.isOfferSet = !0;
                                     for (const e of g.remoteIceCandidates)
@@ -40449,7 +40460,7 @@
                                 return console.error(l + "Missing or invalid candidate"),
                                 void s.close();
                             const t = o.candidate
-                              , n = C.get(this, gn, "f").find((t => t.session == e)) ?? C.get(this, mn, "f").find((t => t.session == e));
+                              , n = C.get(this, gn, "f").find((t => t.session == e)) ?? C.get(this, connectedPlayers, "f").find((t => t.session == e));
                             if (null == n)
                                 console.warn(l + "Received ICE candidate for unknown session: " + e);
                             else if (n.isOfferSet)
@@ -40616,7 +40627,7 @@
 
                 } else
                     C.set(this, Jn, null, "f");
-                if (s?.multiplayerConnection instanceof Fn) {
+                if (s?.multiplayerConnection instanceof HostMultiplayerConnection) {
                     const e = document.createElement("button");
                     e.className = "button",
                     e.innerHTML = '<img class="button-icon" src="images/invite.svg"> ',
@@ -40642,7 +40653,7 @@
                     m.appendChild(e),
                     C.get(this, Yn, "f").push(e)
                 }
-                s?.multiplayerConnection instanceof Fn && (C.set(this, Xn, document.createElement("button"), "f"),
+                s?.multiplayerConnection instanceof HostMultiplayerConnection && (C.set(this, Xn, document.createElement("button"), "f"),
                 C.get(this, Xn, "f").className = "button",
                 C.get(this, Xn, "f").innerHTML = '<img class="button-icon" src="images/load.svg"> ',
                 C.get(this, Xn, "f").append(document.createTextNode(n.get("Change Track"))),
@@ -41026,7 +41037,7 @@
             C.get(this, qi, "f").innerHTML = "",
             C.get(this, Qi, "f").length = 0;
             let e = C.get(this, Hi, "f").getPlayers();
-            C.get(this, Hi, "f")instanceof Fn && (e = e.concat(C.get(this, Hi, "f").getConnectingPlayers())),
+            C.get(this, Hi, "f")instanceof HostMultiplayerConnection && (e = e.concat(C.get(this, Hi, "f").getConnectingPlayers())),
             C.get(this, Zi, "f") || (C.get(this, Ki, "f").textContent = C.get(this, Wi, "f").get("Players") + " (" + e.length.toString() + "/" + C.get(this, Hi, "f").getMaxPlayers().toString() + ")"),
             e.sort(( (e, t) => {
                 let n;
@@ -41102,7 +41113,7 @@
                     textNode: g,
                     unitElement: m
                 }),
-                C.get(this, Hi, "f")instanceof Fn)
+                C.get(this, Hi, "f")instanceof HostMultiplayerConnection)
                     if (i.isSelf) {
                         const e = document.createElement("div");
                         e.className = "kick-button-placeholder",
@@ -41406,7 +41417,7 @@
                 }
             }
         }
-        var _r, Cr, Rr, Pr, Ir, Lr, Ur, zr, Nr, Dr, Br, Gr, Fr, Or, Wr, Vr, Hr, jr, Kr, qr, Qr, Jr, Xr, Yr, Zr, drivingUIVisible, ea, ta, na, ia, ra, aa, sa, oa, la, ca, ha, da, ua, pa, fa, ga, ma, Aa, va, ya, ba, wa, xa, Sa, ka, Ea, Ta, Ma, _a, Ca, Ra, Pa, Ia, La, Ua, za, Na, Da, Ba, Ga, Fa, Oa, Wa, Va, Ha, ja, Ka, qa, Qa, Ja, Xa, Ya, Za, updateGhostOpacity, es, m_ghostsVisible;
+        var _r, Cr, Rr, Pr, Ir, Lr, Ur, zr, Nr, Dr, Br, Gr, Fr, Or, Wr, Vr, Hr, jr, Kr, qr, Qr, hostingNewSessionCallback, Xr, Yr, Zr, drivingUIVisible, ea, ta, na, ia, ra, aa, sa, oa, la, ca, ha, da, ua, pa, fa, ga, ma, Aa, va, ya, ba, wa, xa, Sa, ka, Ea, Ta, Ma, _a, Ca, Ra, Pa, Ia, La, Ua, za, Na, Da, Ba, Ga, Fa, Oa, Wa, Va, Ha, ja, Ka, qa, Qa, Ja, Xa, Ya, Za, updateGhostOpacity, es, m_ghostsVisible;
         Cr = new WeakMap,
         Rr = new WeakMap,
         Pr = new WeakMap,
@@ -41427,7 +41438,7 @@
         Kr = new WeakMap,
         qr = new WeakMap,
         Qr = new WeakMap,
-        Jr = new WeakMap,
+        hostingNewSessionCallback = new WeakMap,
         Xr = new WeakMap,
         Yr = new WeakMap,
         Zr = new WeakMap,
@@ -41482,7 +41493,7 @@
                 C.get(this, Kr, "f").call(this);
             else {
                 let e;
-                e = C.get(this, Sa, "f").multiplayerConnection instanceof Fn ? C.get(this, Ur, "f").get("Are you sure you want to quit?") + "\n\n" + C.get(this, Ur, "f").get("All connected players will be disconnected!") : C.get(this, Ur, "f").get("Are you sure you want to quit?"),
+                e = C.get(this, Sa, "f").multiplayerConnection instanceof HostMultiplayerConnection ? C.get(this, Ur, "f").get("Are you sure you want to quit?") + "\n\n" + C.get(this, Ur, "f").get("All connected players will be disconnected!") : C.get(this, Ur, "f").get("Are you sure you want to quit?"),
                 C.get(this, Or, "f").showConfirm(e, C.get(this, Ur, "f").get("Cancel"), C.get(this, Ur, "f").get("Confirm"), null, ( () => {
                     C.get(this, Kr, "f").call(this)
                 }
@@ -41817,8 +41828,8 @@
             }
         }
         ;
-        const ts = class {
-            constructor(e, t, n, i, r, a, s, o, l, c, h, d, u, p, f, g, m, A, v, y, b, w, x, S, k, E, T, M) {
+        const MainMultiplayerClass = class {
+            constructor(e, t, n, i, r, a, s, o, l, c, h, d, u, p, f, g, m, A, v, y, b, w, x, S, k, E, T, hostNewSessionCallback) {
                 if (_r.add(this),
                 Cr.set(this, void 0),
                 Rr.set(this, void 0),
@@ -41840,7 +41851,7 @@
                 Kr.set(this, void 0),
                 qr.set(this, void 0),
                 Qr.set(this, void 0),
-                Jr.set(this, void 0),
+                hostingNewSessionCallback.set(this, void 0),
                 Xr.set(this, void 0),
                 Yr.set(this, void 0),
                 Zr.set(this, void 0),
@@ -41909,7 +41920,7 @@
                 C.set(this, Kr, k, "f"),
                 C.set(this, qr, E, "f"),
                 C.set(this, Qr, T, "f"),
-                C.set(this, Jr, M, "f"),
+                C.set(this, hostingNewSessionCallback, hostNewSessionCallback, "f"),
                 C.set(this, Ua, b, "f"),
                 C.set(this, Xr, m, "f"),
                 C.set(this, Yr, A, "f"),
@@ -41973,7 +41984,7 @@
                     C.get(this, xa, "f").length > 0 && null != C.get(this, qr, "f") && C.get(this, qr, "f").call(this, C.get(this, Xr, "f"), C.get(this, Yr, "f"), C.get(this, Zr, "f"), C.get(this, xa, "f").map((e => e.settings)))
                 }
                 ),C.get(this, Qr, "f"),( () => {
-                    if (!(C.get(this, Sa, "f")?.multiplayerConnection instanceof Fn))
+                    if (!(C.get(this, Sa, "f")?.multiplayerConnection instanceof HostMultiplayerConnection))
                         throw new Error("Multiplayer connection is not a host");
                     null != C.get(this, da, "f") && (C.get(this, da, "f").dispose(),
                     C.set(this, da, null, "f")),
@@ -42005,7 +42016,7 @@
                     if (null == e)
                         throw new Error("Multiplayer is null");
                     const t = e.multiplayerConnection;
-                    if (!(t instanceof Fn))
+                    if (!(t instanceof HostMultiplayerConnection))
                         throw new Error("Multiplayer connection is not a host");
                     null != C.get(this, ha, "f") && (C.get(this, ha, "f").dispose(),
                     C.set(this, ha, null, "f")),
@@ -42103,7 +42114,7 @@
                                 continue;
                             let n = C.get(this, Ra, "f").get(e.id);
                             // Multiplayer player car creation
-                            null == n && (
+                            if (null == n) {
                                 n = {
                                     car: new VisualCar(null,t,null,null,C.get(this, zr, "f"),C.get(this, Nr, "f"),C.get(this, Ir, "f"),C.get(this, Pr, "f"),C.get(this, Yr, "f"),C.get(this, Gr, "f"),null),
                                     time: 0,
@@ -42112,8 +42123,11 @@
                                 },
                                 n.car.audioVolume = C.get(this, Oa, "f"),
                                 C.get(this, Ra, "f").set(e.id, n),
-                                C.get(this, la, "f").trackMinimap.setPlayerCar(e.id, n.car)
-                            ),
+                                C.get(this, la, "f").trackMinimap.setPlayerCar(e.id, n.car);
+                                if (w.multiplayerConnection instanceof HostMultiplayerConnection) {
+                                    w.multiplayerConnection.hostVoiceChat.setPlayerCar(e.id, n.car)
+                                }
+                            };
                             n.car.setNameTag(e.countryCode, e.nickname),
                             n.car.setCarStyle(e.carStyle)
                         }
@@ -42222,7 +42236,7 @@
                         )), "f"))
                     }
                     ), "f")),
-                    w.multiplayerConnection.addNewSessionCallback(w.sessionId, C.get(this, Jr, "f")),
+                    w.multiplayerConnection.addNewSessionCallback(w.sessionId, C.get(this, hostingNewSessionCallback, "f")),   // only called when hosting a new session
                     w.multiplayerConnection.addServerMessageCallback(C.set(this, Ca, (e => {
                         C.get(this, ia, "f")?.show(e)
                     }
@@ -42416,7 +42430,7 @@
                 null != C.get(this, Ta, "f") && C.get(this, Sa, "f").multiplayerConnection.removeCarResetCallback(C.get(this, Ta, "f")),
                 null != C.get(this, Ma, "f") && C.get(this, Sa, "f").multiplayerConnection.removeCarUpdateCallback(C.get(this, Ma, "f")),
                 null != C.get(this, _a, "f") && C.get(this, Sa, "f").multiplayerConnection.removeEndSessionCallback(C.get(this, _a, "f")),
-                C.get(this, Sa, "f").multiplayerConnection.removeNewSessionCallback(C.get(this, Jr, "f")),
+                C.get(this, Sa, "f").multiplayerConnection.removeNewSessionCallback(C.get(this, hostingNewSessionCallback, "f")),
                 null != C.get(this, Ca, "f") && C.get(this, Sa, "f").multiplayerConnection.removeServerMessageCallback(C.get(this, Ca, "f"))),
                 C.set(this, Sa, null, "f")),
                 C.get(this, Fr, "f").setCursorHiddenWhenInactive(!1),
@@ -49816,7 +49830,7 @@
         }
         sl = new WeakMap;
         const cl = ll;
-        var hl, dl, ul, pl, fl, gl, ml, Al, vl, yl, bl, wl, xl, Sl, kl, El, Tl, Ml, _l, Cl, Rl, Pl, Il, Ll, Ul, zl, Nl;
+        var hl, dl, ul, pl, fl, gl, ml, Al, vl, yl, bl, wl, xl, Sl, kl, El, Tl, Ml, _l, Cl, Rl, Pl, Il, Ll, Ul, createMultiplayerDataChannels, Nl;
         dl = new WeakMap,
         ul = new WeakMap,
         pl = new WeakMap,
@@ -49842,7 +49856,7 @@
         Ll = new WeakMap,
         Ul = new WeakMap,
         hl = new WeakSet,
-        zl = function(e) {
+        createMultiplayerDataChannels = function(e) {
             const t = e.createDataChannel("reliable", {
                 negotiated: !0,
                 id: 0
@@ -50223,7 +50237,7 @@
             }
         }
         ;
-        const Dl = class {
+        const ClientMultiplayerConnection = class {
             constructor(e, t, n, i) {
                 hl.add(this),
                 dl.set(this, void 0),
@@ -50258,6 +50272,9 @@
                 C.set(this, ul, t, "f"),
                 C.set(this, pl, n, "f"),
                 C.set(this, fl, i, "f"),
+
+                this.clientVoice = new ClientVoiceChat();
+
                 window.addEventListener("pagehide", C.set(this, Ul, ( () => {
                     C.get(this, ml, "f")?.close()
                 }
@@ -50269,6 +50286,7 @@
                 C.set(this, Sl, [], "f"),
                 C.set(this, kl, [], "f"),
                 window.removeEventListener("pagehide", C.get(this, Ul, "f")),
+                this.clientVoice.destroy(),
                 C.get(this, ml, "f")?.close(),
                 C.get(this, Al, "f")?.close()
             }
@@ -50294,7 +50312,10 @@
                     }
                     )),
                     C.set(this, gl, i, "f");
-                    const n = C.get(this, hl, "m", zl).call(this, i);
+                    const n = C.get(this, hl, "m", createMultiplayerDataChannels).call(this, i);
+
+                    await this.clientVoice.start(i);
+
                     C.set(this, ml, n.dataChannel, "f"),
                     C.set(this, Al, n.unreliableDataChannel, "f");
                     const r = await i.createOffer();
@@ -50768,7 +50789,7 @@
                   , t = performance.now();
                 C.set(this, rc, new rr.A, "f");
                 try {
-                    const t = new Dl(C.get(this, Fl, "f"),C.get(this, Vl, "f"),C.get(this, Hl, "f"),C.get(this, Wl, "f"));
+                    const t = new ClientMultiplayerConnection(C.get(this, Fl, "f"),C.get(this, Vl, "f"),C.get(this, Hl, "f"),C.get(this, Wl, "f"));
                     C.set(this, ic, t, "f"),
                     await t.joinInvite(e, C.get(this, rc, "f"));
                     const n = await new Promise(( (e, n) => {
@@ -51013,7 +51034,7 @@
                             const n = parseInt(u.value);
                             if (Number.isNaN(n) || !Number.isSafeInteger(n) || n < 1)
                                 throw new Error("Invalid maximum players: " + u.value);
-                            const i = new Fn(C.get(this, Fl, "f"),C.get(this, Vl, "f"),n,C.get(this, Hl, "f"))
+                            const i = new HostMultiplayerConnection(C.get(this, Fl, "f"),C.get(this, Vl, "f"),n,C.get(this, Hl, "f"))
                               , a = i.startNewSessionImmediate(r, e, t);
                             this.dispose(),
                             C.get(this, Ql, "f").call(this, e, t, "custom", [], {
@@ -56832,7 +56853,7 @@
                                 P.PM()
                             }
                             ),( (t, n, i) => {
-                                const a = Q = new ts(p,f,v,A,m,b,h,l,w,S,e,settingsManager,s,E,T,y,t,n,"custom",[],null,null,!1,( () => {
+                                const a = Q = new MainMultiplayerClass(p,f,v,A,m,b,h,l,w,S,e,settingsManager,s,E,T,y,t,n,"custom",[],null,null,!1,( () => {
                                     throw new Error("Multiplayer connection lost should never be called from the editor")
                                 }
                                 ),( () => {
@@ -56864,7 +56885,7 @@
                 o.trigger(( () => P.RN("start-game").finally(( () => {
                     let o, d;
                     P.pS(),
-                    Q instanceof ts && null != c && Q.multiplayerConnection == c.multiplayerConnection ? Q.dispose(!0, !1) : Q.dispose(),
+                    Q instanceof MainMultiplayerClass && null != c && Q.multiplayerConnection == c.multiplayerConnection ? Q.dispose(!0, !1) : Q.dispose(),
                     o = "official" == i && null == c ? y.getNextOfficialTrack(n) : null,
                     d = null != o ? () => {
                         let e;
@@ -56893,7 +56914,7 @@
                         null))),
                         recording: k.recording
                     } : null,
-                    Q = new ts(p,f,v,A,m,b,h,l,w,S,e,settingsManager,s,E,T,y,t,n,i,a,_,c,!0,(e => {
+                    Q = new MainMultiplayerClass(p,f,v,A,m,b,h,l,w,S,e,settingsManager,s,E,T,y,t,n,i,a,_,c,!0,(e => {
                         let t;
                         switch (e) {
                         case "kicked":
