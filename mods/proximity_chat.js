@@ -60,14 +60,23 @@ class HostVoiceChat {
     this._intervalId = setInterval(() => this._updateAllGains(), 66);
 
     this.playerCarMap = new Map();
+    this.hostPos = null;
   }
 
   setPlayerCar(playerId, car) {
     this.playerCarMap.set(playerId, car);
   }
 
+  setHostPos(pos) {
+    this.hostPos = pos;
+  }
+
   getPlayerPosition(playerId) {
     return this.playerCarMap.get(playerId)?.getPosition() ?? {x: 0, y: 0, z: 0};
+  }
+
+  getHostPosition() {
+    return this.hostPos ?? {x: 0, y: 0, z: 0};
   }
 
   // ---- Host's own mic (host is also a player) ----
@@ -239,8 +248,9 @@ class HostVoiceChat {
   }
 
   _getPos(id) {
-    return {x: 0, y: 0, z: 0}; // default position if not found
-    if (id === '__host__') return this.getPlayerPosition('__host__');
+    if (id === '__host__') {
+      return this.getHostPosition();
+    }
     return this.getPlayerPosition(id);
   }
 

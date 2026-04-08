@@ -39394,7 +39394,7 @@
             e[e.Pong = 3] = "Pong",
             e[e.ModCustomMessage = 255] = "ModCustomMessage"
         }(Vt || (Vt = {}));
-        const qt = Vt;
+        const ClientToHostMessage = Vt;
         var Qt;
         !function(e) {
             e[e.PlayerUpdate = 0] = "PlayerUpdate",
@@ -39410,7 +39410,7 @@
             e[e.PingData = 10] = "PingData",
             e[e.ModCustomMessage = 255] = "ModCustomMessage"
         }(Qt || (Qt = {}));
-        const Jt = Qt;
+        const HostToClientMessage = Qt;
         var Xt;
         !function(e) {
             e[e.Casual = 0] = "Casual",
@@ -39455,7 +39455,7 @@
         Tn = function(e, t, n, i) {
             const r = i.toExportString(n)
               , a = new Uint8Array(33);
-            a[0] = Jt.TrackId;
+            a[0] = HostToClientMessage.TrackId;
             const s = i.getId();
             for (let e = 0; e < 32; e++) {
                 const t = s.substring(2 * e, 2 * e + 2)
@@ -39473,7 +39473,7 @@
             const o = C.get(this, An, "f") - 1;
             for (let n = 0; n < r.length; n += o) {
                 const i = new Uint8Array(Math.min(1 + o, 1 + r.length - n));
-                i[0] = Jt.TrackChunk;
+                i[0] = HostToClientMessage.TrackChunk;
                 for (let e = 1; e < i.length; e++) {
                     const t = r.charCodeAt(n + e - 1);
                     if (t > 255)
@@ -39491,7 +39491,7 @@
         ,
         Mn = function(e, t) {
             const n = new Uint8Array(1);
-            n[0] = Jt.EndSession;
+            n[0] = HostToClientMessage.EndSession;
             try {
                 t.send(n)
             } catch (t) {
@@ -39504,7 +39504,7 @@
             if (C.get(this, un, "f") > 255)
                 throw new Error("Max players exceeds 255");
             const n = new Uint8Array(7);
-            n[0] = Jt.NewSession,
+            n[0] = HostToClientMessage.NewSession,
             n[1] = 255 & C.get(this, hn, "f"),
             n[2] = C.get(this, hn, "f") >> 8 & 255,
             n[3] = C.get(this, hn, "f") >> 16 & 255,
@@ -39561,7 +39561,7 @@
                 const a = i[0];
                 switch (r++,
                 a) {
-                case qt.CarReset:
+                case ClientToHostMessage.CarReset:
                     {
                         if (n += "CarReset: ",
                         i.length < r + 4)
@@ -39583,7 +39583,7 @@
                         }
                         break
                     }
-                case qt.CarUpdate:
+                case ClientToHostMessage.CarUpdate:
                     {
                         if (n += "CarUpdate: ",
                         i.length < r + 4)
@@ -39621,7 +39621,7 @@
                             }
                         break
                     }
-                case qt.Record:
+                case ClientToHostMessage.Record:
                     {
                         if (n += "Record: ",
                         i.length < r + 4)
@@ -39645,7 +39645,7 @@
                         }
                         break
                     }
-                case qt.Pong:
+                case ClientToHostMessage.Pong:
                     {
                         if (n += "Pong: ",
                         i.length < r + 1)
@@ -39664,7 +39664,7 @@
                         }
                         break
                     }
-                case qt.ModCustomMessage:
+                case ClientToHostMessage.ModCustomMessage:
                     break;
                 default:
                     return console.error(n + "Received unknown message type"),
@@ -39677,7 +39677,7 @@
         ,
         Rn = function(e, t, n, i) {
             const r = new Uint8Array(9);
-            r[0] = Jt.CarReset,
+            r[0] = HostToClientMessage.CarReset,
             r[1] = 255 & n,
             r[2] = n >> 8 & 255,
             r[3] = n >> 16 & 255,
@@ -39716,7 +39716,7 @@
             const c = l.result;
             if (5 + c.length <= r) {
                 const e = new Uint8Array(5 + c.length);
-                e[0] = Jt.CarUpdate,
+                e[0] = HostToClientMessage.CarUpdate,
                 e[1] = 255 & C.get(this, hn, "f"),
                 e[2] = C.get(this, hn, "f") >> 8 & 255,
                 e[3] = C.get(this, hn, "f") >> 16 & 255,
@@ -39743,7 +39743,7 @@
             for (const e of C.get(this, connectedPlayers, "f")) {
                 const t = e.pingIdCounter
                   , n = new Uint8Array(2);
-                n[0] = Jt.Ping,
+                n[0] = HostToClientMessage.Ping,
                 n[1] = t;
                 try {
                     e.unreliableDataChannel.send(n)
@@ -39764,7 +39764,7 @@
         Un = function() {
             const e = C.get(this, connectedPlayers, "f").length + 1
               , t = new Uint8Array(1 + 6 * e);
-            t[0] = Jt.PingData;
+            t[0] = HostToClientMessage.PingData;
             let n = 1;
             t[n + 0] = 255 & C.get(this, fn, "f").id,
             t[n + 1] = C.get(this, fn, "f").id >> 8 & 255,
@@ -39845,7 +39845,7 @@
         ,
         Dn = function(e, t, n, i, r, a, s) {
             const o = [];
-            o.push(Jt.PlayerUpdate),
+            o.push(HostToClientMessage.PlayerUpdate),
             o.push(255 & n),
             o.push(n >> 8 & 255),
             o.push(n >> 16 & 255),
@@ -39883,7 +39883,7 @@
                     continue;
                 const i = [];
                 let r;
-                i.push(Jt.RemovePlayer),
+                i.push(HostToClientMessage.RemovePlayer),
                 i.push(255 & e),
                 i.push(e >> 8 & 255),
                 i.push(e >> 16 & 255),
@@ -40038,7 +40038,7 @@
                 const t = C.get(this, connectedPlayers, "f").find((t => t.id == e));
                 if (null != t)
                     try {
-                        t.dataChannel.send(new Uint8Array([Jt.Kick])),
+                        t.dataChannel.send(new Uint8Array([HostToClientMessage.Kick])),
                         setTimeout(( () => {
                             t.peerConnection.close()
                         }
@@ -41417,7 +41417,7 @@
                 }
             }
         }
-        var _r, Cr, Rr, Pr, Ir, Lr, Ur, zr, Nr, Dr, Br, Gr, Fr, Or, Wr, Vr, Hr, jr, Kr, qr, Qr, hostingNewSessionCallback, Xr, Yr, Zr, drivingUIVisible, ea, ta, na, ia, ra, aa, sa, oa, la, ca, ha, da, ua, pa, fa, ga, ma, Aa, va, ya, ba, wa, xa, Sa, ka, Ea, Ta, Ma, _a, Ca, Ra, Pa, Ia, La, Ua, za, Na, Da, Ba, Ga, Fa, Oa, Wa, Va, Ha, ja, Ka, qa, Qa, Ja, Xa, Ya, Za, updateGhostOpacity, es, m_ghostsVisible;
+        var _r, Cr, Rr, Pr, Ir, Lr, Ur, zr, Nr, Dr, Br, Gr, Fr, Or, Wr, Vr, Hr, jr, Kr, qr, Qr, hostingNewSessionCallback, Xr, Yr, Zr, drivingUIVisible, ea, ta, na, ia, ra, aa, sa, oa, la, ca, ha, da, ua, pa, fa, ga, ma, Aa, va, ya, ba, wa, xa, multiplayerInstanceInfo, ka, Ea, Ta, Ma, _a, Ca, idToMultiplayerCarMap, Pa, Ia, La, Ua, za, Na, Da, Ba, Ga, Fa, Oa, Wa, Va, Ha, ja, Ka, qa, Qa, Ja, Xa, Ya, Za, updateGhostOpacity, es, m_ghostsVisible;
         Cr = new WeakMap,
         Rr = new WeakMap,
         Pr = new WeakMap,
@@ -41466,14 +41466,14 @@
         ba = new WeakMap,
         wa = new WeakMap,
         xa = new WeakMap,
-        Sa = new WeakMap,
+        multiplayerInstanceInfo = new WeakMap,
         ka = new WeakMap,
         Ea = new WeakMap,
         Ta = new WeakMap,
         Ma = new WeakMap,
         _a = new WeakMap,
         Ca = new WeakMap,
-        Ra = new WeakMap,
+        idToMultiplayerCarMap = new WeakMap,
         Pa = new WeakMap,
         Ia = new WeakMap,
         La = new WeakMap,
@@ -41489,11 +41489,11 @@
         _r = new WeakSet,
         m_ghostsVisible = new WeakMap,
         Va = function() {
-            if (null == C.get(this, Sa, "f"))
+            if (null == C.get(this, multiplayerInstanceInfo, "f"))
                 C.get(this, Kr, "f").call(this);
             else {
                 let e;
-                e = C.get(this, Sa, "f").multiplayerConnection instanceof HostMultiplayerConnection ? C.get(this, Ur, "f").get("Are you sure you want to quit?") + "\n\n" + C.get(this, Ur, "f").get("All connected players will be disconnected!") : C.get(this, Ur, "f").get("Are you sure you want to quit?"),
+                e = C.get(this, multiplayerInstanceInfo, "f").multiplayerConnection instanceof HostMultiplayerConnection ? C.get(this, Ur, "f").get("Are you sure you want to quit?") + "\n\n" + C.get(this, Ur, "f").get("All connected players will be disconnected!") : C.get(this, Ur, "f").get("Are you sure you want to quit?"),
                 C.get(this, Or, "f").showConfirm(e, C.get(this, Ur, "f").get("Cancel"), C.get(this, Ur, "f").get("Confirm"), null, ( () => {
                     C.get(this, Kr, "f").call(this)
                 }
@@ -41518,7 +41518,7 @@
         }
         ,
         Qa = function() {
-            P.Xx() || C.get(this, Pa, "f") || (C.get(this, wa, "f").hasFinished() && C.get(this, Sa, "f")?.gameMode != Yt.Competitive ? P.RN("game-finish-reset").finally(( () => {
+            P.Xx() || C.get(this, Pa, "f") || (C.get(this, wa, "f").hasFinished() && C.get(this, multiplayerInstanceInfo, "f")?.gameMode != Yt.Competitive ? P.RN("game-finish-reset").finally(( () => {
                 C.get(this, Pa, "f") || (C.get(this, _r, "m", Ja).call(this),
                 C.get(this, _r, "m", Ya).call(this))
             }
@@ -41542,13 +41542,13 @@
             const r = C.set(this, Ia, (t = C.get(this, Ia, "f"),
             ++t), "f");
             let a;
-            if (null != C.get(this, Sa, "f")) {
-                const e = C.get(this, Sa, "f");
+            if (null != C.get(this, multiplayerInstanceInfo, "f")) {
+                const e = C.get(this, multiplayerInstanceInfo, "f");
                 a = t => {
                     e.multiplayerConnection.sendCarUpdate(e.sessionId, r, t)
                 }
                 ,
-                C.get(this, Sa, "f").multiplayerConnection.sendCarReset(e.sessionId, r)
+                C.get(this, multiplayerInstanceInfo, "f").multiplayerConnection.sendCarReset(e.sessionId, r)
             } else
                 a = null;
             // Primary controlled polycar instantiation
@@ -41591,7 +41591,7 @@
                         return Promise.resolve(null)
                     }
                     )(),
-                    null == C.get(this, Sa, "f"))
+                    null == C.get(this, multiplayerInstanceInfo, "f"))
                         if (0 == C.get(this, xa, "f").length)
                             C.get(this, xa, "f").push({
                                 car: null,
@@ -41634,19 +41634,19 @@
                     time: t,
                     recording: i
                 }, "f"),
-                null != C.get(this, Sa, "f")) {
+                null != C.get(this, multiplayerInstanceInfo, "f")) {
                     let e;
-                    switch (C.get(this, Sa, "f").gameMode) {
+                    switch (C.get(this, multiplayerInstanceInfo, "f").gameMode) {
                     case Yt.Casual:
-                        null != s && C.get(this, Ua, "f").time.equals(s.time) ? e = null : (C.get(this, Sa, "f").multiplayerConnection.sendRecord(C.get(this, Sa, "f").sessionId, C.get(this, Ua, "f").time),
+                        null != s && C.get(this, Ua, "f").time.equals(s.time) ? e = null : (C.get(this, multiplayerInstanceInfo, "f").multiplayerConnection.sendRecord(C.get(this, multiplayerInstanceInfo, "f").sessionId, C.get(this, Ua, "f").time),
                         e = C.get(this, Ua, "f"));
                         break;
                     case Yt.Competitive:
-                        null != o && C.get(this, za, "f").time.equals(o.time) ? e = null : (C.get(this, Sa, "f").multiplayerConnection.sendRecord(C.get(this, Sa, "f").sessionId, C.get(this, za, "f").time),
+                        null != o && C.get(this, za, "f").time.equals(o.time) ? e = null : (C.get(this, multiplayerInstanceInfo, "f").multiplayerConnection.sendRecord(C.get(this, multiplayerInstanceInfo, "f").sessionId, C.get(this, za, "f").time),
                         e = C.get(this, za, "f"));
                         break;
                     default:
-                        C.get(this, Sa, "f").gameMode,
+                        C.get(this, multiplayerInstanceInfo, "f").gameMode,
                         e = null
                     }
                     if (null != e)
@@ -41685,10 +41685,10 @@
                     record: c.settings.time,
                     nickname: c.settings.nickname
                 }),
-                null == C.get(this, Sa, "f"))
+                null == C.get(this, multiplayerInstanceInfo, "f"))
                     C.set(this, oa, new TimeAnnouncerUI(C.get(this, ea, "f").element,C.get(this, Ur, "f"),C.get(this, Nr, "f"),C.get(this, Xr, "f").name,t,s?.time ?? null,"personal-best",l,a), "f");
                 else
-                    switch (C.get(this, Sa, "f").gameMode) {
+                    switch (C.get(this, multiplayerInstanceInfo, "f").gameMode) {
                     case Yt.Casual:
                         C.set(this, oa, new TimeAnnouncerUI(C.get(this, ea, "f").element,C.get(this, Ur, "f"),C.get(this, Nr, "f"),C.get(this, Xr, "f").name,t,s?.time ?? null,"personal-best",l,Promise.resolve(null)), "f");
                         break;
@@ -41700,7 +41700,7 @@
                             break
                         }
                     default:
-                        C.get(this, Sa, "f").gameMode
+                        C.get(this, multiplayerInstanceInfo, "f").gameMode
                     }
                 null != c?.finishSpeedKmh && C.get(this, aa, "f").showCheckpointSpeed(e.getSpeedKmh(), c.finishSpeedKmh)
             }
@@ -41761,7 +41761,7 @@
                         e.checkpoints = r,
                         e.finishSpeedKmh = null
                     }
-                    if (null == C.get(this, Sa, "f")) {
+                    if (null == C.get(this, multiplayerInstanceInfo, "f")) {
                         const n = new VisualCar(null,t,e.settings.recording,null,C.get(this, zr, "f"),C.get(this, Nr, "f"),C.get(this, Ir, "f"),C.get(this, Pr, "f"),C.get(this, Yr, "f"),C.get(this, Gr, "f"),null);
                         n.setCarStyle(e.settings.carStyle),
                         n.audioVolume = C.get(this, Oa, "f"),
@@ -41791,7 +41791,7 @@
             }
 
             const e = C.get(this, wa, "f").getPosition()
-              , t = C.get(this, xa, "f").map((e => e.car)).filter((e => null != e)).concat(Array.from(C.get(this, Ra, "f").values()).map((e => e.car)));
+              , t = C.get(this, xa, "f").map((e => e.car)).filter((e => null != e)).concat(Array.from(C.get(this, idToMultiplayerCarMap, "f").values()).map((e => e.car)));
             for (const n of t) {
                 const t = n.getPosition().distanceTo(e)
                   , i = Math.max(0, Math.min(maxGhostOpacitySetting, t / 5));
@@ -41800,9 +41800,9 @@
         }
         ,
         es = function() {
-            if (null != C.get(this, Sa, "f")) {
+            if (null != C.get(this, multiplayerInstanceInfo, "f")) {
                 let e;
-                switch (C.get(this, Sa, "f").gameMode) {
+                switch (C.get(this, multiplayerInstanceInfo, "f").gameMode) {
                 case Yt.Casual:
                     e = C.get(this, Ua, "f")?.time ?? null,
                     C.get(this, la, "f").setRecord(C.get(this, Ua, "f"));
@@ -41815,7 +41815,7 @@
                     });
                     break;
                 default:
-                    C.get(this, Sa, "f").gameMode,
+                    C.get(this, multiplayerInstanceInfo, "f").gameMode,
                     e = null
                 }
                 C.get(this, sa, "f").record = e,
@@ -41879,14 +41879,14 @@
                 ba.set(this, null),
                 wa.set(this, void 0),
                 xa.set(this, []),
-                Sa.set(this, void 0),
+                multiplayerInstanceInfo.set(this, void 0),
                 ka.set(this, null),
                 Ea.set(this, null),
                 Ta.set(this, null),
                 Ma.set(this, null),
                 _a.set(this, null),
                 Ca.set(this, null),
-                Ra.set(this, new Map),
+                idToMultiplayerCarMap.set(this, new Map),
                 Pa.set(this, !1),
                 Ia.set(this, 0),
                 La.set(this, !1),
@@ -41925,11 +41925,11 @@
                 C.set(this, Xr, m, "f"),
                 C.set(this, Yr, A, "f"),
                 C.set(this, Zr, v, "f"),
-                null != w ? C.set(this, Sa, {
+                null != w ? C.set(this, multiplayerInstanceInfo, {
                     multiplayerConnection: w.multiplayerConnection,
                     sessionId: w.sessionId,
                     gameMode: w.gameMode
-                }, "f") : C.set(this, Sa, null, "f"),
+                }, "f") : C.set(this, multiplayerInstanceInfo, null, "f"),
                 n.loadTrackData(A),
                 n.generateMeshes(),
                 i.generateMountains(n.getBounds()),
@@ -41973,46 +41973,46 @@
                 C.get(this, ma, "f").isEnabled = C.get(this, Wr, "f").touchEnabled,
                 C.set(this, ea, new br, "f"),
                 C.set(this, ta, new ResetHintUI(C.get(this, ea, "f").element,C.get(this, Ur, "f"),C.get(this, Wr, "f"),C.get(this, Gr, "f")), "f"),
-                null != C.get(this, Sa, "f") ? C.set(this, ia, new ur(C.get(this, ea, "f").element,C.get(this, Gr, "f")), "f") : C.set(this, na, new fi(C.get(this, ea, "f").element,C.get(this, Ur, "f"),C.get(this, Gr, "f")), "f"),
+                null != C.get(this, multiplayerInstanceInfo, "f") ? C.set(this, ia, new ur(C.get(this, ea, "f").element,C.get(this, Gr, "f")), "f") : C.set(this, na, new fi(C.get(this, ea, "f").element,C.get(this, Ur, "f"),C.get(this, Gr, "f")), "f"),
                 C.set(this, ra, new CheckpointUI(C.get(this, ea, "f").element,C.get(this, Pr, "f").getTotalNumberOfCheckpointIndices(),C.get(this, Gr, "f")), "f"),
                 C.set(this, aa, new We(C.get(this, ea, "f").element,C.get(this, Gr, "f")), "f"),
                 C.set(this, sa, new Ve.A(C.get(this, ea, "f").element,C.get(this, Ur, "f"),C.get(this, Gr, "f")), "f"),
-                C.set(this, la, new TopDrivingUI(C.get(this, ea, "f").element,C.get(this, Nr, "f"),C.get(this, Ur, "f"),C.get(this, Gr, "f"),C.get(this, Wr, "f"),C.get(this, Xr, "f"),C.get(this, Sa, "f"),( () => {
+                C.set(this, la, new TopDrivingUI(C.get(this, ea, "f").element,C.get(this, Nr, "f"),C.get(this, Ur, "f"),C.get(this, Gr, "f"),C.get(this, Wr, "f"),C.get(this, Xr, "f"),C.get(this, multiplayerInstanceInfo, "f"),( () => {
                     C.get(this, _r, "m", Va).call(this)
                 }
                 ),( () => {
                     C.get(this, xa, "f").length > 0 && null != C.get(this, qr, "f") && C.get(this, qr, "f").call(this, C.get(this, Xr, "f"), C.get(this, Yr, "f"), C.get(this, Zr, "f"), C.get(this, xa, "f").map((e => e.settings)))
                 }
                 ),C.get(this, Qr, "f"),( () => {
-                    if (!(C.get(this, Sa, "f")?.multiplayerConnection instanceof HostMultiplayerConnection))
+                    if (!(C.get(this, multiplayerInstanceInfo, "f")?.multiplayerConnection instanceof HostMultiplayerConnection))
                         throw new Error("Multiplayer connection is not a host");
                     null != C.get(this, da, "f") && (C.get(this, da, "f").dispose(),
                     C.set(this, da, null, "f")),
                     null != C.get(this, ua, "f") && (C.get(this, ua, "f").dispose(),
                     C.set(this, ua, null, "f")),
                     null != C.get(this, ha, "f") ? (C.get(this, ha, "f").dispose(),
-                    C.set(this, ha, null, "f")) : C.set(this, ha, new Ni(C.get(this, ea, "f").element,C.get(this, Nr, "f"),C.get(this, Ur, "f"),C.get(this, Sa, "f").multiplayerConnection,( () => {
+                    C.set(this, ha, null, "f")) : C.set(this, ha, new Ni(C.get(this, ea, "f").element,C.get(this, Nr, "f"),C.get(this, Ur, "f"),C.get(this, multiplayerInstanceInfo, "f").multiplayerConnection,( () => {
                         C.get(this, ha, "f")?.dispose(),
                         C.set(this, ha, null, "f")
                     }
                     )), "f")
                 }
                 ),( () => {
-                    if (null == C.get(this, Sa, "f"))
+                    if (null == C.get(this, multiplayerInstanceInfo, "f"))
                         throw new Error("Multiplayer is null");
                     null != C.get(this, ha, "f") && (C.get(this, ha, "f").dispose(),
                     C.set(this, ha, null, "f")),
                     null != C.get(this, ua, "f") && (C.get(this, ua, "f").dispose(),
                     C.set(this, ua, null, "f")),
                     null != C.get(this, da, "f") ? (C.get(this, da, "f").dispose(),
-                    C.set(this, da, null, "f")) : C.set(this, da, new ar(C.get(this, ea, "f").element,C.get(this, Nr, "f"),C.get(this, Ur, "f"),C.get(this, Or, "f"),C.get(this, Sa, "f").sessionId,C.get(this, Sa, "f").multiplayerConnection,( () => {
+                    C.set(this, da, null, "f")) : C.set(this, da, new ar(C.get(this, ea, "f").element,C.get(this, Nr, "f"),C.get(this, Ur, "f"),C.get(this, Or, "f"),C.get(this, multiplayerInstanceInfo, "f").sessionId,C.get(this, multiplayerInstanceInfo, "f").multiplayerConnection,( () => {
                         C.get(this, da, "f")?.dispose(),
                         C.set(this, da, null, "f")
                     }
                     )), "f")
                 }
                 ),( () => {
-                    const e = C.get(this, Sa, "f");
+                    const e = C.get(this, multiplayerInstanceInfo, "f");
                     if (null == e)
                         throw new Error("Multiplayer is null");
                     const t = e.multiplayerConnection;
@@ -42059,10 +42059,10 @@
                     C.get(this, ua, "f").show())
                 }
                 )), "f"),
-                null == C.get(this, Sa, "f"))
+                null == C.get(this, multiplayerInstanceInfo, "f"))
                     C.get(this, la, "f").setRecord(C.get(this, Ua, "f"));
                 else
-                    switch (C.get(this, Sa, "f").gameMode) {
+                    switch (C.get(this, multiplayerInstanceInfo, "f").gameMode) {
                     case Yt.Casual:
                         C.get(this, la, "f").setRecord(C.get(this, Ua, "f"));
                         break;
@@ -42073,7 +42073,7 @@
                         });
                         break;
                     default:
-                        throw C.get(this, Sa, "f").gameMode,
+                        throw C.get(this, multiplayerInstanceInfo, "f").gameMode,
                         new Error("Unknown multiplayer game mode")
                     }
 
@@ -42112,7 +42112,7 @@
                         for (const e of n) {
                             if (e.isSelf)
                                 continue;
-                            let n = C.get(this, Ra, "f").get(e.id);
+                            let n = C.get(this, idToMultiplayerCarMap, "f").get(e.id);
                             // Multiplayer player car creation
                             if (null == n) {
                                 n = {
@@ -42122,7 +42122,7 @@
                                     bufferedCarStates: []
                                 },
                                 n.car.audioVolume = C.get(this, Oa, "f"),
-                                C.get(this, Ra, "f").set(e.id, n),
+                                C.get(this, idToMultiplayerCarMap, "f").set(e.id, n),
                                 C.get(this, la, "f").trackMinimap.setPlayerCar(e.id, n.car);
                                 if (w.multiplayerConnection instanceof HostMultiplayerConnection) {
                                     w.multiplayerConnection.hostVoiceChat.setPlayerCar(e.id, n.car)
@@ -42131,9 +42131,15 @@
                             n.car.setNameTag(e.countryCode, e.nickname),
                             n.car.setCarStyle(e.carStyle)
                         }
-                        for (const [e,t] of C.get(this, Ra, "f"))
-                            n.some((t => t.id == e)) || (t.car.dispose(),
-                            C.get(this, Ra, "f").delete(e))
+                        for (const [e,t] of C.get(this, idToMultiplayerCarMap, "f")) {
+                            if (!n.some((t => t.id == e))) {
+                                if (w.multiplayerConnection instanceof HostMultiplayerConnection) {
+                                    w.multiplayerConnection.hostVoiceChat.removeClient(e);
+                                }
+                                t.car.dispose();
+                                C.get(this, idToMultiplayerCarMap, "f").delete(e);
+                            }
+                        }
                     }
                     ;
                     e(w.multiplayerConnection);
@@ -42149,7 +42155,7 @@
                     w.multiplayerConnection.addCarResetCallback(C.set(this, Ta, ( (e, n, i) => {
                         if (e != w.sessionId)
                             return;
-                        const r = C.get(this, Ra, "f").get(n);
+                        const r = C.get(this, idToMultiplayerCarMap, "f").get(n);
                         if (null != r && i > r.resetCounter) {
                             const e = C.get(this, Pr, "f").getStartTransform();
                             if (null == e)
@@ -42198,7 +42204,7 @@
                     w.multiplayerConnection.addCarUpdateCallback(C.set(this, Ma, ( (e, n, i, r) => {
                         if (e != w.sessionId)
                             return;
-                        const a = C.get(this, Ra, "f").get(n);
+                        const a = C.get(this, idToMultiplayerCarMap, "f").get(n);
                         if (null != a)
                             if (i > a.resetCounter)
                                 a.car.setCarState(r, !0),
@@ -42290,7 +42296,7 @@
                                 e.preventDefault();
                             else if (d.checkKeyBinding(e, KeyBind.Pause)) {
                                 if (null == C.get(this, ca, "f")) {
-                                    if (null == C.get(this, Sa, "f") && C.get(this, wa, "f").hasStarted() && !C.get(this, wa, "f").hasFinished()) {
+                                    if (null == C.get(this, multiplayerInstanceInfo, "f") && C.get(this, wa, "f").hasStarted() && !C.get(this, wa, "f").hasFinished()) {
                                         const e = new Date;
                                         (null == C.get(this, ga, "f") || Math.abs(e.getTime() - C.get(this, ga, "f").getTime()) > 1e3) && (P.bQ(),
                                         C.set(this, ca, new oi(C.get(this, ea, "f").element,a), "f"),
@@ -42422,17 +42428,17 @@
                     }
             }
             get multiplayerConnection() {
-                return C.get(this, Sa, "f")?.multiplayerConnection ?? null
+                return C.get(this, multiplayerInstanceInfo, "f")?.multiplayerConnection ?? null
             }
             dispose(e=!0, t=!0) {
-                null != C.get(this, Sa, "f") && (t ? C.get(this, Sa, "f").multiplayerConnection.dispose() : (null != C.get(this, ka, "f") && C.get(this, Sa, "f").multiplayerConnection.removeConnectionLostCallback(C.get(this, ka, "f")),
-                null != C.get(this, Ea, "f") && C.get(this, Sa, "f").multiplayerConnection.removePlayersChangedCallback(C.get(this, Ea, "f")),
-                null != C.get(this, Ta, "f") && C.get(this, Sa, "f").multiplayerConnection.removeCarResetCallback(C.get(this, Ta, "f")),
-                null != C.get(this, Ma, "f") && C.get(this, Sa, "f").multiplayerConnection.removeCarUpdateCallback(C.get(this, Ma, "f")),
-                null != C.get(this, _a, "f") && C.get(this, Sa, "f").multiplayerConnection.removeEndSessionCallback(C.get(this, _a, "f")),
-                C.get(this, Sa, "f").multiplayerConnection.removeNewSessionCallback(C.get(this, hostingNewSessionCallback, "f")),
-                null != C.get(this, Ca, "f") && C.get(this, Sa, "f").multiplayerConnection.removeServerMessageCallback(C.get(this, Ca, "f"))),
-                C.set(this, Sa, null, "f")),
+                null != C.get(this, multiplayerInstanceInfo, "f") && (t ? C.get(this, multiplayerInstanceInfo, "f").multiplayerConnection.dispose() : (null != C.get(this, ka, "f") && C.get(this, multiplayerInstanceInfo, "f").multiplayerConnection.removeConnectionLostCallback(C.get(this, ka, "f")),
+                null != C.get(this, Ea, "f") && C.get(this, multiplayerInstanceInfo, "f").multiplayerConnection.removePlayersChangedCallback(C.get(this, Ea, "f")),
+                null != C.get(this, Ta, "f") && C.get(this, multiplayerInstanceInfo, "f").multiplayerConnection.removeCarResetCallback(C.get(this, Ta, "f")),
+                null != C.get(this, Ma, "f") && C.get(this, multiplayerInstanceInfo, "f").multiplayerConnection.removeCarUpdateCallback(C.get(this, Ma, "f")),
+                null != C.get(this, _a, "f") && C.get(this, multiplayerInstanceInfo, "f").multiplayerConnection.removeEndSessionCallback(C.get(this, _a, "f")),
+                C.get(this, multiplayerInstanceInfo, "f").multiplayerConnection.removeNewSessionCallback(C.get(this, hostingNewSessionCallback, "f")),
+                null != C.get(this, Ca, "f") && C.get(this, multiplayerInstanceInfo, "f").multiplayerConnection.removeServerMessageCallback(C.get(this, Ca, "f"))),
+                C.set(this, multiplayerInstanceInfo, null, "f")),
                 C.get(this, Fr, "f").setCursorHiddenWhenInactive(!1),
                 C.get(this, Or, "f").hide(),
                 C.get(this, ma, "f").dispose(),
@@ -42471,9 +42477,9 @@
                     null != e.carId && (C.get(this, Rr, "f").deleteCar(e.carId),
                     e.carId = null),
                     e.replay = null;
-                for (const e of C.get(this, Ra, "f").values())
+                for (const e of C.get(this, idToMultiplayerCarMap, "f").values())
                     e.car.dispose();
-                C.get(this, Ra, "f").clear(),
+                C.get(this, idToMultiplayerCarMap, "f").clear(),
                 window.removeEventListener("keydown", C.get(this, Na, "f")),
                 window.removeEventListener("keyup", C.get(this, Da, "f")),
                 C.get(this, Ba, "f").dispose(),
@@ -42483,11 +42489,11 @@
             update(e) {
                 const t = !P.ip() && null == C.get(this, ca, "f") && !C.get(this, Pa, "f");
                 let n;
-                if (n = C.get(this, Ba, "f").isEnabled && null == C.get(this, Sa, "f") || !t ? 0 : e,
+                if (n = C.get(this, Ba, "f").isEnabled && null == C.get(this, multiplayerInstanceInfo, "f") || !t ? 0 : e,
                 t) {
                     if (C.get(this, wa, "f").update(n),
                     C.get(this, wa, "f").updateCameras(n),
-                    C.get(this, Ba, "f").isEnabled && null == C.get(this, Sa, "f") ? (C.get(this, wa, "f").isPaused = !0,
+                    C.get(this, Ba, "f").isEnabled && null == C.get(this, multiplayerInstanceInfo, "f") ? (C.get(this, wa, "f").isPaused = !0,
                     C.get(this, wa, "f").audioVolume = 0) : (C.get(this, wa, "f").isPaused = !1,
                     C.get(this, wa, "f").audioVolume = 1),
                     C.get(this, wa, "f").isControlsDisabled = C.get(this, Ba, "f").isEnabled || C.get(this, _r, "m", Ha).call(this),
@@ -42520,7 +42526,7 @@
                             }
                             e.hasEnded || C.get(this, Ba, "f").isEnabled ? e.car.audioVolume = 0 : e.car.audioVolume = C.get(this, Oa, "f")
                         }
-                    for (const e of C.get(this, Ra, "f").values()) {
+                    for (const e of C.get(this, idToMultiplayerCarMap, "f").values()) {
                         if (e.car.isPaused = !1,
                         e.car.audioVolume = C.get(this, Oa, "f"),
                         e.bufferedCarStates.length > 0) {
@@ -42568,7 +42574,7 @@
                         null != e.car && (e.car.isPaused = !0,
                         e.car.audioVolume = 0,
                         e.car.update(n));
-                    for (const e of C.get(this, Ra, "f").values())
+                    for (const e of C.get(this, idToMultiplayerCarMap, "f").values())
                         e.car.isPaused = !0,
                         e.car.audioVolume = 0,
                         e.car.update(n);
@@ -42584,7 +42590,10 @@
                 C.get(this, aa, "f").update(C.get(this, wa, "f")),
                 C.get(this, sa, "f").update(C.get(this, wa, "f")),
                 C.get(this, ra, "f").update(C.get(this, wa, "f")),
+                
                 C.get(this, la, "f").trackMinimap.updatePlayerPos(C.get(this, wa, "f").getPosition()),
+                C.get(this, multiplayerInstanceInfo, "f")?.multiplayerConnection.hostVoiceChat?.setHostPos(C.get(this, wa, "f").getPosition()),
+
                 C.get(this, ma, "f").setResetCheckpointAvailable(C.get(this, _r, "m", ja).call(this)),
                 C.get(this, Ga, "f")?.update(),
                 C.get(this, Ir, "f").update(C.get(this, Pr, "f")),
@@ -49830,7 +49839,7 @@
         }
         sl = new WeakMap;
         const cl = ll;
-        var hl, dl, ul, pl, fl, gl, ml, Al, vl, yl, bl, wl, xl, Sl, kl, El, Tl, Ml, _l, Cl, Rl, Pl, Il, Ll, Ul, createMultiplayerDataChannels, Nl;
+        var hl, dl, ul, pl, fl, gl, ml, Al, vl, yl, bl, carUpdateListeners, xl, Sl, kl, El, Tl, Ml, _l, Cl, Rl, Pl, Il, Ll, Ul, createMultiplayerDataChannels, Nl;
         dl = new WeakMap,
         ul = new WeakMap,
         pl = new WeakMap,
@@ -49841,7 +49850,7 @@
         vl = new WeakMap,
         yl = new WeakMap,
         bl = new WeakMap,
-        wl = new WeakMap,
+        carUpdateListeners = new WeakMap,
         xl = new WeakMap,
         Sl = new WeakMap,
         kl = new WeakMap,
@@ -49900,9 +49909,9 @@
                 const a = i[0];
                 switch (r += 1,
                 a) {
-                case Jt.PlayerUpdate:
+                case HostToClientMessage.PlayerUpdate:
                     {
-                        if (n += Jt[Jt.PlayerUpdate] + ": ",
+                        if (n += HostToClientMessage[HostToClientMessage.PlayerUpdate] + ": ",
                         i.length < r + 4)
                             return console.error(n + "Incomplete (id)"),
                             void t.close();
@@ -49978,9 +49987,9 @@
                             e(C.get(this, Tl, "f"));
                         break
                     }
-                case Jt.RemovePlayer:
+                case HostToClientMessage.RemovePlayer:
                     {
-                        if (n += Jt[Jt.RemovePlayer] + ": ",
+                        if (n += HostToClientMessage[HostToClientMessage.RemovePlayer] + ": ",
                         i.length < r + 4)
                             return console.error(n + "Incomplete (id)"),
                             void t.close();
@@ -50013,9 +50022,9 @@
                         }
                         break
                     }
-                case Jt.CarReset:
+                case HostToClientMessage.CarReset:
                     {
-                        if (n += Jt[Jt.CarReset] + ": ",
+                        if (n += HostToClientMessage[HostToClientMessage.CarReset] + ": ",
                         i.length < r + 4)
                             return console.error(n + "Incomplete (id)"),
                             void t.close();
@@ -50030,15 +50039,16 @@
                             t(C.get(this, Tl, "f"), e, a);
                         break
                     }
-                case Jt.CarUpdate:
+                case HostToClientMessage.CarUpdate:
                     {
-                        if (n += Jt[Jt.CarUpdate] + ": ",
-                        i.length < r + 4)
-                            return console.error(n + "Incomplete (sessionId)"),
-                            void t.close();
-                        const e = i[r + 0] | i[r + 1] << 8 | i[r + 2] << 16 | i[r + 3] << 24;
-                        if (r += 4,
-                        e == C.get(this, Tl, "f")) {
+                        n += HostToClientMessage[HostToClientMessage.CarUpdate] + ": ";
+                        if (i.length < r + 4) {
+                            console.error(n + "Incomplete (sessionId)");
+                            return void t.close();
+                        }
+                        const sessionId = i[r + 0] | i[r + 1] << 8 | i[r + 2] << 16 | i[r + 3] << 24;
+                        r += 4;
+                        if (sessionId == C.get(this, Tl, "f")) {
                             const a = new Ht.Ay.Inflate;
                             if (a.push(i.subarray(r), !0),
                             a.err)
@@ -50055,42 +50065,48 @@
                                     if (i.length < r + 4)
                                         return console.error(n + "Incomplete (id)"),
                                         void t.close();
-                                    const a = i[r + 0] | i[r + 1] << 8 | i[r + 2] << 16 | i[r + 3] << 24;
+                                    const id = i[r + 0] | i[r + 1] << 8 | i[r + 2] << 16 | i[r + 3] << 24;
                                     if (r += 4,
                                     i.length < r + 4)
                                         return console.error(n + "Incomplete (resetCounter)"),
                                         void t.close();
-                                    const s = i[r + 0] | i[r + 1] << 8 | i[r + 2] << 16 | i[r + 3] << 24;
-                                    let o, l;
+                                    const resetCounter = i[r + 0] | i[r + 1] << 8 | i[r + 2] << 16 | i[r + 3] << 24;
+                                    let o, carState;
                                     r += 4;
                                     try {
-                                        ({numberOfBytes: o, carState: l} = Kt.VO(i.slice(r)))
+                                        ({numberOfBytes: o, carState: carState} = Kt.VO(i.slice(r)))
                                     } catch {
                                         return console.error(n + "Failed to deserialize CarState"),
                                         void t.close()
                                     }
                                     r += o;
-                                    const c = Math.sqrt(l.quaternion.x * l.quaternion.x + l.quaternion.y * l.quaternion.y + l.quaternion.z * l.quaternion.z + l.quaternion.w * l.quaternion.w);
-                                    0 == c ? (l.quaternion.x = 0,
-                                    l.quaternion.y = 0,
-                                    l.quaternion.z = 0,
-                                    l.quaternion.w = 1) : (l.quaternion.x /= c,
-                                    l.quaternion.y /= c,
-                                    l.quaternion.z /= c,
-                                    l.quaternion.w /= c);
-                                    for (const t of C.get(this, wl, "f"))
-                                        t(e, a, s, l)
+                                    const c = Math.sqrt(carState.quaternion.x * carState.quaternion.x + carState.quaternion.y * carState.quaternion.y + carState.quaternion.z * carState.quaternion.z + carState.quaternion.w * carState.quaternion.w);
+                                    if (0 == c) { 
+                                        carState.quaternion.x = 0;
+                                        carState.quaternion.y = 0;
+                                        carState.quaternion.z = 0;
+                                        carState.quaternion.w = 1;
+                                    } else {
+                                        carState.quaternion.x /= c;
+                                        carState.quaternion.y /= c;
+                                        carState.quaternion.z /= c;
+                                        carState.quaternion.w /= c;
+                                    };
+                                    for (const callback of C.get(this, carUpdateListeners, "f")) {
+                                        // console.log("Invoking car update listener with sessionId:", sessionId, "id:", id, "resetCounter:", resetCounter, "carState:", carState);
+                                        callback(sessionId, id, resetCounter, carState);
+                                    }
                                 }
                             }
                         } else
                             r += i.length - r;
                         break
                     }
-                case Jt.Kick:
+                case HostToClientMessage.Kick:
                     C.set(this, vl, !0, "f"),
                     t.close();
                     break;
-                case Jt.TrackId:
+                case HostToClientMessage.TrackId:
                     {
                         if (i.length < r + 32)
                             return console.error(n + "Incomplete (trackId)"),
@@ -50122,7 +50138,7 @@
                         }, "f");
                         break
                     }
-                case Jt.TrackChunk:
+                case HostToClientMessage.TrackChunk:
                     if (null == C.get(this, Ll, "f"))
                         return console.error(n + "Received TrackChunk before TrackId"),
                         void t.close();
@@ -50130,14 +50146,14 @@
                         C.get(this, Ll, "f").buffer += String.fromCharCode(i[r]),
                         r += 1;
                     break;
-                case Jt.EndSession:
+                case HostToClientMessage.EndSession:
                     C.set(this, Ml, !0, "f");
                     for (const e of C.get(this, xl, "f"))
                         e();
                     break;
-                case Jt.NewSession:
+                case HostToClientMessage.NewSession:
                     {
-                        if (n += Jt[Jt.NewSession] + ": ",
+                        if (n += HostToClientMessage[HostToClientMessage.NewSession] + ": ",
                         i.length < r + 4)
                             return console.error(n + "Incomplete (sessionId)"),
                             void t.close();
@@ -50184,9 +50200,9 @@
                             t(e, s, l.trackMetadata, l.trackData);
                         break
                     }
-                case Jt.Ping:
+                case HostToClientMessage.Ping:
                     {
-                        if (n += Jt[Jt.Ping] + ": ",
+                        if (n += HostToClientMessage[HostToClientMessage.Ping] + ": ",
                         i.length < r + 1)
                             return console.error(n + "Incomplete (pingId)"),
                             void t.close();
@@ -50195,7 +50211,7 @@
                         null == C.get(this, Al, "f"))
                             throw new Error("Unreliable data channel is not initialized");
                         const a = new Uint8Array(2);
-                        a[0] = qt.Pong,
+                        a[0] = ClientToHostMessage.Pong,
                         a[1] = e;
                         try {
                             C.get(this, Al, "f").send(a)
@@ -50205,8 +50221,8 @@
                         }
                         break
                     }
-                case Jt.PingData:
-                    for (n += Jt[Jt.PingData] + ": "; r < i.length; ) {
+                case HostToClientMessage.PingData:
+                    for (n += HostToClientMessage[HostToClientMessage.PingData] + ": "; r < i.length; ) {
                         if (i.length < r + 4)
                             return console.error(n + "Incomplete (id)"),
                             void t.close();
@@ -50226,7 +50242,7 @@
                         }
                     }
                     break;
-                case Jt.ModCustomMessage:
+                case HostToClientMessage.ModCustomMessage:
                     break;
                 default:
                     return console.error(n + "Received unknown message type"),
@@ -50250,7 +50266,7 @@
                 vl.set(this, !1),
                 yl.set(this, []),
                 bl.set(this, []),
-                wl.set(this, []),
+                carUpdateListeners.set(this, []),
                 xl.set(this, []),
                 Sl.set(this, []),
                 kl.set(this, []),
@@ -50282,7 +50298,7 @@
             }
             dispose() {
                 C.set(this, yl, [], "f"),
-                C.set(this, wl, [], "f"),
+                C.set(this, carUpdateListeners, [], "f"),
                 C.set(this, Sl, [], "f"),
                 C.set(this, kl, [], "f"),
                 window.removeEventListener("pagehide", C.get(this, Ul, "f")),
@@ -50540,10 +50556,10 @@
                 C.set(this, bl, C.get(this, bl, "f").filter((t => t != e)), "f")
             }
             addCarUpdateCallback(e) {
-                C.get(this, wl, "f").push(e)
+                C.get(this, carUpdateListeners, "f").push(e)
             }
             removeCarUpdateCallback(e) {
-                C.set(this, wl, C.get(this, wl, "f").filter((t => t != e)), "f")
+                C.set(this, carUpdateListeners, C.get(this, carUpdateListeners, "f").filter((t => t != e)), "f")
             }
             addEndSessionCallback(e, t) {
                 C.get(this, xl, "f").push(t),
@@ -50569,7 +50585,7 @@
                 if (e != C.get(this, Tl, "f") || C.get(this, Ml, "f"))
                     return;
                 const n = new Uint8Array(9);
-                if (n[0] = qt.CarReset,
+                if (n[0] = ClientToHostMessage.CarReset,
                 n[1] = 255 & e,
                 n[2] = e >> 8 & 255,
                 n[3] = e >> 16 & 255,
@@ -50594,7 +50610,7 @@
                     return;
                 const i = Kt._c(n)
                   , r = new Uint8Array(9 + i.length);
-                if (r[0] = qt.CarUpdate,
+                if (r[0] = ClientToHostMessage.CarUpdate,
                 r[1] = 255 & e,
                 r[2] = e >> 8 & 255,
                 r[3] = e >> 16 & 255,
@@ -50623,7 +50639,7 @@
                     t(e);
                 const n = t.numberOfFrames
                   , i = new Uint8Array(8);
-                if (i[0] = qt.Record,
+                if (i[0] = ClientToHostMessage.Record,
                 i[1] = 255 & e,
                 i[2] = e >> 8 & 255,
                 i[3] = e >> 16 & 255,
