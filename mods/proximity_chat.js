@@ -4,18 +4,12 @@ class ClientVoiceChat {
   constructor() {
     this.localStream = null;
     this.audioEl = null;
+    this.peerConnection = null;
   }
 
   async start(peerConnection) {
-    this.localStream = await navigator.mediaDevices.getUserMedia({
-      audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true },
-      video: false,
-    });
-
-    for (const track of this.localStream.getAudioTracks()) {
-      peerConnection.addTrack(track, this.localStream);
-    }
-
+    this.peerConnection = peerConnection;
+    this.localStream = null;
     peerConnection.ontrack = (event) => {
       if (event.track.kind !== 'audio') return;
       const stream = event.streams[0] ?? new MediaStream([event.track]);
@@ -23,11 +17,61 @@ class ClientVoiceChat {
       this.audioEl.srcObject = stream;
       this.audioEl.play();
     };
+
+    return null;
   }
 
-  muteMic(muted) {
-    if (this.localStream) {
-      this.localStream.getAudioTracks().forEach(t => (t.enabled = !muted));
+  async setMicMuted(muted) {
+    if (muted) {
+      if (this.localStream) {
+        this.localStream.getAudioTracks().forEach(t => (t.enabled = false));
+      }
+      return this.localStream;
+    }
+
+    const liveTracks = this.localStream?.getAudioTracks()
+      .filter(t => t.readyState === 'live') ?? [];
+
+    if (liveTracks.length > 0) {
+      liveTracks.forEach(t => (t.enabled = true));
+      return this.localStream;
+    }
+
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({
+        audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true },
+        video: false,
+      });
+
+      const audioTrack = stream.getAudioTracks()[0];
+      if (!audioTrack) {
+        this.localStream = null;
+        return null;
+      }
+
+      const existingSender = this.peerConnection?.getSenders()
+        .find(s => s.track?.kind === 'audio');
+
+      if (existingSender) {
+        existingSender.replaceTrack(audioTrack);
+      } else if (this.peerConnection) {
+        this.peerConnection.addTrack(audioTrack, stream);
+      }
+
+      if (this.localStream) {
+        this.localStream.getTracks().forEach(t => t.stop());
+      }
+      this.localStream = stream;
+      this.localStream.getAudioTracks().forEach(t => (t.enabled = true));
+      return this.localStream;
+    } catch (error) {
+      this.localStream = null;
+      if (error?.name === 'NotFoundError' || error?.name === 'DevicesNotFoundError') {
+        console.warn('[voice] microphone not found while unmuting; local mic disabled');
+      } else {
+        console.warn('[voice] failed to reconnect local microphone while unmuting', error);
+      }
+      return null;
     }
   }
 
@@ -91,13 +135,45 @@ class HostVoiceChat {
   // ---- Host's own mic ----
 
   async startHostMic() {
-    this.localStream = await navigator.mediaDevices.getUserMedia({
-      audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true },
-      video: false,
-    });
-    this.localSource = this.audioCtx.createMediaStreamSource(this.localStream);
-    this._rebuildAllMixes();
-    return this.localStream;
+    try {
+      this.localStream = await navigator.mediaDevices.getUserMedia({
+        audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true },
+        video: false,
+      });
+      this.localSource = this.audioCtx.createMediaStreamSource(this.localStream);
+      this._rebuildAllMixes();
+      return this.localStream;
+    } catch (error) {
+      // No capture device (or denied access): run host mixer without host mic input.
+      this.localStream = null;
+      this.localSource = null;
+      if (error?.name === 'NotFoundError' || error?.name === 'DevicesNotFoundError') {
+        console.warn('[voice] host microphone not found; host mic disabled');
+      } else {
+        console.warn('[voice] failed to start host microphone; host mic disabled', error);
+      }
+      this._rebuildAllMixes();
+      return null;
+    }
+  }
+
+  async setMicMuted(muted) {
+    if (muted) {
+      if (this.localStream) {
+        this.localStream.getAudioTracks().forEach(t => (t.enabled = false));
+      }
+      return this.localStream;
+    }
+
+    const liveTracks = this.localStream?.getAudioTracks()
+      .filter(t => t.readyState === 'live') ?? [];
+
+    if (liveTracks.length > 0) {
+      liveTracks.forEach(t => (t.enabled = true));
+      return this.localStream;
+    }
+
+    return this.startHostMic();
   }
 
   // ---- Register a client ----
@@ -201,10 +277,8 @@ class HostVoiceChat {
     for (const [clientId] of this.clients) {
       this._buildMixForListener(clientId);
     }
-    if (this.localSource) {
-      this._buildMixForListener('__host__');
-      this.playHostAudio();
-    }
+    this._buildMixForListener('__host__');
+    this.playHostAudio();
   }
 
   // ---- Host playback ----

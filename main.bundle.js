@@ -39414,9 +39414,10 @@
         var Xt;
         !function(e) {
             e[e.Casual = 0] = "Casual",
-            e[e.Competitive = 1] = "Competitive"
+            e[e.Competitive = 1] = "Competitive",
+            e[e.HideAndSeek = 2] = "HideAndSeek"
         }(Xt || (Xt = {}));
-        const Yt = Xt;
+        const MultiplayerRoomModes = Xt;
         class Zt extends Error {
             constructor(e, t) {
                 super(e),
@@ -39911,7 +39912,7 @@
                 sn.set(this, null),
                 on.set(this, null),
                 ln.set(this, null),
-                cn.set(this, Yt.Casual),
+                cn.set(this, MultiplayerRoomModes.Casual),
                 hn.set(this, 0),
                 dn.set(this, null),
                 un.set(this, void 0),
@@ -40141,8 +40142,6 @@
                 if (null != C.get(this, rn, "f"))
                     return C.get(this, rn, "f");
                 
-                this.hostVoiceChat.startHostMic();
-
                 const t = new Promise(( (n, i) => {
                     let r = !1
                       , a = null;
@@ -40559,11 +40558,14 @@
                 null != s) {
                     let e;
                     switch (s.gameMode) {
-                    case Yt.Casual:
+                    case MultiplayerRoomModes.Casual:
                         e = n.get("Casual");
                         break;
-                    case Yt.Competitive:
+                    case MultiplayerRoomModes.Competitive:
                         e = n.get("Competitive");
+                        break;
+                    case MultiplayerRoomModes.HideAndSeek:
+                        e = n.get("HideAndSeek");
                         break;
                     default:
                         throw s.gameMode,
@@ -40653,11 +40655,21 @@
                     m.appendChild(e),
                     C.get(this, Yn, "f").push(e)
 
+                    this.micEnabled = false;
+                    const toggleMic = () => {
+                        this.micEnabled = !this.micEnabled;
+                        if (s.multiplayerConnection instanceof HostMultiplayerConnection) {
+                            s.multiplayerConnection.hostVoiceChat.setMicMuted(!this.micEnabled);
+                        } else {
+                            s.multiplayerConnection.clientVoice.setMicMuted(!this.micEnabled);
+                        }
+                    }
                     const micButton = document.createElement("button");
                     micButton.className = "button";
                     micButton.innerHTML = '<img class="button-icon" src="mods/microphone.svg"> ';
                     micButton.addEventListener("click", ( () => {
                         t.playUIClick();
+                        toggleMic();
                     }));
                     m.appendChild(micButton);
                     C.get(this, Yn, "f").push(micButton);
@@ -41527,7 +41539,7 @@
         }
         ,
         Qa = function() {
-            P.Xx() || C.get(this, Pa, "f") || (C.get(this, wa, "f").hasFinished() && C.get(this, multiplayerInstanceInfo, "f")?.gameMode != Yt.Competitive ? P.RN("game-finish-reset").finally(( () => {
+            P.Xx() || C.get(this, Pa, "f") || (C.get(this, wa, "f").hasFinished() && C.get(this, multiplayerInstanceInfo, "f")?.gameMode != MultiplayerRoomModes.Competitive ? P.RN("game-finish-reset").finally(( () => {
                 C.get(this, Pa, "f") || (C.get(this, _r, "m", Ja).call(this),
                 C.get(this, _r, "m", Ya).call(this))
             }
@@ -41646,11 +41658,11 @@
                 null != C.get(this, multiplayerInstanceInfo, "f")) {
                     let e;
                     switch (C.get(this, multiplayerInstanceInfo, "f").gameMode) {
-                    case Yt.Casual:
+                    case MultiplayerRoomModes.Casual:
                         null != s && C.get(this, Ua, "f").time.equals(s.time) ? e = null : (C.get(this, multiplayerInstanceInfo, "f").multiplayerConnection.sendRecord(C.get(this, multiplayerInstanceInfo, "f").sessionId, C.get(this, Ua, "f").time),
                         e = C.get(this, Ua, "f"));
                         break;
-                    case Yt.Competitive:
+                    case MultiplayerRoomModes.Competitive:
                         null != o && C.get(this, za, "f").time.equals(o.time) ? e = null : (C.get(this, multiplayerInstanceInfo, "f").multiplayerConnection.sendRecord(C.get(this, multiplayerInstanceInfo, "f").sessionId, C.get(this, za, "f").time),
                         e = C.get(this, za, "f"));
                         break;
@@ -41698,10 +41710,10 @@
                     C.set(this, oa, new TimeAnnouncerUI(C.get(this, ea, "f").element,C.get(this, Ur, "f"),C.get(this, Nr, "f"),C.get(this, Xr, "f").name,t,s?.time ?? null,"personal-best",l,a), "f");
                 else
                     switch (C.get(this, multiplayerInstanceInfo, "f").gameMode) {
-                    case Yt.Casual:
+                    case MultiplayerRoomModes.Casual:
                         C.set(this, oa, new TimeAnnouncerUI(C.get(this, ea, "f").element,C.get(this, Ur, "f"),C.get(this, Nr, "f"),C.get(this, Xr, "f").name,t,s?.time ?? null,"personal-best",l,Promise.resolve(null)), "f");
                         break;
-                    case Yt.Competitive:
+                    case MultiplayerRoomModes.Competitive:
                         {
                             let e;
                             e = null != s && C.get(this, Ua, "f").time.equals(s.time) ? "session-best" : "personal-best",
@@ -41812,11 +41824,11 @@
             if (null != C.get(this, multiplayerInstanceInfo, "f")) {
                 let e;
                 switch (C.get(this, multiplayerInstanceInfo, "f").gameMode) {
-                case Yt.Casual:
+                case MultiplayerRoomModes.Casual:
                     e = C.get(this, Ua, "f")?.time ?? null,
                     C.get(this, la, "f").setRecord(C.get(this, Ua, "f"));
                     break;
-                case Yt.Competitive:
+                case MultiplayerRoomModes.Competitive:
                     e = C.get(this, za, "f")?.time ?? null,
                     C.get(this, la, "f").setRecord(null == C.get(this, za, "f") ? null : {
                         time: C.get(this, za, "f").time,
@@ -42072,10 +42084,13 @@
                     C.get(this, la, "f").setRecord(C.get(this, Ua, "f"));
                 else
                     switch (C.get(this, multiplayerInstanceInfo, "f").gameMode) {
-                    case Yt.Casual:
+                    case MultiplayerRoomModes.Casual:
                         C.get(this, la, "f").setRecord(C.get(this, Ua, "f"));
                         break;
-                    case Yt.Competitive:
+                    case MultiplayerRoomModes.Competitive:
+                        C.get(this, la, "f").setRecord(C.get(this, Ua, "f"));
+                        break;
+                    case MultiplayerRoomModes.HideAndSeek:
                         C.get(this, la, "f").setRecord(null == C.get(this, za, "f") ? null : {
                             time: C.get(this, za, "f").time,
                             position: Promise.resolve(null)
@@ -42258,7 +42273,7 @@
                     ), "f")),
                     0 != y.length)
                         throw new Error("Ghost settings should not be provided in multiplayer");
-                    if (w.gameMode == Yt.Casual && null != C.get(this, Ua, "f")) {
+                    if (w.gameMode == MultiplayerRoomModes.Casual && null != C.get(this, Ua, "f")) {
                         w.multiplayerConnection.sendRecord(w.sessionId, C.get(this, Ua, "f").time);
                         const e = C.get(this, Dr, "f").getCurrentUserProfile();
                         C.set(this, xa, [{
@@ -50185,7 +50200,7 @@
                             return console.error(n + "Invalid gameMode value"),
                             void t.close();
                         let s;
-                        if (!(a in Yt))
+                        if (!(a in MultiplayerRoomModes))
                             return console.error(n + "Unknown gameMode value"),
                             void t.close();
                         if (s = a,
@@ -50916,7 +50931,7 @@
             const i = document.createElement("h2");
             i.textContent = C.get(this, Fl, "f").get("Host Multiplayer Game"),
             t.appendChild(i);
-            let r = Yt.Casual;
+            let r = MultiplayerRoomModes.Casual;
             const a = document.createElement("div");
             a.className = "game-mode-container",
             t.appendChild(a);
@@ -50925,15 +50940,18 @@
             s.textContent = C.get(this, Fl, "f").get("Game Mode"),
             a.appendChild(s);
             const o = [];
-            for (const e of [Yt.Casual, Yt.Competitive]) {
+            for (const e of [MultiplayerRoomModes.Casual, MultiplayerRoomModes.Competitive, MultiplayerRoomModes.HideAndSeek]) {
                 const t = document.createElement("button");
                 switch (t.className = "button",
                 e) {
-                case Yt.Casual:
+                case MultiplayerRoomModes.Casual:
                     t.textContent = C.get(this, Fl, "f").get("Casual");
                     break;
-                case Yt.Competitive:
-                    t.textContent = C.get(this, Fl, "f").get("Competitive")
+                case MultiplayerRoomModes.Competitive:
+                    t.textContent = C.get(this, Fl, "f").get("Competitive");
+                    break;
+                case MultiplayerRoomModes.HideAndSeek:
+                    t.textContent = C.get(this, Fl, "f").get("Hide and Seek");
                 }
                 e == r && t.classList.add("selected"),
                 t.addEventListener("click", ( () => {
@@ -50950,11 +50968,14 @@
             }
             const l = () => {
                 switch (r) {
-                case Yt.Casual:
+                case MultiplayerRoomModes.Casual:
                     c.textContent = C.get(this, Fl, "f").get("Players play to improve their personal best times.");
                     break;
-                case Yt.Competitive:
-                    c.textContent = C.get(this, Fl, "f").get("Players compete to set the best time in the session.")
+                case MultiplayerRoomModes.Competitive:
+                    c.textContent = C.get(this, Fl, "f").get("Players compete to set the best time in the session.");
+                    break;
+                case MultiplayerRoomModes.HideAndSeek:
+                    c.textContent = C.get(this, Fl, "f").get("Players compete in a hide and seek competition, with a random seeker.");
                 }
             }
               , c = document.createElement("div");
