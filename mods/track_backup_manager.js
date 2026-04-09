@@ -1,3 +1,5 @@
+// Copyright (c) 2026 cwcinc. All rights reserved. Unauthorized use prohibited.
+
 class TrackBackupManager {
   constructor() {
     this.storage = new BetterPolyTrackStorage("TrackBackups");

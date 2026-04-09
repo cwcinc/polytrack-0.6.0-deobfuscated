@@ -1,3 +1,5 @@
+// Copyright (c) 2026 cwcinc. All rights reserved. Unauthorized use prohibited.
+
 class CombinedPolyTrackStorage {
   constructor() {
     this.indexedDBStorage = new BetterPolyTrackStorage();
