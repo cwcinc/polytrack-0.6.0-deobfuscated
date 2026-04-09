@@ -86,3 +86,27 @@
 .leaderboard-ui > .total-players {
     user-select: all;
 }
+
+.mic-button.mic-muted .button-icon {
+    opacity: 0.5;
+}
+
+.mic-button.mic-muted::after {
+    content: '';
+    position: absolute;
+    top: 10%;
+    bottom: 10%;
+    left: 50%;
+    width: 3px;
+    background: red;
+    transform: translateX(-50%) rotate(45deg);
+    border-radius: 2px;
+    height: unset;
+    z-index: 1;
+    transition: unset;
+    border-bottom: unset;
+}
+
+.mic-button.mic-muted {
+    position: relative;
+}

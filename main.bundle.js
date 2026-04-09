@@ -40667,9 +40667,12 @@
                     const micButton = document.createElement("button");
                     micButton.className = "button";
                     micButton.innerHTML = '<img class="button-icon" src="mods/microphone.svg"> ';
+                    micButton.classList.add("mic-muted");
+                    micButton.classList.add("mic-button");
                     micButton.addEventListener("click", ( () => {
                         t.playUIClick();
                         toggleMic();
+                        micButton.classList.toggle("mic-muted", !this.micEnabled);
                     }));
                     m.appendChild(micButton);
                     C.get(this, Yn, "f").push(micButton);
