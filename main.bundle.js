@@ -41660,6 +41660,7 @@
                 }, "f"),
                 null != C.get(this, multiplayerInstanceInfo, "f")) {
                     let e;
+                    
                     switch (C.get(this, multiplayerInstanceInfo, "f").gameMode) {
                     case MultiplayerRoomModes.Casual:
                         null != s && C.get(this, Ua, "f").time.equals(s.time) ? e = null : (C.get(this, multiplayerInstanceInfo, "f").multiplayerConnection.sendRecord(C.get(this, multiplayerInstanceInfo, "f").sessionId, C.get(this, Ua, "f").time),
@@ -42148,6 +42149,7 @@
                                     resetCounter: 0,
                                     bufferedCarStates: []
                                 },
+                                console.log(`Multiplayer car created for player ${e.id}:`, n.car);
                                 n.car.audioVolume = C.get(this, Oa, "f"),
                                 C.get(this, idToMultiplayerCarMap, "f").set(e.id, n),
                                 C.get(this, la, "f").trackMinimap.setPlayerCar(e.id, n.car);
@@ -42619,8 +42621,8 @@
                 C.get(this, ra, "f").update(C.get(this, wa, "f")),
                 
                 C.get(this, la, "f").trackMinimap.updatePlayerPos(C.get(this, wa, "f").getPosition()),
-                C.get(this, multiplayerInstanceInfo, "f")?.multiplayerConnection.hostVoiceChat?.setHostPos(C.get(this, wa, "f").getPosition()),
-                C.get(this, multiplayerInstanceInfo, "f")?.multiplayerConnection.hostVoiceChat?.setHostQuat(C.get(this, wa, "f").getQuaternion()),
+                // C.get(this, multiplayerInstanceInfo, "f")?.multiplayerConnection.hostVoiceChat?.setHostPos(C.get(this, wa, "f").getPosition()),
+                // C.get(this, multiplayerInstanceInfo, "f")?.multiplayerConnection.hostVoiceChat?.setHostQuat(C.get(this, wa, "f").getQuaternion()),
 
                 C.get(this, ma, "f").setResetCheckpointAvailable(C.get(this, _r, "m", ja).call(this)),
                 C.get(this, Ga, "f")?.update(),
@@ -50320,9 +50322,9 @@
                 C.set(this, dl, e, "f"),
                 C.set(this, ul, t, "f"),
                 C.set(this, pl, n, "f"),
-                C.set(this, fl, i, "f"),
-
-                this.clientVoice = new ClientVoiceChat();
+                C.set(this, fl, i, "f");
+                
+                this.clientVoice = new ClientVoiceChat({ maxDistance: 100 });
 
                 window.addEventListener("pagehide", C.set(this, Ul, ( () => {
                     C.get(this, ml, "f")?.close()
@@ -56393,7 +56395,7 @@
                 }
         }
         ;
-        const Rf = class {
+        const WorldUpdater = class {
             constructor(e, t, n, i, r, a, s, o, l, c, h, d, u) {
                 Yp.add(this),
                 Zp.set(this, void 0),
@@ -56861,8 +56863,8 @@
                 o.trigger(( () => {
                     P.bQ(),
                     P.pS(),
-                    Q.dispose(),
-                    Q = new gh(p,v,A,m,y,b,E,w,S,h,l,e,n,settingsManager,x,t,i,a,_,C,W,j,K,q),
+                    currentUpdater.dispose(),
+                    currentUpdater = new gh(p,v,A,m,y,b,E,w,S,h,l,e,n,settingsManager,x,t,i,a,_,C,W,j,K,q),
                     P.PM()
                 }
                 ))
@@ -56874,8 +56876,8 @@
                     try {
                         const {default: t} = await i.e('garage').then(i.bind(i, 3280));
                         await t.initResources(),
-                        Q.dispose(),
-                        Q = new t(b,v,A,m,h,l,w,settingsManager,x,E,e,( () => {
+                        currentUpdater.dispose(),
+                        currentUpdater = new t(b,v,A,m,h,l,w,settingsManager,x,E,e,( () => {
                             M(!1, null)
                         }
                         )),
@@ -56883,8 +56885,8 @@
                     } catch (i) {
                         console.error("Failed to load customization state: ", i);
                         const a = b.get("Failed to load garage.") + "\n\n" + b.get("Check your internet connection and try again.");
-                        Q.dispose(),
-                        Q = new gh(p,v,A,m,y,b,E,w,S,h,l,e,n,settingsManager,x,t,!1,a,_,C,W,j,K,q),
+                        currentUpdater.dispose(),
+                        currentUpdater = new gh(p,v,A,m,y,b,E,w,S,h,l,e,n,settingsManager,x,t,!1,a,_,C,W,j,K,q),
                         P.PM()
                     }
                 }
@@ -56899,22 +56901,22 @@
                         try {
                             const {default: a} = await i.e('editor').then(i.bind(i, 4124));
                             await a.initResources(),
-                            Q.dispose();
-                            const c = Q = new a(v,d,e,A,m,b,l,h,settingsManager,o,w,S,y,E,T,( () => {
+                            currentUpdater.dispose();
+                            const c = currentUpdater = new a(v,d,e,A,m,b,l,h,settingsManager,o,w,S,y,E,T,( () => {
                                 P.bQ(),
                                 P.pS(),
-                                Q.dispose(),
-                                Q = new gh(p,v,A,m,y,b,E,w,S,h,l,e,n,settingsManager,x,t,!1,null,_,C,W,j,K,q),
+                                currentUpdater.dispose(),
+                                currentUpdater = new gh(p,v,A,m,y,b,E,w,S,h,l,e,n,settingsManager,x,t,!1,null,_,C,W,j,K,q),
                                 P.PM()
                             }
                             ),( (t, n, i) => {
-                                const a = Q = new MainMultiplayerClass(p,f,v,A,m,b,h,l,w,S,e,settingsManager,s,E,T,y,t,n,"custom",[],null,null,!1,( () => {
+                                const a = currentUpdater = new MainMultiplayerClass(p,f,v,A,m,b,h,l,w,S,e,settingsManager,s,E,T,y,t,n,"custom",[],null,null,!1,( () => {
                                     throw new Error("Multiplayer connection lost should never be called from the editor")
                                 }
                                 ),( () => {
                                     P.tU(),
                                     a.dispose(!1),
-                                    Q = c,
+                                    currentUpdater = c,
                                     i()
                                 }
                                 ),null,null,( () => {
@@ -56928,8 +56930,8 @@
                         } catch (i) {
                             console.error("Failed to load editor state: ", i);
                             const a = b.get("Failed to load editor.") + "\n\n" + b.get("Check your internet connection and try again.");
-                            Q.dispose(),
-                            Q = new gh(p,v,A,m,y,b,E,w,S,h,l,e,n,settingsManager,x,t,!1,a,_,C,W,j,K,q),
+                            currentUpdater.dispose(),
+                            currentUpdater = new gh(p,v,A,m,y,b,E,w,S,h,l,e,n,settingsManager,x,t,!1,a,_,C,W,j,K,q),
                             P.PM()
                         }
                     }
@@ -56940,7 +56942,7 @@
                 o.trigger(( () => P.RN("start-game").finally(( () => {
                     let o, d;
                     P.pS(),
-                    Q instanceof MainMultiplayerClass && null != c && Q.multiplayerConnection == c.multiplayerConnection ? Q.dispose(!0, !1) : Q.dispose(),
+                    currentUpdater instanceof MainMultiplayerClass && null != c && currentUpdater.multiplayerConnection == c.multiplayerConnection ? currentUpdater.dispose(!0, !1) : currentUpdater.dispose(),
                     o = "official" == i && null == c ? y.getNextOfficialTrack(n) : null,
                     d = null != o ? () => {
                         let e;
@@ -56969,7 +56971,7 @@
                         null))),
                         recording: k.recording
                     } : null,
-                    Q = new MainMultiplayerClass(p,f,v,A,m,b,h,l,w,S,e,settingsManager,s,E,T,y,t,n,i,a,_,c,!0,(e => {
+                    currentUpdater = new MainMultiplayerClass(p,f,v,A,m,b,h,l,w,S,e,settingsManager,s,E,T,y,t,n,i,a,_,c,!0,(e => {
                         let t;
                         switch (e) {
                         case "kicked":
@@ -57000,8 +57002,8 @@
               , j = (e, t, n, i) => {
                 o.trigger(( () => {
                     P.pS(),
-                    Q.dispose(),
-                    Q = new Rf(f,v,e,t,n,A,m,h,l,b,settingsManager,i,( (e, t, n, i) => {
+                    currentUpdater.dispose(),
+                    currentUpdater = new WorldUpdater(f,v,e,t,n,A,m,h,l,b,settingsManager,i,( (e, t, n, i) => {
                         W(e, t, n, i, null)
                     }
                     )),
@@ -57015,8 +57017,8 @@
                     P.pS();
                     try {
                         const {default: e} = await i.e('verifier').then(i.bind(i, 5142));
-                        Q.dispose(),
-                        Q = new e(l,h,x,w,y,d,t,a,( () => {
+                        currentUpdater.dispose(),
+                        currentUpdater = new e(l,h,x,w,y,d,t,a,( () => {
                             M(!1, null)
                         }
                         )),
@@ -57024,8 +57026,8 @@
                         P.tU()
                     } catch (i) {
                         console.error("Failed to load verifier state: ", i),
-                        Q.dispose(),
-                        Q = new gh(p,v,A,m,y,b,E,w,S,h,l,e,n,settingsManager,x,t,!1,null,_,C,W,j,K,q),
+                        currentUpdater.dispose(),
+                        currentUpdater = new gh(p,v,A,m,y,b,E,w,S,h,l,e,n,settingsManager,x,t,!1,null,_,C,W,j,K,q),
                         P.PM()
                     }
                 }
@@ -57036,8 +57038,8 @@
                     P.pS();
                     try {
                         const {default: e} = await i.e('admin').then(i.bind(i, 9982));
-                        Q.dispose(),
-                        Q = new e(l,h,E,y,x,a,( () => {
+                        currentUpdater.dispose(),
+                        currentUpdater = new e(l,h,E,y,x,a,( () => {
                             M(!1, null)
                         }
                         )),
@@ -57045,20 +57047,20 @@
                         P.tU()
                     } catch (i) {
                         console.error("Failed to load admin state: ", i),
-                        Q.dispose(),
-                        Q = new gh(p,v,A,m,y,b,E,w,S,h,l,e,n,settingsManager,x,t,!1,null,_,C,W,j,K,q),
+                        currentUpdater.dispose(),
+                        currentUpdater = new gh(p,v,A,m,y,b,E,w,S,h,l,e,n,settingsManager,x,t,!1,null,_,C,W,j,K,q),
                         P.PM()
                     }
                 }
                 ))
             }
             ;
-            let Q = new gh(p,v,A,m,y,b,E,w,S,h,l,e,n,settingsManager,x,t,!1,null,_,C,W,j,K,q)
+            let currentUpdater = new gh(p,v,A,m,y,b,E,w,S,h,l,e,n,settingsManager,x,t,!1,null,_,C,W,j,K,q)
               , J = 0;
             h.setAnimationLoop((function(e) {
                 const t = Math.max(e - J, 0) / 1e3;
                 J = e,
-                Q.update(t),
+                currentUpdater.update(t),
                 k.update(t)
             }
             )),

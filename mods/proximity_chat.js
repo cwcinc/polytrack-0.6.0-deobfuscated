@@ -1,527 +1,426 @@
 // Copyright (c) 2026 cwcinc. All rights reserved. Unauthorized use prohibited.
 
-class ClientVoiceChat {
+const VOICE_BUFFER_SIZE = 1024;
+
+function encodeAudio(float32) {
+  const int16 = new Int16Array(float32.length);
+  for (let i = 0; i < float32.length; i++) {
+    const s = Math.max(-1, Math.min(1, float32[i]));
+    int16[i] = s < 0 ? s * 0x8000 : s * 0x7FFF;
+  }
+  return int16.buffer;
+}
+
+function decodeAudio(arrayBuffer) {
+  const int16 = new Int16Array(arrayBuffer);
+  const float32 = new Float32Array(int16.length);
+  for (let i = 0; i < int16.length; i++) {
+    float32[i] = int16[i] < 0 ? int16[i] / 0x8000 : int16[i] / 0x7FFF;
+  }
+  return float32;
+}
+
+class AudioRingBuffer {
   constructor() {
-    this.localStream = null;
-    this.audioEl = null;
-    this.peerConnection = null;
-    this._voiceChannel = null;
+    this.buf = new Float32Array(16384);
+    this.w = 0;
+    this.r = 0;
   }
-
-  async start(peerConnection) {
-    this.peerConnection = peerConnection;
-    this.localStream = null;
-
-    peerConnection.ontrack = (event) => {
-      if (event.track.kind !== 'audio') return;
-      const stream = event.streams[0] ?? new MediaStream([event.track]);
-      this.audioEl = new Audio();
-      this.audioEl.srcObject = stream;
-      this.audioEl.play().catch(() => {});
-    };
-
-    // Voice signaling channel for post-connection renegotiation
-    // negotiated:true + id:2 means both sides pre-agree, no SDP needed for this channel
-    this._voiceChannel = peerConnection.createDataChannel("voice-signal", {
-      negotiated: true,
-      id: 2
-    });
-
-    this._voiceChannel.onmessage = (event) => {
-      try {
-        this._handleVoiceSignal(JSON.parse(event.data));
-      } catch {}
-    };
-
-    return null;
-  }
-
-  async _handleVoiceSignal(msg) {
-    if (msg.type === 'answer') {
-      await this.peerConnection.setRemoteDescription(
-        new RTCSessionDescription({ type: 'answer', sdp: msg.sdp })
-      );
-    } else if (msg.type === 'offer') {
-      // Host is renegotiating (e.g. adding mixed audio track)
-      await this.peerConnection.setRemoteDescription(
-        new RTCSessionDescription({ type: 'offer', sdp: msg.sdp })
-      );
-      const answer = await this.peerConnection.createAnswer();
-      await this.peerConnection.setLocalDescription(answer);
-      this._voiceChannel.send(JSON.stringify({
-        type: 'answer',
-        sdp: answer.sdp
-      }));
+  write(samples) {
+    for (let i = 0; i < samples.length; i++) {
+      this.buf[(this.w++) & 16383] = samples[i];
     }
   }
-
-  // Trigger renegotiation after adding/replacing a track
-  async _renegotiate() {
-    if (!this._voiceChannel || this._voiceChannel.readyState !== 'open') return;
-    try {
-      const offer = await this.peerConnection.createOffer();
-      await this.peerConnection.setLocalDescription(offer);
-      this._voiceChannel.send(JSON.stringify({
-        type: 'offer',
-        sdp: offer.sdp
-      }));
-    } catch (e) {
-      console.warn('[voice] renegotiation failed', e);
+  read(output) {
+    for (let i = 0; i < output.length; i++) {
+      output[i] = this.r < this.w ? this.buf[(this.r++) & 16383] : 0;
     }
-  }
-
-  async setMicMuted(muted) {
-    if (muted) {
-      if (this.localStream) {
-        this.localStream.getAudioTracks().forEach(t => (t.enabled = false));
-      }
-      return this.localStream;
-    }
-
-    const liveTracks = this.localStream?.getAudioTracks()
-      .filter(t => t.readyState === 'live') ?? [];
-
-    if (liveTracks.length > 0) {
-      liveTracks.forEach(t => (t.enabled = true));
-      return this.localStream;
-    }
-
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({
-        audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true },
-        video: false,
-      });
-
-      const audioTrack = stream.getAudioTracks()[0];
-      if (!audioTrack) {
-        this.localStream = null;
-        return null;
-      }
-
-      const existingSender = this.peerConnection?.getSenders()
-        .find(s => s.track?.kind === 'audio');
-
-      if (existingSender) {
-        await existingSender.replaceTrack(audioTrack);
-      } else if (this.peerConnection) {
-        this.peerConnection.addTrack(audioTrack, stream);
-        // New track added — need renegotiation for host to receive it
-        await this._renegotiate();
-      }
-
-      if (this.localStream) {
-        this.localStream.getTracks().forEach(t => t.stop());
-      }
-      this.localStream = stream;
-      this.localStream.getAudioTracks().forEach(t => (t.enabled = true));
-      return this.localStream;
-    } catch (error) {
-      this.localStream = null;
-      if (error?.name === 'NotFoundError' || error?.name === 'DevicesNotFoundError') {
-        console.warn('[voice] microphone not found while unmuting; local mic disabled');
-      } else {
-        console.warn('[voice] failed to reconnect local microphone while unmuting', error);
-      }
-      return null;
-    }
-  }
-
-  destroy() {
-    if (this.localStream) this.localStream.getTracks().forEach(t => t.stop());
-    if (this.audioEl) { this.audioEl.pause(); this.audioEl.srcObject = null; }
-    this._voiceChannel = null;
-    this.peerConnection = null;
   }
 }
 
-class HostVoiceChat {
-  constructor({ maxDistance = 60, falloff = 1.5 }) {
-    this.maxDistance = maxDistance;
-    this.falloff = falloff;
+// ---- Client ----
 
+class ClientVoiceChat {
+  constructor({ maxDistance = 60, refDistance = 10, rolloffFactor = 1.5 } = {}) {
+    this.listener = null;
     this.audioCtx = new AudioContext();
+    this.maxDistance = maxDistance;
+    this.refDistance = refDistance;
+    this.rolloffFactor = rolloffFactor;
 
     this.localStream = null;
-    this.localSource = null;
+    this._audioChannel = null;
+    this._micCapture = null;
 
-    // playerId -> { source, peerConnection, incomingStream, _keepAlive, _voiceChannel }
-    this.clients = new Map();
-
-    // playerId -> { destination, gains, panners, outputStream, sender }
-    this.mixOutputs = new Map();
-
-    this._intervalId = setInterval(() => this._updateAllGains(), 66);
-
-    this.playerCarMap = new Map();
-    this.hostPos = null;
-    this.hostQuat = null;
+    // playerId -> { ringBuffer, sourceNode, keepAlive, positionalAudio, mesh }
+    this.players = new Map();
   }
 
-  setPlayerCar(playerId, car) {
-    this.playerCarMap.set(playerId, car);
+  setListener(listener) {
+    const needsMigration = listener && listener.context !== this.audioCtx;
+    this.listener = listener;
+
+    if (needsMigration) {
+      this.audioCtx = listener.context;
+      this._recreateAudioNodes();
+    }
+
+    // Reattach PositionalAudio for players that already have meshes
+    for (const [id, player] of this.players) {
+      if (player.mesh) this.setPlayerMesh(id, player.mesh);
+    }
   }
 
-  setHostPos(pos) {
-    this.hostPos = pos;
+  _recreateAudioNodes() {
+    // Recreate mic capture on new context
+    if (this._micCapture) {
+      this._micCapture.source.disconnect();
+      this._micCapture.processor.disconnect();
+      this._micCapture = null;
+    }
+    if (this.localStream) this._setupMicCapture();
+
+    // Recreate each player's source node on new context
+    for (const [, player] of this.players) {
+      player.sourceNode.disconnect();
+      player.keepAlive.disconnect();
+
+      const sourceNode = this.audioCtx.createScriptProcessor(VOICE_BUFFER_SIZE, 0, 1);
+      sourceNode.onaudioprocess = (e) => {
+        player.ringBuffer.read(e.outputBuffer.getChannelData(0));
+      };
+
+      const keepAlive = this.audioCtx.createGain();
+      keepAlive.gain.value = 0;
+      sourceNode.connect(keepAlive).connect(this.audioCtx.destination);
+
+      player.sourceNode = sourceNode;
+      player.keepAlive = keepAlive;
+    }
   }
 
-  setHostQuat(quat) {
-    this.hostQuat = quat;
-  }
+  async start(peerConnection) {
+    if (this.audioCtx.state === 'suspended') this.audioCtx.resume();
 
-  getPlayerPosition(playerId) {
-    return this.playerCarMap.get(playerId)?.getPosition() ?? { x: 0, y: 0, z: 0 };
-  }
-
-  getPlayerQuaternion(playerId) {
-    return this.playerCarMap.get(playerId)?.getQuaternion() ?? { x: 0, y: 0, z: 0, w: 1 };
-  }
-
-  getHostPosition() {
-    return this.hostPos ?? { x: 0, y: 0, z: 0 };
-  }
-
-  getHostQuaternion() {
-    return this.hostQuat ?? { x: 0, y: 0, z: 0, w: 1 };
-  }
-
-  // ---- Host's own mic ----
-
-  async startHostMic() {
     try {
       this.localStream = await navigator.mediaDevices.getUserMedia({
         audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true },
         video: false,
       });
-      this.localSource = this.audioCtx.createMediaStreamSource(this.localStream);
-      this._rebuildAllMixes();
-      return this.localStream;
-    } catch (error) {
+      this.localStream.getAudioTracks().forEach(t => (t.enabled = false));
+      this._setupMicCapture();
+    } catch (e) {
       this.localStream = null;
-      this.localSource = null;
-      if (error?.name === 'NotFoundError' || error?.name === 'DevicesNotFoundError') {
-        console.warn('[voice] host microphone not found; host mic disabled');
-      } else {
-        console.warn('[voice] failed to start host microphone; host mic disabled', error);
+      console.warn('[voice] mic not available', e);
+    }
+
+    this._audioChannel = peerConnection.createDataChannel("voice-audio", {
+      negotiated: true, id: 2, ordered: false, maxRetransmits: 0
+    });
+    this._audioChannel.binaryType = "arraybuffer";
+
+    this._audioChannel.onmessage = (event) => {
+      if (!(event.data instanceof ArrayBuffer) || event.data.byteLength <= 4) return;
+      if (this.audioCtx.state === 'suspended') this.audioCtx.resume();
+
+      const playerId = new DataView(event.data).getUint32(0, true);
+      const samples = decodeAudio(event.data.slice(4));
+
+      let player = this.players.get(playerId);
+      if (!player) player = this._createPlayerAudio(playerId);
+      player.ringBuffer.write(samples);
+    };
+  }
+
+  _setupMicCapture() {
+    const source = this.audioCtx.createMediaStreamSource(this.localStream);
+    const processor = this.audioCtx.createScriptProcessor(VOICE_BUFFER_SIZE, 1, 1);
+
+    processor.onaudioprocess = (e) => {
+      const input = e.inputBuffer.getChannelData(0);
+      const output = e.outputBuffer.getChannelData(0);
+      for (let i = 0; i < output.length; i++) output[i] = 0;
+
+      if (this._audioChannel?.readyState === 'open') {
+        try { this._audioChannel.send(encodeAudio(input)); } catch {}
       }
-      this._rebuildAllMixes();
+    };
+
+    source.connect(processor);
+    processor.connect(this.audioCtx.destination);
+    this._micCapture = { source, processor };
+  }
+
+  _createPlayerAudio(playerId) {
+    const ringBuffer = new AudioRingBuffer();
+
+    const sourceNode = this.audioCtx.createScriptProcessor(VOICE_BUFFER_SIZE, 0, 1);
+    sourceNode.onaudioprocess = (e) => {
+      ringBuffer.read(e.outputBuffer.getChannelData(0));
+    };
+
+    const keepAlive = this.audioCtx.createGain();
+    keepAlive.gain.value = 0;
+    sourceNode.connect(keepAlive).connect(this.audioCtx.destination);
+
+    const player = { ringBuffer, sourceNode, keepAlive, positionalAudio: null, mesh: null };
+    this.players.set(playerId, player);
+    return player;
+  }
+
+  setPlayerMesh(playerId, mesh) {
+    let player = this.players.get(playerId);
+    if (!player) player = this._createPlayerAudio(playerId);
+    player.mesh = mesh;
+
+    // Detach old
+    if (player.positionalAudio) {
+      try { player.sourceNode.disconnect(player.positionalAudio.gain); } catch {}
+      if (player.positionalAudio.parent) {
+        player.positionalAudio.parent.remove(player.positionalAudio);
+      }
+      player.positionalAudio = null;
+    }
+
+    // Only create PositionalAudio if we have a listener and a mesh
+    if (!this.listener || !mesh) return;
+
+    const pa = new THREE.PositionalAudio(this.listener);
+    pa.setNodeSource(player.sourceNode);
+    pa.setRefDistance(this.refDistance);
+    pa.setMaxDistance(this.maxDistance);
+    pa.setRolloffFactor(this.rolloffFactor);
+    pa.setDistanceModel('inverse');
+    mesh.add(pa);
+    player.positionalAudio = pa;
+  }
+
+  setMicMuted(muted) {
+    if (this.localStream) {
+      this.localStream.getAudioTracks().forEach(t => (t.enabled = !muted));
+    }
+  }
+
+  removePlayer(playerId) {
+    const player = this.players.get(playerId);
+    if (!player) return;
+    if (player.positionalAudio) {
+      try { player.sourceNode.disconnect(player.positionalAudio.gain); } catch {}
+      if (player.positionalAudio.parent) {
+        player.positionalAudio.parent.remove(player.positionalAudio);
+      }
+    }
+    player.sourceNode.disconnect();
+    player.keepAlive.disconnect();
+    this.players.delete(playerId);
+  }
+
+  destroy() {
+    if (this.localStream) this.localStream.getTracks().forEach(t => t.stop());
+    if (this._micCapture) {
+      this._micCapture.source.disconnect();
+      this._micCapture.processor.disconnect();
+    }
+    for (const [id] of this.players) this.removePlayer(id);
+  }
+}
+
+// ---- Host ----
+
+class HostVoiceChat {
+  constructor({ maxDistance = 60, refDistance = 10, rolloffFactor = 1.5, hostId = 0 } = {}) {
+    this.listener = null;
+    this.audioCtx = new AudioContext();
+    this.maxDistance = maxDistance;
+    this.refDistance = refDistance;
+    this.rolloffFactor = rolloffFactor;
+    this.hostId = hostId;
+
+    this.localStream = null;
+    this._micCapture = null;
+
+    // playerId -> { peerConnection, audioChannel, ringBuffer, sourceNode, keepAlive, positionalAudio, mesh }
+    this.clients = new Map();
+  }
+
+  setListener(listener) {
+    const needsMigration = listener && listener.context !== this.audioCtx;
+    this.listener = listener;
+
+    if (needsMigration) {
+      this.audioCtx = listener.context;
+      this._recreateAudioNodes();
+    }
+
+    for (const [id, client] of this.clients) {
+      if (client.mesh) this.setPlayerMesh(id, client.mesh);
+    }
+  }
+
+  _recreateAudioNodes() {
+    if (this._micCapture) {
+      this._micCapture.source.disconnect();
+      this._micCapture.processor.disconnect();
+      this._micCapture = null;
+    }
+    if (this.localStream) this._setupMicCapture();
+
+    for (const [, client] of this.clients) {
+      client.sourceNode.disconnect();
+      client.keepAlive.disconnect();
+
+      const sourceNode = this.audioCtx.createScriptProcessor(VOICE_BUFFER_SIZE, 0, 1);
+      sourceNode.onaudioprocess = (e) => {
+        client.ringBuffer.read(e.outputBuffer.getChannelData(0));
+      };
+
+      const keepAlive = this.audioCtx.createGain();
+      keepAlive.gain.value = 0;
+      sourceNode.connect(keepAlive).connect(this.audioCtx.destination);
+
+      client.sourceNode = sourceNode;
+      client.keepAlive = keepAlive;
+    }
+  }
+
+  async startHostMic() {
+    if (this.audioCtx.state === 'suspended') this.audioCtx.resume();
+
+    try {
+      this.localStream = await navigator.mediaDevices.getUserMedia({
+        audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true },
+        video: false,
+      });
+      this.localStream.getAudioTracks().forEach(t => (t.enabled = false));
+      this._setupMicCapture();
+      return this.localStream;
+    } catch (e) {
+      this.localStream = null;
+      console.warn('[voice] host mic not available', e);
       return null;
     }
   }
 
-  async setMicMuted(muted) {
-    if (muted) {
-      if (this.localStream) {
-        this.localStream.getAudioTracks().forEach(t => (t.enabled = false));
+  _setupMicCapture() {
+    const source = this.audioCtx.createMediaStreamSource(this.localStream);
+    const processor = this.audioCtx.createScriptProcessor(VOICE_BUFFER_SIZE, 1, 1);
+
+    processor.onaudioprocess = (e) => {
+      const input = e.inputBuffer.getChannelData(0);
+      const output = e.outputBuffer.getChannelData(0);
+      for (let i = 0; i < output.length; i++) output[i] = 0;
+
+      const tagged = this._tagRawAudio(this.hostId, encodeAudio(input));
+      for (const [, client] of this.clients) {
+        if (client.audioChannel?.readyState === 'open') {
+          try { client.audioChannel.send(tagged); } catch {}
+        }
       }
-      return this.localStream;
-    }
+    };
 
-    const liveTracks = this.localStream?.getAudioTracks()
-      .filter(t => t.readyState === 'live') ?? [];
-
-    if (liveTracks.length > 0) {
-      liveTracks.forEach(t => (t.enabled = true));
-      return this.localStream;
-    }
-
-    return this.startHostMic();
+    source.connect(processor);
+    processor.connect(this.audioCtx.destination);
+    this._micCapture = { source, processor };
   }
 
-  // ---- Register a client ----
+  _tagRawAudio(playerId, int16ArrayBuffer) {
+    const tagged = new ArrayBuffer(4 + int16ArrayBuffer.byteLength);
+    new DataView(tagged).setUint32(0, playerId, true);
+    new Uint8Array(tagged, 4).set(new Uint8Array(int16ArrayBuffer));
+    return tagged;
+  }
 
   registerClient(playerId, peerConnection) {
-    // Voice signaling channel — matches client's negotiated channel
-    const voiceChannel = peerConnection.createDataChannel("voice-signal", {
-      negotiated: true,
-      id: 2
-    });
+    const ringBuffer = new AudioRingBuffer();
 
-    voiceChannel.onmessage = async (event) => {
-      try {
-        const msg = JSON.parse(event.data);
-        if (msg.type === 'offer') {
-          // Client added an audio track and is renegotiating
-          await peerConnection.setRemoteDescription(
-            new RTCSessionDescription({ type: 'offer', sdp: msg.sdp })
-          );
-          // ontrack fires here — client's audio arrives
-
-          // Include host's mix track in the answer
-          const answer = await peerConnection.createAnswer();
-          await peerConnection.setLocalDescription(answer);
-          voiceChannel.send(JSON.stringify({
-            type: 'answer',
-            sdp: answer.sdp
-          }));
-        } else if (msg.type === 'answer') {
-          await peerConnection.setRemoteDescription(
-            new RTCSessionDescription({ type: 'answer', sdp: msg.sdp })
-          );
-        }
-      } catch (e) {
-        console.warn('[voice] signaling error for', playerId, e);
-      }
+    const sourceNode = this.audioCtx.createScriptProcessor(VOICE_BUFFER_SIZE, 0, 1);
+    sourceNode.onaudioprocess = (e) => {
+      ringBuffer.read(e.outputBuffer.getChannelData(0));
     };
 
-    peerConnection.ontrack = (event) => {
-      if (event.track.kind !== 'audio') return;
+    const keepAlive = this.audioCtx.createGain();
+    keepAlive.gain.value = 0;
+    sourceNode.connect(keepAlive).connect(this.audioCtx.destination);
+
+    const audioChannel = peerConnection.createDataChannel("voice-audio", {
+      negotiated: true, id: 2, ordered: false, maxRetransmits: 0
+    });
+    audioChannel.binaryType = "arraybuffer";
+
+    audioChannel.onmessage = (event) => {
+      if (!(event.data instanceof ArrayBuffer) || event.data.byteLength === 0) return;
       if (this.audioCtx.state === 'suspended') this.audioCtx.resume();
 
-      const stream = event.streams[0] ?? new MediaStream([event.track]);
-      const source = this.audioCtx.createMediaStreamSource(stream);
+      ringBuffer.write(decodeAudio(event.data));
 
-      const keep = new Audio();
-      keep.srcObject = stream;
-      keep.volume = 0.001;
-      keep.play().catch(() => {});
+      const tagged = new ArrayBuffer(4 + event.data.byteLength);
+      new DataView(tagged).setUint32(0, playerId, true);
+      new Uint8Array(tagged, 4).set(new Uint8Array(event.data));
 
-      this.clients.set(playerId, {
-        source, peerConnection, incomingStream: stream,
-        _keepAlive: keep, _voiceChannel: voiceChannel
-      });
-
-      this._rebuildAllMixes();
+      for (const [otherId, other] of this.clients) {
+        if (otherId !== playerId && other.audioChannel?.readyState === 'open') {
+          try { other.audioChannel.send(tagged); } catch {}
+        }
+      }
     };
+
+    this.clients.set(playerId, {
+      peerConnection, audioChannel, ringBuffer, sourceNode, keepAlive,
+      positionalAudio: null, mesh: null
+    });
   }
 
-  // Trigger renegotiation toward a specific client (e.g. after host adds mix track)
-  async _renegotiateClient(playerId) {
+  setPlayerMesh(playerId, mesh) {
     const client = this.clients.get(playerId);
-    if (!client?._voiceChannel || client._voiceChannel.readyState !== 'open') return;
-    try {
-      const offer = await client.peerConnection.createOffer();
-      await client.peerConnection.setLocalDescription(offer);
-      client._voiceChannel.send(JSON.stringify({
-        type: 'offer',
-        sdp: offer.sdp
-      }));
-    } catch (e) {
-      console.warn('[voice] host renegotiation failed for', playerId, e);
-    }
-  }
+    if (!client) return;
+    client.mesh = mesh;
 
-  // ---- Build mix for one listener ----
-
-  _buildMixForListener(listenerId) {
-    const old = this.mixOutputs.get(listenerId);
-    if (old) {
-      old.gains.forEach(g => g.disconnect());
-      old.panners.forEach(p => p.disconnect());
-      old.destination.disconnect();
-    }
-
-    if (listenerId !== '__host__') {
-      const client = this.clients.get(listenerId);
-      if (!client || client.peerConnection.connectionState === 'closed') return;
-    }
-
-    const destination = this.audioCtx.createMediaStreamDestination();
-    const gains = new Map();
-    const panners = new Map();
-
-    const sources = this._getAllSourcesExcept(listenerId);
-
-    for (const { id, source } of sources) {
-      const panner = this.audioCtx.createStereoPanner();
-      panner.pan.value = 0;
-
-      const gain = this.audioCtx.createGain();
-      gain.gain.value = 0;
-
-      source.connect(panner).connect(gain).connect(destination);
-
-      panners.set(id, panner);
-      gains.set(id, gain);
-    }
-
-    const outputStream = destination.stream;
-
-    let sender = null;
-    let needsRenegotiation = false;
-
-    if (listenerId !== '__host__') {
-      const client = this.clients.get(listenerId);
-      if (client) {
-        const audioTrack = outputStream.getAudioTracks()[0];
-        const existingSender = client.peerConnection.getSenders()
-          .find(s => s.track?.kind === 'audio');
-
-        try {
-          if (existingSender) {
-            existingSender.replaceTrack(audioTrack);
-            sender = existingSender;
-          } else {
-            sender = client.peerConnection.addTrack(audioTrack, outputStream);
-            needsRenegotiation = true;
-          }
-        } catch (e) {
-          console.warn('[mixer] skipping closed connection for', listenerId);
-          return;
-        }
+    if (client.positionalAudio) {
+      try { client.sourceNode.disconnect(client.positionalAudio.gain); } catch {}
+      if (client.positionalAudio.parent) {
+        client.positionalAudio.parent.remove(client.positionalAudio);
       }
+      client.positionalAudio = null;
     }
 
-    this.mixOutputs.set(listenerId, { destination, gains, panners, outputStream, sender });
+    if (!this.listener || !mesh) return;
 
-    // If we added a new track (not replaced), renegotiate so client receives it
-    if (needsRenegotiation) {
-      this._renegotiateClient(listenerId);
+    const pa = new THREE.PositionalAudio(this.listener);
+    pa.setNodeSource(client.sourceNode);
+    pa.setRefDistance(this.refDistance);
+    pa.setMaxDistance(this.maxDistance);
+    pa.setRolloffFactor(this.rolloffFactor);
+    pa.setDistanceModel('inverse');
+    mesh.add(pa);
+    client.positionalAudio = pa;
+  }
+
+  setMicMuted(muted) {
+    if (this.localStream) {
+      this.localStream.getAudioTracks().forEach(t => (t.enabled = !muted));
     }
   }
-
-  _getAllSourcesExcept(excludeId) {
-    const sources = [];
-    for (const [id, client] of this.clients) {
-      if (id !== excludeId) {
-        sources.push({ id, source: client.source });
-      }
-    }
-    if (this.localSource && excludeId !== '__host__') {
-      sources.push({ id: '__host__', source: this.localSource });
-    }
-    return sources;
-  }
-
-  _rebuildAllMixes() {
-    for (const [clientId] of this.clients) {
-      this._buildMixForListener(clientId);
-    }
-    this._buildMixForListener('__host__');
-    this.playHostAudio();
-  }
-
-  // ---- Host playback ----
-
-  getHostPlaybackStream() {
-    const mix = this.mixOutputs.get('__host__');
-    return mix?.outputStream ?? null;
-  }
-
-  playHostAudio() {
-    if (!this._hostAudioEl) {
-      this._hostAudioEl = new Audio();
-    }
-    const stream = this.getHostPlaybackStream();
-    if (stream && this._hostAudioEl.srcObject !== stream) {
-      this._hostAudioEl.srcObject = stream;
-      this._hostAudioEl.play().catch(() => {});
-    }
-  }
-
-  // ---- Heading derivation ----
-
-  _headingFromQuaternion(q) {
-    const fx = 2 * (q.x * q.z + q.w * q.y);
-    const fz = 1 - 2 * (q.x * q.x + q.y * q.y);
-    return Math.atan2(fx, fz);
-  }
-
-  _getHeading(id) {
-    let q = (id === '__host__')
-      ? this.getHostQuaternion()
-      : this.getPlayerQuaternion(id);
-    if (!q) return 0;
-    if (id === '__host__') {
-      q = { x: -q.x, y: -q.y, z: -q.z, w: q.w };
-    }
-    return this._headingFromQuaternion(q);
-  }
-
-  _computeDirectionalAudio(listenerId, sourceId) {
-    const lPos = this._getPos(listenerId);
-    const sPos = this._getPos(sourceId);
-    if (!lPos || !sPos) return { pan: 0, behindAttenuation: 1 };
-
-    const heading = this._getHeading(listenerId);
-
-    const dx = sPos.x - lPos.x;
-    const dz = (sPos.z ?? 0) - (lPos.z ?? 0);
-    const angleToSource = Math.atan2(dx, dz);
-
-    let rel = angleToSource - heading;
-    while (rel > Math.PI) rel -= 2 * Math.PI;
-    while (rel < -Math.PI) rel += 2 * Math.PI;
-
-    const pan = Math.sin(rel);
-
-    const cosAngle = Math.cos(rel);
-    const behindMin = 0.3;
-    const behindAttenuation = behindMin + (1 - behindMin) * (cosAngle + 1) / 2;
-
-    return { pan, behindAttenuation };
-  }
-
-  // ---- Main update loop ----
-
-  _updateAllGains() {
-    const rampEnd = this.audioCtx.currentTime + 0.06;
-
-    for (const [listenerId, mix] of this.mixOutputs) {
-      const listenerPos = this._getPos(listenerId);
-      if (!listenerPos) continue;
-
-      for (const [sourceId, gainNode] of mix.gains) {
-        const sourcePos = this._getPos(sourceId);
-        if (!sourcePos) {
-          gainNode.gain.linearRampToValueAtTime(0, rampEnd);
-          continue;
-        }
-
-        const dx = listenerPos.x - sourcePos.x;
-        const dy = listenerPos.y - sourcePos.y;
-        const dz = (listenerPos.z ?? 0) - (sourcePos.z ?? 0);
-        const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
-
-        const t = Math.min(dist / this.maxDistance, 1);
-        const proximityVolume = Math.pow(1 - t, this.falloff);
-
-        const { pan, behindAttenuation } = this._computeDirectionalAudio(listenerId, sourceId);
-
-        gainNode.gain.linearRampToValueAtTime(proximityVolume * behindAttenuation, rampEnd);
-
-        const pannerNode = mix.panners?.get(sourceId);
-        if (pannerNode) {
-          pannerNode.pan.linearRampToValueAtTime(pan, rampEnd);
-        }
-      }
-    }
-  }
-
-  _getPos(id) {
-    if (id === '__host__') return this.getHostPosition();
-    return this.getPlayerPosition(id);
-  }
-
-  // ---- Cleanup ----
 
   removeClient(playerId) {
     const client = this.clients.get(playerId);
-    if (client) {
-      client.source.disconnect();
-      if (client._keepAlive) {
-        client._keepAlive.pause();
-        client._keepAlive.srcObject = null;
+    if (!client) return;
+    if (client.positionalAudio) {
+      try { client.sourceNode.disconnect(client.positionalAudio.gain); } catch {}
+      if (client.positionalAudio.parent) {
+        client.positionalAudio.parent.remove(client.positionalAudio);
       }
-      this.clients.delete(playerId);
     }
-
-    const mix = this.mixOutputs.get(playerId);
-    if (mix) {
-      mix.gains.forEach(g => g.disconnect());
-      mix.panners.forEach(p => p.disconnect());
-      mix.destination.disconnect();
-      this.mixOutputs.delete(playerId);
-    }
-
-    this._rebuildAllMixes();
+    client.sourceNode.disconnect();
+    client.keepAlive.disconnect();
+    this.clients.delete(playerId);
   }
 
   destroy() {
-    clearInterval(this._intervalId);
     if (this.localStream) this.localStream.getTracks().forEach(t => t.stop());
-    if (this.localSource) this.localSource.disconnect();
+    if (this._micCapture) {
+      this._micCapture.source.disconnect();
+      this._micCapture.processor.disconnect();
+    }
     for (const [id] of this.clients) this.removeClient(id);
-    this.audioCtx.close();
   }
 }
