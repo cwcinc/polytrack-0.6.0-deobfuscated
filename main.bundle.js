@@ -40551,11 +40551,11 @@
                 f.className = "content",
                 p.appendChild(f);
                 const g = document.createElement("div");
-                if (g.className = "track-name",
+                g.className = "track-name",
                 f.appendChild(g),
                 g.textContent = a.name,
-                f.appendChild(g),
-                null != s) {
+                f.appendChild(g);
+                if (null != s) {
                     let e;
                     switch (s.gameMode) {
                     case MultiplayerRoomModes.Casual:
@@ -40577,7 +40577,11 @@
                     f.appendChild(t)
                 }
 
-                this.trackMinimap = new Minimap(t);
+                if (s?.gameMode == MultiplayerRoomModes.HideAndSeek) {
+                    this.trackMinimap = null;
+                } else {
+                    this.trackMinimap = new Minimap(t);
+                }
 
                 C.set(this, qn, document.createElement("div"), "f"),
                 C.get(this, qn, "f").className = "record",
@@ -40690,8 +40694,8 @@
                 C.get(this, Yn, "f").push(C.get(this, Xn, "f"))),
                 C.get(this, Wn, "f").appendChild(C.get(this, Kn, "f")),
                 
-                this.trackMinimap.appendButton(m);
-                this.trackMinimap.appendMinimap(C.get(this, Wn, "f")),
+                this.trackMinimap?.appendButton(m);
+                this.trackMinimap?.appendMinimap(C.get(this, Wn, "f")),
 
                 C.get(this, Hn, "f").addChangeListener(C.set(this, $n, ( () => {
                     C.get(this, Hn, "f").touchEnabled ? p.classList.add("hidden") : p.classList.remove("hidden"),
@@ -42104,7 +42108,7 @@
                         new Error("Unknown multiplayer game mode")
                     }
 
-                C.get(this, la, "f").trackMinimap.initTrackPreview(n);
+                C.get(this, la, "f").trackMinimap?.initTrackPreview(n);
 
                 if (C.get(this, la, "f").setWatchButtonEnabled(C.get(this, xa, "f").length > 0 && null != C.get(this, qr, "f")),
                 C.get(this, Wr, "f").touchEnabled ? (C.get(this, na, "f")?.setOverridePosition(!0),
@@ -42150,7 +42154,7 @@
                                 },
                                 n.car.audioVolume = C.get(this, Oa, "f"),
                                 C.get(this, idToMultiplayerCarMap, "f").set(e.id, n),
-                                C.get(this, la, "f").trackMinimap.setPlayerCar(e.id, n.car);
+                                C.get(this, la, "f").trackMinimap?.setPlayerCar(e.id, n.car);
                                 if (w.multiplayerConnection instanceof HostMultiplayerConnection) {
                                     w.multiplayerConnection.hostVoiceChat.setPlayerCar(e.id, n.car)
                                 }
@@ -42618,7 +42622,7 @@
                 C.get(this, sa, "f").update(C.get(this, wa, "f")),
                 C.get(this, ra, "f").update(C.get(this, wa, "f")),
                 
-                C.get(this, la, "f").trackMinimap.updatePlayerPos(C.get(this, wa, "f").getPosition()),
+                C.get(this, la, "f").trackMinimap?.updatePlayerPos(C.get(this, wa, "f").getPosition()),
                 C.get(this, multiplayerInstanceInfo, "f")?.multiplayerConnection.hostVoiceChat?.setHostPos(C.get(this, wa, "f").getPosition()),
                 C.get(this, multiplayerInstanceInfo, "f")?.multiplayerConnection.hostVoiceChat?.setHostQuat(C.get(this, wa, "f").getQuaternion()),
 
