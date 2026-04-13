@@ -41,79 +41,50 @@ class AudioRingBuffer {
 // ---- Client ----
 
 class ClientVoiceChat {
-  constructor({ maxDistance = 60, refDistance = 10, rolloffFactor = 1.5 } = {}) {
-    this.listener = null;
-    this.audioCtx = new AudioContext();
-    this.maxDistance = maxDistance;
+  constructor({ refDistance = 5, maxDistance = 60, rolloffFactor = 1 } = {}) {
     this.refDistance = refDistance;
+    this.maxDistance = maxDistance;
     this.rolloffFactor = rolloffFactor;
+
+    // Set via setAudioContext — the game's AudioContext + destination
+    this.audioCtx = null;
+    this.destination = null;
 
     this.localStream = null;
     this._audioChannel = null;
     this._micCapture = null;
 
-    // playerId -> { ringBuffer, sourceNode, keepAlive, positionalAudio, mesh }
+    // playerId -> { ringBuffer, sourceNode, panner, gain, keepAlive, getPosition }
     this.players = new Map();
+
+    this._positionInterval = setInterval(() => this._updatePositions(), 50);
   }
 
-  setListener(listener) {
-    const needsMigration = listener && listener.context !== this.audioCtx;
-    this.listener = listener;
+  // Connect to the game's audio system
+  setAudioContext(audioCtx, destination) {
+    this.audioCtx = audioCtx;
+    this.destination = destination;
 
-    if (needsMigration) {
-      this.audioCtx = listener.context;
-      this._recreateAudioNodes();
-    }
-
-    // Reattach PositionalAudio for players that already have meshes
+    // Reconnect existing players to new destination
     for (const [id, player] of this.players) {
-      if (player.mesh) this.setPlayerMesh(id, player.mesh);
-    }
-  }
-
-  _recreateAudioNodes() {
-    // Recreate mic capture on new context
-    if (this._micCapture) {
-      this._micCapture.source.disconnect();
-      this._micCapture.processor.disconnect();
-      this._micCapture = null;
-    }
-    if (this.localStream) this._setupMicCapture();
-
-    // Recreate each player's source node on new context
-    for (const [, player] of this.players) {
-      player.sourceNode.disconnect();
-      player.keepAlive.disconnect();
-
-      const sourceNode = this.audioCtx.createScriptProcessor(VOICE_BUFFER_SIZE, 0, 1);
-      sourceNode.onaudioprocess = (e) => {
-        player.ringBuffer.read(e.outputBuffer.getChannelData(0));
-      };
-
-      const keepAlive = this.audioCtx.createGain();
-      keepAlive.gain.value = 0;
-      sourceNode.connect(keepAlive).connect(this.audioCtx.destination);
-
-      player.sourceNode = sourceNode;
-      player.keepAlive = keepAlive;
+      this._reconnectPlayer(player);
     }
   }
 
   async start(peerConnection) {
-    if (this.audioCtx.state === 'suspended') this.audioCtx.resume();
-
+    // Acquire mic, start muted
     try {
       this.localStream = await navigator.mediaDevices.getUserMedia({
         audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true },
         video: false,
       });
       this.localStream.getAudioTracks().forEach(t => (t.enabled = false));
-      this._setupMicCapture();
     } catch (e) {
       this.localStream = null;
       console.warn('[voice] mic not available', e);
     }
 
+    // Audio data channel
     this._audioChannel = peerConnection.createDataChannel("voice-audio", {
       negotiated: true, id: 2, ordered: false, maxRetransmits: 0
     });
@@ -121,7 +92,6 @@ class ClientVoiceChat {
 
     this._audioChannel.onmessage = (event) => {
       if (!(event.data instanceof ArrayBuffer) || event.data.byteLength <= 4) return;
-      if (this.audioCtx.state === 'suspended') this.audioCtx.resume();
 
       const playerId = new DataView(event.data).getUint32(0, true);
       const samples = decodeAudio(event.data.slice(4));
@@ -132,7 +102,11 @@ class ClientVoiceChat {
     };
   }
 
-  _setupMicCapture() {
+  // Call after start() and setAudioContext() to wire up mic
+  setupMic() {
+    if (!this.localStream || !this.audioCtx) return;
+    if (this._micCapture) return;
+
     const source = this.audioCtx.createMediaStreamSource(this.localStream);
     const processor = this.audioCtx.createScriptProcessor(VOICE_BUFFER_SIZE, 1, 1);
 
@@ -153,46 +127,70 @@ class ClientVoiceChat {
 
   _createPlayerAudio(playerId) {
     const ringBuffer = new AudioRingBuffer();
+    const player = {
+      ringBuffer, sourceNode: null, panner: null,
+      gain: null, keepAlive: null, getPosition: null
+    };
+    this.players.set(playerId, player);
+
+    if (this.audioCtx && this.destination) {
+      this._reconnectPlayer(player);
+    }
+
+    return player;
+  }
+
+  _reconnectPlayer(player) {
+    // Clean up old nodes
+    if (player.sourceNode) player.sourceNode.disconnect();
+    if (player.panner) player.panner.disconnect();
+    if (player.gain) player.gain.disconnect();
+    if (player.keepAlive) player.keepAlive.disconnect();
+
+    if (!this.audioCtx || !this.destination) return;
 
     const sourceNode = this.audioCtx.createScriptProcessor(VOICE_BUFFER_SIZE, 0, 1);
     sourceNode.onaudioprocess = (e) => {
-      ringBuffer.read(e.outputBuffer.getChannelData(0));
+      player.ringBuffer.read(e.outputBuffer.getChannelData(0));
     };
 
+    const panner = this.audioCtx.createPanner();
+    panner.refDistance = this.refDistance;
+    panner.maxDistance = this.maxDistance;
+    panner.rolloffFactor = this.rolloffFactor;
+
+    const gain = this.audioCtx.createGain();
+    gain.gain.value = 1;
+
+    sourceNode.connect(panner).connect(gain).connect(this.destination);
+
+    // Silent keepalive so ScriptProcessor keeps firing
     const keepAlive = this.audioCtx.createGain();
     keepAlive.gain.value = 0;
     sourceNode.connect(keepAlive).connect(this.audioCtx.destination);
 
-    const player = { ringBuffer, sourceNode, keepAlive, positionalAudio: null, mesh: null };
-    this.players.set(playerId, player);
-    return player;
+    player.sourceNode = sourceNode;
+    player.panner = panner;
+    player.gain = gain;
+    player.keepAlive = keepAlive;
   }
 
-  setPlayerMesh(playerId, mesh) {
+  // Set a position getter for a player — call whenever car is created/recreated
+  setPlayerPosition(playerId, getPositionFn) {
     let player = this.players.get(playerId);
     if (!player) player = this._createPlayerAudio(playerId);
-    player.mesh = mesh;
+    player.getPosition = getPositionFn;
+  }
 
-    // Detach old
-    if (player.positionalAudio) {
-      try { player.sourceNode.disconnect(player.positionalAudio.gain); } catch {}
-      if (player.positionalAudio.parent) {
-        player.positionalAudio.parent.remove(player.positionalAudio);
-      }
-      player.positionalAudio = null;
+  _updatePositions() {
+    for (const [, player] of this.players) {
+      if (!player.panner || !player.getPosition) continue;
+      const pos = player.getPosition();
+      if (!pos) continue;
+      player.panner.positionX.value = pos.x;
+      player.panner.positionY.value = pos.y;
+      player.panner.positionZ.value = pos.z ?? 0;
     }
-
-    // Only create PositionalAudio if we have a listener and a mesh
-    if (!this.listener || !mesh) return;
-
-    const pa = new THREE.PositionalAudio(this.listener);
-    pa.setNodeSource(player.sourceNode);
-    pa.setRefDistance(this.refDistance);
-    pa.setMaxDistance(this.maxDistance);
-    pa.setRolloffFactor(this.rolloffFactor);
-    pa.setDistanceModel('inverse');
-    mesh.add(pa);
-    player.positionalAudio = pa;
   }
 
   setMicMuted(muted) {
@@ -204,18 +202,15 @@ class ClientVoiceChat {
   removePlayer(playerId) {
     const player = this.players.get(playerId);
     if (!player) return;
-    if (player.positionalAudio) {
-      try { player.sourceNode.disconnect(player.positionalAudio.gain); } catch {}
-      if (player.positionalAudio.parent) {
-        player.positionalAudio.parent.remove(player.positionalAudio);
-      }
-    }
-    player.sourceNode.disconnect();
-    player.keepAlive.disconnect();
+    if (player.sourceNode) player.sourceNode.disconnect();
+    if (player.panner) player.panner.disconnect();
+    if (player.gain) player.gain.disconnect();
+    if (player.keepAlive) player.keepAlive.disconnect();
     this.players.delete(playerId);
   }
 
   destroy() {
+    clearInterval(this._positionInterval);
     if (this.localStream) this.localStream.getTracks().forEach(t => t.stop());
     if (this._micCapture) {
       this._micCapture.source.disconnect();
@@ -228,71 +223,40 @@ class ClientVoiceChat {
 // ---- Host ----
 
 class HostVoiceChat {
-  constructor({ maxDistance = 60, refDistance = 10, rolloffFactor = 1.5, hostId = 0 } = {}) {
-    this.listener = null;
-    this.audioCtx = new AudioContext();
-    this.maxDistance = maxDistance;
+  constructor({ refDistance = 5, maxDistance = 60, rolloffFactor = 1, hostId = 0 } = {}) {
     this.refDistance = refDistance;
+    this.maxDistance = maxDistance;
     this.rolloffFactor = rolloffFactor;
     this.hostId = hostId;
+
+    this.audioCtx = null;
+    this.destination = null;
 
     this.localStream = null;
     this._micCapture = null;
 
-    // playerId -> { peerConnection, audioChannel, ringBuffer, sourceNode, keepAlive, positionalAudio, mesh }
+    // playerId -> { peerConnection, audioChannel, ringBuffer, sourceNode, panner, gain, keepAlive, getPosition }
     this.clients = new Map();
+
+    this._positionInterval = setInterval(() => this._updatePositions(), 50);
   }
 
-  setListener(listener) {
-    const needsMigration = listener && listener.context !== this.audioCtx;
-    this.listener = listener;
-
-    if (needsMigration) {
-      this.audioCtx = listener.context;
-      this._recreateAudioNodes();
-    }
-
-    for (const [id, client] of this.clients) {
-      if (client.mesh) this.setPlayerMesh(id, client.mesh);
-    }
-  }
-
-  _recreateAudioNodes() {
-    if (this._micCapture) {
-      this._micCapture.source.disconnect();
-      this._micCapture.processor.disconnect();
-      this._micCapture = null;
-    }
-    if (this.localStream) this._setupMicCapture();
+  setAudioContext(audioCtx, destination) {
+    this.audioCtx = audioCtx;
+    this.destination = destination;
 
     for (const [, client] of this.clients) {
-      client.sourceNode.disconnect();
-      client.keepAlive.disconnect();
-
-      const sourceNode = this.audioCtx.createScriptProcessor(VOICE_BUFFER_SIZE, 0, 1);
-      sourceNode.onaudioprocess = (e) => {
-        client.ringBuffer.read(e.outputBuffer.getChannelData(0));
-      };
-
-      const keepAlive = this.audioCtx.createGain();
-      keepAlive.gain.value = 0;
-      sourceNode.connect(keepAlive).connect(this.audioCtx.destination);
-
-      client.sourceNode = sourceNode;
-      client.keepAlive = keepAlive;
+      this._reconnectClient(client);
     }
   }
 
   async startHostMic() {
-    if (this.audioCtx.state === 'suspended') this.audioCtx.resume();
-
     try {
       this.localStream = await navigator.mediaDevices.getUserMedia({
         audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true },
         video: false,
       });
       this.localStream.getAudioTracks().forEach(t => (t.enabled = false));
-      this._setupMicCapture();
       return this.localStream;
     } catch (e) {
       this.localStream = null;
@@ -301,7 +265,11 @@ class HostVoiceChat {
     }
   }
 
-  _setupMicCapture() {
+  // Call after startHostMic() and setAudioContext()
+  setupMic() {
+    if (!this.localStream || !this.audioCtx) return;
+    if (this._micCapture) return;
+
     const source = this.audioCtx.createMediaStreamSource(this.localStream);
     const processor = this.audioCtx.createScriptProcessor(VOICE_BUFFER_SIZE, 1, 1);
 
@@ -310,7 +278,7 @@ class HostVoiceChat {
       const output = e.outputBuffer.getChannelData(0);
       for (let i = 0; i < output.length; i++) output[i] = 0;
 
-      const tagged = this._tagRawAudio(this.hostId, encodeAudio(input));
+      const tagged = this._tagAudio(this.hostId, encodeAudio(input));
       for (const [, client] of this.clients) {
         if (client.audioChannel?.readyState === 'open') {
           try { client.audioChannel.send(tagged); } catch {}
@@ -323,7 +291,7 @@ class HostVoiceChat {
     this._micCapture = { source, processor };
   }
 
-  _tagRawAudio(playerId, int16ArrayBuffer) {
+  _tagAudio(playerId, int16ArrayBuffer) {
     const tagged = new ArrayBuffer(4 + int16ArrayBuffer.byteLength);
     new DataView(tagged).setUint32(0, playerId, true);
     new Uint8Array(tagged, 4).set(new Uint8Array(int16ArrayBuffer));
@@ -333,15 +301,6 @@ class HostVoiceChat {
   registerClient(playerId, peerConnection) {
     const ringBuffer = new AudioRingBuffer();
 
-    const sourceNode = this.audioCtx.createScriptProcessor(VOICE_BUFFER_SIZE, 0, 1);
-    sourceNode.onaudioprocess = (e) => {
-      ringBuffer.read(e.outputBuffer.getChannelData(0));
-    };
-
-    const keepAlive = this.audioCtx.createGain();
-    keepAlive.gain.value = 0;
-    sourceNode.connect(keepAlive).connect(this.audioCtx.destination);
-
     const audioChannel = peerConnection.createDataChannel("voice-audio", {
       negotiated: true, id: 2, ordered: false, maxRetransmits: 0
     });
@@ -349,10 +308,11 @@ class HostVoiceChat {
 
     audioChannel.onmessage = (event) => {
       if (!(event.data instanceof ArrayBuffer) || event.data.byteLength === 0) return;
-      if (this.audioCtx.state === 'suspended') this.audioCtx.resume();
 
+      // Feed into local panner playback
       ringBuffer.write(decodeAudio(event.data));
 
+      // Relay to all other clients, tagged with source ID
       const tagged = new ArrayBuffer(4 + event.data.byteLength);
       new DataView(tagged).setUint32(0, playerId, true);
       new Uint8Array(tagged, 4).set(new Uint8Array(event.data));
@@ -364,35 +324,65 @@ class HostVoiceChat {
       }
     };
 
-    this.clients.set(playerId, {
-      peerConnection, audioChannel, ringBuffer, sourceNode, keepAlive,
-      positionalAudio: null, mesh: null
-    });
+    const client = {
+      peerConnection, audioChannel, ringBuffer,
+      sourceNode: null, panner: null, gain: null, keepAlive: null,
+      getPosition: null
+    };
+    this.clients.set(playerId, client);
+
+    if (this.audioCtx && this.destination) {
+      this._reconnectClient(client);
+    }
   }
 
-  setPlayerMesh(playerId, mesh) {
+  _reconnectClient(client) {
+    if (client.sourceNode) client.sourceNode.disconnect();
+    if (client.panner) client.panner.disconnect();
+    if (client.gain) client.gain.disconnect();
+    if (client.keepAlive) client.keepAlive.disconnect();
+
+    if (!this.audioCtx || !this.destination) return;
+
+    const sourceNode = this.audioCtx.createScriptProcessor(VOICE_BUFFER_SIZE, 0, 1);
+    sourceNode.onaudioprocess = (e) => {
+      client.ringBuffer.read(e.outputBuffer.getChannelData(0));
+    };
+
+    const panner = this.audioCtx.createPanner();
+    panner.refDistance = this.refDistance;
+    panner.maxDistance = this.maxDistance;
+    panner.rolloffFactor = this.rolloffFactor;
+
+    const gain = this.audioCtx.createGain();
+    gain.gain.value = 1;
+
+    sourceNode.connect(panner).connect(gain).connect(this.destination);
+
+    const keepAlive = this.audioCtx.createGain();
+    keepAlive.gain.value = 0;
+    sourceNode.connect(keepAlive).connect(this.audioCtx.destination);
+
+    client.sourceNode = sourceNode;
+    client.panner = panner;
+    client.gain = gain;
+    client.keepAlive = keepAlive;
+  }
+
+  setPlayerPosition(playerId, getPositionFn) {
     const client = this.clients.get(playerId);
-    if (!client) return;
-    client.mesh = mesh;
+    if (client) client.getPosition = getPositionFn;
+  }
 
-    if (client.positionalAudio) {
-      try { client.sourceNode.disconnect(client.positionalAudio.gain); } catch {}
-      if (client.positionalAudio.parent) {
-        client.positionalAudio.parent.remove(client.positionalAudio);
-      }
-      client.positionalAudio = null;
+  _updatePositions() {
+    for (const [, client] of this.clients) {
+      if (!client.panner || !client.getPosition) continue;
+      const pos = client.getPosition();
+      if (!pos) continue;
+      client.panner.positionX.value = pos.x;
+      client.panner.positionY.value = pos.y;
+      client.panner.positionZ.value = pos.z ?? 0;
     }
-
-    if (!this.listener || !mesh) return;
-
-    const pa = new THREE.PositionalAudio(this.listener);
-    pa.setNodeSource(client.sourceNode);
-    pa.setRefDistance(this.refDistance);
-    pa.setMaxDistance(this.maxDistance);
-    pa.setRolloffFactor(this.rolloffFactor);
-    pa.setDistanceModel('inverse');
-    mesh.add(pa);
-    client.positionalAudio = pa;
   }
 
   setMicMuted(muted) {
@@ -404,18 +394,15 @@ class HostVoiceChat {
   removeClient(playerId) {
     const client = this.clients.get(playerId);
     if (!client) return;
-    if (client.positionalAudio) {
-      try { client.sourceNode.disconnect(client.positionalAudio.gain); } catch {}
-      if (client.positionalAudio.parent) {
-        client.positionalAudio.parent.remove(client.positionalAudio);
-      }
-    }
-    client.sourceNode.disconnect();
-    client.keepAlive.disconnect();
+    if (client.sourceNode) client.sourceNode.disconnect();
+    if (client.panner) client.panner.disconnect();
+    if (client.gain) client.gain.disconnect();
+    if (client.keepAlive) client.keepAlive.disconnect();
     this.clients.delete(playerId);
   }
 
   destroy() {
+    clearInterval(this._positionInterval);
     if (this.localStream) this.localStream.getTracks().forEach(t => t.stop());
     if (this._micCapture) {
       this._micCapture.source.disconnect();
