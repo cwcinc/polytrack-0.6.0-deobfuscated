@@ -40584,8 +40584,12 @@
                     t.textContent = e,
                     f.appendChild(t)
                 }
-
-                this.trackMinimap = new Minimap(t);
+                
+                if (s?.gameMode == MultiplayerRoomModes.HideAndSeek) {
+                    this.trackMinimap = null;
+                } else {
+                    this.trackMinimap = new Minimap(t);
+                }
 
                 C.set(this, qn, document.createElement("div"), "f"),
                 C.get(this, qn, "f").className = "record",
@@ -40694,8 +40698,8 @@
                 C.get(this, Yn, "f").push(C.get(this, Xn, "f"))),
                 C.get(this, Wn, "f").appendChild(C.get(this, Kn, "f")),
                 
-                this.trackMinimap.appendButton(m);
-                this.trackMinimap.appendMinimap(C.get(this, Wn, "f")),
+                this.trackMinimap?.appendButton(m);
+                this.trackMinimap?.appendMinimap(C.get(this, Wn, "f")),
 
                 C.get(this, Hn, "f").addChangeListener(C.set(this, $n, ( () => {
                     C.get(this, Hn, "f").touchEnabled ? p.classList.add("hidden") : p.classList.remove("hidden"),
@@ -42110,7 +42114,7 @@
                         new Error("Unknown multiplayer game mode")
                     }
 
-                C.get(this, la, "f").trackMinimap.initTrackPreview(n);
+                C.get(this, la, "f").trackMinimap?.initTrackPreview(n);
 
                 if (C.get(this, la, "f").setWatchButtonEnabled(C.get(this, xa, "f").length > 0 && null != C.get(this, qr, "f")),
                 C.get(this, Wr, "f").touchEnabled ? (C.get(this, na, "f")?.setOverridePosition(!0),
@@ -42158,7 +42162,7 @@
                                 console.log(`Multiplayer car created for player ${e.id}:`, n.car);
                                 n.car.audioVolume = C.get(this, Oa, "f"),
                                 C.get(this, idToMultiplayerCarMap, "f").set(e.id, n),
-                                C.get(this, la, "f").trackMinimap.setPlayerCar(e.id, n.car);
+                                C.get(this, la, "f").trackMinimap?.setPlayerCar(e.id, n.car);
                                 w.multiplayerConnection.m_voiceChat.setPlayerPosition(e.id, () => n.car.getPosition());
                                 if (w.multiplayerConnection instanceof HostMultiplayerConnection) {
                                     // w.multiplayerConnection.m_voiceChat.setPlayerCar(e.id, n.car)
@@ -42627,7 +42631,7 @@
                 C.get(this, sa, "f").update(C.get(this, wa, "f")),
                 C.get(this, ra, "f").update(C.get(this, wa, "f")),
                 
-                C.get(this, la, "f").trackMinimap.updatePlayerPos(C.get(this, wa, "f").getPosition()),
+                C.get(this, la, "f").trackMinimap?.updatePlayerPos(C.get(this, wa, "f").getPosition()),
                 // C.get(this, multiplayerInstanceInfo, "f")?.multiplayerConnection.m_voiceChat?.setHostPos(C.get(this, wa, "f").getPosition()),
                 // C.get(this, multiplayerInstanceInfo, "f")?.multiplayerConnection.m_voiceChat?.setHostQuat(C.get(this, wa, "f").getQuaternion()),
 
