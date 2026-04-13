@@ -7535,7 +7535,7 @@
                 })
             };
             const B = D;
-            var G, F, O, W, V, H, j, K, q, Q, J, X, Y, Z, $, ee, te, ne, ie, re, ae, se, oe, le, ce, he, de, ue, pe, m_positionListeners, fe, ge, me, Ae, ve, ye, be, we, xe, Se, ke, Ee, Te, Me, _e, Ce, Re, Pe, Ie, Le, Ue, ze, Ne, De, Be, Ge, Fe, Oe, setCarDisabled, We, Ve, He, je, Ke, qe, Qe, Je, Xe, Ye, Ze, $e, et, tt, nt, it, rt, at, carDisabled, st = n(3476), ot = n(6633), lt = n(927);
+            var G, F, O, W, V, H, j, K, q, Q, J, X, Y, Z, $, ee, te, ne, ie, re, ae, se, oe, le, ce, he, de, ue, pe, m_positionListeners, fe, ge, me, Ae, ve, ye, nameTagMesh, we, xe, Se, ke, Ee, Te, Me, _e, Ce, Re, Pe, Ie, Le, Ue, ze, Ne, De, Be, Ge, Fe, Oe, setCarDisabled, renderNameTag, Ve, He, je, Ke, qe, Qe, Je, Xe, Ye, Ze, $e, et, tt, nt, it, rt, at, carDisabled, st = n(3476), ot = n(6633), lt = n(927);
             class VisualCar {
                 constructor(e, t, n, i, r, a, s, o, h, d, u) {
                     if (G.add(this),
@@ -7570,7 +7570,7 @@
                     Ae.set(this, void 0),
                     ve.set(this, void 0),
                     ye.set(this, null),
-                    be.set(this, null),
+                    nameTagMesh.set(this, null),
                     we.set(this, void 0),
                     xe.set(this, void 0),
                     Se.set(this, void 0),
@@ -7592,6 +7592,9 @@
                     Ge.set(this, void 0),
                     Fe.set(this, !1),
                     carDisabled.set(this, !1),
+
+                    this.multiplayerInstance = null,
+                    
                     l.set(this, O, a, "f"),
                     l.set(this, Ae, r, "f"),
                     l.set(this, Re, s, "f"),
@@ -7702,7 +7705,7 @@
                         l.get(this, Te, "f").dispose(),
                         l.set(this, Te, l.get(F, F, "m", He).call(F, r, l.get(this, Ce, "f").pattern), "f"),
                         l.get(this, Me, "f").value = l.get(this, Te, "f"),
-                        l.get(this, G, "m", We).call(this)
+                        l.get(this, G, "m", renderNameTag).call(this)
                     }
                     ), "f"))
                 }
@@ -7715,11 +7718,11 @@
                     for (const e of l.get(this, Le, "f"))
                         e.dispose();
                     l.get(this, Le, "f").length = 0,
-                    null != l.get(this, be, "f") && (l.get(this, be, "f").geometry.dispose(),
-                    l.get(this, be, "f").material.map?.dispose(),
-                    l.get(this, be, "f").material.dispose(),
-                    l.get(this, Ae, "f").scene.remove(l.get(this, be, "f")),
-                    l.set(this, be, null, "f")),
+                    null != l.get(this, nameTagMesh, "f") && (l.get(this, nameTagMesh, "f").geometry.dispose(),
+                    l.get(this, nameTagMesh, "f").material.map?.dispose(),
+                    l.get(this, nameTagMesh, "f").material.dispose(),
+                    l.get(this, Ae, "f").scene.remove(l.get(this, nameTagMesh, "f")),
+                    l.set(this, nameTagMesh, null, "f")),
                     l.get(this, Ae, "f").scene.remove(l.get(this, ve, "f")),
                     l.get(this, Te, "f").dispose(),
                     l.get(this, ve, "f").traverse((e => {
@@ -7813,7 +7816,7 @@
                         countryCode: e,
                         name: t
                     }, "f"),
-                    l.get(this, G, "m", We).call(this))
+                    l.get(this, G, "m", renderNameTag).call(this))
                 }
                 getCarStyle() {
                     return l.get(this, Ce, "f")
@@ -7926,18 +7929,23 @@
                         return;
                     }
 
-                    if (l.get(this, G, "m", Xe).call(this),
-                    l.get(this, De, "f")?.update(e),
-                    null != l.get(this, be, "f")) {
-                        const e = this.getPosition()
-                          , t = new THREE.Vector3(0,1,0).applyQuaternion(this.getQuaternion())
-                          , n = 1.75;
-                        l.get(this, be, "f").position.copy(e.clone().addScaledVector(t, n));
-                        const i = l.get(this, be, "f").position.distanceToSquared(l.get(this, Ae, "f").camera.position)
-                          , r = 2.5
-                          , a = 50;
-                        l.get(this, be, "f").visible = l.get(this, ie, "f").hasStarted && i >= r * r && i <= a * a,
-                        l.get(this, be, "f").visible && l.get(this, be, "f").lookAt(l.get(this, Ae, "f").camera.position)
+                    l.get(this, G, "m", Xe).call(this);
+                    l.get(this, De, "f")?.update(e);
+                    
+                    if (null != l.get(this, nameTagMesh, "f")) {
+                        if (this.multiplayerInstance?.gameMode == 2) {
+                            l.get(this, nameTagMesh, "f").visible = !1;
+                        } else {
+                            const e = this.getPosition()
+                            , t = new THREE.Vector3(0,1,0).applyQuaternion(this.getQuaternion())
+                            , n = 1.75;
+                            l.get(this, nameTagMesh, "f").position.copy(e.clone().addScaledVector(t, n));
+                            const i = l.get(this, nameTagMesh, "f").position.distanceToSquared(l.get(this, Ae, "f").camera.position)
+                            , r = 2.5
+                            , a = 50;
+                            l.get(this, nameTagMesh, "f").visible = l.get(this, ie, "f").hasStarted && i >= r * r && i <= a * a,
+                            l.get(this, nameTagMesh, "f").visible && l.get(this, nameTagMesh, "f").lookAt(l.get(this, Ae, "f").camera.position)
+                        }
                     }
                     const t = this.getMatrix4()
                       , n = this.getQuaternion();
@@ -8123,7 +8131,7 @@
             Ae = new WeakMap,
             ve = new WeakMap,
             ye = new WeakMap,
-            be = new WeakMap,
+            nameTagMesh = new WeakMap,
             we = new WeakMap,
             xe = new WeakMap,
             Se = new WeakMap,
@@ -8160,12 +8168,12 @@
                 ), 200)
             }
             ,
-            We = function() {
-                if (null != l.get(this, be, "f") && (l.get(this, be, "f").geometry.dispose(),
-                l.get(this, be, "f").material.map?.dispose(),
-                l.get(this, be, "f").material.dispose(),
-                l.get(this, Ae, "f").scene.remove(l.get(this, be, "f")),
-                l.set(this, be, null, "f")),
+            renderNameTag = function() {
+                if (null != l.get(this, nameTagMesh, "f") && (l.get(this, nameTagMesh, "f").geometry.dispose(),
+                l.get(this, nameTagMesh, "f").material.map?.dispose(),
+                l.get(this, nameTagMesh, "f").material.dispose(),
+                l.get(this, Ae, "f").scene.remove(l.get(this, nameTagMesh, "f")),
+                l.set(this, nameTagMesh, null, "f")),
                 null != l.get(this, ye, "f")) {
                     const e = document.createElement("canvas")
                       , t = e.getContext("2d");
@@ -8205,9 +8213,9 @@
                             depthTest: !1,
                             depthWrite: !1
                         });
-                        l.set(this, be, new THREE.Mesh(u,p), "f"),
-                        l.get(this, be, "f").renderOrder = 1,
-                        l.get(this, Ae, "f").scene.add(l.get(this, be, "f"))
+                        l.set(this, nameTagMesh, new THREE.Mesh(u,p), "f"),
+                        l.get(this, nameTagMesh, "f").renderOrder = 1,
+                        l.get(this, Ae, "f").scene.add(l.get(this, nameTagMesh, "f"))
                     }
                 }
             }
@@ -41581,6 +41589,8 @@
                 a = null;
             // Primary controlled polycar instantiation
             const s = new VisualCar(C.get(this, Cr, "f"),i,null,C.get(this, ya, "f"),C.get(this, zr, "f"),C.get(this, Nr, "f"),C.get(this, Ir, "f"),C.get(this, Pr, "f"),C.get(this, Yr, "f"),C.get(this, Gr, "f"),a);
+            s.multiplayerInstance = C.get(this, multiplayerInstanceInfo, "f");
+
             return s.notificationAudioEnabled = !0,
             s.addResetCallback(( () => {
                 C.get(this, ya, "f").reset = !1,
@@ -42152,6 +42162,7 @@
                                     resetCounter: 0,
                                     bufferedCarStates: []
                                 },
+                                n.car.multiplayerInstance = w;
                                 n.car.audioVolume = C.get(this, Oa, "f"),
                                 C.get(this, idToMultiplayerCarMap, "f").set(e.id, n),
                                 C.get(this, la, "f").trackMinimap?.setPlayerCar(e.id, n.car);
