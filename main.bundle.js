@@ -51649,15 +51649,23 @@
         ,
         Kc = function(e) {
             C.get(this, Mc, "f").innerHTML = "";
+            
+            const cwcincAttribution = document.createElement("a");
+            cwcincAttribution.href = "https://cwcinc.dev/",
+            cwcincAttribution.target = "_blank",
+            cwcincAttribution.textContent = "© 2026 cwcinc - " + e.get("cwctrack") + " " + MOD_VERSION,
+            C.get(this, Mc, "f").appendChild(cwcincAttribution);
+
             const t = document.createElement("a");
             t.href = "https://www.kodub.com",
             t.target = "_blank",
-            t.textContent = "© 2026 kodub.com - " + e.get("Version") + " 0.6.0",
+            t.textContent = "© 2026 kodub.com - " + e.get("PolyTrack") + " 0.6.0",
             C.get(this, Mc, "f").appendChild(t);
+
             const n = document.createElement("a");
-            n.href = "https://opengameart.org/content/sci-fi-theme-1",
+            n.href = "https://www.youtube.com/watch?v=jTalhVYlpIY",
             n.target = "_blank",
-            n.textContent = 'OpenGameArt.org "Sci-fi Theme" by Maou (CC-BY 4.0)',
+            n.textContent = '"PolyTrack Movie Theme" by cwcinc',
             C.get(this, Mc, "f").appendChild(n)
         }
         ,
