@@ -46,33 +46,29 @@ class ClientVoiceChat {
     this.maxDistance = maxDistance;
     this.rolloffFactor = rolloffFactor;
 
-    // Set via setAudioContext — the game's AudioContext + destination
     this.audioCtx = null;
     this.destination = null;
-
     this.localStream = null;
     this._audioChannel = null;
     this._micCapture = null;
 
     // playerId -> { ringBuffer, sourceNode, panner, gain, keepAlive, getPosition }
     this.players = new Map();
-
     this._positionInterval = setInterval(() => this._updatePositions(), 50);
   }
 
-  // Connect to the game's audio system
   setAudioContext(audioCtx, destination) {
     this.audioCtx = audioCtx;
     this.destination = destination;
 
-    // Reconnect existing players to new destination
-    for (const [id, player] of this.players) {
+    for (const [, player] of this.players) {
       this._reconnectPlayer(player);
     }
+
+    this._trySetupMic();
   }
 
   async start(peerConnection) {
-    // Acquire mic, start muted
     try {
       this.localStream = await navigator.mediaDevices.getUserMedia({
         audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true },
@@ -84,7 +80,6 @@ class ClientVoiceChat {
       console.warn('[voice] mic not available', e);
     }
 
-    // Audio data channel
     this._audioChannel = peerConnection.createDataChannel("voice-audio", {
       negotiated: true, id: 2, ordered: false, maxRetransmits: 0
     });
@@ -100,12 +95,12 @@ class ClientVoiceChat {
       if (!player) player = this._createPlayerAudio(playerId);
       player.ringBuffer.write(samples);
     };
+
+    this._trySetupMic();
   }
 
-  // Call after start() and setAudioContext() to wire up mic
-  setupMic() {
-    if (!this.localStream || !this.audioCtx) return;
-    if (this._micCapture) return;
+  _trySetupMic() {
+    if (this._micCapture || !this.localStream || !this.audioCtx) return;
 
     const source = this.audioCtx.createMediaStreamSource(this.localStream);
     const processor = this.audioCtx.createScriptProcessor(VOICE_BUFFER_SIZE, 1, 1);
@@ -141,7 +136,6 @@ class ClientVoiceChat {
   }
 
   _reconnectPlayer(player) {
-    // Clean up old nodes
     if (player.sourceNode) player.sourceNode.disconnect();
     if (player.panner) player.panner.disconnect();
     if (player.gain) player.gain.disconnect();
@@ -164,7 +158,6 @@ class ClientVoiceChat {
 
     sourceNode.connect(panner).connect(gain).connect(this.destination);
 
-    // Silent keepalive so ScriptProcessor keeps firing
     const keepAlive = this.audioCtx.createGain();
     keepAlive.gain.value = 0;
     sourceNode.connect(keepAlive).connect(this.audioCtx.destination);
@@ -175,7 +168,6 @@ class ClientVoiceChat {
     player.keepAlive = keepAlive;
   }
 
-  // Set a position getter for a player — call whenever car is created/recreated
   setPlayerPosition(playerId, getPositionFn) {
     let player = this.players.get(playerId);
     if (!player) player = this._createPlayerAudio(playerId);
@@ -231,13 +223,11 @@ class HostVoiceChat {
 
     this.audioCtx = null;
     this.destination = null;
-
     this.localStream = null;
     this._micCapture = null;
 
     // playerId -> { peerConnection, audioChannel, ringBuffer, sourceNode, panner, gain, keepAlive, getPosition }
     this.clients = new Map();
-
     this._positionInterval = setInterval(() => this._updatePositions(), 50);
   }
 
@@ -248,6 +238,8 @@ class HostVoiceChat {
     for (const [, client] of this.clients) {
       this._reconnectClient(client);
     }
+
+    this._trySetupMic();
   }
 
   async startHostMic() {
@@ -257,6 +249,7 @@ class HostVoiceChat {
         video: false,
       });
       this.localStream.getAudioTracks().forEach(t => (t.enabled = false));
+      this._trySetupMic();
       return this.localStream;
     } catch (e) {
       this.localStream = null;
@@ -265,10 +258,8 @@ class HostVoiceChat {
     }
   }
 
-  // Call after startHostMic() and setAudioContext()
-  setupMic() {
-    if (!this.localStream || !this.audioCtx) return;
-    if (this._micCapture) return;
+  _trySetupMic() {
+    if (this._micCapture || !this.localStream || !this.audioCtx) return;
 
     const source = this.audioCtx.createMediaStreamSource(this.localStream);
     const processor = this.audioCtx.createScriptProcessor(VOICE_BUFFER_SIZE, 1, 1);
@@ -309,10 +300,8 @@ class HostVoiceChat {
     audioChannel.onmessage = (event) => {
       if (!(event.data instanceof ArrayBuffer) || event.data.byteLength === 0) return;
 
-      // Feed into local panner playback
       ringBuffer.write(decodeAudio(event.data));
 
-      // Relay to all other clients, tagged with source ID
       const tagged = new ArrayBuffer(4 + event.data.byteLength);
       new DataView(tagged).setUint32(0, playerId, true);
       new Uint8Array(tagged, 4).set(new Uint8Array(event.data));

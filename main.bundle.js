@@ -38204,7 +38204,7 @@
                 C.set(this, b, null, "f")) : C.set(this, w, C.get(this, w, "f") + e, "f"))
         }
         ;
-        const I = class {
+        const AudioLoader = class {
             constructor(e, t) {
                 m.add(this),
                 A.set(this, void 0),
@@ -39434,7 +39434,7 @@
             }
         }
         const $t = Zt;
-        var en, tn, nn, rn, an, sn, on, ln, cn, hn, dn, un, pn, fn, gn, connectedPlayers, m_voiceChat, An, vn, yn, bn, wn, xn, Sn, kn, En, Tn, Mn, _n, Cn, Rn, Pn, In, Ln, Un, zn, Nn, Dn, Bn, Gn = i(2970);
+        var en, tn, nn, rn, an, sn, on, ln, cn, hn, dn, un, multiplayerUserIdCounter, hostMultiplayerProfile, gn, connectedPlayers, m_voiceChat, An, vn, yn, bn, wn, xn, Sn, kn, En, Tn, Mn, _n, Cn, Rn, Pn, In, Ln, Un, zn, Nn, Dn, Bn, Gn = i(2970);
         tn = new WeakMap,
         nn = new WeakMap,
         rn = new WeakMap,
@@ -39446,8 +39446,8 @@
         hn = new WeakMap,
         dn = new WeakMap,
         un = new WeakMap,
-        pn = new WeakMap,
-        fn = new WeakMap,
+        multiplayerUserIdCounter = new WeakMap,
+        hostMultiplayerProfile = new WeakMap,
         gn = new WeakMap,
         connectedPlayers = new WeakMap,
         m_voiceChat = new WeakMap,
@@ -39544,9 +39544,9 @@
                     C.get(this, en, "m", Nn).call(this, connectionPacket.id, connectionPacket.nickname, connectionPacket.countryCode, connectionPacket.carStyle, null);
                     for (const n of C.get(this, connectedPlayers, "f"))
                         n != connectionPacket && C.get(this, en, "m", Dn).call(this, connectionPacket.peerConnection, dataChannel, n.id, n.nickname, n.countryCode, n.carStyle, n.record);
-                    if (null == C.get(this, fn, "f").nickname)
+                    if (null == C.get(this, hostMultiplayerProfile, "f").nickname)
                         throw new Error("Host censored nickname is not initialized");
-                    C.get(this, en, "m", Dn).call(this, connectionPacket.peerConnection, dataChannel, C.get(this, fn, "f").id, C.get(this, fn, "f").nickname, C.get(this, fn, "f").countryCode, C.get(this, fn, "f").carStyle, C.get(this, fn, "f").record);
+                    C.get(this, en, "m", Dn).call(this, connectionPacket.peerConnection, dataChannel, C.get(this, hostMultiplayerProfile, "f").id, C.get(this, hostMultiplayerProfile, "f").nickname, C.get(this, hostMultiplayerProfile, "f").countryCode, C.get(this, hostMultiplayerProfile, "f").carStyle, C.get(this, hostMultiplayerProfile, "f").record);
                     for (const e of C.get(this, kn, "f"))
                         e(C.get(this, hn, "f"))
                 }
@@ -39775,10 +39775,10 @@
               , t = new Uint8Array(1 + 6 * e);
             t[0] = HostToClientMessage.PingData;
             let n = 1;
-            t[n + 0] = 255 & C.get(this, fn, "f").id,
-            t[n + 1] = C.get(this, fn, "f").id >> 8 & 255,
-            t[n + 2] = C.get(this, fn, "f").id >> 16 & 255,
-            t[n + 3] = C.get(this, fn, "f").id >> 24 & 255;
+            t[n + 0] = 255 & C.get(this, hostMultiplayerProfile, "f").id,
+            t[n + 1] = C.get(this, hostMultiplayerProfile, "f").id >> 8 & 255,
+            t[n + 2] = C.get(this, hostMultiplayerProfile, "f").id >> 16 & 255,
+            t[n + 3] = C.get(this, hostMultiplayerProfile, "f").id >> 24 & 255;
             t[n + 4] = 0,
             t[n + 5] = 0,
             n += 6;
@@ -39805,11 +39805,11 @@
         zn = function() {
             for (const e of C.get(this, connectedPlayers, "f")) {
                 const t = [];
-                if (C.get(this, fn, "f").unsentCarStates.length > 0)
-                    for (const e of C.get(this, fn, "f").unsentCarStates)
+                if (C.get(this, hostMultiplayerProfile, "f").unsentCarStates.length > 0)
+                    for (const e of C.get(this, hostMultiplayerProfile, "f").unsentCarStates)
                         t.push({
-                            id: C.get(this, fn, "f").id,
-                            resetCounter: C.get(this, fn, "f").resetCounter,
+                            id: C.get(this, hostMultiplayerProfile, "f").id,
+                            resetCounter: C.get(this, hostMultiplayerProfile, "f").resetCounter,
                             carState: e
                         });
                 for (const n of C.get(this, connectedPlayers, "f"))
@@ -39842,7 +39842,7 @@
                     if (t.unsentCarStates.length > 0)
                         for (const n of t.unsentCarStates)
                             e(C.get(this, hn, "f"), t.id, t.resetCounter, n);
-            C.get(this, fn, "f").unsentCarStates.length = 0;
+            C.get(this, hostMultiplayerProfile, "f").unsentCarStates.length = 0;
             for (const e of C.get(this, connectedPlayers, "f"))
                 e.unsentCarStates.length = 0
         }
@@ -39910,7 +39910,7 @@
         }
         ;
         const HostMultiplayerConnection = class {
-            constructor(e, t, n, i) {
+            constructor(e, t, n, i, audioManager) {
                 var r, a;
                 en.add(this),
                 tn.set(this, void 0),
@@ -39924,8 +39924,8 @@
                 hn.set(this, 0),
                 dn.set(this, null),
                 un.set(this, void 0),
-                pn.set(this, 1),
-                fn.set(this, void 0),
+                multiplayerUserIdCounter.set(this, 1),
+                hostMultiplayerProfile.set(this, void 0),
                 gn.set(this, []),
                 connectedPlayers.set(this, []),
                 An.set(this, 16384),
@@ -39939,15 +39939,10 @@
                 En.set(this, []),
                 C.set(this, tn, e, "f"),
                 C.set(this, nn, t, "f");
-                this.m_voiceChat = new HostVoiceChat({
-                    maxDistance: 100,
-                    falloff: 1.5,
-                });
-                m_voiceChat.set(this, this.m_voiceChat);
 
                 const s = i.getCurrentUserProfile();
-                C.set(this, fn, {
-                    id: (C.set(this, pn, (a = C.get(this, pn, "f"),
+                C.set(this, hostMultiplayerProfile, {
+                    id: (C.set(this, multiplayerUserIdCounter, (a = C.get(this, multiplayerUserIdCounter, "f"),
                     r = a++,
                     a), "f"),
                     r),
@@ -39968,7 +39963,21 @@
                 C.set(this, yn, setInterval(( () => {
                     C.get(this, en, "m", zn).call(this)
                 }
-                ), 100), "f")
+                ), 100), "f");
+
+                
+                this.m_voiceChat = new HostVoiceChat({
+                    refDistance: 5,
+                    maxDistance: 100,
+                    hostId: C.get(this, hostMultiplayerProfile, "f").id
+                });
+                m_voiceChat.set(this, this.m_voiceChat);
+
+                (async () => {
+                    this.m_voiceChat.setAudioContext(audioManager.context, audioManager.destinationSfx);
+                    await this.m_voiceChat.startHostMic();
+                    // this.m_voiceChat.setupMic();
+                })();
             }
             dispose() {
                 null != C.get(this, dn, "f") && (clearTimeout(C.get(this, dn, "f").timeout),
@@ -39986,7 +39995,8 @@
                 C.set(this, gn, [], "f");
                 for (const e of C.get(this, connectedPlayers, "f"))
                     e.peerConnection.close();
-                C.set(this, connectedPlayers, [], "f")
+                C.set(this, connectedPlayers, [], "f");
+                this.m_voiceChat.destroy();
             }
             addConnectionLostCallback() {}
             removeConnectionLostCallback() {}
@@ -40023,21 +40033,21 @@
                 C.set(this, En, C.get(this, En, "f").filter((t => t != e)), "f")
             }
             sendCarReset(e, t) {
-                e == C.get(this, hn, "f") && t > C.get(this, fn, "f").resetCounter && (C.get(this, fn, "f").unsentCarStates.length = 0,
-                C.get(this, fn, "f").resetCounter = t,
-                C.get(this, en, "m", Pn).call(this, C.get(this, fn, "f").id, t))
+                e == C.get(this, hn, "f") && t > C.get(this, hostMultiplayerProfile, "f").resetCounter && (C.get(this, hostMultiplayerProfile, "f").unsentCarStates.length = 0,
+                C.get(this, hostMultiplayerProfile, "f").resetCounter = t,
+                C.get(this, en, "m", Pn).call(this, C.get(this, hostMultiplayerProfile, "f").id, t))
             }
             sendCarUpdate(e, t, n) {
-                e == C.get(this, hn, "f") && (t > C.get(this, fn, "f").resetCounter ? (C.get(this, fn, "f").unsentCarStates.length = 0,
-                C.get(this, fn, "f").resetCounter = t) : t == C.get(this, fn, "f").resetCounter && C.get(this, fn, "f").unsentCarStates.push(n))
+                e == C.get(this, hn, "f") && (t > C.get(this, hostMultiplayerProfile, "f").resetCounter ? (C.get(this, hostMultiplayerProfile, "f").unsentCarStates.length = 0,
+                C.get(this, hostMultiplayerProfile, "f").resetCounter = t) : t == C.get(this, hostMultiplayerProfile, "f").resetCounter && C.get(this, hostMultiplayerProfile, "f").unsentCarStates.push(n))
             }
             sendRecord(e, t) {
                 if (e == C.get(this, hn, "f")) {
-                    if (C.get(this, fn, "f").record = t.clone(),
+                    if (C.get(this, hostMultiplayerProfile, "f").record = t.clone(),
                     C.get(this, connectedPlayers, "f").length > 0) {
-                        if (null == C.get(this, fn, "f").nickname)
+                        if (null == C.get(this, hostMultiplayerProfile, "f").nickname)
                             throw new Error("Host censored nickname is not initialized");
-                        C.get(this, en, "m", Nn).call(this, C.get(this, fn, "f").id, C.get(this, fn, "f").nickname, C.get(this, fn, "f").countryCode, C.get(this, fn, "f").carStyle, C.get(this, fn, "f").record)
+                        C.get(this, en, "m", Nn).call(this, C.get(this, hostMultiplayerProfile, "f").id, C.get(this, hostMultiplayerProfile, "f").nickname, C.get(this, hostMultiplayerProfile, "f").countryCode, C.get(this, hostMultiplayerProfile, "f").carStyle, C.get(this, hostMultiplayerProfile, "f").record)
                     }
                     for (const t of C.get(this, kn, "f"))
                         t(e)
@@ -40068,7 +40078,7 @@
                 }
             }
             getPing(e) {
-                if (e == C.get(this, fn, "f").id)
+                if (e == C.get(this, hostMultiplayerProfile, "f").id)
                     return 0;
                 const t = C.get(this, connectedPlayers, "f").find((t => t.id == e));
                 return null != t ? t.ping : null
@@ -40082,11 +40092,11 @@
                     record: e.record?.clone() ?? null,
                     isSelf: !1
                 }))).concat({
-                    id: C.get(this, fn, "f").id,
-                    nickname: C.get(this, fn, "f").uncensoredNickname,
-                    countryCode: C.get(this, fn, "f").countryCode,
-                    carStyle: C.get(this, fn, "f").carStyle,
-                    record: C.get(this, fn, "f").record?.clone() ?? null,
+                    id: C.get(this, hostMultiplayerProfile, "f").id,
+                    nickname: C.get(this, hostMultiplayerProfile, "f").uncensoredNickname,
+                    countryCode: C.get(this, hostMultiplayerProfile, "f").countryCode,
+                    carStyle: C.get(this, hostMultiplayerProfile, "f").carStyle,
+                    record: C.get(this, hostMultiplayerProfile, "f").record?.clone() ?? null,
                     isSelf: !0
                 })
             }
@@ -40112,8 +40122,8 @@
                     trackMetadata: t,
                     trackData: n
                 }, "f"),
-                C.get(this, fn, "f").record = null,
-                C.get(this, fn, "f").resetCounter = 0;
+                C.get(this, hostMultiplayerProfile, "f").record = null,
+                C.get(this, hostMultiplayerProfile, "f").resetCounter = 0;
                 for (const e of C.get(this, connectedPlayers, "f"))
                     e.record = null,
                     e.resetCounter = 0;
@@ -40161,7 +40171,7 @@
                             type: "createInvite",
                             key: C.get(this, sn, "f")
                         };
-                        null == C.get(this, fn, "f").nickname && (e.nickname = C.get(this, fn, "f").uncensoredNickname),
+                        null == C.get(this, hostMultiplayerProfile, "f").nickname && (e.nickname = C.get(this, hostMultiplayerProfile, "f").uncensoredNickname),
                         s.send(JSON.stringify(e))
                     }
                     )),
@@ -40229,7 +40239,7 @@
                                 return console.error(l + "Missing or invalid censoredNickname"),
                                 void s.close();
                             const a = o.censoredNickname;
-                            null != a && (C.get(this, fn, "f").nickname = a),
+                            null != a && (C.get(this, hostMultiplayerProfile, "f").nickname = a),
                             null !== i ? C.set(this, an, setTimeout(( () => {
                                 C.set(this, an, null, "f"),
                                 s.close()
@@ -40379,11 +40389,15 @@
                                     maxRetransmits: 0
                                 });
                                 p.binaryType = "arraybuffer";
-                                const clientId = (C.set(this, pn, (i = C.get(this, pn, "f"),
-                                t = i++,
-                                i), "f"),
+                                const clientId = (
+                                    C.set(this, multiplayerUserIdCounter, 
+                                        (
+                                            i = C.get(this, multiplayerUserIdCounter, "f"),
+                                            t = i++,
+                                            i
+                                        ), "f"),
                                 t);
-                                C.get(this, pn, "f") > 4294967295 && C.set(this, pn, 1, "f");
+                                C.get(this, multiplayerUserIdCounter, "f") > 4294967295 && C.set(this, multiplayerUserIdCounter, 1, "f");
                                 const g = {
                                     session: e,
                                     isOfferSet: !1,
@@ -42159,7 +42173,7 @@
                                     bufferedCarStates: []
                                 },
                                 n.car.multiplayerInstance = w;
-                                console.log(`Multiplayer car created for player ${e.id}:`, n.car);
+                                // console.log(`Multiplayer car created for player ${e.id}:`, n.car);
                                 n.car.audioVolume = C.get(this, Oa, "f"),
                                 C.get(this, idToMultiplayerCarMap, "f").set(e.id, n),
                                 C.get(this, la, "f").trackMinimap?.setPlayerCar(e.id, n.car);
@@ -50300,7 +50314,7 @@
         }
         ;
         const ClientMultiplayerConnection = class {
-            constructor(e, t, n, i) {
+            constructor(e, t, n, i, audioManager) {
                 hl.add(this),
                 dl.set(this, void 0),
                 ul.set(this, void 0),
@@ -50335,7 +50349,8 @@
                 C.set(this, pl, n, "f"),
                 C.set(this, fl, i, "f");
                 
-                this.m_voiceChat = new ClientVoiceChat({ maxDistance: 100 });
+                this.m_voiceChat = new ClientVoiceChat({ refDistance: 5, maxDistance: 100 });
+                this.audioManager = audioManager;
 
                 window.addEventListener("pagehide", C.set(this, Ul, ( () => {
                     C.get(this, ml, "f")?.close()
@@ -50376,7 +50391,9 @@
                     C.set(this, gl, i, "f");
                     const n = C.get(this, hl, "m", createMultiplayerDataChannels).call(this, i);
 
+                    this.m_voiceChat.setAudioContext(this.audioManager.context, this.audioManager.destinationSfx);
                     await this.m_voiceChat.start(i);
+                    // this.m_voiceChat.setupMic();
 
                     C.set(this, ml, n.dataChannel, "f"),
                     C.set(this, Al, n.unreliableDataChannel, "f");
@@ -50741,13 +50758,13 @@
             }
         }
         ;
-        var Bl, Gl, Fl, Ol, Wl, Vl, Hl, jl, Kl, ql, Ql, Jl, Xl, Yl, Zl, $l, ec, tc, nc, ic, rc, ac, sc, oc, lc, cc;
-        Gl = new WeakMap,
-        Fl = new WeakMap,
+        var Bl, audioHandler, languageMap, Ol, recordManager, kodubNetworkManager, profileManager, jl, Kl, ql, Ql, Jl, Xl, Yl, Zl, $l, ec, tc, nc, ic, rc, ac, sc, oc, lc, cc;
+        audioHandler = new WeakMap,
+        languageMap = new WeakMap,
         Ol = new WeakMap,
-        Wl = new WeakMap,
-        Vl = new WeakMap,
-        Hl = new WeakMap,
+        recordManager = new WeakMap,
+        kodubNetworkManager = new WeakMap,
+        profileManager = new WeakMap,
         jl = new WeakMap,
         Kl = new WeakMap,
         ql = new WeakMap,
@@ -50776,7 +50793,7 @@
             n.className = "error-box",
             e.appendChild(n);
             const i = document.createElement("h2");
-            i.textContent = C.get(this, Fl, "f").get("Join Multiplayer Game"),
+            i.textContent = C.get(this, languageMap, "f").get("Join Multiplayer Game"),
             t.appendChild(i);
             const r = document.createElement("div");
             r.className = "invite-code-container",
@@ -50784,7 +50801,7 @@
             const a = document.createElement("input");
             a.type = "text",
             a.className = "invite-code",
-            a.placeholder = C.get(this, Fl, "f").get("Enter invite code"),
+            a.placeholder = C.get(this, languageMap, "f").get("Enter invite code"),
             a.spellcheck = !1,
             a.autocomplete = "off",
             a.maxLength = 32,
@@ -50804,7 +50821,7 @@
             const o = document.createElement("div");
             o.className = "loading-spinner-ui",
             s.appendChild(o),
-            s.appendChild(document.createTextNode(C.get(this, Fl, "f").get("Connecting..."))),
+            s.appendChild(document.createTextNode(C.get(this, languageMap, "f").get("Connecting..."))),
             r.appendChild(s);
             const l = document.createElement("div");
             l.className = "buttons",
@@ -50812,18 +50829,18 @@
             const c = document.createElement("button");
             c.className = "button",
             c.innerHTML = '<img class="button-icon" src="images/back.svg"> ',
-            c.append(document.createTextNode(C.get(this, Fl, "f").get("Back"))),
+            c.append(document.createTextNode(C.get(this, languageMap, "f").get("Back"))),
             c.addEventListener("click", ( () => {
-                C.get(this, Gl, "f").playUIClick(),
+                C.get(this, audioHandler, "f").playUIClick(),
                 C.get(this, Bl, "m", cc).call(this)
             }
             )),
             l.appendChild(c);
             const h = document.createElement("button");
             h.className = "button",
-            h.textContent = C.get(this, Fl, "f").get("Host"),
+            h.textContent = C.get(this, languageMap, "f").get("Host"),
             h.addEventListener("click", ( () => {
-                C.get(this, Gl, "f").playUIClick(),
+                C.get(this, audioHandler, "f").playUIClick(),
                 C.get(this, Yl, "f").classList.add("hidden"),
                 C.get(this, Zl, "f").classList.remove("hidden"),
                 C.set(this, $l, !0, "f")
@@ -50833,10 +50850,10 @@
             const d = document.createElement("button");
             d.className = "button join",
             d.innerHTML = '<img class="button-icon" src="images/play.svg"> ',
-            d.prepend(document.createTextNode(C.get(this, Fl, "f").get("Join"))),
+            d.prepend(document.createTextNode(C.get(this, languageMap, "f").get("Join"))),
             d.disabled = !0,
             d.addEventListener("click", ( () => {
-                C.get(this, Gl, "f").playUIClick(),
+                C.get(this, audioHandler, "f").playUIClick(),
                 u()
             }
             )),
@@ -50851,7 +50868,7 @@
                   , t = performance.now();
                 C.set(this, rc, new rr.A, "f");
                 try {
-                    const t = new ClientMultiplayerConnection(C.get(this, Fl, "f"),C.get(this, Vl, "f"),C.get(this, Hl, "f"),C.get(this, Wl, "f"));
+                    const t = new ClientMultiplayerConnection(C.get(this, languageMap, "f"),C.get(this, kodubNetworkManager, "f"),C.get(this, profileManager, "f"),C.get(this, recordManager, "f"), C.get(this, audioHandler, "f"));
                     C.set(this, ic, t, "f"),
                     await t.joinInvite(e, C.get(this, rc, "f"));
                     const n = await new Promise(( (e, n) => {
@@ -50895,29 +50912,29 @@
                     e instanceof cl)
                         switch (e.errorType) {
                         case "server-connection":
-                            i = C.get(this, Fl, "f").get("Error: Unable to reach matchmaking server. Check your internet connection and try again");
+                            i = C.get(this, languageMap, "f").get("Error: Unable to reach matchmaking server. Check your internet connection and try again");
                             break;
                         case "expired":
-                            i = C.get(this, Fl, "f").get("Error: The invite code has expired or is incorrect");
+                            i = C.get(this, languageMap, "f").get("Error: The invite code has expired or is incorrect");
                             break;
                         case "mods-not-vanilla-compatible":
-                            i = C.get(this, Fl, "f").get("Error: The server is using incompatible mods");
+                            i = C.get(this, languageMap, "f").get("Error: The server is using incompatible mods");
                             break;
                         case "webrtc":
-                            i = C.get(this, Fl, "f").get("Error: Connection failed. Please check your firewall or network settings");
+                            i = C.get(this, languageMap, "f").get("Error: Connection failed. Please check your firewall or network settings");
                             break;
                         case "kicked":
-                            i = C.get(this, Fl, "f").get("Error: You were kicked from the game");
+                            i = C.get(this, languageMap, "f").get("Error: You were kicked from the game");
                             break;
                         case "full":
-                            i = C.get(this, Fl, "f").get("Error: The multiplayer server is full");
+                            i = C.get(this, languageMap, "f").get("Error: The multiplayer server is full");
                             break;
                         default:
                             e.errorType,
-                            i = C.get(this, Fl, "f").get("Error: Unknown connection error")
+                            i = C.get(this, languageMap, "f").get("Error: Unknown connection error")
                         }
                     else
-                        i = C.get(this, Fl, "f").get("Error: Unknown connection error");
+                        i = C.get(this, languageMap, "f").get("Error: Unknown connection error");
                     n.textContent = i,
                     n.classList.add("show")
                 } finally {
@@ -50945,7 +50962,7 @@
             n.className = "error-box",
             t.appendChild(n);
             const i = document.createElement("h2");
-            i.textContent = C.get(this, Fl, "f").get("Host Multiplayer Game"),
+            i.textContent = C.get(this, languageMap, "f").get("Host Multiplayer Game"),
             t.appendChild(i);
             let r = MultiplayerRoomModes.Casual;
             const a = document.createElement("div");
@@ -50953,7 +50970,7 @@
             t.appendChild(a);
             const s = document.createElement("div");
             s.className = "title",
-            s.textContent = C.get(this, Fl, "f").get("Game Mode"),
+            s.textContent = C.get(this, languageMap, "f").get("Game Mode"),
             a.appendChild(s);
             const o = [];
             for (const e of [MultiplayerRoomModes.Casual, MultiplayerRoomModes.Competitive, MultiplayerRoomModes.HideAndSeek]) {
@@ -50961,17 +50978,17 @@
                 switch (t.className = "button",
                 e) {
                 case MultiplayerRoomModes.Casual:
-                    t.textContent = C.get(this, Fl, "f").get("Casual");
+                    t.textContent = C.get(this, languageMap, "f").get("Casual");
                     break;
                 case MultiplayerRoomModes.Competitive:
-                    t.textContent = C.get(this, Fl, "f").get("Competitive");
+                    t.textContent = C.get(this, languageMap, "f").get("Competitive");
                     break;
                 case MultiplayerRoomModes.HideAndSeek:
-                    t.textContent = C.get(this, Fl, "f").get("Hide and Seek");
+                    t.textContent = C.get(this, languageMap, "f").get("Hide and Seek");
                 }
                 e == r && t.classList.add("selected"),
                 t.addEventListener("click", ( () => {
-                    C.get(this, Gl, "f").playUIClick(),
+                    C.get(this, audioHandler, "f").playUIClick(),
                     r = e,
                     l();
                     for (const e of o)
@@ -50985,13 +51002,13 @@
             const l = () => {
                 switch (r) {
                 case MultiplayerRoomModes.Casual:
-                    c.textContent = C.get(this, Fl, "f").get("Players play to improve their personal best times.");
+                    c.textContent = C.get(this, languageMap, "f").get("Players play to improve their personal best times.");
                     break;
                 case MultiplayerRoomModes.Competitive:
-                    c.textContent = C.get(this, Fl, "f").get("Players compete to set the best time in the session.");
+                    c.textContent = C.get(this, languageMap, "f").get("Players compete to set the best time in the session.");
                     break;
                 case MultiplayerRoomModes.HideAndSeek:
-                    c.textContent = C.get(this, Fl, "f").get("Players compete in a hide and seek competition, with a random seeker.");
+                    c.textContent = C.get(this, languageMap, "f").get("Players compete in a hide and seek competition, with a random seeker.");
                 }
             }
               , c = document.createElement("div");
@@ -51003,7 +51020,7 @@
             t.appendChild(h);
             const d = document.createElement("div");
             d.className = "maximum-players-info",
-            d.textContent = C.get(this, Fl, "f").get("Maximum Players: {0}", ["8"]),
+            d.textContent = C.get(this, languageMap, "f").get("Maximum Players: {0}", ["8"]),
             h.appendChild(d);
             const u = document.createElement("input");
             u.className = "maximum-players",
@@ -51012,7 +51029,7 @@
             u.min = "2",
             u.max = "16",
             u.addEventListener("input", ( () => {
-                d.textContent = C.get(this, Fl, "f").get("Maximum Players: {0}", [u.value])
+                d.textContent = C.get(this, languageMap, "f").get("Maximum Players: {0}", [u.value])
             }
             )),
             h.appendChild(u);
@@ -51020,9 +51037,9 @@
             const f = document.createElement("button");
             f.className = "button track-button",
             f.addEventListener("click", ( () => {
-                C.get(this, Gl, "f").playUIClick(),
+                C.get(this, audioHandler, "f").playUIClick(),
                 e.classList.add("hidden"),
-                C.set(this, tc, new sr.A(C.get(this, Jl, "f"),C.get(this, Fl, "f"),C.get(this, Gl, "f"),C.get(this, Wl, "f"),C.get(this, Ol, "f"),C.get(this, Hl, "f"),C.get(this, Kl, "f"),C.get(this, jl, "f"),"back",!1,( () => {
+                C.set(this, tc, new sr.A(C.get(this, Jl, "f"),C.get(this, languageMap, "f"),C.get(this, audioHandler, "f"),C.get(this, recordManager, "f"),C.get(this, Ol, "f"),C.get(this, profileManager, "f"),C.get(this, Kl, "f"),C.get(this, jl, "f"),"back",!1,( () => {
                     C.get(this, tc, "f")?.dispose(),
                     C.set(this, tc, null, "f"),
                     e.classList.remove("hidden")
@@ -51047,7 +51064,7 @@
             f.appendChild(g);
             const m = document.createElement("div");
             m.className = "name placeholder",
-            m.textContent = C.get(this, Fl, "f").get("Select Track"),
+            m.textContent = C.get(this, languageMap, "f").get("Select Track"),
             f.appendChild(m);
             const A = (e, t) => {
                 if (f.innerHTML = "",
@@ -51078,9 +51095,9 @@
             const y = document.createElement("button");
             y.className = "button",
             y.innerHTML = '<img class="button-icon" src="images/back.svg"> ',
-            y.append(document.createTextNode(C.get(this, Fl, "f").get("Back"))),
+            y.append(document.createTextNode(C.get(this, languageMap, "f").get("Back"))),
             y.addEventListener("click", ( () => {
-                C.get(this, Gl, "f").playUIClick(),
+                C.get(this, audioHandler, "f").playUIClick(),
                 C.get(this, Bl, "m", cc).call(this)
             }
             )),
@@ -51088,9 +51105,9 @@
             const b = document.createElement("button");
             return b.className = "button",
             b.disabled = !0,
-            b.textContent = C.get(this, Fl, "f").get("Host"),
+            b.textContent = C.get(this, languageMap, "f").get("Host"),
             b.addEventListener("click", ( () => {
-                if (C.get(this, Gl, "f").playUIClick(),
+                if (C.get(this, audioHandler, "f").playUIClick(),
                 null != p) {
                     C.set(this, ec, !0, "f"),
                     C.get(this, Zl, "f").classList.add("hidden");
@@ -51102,7 +51119,7 @@
                             const n = parseInt(u.value);
                             if (Number.isNaN(n) || !Number.isSafeInteger(n) || n < 1)
                                 throw new Error("Invalid maximum players: " + u.value);
-                            const i = new HostMultiplayerConnection(C.get(this, Fl, "f"),C.get(this, Vl, "f"),n,C.get(this, Hl, "f"))
+                            const i = new HostMultiplayerConnection(C.get(this, languageMap, "f"),C.get(this, kodubNetworkManager, "f"),n,C.get(this, profileManager, "f"), C.get(this, audioHandler, "f"))
                               , a = i.startNewSessionImmediate(r, e, t);
                             this.dispose(),
                             C.get(this, Ql, "f").call(this, e, t, "custom", [], {
@@ -51111,7 +51128,7 @@
                                 gameMode: r
                             })
                         } else
-                            C.get(this, Kl, "f").show(C.get(this, Fl, "f").get("Track is missing starting point"), C.get(this, Fl, "f").get("Ok"), ( () => {
+                            C.get(this, Kl, "f").show(C.get(this, languageMap, "f").get("Track is missing starting point"), C.get(this, languageMap, "f").get("Ok"), ( () => {
                                 C.get(this, Zl, "f").classList.remove("hidden"),
                                 C.set(this, ec, !1, "f")
                             }
@@ -51120,7 +51137,7 @@
                     )).catch((e => {
                         if (!(e instanceof TrackLoadError))
                             throw e;
-                        C.get(this, Kl, "f").show(C.get(this, Fl, "f").get("Failed to load track"), C.get(this, Fl, "f").get("Ok"), ( () => {
+                        C.get(this, Kl, "f").show(C.get(this, languageMap, "f").get("Failed to load track"), C.get(this, languageMap, "f").get("Ok"), ( () => {
                             C.get(this, Zl, "f").classList.remove("hidden"),
                             C.set(this, ec, !1, "f")
                         }
@@ -51147,12 +51164,12 @@
         const hc = class {
             constructor(e, t, n, i, r, a, s, o, l, c) {
                 Bl.add(this),
-                Gl.set(this, void 0),
-                Fl.set(this, void 0),
+                audioHandler.set(this, void 0),
+                languageMap.set(this, void 0),
                 Ol.set(this, void 0),
-                Wl.set(this, void 0),
-                Vl.set(this, void 0),
-                Hl.set(this, void 0),
+                recordManager.set(this, void 0),
+                kodubNetworkManager.set(this, void 0),
+                profileManager.set(this, void 0),
                 jl.set(this, void 0),
                 Kl.set(this, void 0),
                 ql.set(this, void 0),
@@ -51169,12 +51186,12 @@
                 rc.set(this, null),
                 ac.set(this, !1),
                 sc.set(this, void 0),
-                C.set(this, Gl, e, "f"),
-                C.set(this, Fl, t, "f"),
+                C.set(this, audioHandler, e, "f"),
+                C.set(this, languageMap, t, "f"),
                 C.set(this, Ol, n, "f"),
-                C.set(this, Wl, i, "f"),
-                C.set(this, Vl, r, "f"),
-                C.set(this, Hl, a, "f"),
+                C.set(this, recordManager, i, "f"),
+                C.set(this, kodubNetworkManager, r, "f"),
+                C.set(this, profileManager, a, "f"),
                 C.set(this, jl, s, "f"),
                 C.set(this, Kl, o, "f"),
                 C.set(this, ql, l, "f"),
@@ -56819,19 +56836,19 @@
                 t.preloadImage("images/" + e.substring(2));
             const s = new bu
               , o = new kd(s)
-              , l = new I(t,settingsManager);
-            l.load("music", ["audio/music.ogg", "audio/music.mp3"]),
-            l.load("betterMusic", ["mods/betterMusic.mp3"]),
-            l.load("click", ["audio/click.ogg", "audio/click.mp3"]),
-            l.load("engine", ["audio/engine.ogg", "audio/engine.mp3"]),
-            l.load("suspension", ["audio/suspension.ogg", "audio/suspension.mp3"]),
-            l.load("tires", ["audio/tires.ogg", "audio/tires.mp3"]),
-            l.load("collision", ["audio/collision.ogg", "audio/collision.mp3"]),
-            l.load("skidding", ["audio/skidding.ogg", "audio/skidding.mp3"]),
-            l.load("editor_edit", ["audio/editor_edit.ogg", "audio/editor_edit.mp3"]),
-            l.load("checkpoint", ["audio/checkpoint.ogg", "audio/checkpoint.mp3"]),
-            l.load("record", ["audio/record.ogg", "audio/record.mp3"]),
-            l.load("position_tick", ["audio/position_tick.ogg", "audio/position_tick.mp3"]),
+              , audioLoader = new AudioLoader(t,settingsManager);
+            audioLoader.load("music", ["audio/music.ogg", "audio/music.mp3"]),
+            audioLoader.load("betterMusic", ["mods/betterMusic.mp3"]),
+            audioLoader.load("click", ["audio/click.ogg", "audio/click.mp3"]),
+            audioLoader.load("engine", ["audio/engine.ogg", "audio/engine.mp3"]),
+            audioLoader.load("suspension", ["audio/suspension.ogg", "audio/suspension.mp3"]),
+            audioLoader.load("tires", ["audio/tires.ogg", "audio/tires.mp3"]),
+            audioLoader.load("collision", ["audio/collision.ogg", "audio/collision.mp3"]),
+            audioLoader.load("skidding", ["audio/skidding.ogg", "audio/skidding.mp3"]),
+            audioLoader.load("editor_edit", ["audio/editor_edit.ogg", "audio/editor_edit.mp3"]),
+            audioLoader.load("checkpoint", ["audio/checkpoint.ogg", "audio/checkpoint.mp3"]),
+            audioLoader.load("record", ["audio/record.ogg", "audio/record.mp3"]),
+            audioLoader.load("position_tick", ["audio/position_tick.ogg", "audio/position_tick.mp3"]),
             Kh.A.initResources(t);
             const c = document.getElementById("screen");
             if (!(c instanceof HTMLCanvasElement))
@@ -56868,14 +56885,14 @@
             w.syncUserProfile(x);
             const S = new qh(e,y,x,w)
               , k = new te
-              , E = new Ph(l)
+              , E = new Ph(audioLoader)
               , T = new Lf
               , M = (i, a) => {
                 o.trigger(( () => {
                     P.bQ(),
                     P.pS(),
                     currentUpdater.dispose(),
-                    currentUpdater = new gh(p,v,A,m,y,b,E,w,S,h,l,e,n,settingsManager,x,t,i,a,_,C,W,j,K,q),
+                    currentUpdater = new gh(p,v,A,m,y,b,E,w,S,h,audioLoader,e,n,settingsManager,x,t,i,a,_,C,W,j,K,q),
                     P.PM()
                 }
                 ))
@@ -56888,7 +56905,7 @@
                         const {default: t} = await i.e('garage').then(i.bind(i, 3280));
                         await t.initResources(),
                         currentUpdater.dispose(),
-                        currentUpdater = new t(b,v,A,m,h,l,w,settingsManager,x,E,e,( () => {
+                        currentUpdater = new t(b,v,A,m,h,audioLoader,w,settingsManager,x,E,e,( () => {
                             M(!1, null)
                         }
                         )),
@@ -56897,7 +56914,7 @@
                         console.error("Failed to load customization state: ", i);
                         const a = b.get("Failed to load garage.") + "\n\n" + b.get("Check your internet connection and try again.");
                         currentUpdater.dispose(),
-                        currentUpdater = new gh(p,v,A,m,y,b,E,w,S,h,l,e,n,settingsManager,x,t,!1,a,_,C,W,j,K,q),
+                        currentUpdater = new gh(p,v,A,m,y,b,E,w,S,h,audioLoader,e,n,settingsManager,x,t,!1,a,_,C,W,j,K,q),
                         P.PM()
                     }
                 }
@@ -56913,15 +56930,15 @@
                             const {default: a} = await i.e('editor').then(i.bind(i, 4124));
                             await a.initResources(),
                             currentUpdater.dispose();
-                            const c = currentUpdater = new a(v,d,e,A,m,b,l,h,settingsManager,o,w,S,y,E,T,( () => {
+                            const c = currentUpdater = new a(v,d,e,A,m,b,audioLoader,h,settingsManager,o,w,S,y,E,T,( () => {
                                 P.bQ(),
                                 P.pS(),
                                 currentUpdater.dispose(),
-                                currentUpdater = new gh(p,v,A,m,y,b,E,w,S,h,l,e,n,settingsManager,x,t,!1,null,_,C,W,j,K,q),
+                                currentUpdater = new gh(p,v,A,m,y,b,E,w,S,h,audioLoader,e,n,settingsManager,x,t,!1,null,_,C,W,j,K,q),
                                 P.PM()
                             }
                             ),( (t, n, i) => {
-                                const a = currentUpdater = new MainMultiplayerClass(p,f,v,A,m,b,h,l,w,S,e,settingsManager,s,E,T,y,t,n,"custom",[],null,null,!1,( () => {
+                                const a = currentUpdater = new MainMultiplayerClass(p,f,v,A,m,b,h,audioLoader,w,S,e,settingsManager,s,E,T,y,t,n,"custom",[],null,null,!1,( () => {
                                     throw new Error("Multiplayer connection lost should never be called from the editor")
                                 }
                                 ),( () => {
@@ -56942,7 +56959,7 @@
                             console.error("Failed to load editor state: ", i);
                             const a = b.get("Failed to load editor.") + "\n\n" + b.get("Check your internet connection and try again.");
                             currentUpdater.dispose(),
-                            currentUpdater = new gh(p,v,A,m,y,b,E,w,S,h,l,e,n,settingsManager,x,t,!1,a,_,C,W,j,K,q),
+                            currentUpdater = new gh(p,v,A,m,y,b,E,w,S,h,audioLoader,e,n,settingsManager,x,t,!1,a,_,C,W,j,K,q),
                             P.PM()
                         }
                     }
@@ -56982,7 +56999,7 @@
                         null))),
                         recording: k.recording
                     } : null,
-                    currentUpdater = new MainMultiplayerClass(p,f,v,A,m,b,h,l,w,S,e,settingsManager,s,E,T,y,t,n,i,a,_,c,!0,(e => {
+                    currentUpdater = new MainMultiplayerClass(p,f,v,A,m,b,h,audioLoader,w,S,e,settingsManager,s,E,T,y,t,n,i,a,_,c,!0,(e => {
                         let t;
                         switch (e) {
                         case "kicked":
@@ -57014,7 +57031,7 @@
                 o.trigger(( () => {
                     P.pS(),
                     currentUpdater.dispose(),
-                    currentUpdater = new WorldUpdater(f,v,e,t,n,A,m,h,l,b,settingsManager,i,( (e, t, n, i) => {
+                    currentUpdater = new WorldUpdater(f,v,e,t,n,A,m,h,audioLoader,b,settingsManager,i,( (e, t, n, i) => {
                         W(e, t, n, i, null)
                     }
                     )),
@@ -57029,7 +57046,7 @@
                     try {
                         const {default: e} = await i.e('verifier').then(i.bind(i, 5142));
                         currentUpdater.dispose(),
-                        currentUpdater = new e(l,h,x,w,y,d,t,a,( () => {
+                        currentUpdater = new e(audioLoader,h,x,w,y,d,t,a,( () => {
                             M(!1, null)
                         }
                         )),
@@ -57038,7 +57055,7 @@
                     } catch (i) {
                         console.error("Failed to load verifier state: ", i),
                         currentUpdater.dispose(),
-                        currentUpdater = new gh(p,v,A,m,y,b,E,w,S,h,l,e,n,settingsManager,x,t,!1,null,_,C,W,j,K,q),
+                        currentUpdater = new gh(p,v,A,m,y,b,E,w,S,h,audioLoader,e,n,settingsManager,x,t,!1,null,_,C,W,j,K,q),
                         P.PM()
                     }
                 }
@@ -57050,7 +57067,7 @@
                     try {
                         const {default: e} = await i.e('admin').then(i.bind(i, 9982));
                         currentUpdater.dispose(),
-                        currentUpdater = new e(l,h,E,y,x,a,( () => {
+                        currentUpdater = new e(audioLoader,h,E,y,x,a,( () => {
                             M(!1, null)
                         }
                         )),
@@ -57059,14 +57076,14 @@
                     } catch (i) {
                         console.error("Failed to load admin state: ", i),
                         currentUpdater.dispose(),
-                        currentUpdater = new gh(p,v,A,m,y,b,E,w,S,h,l,e,n,settingsManager,x,t,!1,null,_,C,W,j,K,q),
+                        currentUpdater = new gh(p,v,A,m,y,b,E,w,S,h,audioLoader,e,n,settingsManager,x,t,!1,null,_,C,W,j,K,q),
                         P.PM()
                     }
                 }
                 ))
             }
             ;
-            let currentUpdater = new gh(p,v,A,m,y,b,E,w,S,h,l,e,n,settingsManager,x,t,!1,null,_,C,W,j,K,q)
+            let currentUpdater = new gh(p,v,A,m,y,b,E,w,S,h,audioLoader,e,n,settingsManager,x,t,!1,null,_,C,W,j,K,q)
               , J = 0;
             h.setAnimationLoop((function(e) {
                 const t = Math.max(e - J, 0) / 1e3;
