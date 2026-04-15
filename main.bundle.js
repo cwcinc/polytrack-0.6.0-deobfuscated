@@ -7259,7 +7259,8 @@
                 e[e.GhostCarSoundsEnabled = 21] = "GhostCarSoundsEnabled",
                 e[e.VibrationEnabled = 22] = "VibrationEnabled",
                 e[e.TouchSteeringSide = 23] = "TouchSteeringSide",
-                e[e.MaxGhostOpacity = 24] = "MaxGhostOpacity"
+                e[e.MaxGhostOpacity = 24] = "MaxGhostOpacity",
+                e[e.ItalicsEnabled = 25] = "ItalicsEnabled"
             }(i || (i = {}));
             const r = i
         }
@@ -48877,7 +48878,14 @@
             C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Toggle spectator camera"), KeyBind.ToggleSpectatorCamera),
             C.get(this, ms, "m", Bs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Modded")),
             C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Toggle Ghost"), KeyBind.ToggleGhost),
-            C.get(this, ms, "m", Fs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Ghost Opacity"), R.A.MaxGhostOpacity)
+            C.get(this, ms, "m", Fs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Ghost Opacity"), R.A.MaxGhostOpacity),
+            C.get(this, ms, "m", Gs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Italic Text"), [{
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "Off"),
+                value: "false"
+            }, {
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "On"),
+                value: "true"
+            }], R.A.ItalicsEnabled)
         }
         ,
         Ds = function(e) {
@@ -55524,10 +55532,17 @@
                 const t = e.loadSettings();
                 null != t && this.updateSettings(t);
                 const n = e.loadKeyBindings();
-                null != n && C.get(this, Mu, "m", Pu).call(this, n)
+                null != n && C.get(this, Mu, "m", Pu).call(this, n);
+
+                this.disableItalicElement = document.createElement("style"),
+                this.disableItalicElement.innerHTML = `
+                * {
+                    font-style: normal !important;
+                }
+                `;
             }
             defaultSettings() {
-                return new Map([[R.A.ImperialUnitsEnabled, "false"], [R.A.ResetHintEnabled, "true"], [R.A.GhostCarEnabled, "true"], [R.A.DefaultCameraMode, "false"], [R.A.CockpitCameraToggle, "true"], [R.A.Checkpoints, "bottom"], [R.A.Timer, "bottom"], [R.A.Speedometer, "bottom"], [R.A.Language, "en-US"], [R.A.ShadowQuality, "2"], [R.A.CloudsEnabled, "true"], [R.A.ParticlesEnabled, "true"], [R.A.SkidmarksEnabled, "true"], [R.A.FogEnabled, "true"], [R.A.RenderScale, "1"], [R.A.ScreenPixelDensity, "true"], [R.A.Antialiasing, "true"], [R.A.MasterVolume, "1"], [R.A.SoundEffectVolume, "1"], [R.A.MusicVolume, "1"], [R.A.CheckpointVolume, "1"], [R.A.MaxGhostOpacity, "1"], [R.A.GhostCarSoundsEnabled, "true"], [R.A.VibrationEnabled, "false"], [R.A.TouchSteeringSide, "true"]])
+                return new Map([[R.A.ImperialUnitsEnabled, "false"], [R.A.ResetHintEnabled, "true"], [R.A.GhostCarEnabled, "true"], [R.A.DefaultCameraMode, "false"], [R.A.CockpitCameraToggle, "true"], [R.A.Checkpoints, "bottom"], [R.A.Timer, "bottom"], [R.A.Speedometer, "bottom"], [R.A.Language, "en-US"], [R.A.ShadowQuality, "2"], [R.A.CloudsEnabled, "true"], [R.A.ParticlesEnabled, "true"], [R.A.SkidmarksEnabled, "true"], [R.A.FogEnabled, "true"], [R.A.ItalicsEnabled, "true"], [R.A.RenderScale, "1"], [R.A.ScreenPixelDensity, "true"], [R.A.Antialiasing, "true"], [R.A.MasterVolume, "1"], [R.A.SoundEffectVolume, "1"], [R.A.MusicVolume, "1"], [R.A.CheckpointVolume, "1"], [R.A.MaxGhostOpacity, "1"], [R.A.GhostCarSoundsEnabled, "true"], [R.A.VibrationEnabled, "false"], [R.A.TouchSteeringSide, "true"]])
             }
             defaultKeyBindings() {
                 return new Map([
@@ -55591,6 +55606,15 @@
                     if (!C.get(this, Cu, "f").has(t))
                         throw new Error("Setting name is missing");
                     C.get(this, Cu, "f").set(t, n)
+                }
+                if (this.getSettingBoolean(R.A.ItalicsEnabled)) {
+                    if (document.head.contains(this.disableItalicElement)) {
+                        this.disableItalicElement.remove();
+                    }
+                } else {
+                    if (!document.head.contains(this.disableItalicElement)) {
+                        document.head.appendChild(this.disableItalicElement);
+                    }
                 }
             }
             saveSettings() {
