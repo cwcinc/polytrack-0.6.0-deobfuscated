@@ -7260,7 +7260,8 @@
                 e[e.VibrationEnabled = 22] = "VibrationEnabled",
                 e[e.TouchSteeringSide = 23] = "TouchSteeringSide",
                 e[e.MaxGhostOpacity = 24] = "MaxGhostOpacity",
-                e[e.ItalicsEnabled = 25] = "ItalicsEnabled"
+                e[e.ItalicsEnabled = 25] = "ItalicsEnabled",
+                e[e.BackwardsCameraToggle = 26] = "BackwardsCameraToggle"
             }(i || (i = {}));
             const r = i
         }
@@ -7354,7 +7355,8 @@
             });
             var i, r, a, s, o, l = n(1635), THREE = n(4922), DRACOLoader = n(1728).Z, d = n(7888), BufferGeometryUtils = n(1566), RenderManager = n(2825).A;
             class f {
-                constructor() {
+                constructor(facingBackwards=!1) {
+                    this.facingBackwards = facingBackwards,
                     i.add(this),
                     s.set(this, new THREE.PerspectiveCamera(l.get(r, r, "f", a),1,.5,RenderManager.maxViewDistance))
                 }
@@ -7369,7 +7371,7 @@
                     const r = new THREE.Vector3(0,1.1 + .46 / l.get(this, s, "f").zoom - .46,.4);
                     l.get(this, s, "f").position.addVectors(e, r.applyQuaternion(t)),
                     l.get(this, s, "f").quaternion.copy(t),
-                    l.get(this, s, "f").quaternion.multiply((new THREE.Quaternion).setFromEuler(new THREE.Euler(0,Math.PI,0))),
+                    l.get(this, s, "f").quaternion.multiply((new THREE.Quaternion).setFromEuler(new THREE.Euler(0, this.facingBackwards ? 0 : Math.PI, 0))),
                     l.get(this, s, "f").updateMatrix()
                 }
                 get camera() {
@@ -7386,7 +7388,7 @@
             a = {
                 value: 70
             };
-            const g = f;
+            const CockpitCamera = f;
             var m, A, v, y, b, w, x, S = n(765);
             class k {
                 constructor() {
@@ -7536,7 +7538,7 @@
                 })
             };
             const B = D;
-            var G, F, O, W, V, H, j, K, q, Q, J, X, Y, Z, $, ee, te, ne, ie, re, ae, se, oe, le, ce, he, de, ue, pe, m_positionListeners, fe, ge, me, Ae, ve, ye, nameTagMesh, we, xe, Se, ke, Ee, Te, Me, _e, Ce, Re, Pe, Ie, Le, Ue, ze, Ne, De, Be, Ge, Fe, Oe, setCarDisabled, renderNameTag, Ve, He, je, Ke, qe, Qe, Je, Xe, Ye, Ze, $e, et, tt, nt, it, rt, at, carDisabled, st = n(3476), ot = n(6633), lt = n(927);
+            var G, F, O, W, V, H, j, K, q, Q, J, carOrbitCamera, carCockpitCamera, carBackwardsCamera, Z, $, ee, te, ne, ie, re, ae, se, oe, le, ce, he, de, ue, pe, m_positionListeners, fe, ge, me, Ae, ve, ye, nameTagMesh, we, xe, Se, ke, Ee, Te, Me, _e, Ce, Re, Pe, Ie, Le, Ue, ze, Ne, De, Be, Ge, Fe, Oe, setCarDisabled, renderNameTag, Ve, He, je, Ke, qe, Qe, Je, Xe, Ye, Ze, $e, et, tt, nt, it, rt, at, carDisabled, st = n(3476), ot = n(6633), lt = n(927);
             class VisualCar {
                 constructor(e, t, n, i, r, a, s, o, h, d, u) {
                     if (G.add(this),
@@ -7550,8 +7552,9 @@
                     Q.set(this, null),
                     J.set(this, []),
                     this.notificationAudioEnabled = !1,
-                    X.set(this, void 0),
-                    Y.set(this, void 0),
+                    carOrbitCamera.set(this, void 0),
+                    carCockpitCamera.set(this, void 0),
+                    carBackwardsCamera.set(this, void 0),
                     Z.set(this, void 0),
                     $.set(this, void 0),
                     ee.set(this, !1),
@@ -7605,12 +7608,17 @@
                     l.set(this, $, u, "f"),
                     d?.getSettingBoolean(st.A.ParticlesEnabled) ? l.set(this, De, new N.A(r), "f") : l.set(this, De, null, "f"),
                     null != l.get(this, Re, "f") && null != l.get(this, Pe, "f") && l.set(this, Le, [new B(l.get(this, Ae, "f")), new B(l.get(this, Ae, "f")), new B(l.get(this, Ae, "f")), new B(l.get(this, Ae, "f"))], "f"),
-                    l.set(this, X, new E, "f"),
-                    l.get(this, X, "f").reset(t.position, t.quaternion),
-                    r.scene.add(l.get(this, X, "f").camera),
-                    l.set(this, Y, new g, "f"),
-                    l.get(this, Y, "f").reset(t.position, t.quaternion),
-                    r.scene.add(l.get(this, Y, "f").camera),
+                    l.set(this, carOrbitCamera, new E, "f"),
+                    l.get(this, carOrbitCamera, "f").reset(t.position, t.quaternion),
+                    r.scene.add(l.get(this, carOrbitCamera, "f").camera),
+                    l.set(this, carCockpitCamera, new CockpitCamera, "f"),
+                    l.get(this, carCockpitCamera, "f").reset(t.position, t.quaternion),
+                    r.scene.add(l.get(this, carCockpitCamera, "f").camera),
+
+                    l.set(this, carBackwardsCamera, new CockpitCamera(!0), "f"),
+                    l.get(this, carBackwardsCamera, "f").reset(t.position, t.quaternion),
+                    r.scene.add(l.get(this, carBackwardsCamera, "f").camera),
+
                     null == F.models)
                         throw new Error("Car model isn't loaded yet");
                     if (null != l.get(this, Z, "f") && null != l.get(this, Re, "f") && null != l.get(this, Pe, "f") && null != h) {
@@ -7713,8 +7721,9 @@
                 dispose() {
                     l.set(this, Fe, !0, "f"),
                     l.get(this, G, "m", Oe).call(this),
-                    l.get(this, Ae, "f").scene.remove(l.get(this, X, "f").camera),
-                    l.get(this, Ae, "f").scene.remove(l.get(this, Y, "f").camera),
+                    l.get(this, Ae, "f").scene.remove(l.get(this, carOrbitCamera, "f").camera),
+                    l.get(this, Ae, "f").scene.remove(l.get(this, carCockpitCamera, "f").camera),
+                    l.get(this, Ae, "f").scene.remove(l.get(this, carBackwardsCamera, "f").camera),
                     l.get(this, De, "f")?.dispose();
                     for (const e of l.get(this, Le, "f"))
                         e.dispose();
@@ -7894,8 +7903,9 @@
                     if ((null == l.get(this, Ne, "f") || l.get(this, Ne, "f") + 10 <= l.get(this, ie, "f").frames) && (l.set(this, Ne, l.get(this, ie, "f").frames, "f"),
                     l.get(this, G, "m", Je).call(this, .01)),
                     t || !n.controls.reset && l.get(this, ie, "f").controls.reset) {
-                        l.get(this, X, "f").reset(this.getPosition(), this.getQuaternion(), this.getSpeedKmh()),
-                        l.get(this, Y, "f").reset(this.getPosition(), this.getQuaternion(), this.getSpeedKmh());
+                        l.get(this, carOrbitCamera, "f").reset(this.getPosition(), this.getQuaternion(), this.getSpeedKmh()),
+                        l.get(this, carCockpitCamera, "f").reset(this.getPosition(), this.getQuaternion(), this.getSpeedKmh());
+                        l.get(this, carBackwardsCamera, "f").reset(this.getPosition(), this.getQuaternion(), this.getSpeedKmh());
                         for (const e of l.get(this, de, "f"))
                             e()
                     }
@@ -7997,15 +8007,19 @@
                         const t = this.getPosition()
                           , n = this.getQuaternion()
                           , i = this.getSpeedKmh();
-                        l.get(this, X, "f").update(e, t, n, i),
-                        l.get(this, Y, "f").update(t, n, i)
+                        l.get(this, carOrbitCamera, "f").update(e, t, n, i),
+                        l.get(this, carCockpitCamera, "f").update(t, n, i),
+                        l.get(this, carBackwardsCamera, "f").update(t, n, i)
                     }
                 }
                 get cameraOrbit() {
-                    return l.get(this, X, "f").camera
+                    return l.get(this, carOrbitCamera, "f").camera
                 }
                 get cameraCockpit() {
-                    return l.get(this, Y, "f").camera
+                    return l.get(this, carCockpitCamera, "f").camera
+                }
+                get cameraBackwards() {
+                    return l.get(this, carBackwardsCamera, "f").camera
                 }
                 set audioVolume(e) {
                     l.set(this, V, e, "f"),
@@ -8111,8 +8125,9 @@
             q = new WeakMap,
             Q = new WeakMap,
             J = new WeakMap,
-            X = new WeakMap,
-            Y = new WeakMap,
+            carOrbitCamera = new WeakMap,
+            carCockpitCamera = new WeakMap,
+            carBackwardsCamera = new WeakMap,
             Z = new WeakMap,
             $ = new WeakMap,
             ee = new WeakMap,
@@ -8373,7 +8388,7 @@
                         t.positionY.value = i.y,
                         t.positionZ.value = i.z
                     }
-                    l.get(this, Ae, "f").camera != l.get(this, X, "f").camera && l.get(this, Ae, "f").camera != l.get(this, Y, "f").camera || l.get(this, O, "f").refreshListener(l.get(this, Ae, "f")),
+                    l.get(this, Ae, "f").camera != l.get(this, carOrbitCamera, "f").camera && l.get(this, Ae, "f").camera != l.get(this, carCockpitCamera, "f").camera && l.get(this, Ae, "f").camera != l.get(this, carBackwardsCamera, "f").camera || l.get(this, O, "f").refreshListener(l.get(this, Ae, "f")),
                     l.get(this, G, "m", Ye).call(this),
                     l.get(this, G, "m", $e).call(this),
                     l.get(this, G, "m", nt).call(this)
@@ -23760,7 +23775,8 @@
                 e[e.PreviewStepForward = 31] = "PreviewStepForward",
                 e[e.PreviewStepBack = 32] = "PreviewStepBack",
 
-                e[e.ToggleGhost = 33] = "ToggleGhost"
+                e[e.ToggleGhost = 33] = "ToggleGhost",
+                e[e.VehicleBackwardsCamera = 34] = "VehicleBackwardsCamera"
             }(i || (i = {}));
             const r = i
         }
@@ -39129,8 +39145,8 @@
                 }
         }
         ;
-        const Ct = class {
-            constructor(e, t, n, i, r, a) {
+        const TouchControls = class {
+            constructor(e, t, n, cockpitKeyDown, cockpitKeyUp, backwardsKeyDown, backwardsKeyUp, a) {
                 xt.add(this),
                 St.set(this, void 0),
                 kt.set(this, void 0),
@@ -39144,21 +39160,39 @@
                 C.set(this, kt, document.createElement("div"), "f"),
                 C.get(this, kt, "f").className = "hidden",
                 s.appendChild(C.get(this, kt, "f"));
-                const o = document.createElement("button");
-                o.className = "camera",
-                o.innerHTML = '<img src="images/preview.svg">',
-                o.addEventListener("touchstart", ( () => {
+
+                const cockpitCameraButton = document.createElement("button");
+                cockpitCameraButton.className = "camera",
+                cockpitCameraButton.innerHTML = '<img src="images/preview.svg">',
+                cockpitCameraButton.addEventListener("touchstart", ( () => {
                     C.get(this, xt, "m", _t).call(this),
-                    o.classList.add("active"),
-                    i()
+                    cockpitCameraButton.classList.add("active"),
+                    cockpitKeyDown()
                 }
                 )),
-                o.addEventListener("touchend", ( () => {
-                    o.classList.remove("active"),
-                    r()
+                cockpitCameraButton.addEventListener("touchend", ( () => {
+                    cockpitCameraButton.classList.remove("active"),
+                    cockpitKeyUp()
                 }
                 )),
-                C.get(this, kt, "f").appendChild(o),
+                C.get(this, kt, "f").appendChild(cockpitCameraButton);
+
+                const backwardsCameraButton = document.createElement("button");
+                backwardsCameraButton.className = "camera",
+                backwardsCameraButton.innerHTML = '<img src="images/preview.svg">',
+                backwardsCameraButton.addEventListener("touchstart", ( () => {
+                    C.get(this, xt, "m", _t).call(this),
+                    backwardsCameraButton.classList.add("active"),
+                    backwardsKeyDown()
+                }
+                )),
+                backwardsCameraButton.addEventListener("touchend", ( () => {
+                    backwardsCameraButton.classList.remove("active"),
+                    backwardsKeyUp()
+                }
+                )),
+                C.get(this, kt, "f").appendChild(backwardsCameraButton),
+
                 C.set(this, Et, document.createElement("button"), "f"),
                 C.get(this, Et, "f").className = "reset",
                 C.get(this, Et, "f").innerHTML = '<img src="images/reset.svg">',
@@ -41464,14 +41498,14 @@
                 }
             }
         }
-        var _r, Cr, Rr, Pr, Ir, Lr, Ur, zr, Nr, Dr, Br, Gr, Fr, Or, Wr, Vr, Hr, jr, Kr, qr, Qr, hostingNewSessionCallback, Xr, Yr, Zr, drivingUIVisible, ea, ta, na, ia, ra, aa, sa, oa, la, ca, ha, da, ua, pa, fa, ga, ma, Aa, va, ya, ba, wa, xa, multiplayerInstanceInfo, ka, Ea, Ta, Ma, _a, Ca, idToMultiplayerCarMap, Pa, Ia, La, Ua, za, Na, Da, Ba, Ga, Fa, Oa, Wa, Va, Ha, ja, Ka, qa, Qa, Ja, Xa, Ya, Za, updateGhostOpacity, es, m_ghostsVisible;
+        var _r, Cr, Rr, Pr, Ir, Lr, Ur, primarySceneObject, Nr, Dr, Br, Gr, Fr, Or, Wr, Vr, Hr, jr, Kr, qr, Qr, hostingNewSessionCallback, Xr, Yr, Zr, drivingUIVisible, ea, ta, na, ia, ra, aa, sa, oa, la, ca, ha, da, ua, pa, fa, ga, ma, Aa, va, ya, ba, primaryCar, xa, multiplayerInstanceInfo, ka, Ea, Ta, Ma, _a, Ca, idToMultiplayerCarMap, Pa, Ia, La, Ua, za, Na, Da, Ba, Ga, Fa, Oa, Wa, Va, Ha, ja, cockpitCameraKeyDown, backwardsCameraKeyDown, backwardsCameraKeyUp, cockpitCameraKeyUp, Qa, Ja, Xa, Ya, Za, updateGhostOpacity, es, m_ghostsVisible;
         Cr = new WeakMap,
         Rr = new WeakMap,
         Pr = new WeakMap,
         Ir = new WeakMap,
         Lr = new WeakMap,
         Ur = new WeakMap,
-        zr = new WeakMap,
+        primarySceneObject = new WeakMap,
         Nr = new WeakMap,
         Dr = new WeakMap,
         Br = new WeakMap,
@@ -41511,7 +41545,7 @@
         va = new WeakMap,
         ya = new WeakMap,
         ba = new WeakMap,
-        wa = new WeakMap,
+        primaryCar = new WeakMap,
         xa = new WeakMap,
         multiplayerInstanceInfo = new WeakMap,
         ka = new WeakMap,
@@ -41553,19 +41587,71 @@
         }
         ,
         ja = function() {
-            return !(C.get(this, wa, "f").hasFinished() || !C.get(this, wa, "f").hasCheckpointToRespawnAt() || !C.get(this, va, "f") || null != C.get(this, ba, "f") && (new Date).getTime() - C.get(this, ba, "f").getTime() < 250)
+            return !(C.get(this, primaryCar, "f").hasFinished() || !C.get(this, primaryCar, "f").hasCheckpointToRespawnAt() || !C.get(this, va, "f") || null != C.get(this, ba, "f") && (new Date).getTime() - C.get(this, ba, "f").getTime() < 250)
         }
         ,
-        Ka = function() {
-            null != C.get(this, ca, "f") || C.get(this, Pa, "f") || C.get(this, wa, "f").hasFinished() || (C.get(this, Gr, "f").getSettingBoolean(R.A.CockpitCameraToggle) ? C.get(this, zr, "f").camera == C.get(this, wa, "f").cameraOrbit ? C.get(this, zr, "f").setCamera(C.get(this, wa, "f").cameraCockpit) : C.get(this, zr, "f").setCamera(C.get(this, wa, "f").cameraOrbit) : C.get(this, Gr, "f").getSettingBoolean(R.A.DefaultCameraMode) ? C.get(this, zr, "f").setCamera(C.get(this, wa, "f").cameraOrbit) : C.get(this, zr, "f").setCamera(C.get(this, wa, "f").cameraCockpit))
+        cockpitCameraKeyDown = function() {
+            if (C.get(this, ca, "f") != null) return;
+            if (C.get(this, Pa, "f")) return;
+            if (C.get(this, primaryCar, "f").hasFinished()) return;
+
+            if (C.get(this, Gr, "f").getSettingBoolean(R.A.CockpitCameraToggle)) {
+                if (C.get(this, primarySceneObject, "f").camera != C.get(this, primaryCar, "f").cameraCockpit) {
+                    C.get(this, primarySceneObject, "f").setCamera(C.get(this, primaryCar, "f").cameraCockpit);
+                } else {
+                    C.get(this, primarySceneObject, "f").setCamera(C.get(this, primaryCar, "f").cameraOrbit);
+                }
+            } else {
+                if (C.get(this, Gr, "f").getSettingBoolean(R.A.DefaultCameraMode)) {
+                    C.get(this, primarySceneObject, "f").setCamera(C.get(this, primaryCar, "f").cameraOrbit);
+                } else {
+                    C.get(this, primarySceneObject, "f").setCamera(C.get(this, primaryCar, "f").cameraCockpit);
+                }
+            }
         }
         ,
-        qa = function() {
-            C.get(this, Ba, "f").isEnabled || C.get(this, wa, "f").hasFinished() || C.get(this, Gr, "f").getSettingBoolean(R.A.CockpitCameraToggle) || (C.get(this, Gr, "f").getSettingBoolean(R.A.DefaultCameraMode) ? C.get(this, zr, "f").setCamera(C.get(this, wa, "f").cameraCockpit) : C.get(this, zr, "f").setCamera(C.get(this, wa, "f").cameraOrbit))
+        cockpitCameraKeyUp = function() {
+            if (C.get(this, Ba, "f").isEnabled) return;
+            if (C.get(this, primaryCar, "f").hasFinished()) return;
+            if (C.get(this, Gr, "f").getSettingBoolean(R.A.CockpitCameraToggle)) return;
+
+            if (C.get(this, Gr, "f").getSettingBoolean(R.A.DefaultCameraMode)) {
+                C.get(this, primarySceneObject, "f").setCamera(C.get(this, primaryCar, "f").cameraCockpit);
+            } else {
+                C.get(this, primarySceneObject, "f").setCamera(C.get(this, primaryCar, "f").cameraOrbit);
+            }
+        }
+        ,
+        backwardsCameraKeyDown = function() {
+            if (C.get(this, ca, "f") != null) return;
+            if (C.get(this, Pa, "f")) return;
+            if (C.get(this, primaryCar, "f").hasFinished()) return;
+
+            if (C.get(this, Gr, "f").getSettingBoolean(R.A.BackwardsCameraToggle)) {
+                if (C.get(this, primarySceneObject, "f").camera != C.get(this, primaryCar, "f").cameraBackwards) {
+                    C.get(this, primarySceneObject, "f").setCamera(C.get(this, primaryCar, "f").cameraBackwards);
+                } else {
+                    C.get(this, primarySceneObject, "f").setCamera(C.get(this, primaryCar, "f").cameraOrbit);
+                }
+            } else {
+                C.get(this, primarySceneObject, "f").setCamera(C.get(this, primaryCar, "f").cameraBackwards);
+            }
+        }
+        ,
+        backwardsCameraKeyUp = function() {
+            if (C.get(this, Ba, "f").isEnabled) return;
+            if (C.get(this, primaryCar, "f").hasFinished()) return;
+            if (C.get(this, Gr, "f").getSettingBoolean(R.A.BackwardsCameraToggle)) return;
+
+            if (C.get(this, Gr, "f").getSettingBoolean(R.A.DefaultCameraMode)) {
+                C.get(this, primarySceneObject, "f").setCamera(C.get(this, primaryCar, "f").cameraCockpit);
+            } else {
+                C.get(this, primarySceneObject, "f").setCamera(C.get(this, primaryCar, "f").cameraOrbit);
+            }
         }
         ,
         Qa = function() {
-            P.Xx() || C.get(this, Pa, "f") || (C.get(this, wa, "f").hasFinished() && C.get(this, multiplayerInstanceInfo, "f")?.gameMode != MultiplayerRoomModes.Competitive ? P.RN("game-finish-reset").finally(( () => {
+            P.Xx() || C.get(this, Pa, "f") || (C.get(this, primaryCar, "f").hasFinished() && C.get(this, multiplayerInstanceInfo, "f")?.gameMode != MultiplayerRoomModes.Competitive ? P.RN("game-finish-reset").finally(( () => {
                 C.get(this, Pa, "f") || (C.get(this, _r, "m", Ja).call(this),
                 C.get(this, _r, "m", Ya).call(this))
             }
@@ -41574,9 +41660,9 @@
         }
         ,
         Ja = function() {
-            const e = C.get(this, zr, "f").camera == C.get(this, wa, "f").cameraCockpit;
-            C.get(this, wa, "f").dispose(),
-            C.set(this, wa, C.get(this, _r, "m", Xa).call(this, e), "f")
+            const e = C.get(this, primarySceneObject, "f").camera == C.get(this, primaryCar, "f").cameraCockpit;
+            C.get(this, primaryCar, "f").dispose(),
+            C.set(this, primaryCar, C.get(this, _r, "m", Xa).call(this, e), "f")
         }
         ,
         Xa = function(e) {
@@ -41599,7 +41685,7 @@
             } else
                 a = null;
             // Primary controlled polycar instantiation
-            const s = new VisualCar(C.get(this, Cr, "f"),i,null,C.get(this, ya, "f"),C.get(this, zr, "f"),C.get(this, Nr, "f"),C.get(this, Ir, "f"),C.get(this, Pr, "f"),C.get(this, Yr, "f"),C.get(this, Gr, "f"),a);
+            const s = new VisualCar(C.get(this, Cr, "f"),i,null,C.get(this, ya, "f"),C.get(this, primarySceneObject, "f"),C.get(this, Nr, "f"),C.get(this, Ir, "f"),C.get(this, Pr, "f"),C.get(this, Yr, "f"),C.get(this, Gr, "f"),a);
             s.multiplayerInstance = C.get(this, multiplayerInstanceInfo, "f");
             return s.notificationAudioEnabled = !0,
             s.addResetCallback(( () => {
@@ -41755,7 +41841,7 @@
             }
             )),
             s.setCarStyle(n.carStyle),
-            e ? C.get(this, zr, "f").setCamera(s.cameraCockpit) : C.get(this, zr, "f").setCamera(s.cameraOrbit),
+            e ? C.get(this, primarySceneObject, "f").setCamera(s.cameraCockpit) : C.get(this, primarySceneObject, "f").setCamera(s.cameraOrbit),
             C.get(this, Ba, "f").isEnabled = !1,
             C.get(this, oa, "f")?.dispose(),
             C.set(this, oa, null, "f"),
@@ -41811,7 +41897,7 @@
                         e.finishSpeedKmh = null
                     }
                     if (null == C.get(this, multiplayerInstanceInfo, "f")) {
-                        const n = new VisualCar(null,t,e.settings.recording,null,C.get(this, zr, "f"),C.get(this, Nr, "f"),C.get(this, Ir, "f"),C.get(this, Pr, "f"),C.get(this, Yr, "f"),C.get(this, Gr, "f"),null);
+                        const n = new VisualCar(null,t,e.settings.recording,null,C.get(this, primarySceneObject, "f"),C.get(this, Nr, "f"),C.get(this, Ir, "f"),C.get(this, Pr, "f"),C.get(this, Yr, "f"),C.get(this, Gr, "f"),null);
                         n.setCarStyle(e.settings.carStyle),
                         n.audioVolume = C.get(this, Oa, "f"),
                         C.get(this, _r, "m", updateGhostOpacity).call(this),
@@ -41839,7 +41925,7 @@
                 return;
             }
 
-            const e = C.get(this, wa, "f").getPosition()
+            const e = C.get(this, primaryCar, "f").getPosition()
               , t = C.get(this, xa, "f").map((e => e.car)).filter((e => null != e)).concat(Array.from(C.get(this, idToMultiplayerCarMap, "f").values()).map((e => e.car)));
             for (const n of t) {
                 const t = n.getPosition().distanceTo(e)
@@ -41886,7 +41972,7 @@
                 Ir.set(this, void 0),
                 Lr.set(this, void 0),
                 Ur.set(this, void 0),
-                zr.set(this, void 0),
+                primarySceneObject.set(this, void 0),
                 Nr.set(this, void 0),
                 Dr.set(this, void 0),
                 Br.set(this, void 0),
@@ -41926,7 +42012,7 @@
                 va.set(this, !1),
                 ya.set(this, void 0),
                 ba.set(this, null),
-                wa.set(this, void 0),
+                primaryCar.set(this, void 0),
                 xa.set(this, []),
                 multiplayerInstanceInfo.set(this, void 0),
                 ka.set(this, null),
@@ -41955,7 +42041,7 @@
                 C.set(this, Ir, i, "f"),
                 C.set(this, Lr, r, "f"),
                 C.set(this, Ur, a, "f"),
-                C.set(this, zr, s, "f"),
+                C.set(this, primarySceneObject, s, "f"),
                 C.set(this, Nr, o, "f"),
                 C.set(this, Dr, l, "f"),
                 C.set(this, Br, c, "f"),
@@ -42004,18 +42090,29 @@
                 C.get(this, Ba, "f").addToggleListener((e => {
                     e ? (C.get(this, ea, "f").isVisible = !1,
                     s.setCamera(C.get(this, Ba, "f").camera)) : (C.get(this, ea, "f").isVisible = C.get(this, drivingUIVisible, "f"),
-                    C.get(this, Gr, "f").getSettingBoolean(R.A.DefaultCameraMode) ? C.get(this, zr, "f").setCamera(C.get(this, wa, "f").cameraCockpit) : C.get(this, zr, "f").setCamera(C.get(this, wa, "f").cameraOrbit))
+                    C.get(this, Gr, "f").getSettingBoolean(R.A.DefaultCameraMode) ? C.get(this, primarySceneObject, "f").setCamera(C.get(this, primaryCar, "f").cameraCockpit) : C.get(this, primarySceneObject, "f").setCamera(C.get(this, primaryCar, "f").cameraOrbit))
                 }
                 )),
                 u.setCursorHiddenWhenInactive(!0),
-                C.set(this, ma, new Ct(C.get(this, ya, "f"),C.get(this, Nr, "f"),C.get(this, Gr, "f"),( () => {
-                    C.get(this, _r, "m", Ka).call(this)
+                C.set(this, ma, new TouchControls(C.get(this, ya, "f"),C.get(this, Nr, "f"),C.get(this, Gr, "f"),
+                ( () => {
+                    C.get(this, _r, "m", cockpitCameraKeyDown).call(this)
                 }
-                ),( () => {
-                    C.get(this, _r, "m", qa).call(this)
+                ),
+                ( () => {
+                    C.get(this, _r, "m", cockpitCameraKeyUp).call(this)
                 }
-                ),( () => {
-                    !P.ip() && C.get(this, wa, "f").hasStarted() && (C.get(this, _r, "m", ja).call(this) ? C.get(this, ya, "f").reset = !0 : (C.get(this, _r, "m", Qa).call(this),
+                ),
+                ( () => {
+                    C.get(this, _r, "m", backwardsCameraKeyDown).call(this)
+                }
+                ),
+                ( () => {
+                    C.get(this, _r, "m", backwardsCameraKeyUp).call(this)
+                }
+                ),
+                ( () => {
+                    !P.ip() && C.get(this, primaryCar, "f").hasStarted() && (C.get(this, _r, "m", ja).call(this) ? C.get(this, ya, "f").reset = !0 : (C.get(this, _r, "m", Qa).call(this),
                     C.get(this, ya, "f").reset = !1))
                 }
                 )), "f"),
@@ -42168,7 +42265,7 @@
                             // Multiplayer player car creation
                             if (null == n) {
                                 n = {
-                                    car: new VisualCar(null,t,null,null,C.get(this, zr, "f"),C.get(this, Nr, "f"),C.get(this, Ir, "f"),C.get(this, Pr, "f"),C.get(this, Yr, "f"),C.get(this, Gr, "f"),null),
+                                    car: new VisualCar(null,t,null,null,C.get(this, primarySceneObject, "f"),C.get(this, Nr, "f"),C.get(this, Ir, "f"),C.get(this, Pr, "f"),C.get(this, Yr, "f"),C.get(this, Gr, "f"),null),
                                     time: 0,
                                     resetCounter: 0,
                                     bufferedCarStates: []
@@ -42327,20 +42424,23 @@
                     }
                 }
                 const I = C.get(this, Gr, "f").getSettingBoolean(R.A.DefaultCameraMode);
-                if (C.set(this, wa, C.get(this, _r, "m", Xa).call(this, I), "f"),
+                if (C.set(this, primaryCar, C.get(this, _r, "m", Xa).call(this, I), "f"),
                 C.get(this, _r, "m", Ya).call(this),
                 window.addEventListener("keydown", C.set(this, Na, (e => {
                     if (!P.ip()) {
                         if (!C.get(this, Ba, "f").isEnabled && !C.get(this, _r, "m", Ha).call(this))
                             if (C.get(this, Gr, "f").checkKeyBinding(e, KeyBind.VehicleCheckpointReset))
-                                e.repeat || null != C.get(this, ca, "f") || C.get(this, Pa, "f") || C.get(this, wa, "f").hasStarted() && (C.get(this, _r, "m", ja).call(this) ? C.get(this, ya, "f").reset = !0 : (C.get(this, _r, "m", Qa).call(this),
+                                e.repeat || null != C.get(this, ca, "f") || C.get(this, Pa, "f") || C.get(this, primaryCar, "f").hasStarted() && (C.get(this, _r, "m", ja).call(this) ? C.get(this, ya, "f").reset = !0 : (C.get(this, _r, "m", Qa).call(this),
                                 C.get(this, ya, "f").reset = !1)),
                                 e.preventDefault();
                             else if (C.get(this, Gr, "f").checkKeyBinding(e, KeyBind.VehicleStartReset))
-                                e.repeat || null != C.get(this, ca, "f") || C.get(this, Pa, "f") || C.get(this, wa, "f").hasStarted() && C.get(this, _r, "m", Qa).call(this),
+                                e.repeat || null != C.get(this, ca, "f") || C.get(this, Pa, "f") || C.get(this, primaryCar, "f").hasStarted() && C.get(this, _r, "m", Qa).call(this),
                                 e.preventDefault();
                             else if (C.get(this, Gr, "f").checkKeyBinding(e, KeyBind.VehicleCockpitCamera))
-                                e.repeat || C.get(this, _r, "m", Ka).call(this),
+                                e.repeat || C.get(this, _r, "m", cockpitCameraKeyDown).call(this),
+                                e.preventDefault();
+                            else if (C.get(this, Gr, "f").checkKeyBinding(e, KeyBind.VehicleBackwardsCamera))
+                                e.repeat || C.get(this, _r, "m", backwardsCameraKeyDown).call(this),
                                 e.preventDefault();
                             else if (d.checkKeyBinding(e, KeyBind.ToggleUI))
                                 // Toggle UI while driving
@@ -42351,7 +42451,7 @@
                                 e.preventDefault();
                             else if (d.checkKeyBinding(e, KeyBind.Pause)) {
                                 if (null == C.get(this, ca, "f")) {
-                                    if (null == C.get(this, multiplayerInstanceInfo, "f") && C.get(this, wa, "f").hasStarted() && !C.get(this, wa, "f").hasFinished()) {
+                                    if (null == C.get(this, multiplayerInstanceInfo, "f") && C.get(this, primaryCar, "f").hasStarted() && !C.get(this, primaryCar, "f").hasFinished()) {
                                         const e = new Date;
                                         (null == C.get(this, ga, "f") || Math.abs(e.getTime() - C.get(this, ga, "f").getTime()) > 1e3) && (P.bQ(),
                                         C.set(this, ca, new oi(C.get(this, ea, "f").element,a), "f"),
@@ -42384,8 +42484,8 @@
                         e.preventDefault())),
                         d.checkKeyBinding(e, KeyBind.ToggleSpectatorCamera) && !C.get(this, _r, "m", Ha).call(this)) {
                             if (null == C.get(this, ca, "f") && !C.get(this, Pa, "f")) {
-                                C.get(this, Ba, "f").camera.position.copy(C.get(this, zr, "f").camera.position);
-                                const e = new THREE.Euler(0,0,0,"YXZ").setFromQuaternion(C.get(this, zr, "f").camera.quaternion);
+                                C.get(this, Ba, "f").camera.position.copy(C.get(this, primarySceneObject, "f").camera.position);
+                                const e = new THREE.Euler(0,0,0,"YXZ").setFromQuaternion(C.get(this, primarySceneObject, "f").camera.quaternion);
                                 e.x = Math.round(1e4 * e.x) / 1e4,
                                 e.y = Math.round(1e4 * e.y) / 1e4,
                                 e.z = 0,
@@ -42398,7 +42498,8 @@
                 }
                 ), "f")),
                 window.addEventListener("keyup", C.set(this, Da, (e => {
-                    C.get(this, Gr, "f").checkKeyBinding(e, KeyBind.VehicleCockpitCamera) && C.get(this, _r, "m", qa).call(this)
+                    C.get(this, Gr, "f").checkKeyBinding(e, KeyBind.VehicleCockpitCamera) && C.get(this, _r, "m", cockpitCameraKeyUp).call(this),
+                    C.get(this, Gr, "f").checkKeyBinding(e, KeyBind.VehicleBackwardsCamera) && C.get(this, _r, "m", backwardsCameraKeyUp).call(this)
                 }
                 ), "f")),
                 "official" == v)
@@ -42442,11 +42543,11 @@
                         )),
                         C.set(this, Ga, {
                             dispose: () => {
-                                null != t && (C.get(this, zr, "f").scene.remove(t),
+                                null != t && (C.get(this, primarySceneObject, "f").scene.remove(t),
                                 t.geometry.dispose(),
                                 t.material.dispose(),
                                 s.removeMaterial(t.material)),
-                                null != n && (C.get(this, zr, "f").scene.remove(n),
+                                null != n && (C.get(this, primarySceneObject, "f").scene.remove(n),
                                 n.geometry.dispose(),
                                 n.material.dispose(),
                                 s.removeMaterial(n.material)),
@@ -42470,7 +42571,7 @@
                         s.scene.add(i),
                         C.set(this, Ga, {
                             dispose: () => {
-                                C.get(this, zr, "f").scene.remove(i),
+                                C.get(this, primarySceneObject, "f").scene.remove(i),
                                 n.dispose(),
                                 t.dispose(),
                                 e.dispose()
@@ -42525,7 +42626,7 @@
                 e && C.get(this, Pr, "f").clear(),
                 C.get(this, Ir, "f").clearMountains(),
                 C.get(this, ya, "f").dispose(),
-                C.get(this, wa, "f").dispose();
+                C.get(this, primaryCar, "f").dispose();
                 for (const e of C.get(this, xa, "f"))
                     e.car?.dispose(),
                     e.car = null,
@@ -42546,28 +42647,28 @@
                 let n;
                 if (n = C.get(this, Ba, "f").isEnabled && null == C.get(this, multiplayerInstanceInfo, "f") || !t ? 0 : e,
                 t) {
-                    if (C.get(this, wa, "f").update(n),
-                    C.get(this, wa, "f").updateCameras(n),
-                    C.get(this, Ba, "f").isEnabled && null == C.get(this, multiplayerInstanceInfo, "f") ? (C.get(this, wa, "f").isPaused = !0,
-                    C.get(this, wa, "f").audioVolume = 0) : (C.get(this, wa, "f").isPaused = !1,
-                    C.get(this, wa, "f").audioVolume = 1),
-                    C.get(this, wa, "f").isControlsDisabled = C.get(this, Ba, "f").isEnabled || C.get(this, _r, "m", Ha).call(this),
+                    if (C.get(this, primaryCar, "f").update(n),
+                    C.get(this, primaryCar, "f").updateCameras(n),
+                    C.get(this, Ba, "f").isEnabled && null == C.get(this, multiplayerInstanceInfo, "f") ? (C.get(this, primaryCar, "f").isPaused = !0,
+                    C.get(this, primaryCar, "f").audioVolume = 0) : (C.get(this, primaryCar, "f").isPaused = !1,
+                    C.get(this, primaryCar, "f").audioVolume = 1),
+                    C.get(this, primaryCar, "f").isControlsDisabled = C.get(this, Ba, "f").isEnabled || C.get(this, _r, "m", Ha).call(this),
                     !C.get(this, Ba, "f").isEnabled && !C.get(this, _r, "m", Ha).call(this)) {
                         const e = C.get(this, ya, "f").getControls();
-                        (e.up || e.down) && (C.get(this, wa, "f").hasStarted() || C.get(this, wa, "f").start()),
-                        C.get(this, wa, "f").hasStarted() && !C.get(this, wa, "f").hasFinished() ? P.tU() : P.bQ(),
-                        C.get(this, wa, "f").hasStarted() || C.get(this, La, "f") && (C.get(this, Or, "f").show(C.get(this, Ur, "f").get("Invalid replay detected!"), C.get(this, Ur, "f").get("Ok"), ( () => {
+                        (e.up || e.down) && (C.get(this, primaryCar, "f").hasStarted() || C.get(this, primaryCar, "f").start()),
+                        C.get(this, primaryCar, "f").hasStarted() && !C.get(this, primaryCar, "f").hasFinished() ? P.tU() : P.bQ(),
+                        C.get(this, primaryCar, "f").hasStarted() || C.get(this, La, "f") && (C.get(this, Or, "f").show(C.get(this, Ur, "f").get("Invalid replay detected!"), C.get(this, Ur, "f").get("Ok"), ( () => {
                             C.get(this, Or, "f").hide()
                         }
                         )),
                         C.set(this, La, !1, "f"))
                     }
-                    C.get(this, wa, "f").getTime().numberOfFrames >= ie.A.maxFrames && C.get(this, _r, "m", Qa).call(this),
-                    C.get(this, Fa, "f")?.updateCar(C.get(this, wa, "f"));
+                    C.get(this, primaryCar, "f").getTime().numberOfFrames >= ie.A.maxFrames && C.get(this, _r, "m", Qa).call(this),
+                    C.get(this, Fa, "f")?.updateCar(C.get(this, primaryCar, "f"));
                     for (const e of C.get(this, xa, "f"))
                         if (null != e.car) {
                             if (!e.hasEnded) {
-                                const t = C.get(this, wa, "f").getTime().numberOfFrames;
+                                const t = C.get(this, primaryCar, "f").getTime().numberOfFrames;
                                 for (let n = e.car.getTime().numberOfFrames + 1; n <= t; n++) {
                                     const t = e.replay?.replay.getFrame(n);
                                     if (null == t) {
@@ -42619,12 +42720,12 @@
                     }
                     C.get(this, _r, "m", updateGhostOpacity).call(this),
                     C.get(this, Ba, "f").update(e),
-                    C.get(this, la, "f").setVisible(!C.get(this, wa, "f").hasStarted() || C.get(this, wa, "f").hasFinished() || !C.get(this, va, "f") || C.get(this, Wr, "f").touchEnabled || !C.get(this, Fr, "f").isCursorHidden || C.get(this, la, "f").hasFocus())
+                    C.get(this, la, "f").setVisible(!C.get(this, primaryCar, "f").hasStarted() || C.get(this, primaryCar, "f").hasFinished() || !C.get(this, va, "f") || C.get(this, Wr, "f").touchEnabled || !C.get(this, Fr, "f").isCursorHidden || C.get(this, la, "f").hasFocus())
                 } else {
-                    C.get(this, wa, "f").isPaused = !0,
-                    C.get(this, wa, "f").audioVolume = 0,
-                    C.get(this, wa, "f").update(n),
-                    C.get(this, wa, "f").updateCameras(n);
+                    C.get(this, primaryCar, "f").isPaused = !0,
+                    C.get(this, primaryCar, "f").audioVolume = 0,
+                    C.get(this, primaryCar, "f").update(n),
+                    C.get(this, primaryCar, "f").updateCameras(n);
                     for (const e of C.get(this, xa, "f"))
                         null != e.car && (e.car.isPaused = !0,
                         e.car.audioVolume = 0,
@@ -42640,22 +42741,22 @@
                 let a;
                 a = r > 0 ? i / r : 1,
                 C.get(this, ma, "f").isEnabled = C.get(this, Wr, "f").touchEnabled && !C.get(this, _r, "m", Ha).call(this),
-                C.get(this, ta, "f").update(C.get(this, wa, "f"), e, t && null == C.get(this, ha, "f") && null == C.get(this, da, "f")),
+                C.get(this, ta, "f").update(C.get(this, primaryCar, "f"), e, t && null == C.get(this, ha, "f") && null == C.get(this, da, "f")),
                 C.get(this, na, "f")?.update(a),
-                C.get(this, aa, "f").update(C.get(this, wa, "f")),
-                C.get(this, sa, "f").update(C.get(this, wa, "f")),
-                C.get(this, ra, "f").update(C.get(this, wa, "f")),
+                C.get(this, aa, "f").update(C.get(this, primaryCar, "f")),
+                C.get(this, sa, "f").update(C.get(this, primaryCar, "f")),
+                C.get(this, ra, "f").update(C.get(this, primaryCar, "f")),
                 
-                C.get(this, la, "f").trackMinimap?.updatePlayerPos(C.get(this, wa, "f").getPosition()),
+                C.get(this, la, "f").trackMinimap?.updatePlayerPos(C.get(this, primaryCar, "f").getPosition()),
                 // C.get(this, multiplayerInstanceInfo, "f")?.multiplayerConnection.m_voiceChat?.setHostPos(C.get(this, wa, "f").getPosition()),
                 // C.get(this, multiplayerInstanceInfo, "f")?.multiplayerConnection.m_voiceChat?.setHostQuat(C.get(this, wa, "f").getQuaternion()),
 
                 C.get(this, ma, "f").setResetCheckpointAvailable(C.get(this, _r, "m", ja).call(this)),
                 C.get(this, Ga, "f")?.update(),
                 C.get(this, Ir, "f").update(C.get(this, Pr, "f")),
-                C.get(this, Lr, "f").update(n, C.get(this, zr, "f").camera, C.get(this, Pr, "f").sunDirection),
-                C.get(this, Nr, "f").update(e, !1, C.get(this, zr, "f")),
-                C.get(this, zr, "f").update(C.get(this, Pr, "f").sunDirection)
+                C.get(this, Lr, "f").update(n, C.get(this, primarySceneObject, "f").camera, C.get(this, Pr, "f").sunDirection),
+                C.get(this, Nr, "f").update(e, !1, C.get(this, primarySceneObject, "f")),
+                C.get(this, primarySceneObject, "f").update(C.get(this, Pr, "f").sunDirection)
             }
         }
         ;
@@ -48885,7 +48986,15 @@
             }, {
                 title: gs.getFromLanguage(C.get(this, Cs, "f"), "On"),
                 value: "true"
-            }], R.A.ItalicsEnabled)
+            }], R.A.ItalicsEnabled),
+            C.get(this, ms, "m", Gs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Backwards camera mode"), [{
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "Hold"),
+                value: "false"
+            }, {
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "Toggle"),
+                value: "true"
+            }], R.A.BackwardsCameraToggle),
+            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Backwards camera"), KeyBind.VehicleBackwardsCamera)
         }
         ,
         Ds = function(e) {
@@ -55529,20 +55638,21 @@
                 Cu.set(this, this.defaultSettings()),
                 Ru.set(this, this.defaultKeyBindings()),
                 C.set(this, _u, e, "f");
+
+                this.disableItalicElement = document.createElement("style");
+                this.disableItalicElement.innerHTML = `
+                    * {
+                        font-style: normal !important;
+                    }
+                `;
+
                 const t = e.loadSettings();
                 null != t && this.updateSettings(t);
                 const n = e.loadKeyBindings();
                 null != n && C.get(this, Mu, "m", Pu).call(this, n);
-
-                this.disableItalicElement = document.createElement("style"),
-                this.disableItalicElement.innerHTML = `
-                * {
-                    font-style: normal !important;
-                }
-                `;
             }
             defaultSettings() {
-                return new Map([[R.A.ImperialUnitsEnabled, "false"], [R.A.ResetHintEnabled, "true"], [R.A.GhostCarEnabled, "true"], [R.A.DefaultCameraMode, "false"], [R.A.CockpitCameraToggle, "true"], [R.A.Checkpoints, "bottom"], [R.A.Timer, "bottom"], [R.A.Speedometer, "bottom"], [R.A.Language, "en-US"], [R.A.ShadowQuality, "2"], [R.A.CloudsEnabled, "true"], [R.A.ParticlesEnabled, "true"], [R.A.SkidmarksEnabled, "true"], [R.A.FogEnabled, "true"], [R.A.ItalicsEnabled, "true"], [R.A.RenderScale, "1"], [R.A.ScreenPixelDensity, "true"], [R.A.Antialiasing, "true"], [R.A.MasterVolume, "1"], [R.A.SoundEffectVolume, "1"], [R.A.MusicVolume, "1"], [R.A.CheckpointVolume, "1"], [R.A.MaxGhostOpacity, "1"], [R.A.GhostCarSoundsEnabled, "true"], [R.A.VibrationEnabled, "false"], [R.A.TouchSteeringSide, "true"]])
+                return new Map([[R.A.ImperialUnitsEnabled, "false"], [R.A.ResetHintEnabled, "true"], [R.A.GhostCarEnabled, "true"], [R.A.DefaultCameraMode, "false"], [R.A.CockpitCameraToggle, "true"], [R.A.BackwardsCameraToggle, "false"], [R.A.Checkpoints, "bottom"], [R.A.Timer, "bottom"], [R.A.Speedometer, "bottom"], [R.A.Language, "en-US"], [R.A.ShadowQuality, "2"], [R.A.CloudsEnabled, "true"], [R.A.ParticlesEnabled, "true"], [R.A.SkidmarksEnabled, "true"], [R.A.FogEnabled, "true"], [R.A.ItalicsEnabled, "true"], [R.A.RenderScale, "1"], [R.A.ScreenPixelDensity, "true"], [R.A.Antialiasing, "true"], [R.A.MasterVolume, "1"], [R.A.SoundEffectVolume, "1"], [R.A.MusicVolume, "1"], [R.A.CheckpointVolume, "1"], [R.A.MaxGhostOpacity, "1"], [R.A.GhostCarSoundsEnabled, "true"], [R.A.VibrationEnabled, "false"], [R.A.TouchSteeringSide, "true"]])
             }
             defaultKeyBindings() {
                 return new Map([
@@ -55580,7 +55690,8 @@
                     [KeyBind.PreviewStepForward, ["Period", null]], 
                     [KeyBind.PreviewStepBack, ["Comma", null]],
 
-                    [KeyBind.ToggleGhost, ["KeyL", null]]
+                    [KeyBind.ToggleGhost, ["KeyL", null]],
+                    [KeyBind.VehicleBackwardsCamera, ["KeyF", null]],
                 ])
             }
             getSettings() {
@@ -55601,20 +55712,28 @@
             getSettingInteger(e) {
                 return parseInt(this.getSetting(e), 10)
             }
+            updateItalics() {
+                if (this.getSettingBoolean(R.A.ItalicsEnabled)) {
+                    if (document.head && document.head.contains(this.disableItalicElement)) {
+                        this.disableItalicElement.remove();
+                    }
+                } else {
+                    if (document.head && !document.head.contains(this.disableItalicElement)) {
+                        document.head.appendChild(this.disableItalicElement);
+                    }
+                }
+            }
             updateSettings(e) {
                 for (const [t,n] of e) {
                     if (!C.get(this, Cu, "f").has(t))
                         throw new Error("Setting name is missing");
                     C.get(this, Cu, "f").set(t, n)
                 }
-                if (this.getSettingBoolean(R.A.ItalicsEnabled)) {
-                    if (document.head.contains(this.disableItalicElement)) {
-                        this.disableItalicElement.remove();
-                    }
+
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', this.updateItalics.bind(this));
                 } else {
-                    if (!document.head.contains(this.disableItalicElement)) {
-                        document.head.appendChild(this.disableItalicElement);
-                    }
+                    this.updateItalics();
                 }
             }
             saveSettings() {
