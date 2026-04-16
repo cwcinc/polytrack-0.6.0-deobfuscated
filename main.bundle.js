@@ -7935,6 +7935,9 @@
                     this.update(10);
                     this.setVisible(!e);
                 }
+                honkHorn() {
+                    console.log("Honk!");
+                }
                 update(e) {
                     if (l.get(this, carDisabled, "f")) {
                         return;
@@ -23776,7 +23779,8 @@
                 e[e.PreviewStepBack = 32] = "PreviewStepBack",
 
                 e[e.ToggleGhost = 33] = "ToggleGhost",
-                e[e.VehicleBackwardsCamera = 34] = "VehicleBackwardsCamera"
+                e[e.VehicleBackwardsCamera = 34] = "VehicleBackwardsCamera",
+                e[e.HonkHorn = 35] = "HonkHorn"
             }(i || (i = {}));
             const r = i
         }
@@ -42449,6 +42453,9 @@
                                     C.get(this, ea, "f").isVisible = C.get(this, drivingUIVisible, "f")
                                 ),
                                 e.preventDefault();
+                            else if (d.checkKeyBinding(e, KeyBind.HonkHorn))
+                                C.get(this, primaryCar, "f").honkHorn(),
+                                e.preventDefault();
                             else if (d.checkKeyBinding(e, KeyBind.Pause)) {
                                 if (null == C.get(this, ca, "f")) {
                                     if (null == C.get(this, multiplayerInstanceInfo, "f") && C.get(this, primaryCar, "f").hasStarted() && !C.get(this, primaryCar, "f").hasFinished()) {
@@ -48994,7 +49001,8 @@
                 title: gs.getFromLanguage(C.get(this, Cs, "f"), "Toggle"),
                 value: "true"
             }], R.A.BackwardsCameraToggle),
-            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Backwards camera"), KeyBind.VehicleBackwardsCamera)
+            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Backwards camera"), KeyBind.VehicleBackwardsCamera),
+            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Honk horn"), KeyBind.HonkHorn)
         }
         ,
         Ds = function(e) {
@@ -55692,6 +55700,7 @@
 
                     [KeyBind.ToggleGhost, ["KeyL", null]],
                     [KeyBind.VehicleBackwardsCamera, ["KeyF", null]],
+                    [KeyBind.HonkHorn, ["KeyH", null]],
                 ])
             }
             getSettings() {
@@ -56534,7 +56543,7 @@
             }
         }
         ;
-        var Yp, Zp, $p, ef, tf, nf, rf, af, sf, of, lf, cf, hf, df, uf, pf, ff, gf, mf, Af, vf, yf, bf, wf, xf, Sf, kf, Ef, Tf, Mf, _f, Cf;
+        var Yp, Zp, $p, ef, tf, nf, rf, af, sf, of, lf, cf, hf, df, uf, pf, ff, gf, spectatorCamera, Af, vf, yf, bf, wf, xf, Sf, kf, Ef, Tf, Mf, _f, Cf;
         Zp = new WeakMap,
         $p = new WeakMap,
         ef = new WeakMap,
@@ -56552,7 +56561,7 @@
         pf = new WeakMap,
         ff = new WeakMap,
         gf = new WeakMap,
-        mf = new WeakMap,
+        spectatorCamera = new WeakMap,
         Af = new WeakMap,
         vf = new WeakMap,
         yf = new WeakMap,
@@ -56594,7 +56603,7 @@
                 pf.set(this, !1),
                 ff.set(this, 0),
                 gf.set(this, 0),
-                mf.set(this, void 0),
+                spectatorCamera.set(this, void 0),
                 Af.set(this, void 0),
                 vf.set(this, void 0),
                 yf.set(this, void 0),
@@ -56656,9 +56665,9 @@
                 }
                 )), "f"),
                 h.getSettingBoolean(R.A.DefaultCameraMode) ? o.setCamera(C.get(this, uf, "f")[C.get(this, df, "f")].car.cameraCockpit) : o.setCamera(C.get(this, uf, "f")[C.get(this, df, "f")].car.cameraOrbit),
-                C.set(this, mf, new SpectatorCamera(o,h), "f"),
-                C.get(this, mf, "f").addToggleListener((e => {
-                    e ? o.setCamera(C.get(this, mf, "f").camera) : C.get(this, cf, "f").getSettingBoolean(R.A.DefaultCameraMode) ? C.get(this, sf, "f").setCamera(C.get(this, uf, "f")[C.get(this, df, "f")].car.cameraCockpit) : C.get(this, sf, "f").setCamera(C.get(this, uf, "f")[C.get(this, df, "f")].car.cameraOrbit)
+                C.set(this, spectatorCamera, new SpectatorCamera(o,h), "f"),
+                C.get(this, spectatorCamera, "f").addToggleListener((e => {
+                    e ? o.setCamera(C.get(this, spectatorCamera, "f").camera) : C.get(this, cf, "f").getSettingBoolean(R.A.DefaultCameraMode) ? C.get(this, sf, "f").setCamera(C.get(this, uf, "f")[C.get(this, df, "f")].car.cameraCockpit) : C.get(this, sf, "f").setCamera(C.get(this, uf, "f")[C.get(this, df, "f")].car.cameraOrbit)
                 }
                 )),
                 C.set(this, Af, new br, "f");
@@ -56686,7 +56695,7 @@
                     C.set(this, df, (C.get(this, df, "f") + 1) % C.get(this, uf, "f").length, "f");
                     for (let e = 0; e < C.get(this, uf, "f").length; e++)
                         C.get(this, uf, "f")[e].car.notificationAudioEnabled = e == C.get(this, df, "f");
-                    C.get(this, mf, "f").isEnabled || (C.get(this, cf, "f").getSettingBoolean(R.A.DefaultCameraMode) ? C.get(this, sf, "f").setCamera(C.get(this, uf, "f")[C.get(this, df, "f")].car.cameraCockpit) : C.get(this, sf, "f").setCamera(C.get(this, uf, "f")[C.get(this, df, "f")].car.cameraOrbit)),
+                    C.get(this, spectatorCamera, "f").isEnabled || (C.get(this, cf, "f").getSettingBoolean(R.A.DefaultCameraMode) ? C.get(this, sf, "f").setCamera(C.get(this, uf, "f")[C.get(this, df, "f")].car.cameraCockpit) : C.get(this, sf, "f").setCamera(C.get(this, uf, "f")[C.get(this, df, "f")].car.cameraOrbit)),
                     C.get(this, vf, "f").totalTime = C.get(this, uf, "f")[C.get(this, df, "f")].settings.time,
                     C.get(this, vf, "f").checkpointTimes = C.get(this, uf, "f")[C.get(this, df, "f")].checkpointTimes,
                     C.get(this, Sf, "f").nickname = C.get(this, uf, "f")[C.get(this, df, "f")].settings.nickname
@@ -56719,7 +56728,7 @@
                 C.get(this, Sf, "f").setOverridePosition(!1),
                 C.get(this, Sf, "f").setBottomOffset(52),
                 window.addEventListener("keydown", C.set(this, Tf, (e => {
-                    if (!C.get(this, mf, "f").isEnabled)
+                    if (!C.get(this, spectatorCamera, "f").isEnabled)
                         if (h.checkKeyBinding(e, KeyBind.VehicleCheckpointReset) || h.checkKeyBinding(e, KeyBind.VehicleStartReset))
                             e.repeat || C.set(this, ff, 0, "f"),
                             e.preventDefault();
@@ -56731,7 +56740,7 @@
                             e.preventDefault()
                         }
                     if ("Escape" == e.code && (null != C.get(this, kf, "f") ? (C.get(this, kf, "f").dispose(),
-                    C.set(this, kf, null, "f")) : C.get(this, mf, "f").isEnabled ? C.get(this, mf, "f").isEnabled = !1 : u(n, i, r, C.get(this, uf, "f").map((e => e.settings))),
+                    C.set(this, kf, null, "f")) : C.get(this, spectatorCamera, "f").isEnabled ? C.get(this, spectatorCamera, "f").isEnabled = !1 : u(n, i, r, C.get(this, uf, "f").map((e => e.settings))),
                     e.preventDefault()),
                     // Toggle UI in replay mode
                     h.checkKeyBinding(e, KeyBind.ToggleUI) && (
@@ -56739,11 +56748,11 @@
                         e.preventDefault()
                     ),
                     h.checkKeyBinding(e, KeyBind.ToggleSpectatorCamera)) {
-                        C.get(this, mf, "f").camera.position.copy(C.get(this, sf, "f").camera.position);
+                        C.get(this, spectatorCamera, "f").camera.position.copy(C.get(this, sf, "f").camera.position);
                         const t = new THREE.Euler(0,0,0,"YXZ").setFromQuaternion(C.get(this, sf, "f").camera.quaternion);
                         t.z = 0,
-                        C.get(this, mf, "f").camera.quaternion.setFromEuler(t),
-                        C.get(this, mf, "f").toggle(),
+                        C.get(this, spectatorCamera, "f").camera.quaternion.setFromEuler(t),
+                        C.get(this, spectatorCamera, "f").toggle(),
                         e.preventDefault()
                     }
                     "Space" == e.code && (C.set(this, pf, !C.get(this, pf, "f"), "f"),
@@ -56752,7 +56761,7 @@
                 }
                 ), "f")),
                 window.addEventListener("keyup", C.set(this, Mf, (e => {
-                    if (!C.get(this, mf, "f").isEnabled && C.get(this, cf, "f").checkKeyBinding(e, KeyBind.VehicleCockpitCamera)) {
+                    if (!C.get(this, spectatorCamera, "f").isEnabled && C.get(this, cf, "f").checkKeyBinding(e, KeyBind.VehicleCockpitCamera)) {
                         const e = C.get(this, uf, "f")[C.get(this, df, "f")].car;
                         e.hasFinished() || C.get(this, cf, "f").getSettingBoolean(R.A.CockpitCameraToggle) || (C.get(this, cf, "f").getSettingBoolean(R.A.DefaultCameraMode) ? C.get(this, sf, "f").setCamera(e.cameraCockpit) : C.get(this, sf, "f").setCamera(e.cameraOrbit))
                     }
@@ -56766,7 +56775,7 @@
                     null != e.carId && (C.get(this, Zp, "f").deleteCar(e.carId),
                     e.carId = null),
                     e.car.dispose();
-                C.get(this, mf, "f").dispose(),
+                C.get(this, spectatorCamera, "f").dispose(),
                 C.get(this, Af, "f").dispose(),
                 C.get(this, vf, "f").dispose(),
                 C.get(this, yf, "f").dispose(),
@@ -56825,7 +56834,7 @@
                     e.car.updateCameras(i);
                 C.get(this, Ef, "f")?.updateCar(C.get(this, uf, "f")[C.get(this, df, "f")].car),
                 C.get(this, kf, "f")?.update(r),
-                C.get(this, mf, "f").update(e),
+                C.get(this, spectatorCamera, "f").update(e),
                 C.get(this, rf, "f").update(C.get(this, $p, "f")),
                 C.get(this, af, "f").update(i, C.get(this, sf, "f").camera, C.get(this, $p, "f").sunDirection),
                 C.get(this, of, "f").update(e, !1, C.get(this, sf, "f")),
