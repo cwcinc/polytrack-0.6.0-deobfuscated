@@ -7261,7 +7261,8 @@
                 e[e.TouchSteeringSide = 23] = "TouchSteeringSide",
                 e[e.MaxGhostOpacity = 24] = "MaxGhostOpacity",
                 e[e.ItalicsEnabled = 25] = "ItalicsEnabled",
-                e[e.BackwardsCameraToggle = 26] = "BackwardsCameraToggle"
+                e[e.BackwardsCameraToggle = 26] = "BackwardsCameraToggle",
+                e[e.SpeedometerDecimalPlaces = 27] = "SpeedometerDecimalPlaces"
             }(i || (i = {}));
             const r = i
         }
@@ -38677,39 +38678,40 @@
         Ie.insertStyleElement = h();
         t()(Pe.A, Ie);
         Pe.A && Pe.A.locals && Pe.A.locals;
-        var Le, Ue, ze, Ne, De, Be, Ge, Fe, Oe;
+        var Le, Ue, speedometerDiv, Ne, De, Be, Ge, Fe, Oe;
         Le = new WeakMap,
         Ue = new WeakMap,
-        ze = new WeakMap,
+        speedometerDiv = new WeakMap,
         Ne = new WeakMap,
         De = new WeakMap,
         Be = new WeakMap,
         Ge = new WeakMap,
         Fe = new WeakMap,
         Oe = new WeakMap;
-        const We = class {
+        const Speedometer = class {
             constructor(e, t) {
                 Le.set(this, void 0),
                 Ue.set(this, void 0),
-                ze.set(this, void 0),
+                speedometerDiv.set(this, void 0),
                 Ne.set(this, void 0),
                 De.set(this, void 0),
                 Be.set(this, null),
                 Ge.set(this, void 0),
                 Fe.set(this, void 0),
                 Oe.set(this, []),
+                this.speedometerDecimalPlaces = t.getSettingFloat(R.A.SpeedometerDecimalPlaces);
                 C.set(this, Le, e, "f"),
                 C.set(this, Ue, t, "f"),
                 C.set(this, Ge, t.getSettingBoolean(R.A.ImperialUnitsEnabled), "f"),
-                C.set(this, ze, document.createElement("div"), "f"),
-                "off" == t.getSetting(R.A.Speedometer) ? C.get(this, ze, "f").className = "speedometer-ui hidden" : "top" == t.getSetting(R.A.Speedometer) ? C.get(this, ze, "f").className = "speedometer-ui up" : C.get(this, ze, "f").className = "speedometer-ui",
-                C.get(this, Le, "f").appendChild(C.get(this, ze, "f")),
+                C.set(this, speedometerDiv, document.createElement("div"), "f"),
+                "off" == t.getSetting(R.A.Speedometer) ? C.get(this, speedometerDiv, "f").className = "speedometer-ui hidden" : "top" == t.getSetting(R.A.Speedometer) ? C.get(this, speedometerDiv, "f").className = "speedometer-ui up" : C.get(this, speedometerDiv, "f").className = "speedometer-ui",
+                C.get(this, Le, "f").appendChild(C.get(this, speedometerDiv, "f")),
                 C.set(this, Fe, document.createElement("div"), "f"),
                 C.get(this, Fe, "f").className = "checkpoint-speed",
-                C.get(this, ze, "f").appendChild(C.get(this, Fe, "f"));
+                C.get(this, speedometerDiv, "f").appendChild(C.get(this, Fe, "f"));
                 const n = document.createElement("div");
                 n.className = "box",
-                C.get(this, ze, "f").appendChild(n);
+                C.get(this, speedometerDiv, "f").appendChild(n);
                 const i = document.createElement("div");
                 i.className = "container",
                 n.appendChild(i),
@@ -38721,14 +38723,14 @@
                 i.appendChild(C.get(this, De, "f"))
             }
             dispose() {
-                C.get(this, ze, "f").parentElement == C.get(this, Le, "f") && C.get(this, Le, "f").removeChild(C.get(this, ze, "f"))
+                C.get(this, speedometerDiv, "f").parentElement == C.get(this, Le, "f") && C.get(this, Le, "f").removeChild(C.get(this, speedometerDiv, "f"))
             }
             setOverridePosition(e) {
                 const t = C.get(this, Ue, "f").getSetting(R.A.Speedometer);
-                C.get(this, ze, "f").className = "off" == t ? "speedometer-ui hidden" : e ?? "top" == t ? "speedometer-ui up" : "speedometer-ui"
+                C.get(this, speedometerDiv, "f").className = "off" == t ? "speedometer-ui hidden" : e ?? "top" == t ? "speedometer-ui up" : "speedometer-ui"
             }
             setBottomOffset(e) {
-                C.get(this, ze, "f").style.bottom = e.toString() + "px"
+                C.get(this, speedometerDiv, "f").style.bottom = e.toString() + "px"
             }
             hideCheckpointSpeed() {
                 for (const e of C.get(this, Oe, "f"))
@@ -38774,7 +38776,8 @@
                 const t = Math.abs(e.getSpeedKmh());
                 let n;
                 n = C.get(this, Ge, "f") ? t / 1.609344 : t;
-                const i = Math.trunc(n).toString();
+                const mult = Math.pow(10, this.speedometerDecimalPlaces);
+                const i = (Math.trunc(n * mult) / mult).toFixed(this.speedometerDecimalPlaces);
                 if (i != C.get(this, Be, "f")) {
                     C.get(this, Ne, "f").innerHTML = "";
                     for (const e of i) {
@@ -42142,7 +42145,7 @@
                 C.set(this, ta, new ResetHintUI(C.get(this, ea, "f").element,C.get(this, Ur, "f"),C.get(this, Wr, "f"),C.get(this, Gr, "f")), "f"),
                 null != C.get(this, multiplayerInstanceInfo, "f") ? C.set(this, ia, new ur(C.get(this, ea, "f").element,C.get(this, Gr, "f")), "f") : C.set(this, na, new fi(C.get(this, ea, "f").element,C.get(this, Ur, "f"),C.get(this, Gr, "f")), "f"),
                 C.set(this, ra, new CheckpointUI(C.get(this, ea, "f").element,C.get(this, Pr, "f").getTotalNumberOfCheckpointIndices(),C.get(this, Gr, "f")), "f"),
-                C.set(this, aa, new We(C.get(this, ea, "f").element,C.get(this, Gr, "f")), "f"),
+                C.set(this, aa, new Speedometer(C.get(this, ea, "f").element,C.get(this, Gr, "f")), "f"),
                 C.set(this, sa, new Ve.A(C.get(this, ea, "f").element,C.get(this, Ur, "f"),C.get(this, Gr, "f")), "f"),
                 C.set(this, la, new TopDrivingUI(C.get(this, ea, "f").element,C.get(this, Nr, "f"),C.get(this, Ur, "f"),C.get(this, Gr, "f"),C.get(this, Wr, "f"),C.get(this, Xr, "f"),C.get(this, multiplayerInstanceInfo, "f"),( () => {
                     C.get(this, _r, "m", Va).call(this)
@@ -49019,7 +49022,23 @@
                 value: "true"
             }], R.A.BackwardsCameraToggle),
             C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Backwards camera"), KeyBind.VehicleBackwardsCamera),
-            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Honk horn"), KeyBind.HonkHorn)
+            C.get(this, ms, "m", Os).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Honk horn"), KeyBind.HonkHorn),
+            C.get(this, ms, "m", Gs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Speedometer Decimal Places"), [{
+                title: "0",
+                value: "0"
+            }, {
+                title: "1",
+                value: "1"
+            }, {
+                title: "2",
+                value: "2"
+            }, {
+                title: "3",
+                value: "3"
+            }, {
+                title: "4",
+                value: "4"
+            }], R.A.SpeedometerDecimalPlaces)
         }
         ,
         Ds = function(e) {
@@ -55677,7 +55696,7 @@
                 null != n && C.get(this, Mu, "m", Pu).call(this, n);
             }
             defaultSettings() {
-                return new Map([[R.A.ImperialUnitsEnabled, "false"], [R.A.ResetHintEnabled, "true"], [R.A.GhostCarEnabled, "true"], [R.A.DefaultCameraMode, "false"], [R.A.CockpitCameraToggle, "true"], [R.A.BackwardsCameraToggle, "false"], [R.A.Checkpoints, "bottom"], [R.A.Timer, "bottom"], [R.A.Speedometer, "bottom"], [R.A.Language, "en-US"], [R.A.ShadowQuality, "2"], [R.A.CloudsEnabled, "true"], [R.A.ParticlesEnabled, "true"], [R.A.SkidmarksEnabled, "true"], [R.A.FogEnabled, "true"], [R.A.ItalicsEnabled, "true"], [R.A.RenderScale, "1"], [R.A.ScreenPixelDensity, "true"], [R.A.Antialiasing, "true"], [R.A.MasterVolume, "1"], [R.A.SoundEffectVolume, "1"], [R.A.MusicVolume, "1"], [R.A.CheckpointVolume, "1"], [R.A.MaxGhostOpacity, "1"], [R.A.GhostCarSoundsEnabled, "true"], [R.A.VibrationEnabled, "false"], [R.A.TouchSteeringSide, "true"]])
+                return new Map([[R.A.ImperialUnitsEnabled, "false"], [R.A.ResetHintEnabled, "true"], [R.A.GhostCarEnabled, "true"], [R.A.DefaultCameraMode, "false"], [R.A.CockpitCameraToggle, "true"], [R.A.BackwardsCameraToggle, "false"], [R.A.Checkpoints, "bottom"], [R.A.Timer, "bottom"], [R.A.Speedometer, "bottom"], [R.A.Language, "en-US"], [R.A.ShadowQuality, "2"], [R.A.CloudsEnabled, "true"], [R.A.ParticlesEnabled, "true"], [R.A.SkidmarksEnabled, "true"], [R.A.FogEnabled, "true"], [R.A.ItalicsEnabled, "true"], [R.A.RenderScale, "1"], [R.A.ScreenPixelDensity, "true"], [R.A.Antialiasing, "true"], [R.A.MasterVolume, "1"], [R.A.SoundEffectVolume, "1"], [R.A.MusicVolume, "1"], [R.A.CheckpointVolume, "1"], [R.A.MaxGhostOpacity, "1"], [R.A.SpeedometerDecimalPlaces, "0"], [R.A.GhostCarSoundsEnabled, "true"], [R.A.VibrationEnabled, "false"], [R.A.TouchSteeringSide, "true"]])
             }
             defaultKeyBindings() {
                 return new Map([
@@ -56737,7 +56756,7 @@
                 C.set(this, wf, new CheckpointUI(C.get(this, Af, "f").element,C.get(this, $p, "f").getTotalNumberOfCheckpointIndices(),C.get(this, cf, "f")), "f"),
                 C.get(this, wf, "f").setOverridePosition(!1),
                 C.get(this, wf, "f").setBottomOffset(52),
-                C.set(this, xf, new We(C.get(this, Af, "f").element,C.get(this, cf, "f")), "f"),
+                C.set(this, xf, new Speedometer(C.get(this, Af, "f").element,C.get(this, cf, "f")), "f"),
                 C.get(this, xf, "f").setOverridePosition(!1),
                 C.get(this, xf, "f").setBottomOffset(52),
                 C.set(this, Sf, new Ve.A(C.get(this, Af, "f").element,C.get(this, lf, "f"),C.get(this, cf, "f"),!0), "f"),
