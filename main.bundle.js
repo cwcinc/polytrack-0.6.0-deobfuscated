@@ -7538,18 +7538,18 @@
                 })
             };
             const B = D;
-            var G, F, O, W, V, H, j, K, q, Q, J, carOrbitCamera, carCockpitCamera, carBackwardsCamera, Z, $, ee, te, ne, ie, re, ae, se, oe, le, ce, he, de, ue, pe, m_positionListeners, fe, ge, me, Ae, ve, ye, nameTagMesh, we, xe, Se, ke, Ee, Te, Me, _e, Ce, Re, Pe, Ie, Le, Ue, ze, Ne, De, Be, Ge, Fe, Oe, setCarDisabled, renderNameTag, Ve, He, je, Ke, qe, Qe, Je, Xe, Ye, Ze, $e, et, tt, nt, it, rt, at, carDisabled, st = n(3476), ot = n(6633), lt = n(927);
+            var G, F, localAudioManager, W, V, H, j, K, q, audioPanner, J, carOrbitCamera, carCockpitCamera, carBackwardsCamera, Z, $, ee, te, ne, ie, re, ae, se, oe, le, ce, he, de, ue, pe, m_positionListeners, fe, ge, me, Ae, ve, ye, nameTagMesh, we, xe, Se, ke, Ee, Te, Me, _e, Ce, Re, Pe, Ie, Le, skidAudioSources, ze, Ne, De, Be, Ge, Fe, Oe, setCarDisabled, renderNameTag, Ve, He, je, Ke, qe, Qe, Je, Xe, Ye, Ze, $e, et, playCollisionAudio, playSkidAudio, playHornAudio, it, rt, at, carDisabled, st = n(3476), ot = n(6633), lt = n(927);
             class VisualCar {
                 constructor(e, t, n, i, r, a, s, o, h, d, u) {
                     if (G.add(this),
-                    O.set(this, void 0),
+                    localAudioManager.set(this, void 0),
                     W.set(this, null),
                     V.set(this, 1),
                     H.set(this, null),
                     j.set(this, []),
                     K.set(this, null),
                     q.set(this, null),
-                    Q.set(this, null),
+                    audioPanner.set(this, null),
                     J.set(this, []),
                     this.notificationAudioEnabled = !1,
                     carOrbitCamera.set(this, void 0),
@@ -7588,7 +7588,7 @@
                     Pe.set(this, void 0),
                     Ie.set(this, void 0),
                     Le.set(this, []),
-                    Ue.set(this, null),
+                    skidAudioSources.set(this, null),
                     ze.set(this, [.075, .075, .075, .075]),
                     Ne.set(this, null),
                     De.set(this, void 0),
@@ -7599,7 +7599,7 @@
 
                     this.multiplayerInstance = null,
 
-                    l.set(this, O, a, "f"),
+                    l.set(this, localAudioManager, a, "f"),
                     l.set(this, Ae, r, "f"),
                     l.set(this, Re, s, "f"),
                     l.set(this, Pe, o, "f"),
@@ -7937,6 +7937,7 @@
                 }
                 honkHorn() {
                     console.log("Honk!");
+                    l.get(this, G, "m", playHornAudio).call(this);
                 }
                 update(e) {
                     if (l.get(this, carDisabled, "f")) {
@@ -8119,14 +8120,14 @@
                 }
             }
             F = VisualCar,
-            O = new WeakMap,
+            localAudioManager = new WeakMap,
             W = new WeakMap,
             V = new WeakMap,
             H = new WeakMap,
             j = new WeakMap,
             K = new WeakMap,
             q = new WeakMap,
-            Q = new WeakMap,
+            audioPanner = new WeakMap,
             J = new WeakMap,
             carOrbitCamera = new WeakMap,
             carCockpitCamera = new WeakMap,
@@ -8164,7 +8165,7 @@
             Pe = new WeakMap,
             Ie = new WeakMap,
             Le = new WeakMap,
-            Ue = new WeakMap,
+            skidAudioSources = new WeakMap,
             ze = new WeakMap,
             Ne = new WeakMap,
             De = new WeakMap,
@@ -8320,10 +8321,10 @@
                     for (const e of l.get(this, K, "f"))
                         e.source.playbackRate.setTargetAtTime(.3, 0, .15),
                         e.gain.gain.setTargetAtTime(0, 0, .15);
-                if (null != l.get(this, Ue, "f")) {
-                    for (const {source: e} of l.get(this, Ue, "f"))
+                if (null != l.get(this, skidAudioSources, "f")) {
+                    for (const {source: e} of l.get(this, skidAudioSources, "f"))
                         e.stop();
-                    l.set(this, Ue, null, "f")
+                    l.set(this, skidAudioSources, null, "f")
                 }
             }
             ,
@@ -8331,16 +8332,16 @@
                 const e = l.get(this, Ie, "f")?.getSettingFloat(st.A.CheckpointVolume) ?? 0;
                 let t = Math.min(Math.max(l.get(this, V, "f") * e, 0), 1);
                 if (Number.isNaN(t) && (t = 0),
-                t > 0 && null != l.get(this, O, "f")) {
-                    const e = l.get(this, O, "f").getBuffer("checkpoint");
-                    if (null != e && null != l.get(this, O, "f").context && null != l.get(this, O, "f").destinationMaster) {
-                        const n = l.get(this, O, "f").context.createBufferSource();
+                t > 0 && null != l.get(this, localAudioManager, "f")) {
+                    const e = l.get(this, localAudioManager, "f").getBuffer("checkpoint");
+                    if (null != e && null != l.get(this, localAudioManager, "f").context && null != l.get(this, localAudioManager, "f").destinationMaster) {
+                        const n = l.get(this, localAudioManager, "f").context.createBufferSource();
                         n.buffer = e,
                         n.playbackRate.value = 1.25;
-                        const i = l.get(this, O, "f").context.createGain();
+                        const i = l.get(this, localAudioManager, "f").context.createGain();
                         i.gain.value = .03 * t,
                         n.connect(i),
-                        i.connect(l.get(this, O, "f").destinationMaster),
+                        i.connect(l.get(this, localAudioManager, "f").destinationMaster),
                         n.start(0)
                     }
                 }
@@ -8362,22 +8363,22 @@
             }
             ,
             Xe = function() {
-                if (null != l.get(this, O, "f") && null != l.get(this, O, "f").context && null != l.get(this, O, "f").destinationSfx) {
-                    null == l.get(this, W, "f") && (l.set(this, W, l.get(this, O, "f").context.createGain(), "f"),
+                if (null != l.get(this, localAudioManager, "f") && null != l.get(this, localAudioManager, "f").context && null != l.get(this, localAudioManager, "f").destinationSfx) {
+                    null == l.get(this, W, "f") && (l.set(this, W, l.get(this, localAudioManager, "f").context.createGain(), "f"),
                     l.get(this, W, "f").gain.value = l.get(this, V, "f"),
-                    l.get(this, W, "f").connect(l.get(this, O, "f").destinationSfx)),
-                    null == l.get(this, Q, "f") && (l.set(this, Q, l.get(this, O, "f").context.createPanner(), "f"),
-                    l.get(this, Q, "f").refDistance = 5,
-                    l.get(this, Q, "f").connect(l.get(this, W, "f")));
+                    l.get(this, W, "f").connect(l.get(this, localAudioManager, "f").destinationSfx)),
+                    null == l.get(this, audioPanner, "f") && (l.set(this, audioPanner, l.get(this, localAudioManager, "f").context.createPanner(), "f"),
+                    l.get(this, audioPanner, "f").refDistance = 5,
+                    l.get(this, audioPanner, "f").connect(l.get(this, W, "f")));
                     const e = this.getPosition();
-                    l.get(this, Q, "f").positionX.value = e.x,
-                    l.get(this, Q, "f").positionY.value = e.y,
-                    l.get(this, Q, "f").positionZ.value = e.z;
+                    l.get(this, audioPanner, "f").positionX.value = e.x,
+                    l.get(this, audioPanner, "f").positionY.value = e.y,
+                    l.get(this, audioPanner, "f").positionZ.value = e.z;
                     const t = 4;
                     if (l.get(this, J, "f").length < t) {
                         l.get(this, J, "f").length = 0;
                         for (let e = 0; e < t; ++e) {
-                            const e = l.get(this, O, "f").context.createPanner();
+                            const e = l.get(this, localAudioManager, "f").context.createPanner();
                             e.refDistance = 5,
                             e.connect(l.get(this, W, "f")),
                             l.get(this, J, "f").push(e)
@@ -8391,25 +8392,25 @@
                         t.positionY.value = i.y,
                         t.positionZ.value = i.z
                     }
-                    l.get(this, Ae, "f").camera != l.get(this, carOrbitCamera, "f").camera && l.get(this, Ae, "f").camera != l.get(this, carCockpitCamera, "f").camera && l.get(this, Ae, "f").camera != l.get(this, carBackwardsCamera, "f").camera || l.get(this, O, "f").refreshListener(l.get(this, Ae, "f")),
+                    l.get(this, Ae, "f").camera != l.get(this, carOrbitCamera, "f").camera && l.get(this, Ae, "f").camera != l.get(this, carCockpitCamera, "f").camera && l.get(this, Ae, "f").camera != l.get(this, carBackwardsCamera, "f").camera || l.get(this, localAudioManager, "f").refreshListener(l.get(this, Ae, "f")),
                     l.get(this, G, "m", Ye).call(this),
                     l.get(this, G, "m", $e).call(this),
-                    l.get(this, G, "m", nt).call(this)
+                    l.get(this, G, "m", playSkidAudio).call(this)
                 }
             }
             ,
             Ye = function() {
-                if (null == l.get(this, H, "f") && null != l.get(this, Q, "f") && null != l.get(this, O, "f")) {
-                    const e = l.get(this, O, "f").getBuffer("engine");
-                    if (null != e && null != l.get(this, O, "f").context) {
-                        const t = l.get(this, O, "f").context.createBufferSource();
+                if (null == l.get(this, H, "f") && null != l.get(this, audioPanner, "f") && null != l.get(this, localAudioManager, "f")) {
+                    const e = l.get(this, localAudioManager, "f").getBuffer("engine");
+                    if (null != e && null != l.get(this, localAudioManager, "f").context) {
+                        const t = l.get(this, localAudioManager, "f").context.createBufferSource();
                         t.buffer = e,
                         t.loop = !0,
                         t.playbackRate.value = .7;
-                        const n = l.get(this, O, "f").context.createGain();
+                        const n = l.get(this, localAudioManager, "f").context.createGain();
                         n.gain.value = 0,
                         t.connect(n),
-                        n.connect(l.get(this, Q, "f")),
+                        n.connect(l.get(this, audioPanner, "f")),
                         t.start(0, 2 * Math.random()),
                         l.set(this, H, {
                             source: t,
@@ -8440,17 +8441,17 @@
                     if (l.get(this, j, "f")[t] -= e,
                     l.get(this, j, "f")[t] <= 0) {
                         const e = Math.abs(l.get(this, ie, "f").wheelSuspensionVelocity[t]);
-                        if (e > 4 && null != l.get(this, O, "f")) {
-                            const n = l.get(this, O, "f").getBuffer("suspension");
-                            if (null != n && null != l.get(this, O, "f").context) {
-                                const i = l.get(this, O, "f").context.createBufferSource();
+                        if (e > 4 && null != l.get(this, localAudioManager, "f")) {
+                            const n = l.get(this, localAudioManager, "f").getBuffer("suspension");
+                            if (null != n && null != l.get(this, localAudioManager, "f").context) {
+                                const i = l.get(this, localAudioManager, "f").context.createBufferSource();
                                 i.buffer = n,
                                 i.playbackRate.value = .7 + .1 * Math.random();
-                                const r = l.get(this, O, "f").context.createGain();
+                                const r = l.get(this, localAudioManager, "f").context.createGain();
                                 r.gain.value = Math.min(.285, e / 140),
                                 i.connect(r),
                                 r.connect(l.get(this, J, "f")[t]),
-                                i.start(l.get(this, O, "f").context.currentTime + .02 * Math.random()),
+                                i.start(l.get(this, localAudioManager, "f").context.currentTime + .02 * Math.random()),
                                 l.get(this, j, "f")[t] = .1
                             }
                         }
@@ -8458,17 +8459,17 @@
             }
             ,
             $e = function() {
-                if (null == l.get(this, K, "f") && null != l.get(this, O, "f")) {
-                    const e = l.get(this, O, "f").getBuffer("tires");
-                    if (null != e && null != l.get(this, O, "f").context) {
+                if (null == l.get(this, K, "f") && null != l.get(this, localAudioManager, "f")) {
+                    const e = l.get(this, localAudioManager, "f").getBuffer("tires");
+                    if (null != e && null != l.get(this, localAudioManager, "f").context) {
                         l.set(this, K, [], "f");
                         const t = 4;
                         for (let n = 0; n < t; n++) {
-                            const i = l.get(this, O, "f").context.createBufferSource();
+                            const i = l.get(this, localAudioManager, "f").context.createBufferSource();
                             i.buffer = e,
                             i.loop = !0,
                             i.playbackRate.value = .3;
-                            const r = l.get(this, O, "f").context.createGain();
+                            const r = l.get(this, localAudioManager, "f").context.createGain();
                             r.gain.value = 0,
                             i.connect(r),
                             r.connect(l.get(this, J, "f")[n]),
@@ -8498,57 +8499,73 @@
                 l.get(this, q, "f").timeout <= 0 && l.set(this, q, null, "f"));
                 const t = l.get(this, ie, "f").collisionImpulses;
                 for (const e of t)
-                    l.get(this, G, "m", tt).call(this, e)
+                    l.get(this, G, "m", playCollisionAudio).call(this, e)
             }
             ,
-            tt = function(e) {
-                if (e > 25 && null != l.get(this, Q, "f") && null != l.get(this, O, "f") && (null == l.get(this, q, "f") || l.get(this, q, "f").impulse + 100 < e)) {
+            playCollisionAudio = function(e) {
+                if (e > 25 && null != l.get(this, audioPanner, "f") && null != l.get(this, localAudioManager, "f") && (null == l.get(this, q, "f") || l.get(this, q, "f").impulse + 100 < e)) {
                     l.set(this, q, {
                         timeout: .2,
                         impulse: e
                     }, "f");
-                    const t = l.get(this, O, "f").getBuffer("collision");
-                    if (null != t && null != l.get(this, O, "f").context) {
-                        const n = l.get(this, O, "f").context.createBufferSource();
+                    const t = l.get(this, localAudioManager, "f").getBuffer("collision");
+                    if (null != t && null != l.get(this, localAudioManager, "f").context) {
+                        const n = l.get(this, localAudioManager, "f").context.createBufferSource();
                         n.buffer = t,
                         n.playbackRate.value = .1 + .15 * Math.min(e / 4e3, 1);
-                        const i = l.get(this, O, "f").context.createGain();
+                        const i = l.get(this, localAudioManager, "f").context.createGain();
                         i.gain.value = Math.max(.3, Math.min(e / 4e3, 1)) / 2.5,
                         n.connect(i),
-                        i.connect(l.get(this, Q, "f")),
+                        i.connect(l.get(this, audioPanner, "f")),
                         n.start(0)
                     }
                 }
             }
             ,
-            nt = function() {
-                if (null == l.get(this, Ue, "f") && null != l.get(this, O, "f")) {
-                    const e = l.get(this, O, "f").getBuffer("skidding");
-                    if (null != e && null != l.get(this, O, "f").context) {
-                        l.set(this, Ue, [], "f");
+            playSkidAudio = function() {
+                if (null == l.get(this, skidAudioSources, "f") && null != l.get(this, localAudioManager, "f")) {
+                    const e = l.get(this, localAudioManager, "f").getBuffer("skidding");
+                    if (null != e && null != l.get(this, localAudioManager, "f").context) {
+                        l.set(this, skidAudioSources, [], "f");
                         const t = 4;
                         for (let n = 0; n < t; ++n) {
-                            const i = l.get(this, O, "f").context.createBufferSource();
+                            const i = l.get(this, localAudioManager, "f").context.createBufferSource();
                             i.buffer = e,
                             i.loop = !0,
                             i.playbackRate.value = .5;
-                            const r = l.get(this, O, "f").context.createGain();
+                            const r = l.get(this, localAudioManager, "f").context.createGain();
                             r.gain.value = 0,
                             i.connect(r),
                             r.connect(l.get(this, J, "f")[n]),
                             i.start(0, n / t * 3.5 + .25 * Math.random()),
-                            l.get(this, Ue, "f").push({
+                            l.get(this, skidAudioSources, "f").push({
                                 source: i,
                                 gain: r
                             })
                         }
                     }
                 }
-                if (null != l.get(this, Ue, "f"))
-                    for (let e = 0; e < l.get(this, Ue, "f").length; ++e) {
-                        const t = l.get(this, Ue, "f")[e];
+                if (null != l.get(this, skidAudioSources, "f"))
+                    for (let e = 0; e < l.get(this, skidAudioSources, "f").length; ++e) {
+                        const t = l.get(this, skidAudioSources, "f")[e];
                         0 == l.get(this, ze, "f")[e] ? t.gain.gain.setTargetAtTime(.75 / 3.5, 0, .1) : t.gain.gain.setTargetAtTime(0, 0, .1)
                     }
+            }
+            ,
+            playHornAudio = function() {
+                if (null != l.get(this, audioPanner, "f") && null != l.get(this, localAudioManager, "f")) {
+                    const e = l.get(this, localAudioManager, "f").getBuffer("honk1");
+                    if (null != e && null != l.get(this, localAudioManager, "f").context) {
+                        const i = l.get(this, localAudioManager, "f").context.createBufferSource();
+                        i.buffer = e,
+                        i.playbackRate.value = 1;
+                        const r = l.get(this, localAudioManager, "f").context.createGain();
+                        r.gain.value = 1,
+                        i.connect(r),
+                        r.connect(l.get(this, audioPanner, "f")),
+                        i.start(0);
+                    }
+                }
             }
             ,
             it = function(e) {
@@ -57009,6 +57026,9 @@
             audioLoader.load("checkpoint", ["audio/checkpoint.ogg", "audio/checkpoint.mp3"]),
             audioLoader.load("record", ["audio/record.ogg", "audio/record.mp3"]),
             audioLoader.load("position_tick", ["audio/position_tick.ogg", "audio/position_tick.mp3"]),
+
+            audioLoader.load("honk1", ["mods/SBAC.flac"]),
+
             Kh.A.initResources(t);
             const c = document.getElementById("screen");
             if (!(c instanceof HTMLCanvasElement))
