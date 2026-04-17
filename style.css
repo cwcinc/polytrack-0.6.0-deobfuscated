@@ -120,6 +120,7 @@
 .menu-ui > .warning-message.modded {
     margin-bottom: -52px !important;
     margin-top: 0px !important;
+    color: #b561c4 !important;
 }
 
 .menu-ui > .warning-message.modded.hiding {
