@@ -52078,6 +52078,7 @@
                 video.src = "mods/gamevideo.mp4";
                 video.loop = true;
                 video.muted = true;
+                video.playsInline = true;
                 
                 const canvas = document.createElement("canvas");
                 canvas.style.top = "0";
