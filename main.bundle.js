@@ -52089,11 +52089,14 @@
                 video.muted = true;
                 
                 const canvas = document.createElement("canvas");
-                canvas.style.width = "1862px";
-                canvas.style.height = "925px";
+                canvas.style.top = "0";
+                canvas.style.left = "0";
+                canvas.style.width = "100vw";
+                canvas.style.height = "100vh";
+                canvas.style.objectFit = "cover";
                 canvas.style.zIndex = "10";
-                canvas.width = 1862;
-                canvas.height = 925;
+                canvas.width = 1920;
+                canvas.height = 1080;
                 document.body.prepend(canvas);
                 const ctx = canvas.getContext('2d');
 
