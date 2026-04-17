@@ -51702,7 +51702,7 @@
                 n.playUIClick(),
                 C.get(this, vc, "m", qc).call(this),
                 C.get(this, vc, "m", Xc).call(this);
-                "RTCPeerConnection"in window ? d.show(t.get("Multiplayer is experimental!") + "\n\n" + t.get("You may experience connectivity issues or other problems."), t.get("Continue"), ( () => {
+                "RTCPeerConnection"in window ? (( () => {
                     C.set(this, Uc, new hc(n,t,s,l,h,o,c,d,( () => {
                         C.get(this, Uc, "f")?.dispose(),
                         C.set(this, Uc, null, "f"),
@@ -51711,7 +51711,7 @@
                     }
                     ),f), "f")
                 }
-                )) : d.show(t.get("WebRTC is not supported in this browser.") + "\n\n" + t.get("Please try another browser or device."), t.get("Ok"), ( () => {
+                )()) : d.show(t.get("WebRTC is not supported in this browser.") + "\n\n" + t.get("Please try another browser or device."), t.get("Ok"), ( () => {
                     C.get(this, vc, "m", Qc).call(this),
                     C.get(this, vc, "m", Yc).call(this)
                 }
