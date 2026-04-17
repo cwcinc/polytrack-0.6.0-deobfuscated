@@ -51943,7 +51943,7 @@
                 {
                     C.set(this, Tc, document.createElement("a"), "f"),
                     C.get(this, Tc, "f").className = "discord-link",
-                    C.get(this, Tc, "f").href = "https://www.kodub.com/discord/polytrack",
+                    C.get(this, Tc, "f").href = "https://discord.gg/nVEEVHaNQ6",
                     C.get(this, Tc, "f").target = "_blank",
                     C.get(this, kc, "f").appendChild(C.get(this, Tc, "f"));
                     const e = document.createElement("img");
