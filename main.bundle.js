@@ -28757,7 +28757,7 @@
         ,
         8903: (e, t, __webpack_require__) => {
             "use strict";
-            e.exports = __webpack_require__.p + "images/logo.svg"
+            e.exports = __webpack_require__.p + "mods/cwctracklogo.svg"
         }
         ,
         8928: (e, t, __webpack_require__) => {
@@ -29137,7 +29137,7 @@
             TrackPartTransform = __webpack_require__(5735), 
             k = __webpack_require__(3476), 
             E = __webpack_require__(8739);
-            class T {
+            class TrackPart {
                 constructor(e, t, n, i, r, a, s, o, l, c) {
                     if (this.checkpointOrder = null,
                     this.startOrder = null,
@@ -29162,7 +29162,7 @@
                         throw new Error("Non-start part has start order")
                 }
             }
-            class M {
+            class TrackObject {
                 constructor(e, t, n) {
                     i.add(this),
                     r.set(this, void 0),
@@ -29232,9 +29232,9 @@
                     if (o != TrackPartColorId.Default && !p.colors.has(o))
                         throw new Error("Track part color does not exist");
                     const f = TrackPartTransform.rotationAndAxisToQuaternion(r, a)
-                      , g = new THREE.Vector3(e * M.partSize,t * M.partSize,n * M.partSize)
+                      , g = new THREE.Vector3(e * TrackObject.partSize,t * TrackObject.partSize,n * TrackObject.partSize)
                       , v = (new THREE.Matrix4).compose(g, f, new THREE.Vector3(1,1,1))
-                      , y = new T(e,t,n,r,a,o,p,v,d,u);
+                      , y = new TrackPart(e,t,n,r,a,o,p,v,d,u);
                     m.get(this, l, "f").push(y);
                     p.configuration.tiles.rotated(r, a).forEach(( (i, r, a) => {
                         const s = (e + i).toString() + "|" + (t + r).toString() + "|" + (n + a).toString();
@@ -29459,7 +29459,7 @@
                           , n = e.startOffset;
                         return n.applyQuaternion(t),
                         {
-                            position: new THREE.Vector3(e.x * M.partSize + n.x,e.y * M.partSize + n.y,e.z * M.partSize + n.z),
+                            position: new THREE.Vector3(e.x * TrackObject.partSize + n.x,e.y * TrackObject.partSize + n.y,e.z * TrackObject.partSize + n.z),
                             quaternion: t
                         }
                     }
@@ -29562,8 +29562,8 @@
                 }, "f")
             }
             ,
-            M.partSize = 5;
-            const _ = M
+            TrackObject.partSize = 5;
+            const _ = TrackObject
         }
         ,
         9027: (e, t, __webpack_require__) => {
@@ -40026,8 +40026,6 @@
 
                 
                 this.m_voiceChat = new HostVoiceChat({
-                    refDistance: 5,
-                    maxDistance: 100,
                     hostId: C.get(this, hostMultiplayerProfile, "f").id
                 });
                 m_voiceChat.set(this, this.m_voiceChat);
@@ -50510,7 +50508,7 @@
                 C.set(this, pl, n, "f"),
                 C.set(this, fl, i, "f");
                 
-                this.m_voiceChat = new ClientVoiceChat({ refDistance: 5, maxDistance: 100 });
+                this.m_voiceChat = new ClientVoiceChat();
                 this.audioManager = audioManager;
 
                 window.addEventListener("pagehide", C.set(this, Ul, ( () => {
@@ -51456,7 +51454,7 @@
             }
         }
         ;
-        var vc, yc, bc, wc, xc, Sc, kc, Ec, Tc, Mc, _c, Cc, Rc, Pc, Ic, Lc, Uc, zc, Nc, Dc, Bc, Gc, Fc, Oc, Wc, Vc, Hc, jc, Kc, qc, Qc, Jc, Xc, Yc, Zc;
+        var vc, yc, bc, wc, xc, Sc, kc, Ec, Tc, Mc, _c, Cc, Rc, Pc, Ic, Lc, Uc, modWarningText, Nc, Dc, Bc, Gc, Fc, Oc, Wc, Vc, Hc, jc, Kc, qc, Qc, Jc, Xc, Yc, Zc;
         let $c = null;
         yc = new WeakMap,
         bc = new WeakMap,
@@ -51474,7 +51472,7 @@
         Ic = new WeakMap,
         Lc = new WeakMap,
         Uc = new WeakMap,
-        zc = new WeakMap,
+        modWarningText = new WeakMap,
         Nc = new WeakMap,
         Dc = new WeakMap,
         Bc = new WeakMap,
@@ -51831,7 +51829,7 @@
         }
         ,
         qc = function() {
-            C.get(this, zc, "f")?.classList.add("hidden"),
+            C.get(this, modWarningText, "f")?.classList.add("hidden"),
             C.get(this, Nc, "f").classList.add("hidden");
             for (const e of C.get(this, Dc, "f"))
                 e.classList.remove("button-spawn");
@@ -51849,24 +51847,24 @@
         }
         ,
         Jc = function() {
-            if (null != C.get(this, zc, "f")) {
+            if (null != C.get(this, modWarningText, "f")) {
                 const e = Co();
-                C.get(this, zc, "f").textContent = null != e ? C.get(this, yc, "f").get("Unofficial {0} mod by {1}. For the original version please visit:", [e.modName, e.author]) : C.get(this, yc, "f").get("It seems like you are playing an unofficial version of {0}. For the most up-to-date version please visit the original source:", ["PolyTrack"]);
+                C.get(this, modWarningText, "f").textContent = null != e ? C.get(this, yc, "f").get("Unofficial {0} mod by {1}. For the original version please visit:", [e.modName, e.author]) : C.get(this, yc, "f").get("It seems like you are playing an unofficial version of {0}. For the most up-to-date version please visit the original source:", ["PolyTrack"]);
                 const t = document.createElement("a");
                 if (t.href = Io(),
                 t.textContent = Io(),
-                C.get(this, zc, "f").appendChild(t),
+                C.get(this, modWarningText, "f").appendChild(t),
                 Ro()) {
-                    C.get(this, zc, "f").appendChild(document.createElement("br")),
-                    C.get(this, zc, "f").appendChild(document.createElement("br")),
-                    C.get(this, zc, "f").appendChild(document.createElement("br")),
-                    C.get(this, zc, "f").appendChild(document.createTextNode(C.get(this, yc, "f").get("Please read the Terms of Service for more information:")));
+                    C.get(this, modWarningText, "f").appendChild(document.createElement("br")),
+                    C.get(this, modWarningText, "f").appendChild(document.createElement("br")),
+                    C.get(this, modWarningText, "f").appendChild(document.createElement("br")),
+                    C.get(this, modWarningText, "f").appendChild(document.createTextNode(C.get(this, yc, "f").get("Please read the Terms of Service for more information:")));
                     const e = document.createElement("a");
                     e.href = "https://www.kodub.com/terms/polytrack",
                     e.textContent = e.href,
-                    C.get(this, zc, "f").appendChild(e)
+                    C.get(this, modWarningText, "f").appendChild(e)
                 }
-                C.get(this, zc, "f").classList.remove("hidden")
+                C.get(this, modWarningText, "f").classList.remove("hidden")
             }
         }
         ,
@@ -51885,7 +51883,7 @@
             C.get(this, Oc, "f").rotation.y = C.get(this, Wc, "f") + Math.PI / 2
         }
         ;
-        const eh = class {
+        const PolyTrackGame = class {
             constructor(e, t, n, i, r, a, s, o, l, c, h, d, u, p, f, g, m, A, v, y, b) {
                 vc.add(this),
                 yc.set(this, void 0),
@@ -51904,7 +51902,7 @@
                 Ic.set(this, null),
                 Lc.set(this, null),
                 Uc.set(this, null),
-                zc.set(this, void 0),
+                modWarningText.set(this, void 0),
                 Nc.set(this, void 0),
                 Dc.set(this, []),
                 Bc.set(this, void 0),
@@ -51925,20 +51923,22 @@
                 C.set(this, kc, document.createElement("div"), "f"),
                 C.get(this, kc, "f").className = "menu-ui",
                 C.get(this, Sc, "f").appendChild(C.get(this, kc, "f")),
-                C.set(this, Ec, document.createElement("img"), "f"),
+                C.set(this, Ec, document.createElement("object"), "f"),
                 C.get(this, Ec, "f").className = "logo",
+                C.get(this, Ec, "f").id = "logo",
+                C.get(this, Ec, "f").type = "image/svg+xml",
                 i.hasLoaded() || (C.get(this, Ec, "f").classList.add("hidden"),
                 C.get(this, Ec, "f").addEventListener("load", ( () => {
-                    C.get(this, Ec, "f").classList.remove("hidden")
+                    C.get(this, Ec, "f").classList.remove("hidden");
                 }
                 ))),
-                C.get(this, Ec, "f").src = "images/logo.svg",
+                C.get(this, Ec, "f").data = "mods/cwctracklogo.svg",
                 C.get(this, kc, "f").appendChild(C.get(this, Ec, "f")),
-                _o() || Ro() ? (C.set(this, zc, document.createElement("div"), "f"),
-                C.get(this, zc, "f").className = "warning-message",
-                _o() && C.get(this, zc, "f").classList.add("modded"),
-                C.get(this, kc, "f").appendChild(C.get(this, zc, "f")),
-                C.get(this, vc, "m", Jc).call(this)) : C.set(this, zc, null, "f"),
+                _o() || Ro() ? (C.set(this, modWarningText, document.createElement("div"), "f"),
+                C.get(this, modWarningText, "f").className = "warning-message",
+                _o() && C.get(this, modWarningText, "f").classList.add("modded"),
+                C.get(this, kc, "f").appendChild(C.get(this, modWarningText, "f")),
+                C.get(this, vc, "m", Jc).call(this)) : C.set(this, modWarningText, null, "f"),
                 C.set(this, Rc, C.get(this, vc, "m", Hc).call(this, e, t, s, h, a, u, o, c, A, v), "f");
                 {
                     C.set(this, Tc, document.createElement("a"), "f"),
@@ -52023,6 +52023,7 @@
                 C.get(this, vc, "m", Zc).call(this)
             }
             dispose() {
+                window.backgroundVideo?.hide(),
                 C.get(this, Sc, "f").removeChild(C.get(this, kc, "f")),
                 C.get(this, Rc, "f").dispose(),
                 C.get(this, Pc, "f")?.dispose(),
@@ -52043,7 +52044,7 @@
             }
         }
         ;
-        var th, nh, ih, rh, ah, sh, oh, lh, ch, hh, dh, uh, ph, fh;
+        var th, nh, ih, rh, ah, sh, oh, lh, m_renderManager, hh, dh, uh, ph, loadRandomMainTrack;
         nh = new WeakMap,
         ih = new WeakMap,
         rh = new WeakMap,
@@ -52051,13 +52052,77 @@
         sh = new WeakMap,
         oh = new WeakMap,
         lh = new WeakMap,
-        ch = new WeakMap,
+        m_renderManager = new WeakMap,
         hh = new WeakMap,
         dh = new WeakMap,
         uh = new WeakMap,
         ph = new WeakMap,
         th = new WeakSet,
-        fh = function() {
+        loadRandomMainTrack = function() {
+            const svgLogo = document.getElementById("logo");
+
+            function triggerLogoAnimation(svg) {
+                const svgDoc = svg.contentDocument;
+                if (!svgDoc) return;
+                svgDoc.getElementById('g872')?.classList.add('animate');
+                svgDoc.getElementById('rect19982-1')?.classList.add('animate');
+                svgDoc.getElementById('rect19982-1-3')?.classList.add('animate');
+                svg.removeEventListener("load", triggerLogoAnimation);
+            }
+
+            function onLogoLoad() {
+                triggerLogoAnimation(svgLogo);
+            }
+
+            if (svgLogo.contentDocument?.getElementById('g872')) {
+                triggerLogoAnimation(svgLogo);
+            } else {
+                svgLogo.addEventListener("load", onLogoLoad);
+            }
+
+            document.querySelector(".warning-message")?.classList.add("hiding");
+
+            if (!window.backgroundVideo) {
+                const video = document.createElement("video");
+                video.src = "mods/gamevideo.mp4";
+                video.loop = true;
+                video.muted = true;
+                
+                const canvas = document.createElement("canvas");
+                canvas.style.width = "1862px";
+                canvas.style.height = "925px";
+                canvas.style.zIndex = "10";
+                canvas.width = 1862;
+                canvas.height = 925;
+                document.body.prepend(canvas);
+                const ctx = canvas.getContext('2d');
+
+                const show = () => {
+                    video.play().catch((e) => {
+                        console.error("Failed to play video:", e);
+                    });
+
+                    canvas.classList.remove("hidden");
+                };
+                const hide = () => {
+                    video.pause();
+                    canvas.classList.add("hidden");
+                };
+                window.backgroundVideo = {show, hide};
+
+                video.addEventListener('play', () => {
+                    function step() {
+                        if (video.paused || video.ended) return;
+
+                        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                        requestAnimationFrame(step);
+                    }
+                    requestAnimationFrame(step);
+                });
+            }
+            window.backgroundVideo.show();
+            return;
+
             const e = C.get(this, sh, "f").getRandomOfficialTrackData();
             C.get(this, ih, "f").loadTrackData(e),
             C.get(this, ih, "f").generateMeshes(),
@@ -52070,14 +52135,14 @@
                 const n = C.get(this, ih, "f").getStartTransform();
                 if (null == n)
                     throw new Error("Start transform is null");
-                C.set(this, ph, new VisualCar(C.get(this, nh, "f"),n,t,null,C.get(this, ch, "f"),C.get(this, hh, "f"),C.get(this, rh, "f"),C.get(this, ih, "f"),e,C.get(this, lh, "f"),null), "f"),
+                C.set(this, ph, new VisualCar(C.get(this, nh, "f"),n,t,null,C.get(this, m_renderManager, "f"),C.get(this, hh, "f"),C.get(this, rh, "f"),C.get(this, ih, "f"),e,C.get(this, lh, "f"),null), "f"),
                 C.get(this, ph, "f").audioVolume = 0,
                 C.get(this, ph, "f").start()
             }
         }
         ;
-        const gh = class {
-            constructor(e, t, n, i, r, a, s, o, l, c, h, d, u, p, f, g, m, A, v, y, b, w, x, S) {
+        const MainMenuTrackBackground = class {
+            constructor(simWorker, trackObject, mountainsManager, cloudsManager, trackManager, languageManager, confirmBox, profileManager, recordManager, renderManager, audioLoader, localstorageManager, updatePrompt, settingsManager, networkManager, gameProgressBar, m, A, garageLoader, y, b, w, x, S) {
                 th.add(this),
                 nh.set(this, void 0),
                 ih.set(this, void 0),
@@ -52086,41 +52151,43 @@
                 sh.set(this, void 0),
                 oh.set(this, void 0),
                 lh.set(this, void 0),
-                ch.set(this, void 0),
+                m_renderManager.set(this, void 0),
                 hh.set(this, void 0),
                 dh.set(this, void 0),
                 uh.set(this, void 0),
                 ph.set(this, null),
-                C.set(this, nh, e, "f"),
-                C.set(this, ih, t, "f"),
-                C.set(this, rh, n, "f"),
-                C.set(this, ah, i, "f"),
-                C.set(this, sh, r, "f"),
-                C.set(this, oh, l, "f"),
-                C.set(this, lh, p, "f"),
-                C.set(this, ch, c, "f"),
-                C.set(this, hh, h, "f"),
-                C.set(this, dh, o, "f"),
-                C.set(this, uh, new eh(a,h,c,g,t,o,l,d,u,f,r,p,s,m,A,v,y,b,w,x,S), "f"),
-                c.setCamera(C.get(this, uh, "f").camera),
-                g.hasLoaded() ? C.get(this, th, "m", fh).call(this) : g.addCompleteListener(( () => {
-                    C.get(this, th, "m", fh).call(this)
+                C.set(this, nh, simWorker, "f"),
+                C.set(this, ih, trackObject, "f"),
+                C.set(this, rh, mountainsManager, "f"),
+                C.set(this, ah, cloudsManager, "f"),
+                C.set(this, sh, trackManager, "f"),
+                C.set(this, oh, recordManager, "f"),
+                C.set(this, lh, settingsManager, "f"),
+                C.set(this, m_renderManager, renderManager, "f"),
+                C.set(this, hh, audioLoader, "f"),
+                C.set(this, dh, profileManager, "f"),
+                C.set(this, uh, new PolyTrackGame(languageManager,audioLoader,renderManager,gameProgressBar,trackObject,profileManager,recordManager,localstorageManager,updatePrompt,networkManager,trackManager,settingsManager,confirmBox,m,A,garageLoader,y,b,w,x,S), "f"),
+                renderManager.setCamera(C.get(this, uh, "f").camera),
+                gameProgressBar.hasLoaded() ? C.get(this, th, "m", loadRandomMainTrack).call(this) : gameProgressBar.addCompleteListener(( () => {
+                    C.get(this, th, "m", loadRandomMainTrack).call(this)
                 }
                 ))
+                document.getElementById("screen").classList.add("hidden");
             }
             dispose() {
                 C.get(this, ph, "f")?.dispose(),
                 C.get(this, uh, "f").dispose(),
                 C.get(this, ih, "f").clear(),
-                C.get(this, rh, "f").clearMountains()
+                C.get(this, rh, "f").clearMountains(),
+                document.getElementById("screen").classList.remove("hidden");
             }
             update(e) {
                 C.get(this, ph, "f")?.update(e),
                 C.get(this, uh, "f").update(e),
                 C.get(this, rh, "f").update(C.get(this, ih, "f")),
-                C.get(this, ah, "f").update(e, C.get(this, ch, "f").camera, C.get(this, ih, "f").sunDirection),
-                C.get(this, hh, "f").update(e, C.get(this, uh, "f").isMusicEnabled, C.get(this, ch, "f")),
-                C.get(this, ch, "f").update(C.get(this, ih, "f").sunDirection)
+                C.get(this, ah, "f").update(e, C.get(this, m_renderManager, "f").camera, C.get(this, ih, "f").sunDirection),
+                C.get(this, hh, "f").update(e, C.get(this, uh, "f").isMusicEnabled, C.get(this, m_renderManager, "f")),
+                C.get(this, m_renderManager, "f").update(C.get(this, ih, "f").sunDirection)
             }
         }
         ;
@@ -57091,7 +57158,7 @@
                     P.bQ(),
                     P.pS(),
                     currentUpdater.dispose(),
-                    currentUpdater = new gh(p,v,A,m,y,b,E,w,S,h,audioLoader,e,n,settingsManager,x,t,i,a,_,C,W,j,K,q),
+                    currentUpdater = new MainMenuTrackBackground(p,v,A,m,y,b,E,w,S,h,audioLoader,e,n,settingsManager,x,t,i,a,_,C,W,j,K,q),
                     P.PM()
                 }
                 ))
@@ -57113,7 +57180,7 @@
                         console.error("Failed to load customization state: ", i);
                         const a = b.get("Failed to load garage.") + "\n\n" + b.get("Check your internet connection and try again.");
                         currentUpdater.dispose(),
-                        currentUpdater = new gh(p,v,A,m,y,b,E,w,S,h,audioLoader,e,n,settingsManager,x,t,!1,a,_,C,W,j,K,q),
+                        currentUpdater = new MainMenuTrackBackground(p,v,A,m,y,b,E,w,S,h,audioLoader,e,n,settingsManager,x,t,!1,a,_,C,W,j,K,q),
                         P.PM()
                     }
                 }
@@ -57133,7 +57200,7 @@
                                 P.bQ(),
                                 P.pS(),
                                 currentUpdater.dispose(),
-                                currentUpdater = new gh(p,v,A,m,y,b,E,w,S,h,audioLoader,e,n,settingsManager,x,t,!1,null,_,C,W,j,K,q),
+                                currentUpdater = new MainMenuTrackBackground(p,v,A,m,y,b,E,w,S,h,audioLoader,e,n,settingsManager,x,t,!1,null,_,C,W,j,K,q),
                                 P.PM()
                             }
                             ),( (t, n, i) => {
@@ -57158,7 +57225,7 @@
                             console.error("Failed to load editor state: ", i);
                             const a = b.get("Failed to load editor.") + "\n\n" + b.get("Check your internet connection and try again.");
                             currentUpdater.dispose(),
-                            currentUpdater = new gh(p,v,A,m,y,b,E,w,S,h,audioLoader,e,n,settingsManager,x,t,!1,a,_,C,W,j,K,q),
+                            currentUpdater = new MainMenuTrackBackground(p,v,A,m,y,b,E,w,S,h,audioLoader,e,n,settingsManager,x,t,!1,a,_,C,W,j,K,q),
                             P.PM()
                         }
                     }
@@ -57254,7 +57321,7 @@
                     } catch (i) {
                         console.error("Failed to load verifier state: ", i),
                         currentUpdater.dispose(),
-                        currentUpdater = new gh(p,v,A,m,y,b,E,w,S,h,audioLoader,e,n,settingsManager,x,t,!1,null,_,C,W,j,K,q),
+                        currentUpdater = new MainMenuTrackBackground(p,v,A,m,y,b,E,w,S,h,audioLoader,e,n,settingsManager,x,t,!1,null,_,C,W,j,K,q),
                         P.PM()
                     }
                 }
@@ -57275,14 +57342,14 @@
                     } catch (i) {
                         console.error("Failed to load admin state: ", i),
                         currentUpdater.dispose(),
-                        currentUpdater = new gh(p,v,A,m,y,b,E,w,S,h,audioLoader,e,n,settingsManager,x,t,!1,null,_,C,W,j,K,q),
+                        currentUpdater = new MainMenuTrackBackground(p,v,A,m,y,b,E,w,S,h,audioLoader,e,n,settingsManager,x,t,!1,null,_,C,W,j,K,q),
                         P.PM()
                     }
                 }
                 ))
             }
             ;
-            let currentUpdater = new gh(p,v,A,m,y,b,E,w,S,h,audioLoader,e,n,settingsManager,x,t,!1,null,_,C,W,j,K,q)
+            let currentUpdater = new MainMenuTrackBackground(p,v,A,m,y,b,E,w,S,h,audioLoader,e,n,settingsManager,x,t,!1,null,_,C,W,j,K,q)
               , J = 0;
             h.setAnimationLoop((function(e) {
                 const t = Math.max(e - J, 0) / 1e3;

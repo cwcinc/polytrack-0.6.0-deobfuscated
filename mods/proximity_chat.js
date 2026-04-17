@@ -41,7 +41,7 @@ class AudioRingBuffer {
 // ---- Client ----
 
 class ClientVoiceChat {
-  constructor({ refDistance = 5, maxDistance = 60, rolloffFactor = 1 } = {}) {
+  constructor({ refDistance = 5, maxDistance = 100, rolloffFactor = 1.5 } = {}) {
     this.refDistance = refDistance;
     this.maxDistance = maxDistance;
     this.rolloffFactor = rolloffFactor;
@@ -215,7 +215,7 @@ class ClientVoiceChat {
 // ---- Host ----
 
 class HostVoiceChat {
-  constructor({ refDistance = 5, maxDistance = 60, rolloffFactor = 1, hostId = 0 } = {}) {
+  constructor({ refDistance = 5, maxDistance = 100, rolloffFactor = 1.5, hostId = 0 } = {}) {
     this.refDistance = refDistance;
     this.maxDistance = maxDistance;
     this.rolloffFactor = rolloffFactor;
