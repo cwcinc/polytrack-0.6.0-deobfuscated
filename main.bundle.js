@@ -7272,7 +7272,9 @@
                 e[e.MaxGhostOpacity = 24] = "MaxGhostOpacity",
                 e[e.ItalicsEnabled = 25] = "ItalicsEnabled",
                 e[e.BackwardsCameraToggle = 26] = "BackwardsCameraToggle",
-                e[e.SpeedometerDecimalPlaces = 27] = "SpeedometerDecimalPlaces"
+                e[e.SpeedometerDecimalPlaces = 27] = "SpeedometerDecimalPlaces",
+                e[e.OrbitCameraFixed = 28] = "OrbitCameraFixed",
+                e[e.OrbitCameraFovMult = 29] = "OrbitCameraFovMult"
             }(i || (i = {}));
             const r = i
         }
@@ -7401,12 +7403,30 @@
             };
             const CockpitCamera = f;
             var m, A, v, y, b, w, x, S = n(765);
-            class k {
+            const FLIP_Y = new THREE.Quaternion(0, 1, 0, 0);
+            const orbitPos = new THREE.Vector3();
+            const localUp = new THREE.Vector3(0,1,0);
+            const orbitQuat = new THREE.Quaternion();
+            const orbitTarget = new THREE.Vector3();
+            const fixedPos = new THREE.Vector3();
+            const fixedQuat = new THREE.Quaternion();
+            const upVector = new THREE.Vector3(0, 1, 0);
+            const lookMatrix = new THREE.Matrix4();
+            const diffVector= new THREE.Vector3();
+            class OrbitCam {
                 constructor() {
                     m.add(this),
                     y.set(this, new THREE.PerspectiveCamera(l.get(A, A, "f", v),1,.5,RenderManager.maxViewDistance)),
                     b.set(this, new THREE.Vector3),
-                    w.set(this, new THREE.Vector3(0,1,0))
+                    w.set(this, new THREE.Vector3(0,1,0));
+                    this.fixedRatio = 0;
+                    this.fovMult = 1;
+                }
+                setFixed(fixed) {
+                    this.fixedRatio = fixed;
+                }
+                setFovMult(mult) {
+                    this.fovMult = mult;
                 }
                 reset(e, t, n) {
                     l.set(this, b, new THREE.Vector3(1e-5,0,-1), "f"),
@@ -7419,20 +7439,35 @@
                     l.get(this, y, "f").updateProjectionMatrix()
                 }
                 update(e, t, n, i) {
-                    l.get(this, y, "f").fov = l.get(this, m, "m", x).call(this, i),
+                    l.get(this, y, "f").fov = this.fovMult * l.get(this, m, "m", x).call(this, i) + (1 - this.fovMult) * l.get(A, A, "f", v),
                     l.get(this, y, "f").updateProjectionMatrix();
-                    const r = new THREE.Vector3(0,1,0);
-                    r.applyQuaternion(n);
+
+                    // orbit
+                    localUp.set(0, 1, 0);
+                    localUp.applyQuaternion(n);
                     const a = Math.min(1, 5 * e);
-                    l.get(this, w, "f").set(a * r.x + (1 - a) * l.get(this, w, "f").x, a * r.y + (1 - a) * l.get(this, w, "f").y, a * r.z + (1 - a) * l.get(this, w, "f").z);
-                    const s = (new THREE.Vector3).subVectors(t, l.get(this, b, "f"));
+                    l.get(this, w, "f").set(a * localUp.x + (1 - a) * l.get(this, w, "f").x, a * localUp.y + (1 - a) * l.get(this, w, "f").y, a * localUp.z + (1 - a) * l.get(this, w, "f").z);
+                    const s = diffVector.subVectors(t, l.get(this, b, "f"));
                     s.normalize();
                     const o = 5.5
                       , h = 1.8 / Math.min(l.get(this, y, "f").zoom, 2);
-                    l.get(this, y, "f").position.x = t.x - s.x * o + 2 * l.get(this, w, "f").x,
-                    l.get(this, y, "f").position.y = Math.max(.25, t.y - s.y * o + 2 * l.get(this, w, "f").y),
-                    l.get(this, y, "f").position.z = t.z - s.z * o + 2 * l.get(this, w, "f").z,
-                    l.get(this, y, "f").lookAt(t.x + l.get(this, w, "f").x * h, t.y + l.get(this, w, "f").y * h, t.z + l.get(this, w, "f").z * h),
+
+                    orbitPos.set(
+                        t.x - s.x * o + 2 * l.get(this, w, "f").x,
+                        Math.max(.25, t.y - s.y * o + 2 * l.get(this, w, "f").y),
+                        t.z - s.z * o + 2 * l.get(this, w, "f").z
+                    );
+                    orbitTarget.set(t.x + l.get(this, w, "f").x * h, t.y + l.get(this, w, "f").y * h, t.z + l.get(this, w, "f").z * h);
+                    orbitQuat.setFromRotationMatrix(lookMatrix.lookAt(orbitPos, orbitTarget, upVector));
+
+
+                    // fixed
+                    fixedPos.set(0, 2, -5).applyQuaternion(n).add(t);
+                    fixedQuat.copy(n).multiply(FLIP_Y);
+
+                    l.get(this, y, "f").position.lerpVectors(orbitPos, fixedPos, this.fixedRatio);
+                    l.get(this, y, "f").quaternion.slerpQuaternions(orbitQuat, fixedQuat, this.fixedRatio);
+
                     l.get(this, y, "f").updateMatrix(),
                     l.get(this, b, "f").set(t.x - s.x * o, t.y - s.y * o, t.z - s.z * o)
                 }
@@ -7440,7 +7475,7 @@
                     return l.get(this, y, "f")
                 }
             }
-            A = k,
+            A = OrbitCam,
             y = new WeakMap,
             b = new WeakMap,
             w = new WeakMap,
@@ -7452,7 +7487,7 @@
             v = {
                 value: 70
             };
-            const E = k;
+            const OrbitCamera = OrbitCam;
             var T, M, _, C, R, P, I, L, U, z, N = n(1066);
             class D {
                 constructor(e) {
@@ -7619,8 +7654,10 @@
                     l.set(this, $, u, "f"),
                     d?.getSettingBoolean(st.A.ParticlesEnabled) ? l.set(this, De, new N.A(r), "f") : l.set(this, De, null, "f"),
                     null != l.get(this, Re, "f") && null != l.get(this, Pe, "f") && l.set(this, Le, [new B(l.get(this, Ae, "f")), new B(l.get(this, Ae, "f")), new B(l.get(this, Ae, "f")), new B(l.get(this, Ae, "f"))], "f"),
-                    l.set(this, carOrbitCamera, new E, "f"),
+                    l.set(this, carOrbitCamera, new OrbitCamera, "f"),
                     l.get(this, carOrbitCamera, "f").reset(t.position, t.quaternion),
+                    l.get(this, carOrbitCamera, "f").setFixed(d?.getSettingFloat(st.A.OrbitCameraFixed)),
+                    l.get(this, carOrbitCamera, "f").setFovMult(d?.getSettingFloat(st.A.OrbitCameraFovMult)),
                     r.scene.add(l.get(this, carOrbitCamera, "f").camera),
                     l.set(this, carCockpitCamera, new CockpitCamera, "f"),
                     l.get(this, carCockpitCamera, "f").reset(t.position, t.quaternion),
@@ -49028,6 +49065,8 @@
                 title: "4",
                 value: "4"
             }], R.A.SpeedometerDecimalPlaces)
+            C.get(this, ms, "m", Fs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Fixed Orbit Camera"), R.A.OrbitCameraFixed),
+            C.get(this, ms, "m", Fs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Orbit Camera FOV Mult"), R.A.OrbitCameraFovMult)
         }
         ,
         Ds = function(e) {
@@ -55794,7 +55833,7 @@
                 null != n && C.get(this, Mu, "m", Pu).call(this, n);
             }
             defaultSettings() {
-                return new Map([[R.A.ImperialUnitsEnabled, "false"], [R.A.ResetHintEnabled, "true"], [R.A.GhostCarEnabled, "true"], [R.A.DefaultCameraMode, "false"], [R.A.CockpitCameraToggle, "true"], [R.A.BackwardsCameraToggle, "false"], [R.A.Checkpoints, "bottom"], [R.A.Timer, "bottom"], [R.A.Speedometer, "bottom"], [R.A.Language, "en-US"], [R.A.ShadowQuality, "2"], [R.A.CloudsEnabled, "true"], [R.A.ParticlesEnabled, "true"], [R.A.SkidmarksEnabled, "true"], [R.A.FogEnabled, "true"], [R.A.ItalicsEnabled, "true"], [R.A.RenderScale, "1"], [R.A.ScreenPixelDensity, "true"], [R.A.Antialiasing, "true"], [R.A.MasterVolume, "1"], [R.A.SoundEffectVolume, "1"], [R.A.MusicVolume, "1"], [R.A.CheckpointVolume, "1"], [R.A.MaxGhostOpacity, "1"], [R.A.SpeedometerDecimalPlaces, "0"], [R.A.GhostCarSoundsEnabled, "true"], [R.A.VibrationEnabled, "false"], [R.A.TouchSteeringSide, "true"]])
+                return new Map([[R.A.ImperialUnitsEnabled, "false"], [R.A.ResetHintEnabled, "true"], [R.A.GhostCarEnabled, "true"], [R.A.DefaultCameraMode, "false"], [R.A.CockpitCameraToggle, "true"], [R.A.BackwardsCameraToggle, "false"], [R.A.Checkpoints, "bottom"], [R.A.Timer, "bottom"], [R.A.Speedometer, "bottom"], [R.A.Language, "en-US"], [R.A.ShadowQuality, "2"], [R.A.CloudsEnabled, "true"], [R.A.ParticlesEnabled, "true"], [R.A.OrbitCameraFixed, "0"], [R.A.OrbitCameraFovMult, "1"], [R.A.SkidmarksEnabled, "true"], [R.A.FogEnabled, "true"], [R.A.ItalicsEnabled, "true"], [R.A.RenderScale, "1"], [R.A.ScreenPixelDensity, "true"], [R.A.Antialiasing, "true"], [R.A.MasterVolume, "1"], [R.A.SoundEffectVolume, "1"], [R.A.MusicVolume, "1"], [R.A.CheckpointVolume, "1"], [R.A.MaxGhostOpacity, "1"], [R.A.SpeedometerDecimalPlaces, "0"], [R.A.GhostCarSoundsEnabled, "true"], [R.A.VibrationEnabled, "false"], [R.A.TouchSteeringSide, "true"]])
             }
             defaultKeyBindings() {
                 return new Map([
