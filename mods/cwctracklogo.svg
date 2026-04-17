@@ -40,7 +40,7 @@
 
 #g872.animate, #rect19982-1.animate, #rect19982-1-3.animate {
   animation: slide-right 2s ease-out both;
-  animation-delay: 1s;
+  animation-delay: 0s;
 }
 
 @keyframes slide-right {

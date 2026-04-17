@@ -2096,7 +2096,7 @@
                 editor_selectedCategory.set(this, null),
                 editor_isTyping.set(this, !1),
 
-                this.editorMinimap = new Minimap(e);
+                this.editorMinimap = new Minimap(e, true);
                 this.editorMinimap.setShowPlayerDots(false);
 
                 set(this, editor_localization, t, "f"),

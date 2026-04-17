@@ -195,6 +195,16 @@
                     this.tiles = new l.A(c),
                     this.detector = s,
                     this.startOffset = o,
+
+                    // Pre-compute all rotated tile variants before freezing
+                    this.tiles._cache = new Map();
+                    for (let rot = 0; rot < 4; rot++) {
+                        for (let axis = 0; axis < 6; axis++) {
+                            const key = rot | (axis << 4);
+                            this.tiles._cache.set(key, this.tiles.rotated(rot, axis));
+                        }
+                    }
+
                     Object.freeze(this)
                 }
             }
@@ -8045,35 +8055,37 @@
                                     if (!(i instanceof THREE.Mesh))
                                         throw new Error('Mesh "' + e + '" is not a valid mesh');
                                     const n = i;
-                                    return t && (n.updateMatrixWorld(!0),
-                                    n.geometry.applyMatrix4(n.matrix.clone()),
-                                    n.geometry.computeVertexNormals(),
-                                    n.matrix.identity()),
-                                    n
+                                    if (t) {
+                                        n.updateMatrixWorld(!0);
+                                        n.geometry.applyMatrix4(n.matrix.clone());
+                                        n.matrix.identity();
+                                    }
+                                    return n;
                                 }
                                 const r = i.children.map((t => {
                                     if (!(t instanceof THREE.Mesh))
                                         throw new Error('Mesh "' + e + '" has invalid child meshes');
-                                    return t
+                                    return t;
+                                }));
+                                const a = r.map((e => e.geometry));
+                                const s = BufferGeometryUtils.mergeGeometries(a, !0);
+                                if (t) {
+                                    i.updateMatrixWorld(!0);
+                                    s.applyMatrix4(i.matrix.clone());
                                 }
-                                ))
-                                  , a = r.map((e => e.geometry))
-                                  , s = BufferGeometryUtils.mergeGeometries(a, !0);
-                                t && (i.updateMatrixWorld(!0),
-                                s.applyMatrix4(i.matrix.clone())),
-                                s.computeVertexNormals();
-                                const o = r.map((e => e.material))
-                                  , l = new THREE.Mesh(s,o);
-                                return l.name = e,
-                                l
+                                const o = r.map((e => e.material));
+                                const l = new THREE.Mesh(s, o);
+                                l.name = e;
+                                return l;
                             }
                             function a(e) {
                                 let t;
                                 t = Array.isArray(e.material) ? e.material : [e.material];
                                 for (const e of t)
                                     e.side = THREE.FrontSide,
-                                    e.shadowSide = THREE.FrontSide;
-                                return e
+                                    e.shadowSide = THREE.FrontSide,
+                                    e.flatShading = true;  // <-- add this
+                                return e;
                             }
                             i.dispose();
                             const s = new Map;
@@ -25608,7 +25620,14 @@
                     r.set(this, i, t, "f")
                 }
                 rotated(e, t) {
-                    return new s(r.get(this, i, "f").map(( ([n,i,r]) => TrackPartTransform.rotatePartGridPosition(n, i, r, e, t))))
+                    if (this._cache) {
+                        const key = e | (t << 4);
+                        const cached = this._cache.get(key);
+                        if (cached) return cached;
+                    }
+                    return new s(r.get(this, i, "f").map(([n, i, r]) => 
+                        TrackPartTransform.rotatePartGridPosition(n, i, r, e, t)
+                    ));
                 }
                 forEach(e) {
                     for (let t = 0; t < r.get(this, i, "f").length; t++) {
@@ -25662,56 +25681,61 @@
               , r = [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, -1, -1, -1, -1, -1, -1, -1, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, -1, -1, -1, -1, -1, -1, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51]
               , a = 30;
             function s(e) {
-                let t = 0
-                  , n = "";
-                for (; t < 8 * e.length; ) {
-                    const r = l(e, t);
-                    let s;
-                    (r & a) == a ? (s = 31 & r,
-                    t += 5) : (s = r,
-                    t += 6),
-                    n += i[s]
+                let t = 0;
+                const len = 8 * e.length;
+                const parts = [];
+                
+                while (t < len) {
+                    const n = Math.floor(t / 8);
+                    const shift = t - (n << 3);
+                    let r;
+                    if (shift <= 2 || n >= e.length - 1) {
+                        r = (e[n] & (63 << shift)) >>> shift;
+                    } else {
+                        r = ((e[n] & (63 << shift)) >>> shift) | ((e[n + 1] & (63 >>> (8 - shift))) << (8 - shift));
+                    }
+                    
+                    if ((r & a) == a) {
+                        parts.push(i[31 & r]);
+                        t += 5;
+                    } else {
+                        parts.push(i[r]);
+                        t += 6;
+                    }
                 }
-                return n
+                return parts.join("");
             }
             function o(e) {
                 let t = 0;
-                const n = []
-                  , i = e.length;
-                for (let s = 0; s < i; s++) {
+                const len = e.length;
+                const n = new Uint8Array(Math.ceil(len * 6 / 8) + 1);
+                let maxByte = 0;
+
+                for (let s = 0; s < len; s++) {
                     const o = e.charCodeAt(s);
-                    if (o >= r.length)
-                        return null;
-                    const l = r[o];
-                    if (-1 == l)
-                        return null;
-                    (l & a) == a ? (c(n, t, 5, l, s == i - 1),
-                    t += 5) : (c(n, t, 6, l, s == i - 1),
-                    t += 6)
+                    if (o >= r.length) return null;
+                    const val = r[o];
+                    if (val === -1) return null;
+
+                    const byteIdx = t >> 3;
+                    const shift = t - (byteIdx << 3);
+
+                    if ((val & a) == a) {
+                        n[byteIdx] |= (val << shift) & 255;
+                        if (shift > 3 && s !== len - 1) {
+                            n[byteIdx + 1] |= val >> (8 - shift);
+                        }
+                        t += 5;
+                    } else {
+                        n[byteIdx] |= (val << shift) & 255;
+                        if (shift > 2 && s !== len - 1) {
+                            n[byteIdx + 1] |= val >> (8 - shift);
+                        }
+                        t += 6;
+                    }
+                    if (byteIdx > maxByte) maxByte = byteIdx;
                 }
-                return new Uint8Array(n)
-            }
-            function l(e, t) {
-                if (t >= 8 * e.length)
-                    throw new Error("Out of range");
-                const n = Math.floor(t / 8)
-                  , i = e[n]
-                  , r = t - 8 * n;
-                if (r <= 2 || n >= e.length - 1)
-                    return (i & 63 << r) >>> r;
-                return (i & 63 << r) >>> r | (e[n + 1] & 63 >>> 8 - r) << 8 - r
-            }
-            function c(e, t, n, i, r) {
-                const a = Math.floor(t / 8);
-                for (; a >= e.length; )
-                    e.push(0);
-                const s = t - 8 * a;
-                if (e[a] |= i << s & 255,
-                s > 8 - n && !r) {
-                    const t = a + 1;
-                    t >= e.length && e.push(0),
-                    e[t] |= i >> 8 - s
-                }
+                return n.subarray(0, Math.ceil(t / 8));
             }
         }
         ,
@@ -28521,120 +28545,69 @@
                     return null != legacy ? legacy : null
                 }
                 createThumbnail() {
-                    let minX = 1 / 0
-                      , minZ = 1 / 0
-                      , maxX = -1 / 0
-                      , maxZ = -1 / 0;
-                    this.forEachPart(( (x, _y, z, typeId, rotation, rotationAxis) => {
-                        TrackPartManager.getPart(typeId).tiles.rotated(rotation, rotationAxis).forEach(( (tx, _ty, tz) => {
-                            minX = Math.min(minX, Math.floor((x + tx - 2) / 4)),
-                            minZ = Math.min(minZ, Math.floor((z + tz - 2) / 4)),
-                            maxX = Math.max(maxX, Math.floor((x + tx - 2) / 4)),
-                            maxZ = Math.max(maxZ, Math.floor((z + tz - 2) / 4))
-                        }
-                        ))
-                    }
-                    ));
-                    if (!Number.isFinite(minX) || !Number.isFinite(minZ) || !Number.isFinite(maxX) || !Number.isFinite(maxZ)) {
-                        minX = 0,
-                        minZ = 0,
-                        maxX = 0,
-                        maxZ = 0
-                    }
+                    let minX = Infinity, minZ = Infinity, maxX = -Infinity, maxZ = -Infinity;
 
-                    const minSize = 10
-                    const initialWidth = maxX - minX + 1;
-                    if (initialWidth <= minSize) {
-                        maxX += Math.ceil((minSize - initialWidth) / 2);
-                        minX -= Math.ceil((minSize - initialWidth) / 2);
-                    }
-                    const initialLength = maxZ - minZ + 1;
-                    if (initialLength <= minSize) {
-                        maxZ += Math.ceil((minSize - initialLength) / 2);
-                        minZ -= Math.ceil((minSize - initialLength) / 2);
-                    }
+                    this.forEachPart((x, _y, z, typeId, rotation, rotationAxis) => {
+                        TrackPartManager.getPart(typeId).tiles.rotated(rotation, rotationAxis).forEach((tx, _ty, tz) => {
+                            const gx = (x + tx - 2) >> 2;
+                            const gz = (z + tz - 2) >> 2;
+                            if (gx < minX) minX = gx;
+                            if (gz < minZ) minZ = gz;
+                            if (gx > maxX) maxX = gx;
+                            if (gz > maxZ) maxZ = gz;
+                        });
+                    });
 
+                    if (!isFinite(minX)) { minX = 0; minZ = 0; maxX = 0; maxZ = 0; }
+
+                    const minSize = 10;
+                    let w = maxX - minX + 1;
+                    if (w <= minSize) { const pad = (minSize - w + 1) >> 1; minX -= pad; maxX += pad; w = maxX - minX + 1; }
+                    let h = maxZ - minZ + 1;
+                    if (h <= minSize) { const pad = (minSize - h + 1) >> 1; minZ -= pad; maxZ += pad; h = maxZ - minZ + 1; }
+
+                    const cw = Math.min(1024, w);
+                    const ch = Math.min(1024, h);
                     const canvas = document.createElement("canvas");
-                    canvas.width = Math.min(1024, maxX - minX + 1),
-                    canvas.height = Math.min(1024, maxZ - minZ + 1);
-
+                    canvas.width = cw;
+                    canvas.height = ch;
                     const context = canvas.getContext("2d");
-                    if (null == context)
-                        throw new Error("Failed to get canvas context");
+                    if (!context) throw new Error("Failed to get canvas context");
 
-                    const imageData = context.createImageData(canvas.width, canvas.height)
-                      , checkpointPositions = []
-                      , startingPositions = []
-                      , finishPositions = [];
-                    
-                    let r, g, b;
+                    const buf = new ArrayBuffer(cw * ch * 4);
+                    const data32 = new Uint32Array(buf);
+
+                    let trackColor;
                     switch (this.environment) {
-                    case TrackEnvironment.Summer:
-                        r = 255,
-                        g = 255,
-                        b = 255;
-                        break;
-                    case TrackEnvironment.Winter:
-                        r = 190,
-                        g = 216,
-                        b = 247;
-                        break;
-                    case TrackEnvironment.Desert:
-                        r = 237,
-                        g = 226,
-                        b = 175
+                        case TrackEnvironment.Summer:  trackColor = 0xFFFFFFFF; break;
+                        case TrackEnvironment.Winter:  trackColor = 0xFFF7D8BE; break;
+                        case TrackEnvironment.Desert:  trackColor = 0xFFAFE2ED; break;
                     }
+                    const startColor      = 0xFFE08C33;
+                    const checkpointColor = 0xFF26C0E2;
+                    const finishColor     = 0xFF2929D1;
 
                     this.forEachPart((px, _py, pz, typeId, rotation, rotationAxis) => {
                         const trackPartData = TrackPartManager.getPart(typeId);
-                        const partTiles = trackPartData.tiles.rotated(rotation, rotationAxis);
-                        partTiles.forEach((tx, _ty, tz) => {
-                            const x = Math.floor((px + tx - 2) / 4) - minX;
-                            const z = Math.floor((pz + tz - 2) / 4) - minZ;
 
-                            const i = (x + z * canvas.width) * 4;
+                        let color = trackColor;
+                        if (trackPartData.startOffset != null) color = startColor;
+                        else if (trackPartData.detector != null) {
+                            if (trackPartData.detector.type == TrackPartDetectorType.Checkpoint) color = checkpointColor;
+                            else if (trackPartData.detector.type == TrackPartDetectorType.Finish) color = finishColor;
+                        }
 
-                            imageData.data[i + 0] = r;
-                            imageData.data[i + 1] = g;
-                            imageData.data[i + 2] = b;
-                            imageData.data[i + 3] = 255;
-
-                            if (null != trackPartData.startOffset) {
-                                startingPositions.push([x, z]);
-                            } else if (trackPartData.detector != null && trackPartData.detector.type == TrackPartDetectorType.Checkpoint) {
-                                checkpointPositions.push([x, z]);
-                            } else if (trackPartData.detector != null && trackPartData.detector.type == TrackPartDetectorType.Finish) {
-                                finishPositions.push([x, z]);
-                            }
+                        trackPartData.tiles.rotated(rotation, rotationAxis).forEach((tx, _ty, tz) => {
+                            const x = ((px + tx - 2) >> 2) - minX;
+                            const z = ((pz + tz - 2) >> 2) - minZ;
+                            data32[x + z * cw] = color;
                         });
                     });
-                    
-                    for (const [x, z] of checkpointPositions) {
-                        imageData.data[(x + z * canvas.width) * 4 + 0] = 226;
-                        imageData.data[(x + z * canvas.width) * 4 + 1] = 192;
-                        imageData.data[(x + z * canvas.width) * 4 + 2] = 38;
-                        imageData.data[(x + z * canvas.width) * 4 + 3] = 255;
-                    }
 
-                    for (const [x, z] of startingPositions) {
-                        imageData.data[(x + z * canvas.width) * 4 + 0] = 51;
-                        imageData.data[(x + z * canvas.width) * 4 + 1] = 140;
-                        imageData.data[(x + z * canvas.width) * 4 + 2] = 224;
-                        imageData.data[(x + z * canvas.width) * 4 + 3] = 255;
-                    }
-
-                    for (const [x, z] of finishPositions) {
-                        imageData.data[(x + z * canvas.width) * 4 + 0] = 209;
-                        imageData.data[(x + z * canvas.width) * 4 + 1] = 41;
-                        imageData.data[(x + z * canvas.width) * 4 + 2] = 41;
-                        imageData.data[(x + z * canvas.width) * 4 + 3] = 255;
-                    }
-
+                    const imageData = new ImageData(new Uint8ClampedArray(buf), cw, ch);
                     context.putImageData(imageData, 0, 0);
-
-                    this.m_storedMinX = minX,
+                    this.m_storedMinX = minX;
                     this.m_storedMinZ = minZ;
-
                     return canvas;
                 }
             }
@@ -29321,61 +29294,79 @@
                 }
                 generateMeshes() {
                     m.get(this, i, "m", p).call(this);
-                    const e = m.get(this, o, "f").getSunPosition()
-                      , t = new THREE.Vector4(e.x,e.y,e.z,0);
-                    let n, c = null;
-                    if (2 == m.get(this, a, "f").getSettingInteger(k.A.ShadowQuality))
+
+                    const e = m.get(this, o, "f").getSunPosition();
+                    const t = new THREE.Vector4(e.x, e.y, e.z, 0);
+
+                    let n;
+                    let c = null;
+                    if (2 == m.get(this, a, "f").getSettingInteger(k.A.ShadowQuality)) {
                         switch (this.environment) {
-                        case TrackEnvironment.Summer:
-                            c = new THREE.Color(2511171);
-                            break;
-                        case TrackEnvironment.Winter:
-                            c = new THREE.Color(7904713);
-                            break;
-                        case TrackEnvironment.Desert:
-                            c = new THREE.Color(7958351)
+                            case TrackEnvironment.Summer: c = new THREE.Color(2511171); break;
+                            case TrackEnvironment.Winter: c = new THREE.Color(7904713); break;
+                            case TrackEnvironment.Desert: c = new THREE.Color(7958351); break;
                         }
-                    switch (this.environment) {
-                    case TrackEnvironment.Summer:
-                        n = TrackPartColorId.Summer;
-                        break;
-                    case TrackEnvironment.Winter:
-                        n = TrackPartColorId.Winter;
-                        break;
-                    case TrackEnvironment.Desert:
-                        n = TrackPartColorId.Desert
                     }
+                    switch (this.environment) {
+                        case TrackEnvironment.Summer: n = TrackPartColorId.Summer; break;
+                        case TrackEnvironment.Winter: n = TrackPartColorId.Winter; break;
+                        case TrackEnvironment.Desert: n = TrackPartColorId.Desert; break;
+                    }
+                    
+                    const grouped = new Map();
+                    for (const block of m.get(this, l, "f")) {
+                        let color = block.color;
+                        if (color == TrackPartColorId.Default) color = n;
+                        
+                        let byColor = grouped.get(block.type);
+                        if (!byColor) {
+                            byColor = new Map();
+                            grouped.set(block.type, byColor);
+                        }
+                        let list = byColor.get(color);
+                        if (!list) {
+                            list = [];
+                            byColor.set(color, list);
+                        }
+                        list.push(block);
+                    }
+
                     const h = m.get(this, r, "f").isTrackShadowsEnabled();
-                    for (const e of m.get(this, s, "f").getAllParts())
-                        for (const [i,a] of e.colors) {
-                            const s = [];
-                            for (const t of m.get(this, l, "f")) {
-                                let r = t.color;
-                                r == TrackPartColorId.Default && (r = n),
-                                t.type == e && r == i && s.push(t)
+
+                    for (const partDef of m.get(this, s, "f").getAllParts()) {
+                        const byColor = grouped.get(partDef);
+                        if (!byColor) continue;
+
+                        for (const [colorId, mesh] of partDef.colors) {
+                            const blocks = byColor.get(colorId);
+                            if (!blocks || blocks.length === 0) continue;
+
+                            if (null == mesh) throw new Error("Mesh is not loaded");
+
+                            const inst = new THREE.InstancedMesh(mesh.geometry, mesh.material, blocks.length);
+                            inst.matrixAutoUpdate = false;
+                            inst.matrixWorldAutoUpdate = false;
+                            inst.frustumCulled = false;
+                            inst.castShadow = h;
+                            inst.receiveShadow = true;
+
+                            for (let j = 0; j < blocks.length; j++) {
+                                inst.setMatrixAt(j, blocks[j].matrix);
                             }
-                            if (s.length > 0) {
-                                if (null == a)
-                                    throw new Error("Mesh is not loaded");
-                                const e = new THREE.InstancedMesh(a.geometry,a.material,s.length);
-                                e.matrixAutoUpdate = !1,
-                                e.matrixWorldAutoUpdate = !1,
-                                e.frustumCulled = !1,
-                                e.castShadow = h,
-                                e.receiveShadow = !0;
-                                for (let t = 0; t < s.length; ++t)
-                                    e.setMatrixAt(t, s[t].matrix);
-                                if (m.get(this, r, "f").scene.add(e),
-                                m.get(this, u, "f").push(e),
-                                null != c) {
-                                    const n = new E.t(e,c);
-                                    n.update(new THREE.Plane(new THREE.Vector3(0,1,0),0), t),
-                                    m.get(this, r, "f").scene.add(n),
-                                    m.get(this, u, "f").push(n)
-                                }
+
+                            m.get(this, r, "f").scene.add(inst);
+                            m.get(this, u, "f").push(inst);
+
+                            if (null != c) {
+                                const shadow = new E.t(inst, c);
+                                shadow.update(new THREE.Plane(new THREE.Vector3(0, 1, 0), 0), t);
+                                m.get(this, r, "f").scene.add(shadow);
+                                m.get(this, u, "f").push(shadow);
                             }
                         }
-                    m.get(this, i, "m", g).call(this)
+                    }
+
+                    m.get(this, i, "m", g).call(this);
                 }
                 getCheckpoints() {
                     let e = [];
@@ -53514,23 +53505,59 @@
                             o[e + 0] = i,
                             o[e + 1] = r,
                             o[e + 2] = a;
+                        s._materialRef = n.name;
+                        s._defaultColor = { r: n.color.r, g: n.color.g, b: n.color.b };
                         return s.attributes.color = new THREE.BufferAttribute(o,3),
                         s
                     }
                     let l = null;
-                    for (const t of e.colors) {
-                        const i = [];
-                        for (const [n,r,s] of e.models) {
-                            const e = a(n, r, s?.flipX ?? !1, s?.flipY ?? !1, s?.flipZ ?? !1, s?.offset ?? null, s?.scale ?? null, s?.quaternion ?? null, t.colors);
-                            for (const t of e)
-                                i.push(t)
+                    s.flatShading = true;
+
+                    const firstColorGeos = [];
+                    for (const [n, r, s] of e.models) {
+                        const geoms = a(n, r, s?.flipX ?? !1, s?.flipY ?? !1, s?.flipZ ?? !1, s?.offset ?? null, s?.scale ?? null, s?.quaternion ?? null, e.colors[0].colors);
+                        for (const g of geoms) firstColorGeos.push(g);
+                    }
+
+                    const baseGeometry = BufferGeometryUtils.mergeGeometries(firstColorGeos, true);
+                    l = baseGeometry.toNonIndexed();
+
+                    const colorRegions = [];
+                    let offset = 0;
+                    for (const g of firstColorGeos) {
+                        const count = g.attributes.position.count;
+                        colorRegions.push({ count, materialName: g._materialRef, defaultColor: g._defaultColor });
+                        offset += count;
+                    }
+
+                    n.colors.set(e.colors[0].id, new THREE.Mesh(baseGeometry, s));
+
+                    for (let ci = 1; ci < e.colors.length; ci++) {
+                        const t = e.colors[ci];
+                        const geo = baseGeometry.clone();
+                        const colorArray = new Float32Array(geo.attributes.position.count * 3);
+                        let off = 0;
+
+                        for (const region of colorRegions) {
+                            let cr, cg, cb;
+                            if (t.colors.hasOwnProperty(region.materialName)) {
+                                const col = new THREE.Color(t.colors[region.materialName]);
+                                cr = col.r; cg = col.g; cb = col.b;
+                            } else {
+                                cr = region.defaultColor.r;
+                                cg = region.defaultColor.g;
+                                cb = region.defaultColor.b;
+                            }
+                            for (let v = 0; v < region.count; v++) {
+                                colorArray[off] = cr;
+                                colorArray[off + 1] = cg;
+                                colorArray[off + 2] = cb;
+                                off += 3;
+                            }
                         }
-                        const r = BufferGeometryUtils.mergeGeometries(i, !0).toNonIndexed();
-                        r.computeVertexNormals();
-                        const o = BufferGeometryUtils.mergeVertices(r)
-                          , c = new THREE.Mesh(o,s);
-                        n.colors.set(t.id, c),
-                        l ?? (l = r)
+
+                        geo.setAttribute('color', new THREE.BufferAttribute(colorArray, 3));
+                        n.colors.set(t.id, new THREE.Mesh(geo, s));
                     }
                     if (null == l)
                         throw new Error("Physics geometry is missing");
