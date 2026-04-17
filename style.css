@@ -129,6 +129,6 @@
 
 @keyframes fade-out {
     to {
-        opacity: 0;
+        opacity: 100%;
     }
 }
