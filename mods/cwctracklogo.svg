@@ -25,15 +25,16 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="1.2938725"
-     inkscape:cx="492.32054"
-     inkscape:cy="49.07748"
+     inkscape:cx="492.32053"
+     inkscape:cy="-12.752416"
      inkscape:window-width="2560"
      inkscape:window-height="1351"
      inkscape:window-x="-9"
      inkscape:window-y="-9"
      inkscape:window-maximized="1"
-     inkscape:current-layer="g5128" /><defs
-     id="defs2" /><style>
+     inkscape:current-layer="layer4" /><defs
+     id="defs2" /><style
+     id="style1">
 #g872, #rect19982-1, #rect19982-1-3 {
   opacity: 0;
 }
@@ -119,16 +120,10 @@
      id="layer4"
      inkscape:label="text"
      style="font-size:59.2131px;font-family:Impact;-inkscape-font-specification:Impact;display:inline;fill:#28346a;stroke:#212b58;stroke-width:1.32292"
-     transform="matrix(0.99968831,0,-0.01971873,1.1266303,-49.849259,3.3610481)"><text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:59.2306px;font-family:'FORCED SQUARE';-inkscape-font-specification:'FORCED SQUARE, Medium';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#b3c1ff;fill-opacity:1;stroke:#112052;stroke-width:1.32323;stroke-dasharray:none;stroke-opacity:1"
-       x="58.61924"
-       y="31.450068"
+     transform="matrix(0.99968831,0,-0.01971873,1.1266303,-49.849259,3.3610481)"><path
+       d="M 64.956914,6.8101386 V 25.349316 h 24.639929 v 6.100752 H 58.61924 V 0.70938692 H 89.596843 V 6.8101386 Z M 127.38599,0.47246453 V 31.450068 h -4.38306 L 111.86758,20.314715 100.79145,31.450068 H 96.40839 V 0.47246453 h 6.33767 V 20.966252 l 9.12152,-9.358435 9.41766,9.358435 V 0.47246453 Z M 140.29831,6.8101386 V 25.349316 h 24.63993 v 6.100752 h -30.9776 V 0.70938692 h 30.9776 V 6.8101386 Z"
        id="text1"
+       style="font-weight:500;font-size:59.2306px;font-family:'FORCED SQUARE';-inkscape-font-specification:'FORCED SQUARE, Medium';fill:#b3c1ff;stroke:#112052;stroke-width:1.32323"
        inkscape:label="text1"
-       transform="matrix(1.0016963,0,-0.17541777,0.99830658,0,0)"><tspan
-         sodipodi:role="line"
-         style="font-style:normal;font-variant:normal;font-weight:500;font-stretch:normal;font-size:59.2306px;font-family:'FORCED SQUARE';-inkscape-font-specification:'FORCED SQUARE, Medium';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#b3c1ff;fill-opacity:1;stroke:#112052;stroke-width:1.32323;stroke-dasharray:none;stroke-opacity:1"
-         x="58.61924"
-         y="31.450068"
-         id="tspan2">CWC</tspan></text></g></svg>
+       transform="matrix(1.0016963,0,-0.17541777,0.99830658,0,0)"
+       aria-label="CWC" /></g></svg>
