@@ -53632,51 +53632,24 @@ window.GLOBAL_SUN_LIGHT = 0.2;
                             o[e + 2] = a;
                         s._materialRef = n.name;
                         s._defaultColor = { r: n.color.r, g: n.color.g, b: n.color.b };
-                        return s.attributes.color = new THREE.BufferAttribute(o,3),
-                        s
+                        s.attributes.color = new THREE.BufferAttribute(o,3);
+                        return s;
                     }
                     let l = null;
-                    s.flatShading = true;
-
-                    const firstColorGeos = [];
-                    for (const [n, r, s] of e.models) {
-                        const geoms = a(n, r, s?.flipX ?? !1, s?.flipY ?? !1, s?.flipZ ?? !1, s?.offset ?? null, s?.scale ?? null, s?.quaternion ?? null, e.colors[0].colors);
-                        for (const g of geoms) firstColorGeos.push(g);
-                    }
-
-                    const baseGeometry = BufferGeometryUtils.mergeGeometries(firstColorGeos, true);
-                    l = baseGeometry.toNonIndexed();
-
-                    const colorRegions = [];
-                    for (const g of firstColorGeos) {
-                        colorRegions.push({ count: g.attributes.position.count, materialName: g._materialRef, defaultColor: g._defaultColor });
-                    }
-
-                    // First color: baseGeometry already has `color` from the merge, but no `vEmissive`
-                    {
-                        const { colorArray, emissiveArray } = buildColorAndEmissive(
-                            baseGeometry.attributes.position.count, colorRegions, e.colors[0].colors
-                        );
-                        baseGeometry.setAttribute('color', new THREE.BufferAttribute(colorArray, 3));
-                        if (realisticModeEnabled) {
-                            baseGeometry.setAttribute('vEmissive', new THREE.BufferAttribute(emissiveArray, 3));
+                    for (const t of e.colors) {
+                        const i = [];
+                        for (const [n,r,s] of e.models) {
+                            const e = a(n, r, s?.flipX ?? !1, s?.flipY ?? !1, s?.flipZ ?? !1, s?.offset ?? null, s?.scale ?? null, s?.quaternion ?? null, t.colors);
+                            for (const t of e)
+                                i.push(t)
                         }
-                        n.colors.set(e.colors[0].id, new THREE.Mesh(baseGeometry, s));
+                        const r = BufferGeometryUtils.mergeGeometries(i, !0).toNonIndexed();
+                        r.computeVertexNormals();
+                        const o = BufferGeometryUtils.mergeVertices(r)
+                          , c = new THREE.Mesh(o,s);
+                        n.colors.set(t.id, c),
+                        l ?? (l = r)
                     }
-
-                    for (let ci = 1; ci < e.colors.length; ci++) {
-                        const t = e.colors[ci];
-                        const geo = baseGeometry.clone();
-                        const { colorArray, emissiveArray } = buildColorAndEmissive(
-                            geo.attributes.position.count, colorRegions, t.colors
-                        );
-                        geo.setAttribute('color', new THREE.BufferAttribute(colorArray, 3));
-                        if (realisticModeEnabled) {
-                            geo.setAttribute('vEmissive', new THREE.BufferAttribute(emissiveArray, 3));
-                        }
-                        n.colors.set(t.id, new THREE.Mesh(geo, s));
-                    }
-
                     if (null == l)
                         throw new Error("Physics geometry is missing");
                     if (!(l.attributes.position instanceof THREE.BufferAttribute))
