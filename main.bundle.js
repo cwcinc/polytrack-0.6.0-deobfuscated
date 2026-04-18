@@ -1,3 +1,6 @@
+window.GLOBAL_LIGHT = 0.2;
+window.GLOBAL_SUN_LIGHT = 0.2;
+
 ( () => {
     var e, t = {
         77: (module, exports, __webpack_require__) => {
@@ -77,10 +80,10 @@
         405: (module, exports, __webpack_require__) => { // TrackPartManager
             "use strict";
             __webpack_require__.d(exports, {
-                getPart: () => f,    // Function: PartID -> PartObject
+                getPart: () => getPartById,    // Function: PartID -> PartObject
                 checkpointPartIds: () => g,    // All checkpoint part ids
                 startPartIds: () => m,    // All start part ids
-                allParts: () => u     // All parts (array)
+                allParts: () => partsList     // All parts (array)
             });
             var THREE = __webpack_require__(4922)
               , PartCategory = __webpack_require__(1882).A
@@ -88,7 +91,7 @@
               , Part = __webpack_require__(2203).A
               , TrackPartDetectorType = __webpack_require__(2247).A
               , l = __webpack_require__(7129);
-            const c = [{
+            const trackpartMaterialColorMap = [{
                 id: TrackPartColorId.Summer,
                 colors: {}
             }, {
@@ -130,7 +133,7 @@
                     SignBlack: "#601d1d"
                 }
             }]
-              , h = c.concat([{
+              , h = trackpartMaterialColorMap.concat([{
                 id: TrackPartColorId.Custom0,
                 colors: {
                     BlockSurface: "#131313"
@@ -177,7 +180,7 @@
                 }
             }]);
             class PartObject {
-                constructor(e, t, n, i, r, a, s=null, o=null) {
+                constructor(e, t, n, i, trackPartColors, a, s=null, o=null) {
                     const c = [];
                     for (const [e,t] of a)
                         for (let n = e[0]; n <= t[0]; n++)
@@ -191,7 +194,7 @@
                     this.category = t,
                     this.id = n,
                     this.models = i,
-                    this.colors = r,
+                    this.colors = trackPartColors,
                     this.tiles = new l.A(c),
                     this.detector = s,
                     this.startOffset = o,
@@ -208,190 +211,190 @@
                     Object.freeze(this)
                 }
             }
-            const u = [    
-                new PartObject("6d94d798abd14dc3bce4e99c180309d993ad43adb5f2c90eef8e350eedafe7cf",PartCategory.Special,Part.Start,[["Road", "Start"]],c,[[[-2, 0, -2], [1, 0, 1]]],null,new THREE.Vector3(0,.35,1.35)), 
-                new PartObject("f29e34b2e05e0a4751109ae564b03fe8878a79cc6b26288f1117ed296d09c5bb",PartCategory.Special,Part.StartWide,[["RoadWide", "StartWide"]],c,[[[-2, 0, -2], [5, 0, 1]]],null,new THREE.Vector3(-10,.35,1.35)),
-                new PartObject("3c304054f415fbede4f73a43517db04302f38b16fa2cd4e587082b37b75e20e5",PartCategory.Special,Part.PlaneStart,[["Planes", "PlaneStart"]],c,[[[-2, 0, -2], [1, 0, 1]]],null,new THREE.Vector3(0,.35,1.35)),
-                new PartObject("f08710416bdaa3d91d0d43f014e45d421fdb4587a334993bad0056f3dbbcb6bb",PartCategory.Special,Part.PlaneStartWide,[["Planes", "PlaneStartWide"]],c,[[[-2, 0, -2], [5, 0, 1]]],null,new THREE.Vector3(-10,.35,1.35)),
-                new PartObject("223fc87c72bb64b58677062ffa08ab7eafd78071bced7c53233606763cd5316b",PartCategory.Special,Part.Checkpoint,[["Road", "Checkpoint"]],c,[[[-2, 0, -2], [1, 0, 1]]],{
+            const partsList = [    
+                new PartObject("6d94d798abd14dc3bce4e99c180309d993ad43adb5f2c90eef8e350eedafe7cf",PartCategory.Special,Part.Start,[["Road", "Start"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]]],null,new THREE.Vector3(0,.35,1.35)), 
+                new PartObject("f29e34b2e05e0a4751109ae564b03fe8878a79cc6b26288f1117ed296d09c5bb",PartCategory.Special,Part.StartWide,[["RoadWide", "StartWide"]],trackpartMaterialColorMap,[[[-2, 0, -2], [5, 0, 1]]],null,new THREE.Vector3(-10,.35,1.35)),
+                new PartObject("3c304054f415fbede4f73a43517db04302f38b16fa2cd4e587082b37b75e20e5",PartCategory.Special,Part.PlaneStart,[["Planes", "PlaneStart"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]]],null,new THREE.Vector3(0,.35,1.35)),
+                new PartObject("f08710416bdaa3d91d0d43f014e45d421fdb4587a334993bad0056f3dbbcb6bb",PartCategory.Special,Part.PlaneStartWide,[["Planes", "PlaneStartWide"]],trackpartMaterialColorMap,[[[-2, 0, -2], [5, 0, 1]]],null,new THREE.Vector3(-10,.35,1.35)),
+                new PartObject("223fc87c72bb64b58677062ffa08ab7eafd78071bced7c53233606763cd5316b",PartCategory.Special,Part.Checkpoint,[["Road", "Checkpoint"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]]],{
                                 type: TrackPartDetectorType.Checkpoint,
                                 center: [0, 2.2, 0],
                                 size: [10.5, 3.8, 1]
                             }),
-                new PartObject("82d9a9879cee92c04c8d4ba2e16fc31bb1917a31f5802a3bb5177ca9a5cfee01",PartCategory.Special,Part.CheckpointWide,[["RoadWide", "CheckpointWide"]],c,[[[-2, 0, -2], [5, 0, 1]]],{
+                new PartObject("82d9a9879cee92c04c8d4ba2e16fc31bb1917a31f5802a3bb5177ca9a5cfee01",PartCategory.Special,Part.CheckpointWide,[["RoadWide", "CheckpointWide"]],trackpartMaterialColorMap,[[[-2, 0, -2], [5, 0, 1]]],{
                                 type: TrackPartDetectorType.Checkpoint,
                                 center: [10, 2.2, 0],
                                 size: [30.6, 3.8, 1]
                             }),
-                new PartObject("fe8946d7f09724b5e11f493eb5c2a5b5e3d502b15beaad003f8134ac63558948",PartCategory.Special,Part.PlaneCheckpoint,[["Planes", "PlaneCheckpoint"]],c,[[[-2, 0, -2], [1, 0, 1]]],{
+                new PartObject("fe8946d7f09724b5e11f493eb5c2a5b5e3d502b15beaad003f8134ac63558948",PartCategory.Special,Part.PlaneCheckpoint,[["Planes", "PlaneCheckpoint"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]]],{
                                 type: TrackPartDetectorType.Checkpoint,
                                 center: [0, 2.2, 0],
                                 size: [18.25, 3.8, 1]
                             }),
-                new PartObject("d486d9b851db35dd44c15f9e0bb3bf582118daf7be514598a19307f61cf46678",PartCategory.Special,Part.PlaneCheckpointWide,[["Planes", "PlaneCheckpointWide"]],c,[[[-2, 0, -2], [5, 0, 1]]],{
+                new PartObject("d486d9b851db35dd44c15f9e0bb3bf582118daf7be514598a19307f61cf46678",PartCategory.Special,Part.PlaneCheckpointWide,[["Planes", "PlaneCheckpointWide"]],trackpartMaterialColorMap,[[[-2, 0, -2], [5, 0, 1]]],{
                                 type: TrackPartDetectorType.Checkpoint,
                                 center: [10, 2.2, 0],
                                 size: [38.25, 3.8, 1]
                             }),
-                new PartObject("c01200d573a3594a6a4cb73ebb600964d653e4a89267d3297f3969220742aa79",PartCategory.Special,Part.Finish,[["Road", "Finish"]],c,[[[-2, 0, -2], [1, 0, 1]]],{
+                new PartObject("c01200d573a3594a6a4cb73ebb600964d653e4a89267d3297f3969220742aa79",PartCategory.Special,Part.Finish,[["Road", "Finish"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]]],{
                                 type: TrackPartDetectorType.Finish,
                                 center: [0, 2.2, 0],
                                 size: [10.5, 3.8, 2]
                             }),
-                new PartObject("a9cefdff816e94a643210c58582c2809de0e3e0e0478b8d5baabd7fe81f13e73",PartCategory.Special,Part.FinishWide,[["RoadWide", "FinishWide"]],c,[[[-2, 0, -2], [5, 0, 1]]],{
+                new PartObject("a9cefdff816e94a643210c58582c2809de0e3e0e0478b8d5baabd7fe81f13e73",PartCategory.Special,Part.FinishWide,[["RoadWide", "FinishWide"]],trackpartMaterialColorMap,[[[-2, 0, -2], [5, 0, 1]]],{
                                 type: TrackPartDetectorType.Finish,
                                 center: [10, 2.2, 0],
                                 size: [30.6, 3.8, 2]
                             }),
-                new PartObject("75e5f09fe8a18ecafaf1fb80929173ef0a7dc0b785596bbe0ccd85a934d79578",PartCategory.Special,Part.PlaneFinish,[["Planes", "PlaneFinish"]],c,[[[-2, 0, -2], [1, 0, 1]]],{
+                new PartObject("75e5f09fe8a18ecafaf1fb80929173ef0a7dc0b785596bbe0ccd85a934d79578",PartCategory.Special,Part.PlaneFinish,[["Planes", "PlaneFinish"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]]],{
                                 type: TrackPartDetectorType.Finish,
                                 center: [0, 2.2, 0],
                                 size: [18.25, 3.8, 2]
                             }),
-                new PartObject("5801b3268c75809728c63450d06000c5f6fcfd5d72691902f99d7d19d25e1d78",PartCategory.Special,Part.PlaneFinishWide,[["Planes", "PlaneFinishWide"]],c,[[[-2, 0, -2], [5, 0, 1]]],{
+                new PartObject("5801b3268c75809728c63450d06000c5f6fcfd5d72691902f99d7d19d25e1d78",PartCategory.Special,Part.PlaneFinishWide,[["Planes", "PlaneFinishWide"]],trackpartMaterialColorMap,[[[-2, 0, -2], [5, 0, 1]]],{
                                 type: TrackPartDetectorType.Finish,
                                 center: [10, 2.2, 0],
                                 size: [38.25, 3.8, 2]
                             }),
-                new PartObject("3421096c1986d008da88b5fac64cd4c475603138c9bf8a98ab6d581dda6befa7",PartCategory.Road,Part.Straight,[["Road", "Straight"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
-                new PartObject("bdc3bcdafec9bc26835dc76159f7223da7da5babb3a5770129fa11046c748b69",PartCategory.Road,Part.StraightPillarBottom,[["Road", "Straight"], ["Pillar", "SurfacePillarBottom"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
-                new PartObject("2758e984d87b3170f6618c9c689554ef169fd5f80ea7f0df292ffd69792d414e",PartCategory.Road,Part.StraightPillarShort,[["Road", "Straight"], ["Pillar", "SurfacePillarShort"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
-                new PartObject("fb5a81784022cfc2d3d0007a032976c8dfd066e72a3bc92f671c98c5cca36aaa",PartCategory.Road,Part.TurnSharp,[["Road", "TurnSharp"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
-                new PartObject("3da2e9a93da06b1376c33486f30a5f02d8c2f125f5b7d8b41166049ecd95f269",PartCategory.Road,Part.TurnSharpPillarBottom,[["Road", "TurnSharp"], ["Pillar", "SurfacePillarBottom"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
-                new PartObject("c642122276547382e37dcb857b130088f4dc0d208dc7fdb6055b2a93080a3ffe",PartCategory.Road,Part.TurnSharpPillarShort,[["Road", "TurnSharp"], ["Pillar", "SurfacePillarShort"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
-                new PartObject("7d8d1eed719515ba7e48b5ef4a53b6b4bb2bef42496b6b40d2551230435ecb66",PartCategory.Road,Part.SlopeUp,[["Road", "SlopeUp"]],c,[[[-2, 0, -2], [1, 0, 1]], [[-2, 1, -2], [1, 1, -2]]]),
-                new PartObject("d6d54dbf283f7209032541fc6b924dc879d914f253e391cf8b34dde8354661be",PartCategory.Road,Part.SlopeUpLong,[["Road", "SlopeUpLong"]],c,[[[-2, 0, -4], [1, 0, 1]], [[-2, 1, -5], [1, 1, -4]], [[-2, 1, -6], [1, 2, -6]]]),
-                new PartObject("435e8cf33d28e52f75890cba1cb6529991148afd701f9b40e9ab876c11b2c448",PartCategory.Road,Part.SlopeDown,[["Road", "SlopeDown"]],c,[[[-2, 0, -2], [1, 0, 1]], [[-2, 1, 0], [1, 1, 1]]]),
-                new PartObject("01990158f65e5d499030d8c6d0ce80d34c136189ae1a9430d4260ea7a85e91a9",PartCategory.Road,Part.SlopeDownLong,[["Road", "SlopeDownLong"]],c,[[[-2, 0, -2], [1, 0, 0]], [[-2, 1, -1], [1, 1, 5]], [[-2, 2, 3], [1, 2, 5]]]),
-                new PartObject("f4fe25138e88fc36b796c9251c696f1e44bf77502ee8e4e7d9ed2d8c8be2fd98",PartCategory.Road,Part.Slope,[["Road", "Slope"]],c,[[[-2, 0, 0], [1, 0, 1]], [[-2, 1, -2], [1, 1, 0]], [[-2, 2, -2], [1, 2, -2]]]),
-                new PartObject("2cfd3548dbd3dcf793f1597a1350864b5f14ed46e907d163977b73363896c3d4",PartCategory.Road,Part.SlopeUpVertical,[["Road", "SlopeUpVertical"]],c,[[[-2, 0, -1], [1, 0, 1]], [[-2, 1, -1], [1, 1, -1]], [[-2, 1, -2], [1, 3, -2]]]),
-                new PartObject("3de87fd1ea3a4ffbf353a03e3c90da97e62b03f85d07ad4bc947e9ceed20b7d8",PartCategory.Road,Part.SlopeToVertical,[["Road", "SlopeToVertical"]],c,[[[-2, 0, 0], [1, 0, 1]], [[-2, 1, -2], [1, 1, 0]], [[-2, 2, -2], [1, 3, -2]], [[-2, 2, -1], [-2, 2, -1]], [[1, 2, -1], [1, 2, -1]]]),
-                new PartObject("63628b23e104a3eb3c2ba8189cd408a10fbb6ebcd6fa4359d981e3c3804c13d8",PartCategory.Road,Part.IntersectionT,[["Road", "IntersectionT"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
-                new PartObject("400dc4643653001d283bb13f740593fc2300c547bb4d2a962054ba6aabf3721c",PartCategory.Road,Part.IntersectionTPillarBottom,[["Road", "IntersectionT"], ["Pillar", "SurfacePillarBottom"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
-                new PartObject("60355388650d35fcbddaaac29e0d03bc2ae46db1a05cd23ddd3f2722ec2d409e",PartCategory.Road,Part.IntersectionTPillarShort,[["Road", "IntersectionT"], ["Pillar", "SurfacePillarShort"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
-                new PartObject("74197b3731c2befd03498bf5172859f0b3652f1972c19e43a99bb938769573df",PartCategory.Road,Part.IntersectionCross,[["Road", "IntersectionCross"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
-                new PartObject("464e69b5c4f2667c246ade9ed33fd3e50b49438ed0ab787a086dfe74c217ff6c",PartCategory.Road,Part.IntersectionCrossPillarBottom,[["Road", "IntersectionCross"], ["Pillar", "SurfacePillarBottom"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
-                new PartObject("90004caf354627289265314966f11b5656e6879ca7de10507e6c50cd95254b75",PartCategory.Road,Part.IntersectionCrossPillarShort,[["Road", "IntersectionCross"], ["Pillar", "SurfacePillarShort"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
-                new PartObject("6259b51229152128dc859e1bffc614b60464799c401182dccae58131ee155b1c",PartCategory.Road,Part.IntersectionY,[["Road", "IntersectionY"]],c,[[[-6, 0, -10], [-3, 0, -8]], [[-5, 0, -7], [-2, 0, -5]], [[-4, 0, -4], [3, 0, -4]], [[-3, 0, -3], [2, 0, -2]], [[-2, 0, -1], [1, 0, 1]], [[-1, 0, -5], [4, 0, -5]], [[1, 0, -7], [4, 0, -6]], [[2, 0, -10], [5, 0, -8]]]),
-                new PartObject("846db907fcc382dd462283874fcbceab9c8c06fab6e7654a5cf6811dffcf086e",PartCategory.Road,Part.IntersectionYLong,[["Road", "IntersectionYLong"]],c,[[[-6, 0, -14], [-3, 0, -11]], [[-5, 0, -10], [-2, 0, -8]], [[-4, 0, -7], [3, 0, -5]], [[-3, 0, -4], [2, 0, -3]], [[-2, 0, -2], [1, 0, 1]], [[-1, 0, -8], [4, 0, -8]], [[1, 0, -10], [4, 0, -9]], [[2, 0, -14], [5, 0, -11]]]),
+                new PartObject("3421096c1986d008da88b5fac64cd4c475603138c9bf8a98ab6d581dda6befa7",PartCategory.Road,Part.Straight,[["Road", "Straight"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("bdc3bcdafec9bc26835dc76159f7223da7da5babb3a5770129fa11046c748b69",PartCategory.Road,Part.StraightPillarBottom,[["Road", "Straight"], ["Pillar", "SurfacePillarBottom"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("2758e984d87b3170f6618c9c689554ef169fd5f80ea7f0df292ffd69792d414e",PartCategory.Road,Part.StraightPillarShort,[["Road", "Straight"], ["Pillar", "SurfacePillarShort"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("fb5a81784022cfc2d3d0007a032976c8dfd066e72a3bc92f671c98c5cca36aaa",PartCategory.Road,Part.TurnSharp,[["Road", "TurnSharp"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("3da2e9a93da06b1376c33486f30a5f02d8c2f125f5b7d8b41166049ecd95f269",PartCategory.Road,Part.TurnSharpPillarBottom,[["Road", "TurnSharp"], ["Pillar", "SurfacePillarBottom"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("c642122276547382e37dcb857b130088f4dc0d208dc7fdb6055b2a93080a3ffe",PartCategory.Road,Part.TurnSharpPillarShort,[["Road", "TurnSharp"], ["Pillar", "SurfacePillarShort"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("7d8d1eed719515ba7e48b5ef4a53b6b4bb2bef42496b6b40d2551230435ecb66",PartCategory.Road,Part.SlopeUp,[["Road", "SlopeUp"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]], [[-2, 1, -2], [1, 1, -2]]]),
+                new PartObject("d6d54dbf283f7209032541fc6b924dc879d914f253e391cf8b34dde8354661be",PartCategory.Road,Part.SlopeUpLong,[["Road", "SlopeUpLong"]],trackpartMaterialColorMap,[[[-2, 0, -4], [1, 0, 1]], [[-2, 1, -5], [1, 1, -4]], [[-2, 1, -6], [1, 2, -6]]]),
+                new PartObject("435e8cf33d28e52f75890cba1cb6529991148afd701f9b40e9ab876c11b2c448",PartCategory.Road,Part.SlopeDown,[["Road", "SlopeDown"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]], [[-2, 1, 0], [1, 1, 1]]]),
+                new PartObject("01990158f65e5d499030d8c6d0ce80d34c136189ae1a9430d4260ea7a85e91a9",PartCategory.Road,Part.SlopeDownLong,[["Road", "SlopeDownLong"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 0]], [[-2, 1, -1], [1, 1, 5]], [[-2, 2, 3], [1, 2, 5]]]),
+                new PartObject("f4fe25138e88fc36b796c9251c696f1e44bf77502ee8e4e7d9ed2d8c8be2fd98",PartCategory.Road,Part.Slope,[["Road", "Slope"]],trackpartMaterialColorMap,[[[-2, 0, 0], [1, 0, 1]], [[-2, 1, -2], [1, 1, 0]], [[-2, 2, -2], [1, 2, -2]]]),
+                new PartObject("2cfd3548dbd3dcf793f1597a1350864b5f14ed46e907d163977b73363896c3d4",PartCategory.Road,Part.SlopeUpVertical,[["Road", "SlopeUpVertical"]],trackpartMaterialColorMap,[[[-2, 0, -1], [1, 0, 1]], [[-2, 1, -1], [1, 1, -1]], [[-2, 1, -2], [1, 3, -2]]]),
+                new PartObject("3de87fd1ea3a4ffbf353a03e3c90da97e62b03f85d07ad4bc947e9ceed20b7d8",PartCategory.Road,Part.SlopeToVertical,[["Road", "SlopeToVertical"]],trackpartMaterialColorMap,[[[-2, 0, 0], [1, 0, 1]], [[-2, 1, -2], [1, 1, 0]], [[-2, 2, -2], [1, 3, -2]], [[-2, 2, -1], [-2, 2, -1]], [[1, 2, -1], [1, 2, -1]]]),
+                new PartObject("63628b23e104a3eb3c2ba8189cd408a10fbb6ebcd6fa4359d981e3c3804c13d8",PartCategory.Road,Part.IntersectionT,[["Road", "IntersectionT"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("400dc4643653001d283bb13f740593fc2300c547bb4d2a962054ba6aabf3721c",PartCategory.Road,Part.IntersectionTPillarBottom,[["Road", "IntersectionT"], ["Pillar", "SurfacePillarBottom"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("60355388650d35fcbddaaac29e0d03bc2ae46db1a05cd23ddd3f2722ec2d409e",PartCategory.Road,Part.IntersectionTPillarShort,[["Road", "IntersectionT"], ["Pillar", "SurfacePillarShort"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("74197b3731c2befd03498bf5172859f0b3652f1972c19e43a99bb938769573df",PartCategory.Road,Part.IntersectionCross,[["Road", "IntersectionCross"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("464e69b5c4f2667c246ade9ed33fd3e50b49438ed0ab787a086dfe74c217ff6c",PartCategory.Road,Part.IntersectionCrossPillarBottom,[["Road", "IntersectionCross"], ["Pillar", "SurfacePillarBottom"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("90004caf354627289265314966f11b5656e6879ca7de10507e6c50cd95254b75",PartCategory.Road,Part.IntersectionCrossPillarShort,[["Road", "IntersectionCross"], ["Pillar", "SurfacePillarShort"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("6259b51229152128dc859e1bffc614b60464799c401182dccae58131ee155b1c",PartCategory.Road,Part.IntersectionY,[["Road", "IntersectionY"]],trackpartMaterialColorMap,[[[-6, 0, -10], [-3, 0, -8]], [[-5, 0, -7], [-2, 0, -5]], [[-4, 0, -4], [3, 0, -4]], [[-3, 0, -3], [2, 0, -2]], [[-2, 0, -1], [1, 0, 1]], [[-1, 0, -5], [4, 0, -5]], [[1, 0, -7], [4, 0, -6]], [[2, 0, -10], [5, 0, -8]]]),
+                new PartObject("846db907fcc382dd462283874fcbceab9c8c06fab6e7654a5cf6811dffcf086e",PartCategory.Road,Part.IntersectionYLong,[["Road", "IntersectionYLong"]],trackpartMaterialColorMap,[[[-6, 0, -14], [-3, 0, -11]], [[-5, 0, -10], [-2, 0, -8]], [[-4, 0, -7], [3, 0, -5]], [[-3, 0, -4], [2, 0, -3]], [[-2, 0, -2], [1, 0, 1]], [[-1, 0, -8], [4, 0, -8]], [[1, 0, -10], [4, 0, -9]], [[2, 0, -14], [5, 0, -11]]]),
                 new PartObject("48992a178b504f5205eb7613e273f61a2916b16b9b3d402208dcf711b29d20d3",PartCategory.Road,Part.StraightTilted,[["Road", "Straight", {
                                 offset: new THREE.Vector3(0,5,0),
                                 scale: new THREE.Vector3(1,.894425810573391,1),
                                 quaternion: (new THREE.Quaternion).setFromEuler(new THREE.Euler(0,0,-.46364760900081))
-                            }]],c,[[[-2, 1, -2], [0, 1, 1]], [[0, 0, -2], [1, 0, 1]]]),
+                            }]],trackpartMaterialColorMap,[[[-2, 1, -2], [0, 1, 1]], [[0, 0, -2], [1, 0, 1]]]),
                 new PartObject("d06cc41bda0172e626ad85fca987f426c60b86c3fabd3635d8ddc17f0b38afcd",PartCategory.Road,Part.ToTiltedLeft,[["Road", "ToTilted", {
                                 flipX: !0,
                                 offset: new THREE.Vector3(0,5,0)
-                            }]],c,[[[-2, 0, -10], [-1, 0, 1]], [[-2, 1, -3], [1, 1, 1]], [[-1, 1, -10], [1, 1, -4]]]),
+                            }]],trackpartMaterialColorMap,[[[-2, 0, -10], [-1, 0, 1]], [[-2, 1, -3], [1, 1, 1]], [[-1, 1, -10], [1, 1, -4]]]),
                 new PartObject("36bbe97fc3c199f694f3aefc0ba5ee6e6b3859cf8adeaabab77d53eb921d8979",PartCategory.Road,Part.ToTiltedRight,[["Road", "ToTilted", {
                                 offset: new THREE.Vector3(0,5,0)
-                            }]],c,[[[-2, 1, -10], [0, 1, 1]], [[0, 0, -10], [1, 0, 1]], [[1, 1, -3], [1, 1, 1]]]),
-                new PartObject("fd261825d8261ce05c214e0f12e3640a38f448866ee662136fbdee4f2e0bae22",PartCategory.RoadTurns,Part.TurnShort,[["Road", "TurnShort"]],c,[[[-2, 0, 0], [1, 0, 1]], [[-2, 0, -1], [2, 0, -1]], [[-1, 0, -2], [3, 0, -2]], [[-1, 0, -3], [5, 0, -3]], [[0, 0, -4], [5, 0, -4]], [[1, 0, -5], [5, 0, -5]], [[3, 0, -6], [5, 0, -6]]]),
-                new PartObject("830000386e11f915cc7be618600256c438ace73ed2b6f0f3ec2990d8c25760fd",PartCategory.RoadTurns,Part.TurnLong,[["Road", "TurnLong"]],c,[[[-2, 0, -1], [1, 0, 1]], [[-1, 0, -2], [2, 0, -2]], [[-1, 0, -3], [2, 0, -3]], [[-1, 0, -4], [3, 0, -4]], [[0, 0, -5], [4, 0, -5]], [[1, 0, -6], [6, 0, -6]], [[2, 0, -7], [9, 0, -7]], [[3, 0, -8], [9, 0, -8]], [[4, 0, -9], [9, 0, -9]], [[7, 0, -10], [9, 0, -10]]]),
-                new PartObject("a02b464ce6f6348e13dc90199882e91be6f2220e7e13c79ad46ca9b2032adb01",PartCategory.RoadTurns,Part.TurnLong2,[["Road", "TurnLong2"]],c,[[[-2, 0, -2], [1, 0, 1]], [[-1, 0, -4], [2, 0, -3]], [[-1, 0, -5], [3, 0, -5]], [[0, 0, -6], [4, 0, -6]], [[0, 0, -7], [5, 0, -7]], [[1, 0, -8], [6, 0, -8]], [[2, 0, -9], [7, 0, -9]], [[3, 0, -10], [9, 0, -10]], [[4, 0, -11], [13, 0, -11]], [[5, 0, -12], [13, 0, -12]], [[7, 0, -13], [13, 0, -13]], [[10, 0, -14], [13, 0, -14]]]),
-                new PartObject("a9e794783cdb96e81c95a476f9cbe9e43a5f0357e34d7d278e449a701e44afc3",PartCategory.RoadTurns,Part.TurnLong3,[["Road", "TurnLong3"]],c,[[[-2, 0, -2], [1, 0, 1]], [[-1, 0, -4], [2, 0, -3]], [[-1, 0, -5], [2, 0, -5]], [[0, 0, -6], [3, 0, -6]], [[0, 0, -7], [3, 0, -7]], [[0, 0, -8], [4, 0, -8]], [[1, 0, -9], [5, 0, -9]], [[2, 0, -10], [6, 0, -10]], [[2, 0, -11], [7, 0, -11]], [[3, 0, -12], [8, 0, -12]], [[4, 0, -13], [10, 0, -13]], [[5, 0, -14], [13, 0, -14]], [[7, 0, -15], [17, 0, -15]], [[8, 0, -16], [17, 0, -16]], [[11, 0, -17], [17, 0, -17]], [[14, 0, -18], [17, 0, -18]]]),
+                            }]],trackpartMaterialColorMap,[[[-2, 1, -10], [0, 1, 1]], [[0, 0, -10], [1, 0, 1]], [[1, 1, -3], [1, 1, 1]]]),
+                new PartObject("fd261825d8261ce05c214e0f12e3640a38f448866ee662136fbdee4f2e0bae22",PartCategory.RoadTurns,Part.TurnShort,[["Road", "TurnShort"]],trackpartMaterialColorMap,[[[-2, 0, 0], [1, 0, 1]], [[-2, 0, -1], [2, 0, -1]], [[-1, 0, -2], [3, 0, -2]], [[-1, 0, -3], [5, 0, -3]], [[0, 0, -4], [5, 0, -4]], [[1, 0, -5], [5, 0, -5]], [[3, 0, -6], [5, 0, -6]]]),
+                new PartObject("830000386e11f915cc7be618600256c438ace73ed2b6f0f3ec2990d8c25760fd",PartCategory.RoadTurns,Part.TurnLong,[["Road", "TurnLong"]],trackpartMaterialColorMap,[[[-2, 0, -1], [1, 0, 1]], [[-1, 0, -2], [2, 0, -2]], [[-1, 0, -3], [2, 0, -3]], [[-1, 0, -4], [3, 0, -4]], [[0, 0, -5], [4, 0, -5]], [[1, 0, -6], [6, 0, -6]], [[2, 0, -7], [9, 0, -7]], [[3, 0, -8], [9, 0, -8]], [[4, 0, -9], [9, 0, -9]], [[7, 0, -10], [9, 0, -10]]]),
+                new PartObject("a02b464ce6f6348e13dc90199882e91be6f2220e7e13c79ad46ca9b2032adb01",PartCategory.RoadTurns,Part.TurnLong2,[["Road", "TurnLong2"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]], [[-1, 0, -4], [2, 0, -3]], [[-1, 0, -5], [3, 0, -5]], [[0, 0, -6], [4, 0, -6]], [[0, 0, -7], [5, 0, -7]], [[1, 0, -8], [6, 0, -8]], [[2, 0, -9], [7, 0, -9]], [[3, 0, -10], [9, 0, -10]], [[4, 0, -11], [13, 0, -11]], [[5, 0, -12], [13, 0, -12]], [[7, 0, -13], [13, 0, -13]], [[10, 0, -14], [13, 0, -14]]]),
+                new PartObject("a9e794783cdb96e81c95a476f9cbe9e43a5f0357e34d7d278e449a701e44afc3",PartCategory.RoadTurns,Part.TurnLong3,[["Road", "TurnLong3"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]], [[-1, 0, -4], [2, 0, -3]], [[-1, 0, -5], [2, 0, -5]], [[0, 0, -6], [3, 0, -6]], [[0, 0, -7], [3, 0, -7]], [[0, 0, -8], [4, 0, -8]], [[1, 0, -9], [5, 0, -9]], [[2, 0, -10], [6, 0, -10]], [[2, 0, -11], [7, 0, -11]], [[3, 0, -12], [8, 0, -12]], [[4, 0, -13], [10, 0, -13]], [[5, 0, -14], [13, 0, -14]], [[7, 0, -15], [17, 0, -15]], [[8, 0, -16], [17, 0, -16]], [[11, 0, -17], [17, 0, -17]], [[14, 0, -18], [17, 0, -18]]]),
                 new PartObject("285f8b84f4dcbb2cbf59be0a54038a01d7cd672cbce96fa0427b589562ebf45e",PartCategory.RoadTurns,Part.TurnSLeft,[["Road", "TurnS", {
                                 flipX: !0
-                            }]],c,[[[-2, 0, -1], [1, 0, 1]], [[-3, 0, -3], [0, 0, -2]], [[-4, 0, -4], [0, 0, -4]], [[-5, 0, -5], [-1, 0, -5]], [[-5, 0, -7], [-2, 0, -6]], [[-6, 0, -10], [-3, 0, -8]]]),
-                new PartObject("fd7fea58c90ec42781be6192ac4f1086945d48986bc2f0f0702c1ede2c7bd6be",PartCategory.RoadTurns,Part.TurnSRight,[["Road", "TurnS"]],c,[[[-2, 0, -1], [1, 0, 1]], [[-1, 0, -3], [2, 0, -2]], [[-1, 0, -4], [3, 0, -4]], [[0, 0, -5], [4, 0, -5]], [[1, 0, -7], [4, 0, -6]], [[2, 0, -10], [5, 0, -8]]]),
+                            }]],trackpartMaterialColorMap,[[[-2, 0, -1], [1, 0, 1]], [[-3, 0, -3], [0, 0, -2]], [[-4, 0, -4], [0, 0, -4]], [[-5, 0, -5], [-1, 0, -5]], [[-5, 0, -7], [-2, 0, -6]], [[-6, 0, -10], [-3, 0, -8]]]),
+                new PartObject("fd7fea58c90ec42781be6192ac4f1086945d48986bc2f0f0702c1ede2c7bd6be",PartCategory.RoadTurns,Part.TurnSRight,[["Road", "TurnS"]],trackpartMaterialColorMap,[[[-2, 0, -1], [1, 0, 1]], [[-1, 0, -3], [2, 0, -2]], [[-1, 0, -4], [3, 0, -4]], [[0, 0, -5], [4, 0, -5]], [[1, 0, -7], [4, 0, -6]], [[2, 0, -10], [5, 0, -8]]]),
                 new PartObject("190ba45df20d893be69c2f9e92d420e3aca4070340a836bb2062ea3ffdeb83e8",PartCategory.RoadTurns,Part.TurnSLongLeft,[["Road", "TurnSLong", {
                                 flipX: !0
-                            }]],c,[[[-6, 0, -14], [-3, 0, -11]], [[-5, 0, -10], [-2, 0, -8]], [[-4, 0, -7], [-1, 0, -5]], [[-3, 0, -4], [0, 0, -3]], [[-2, 0, -2], [1, 0, 1]], [[-1, 0, -8], [-1, 0, -8]], [[0, 0, -5], [0, 0, -5]]]),
-                new PartObject("372b17815889b51da18fbcb77434f1a7ea0b93d2d62cd7c1ca9ec2a1854effe5",PartCategory.RoadTurns,Part.TurnSLongRight,[["Road", "TurnSLong"]],c,[[[-2, 0, -2], [1, 0, 1]], [[-1, 0, -5], [2, 0, -3]], [[0, 0, -8], [3, 0, -6]], [[1, 0, -10], [4, 0, -9]], [[2, 0, -14], [5, 0, -11]], [[3, 0, -5], [3, 0, -5]], [[4, 0, -8], [4, 0, -8]]]),
-                new PartObject("26bca19e63867bc0b755ff6fcca65de296c9d1f109f87540103565eb88a0e03d",PartCategory.RoadTurns,Part.TurnShortLeftWide,[["RoadWide", "TurnShortLeftWide"]],c,[[[-2, 0, -1], [1, 0, 1]], [[-1, 0, -2], [1, 0, -2]], [[-1, 0, -4], [5, 0, -3]], [[0, 0, -5], [5, 0, -5]], [[1, 0, -6], [5, 0, -6]], [[2, 0, -7], [9, 0, -7]], [[3, 0, -8], [9, 0, -8]], [[4, 0, -9], [9, 0, -9]], [[7, 0, -10], [9, 0, -10]]]),
-                new PartObject("e3845854f85dafd8cec193bcbecdac6cb79f625066de29524d5c10c5580611c5",PartCategory.RoadTurns,Part.TurnShortRightWide,[["RoadWide", "TurnShortRightWide"]],c,[[[-2, 0, 0], [1, 0, 1]], [[-2, 0, -1], [2, 0, -1]], [[-2, 0, -2], [3, 0, -2]], [[2, 0, -6], [5, 0, -3]]]),
-                new PartObject("dc6088960a65a55c74353a1e7c8a1ca8ec99e683f6273bf666d6909b288bb84b",PartCategory.RoadTurns,Part.TurnLongLeftWide,[["RoadWide", "TurnLongLeftWide"]],c,[[[-2, 0, -2], [1, 0, 1]], [[-1, 0, -5], [1, 0, -3]], [[0, 0, -6], [1, 0, -6]], [[0, 0, -7], [5, 0, -7]], [[1, 0, -8], [5, 0, -8]], [[2, 0, -9], [5, 0, -9]], [[3, 0, -10], [5, 0, -10]], [[4, 0, -11], [13, 0, -11]], [[5, 0, -12], [13, 0, -12]], [[7, 0, -13], [13, 0, -13]], [[10, 0, -14], [13, 0, -14]]]),
-                new PartObject("0bbb8d6c1e4a325e10643cf45546da725c1ea18e92a3a95f753339629a06ef6c",PartCategory.RoadTurns,Part.TurnLongRightWide,[["RoadWide", "TurnLongRightWide"]],c,[[[-2, 0, -1], [1, 0, 1]], [[-2, 0, -3], [2, 0, -2]], [[-2, 0, -4], [3, 0, -4]], [[-2, 0, -5], [4, 0, -5]], [[-2, 0, -6], [6, 0, -6]], [[2, 0, -10], [9, 0, -7]]]),
-                new PartObject("3d4972c41e0e1c39b31b98c8b4ba3377477c4370fbd32cbf5a92c88b46fb7614",PartCategory.RoadTurns,Part.TurnShortTilted,[["Road", "TurnShortTilted"]],c,[[[-2, 1, 0], [0, 1, 1]], [[-1, 1, -2], [0, 1, -1]], [[0, 0, -2], [2, 0, -1]], [[0, 0, 0], [1, 0, 1]], [[0, 1, -4], [2, 1, -3]], [[1, 0, -3], [5, 0, -3]], [[1, 1, -2], [1, 1, -2]], [[2, 0, -4], [5, 0, -4]], [[2, 1, -5], [5, 1, -5]], [[3, 0, -2], [3, 0, -2]], [[3, 1, -4], [5, 1, -4]], [[4, 1, -6], [5, 1, -6]]]),
-                new PartObject("5d48577ff2562e2abfe287bc0519dd0de692f3665e5596b3ef629069a59a21ab",PartCategory.RoadTurns,Part.TurnLongTilted,[["Road", "TurnLongTilted"]],c,[[[-2, 1, 0], [0, 1, 1]], [[-1, 1, -3], [0, 1, -1]], [[0, 0, -3], [2, 0, -2]], [[0, 0, -1], [1, 0, 1]], [[0, 1, -5], [2, 1, -4]], [[1, 0, -4], [3, 0, -4]], [[1, 1, -6], [4, 1, -6]], [[1, 1, -3], [1, 1, -3]], [[2, 0, -5], [4, 0, -5]], [[2, 1, -7], [5, 1, -7]], [[3, 0, -6], [6, 0, -6]], [[3, 1, -8], [9, 1, -8]], [[4, 0, -7], [9, 0, -7]], [[5, 0, -8], [9, 0, -8]], [[5, 1, -9], [9, 1, -9]], [[8, 1, -10], [9, 1, -10]]]),
-                new PartObject("abf9d95b8b0bf58bf4fe8df599e4ccee1b527c7c63f15636374742c1ebc2b93a",PartCategory.RoadTurns,Part.TurnLong2Tilted,[["Road", "TurnLong2Tilted"]],c,[[[-2, 1, -1], [0, 1, 1]], [[-1, 1, -4], [0, 1, -2]], [[0, 0, -3], [1, 0, 1]], [[0, 1, -6], [1, 1, -5]], [[1, 0, -5], [2, 0, -4]], [[1, 1, -8], [3, 1, -7]], [[1, 1, -4], [1, 1, -4]], [[2, 0, -7], [4, 0, -6]], [[2, 0, -3], [2, 0, -3]], [[2, 1, -9], [5, 1, -9]], [[2, 1, -6], [2, 1, -6]], [[3, 0, -8], [6, 0, -8]], [[3, 0, -5], [3, 0, -5]], [[3, 1, -10], [6, 1, -10]], [[4, 0, -9], [7, 0, -9]], [[4, 1, -11], [8, 1, -11]], [[4, 1, -8], [4, 1, -8]], [[5, 0, -10], [9, 0, -10]], [[6, 1, -12], [13, 1, -12]], [[7, 0, -11], [13, 0, -11]], [[8, 1, -13], [13, 1, -13]], [[9, 0, -12], [13, 0, -12]], [[11, 1, -14], [13, 1, -14]]]),
-                new PartObject("f64a25f9f9306a760e247f68ce37404d175462993e146853ce1f1b7ac7353bef",PartCategory.RoadTurns,Part.TurnLong3Tilted,[["Road", "TurnLong3Tilted"]],c,[[[-2, 1, -1], [0, 1, 1]], [[-1, 1, -5], [1, 1, -4]], [[-1, 1, -3], [0, 1, -2]], [[0, 0, -4], [1, 0, 1]], [[0, 1, -7], [1, 1, -6]], [[1, 0, -7], [3, 0, -6]], [[1, 0, -5], [2, 0, -5]], [[1, 1, -9], [3, 1, -8]], [[2, 0, -8], [4, 0, -8]], [[2, 0, -4], [2, 0, -4]], [[2, 1, -10], [4, 1, -10]], [[2, 1, -7], [2, 1, -7]], [[3, 0, -10], [5, 0, -9]], [[3, 1, -12], [5, 1, -11]], [[4, 0, -11], [7, 0, -11]], [[4, 1, -13], [8, 1, -13]], [[5, 0, -12], [8, 0, -12]], [[6, 0, -13], [10, 0, -13]], [[6, 0, -10], [6, 0, -10]], [[6, 1, -14], [9, 1, -14]], [[6, 1, -12], [6, 1, -12]], [[7, 1, -15], [11, 1, -15]], [[8, 0, -14], [12, 0, -14]], [[9, 0, -15], [17, 0, -15]], [[9, 1, -16], [17, 1, -16]], [[11, 1, -17], [17, 1, -17]], [[12, 0, -16], [17, 0, -16]], [[15, 1, -18], [17, 1, -18]]]),
-                new PartObject("2af8aa6050028dd6ee69b7150e83a6d8819e1848a7b1c782848d3f6448c5091a",PartCategory.RoadWide,Part.ToWideMiddle,[["RoadWide", "ToWideMiddle"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
+                            }]],trackpartMaterialColorMap,[[[-6, 0, -14], [-3, 0, -11]], [[-5, 0, -10], [-2, 0, -8]], [[-4, 0, -7], [-1, 0, -5]], [[-3, 0, -4], [0, 0, -3]], [[-2, 0, -2], [1, 0, 1]], [[-1, 0, -8], [-1, 0, -8]], [[0, 0, -5], [0, 0, -5]]]),
+                new PartObject("372b17815889b51da18fbcb77434f1a7ea0b93d2d62cd7c1ca9ec2a1854effe5",PartCategory.RoadTurns,Part.TurnSLongRight,[["Road", "TurnSLong"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]], [[-1, 0, -5], [2, 0, -3]], [[0, 0, -8], [3, 0, -6]], [[1, 0, -10], [4, 0, -9]], [[2, 0, -14], [5, 0, -11]], [[3, 0, -5], [3, 0, -5]], [[4, 0, -8], [4, 0, -8]]]),
+                new PartObject("26bca19e63867bc0b755ff6fcca65de296c9d1f109f87540103565eb88a0e03d",PartCategory.RoadTurns,Part.TurnShortLeftWide,[["RoadWide", "TurnShortLeftWide"]],trackpartMaterialColorMap,[[[-2, 0, -1], [1, 0, 1]], [[-1, 0, -2], [1, 0, -2]], [[-1, 0, -4], [5, 0, -3]], [[0, 0, -5], [5, 0, -5]], [[1, 0, -6], [5, 0, -6]], [[2, 0, -7], [9, 0, -7]], [[3, 0, -8], [9, 0, -8]], [[4, 0, -9], [9, 0, -9]], [[7, 0, -10], [9, 0, -10]]]),
+                new PartObject("e3845854f85dafd8cec193bcbecdac6cb79f625066de29524d5c10c5580611c5",PartCategory.RoadTurns,Part.TurnShortRightWide,[["RoadWide", "TurnShortRightWide"]],trackpartMaterialColorMap,[[[-2, 0, 0], [1, 0, 1]], [[-2, 0, -1], [2, 0, -1]], [[-2, 0, -2], [3, 0, -2]], [[2, 0, -6], [5, 0, -3]]]),
+                new PartObject("dc6088960a65a55c74353a1e7c8a1ca8ec99e683f6273bf666d6909b288bb84b",PartCategory.RoadTurns,Part.TurnLongLeftWide,[["RoadWide", "TurnLongLeftWide"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]], [[-1, 0, -5], [1, 0, -3]], [[0, 0, -6], [1, 0, -6]], [[0, 0, -7], [5, 0, -7]], [[1, 0, -8], [5, 0, -8]], [[2, 0, -9], [5, 0, -9]], [[3, 0, -10], [5, 0, -10]], [[4, 0, -11], [13, 0, -11]], [[5, 0, -12], [13, 0, -12]], [[7, 0, -13], [13, 0, -13]], [[10, 0, -14], [13, 0, -14]]]),
+                new PartObject("0bbb8d6c1e4a325e10643cf45546da725c1ea18e92a3a95f753339629a06ef6c",PartCategory.RoadTurns,Part.TurnLongRightWide,[["RoadWide", "TurnLongRightWide"]],trackpartMaterialColorMap,[[[-2, 0, -1], [1, 0, 1]], [[-2, 0, -3], [2, 0, -2]], [[-2, 0, -4], [3, 0, -4]], [[-2, 0, -5], [4, 0, -5]], [[-2, 0, -6], [6, 0, -6]], [[2, 0, -10], [9, 0, -7]]]),
+                new PartObject("3d4972c41e0e1c39b31b98c8b4ba3377477c4370fbd32cbf5a92c88b46fb7614",PartCategory.RoadTurns,Part.TurnShortTilted,[["Road", "TurnShortTilted"]],trackpartMaterialColorMap,[[[-2, 1, 0], [0, 1, 1]], [[-1, 1, -2], [0, 1, -1]], [[0, 0, -2], [2, 0, -1]], [[0, 0, 0], [1, 0, 1]], [[0, 1, -4], [2, 1, -3]], [[1, 0, -3], [5, 0, -3]], [[1, 1, -2], [1, 1, -2]], [[2, 0, -4], [5, 0, -4]], [[2, 1, -5], [5, 1, -5]], [[3, 0, -2], [3, 0, -2]], [[3, 1, -4], [5, 1, -4]], [[4, 1, -6], [5, 1, -6]]]),
+                new PartObject("5d48577ff2562e2abfe287bc0519dd0de692f3665e5596b3ef629069a59a21ab",PartCategory.RoadTurns,Part.TurnLongTilted,[["Road", "TurnLongTilted"]],trackpartMaterialColorMap,[[[-2, 1, 0], [0, 1, 1]], [[-1, 1, -3], [0, 1, -1]], [[0, 0, -3], [2, 0, -2]], [[0, 0, -1], [1, 0, 1]], [[0, 1, -5], [2, 1, -4]], [[1, 0, -4], [3, 0, -4]], [[1, 1, -6], [4, 1, -6]], [[1, 1, -3], [1, 1, -3]], [[2, 0, -5], [4, 0, -5]], [[2, 1, -7], [5, 1, -7]], [[3, 0, -6], [6, 0, -6]], [[3, 1, -8], [9, 1, -8]], [[4, 0, -7], [9, 0, -7]], [[5, 0, -8], [9, 0, -8]], [[5, 1, -9], [9, 1, -9]], [[8, 1, -10], [9, 1, -10]]]),
+                new PartObject("abf9d95b8b0bf58bf4fe8df599e4ccee1b527c7c63f15636374742c1ebc2b93a",PartCategory.RoadTurns,Part.TurnLong2Tilted,[["Road", "TurnLong2Tilted"]],trackpartMaterialColorMap,[[[-2, 1, -1], [0, 1, 1]], [[-1, 1, -4], [0, 1, -2]], [[0, 0, -3], [1, 0, 1]], [[0, 1, -6], [1, 1, -5]], [[1, 0, -5], [2, 0, -4]], [[1, 1, -8], [3, 1, -7]], [[1, 1, -4], [1, 1, -4]], [[2, 0, -7], [4, 0, -6]], [[2, 0, -3], [2, 0, -3]], [[2, 1, -9], [5, 1, -9]], [[2, 1, -6], [2, 1, -6]], [[3, 0, -8], [6, 0, -8]], [[3, 0, -5], [3, 0, -5]], [[3, 1, -10], [6, 1, -10]], [[4, 0, -9], [7, 0, -9]], [[4, 1, -11], [8, 1, -11]], [[4, 1, -8], [4, 1, -8]], [[5, 0, -10], [9, 0, -10]], [[6, 1, -12], [13, 1, -12]], [[7, 0, -11], [13, 0, -11]], [[8, 1, -13], [13, 1, -13]], [[9, 0, -12], [13, 0, -12]], [[11, 1, -14], [13, 1, -14]]]),
+                new PartObject("f64a25f9f9306a760e247f68ce37404d175462993e146853ce1f1b7ac7353bef",PartCategory.RoadTurns,Part.TurnLong3Tilted,[["Road", "TurnLong3Tilted"]],trackpartMaterialColorMap,[[[-2, 1, -1], [0, 1, 1]], [[-1, 1, -5], [1, 1, -4]], [[-1, 1, -3], [0, 1, -2]], [[0, 0, -4], [1, 0, 1]], [[0, 1, -7], [1, 1, -6]], [[1, 0, -7], [3, 0, -6]], [[1, 0, -5], [2, 0, -5]], [[1, 1, -9], [3, 1, -8]], [[2, 0, -8], [4, 0, -8]], [[2, 0, -4], [2, 0, -4]], [[2, 1, -10], [4, 1, -10]], [[2, 1, -7], [2, 1, -7]], [[3, 0, -10], [5, 0, -9]], [[3, 1, -12], [5, 1, -11]], [[4, 0, -11], [7, 0, -11]], [[4, 1, -13], [8, 1, -13]], [[5, 0, -12], [8, 0, -12]], [[6, 0, -13], [10, 0, -13]], [[6, 0, -10], [6, 0, -10]], [[6, 1, -14], [9, 1, -14]], [[6, 1, -12], [6, 1, -12]], [[7, 1, -15], [11, 1, -15]], [[8, 0, -14], [12, 0, -14]], [[9, 0, -15], [17, 0, -15]], [[9, 1, -16], [17, 1, -16]], [[11, 1, -17], [17, 1, -17]], [[12, 0, -16], [17, 0, -16]], [[15, 1, -18], [17, 1, -18]]]),
+                new PartObject("2af8aa6050028dd6ee69b7150e83a6d8819e1848a7b1c782848d3f6448c5091a",PartCategory.RoadWide,Part.ToWideMiddle,[["RoadWide", "ToWideMiddle"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]]]),
                 new PartObject("26341cfe6bec34f46b10ffcd9a7706a8156b9ac41ed2cdfd166f9f8d3e9bc8f3",PartCategory.RoadWide,Part.ToWideLeft,[["RoadWide", "ToWideSide", {
                                 flipX: !0
-                            }]],c,[[[-2, 0, -2], [1, 0, 1]]]),
-                new PartObject("3f82ebd6c72110b532a20673f8b54c7b25ae5988a51d3793bf383fea8ffcffc3",PartCategory.RoadWide,Part.ToWideRight,[["RoadWide", "ToWideSide"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
-                new PartObject("f5cecce9870f41f8cba7a9fbe631c315370a7a82824d04977ec857dbb1dfed29",PartCategory.RoadWide,Part.ToWideDouble,[["RoadWide", "ToWideDouble"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
-                new PartObject("99dc726611397f81b47459d32c7bfb8232322d1ca976ba9a3e71cc15451d8cfb",PartCategory.RoadWide,Part.ToWideDiagonal,[["RoadWide", "ToWideDiagonal"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
-                new PartObject("47d7e3fb334681911e122babef127881a36a763fb22176854114495802d5ce84",PartCategory.RoadWide,Part.StraightWide,[["RoadWide", "StraightWide"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
-                new PartObject("521adc95ed5a4809eeff7eec872c3d6449e4d6a7e4941d672f1e06a50a6615de",PartCategory.RoadWide,Part.InnerCornerWide,[["RoadWide", "InnerCornerWide"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
-                new PartObject("d82274b362794e3c1772510002d5015dde345f1e72dd675c8bac41cf2331398b",PartCategory.RoadWide,Part.OuterCornerWide,[["RoadWide", "OuterCornerWide"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
+                            }]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("3f82ebd6c72110b532a20673f8b54c7b25ae5988a51d3793bf383fea8ffcffc3",PartCategory.RoadWide,Part.ToWideRight,[["RoadWide", "ToWideSide"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("f5cecce9870f41f8cba7a9fbe631c315370a7a82824d04977ec857dbb1dfed29",PartCategory.RoadWide,Part.ToWideDouble,[["RoadWide", "ToWideDouble"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("99dc726611397f81b47459d32c7bfb8232322d1ca976ba9a3e71cc15451d8cfb",PartCategory.RoadWide,Part.ToWideDiagonal,[["RoadWide", "ToWideDiagonal"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("47d7e3fb334681911e122babef127881a36a763fb22176854114495802d5ce84",PartCategory.RoadWide,Part.StraightWide,[["RoadWide", "StraightWide"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("521adc95ed5a4809eeff7eec872c3d6449e4d6a7e4941d672f1e06a50a6615de",PartCategory.RoadWide,Part.InnerCornerWide,[["RoadWide", "InnerCornerWide"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("d82274b362794e3c1772510002d5015dde345f1e72dd675c8bac41cf2331398b",PartCategory.RoadWide,Part.OuterCornerWide,[["RoadWide", "OuterCornerWide"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]]]),
                 new PartObject("8c2541fab7e5e930b9280b3ef1e5bfc3092c17901c87457515df577f625c4303",PartCategory.RoadWide,Part.SlopeUpLeftWide,[["RoadWide", "SlopeUpWide", {
                                 flipX: !0
-                            }]],c,[[[-2, 0, -2], [1, 0, 1]], [[-2, 1, -2], [1, 1, -2]]]),
-                new PartObject("6c908d749b8150b47d96c2d0c493ed8bf125035a250025fbe94b6078503bcfce",PartCategory.RoadWide,Part.SlopeUpRightWide,[["RoadWide", "SlopeUpWide"]],c,[[[-2, 0, -2], [1, 0, 1]], [[-2, 1, -2], [1, 1, -2]]]),
+                            }]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]], [[-2, 1, -2], [1, 1, -2]]]),
+                new PartObject("6c908d749b8150b47d96c2d0c493ed8bf125035a250025fbe94b6078503bcfce",PartCategory.RoadWide,Part.SlopeUpRightWide,[["RoadWide", "SlopeUpWide"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]], [[-2, 1, -2], [1, 1, -2]]]),
                 new PartObject("676c22b45763bd86c8bb8d34a2fa7a38abde40618892742de598d866b4925b42",PartCategory.RoadWide,Part.SlopeUpLongLeftWide,[["RoadWide", "SlopeUpLongWide", {
                                 flipX: !0
-                            }]],c,[[[-2, 0, -4], [1, 0, 1]], [[-2, 1, -5], [1, 1, -4]], [[-2, 1, -6], [1, 2, -6]]]),
-                new PartObject("e783f085e8ec313dcd1bbb0849fe5e669ccbb075baac4d289fd442a9cd4ba562",PartCategory.RoadWide,Part.SlopeUpLongRightWide,[["RoadWide", "SlopeUpLongWide"]],c,[[[-2, 0, -4], [1, 0, 1]], [[-2, 1, -5], [1, 1, -4]], [[-2, 1, -6], [1, 2, -6]]]),
+                            }]],trackpartMaterialColorMap,[[[-2, 0, -4], [1, 0, 1]], [[-2, 1, -5], [1, 1, -4]], [[-2, 1, -6], [1, 2, -6]]]),
+                new PartObject("e783f085e8ec313dcd1bbb0849fe5e669ccbb075baac4d289fd442a9cd4ba562",PartCategory.RoadWide,Part.SlopeUpLongRightWide,[["RoadWide", "SlopeUpLongWide"]],trackpartMaterialColorMap,[[[-2, 0, -4], [1, 0, 1]], [[-2, 1, -5], [1, 1, -4]], [[-2, 1, -6], [1, 2, -6]]]),
                 new PartObject("4229bf84ab08f86a24d24b610a8225885f3cb68726ef74f4b314d7705c9eb2da",PartCategory.RoadWide,Part.SlopeDownLeftWide,[["RoadWide", "SlopeDownWide", {
                                 flipX: !0
-                            }]],c,[[[-2, 0, -2], [1, 0, 1]], [[-2, 1, 0], [1, 1, 1]]]),
-                new PartObject("a141744b0ffb4df202f230f1f97443f4198032aacf94e7259b7b0127df6bd838",PartCategory.RoadWide,Part.SlopeDownRightWide,[["RoadWide", "SlopeDownWide"]],c,[[[-2, 0, -2], [1, 0, 1]], [[-2, 1, 0], [1, 1, 1]]]),
+                            }]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]], [[-2, 1, 0], [1, 1, 1]]]),
+                new PartObject("a141744b0ffb4df202f230f1f97443f4198032aacf94e7259b7b0127df6bd838",PartCategory.RoadWide,Part.SlopeDownRightWide,[["RoadWide", "SlopeDownWide"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]], [[-2, 1, 0], [1, 1, 1]]]),
                 new PartObject("0fd78ec94545d4f7c41515ab7dafafb331b146118e3a14835fb6e6c9cb12e4af",PartCategory.RoadWide,Part.SlopeDownLongLeftWide,[["RoadWide", "SlopeDownLongWide", {
                                 flipX: !0
-                            }]],c,[[[-2, 0, -2], [1, 0, 0]], [[-2, 1, -1], [1, 1, 5]], [[-2, 2, 3], [1, 2, 5]]]),
-                new PartObject("997f1fd3e53bc438066f32e6ea33300a8371b297c7d74f4c25f48f3370fd5752",PartCategory.RoadWide,Part.SlopeDownLongRightWide,[["RoadWide", "SlopeDownLongWide"]],c,[[[-2, 0, -2], [1, 0, 0]], [[-2, 1, -1], [1, 1, 5]], [[-2, 2, 3], [1, 2, 5]]]),
+                            }]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 0]], [[-2, 1, -1], [1, 1, 5]], [[-2, 2, 3], [1, 2, 5]]]),
+                new PartObject("997f1fd3e53bc438066f32e6ea33300a8371b297c7d74f4c25f48f3370fd5752",PartCategory.RoadWide,Part.SlopeDownLongRightWide,[["RoadWide", "SlopeDownLongWide"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 0]], [[-2, 1, -1], [1, 1, 5]], [[-2, 2, 3], [1, 2, 5]]]),
                 new PartObject("bde16df3b12aab766167803dc302428bc8d3a4f95efcdeb8660b773e00e6ecb0",PartCategory.RoadWide,Part.SlopeLeftWide,[["RoadWide", "SlopeWide", {
                                 flipX: !0
-                            }]],c,[[[-2, 0, 0], [1, 0, 1]], [[-2, 1, -2], [1, 1, 0]], [[-2, 2, -2], [1, 2, -2]]]),
-                new PartObject("1524c4b16a08292aa84fbe0f0369d09453e75061fc39a9a0503e6caf4843a301",PartCategory.RoadWide,Part.SlopeRightWide,[["RoadWide", "SlopeWide"]],c,[[[-2, 0, 0], [1, 0, 1]], [[-2, 1, -2], [1, 1, 0]], [[-2, 2, -2], [1, 2, -2]]]),
-                new PartObject("b598ff14bda99600434b24a619132fec4bffcc535483b9b57b0c8c09c1be1f1b",PartCategory.RoadWide,Part.SlopeUpVerticalLeftWide,[["RoadWide", "SlopeUpVerticalWide"]],c,[[[-2, 0, -1], [1, 0, 1]], [[-2, 1, -1], [1, 1, -1]], [[-2, 1, -2], [1, 3, -2]]]),
+                            }]],trackpartMaterialColorMap,[[[-2, 0, 0], [1, 0, 1]], [[-2, 1, -2], [1, 1, 0]], [[-2, 2, -2], [1, 2, -2]]]),
+                new PartObject("1524c4b16a08292aa84fbe0f0369d09453e75061fc39a9a0503e6caf4843a301",PartCategory.RoadWide,Part.SlopeRightWide,[["RoadWide", "SlopeWide"]],trackpartMaterialColorMap,[[[-2, 0, 0], [1, 0, 1]], [[-2, 1, -2], [1, 1, 0]], [[-2, 2, -2], [1, 2, -2]]]),
+                new PartObject("b598ff14bda99600434b24a619132fec4bffcc535483b9b57b0c8c09c1be1f1b",PartCategory.RoadWide,Part.SlopeUpVerticalLeftWide,[["RoadWide", "SlopeUpVerticalWide"]],trackpartMaterialColorMap,[[[-2, 0, -1], [1, 0, 1]], [[-2, 1, -1], [1, 1, -1]], [[-2, 1, -2], [1, 3, -2]]]),
                 new PartObject("4e0275d3a01eaca6ec5118b8b816ed292cb7172710cf9b7801068424ab684b22",PartCategory.RoadWide,Part.SlopeUpVerticalRightWide,[["RoadWide", "SlopeUpVerticalWide", {
                                 flipX: !0
-                            }]],c,[[[-2, 0, -1], [1, 0, 1]], [[-2, 1, -1], [1, 1, -1]], [[-2, 1, -2], [1, 3, -2]]]),
+                            }]],trackpartMaterialColorMap,[[[-2, 0, -1], [1, 0, 1]], [[-2, 1, -1], [1, 1, -1]], [[-2, 1, -2], [1, 3, -2]]]),
                 new PartObject("feff879bfa80db0dc58d93fe8e34ca793aa508002df55a27cba2d99cfefa4691",PartCategory.RoadWide,Part.SlopeToVerticalLeftWide,[["RoadWide", "SlopeToVerticalWide", {
                                 flipX: !0
-                            }]],c,[[[-2, 0, 0], [1, 0, 1]], [[-2, 1, -2], [1, 1, 0]], [[-2, 2, -2], [1, 3, -2]], [[-2, 2, -1], [-2, 2, -1]]]),
-                new PartObject("88a9c7425f1e5b287ce571f744348a4a330409fced83f13b5a1c7e8e51e9ead4",PartCategory.RoadWide,Part.SlopeToVerticalRightWide,[["RoadWide", "SlopeToVerticalWide"]],c,[[[-2, 0, 0], [1, 0, 1]], [[-2, 1, -2], [1, 1, 0]], [[-2, 2, -2], [1, 3, -2]], [[1, 2, -1], [1, 2, -1]]]),
-                new PartObject("896b47675cc2ff58494979168f6fd36c27c43da29aed6a52fdf80f054630166a",PartCategory.Plane,Part.Plane,[["Planes", "Plane"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
-                new PartObject("dc9afb98a8bb998d3b76c3563385e58c1749e56ff43fbc7577b1f57ba8360702",PartCategory.Plane,Part.PlanePillarBottom,[["Planes", "Plane"], ["Pillar", "SurfacePillarBottom"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
-                new PartObject("f59ad95edd26814236ab30b73f6f4f68003885ef150201a4ace14b832abcf438",PartCategory.Plane,Part.PlanePillarShort,[["Planes", "Plane"], ["Pillar", "SurfacePillarShort"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
-                new PartObject("48247a66b232461083fa2aa36644e7e8779f5b426d474efd375ee7d21d009c9a",PartCategory.Plane,Part.HalfPlane,[["Planes", "HalfPlane"]],c,[[[-2, 0, 1], [1, 0, 1]], [[-2, 0, 0], [0, 0, 0]], [[-2, 0, -1], [-1, 0, -1]], [[-2, 0, -2], [-2, 0, -2]]]),
-                new PartObject("eac8530d1a025291674bf34b206f75700dc8626012d8d33ed398f7aed746dac8",PartCategory.Plane,Part.QuarterPlane,[["Planes", "QuarterPlane"]],c,[[[-2, 0, 1], [-2, 0, 1]], [[-2, 0, -1], [-1, 0, 0]], [[-2, 0, -2], [-2, 0, -2]]]),
-                new PartObject("f6809dcb8440d3c6043bfd91eb84add7facf61565ce4fd6c2aa73a5a9da32934",PartCategory.Plane,Part.PlaneCorner,[["Planes", "PlaneCorner"]],c,[[[-2, 0, -1], [1, 0, 1]], [[-1, 0, -2], [1, 0, -2]]]),
-                new PartObject("2dda4d3801c9cd4c117dc3c8239bea28cafe70ef2127986c2d6b455744fc8019",PartCategory.Plane,Part.PlaneSlopeUp,[["Planes", "PlaneSlopeUp"]],c,[[[-2, 0, -2], [1, 0, 1]], [[-2, 1, -2], [1, 1, -2]]]),
-                new PartObject("ff295081bdf76f76ad286007c813d37b5af22b06f337ad8fe43cddbd221255b4",PartCategory.Plane,Part.PlaneSlopeUpLong,[["Planes", "PlaneSlopeUpLong"]],c,[[[-2, 0, -4], [1, 0, 1]], [[-2, 1, -5], [1, 1, -4]], [[-2, 1, -6], [1, 2, -6]]]),
-                new PartObject("f1ac897525aa3fcae4fb678ca681bf559d993517b5f4f323b25789b64fe3f477",PartCategory.Plane,Part.PlaneSlopeDown,[["Planes", "PlaneSlopeDown"]],c,[[[-2, 0, -2], [1, 0, 1]], [[-2, 1, 0], [1, 1, 1]]]),
-                new PartObject("549dbef42b80ca6cfa7eecb1397918b2fc9ccd15ceb1c494c41944b8a0d50d7b",PartCategory.Plane,Part.PlaneSlopeDownLong,[["Planes", "PlaneSlopeDownLong"]],c,[[[-2, 0, -2], [1, 0, 0]], [[-2, 1, -1], [1, 1, 5]], [[-2, 2, 3], [1, 2, 5]]]),
-                new PartObject("2e9a2af92aea4a70361adba95230f3126911aa357299c0fe6c1e0611945961c0",PartCategory.Plane,Part.PlaneSlope,[["Planes", "PlaneSlope"]],c,[[[-2, 0, 0], [1, 0, 1]], [[-2, 1, -2], [1, 1, 0]], [[-2, 2, -2], [1, 2, -2]]]),
-                new PartObject("76408f7250687477995d65c39e60554466c6b96376d2ff0c9c9c497e1ee823bf",PartCategory.Plane,Part.HalfPlaneSlopeBottomLeft,[["Planes", "HalfPlaneSlopeBottom"]],c,[[[-2, 0, 0], [0, 0, 1]], [[-2, 1, -2], [-2, 1, 0]], [[-2, 2, -2], [-2, 2, -2]], [[-1, 1, -1], [-1, 1, 0]], [[0, 1, 0], [0, 1, 0]], [[1, 0, 1], [1, 0, 1]]]),
+                            }]],trackpartMaterialColorMap,[[[-2, 0, 0], [1, 0, 1]], [[-2, 1, -2], [1, 1, 0]], [[-2, 2, -2], [1, 3, -2]], [[-2, 2, -1], [-2, 2, -1]]]),
+                new PartObject("88a9c7425f1e5b287ce571f744348a4a330409fced83f13b5a1c7e8e51e9ead4",PartCategory.RoadWide,Part.SlopeToVerticalRightWide,[["RoadWide", "SlopeToVerticalWide"]],trackpartMaterialColorMap,[[[-2, 0, 0], [1, 0, 1]], [[-2, 1, -2], [1, 1, 0]], [[-2, 2, -2], [1, 3, -2]], [[1, 2, -1], [1, 2, -1]]]),
+                new PartObject("896b47675cc2ff58494979168f6fd36c27c43da29aed6a52fdf80f054630166a",PartCategory.Plane,Part.Plane,[["Planes", "Plane"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("dc9afb98a8bb998d3b76c3563385e58c1749e56ff43fbc7577b1f57ba8360702",PartCategory.Plane,Part.PlanePillarBottom,[["Planes", "Plane"], ["Pillar", "SurfacePillarBottom"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("f59ad95edd26814236ab30b73f6f4f68003885ef150201a4ace14b832abcf438",PartCategory.Plane,Part.PlanePillarShort,[["Planes", "Plane"], ["Pillar", "SurfacePillarShort"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("48247a66b232461083fa2aa36644e7e8779f5b426d474efd375ee7d21d009c9a",PartCategory.Plane,Part.HalfPlane,[["Planes", "HalfPlane"]],trackpartMaterialColorMap,[[[-2, 0, 1], [1, 0, 1]], [[-2, 0, 0], [0, 0, 0]], [[-2, 0, -1], [-1, 0, -1]], [[-2, 0, -2], [-2, 0, -2]]]),
+                new PartObject("eac8530d1a025291674bf34b206f75700dc8626012d8d33ed398f7aed746dac8",PartCategory.Plane,Part.QuarterPlane,[["Planes", "QuarterPlane"]],trackpartMaterialColorMap,[[[-2, 0, 1], [-2, 0, 1]], [[-2, 0, -1], [-1, 0, 0]], [[-2, 0, -2], [-2, 0, -2]]]),
+                new PartObject("f6809dcb8440d3c6043bfd91eb84add7facf61565ce4fd6c2aa73a5a9da32934",PartCategory.Plane,Part.PlaneCorner,[["Planes", "PlaneCorner"]],trackpartMaterialColorMap,[[[-2, 0, -1], [1, 0, 1]], [[-1, 0, -2], [1, 0, -2]]]),
+                new PartObject("2dda4d3801c9cd4c117dc3c8239bea28cafe70ef2127986c2d6b455744fc8019",PartCategory.Plane,Part.PlaneSlopeUp,[["Planes", "PlaneSlopeUp"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]], [[-2, 1, -2], [1, 1, -2]]]),
+                new PartObject("ff295081bdf76f76ad286007c813d37b5af22b06f337ad8fe43cddbd221255b4",PartCategory.Plane,Part.PlaneSlopeUpLong,[["Planes", "PlaneSlopeUpLong"]],trackpartMaterialColorMap,[[[-2, 0, -4], [1, 0, 1]], [[-2, 1, -5], [1, 1, -4]], [[-2, 1, -6], [1, 2, -6]]]),
+                new PartObject("f1ac897525aa3fcae4fb678ca681bf559d993517b5f4f323b25789b64fe3f477",PartCategory.Plane,Part.PlaneSlopeDown,[["Planes", "PlaneSlopeDown"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]], [[-2, 1, 0], [1, 1, 1]]]),
+                new PartObject("549dbef42b80ca6cfa7eecb1397918b2fc9ccd15ceb1c494c41944b8a0d50d7b",PartCategory.Plane,Part.PlaneSlopeDownLong,[["Planes", "PlaneSlopeDownLong"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 0]], [[-2, 1, -1], [1, 1, 5]], [[-2, 2, 3], [1, 2, 5]]]),
+                new PartObject("2e9a2af92aea4a70361adba95230f3126911aa357299c0fe6c1e0611945961c0",PartCategory.Plane,Part.PlaneSlope,[["Planes", "PlaneSlope"]],trackpartMaterialColorMap,[[[-2, 0, 0], [1, 0, 1]], [[-2, 1, -2], [1, 1, 0]], [[-2, 2, -2], [1, 2, -2]]]),
+                new PartObject("76408f7250687477995d65c39e60554466c6b96376d2ff0c9c9c497e1ee823bf",PartCategory.Plane,Part.HalfPlaneSlopeBottomLeft,[["Planes", "HalfPlaneSlopeBottom"]],trackpartMaterialColorMap,[[[-2, 0, 0], [0, 0, 1]], [[-2, 1, -2], [-2, 1, 0]], [[-2, 2, -2], [-2, 2, -2]], [[-1, 1, -1], [-1, 1, 0]], [[0, 1, 0], [0, 1, 0]], [[1, 0, 1], [1, 0, 1]]]),
                 new PartObject("bb77b8de31e4d193112947bb0c3d9d62985b10d8982acaaf58df54d483863873",PartCategory.Plane,Part.HalfPlaneSlopeBottomRight,[["Planes", "HalfPlaneSlopeBottom", {
                                 flipX: !0
-                            }]],c,[[[-2, 0, 1], [1, 0, 1]], [[-1, 0, 0], [1, 1, 0]], [[0, 1, -1], [1, 1, -1]], [[1, 1, -2], [1, 2, -2]]]),
+                            }]],trackpartMaterialColorMap,[[[-2, 0, 1], [1, 0, 1]], [[-1, 0, 0], [1, 1, 0]], [[0, 1, -1], [1, 1, -1]], [[1, 1, -2], [1, 2, -2]]]),
                 new PartObject("6984589cd1276691a8c2161fec8205194ea7545c8962b3f61f672ec02cf534f9",PartCategory.Plane,Part.HalfPlaneSlopeTopLeft,[["Planes", "HalfPlaneSlopeTop", {
                                 flipX: !0
-                            }]],c,[[[-2, 0, 0], [-1, 1, 0]], [[-2, 0, 1], [-2, 0, 1]], [[-2, 1, -2], [0, 1, -1]], [[-2, 2, -2], [1, 2, -2]], [[1, 1, -2], [1, 1, -2]]]),
-                new PartObject("992d36738e4882dd1da1ca3c2a396c79ae7fcb2ba47649de7cb0f888f18e04b3",PartCategory.Plane,Part.HalfPlaneSlopeTopRight,[["Planes", "HalfPlaneSlopeTop"]],c,[[[-2, 1, -2], [1, 2, -2]], [[-1, 1, -1], [1, 1, -1]], [[0, 0, 0], [1, 1, 0]], [[1, 0, 1], [1, 0, 1]]]),
-                new PartObject("ba0d6ec33647740bf4c60e542d1758095afa3ef451bdaec76c783dd32116e4cb",PartCategory.Plane,Part.PlaneSlopeVerticalBottom,[["Planes", "PlaneSlopeVertical"]],c,[[[-2, 0, -1], [1, 0, 1]], [[-2, 1, -1], [1, 1, -1]], [[-2, 1, -2], [1, 3, -2]]]),
-                new PartObject("6f750b74664474a57a22f22b4f8b7f2fef330eb00f9041385ec0acfbc2b09302",PartCategory.Plane,Part.PlaneSlopeToVertical,[["Planes", "PlaneSlopeToVertical"]],c,[[[-2, 0, 0], [1, 0, 1]], [[-2, 1, -2], [1, 1, 0]], [[-2, 2, -2], [1, 3, -2]]]),
-                new PartObject("5f6d1ece085d450643f1399af53673dcc6bbbf413094d8dd5ee6816d80e1c8ae",PartCategory.Plane,Part.PlaneBridge,[["Planes", "PlaneBridge"]],c,[[[-1, 0, -2], [0, 0, 1]]]),
-                new PartObject("32b91fc4cdf95f5b7a490d81058522bae14741601dd44c73cc110121aa1dd6e6",PartCategory.Plane,Part.PlaneBridgeCorner,[["Planes", "PlaneBridgeCorner"]],c,[[[-1, 0, -1], [0, 0, 1]], [[1, 0, -1], [1, 0, 0]]]),
-                new PartObject("2db870b1821fb655437bd0527569d5a6843718fa0775682701437432265a1a88",PartCategory.Plane,Part.PlaneBridgeIntersectionT,[["Planes", "PlaneBridgeIntersectionT"]],c,[[[-1, 0, -1], [0, 0, 1]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]]]),
-                new PartObject("33aa0e7524b74dcdae4aed89856c09d25248c4cab8f70dcc31b347f0a00fcb52",PartCategory.Plane,Part.PlaneBridgeIntersectionCross,[["Planes", "PlaneBridgeIntersectionCross"]],c,[[[-1, 0, -1], [0, 0, 1]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]], [[-1, 0, -2], [0, 0, -2]]]),
-                new PartObject("bd7cc4ab180fc0a6936fef828ae3a91566b3dd621b888fbcc57c9ac11dcb713b",PartCategory.Plane,Part.PlaneWall,[["Planes", "PlaneWall"]],c,[[[-2, 0, 1], [1, 0, 1]]]),
-                new PartObject("d92568164028bb2e65799abd9dc6ba66cfe8a28515c09fbe5ac175f5966af66a",PartCategory.Plane,Part.PlaneWallCorner,[["Planes", "PlaneWallCorner"]],c,[[[-2, 0, 1], [1, 0, 1]], [[1, 0, -2], [1, 0, 0]]]),
-                new PartObject("792ab5a6f0e2bf8e556575ef12731ec30755855d4394f98eb4ca7ec8b713933c",PartCategory.Plane,Part.PlaneWallInnerCorner,[["Planes", "PlaneWallInnerCorner"]],c,[[[1, 0, 1], [1, 0, 1]]]),
-                new PartObject("9f1a6ce37a3b0601346f4d30d8a81075c8eefd3d873cbb24fbe5cf6d5da3093f",PartCategory.Plane,Part.PlaneWallSlopeLeft,[["Planes", "PlaneWallSlope"]],c,[[[1, 0, 0], [1, 1, 1]], [[1, 1, -2], [1, 2, -1]]]),
+                            }]],trackpartMaterialColorMap,[[[-2, 0, 0], [-1, 1, 0]], [[-2, 0, 1], [-2, 0, 1]], [[-2, 1, -2], [0, 1, -1]], [[-2, 2, -2], [1, 2, -2]], [[1, 1, -2], [1, 1, -2]]]),
+                new PartObject("992d36738e4882dd1da1ca3c2a396c79ae7fcb2ba47649de7cb0f888f18e04b3",PartCategory.Plane,Part.HalfPlaneSlopeTopRight,[["Planes", "HalfPlaneSlopeTop"]],trackpartMaterialColorMap,[[[-2, 1, -2], [1, 2, -2]], [[-1, 1, -1], [1, 1, -1]], [[0, 0, 0], [1, 1, 0]], [[1, 0, 1], [1, 0, 1]]]),
+                new PartObject("ba0d6ec33647740bf4c60e542d1758095afa3ef451bdaec76c783dd32116e4cb",PartCategory.Plane,Part.PlaneSlopeVerticalBottom,[["Planes", "PlaneSlopeVertical"]],trackpartMaterialColorMap,[[[-2, 0, -1], [1, 0, 1]], [[-2, 1, -1], [1, 1, -1]], [[-2, 1, -2], [1, 3, -2]]]),
+                new PartObject("6f750b74664474a57a22f22b4f8b7f2fef330eb00f9041385ec0acfbc2b09302",PartCategory.Plane,Part.PlaneSlopeToVertical,[["Planes", "PlaneSlopeToVertical"]],trackpartMaterialColorMap,[[[-2, 0, 0], [1, 0, 1]], [[-2, 1, -2], [1, 1, 0]], [[-2, 2, -2], [1, 3, -2]]]),
+                new PartObject("5f6d1ece085d450643f1399af53673dcc6bbbf413094d8dd5ee6816d80e1c8ae",PartCategory.Plane,Part.PlaneBridge,[["Planes", "PlaneBridge"]],trackpartMaterialColorMap,[[[-1, 0, -2], [0, 0, 1]]]),
+                new PartObject("32b91fc4cdf95f5b7a490d81058522bae14741601dd44c73cc110121aa1dd6e6",PartCategory.Plane,Part.PlaneBridgeCorner,[["Planes", "PlaneBridgeCorner"]],trackpartMaterialColorMap,[[[-1, 0, -1], [0, 0, 1]], [[1, 0, -1], [1, 0, 0]]]),
+                new PartObject("2db870b1821fb655437bd0527569d5a6843718fa0775682701437432265a1a88",PartCategory.Plane,Part.PlaneBridgeIntersectionT,[["Planes", "PlaneBridgeIntersectionT"]],trackpartMaterialColorMap,[[[-1, 0, -1], [0, 0, 1]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]]]),
+                new PartObject("33aa0e7524b74dcdae4aed89856c09d25248c4cab8f70dcc31b347f0a00fcb52",PartCategory.Plane,Part.PlaneBridgeIntersectionCross,[["Planes", "PlaneBridgeIntersectionCross"]],trackpartMaterialColorMap,[[[-1, 0, -1], [0, 0, 1]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]], [[-1, 0, -2], [0, 0, -2]]]),
+                new PartObject("bd7cc4ab180fc0a6936fef828ae3a91566b3dd621b888fbcc57c9ac11dcb713b",PartCategory.Plane,Part.PlaneWall,[["Planes", "PlaneWall"]],trackpartMaterialColorMap,[[[-2, 0, 1], [1, 0, 1]]]),
+                new PartObject("d92568164028bb2e65799abd9dc6ba66cfe8a28515c09fbe5ac175f5966af66a",PartCategory.Plane,Part.PlaneWallCorner,[["Planes", "PlaneWallCorner"]],trackpartMaterialColorMap,[[[-2, 0, 1], [1, 0, 1]], [[1, 0, -2], [1, 0, 0]]]),
+                new PartObject("792ab5a6f0e2bf8e556575ef12731ec30755855d4394f98eb4ca7ec8b713933c",PartCategory.Plane,Part.PlaneWallInnerCorner,[["Planes", "PlaneWallInnerCorner"]],trackpartMaterialColorMap,[[[1, 0, 1], [1, 0, 1]]]),
+                new PartObject("9f1a6ce37a3b0601346f4d30d8a81075c8eefd3d873cbb24fbe5cf6d5da3093f",PartCategory.Plane,Part.PlaneWallSlopeLeft,[["Planes", "PlaneWallSlope"]],trackpartMaterialColorMap,[[[1, 0, 0], [1, 1, 1]], [[1, 1, -2], [1, 2, -1]]]),
                 new PartObject("0a28443c2fc0e51527b4d3a5a0d98302fc368839b614db5c7d90f151a97c7542",PartCategory.Plane,Part.PlaneWallSlopeRight,[["Planes", "PlaneWallSlope", {
                                 flipX: !0
-                            }]],c,[[[-2, 0, 0], [-2, 1, 1]], [[-2, 1, -2], [-2, 2, -1]]]),
-                new PartObject("b55dca4b19a0f61db43849e444eaa1d9289519ef7e5a4b6e02c7c02ba80f84f4",PartCategory.Plane,Part.PlaneWallSlopeUpLeft,[["Planes", "PlaneWallSlopeUp"]],c,[[[1, 0, -2], [1, 1, 1]]]),
+                            }]],trackpartMaterialColorMap,[[[-2, 0, 0], [-2, 1, 1]], [[-2, 1, -2], [-2, 2, -1]]]),
+                new PartObject("b55dca4b19a0f61db43849e444eaa1d9289519ef7e5a4b6e02c7c02ba80f84f4",PartCategory.Plane,Part.PlaneWallSlopeUpLeft,[["Planes", "PlaneWallSlopeUp"]],trackpartMaterialColorMap,[[[1, 0, -2], [1, 1, 1]]]),
                 new PartObject("70c5288fe8e74957d820cc34995566ad26478e00e5314e36e836e0f803b38061",PartCategory.Plane,Part.PlaneWallSlopeUpRight,[["Planes", "PlaneWallSlopeUp", {
                                 flipX: !0
-                            }]],c,[[[-2, 0, -2], [-2, 1, 1]]]),
-                new PartObject("9b16670e084f2e054c61f253abb7b24e29e0b11800de23b9a2877f17c33dd4a9",PartCategory.Plane,Part.PlaneWallSlopeDownLeft,[["Planes", "PlaneWallSlopeDown"]],c,[[[1, 0, -2], [1, 1, 1]]]),
+                            }]],trackpartMaterialColorMap,[[[-2, 0, -2], [-2, 1, 1]]]),
+                new PartObject("9b16670e084f2e054c61f253abb7b24e29e0b11800de23b9a2877f17c33dd4a9",PartCategory.Plane,Part.PlaneWallSlopeDownLeft,[["Planes", "PlaneWallSlopeDown"]],trackpartMaterialColorMap,[[[1, 0, -2], [1, 1, 1]]]),
                 new PartObject("bf441ad2d47b48000b7535e2dd39c209257f2614363494827200330dfea97e11",PartCategory.Plane,Part.PlaneWallSlopeDownRight,[["Planes", "PlaneWallSlopeDown", {
                                 flipX: !0
-                            }]],c,[[[-2, 0, -2], [-2, 1, 1]]]),
-                new PartObject("8d561c6d1e116c92c5f9ecb9715e57b510dfd38d8e4ba2183429d28238c6ac83",PartCategory.Plane,Part.PlaneWallSlopeUpLongLeft,[["Planes", "PlaneWallSlopeUpLong"]],c,[[[1, 0, -4], [1, 1, 1]], [[1, 1, -6], [1, 2, -5]], [[1, 2, -4], [1, 2, -4]]]),
+                            }]],trackpartMaterialColorMap,[[[-2, 0, -2], [-2, 1, 1]]]),
+                new PartObject("8d561c6d1e116c92c5f9ecb9715e57b510dfd38d8e4ba2183429d28238c6ac83",PartCategory.Plane,Part.PlaneWallSlopeUpLongLeft,[["Planes", "PlaneWallSlopeUpLong"]],trackpartMaterialColorMap,[[[1, 0, -4], [1, 1, 1]], [[1, 1, -6], [1, 2, -5]], [[1, 2, -4], [1, 2, -4]]]),
                 new PartObject("ab013301c7b3b91cf48ae1a8d47842f85ac688677cc14e0baa3b3a5a3ce0bb3b",PartCategory.Plane,Part.PlaneWallSlopeUpLongRight,[["Planes", "PlaneWallSlopeUpLong", {
                                 flipX: !0
-                            }]],c,[[[-2, 0, -4], [-2, 1, 1]], [[-2, 1, -6], [-2, 2, -5]], [[-2, 2, -4], [-2, 2, -4]]]),
-                new PartObject("79fc30fd9032052b23a30f03fde4e4932b4a3a6a57c1e2b64631fb5d6c5f1052",PartCategory.Plane,Part.PlaneWallSlopeDownLongLeft,[["Planes", "PlaneWallSlopeDownLong"]],c,[[[1, 0, -2], [1, 1, 0]], [[1, 1, 1], [1, 2, 5]], [[1, 2, 0], [1, 2, 0]]]),
+                            }]],trackpartMaterialColorMap,[[[-2, 0, -4], [-2, 1, 1]], [[-2, 1, -6], [-2, 2, -5]], [[-2, 2, -4], [-2, 2, -4]]]),
+                new PartObject("79fc30fd9032052b23a30f03fde4e4932b4a3a6a57c1e2b64631fb5d6c5f1052",PartCategory.Plane,Part.PlaneWallSlopeDownLongLeft,[["Planes", "PlaneWallSlopeDownLong"]],trackpartMaterialColorMap,[[[1, 0, -2], [1, 1, 0]], [[1, 1, 1], [1, 2, 5]], [[1, 2, 0], [1, 2, 0]]]),
                 new PartObject("5aeda192c725700634faf36a401b9bf0b4df869b311da546080569f66c741a66",PartCategory.Plane,Part.PlaneWallSlopeDownLongRight,[["Planes", "PlaneWallSlopeDownLong", {
                                 flipX: !0
-                            }]],c,[[[-2, 0, -2], [-2, 1, 0]], [[-2, 1, 1], [-2, 2, 5]], [[-2, 2, 0], [-2, 2, 0]]]),
+                            }]],trackpartMaterialColorMap,[[[-2, 0, -2], [-2, 1, 0]], [[-2, 1, 1], [-2, 2, 5]], [[-2, 2, 0], [-2, 2, 0]]]),
                 new PartObject("de0d588c4b2fe6b32d72a7e0e2984285955f805ccb86d3c269f7155401cd6b20",PartCategory.Block,Part.Block,[["Blocks", "Block"]],h,[[[-2, 0, -2], [1, 0, 1]]]),
                 new PartObject("1ce6b585c0e99d71877fefe015ff16336ae62eb0caebeca62dd09d836092d7b6",PartCategory.Block,Part.HalfBlock,[["Blocks", "HalfBlock"]],h,[[[-2, 0, 1], [1, 0, 1]], [[-2, 0, 0], [0, 0, 0]], [[-2, 0, -1], [-1, 0, -1]], [[-2, 0, -2], [-2, 0, -2]]]),
                 new PartObject("0d5f0609c3c98f687d55d3a73313225c1642f6285ddaca3ed536db742c85958d",PartCategory.Block,Part.QuarterBlock,[["Blocks", "QuarterBlock"]],h,[[[-2, 0, 1], [-2, 0, 1]], [[-2, 0, -1], [-1, 0, 0]], [[-2, 0, -2], [-2, 0, -2]]]),
@@ -434,77 +437,77 @@
                 new PartObject("dfbcbc107a3c12217bfa3b224a5757d08e995705d1c122bb2c2665bbb8447b1c",PartCategory.Block,Part.BlockBridgeIntersectionCross,[["Blocks", "BlockBridgeIntersectionCross"]],h,[[[-1, 0, -1], [0, 0, 1]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]], [[-1, 0, -2], [0, 0, -2]]]),
                 new PartObject("a00d7077d07af7f2125d4db731b5b76ca182b65eb90fbe76061e196a7c0b1652",PartCategory.WallTrack,Part.WallTrackTop,[["WallTrack", "WallTrackBottom", {
                                 flipY: !0
-                            }]],c,[[[-2, 3, -1], [1, 3, 1]], [[-2, 2, -1], [1, 2, -1]], [[-2, 0, -2], [1, 2, -2]]]),
-                new PartObject("010d187fbfbd399bfe880bbea1b548678c239eba0be2913e5cb8a69fbd17adf7",PartCategory.WallTrack,Part.WallTrackMiddle,[["WallTrack", "WallTrackMiddle"]],c,[[[-2, 0, -2], [1, 0, -2]]]),
-                new PartObject("72934b2ee76e187eee519baf97df49128dc32e3583795f98645774ae5639f443",PartCategory.WallTrack,Part.WallTrackBottom,[["WallTrack", "WallTrackBottom"]],c,[[[-2, 0, -1], [1, 0, 1]], [[-2, 1, -1], [1, 1, -1]], [[-2, 1, -2], [1, 3, -2]]]),
-                new PartObject("1ff36280441e023bd066dc3c5cdf136bd9a3a0beb9eee0aad048c9a2dfd5eafb",PartCategory.WallTrack,Part.WallTrackSlopeToVertical,[["WallTrack", "WallTrackSlopeToVertical"]],c,[[[-2, 0, 0], [1, 0, 1]], [[-2, 1, -2], [1, 1, 0]], [[-2, 2, -2], [1, 3, -2]]]),
+                            }]],trackpartMaterialColorMap,[[[-2, 3, -1], [1, 3, 1]], [[-2, 2, -1], [1, 2, -1]], [[-2, 0, -2], [1, 2, -2]]]),
+                new PartObject("010d187fbfbd399bfe880bbea1b548678c239eba0be2913e5cb8a69fbd17adf7",PartCategory.WallTrack,Part.WallTrackMiddle,[["WallTrack", "WallTrackMiddle"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, -2]]]),
+                new PartObject("72934b2ee76e187eee519baf97df49128dc32e3583795f98645774ae5639f443",PartCategory.WallTrack,Part.WallTrackBottom,[["WallTrack", "WallTrackBottom"]],trackpartMaterialColorMap,[[[-2, 0, -1], [1, 0, 1]], [[-2, 1, -1], [1, 1, -1]], [[-2, 1, -2], [1, 3, -2]]]),
+                new PartObject("1ff36280441e023bd066dc3c5cdf136bd9a3a0beb9eee0aad048c9a2dfd5eafb",PartCategory.WallTrack,Part.WallTrackSlopeToVertical,[["WallTrack", "WallTrackSlopeToVertical"]],trackpartMaterialColorMap,[[[-2, 0, 0], [1, 0, 1]], [[-2, 1, -2], [1, 1, 0]], [[-2, 2, -2], [1, 3, -2]]]),
                 new PartObject("9c7c099734168051032425b6e228665caa581282ef23db6d1ae8c958f8675531",PartCategory.WallTrack,Part.WallTrackTopCorner,[["WallTrack", "WallTrackBottomCorner", {
                                 flipY: !0
-                            }]],c,[[[-2, 0, -1], [-2, 0, 1]], [[-1, 0, -1], [-1, 0, -1]], [[-1, 0, -2], [1, 0, -2]], [[-2, 1, -1], [-2, 1, 1]], [[-1, 1, -1], [-1, 1, 0]], [[0, 1, -1], [0, 1, -1]], [[-1, 1, -2], [1, 1, -2]], [[-2, 2, 0], [-2, 2, 1]], [[-1, 2, 1], [-1, 2, 1]], [[-1, 2, -1], [0, 2, 0]], [[1, 2, -1], [1, 2, -1]], [[0, 2, -2], [1, 2, -2]], [[0, 3, -1], [1, 3, 1]], [[-1, 3, 0], [-1, 3, 1]]]),
-                new PartObject("4027a2439cc3e42ceda50ff3d427a31e127b25a6457b55edc2d498b474a296a7",PartCategory.WallTrack,Part.WallTrackMiddleCorner,[["WallTrack", "WallTrackMiddleCorner"]],c,[[[-2, 0, -1], [-2, 0, 1]], [[-1, 0, -1], [-1, 0, -1]], [[-1, 0, -2], [1, 0, -2]]]),
-                new PartObject("32c0ec55a47f619e277cb9efec3dd1b54792e7ea78c370f1e3102b7ba4ed2928",PartCategory.WallTrack,Part.WallTrackBottomCorner,[["WallTrack", "WallTrackBottomCorner"]],c,[[[-2, 3, -1], [-2, 3, 1]], [[-1, 3, -1], [-1, 3, -1]], [[-1, 3, -2], [1, 3, -2]], [[-2, 2, -1], [-2, 2, 1]], [[-1, 2, -1], [-1, 2, 0]], [[0, 2, -1], [0, 2, -1]], [[-1, 2, -2], [1, 2, -2]], [[-2, 1, 0], [-2, 1, 1]], [[-1, 1, 1], [-1, 1, 1]], [[-1, 1, -1], [0, 1, 0]], [[1, 1, -1], [1, 1, -1]], [[0, 1, -2], [1, 1, -2]], [[0, 0, -1], [1, 0, 1]], [[-1, 0, 0], [-1, 0, 1]]]),
+                            }]],trackpartMaterialColorMap,[[[-2, 0, -1], [-2, 0, 1]], [[-1, 0, -1], [-1, 0, -1]], [[-1, 0, -2], [1, 0, -2]], [[-2, 1, -1], [-2, 1, 1]], [[-1, 1, -1], [-1, 1, 0]], [[0, 1, -1], [0, 1, -1]], [[-1, 1, -2], [1, 1, -2]], [[-2, 2, 0], [-2, 2, 1]], [[-1, 2, 1], [-1, 2, 1]], [[-1, 2, -1], [0, 2, 0]], [[1, 2, -1], [1, 2, -1]], [[0, 2, -2], [1, 2, -2]], [[0, 3, -1], [1, 3, 1]], [[-1, 3, 0], [-1, 3, 1]]]),
+                new PartObject("4027a2439cc3e42ceda50ff3d427a31e127b25a6457b55edc2d498b474a296a7",PartCategory.WallTrack,Part.WallTrackMiddleCorner,[["WallTrack", "WallTrackMiddleCorner"]],trackpartMaterialColorMap,[[[-2, 0, -1], [-2, 0, 1]], [[-1, 0, -1], [-1, 0, -1]], [[-1, 0, -2], [1, 0, -2]]]),
+                new PartObject("32c0ec55a47f619e277cb9efec3dd1b54792e7ea78c370f1e3102b7ba4ed2928",PartCategory.WallTrack,Part.WallTrackBottomCorner,[["WallTrack", "WallTrackBottomCorner"]],trackpartMaterialColorMap,[[[-2, 3, -1], [-2, 3, 1]], [[-1, 3, -1], [-1, 3, -1]], [[-1, 3, -2], [1, 3, -2]], [[-2, 2, -1], [-2, 2, 1]], [[-1, 2, -1], [-1, 2, 0]], [[0, 2, -1], [0, 2, -1]], [[-1, 2, -2], [1, 2, -2]], [[-2, 1, 0], [-2, 1, 1]], [[-1, 1, 1], [-1, 1, 1]], [[-1, 1, -1], [0, 1, 0]], [[1, 1, -1], [1, 1, -1]], [[0, 1, -2], [1, 1, -2]], [[0, 0, -1], [1, 0, 1]], [[-1, 0, 0], [-1, 0, 1]]]),
                 new PartObject("786b8ff7fcb72c67e7b887a78fa7b823c48575ae1e4d3b48ae13620646ac34a7",PartCategory.WallTrack,Part.WallTrackTopInnerCorner,[["WallTrack", "WallTrackBottomInnerCorner", {
                                 flipY: !0
-                            }]],c,[[[-2, 3, -1], [1, 3, 1]], [[-1, 3, -2], [1, 3, -2]], [[-2, 2, -2], [-1, 2, -1]], [[-2, 0, -2], [-2, 1, -2]]]),
-                new PartObject("16c9c8ece47c097f60cfc7f8a2daa2f0e7ad0befb0ebfd185402013fd1ec8e0f",PartCategory.WallTrack,Part.WallTrackInnerCorner,[["WallTrack", "WallTrackInnerCorner"]],c,[[[-2, 0, -2], [-2, 0, -2]]]),
-                new PartObject("413dcb45de9fdaf4fe8b78804feaa80891053063a5c432c09b50c24201166572",PartCategory.WallTrack,Part.WallTrackBottomInnerCorner,[["WallTrack", "WallTrackBottomInnerCorner"]],c,[[[-2, 0, -1], [1, 0, 1]], [[-1, 0, -2], [1, 0, -2]], [[-2, 1, -2], [-1, 1, -1]], [[-2, 2, -2], [-2, 3, -2]]]),
-                new PartObject("8b7023471502607ef19109760bee3b954ea3b3883c32f3960f75c6651c912ffd",PartCategory.WallTrack,Part.WallTrackFloor,[["WallTrack", "WallTrackFloor"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
-                new PartObject("59e7f31827236c71db8b16f3f1f259c4c82c87a37e4d57a5a097c0d527d128f3",PartCategory.WallTrack,Part.WallTrackFloorCorner,[["WallTrack", "WallTrackFloorCorner"]],c,[[[-2, 0, 1], [1, 0, 1]], [[0, 0, 0], [1, 0, 0]], [[1, 0, -2], [1, 0, -1]]]),
-                new PartObject("d58e3805b550b70940c845a807086865b21a4c36da74ffddedcfe5ce2d08e093",PartCategory.WallTrack,Part.WallTrackFloorPlaneCorner,[["WallTrack", "WallTrackFloorPlaneCorner"]],c,[[[-2, 0, 1], [1, 0, 1]], [[0, 0, 0], [1, 0, 0]], [[1, 0, -2], [1, 0, -1]]]),
-                new PartObject("a56b0c1cf964b213a38167cbbac6f33acd403978ad75746eb51bcfd8c6a36148",PartCategory.WallTrack,Part.WallTrackCeiling,[["WallTrack", "WallTrackCeiling"]],c,[[[-2, 0, -2], [1, 0, 1]]]),
-                new PartObject("f87b592d02120312e8e93d8a27c02dcda1095ac2f09879c6efafb2ca2b49d127",PartCategory.WallTrack,Part.WallTrackCeilingCorner,[["WallTrack", "WallTrackCeilingCorner"]],c,[[[-2, 0, 1], [1, 0, 1]], [[0, 0, 0], [1, 0, 0]], [[1, 0, -2], [1, 0, -1]]]),
-                new PartObject("cfce1fe50f8cd26393eadd475783830e02f0b39bad4c0e00f7aa69614b22decc",PartCategory.WallTrack,Part.WallTrackCeilingPlaneCorner,[["WallTrack", "WallTrackCeilingPlaneCorner"]],c,[[[-2, 0, 1], [1, 0, 1]], [[0, 0, 0], [1, 0, 0]], [[1, 0, -2], [1, 0, -1]]]),
-                new PartObject("19656d02145f1a4ba07dbf2f236f865d34c86f823741b247b5d444a36d61c316",PartCategory.Pillar,Part.PillarTop,[["Pillar", "PillarTop"]],c,[[[-1, 0, -1], [0, 0, 0]]]),
-                new PartObject("dde596d55ffc00f0f00d361667239d9f71c414f03304fecb6a7d11f6f5e702f1",PartCategory.Pillar,Part.PillarMiddle,[["Pillar", "PillarMiddle"]],c,[[[-1, 0, -1], [0, 0, 0]]]),
-                new PartObject("dced5202d9373f9dd81a39530a87a1a7036c93ae71604a4e26c3a191abf3c197",PartCategory.Pillar,Part.PillarBottom,[["Pillar", "PillarBottom"]],c,[[[-1, 0, -1], [0, 0, 0]]]),
-                new PartObject("af83eebf50c302880377e4f8c1fb3b2ef96ae193e8d03c17e1fd77c73a847e63",PartCategory.Pillar,Part.PillarShort,[["Pillar", "PillarShort"]],c,[[[-1, 0, -1], [0, 0, 0]]]),
-                new PartObject("bad7c003302fe84912a2f36551fc9751220ebe6e747791a8df205dca9ae31cc0",PartCategory.Pillar,Part.PillarTopSlope,[["Pillar", "PillarTopSlope"]],c,[[[-1, 0, -1], [0, 0, 0]], [[-1, 1, -1], [0, 1, -1]]]),
-                new PartObject("9f34b2cd553c88364c36923d7ae5e606253865e0684f575e0538670b6116ac5a",PartCategory.Pillar,Part.PillarShortSlope,[["Pillar", "PillarShortSlope"]],c,[[[-1, 0, -1], [0, 0, 0]], [[-1, 1, -1], [0, 1, -1]]]),
-                new PartObject("25b41116fb04b1f3cdd3119f57e0000a6ea8cb12d435718ffd6bb765866c272f",PartCategory.Pillar,Part.PillarBranch1,[["Pillar", "PillarBranch1"]],c,[[[-1, 0, -2], [0, 0, 0]]]),
-                new PartObject("05ae39aea4f1ddd818fa57860e688c9cb875544f9b82eafe58a2eb9c19d8d91d",PartCategory.Pillar,Part.PillarBranch1Top,[["Pillar", "PillarBranch1Top"]],c,[[[-1, 0, -2], [0, 0, 0]]]),
-                new PartObject("06c29d92e42e0c32050af98d69eecc94ce15adf8ac81dbe53dfb577a83265f4e",PartCategory.Pillar,Part.PillarBranch1Middle,[["Pillar", "PillarBranch1Middle"]],c,[[[-1, 0, -2], [0, 0, 0]]]),
-                new PartObject("4a989027e0bd6db264f092bac729d9d450e012a710ea28d199f7ff52efd70fbd",PartCategory.Pillar,Part.PillarBranch1Bottom,[["Pillar", "PillarBranch1Bottom"]],c,[[[-1, 0, -2], [0, 0, 0]]]),
-                new PartObject("78b2ff83ad71e7f3d692abc35923fa20c2ae14c01e37d44ec430746ca1bac992",PartCategory.Pillar,Part.PillarBranch2,[["Pillar", "PillarBranch2"]],c,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]]]),
-                new PartObject("b22c93bc73ec2da9dbff218da1676d7436527ed284e264f37294e48ef1307301",PartCategory.Pillar,Part.PillarBranch2Top,[["Pillar", "PillarBranch2Top"]],c,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]]]),
-                new PartObject("79a456a8fa3da24bec6c033f6c736fa1c728745f9624ae78ca20b6a4a76afae8",PartCategory.Pillar,Part.PillarBranch2Middle,[["Pillar", "PillarBranch2Middle"]],c,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]]]),
-                new PartObject("3b81b3f965cbc9fda4fe09e830ba25f1b96ce512d87b0146a1192a6cd0d07335",PartCategory.Pillar,Part.PillarBranch2Bottom,[["Pillar", "PillarBranch2Bottom"]],c,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]]]),
-                new PartObject("27727678bbcac9d3b0172b165ca5c92b10f4b4584a3a18fef4c542f3e791f26f",PartCategory.Pillar,Part.PillarBranch3,[["Pillar", "PillarBranch3"]],c,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]]]),
-                new PartObject("50c7ac511d30ab9e065c928b776652f038be7683d948082bbefc419ee049e505",PartCategory.Pillar,Part.PillarBranch3Top,[["Pillar", "PillarBranch3Top"]],c,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]]]),
-                new PartObject("98b3bfe99e7132825f5aa93122e4e5fdec46eb2877c8eb91fa2648f709527b60",PartCategory.Pillar,Part.PillarBranch3Middle,[["Pillar", "PillarBranch3Middle"]],c,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]]]),
-                new PartObject("7326bbb558f8bcc28d5875c43b1b8e3646caadb873a14fde3ab517f779aea345",PartCategory.Pillar,Part.PillarBranch3Bottom,[["Pillar", "PillarBranch3Bottom"]],c,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]]]),
-                new PartObject("0e23c2615cfdb350bb3a700b6169589265a1d1079f61294fb497b8f80191d523",PartCategory.Pillar,Part.PillarBranch4,[["Pillar", "PillarBranch4"]],c,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]], [[-1, 0, 1], [0, 0, 1]]]),
-                new PartObject("e62b55e111dbcb3faefed0a203eac5b55051a2b11911946660310e3df3588da3",PartCategory.Pillar,Part.PillarBranch4Top,[["Pillar", "PillarBranch4Top"]],c,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]], [[-1, 0, 1], [0, 0, 1]]]),
-                new PartObject("4e2cfb89c1c591803a1440532a74c3ace37ec7fe78a526c1b57f6679c620df2e",PartCategory.Pillar,Part.PillarBranch4Middle,[["Pillar", "PillarBranch4Middle"]],c,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]], [[-1, 0, 1], [0, 0, 1]]]),
-                new PartObject("e7807350788e4570c8bb74d4a635639ef731d83e52922fac5bc10f415f73f794",PartCategory.Pillar,Part.PillarBranch4Bottom,[["Pillar", "PillarBranch4Bottom"]],c,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]], [[-1, 0, 1], [0, 0, 1]]]),
-                new PartObject("836bfd12791bfebd99aba70531da4c9bd6e332d16c1e120a8888ea54f59456f9",PartCategory.Pillar,Part.PillarBranch5,[["Pillar", "PillarBranch5"]],c,[[[-2, 0, -1], [1, 0, 0]]]),
-                new PartObject("ab85228116faf9ae7b1e6cb4a03530cbec808df3d3c1d7883eb41eb7cfe231d7",PartCategory.Pillar,Part.PillarBranch5Top,[["Pillar", "PillarBranch5Top"]],c,[[[-2, 0, -1], [1, 0, 0]]]),
-                new PartObject("db93d5cea4e523fd67a56f8d928084ab6355331a8e5d1899115c1841866006bb",PartCategory.Pillar,Part.PillarBranch5Middle,[["Pillar", "PillarBranch5Middle"]],c,[[[-2, 0, -1], [1, 0, 0]]]),
-                new PartObject("dd793efa234159e3a0ff28b064ecb715e6c8bb76e06acfe4bd0d9a2f2b9bba88",PartCategory.Pillar,Part.PillarBranch5Bottom,[["Pillar", "PillarBranch5Bottom"]],c,[[[-2, 0, -1], [1, 0, 0]]]),
+                            }]],trackpartMaterialColorMap,[[[-2, 3, -1], [1, 3, 1]], [[-1, 3, -2], [1, 3, -2]], [[-2, 2, -2], [-1, 2, -1]], [[-2, 0, -2], [-2, 1, -2]]]),
+                new PartObject("16c9c8ece47c097f60cfc7f8a2daa2f0e7ad0befb0ebfd185402013fd1ec8e0f",PartCategory.WallTrack,Part.WallTrackInnerCorner,[["WallTrack", "WallTrackInnerCorner"]],trackpartMaterialColorMap,[[[-2, 0, -2], [-2, 0, -2]]]),
+                new PartObject("413dcb45de9fdaf4fe8b78804feaa80891053063a5c432c09b50c24201166572",PartCategory.WallTrack,Part.WallTrackBottomInnerCorner,[["WallTrack", "WallTrackBottomInnerCorner"]],trackpartMaterialColorMap,[[[-2, 0, -1], [1, 0, 1]], [[-1, 0, -2], [1, 0, -2]], [[-2, 1, -2], [-1, 1, -1]], [[-2, 2, -2], [-2, 3, -2]]]),
+                new PartObject("8b7023471502607ef19109760bee3b954ea3b3883c32f3960f75c6651c912ffd",PartCategory.WallTrack,Part.WallTrackFloor,[["WallTrack", "WallTrackFloor"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("59e7f31827236c71db8b16f3f1f259c4c82c87a37e4d57a5a097c0d527d128f3",PartCategory.WallTrack,Part.WallTrackFloorCorner,[["WallTrack", "WallTrackFloorCorner"]],trackpartMaterialColorMap,[[[-2, 0, 1], [1, 0, 1]], [[0, 0, 0], [1, 0, 0]], [[1, 0, -2], [1, 0, -1]]]),
+                new PartObject("d58e3805b550b70940c845a807086865b21a4c36da74ffddedcfe5ce2d08e093",PartCategory.WallTrack,Part.WallTrackFloorPlaneCorner,[["WallTrack", "WallTrackFloorPlaneCorner"]],trackpartMaterialColorMap,[[[-2, 0, 1], [1, 0, 1]], [[0, 0, 0], [1, 0, 0]], [[1, 0, -2], [1, 0, -1]]]),
+                new PartObject("a56b0c1cf964b213a38167cbbac6f33acd403978ad75746eb51bcfd8c6a36148",PartCategory.WallTrack,Part.WallTrackCeiling,[["WallTrack", "WallTrackCeiling"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, 1]]]),
+                new PartObject("f87b592d02120312e8e93d8a27c02dcda1095ac2f09879c6efafb2ca2b49d127",PartCategory.WallTrack,Part.WallTrackCeilingCorner,[["WallTrack", "WallTrackCeilingCorner"]],trackpartMaterialColorMap,[[[-2, 0, 1], [1, 0, 1]], [[0, 0, 0], [1, 0, 0]], [[1, 0, -2], [1, 0, -1]]]),
+                new PartObject("cfce1fe50f8cd26393eadd475783830e02f0b39bad4c0e00f7aa69614b22decc",PartCategory.WallTrack,Part.WallTrackCeilingPlaneCorner,[["WallTrack", "WallTrackCeilingPlaneCorner"]],trackpartMaterialColorMap,[[[-2, 0, 1], [1, 0, 1]], [[0, 0, 0], [1, 0, 0]], [[1, 0, -2], [1, 0, -1]]]),
+                new PartObject("19656d02145f1a4ba07dbf2f236f865d34c86f823741b247b5d444a36d61c316",PartCategory.Pillar,Part.PillarTop,[["Pillar", "PillarTop"]],trackpartMaterialColorMap,[[[-1, 0, -1], [0, 0, 0]]]),
+                new PartObject("dde596d55ffc00f0f00d361667239d9f71c414f03304fecb6a7d11f6f5e702f1",PartCategory.Pillar,Part.PillarMiddle,[["Pillar", "PillarMiddle"]],trackpartMaterialColorMap,[[[-1, 0, -1], [0, 0, 0]]]),
+                new PartObject("dced5202d9373f9dd81a39530a87a1a7036c93ae71604a4e26c3a191abf3c197",PartCategory.Pillar,Part.PillarBottom,[["Pillar", "PillarBottom"]],trackpartMaterialColorMap,[[[-1, 0, -1], [0, 0, 0]]]),
+                new PartObject("af83eebf50c302880377e4f8c1fb3b2ef96ae193e8d03c17e1fd77c73a847e63",PartCategory.Pillar,Part.PillarShort,[["Pillar", "PillarShort"]],trackpartMaterialColorMap,[[[-1, 0, -1], [0, 0, 0]]]),
+                new PartObject("bad7c003302fe84912a2f36551fc9751220ebe6e747791a8df205dca9ae31cc0",PartCategory.Pillar,Part.PillarTopSlope,[["Pillar", "PillarTopSlope"]],trackpartMaterialColorMap,[[[-1, 0, -1], [0, 0, 0]], [[-1, 1, -1], [0, 1, -1]]]),
+                new PartObject("9f34b2cd553c88364c36923d7ae5e606253865e0684f575e0538670b6116ac5a",PartCategory.Pillar,Part.PillarShortSlope,[["Pillar", "PillarShortSlope"]],trackpartMaterialColorMap,[[[-1, 0, -1], [0, 0, 0]], [[-1, 1, -1], [0, 1, -1]]]),
+                new PartObject("25b41116fb04b1f3cdd3119f57e0000a6ea8cb12d435718ffd6bb765866c272f",PartCategory.Pillar,Part.PillarBranch1,[["Pillar", "PillarBranch1"]],trackpartMaterialColorMap,[[[-1, 0, -2], [0, 0, 0]]]),
+                new PartObject("05ae39aea4f1ddd818fa57860e688c9cb875544f9b82eafe58a2eb9c19d8d91d",PartCategory.Pillar,Part.PillarBranch1Top,[["Pillar", "PillarBranch1Top"]],trackpartMaterialColorMap,[[[-1, 0, -2], [0, 0, 0]]]),
+                new PartObject("06c29d92e42e0c32050af98d69eecc94ce15adf8ac81dbe53dfb577a83265f4e",PartCategory.Pillar,Part.PillarBranch1Middle,[["Pillar", "PillarBranch1Middle"]],trackpartMaterialColorMap,[[[-1, 0, -2], [0, 0, 0]]]),
+                new PartObject("4a989027e0bd6db264f092bac729d9d450e012a710ea28d199f7ff52efd70fbd",PartCategory.Pillar,Part.PillarBranch1Bottom,[["Pillar", "PillarBranch1Bottom"]],trackpartMaterialColorMap,[[[-1, 0, -2], [0, 0, 0]]]),
+                new PartObject("78b2ff83ad71e7f3d692abc35923fa20c2ae14c01e37d44ec430746ca1bac992",PartCategory.Pillar,Part.PillarBranch2,[["Pillar", "PillarBranch2"]],trackpartMaterialColorMap,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]]]),
+                new PartObject("b22c93bc73ec2da9dbff218da1676d7436527ed284e264f37294e48ef1307301",PartCategory.Pillar,Part.PillarBranch2Top,[["Pillar", "PillarBranch2Top"]],trackpartMaterialColorMap,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]]]),
+                new PartObject("79a456a8fa3da24bec6c033f6c736fa1c728745f9624ae78ca20b6a4a76afae8",PartCategory.Pillar,Part.PillarBranch2Middle,[["Pillar", "PillarBranch2Middle"]],trackpartMaterialColorMap,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]]]),
+                new PartObject("3b81b3f965cbc9fda4fe09e830ba25f1b96ce512d87b0146a1192a6cd0d07335",PartCategory.Pillar,Part.PillarBranch2Bottom,[["Pillar", "PillarBranch2Bottom"]],trackpartMaterialColorMap,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]]]),
+                new PartObject("27727678bbcac9d3b0172b165ca5c92b10f4b4584a3a18fef4c542f3e791f26f",PartCategory.Pillar,Part.PillarBranch3,[["Pillar", "PillarBranch3"]],trackpartMaterialColorMap,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]]]),
+                new PartObject("50c7ac511d30ab9e065c928b776652f038be7683d948082bbefc419ee049e505",PartCategory.Pillar,Part.PillarBranch3Top,[["Pillar", "PillarBranch3Top"]],trackpartMaterialColorMap,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]]]),
+                new PartObject("98b3bfe99e7132825f5aa93122e4e5fdec46eb2877c8eb91fa2648f709527b60",PartCategory.Pillar,Part.PillarBranch3Middle,[["Pillar", "PillarBranch3Middle"]],trackpartMaterialColorMap,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]]]),
+                new PartObject("7326bbb558f8bcc28d5875c43b1b8e3646caadb873a14fde3ab517f779aea345",PartCategory.Pillar,Part.PillarBranch3Bottom,[["Pillar", "PillarBranch3Bottom"]],trackpartMaterialColorMap,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]]]),
+                new PartObject("0e23c2615cfdb350bb3a700b6169589265a1d1079f61294fb497b8f80191d523",PartCategory.Pillar,Part.PillarBranch4,[["Pillar", "PillarBranch4"]],trackpartMaterialColorMap,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]], [[-1, 0, 1], [0, 0, 1]]]),
+                new PartObject("e62b55e111dbcb3faefed0a203eac5b55051a2b11911946660310e3df3588da3",PartCategory.Pillar,Part.PillarBranch4Top,[["Pillar", "PillarBranch4Top"]],trackpartMaterialColorMap,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]], [[-1, 0, 1], [0, 0, 1]]]),
+                new PartObject("4e2cfb89c1c591803a1440532a74c3ace37ec7fe78a526c1b57f6679c620df2e",PartCategory.Pillar,Part.PillarBranch4Middle,[["Pillar", "PillarBranch4Middle"]],trackpartMaterialColorMap,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]], [[-1, 0, 1], [0, 0, 1]]]),
+                new PartObject("e7807350788e4570c8bb74d4a635639ef731d83e52922fac5bc10f415f73f794",PartCategory.Pillar,Part.PillarBranch4Bottom,[["Pillar", "PillarBranch4Bottom"]],trackpartMaterialColorMap,[[[-1, 0, -2], [0, 0, 0]], [[1, 0, -1], [1, 0, 0]], [[-2, 0, -1], [-2, 0, 0]], [[-1, 0, 1], [0, 0, 1]]]),
+                new PartObject("836bfd12791bfebd99aba70531da4c9bd6e332d16c1e120a8888ea54f59456f9",PartCategory.Pillar,Part.PillarBranch5,[["Pillar", "PillarBranch5"]],trackpartMaterialColorMap,[[[-2, 0, -1], [1, 0, 0]]]),
+                new PartObject("ab85228116faf9ae7b1e6cb4a03530cbec808df3d3c1d7883eb41eb7cfe231d7",PartCategory.Pillar,Part.PillarBranch5Top,[["Pillar", "PillarBranch5Top"]],trackpartMaterialColorMap,[[[-2, 0, -1], [1, 0, 0]]]),
+                new PartObject("db93d5cea4e523fd67a56f8d928084ab6355331a8e5d1899115c1841866006bb",PartCategory.Pillar,Part.PillarBranch5Middle,[["Pillar", "PillarBranch5Middle"]],trackpartMaterialColorMap,[[[-2, 0, -1], [1, 0, 0]]]),
+                new PartObject("dd793efa234159e3a0ff28b064ecb715e6c8bb76e06acfe4bd0d9a2f2b9bba88",PartCategory.Pillar,Part.PillarBranch5Bottom,[["Pillar", "PillarBranch5Bottom"]],trackpartMaterialColorMap,[[[-2, 0, -1], [1, 0, 0]]]),
                 new PartObject("350f7d3591ffd0b2cfb8204d1c6cd0022fd3bda81ea7e950fce3abea7ec89e1a",PartCategory.Sign,Part.SignArrowLeft,[["Signs", "SignArrowRight", {
                                 flipX: !0
-                            }]],c,[[[-2, 0, -2], [1, 0, -2]]]),
-                new PartObject("22e104e58bba0a609d379578e391ce50ca523c9eee1c3fddebb6d1bb2246a0b9",PartCategory.Sign,Part.SignArrowRight,[["Signs", "SignArrowRight"]],c,[[[-2, 0, -2], [1, 0, -2]]]),
-                new PartObject("acba0cfe380e625285b973e09344e61740e77d6f8cac8691ef3e0a0b0878040e",PartCategory.Sign,Part.SignArrowUp,[["Signs", "SignArrowUp"]],c,[[[-2, 0, -2], [1, 0, -2]]]),
+                            }]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, -2]]]),
+                new PartObject("22e104e58bba0a609d379578e391ce50ca523c9eee1c3fddebb6d1bb2246a0b9",PartCategory.Sign,Part.SignArrowRight,[["Signs", "SignArrowRight"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, -2]]]),
+                new PartObject("acba0cfe380e625285b973e09344e61740e77d6f8cac8691ef3e0a0b0878040e",PartCategory.Sign,Part.SignArrowUp,[["Signs", "SignArrowUp"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, -2]]]),
                 new PartObject("8d0dbea0a26bdf3addd372f5d9a2fdecfd776a48f31218acdeb036129b248ca5",PartCategory.Sign,Part.SignArrowDown,[["Signs", "SignArrowUp", {
                                 flipY: !0
-                            }]],c,[[[-2, 0, -2], [1, 0, -2]]]),
-                new PartObject("e5e1b1ca69d7b230331171be07876c4b1bdebba557c19b18ab17d91eee2771d5",PartCategory.Sign,Part.SignWarning,[["Signs", "SignWarning"]],c,[[[-2, 0, -2], [1, 0, -2]]]),
-                new PartObject("64ed1fba4990a25bc774575ff8835117638d2c3e7c8f41bf0032d219e1083e4c",PartCategory.Sign,Part.SignWrongWay,[["Signs", "SignWrongWay"]],c,[[[-2, 0, -2], [1, 0, -2]]])
+                            }]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, -2]]]),
+                new PartObject("e5e1b1ca69d7b230331171be07876c4b1bdebba557c19b18ab17d91eee2771d5",PartCategory.Sign,Part.SignWarning,[["Signs", "SignWarning"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, -2]]]),
+                new PartObject("64ed1fba4990a25bc774575ff8835117638d2c3e7c8f41bf0032d219e1083e4c",PartCategory.Sign,Part.SignWrongWay,[["Signs", "SignWrongWay"]],trackpartMaterialColorMap,[[[-2, 0, -2], [1, 0, -2]]])
             ]
-              , p = new Map;
-            for (const e of u) {
-                if (p.has(e.id))
+              , partsMap = new Map;
+            for (const e of partsList) {
+                if (partsMap.has(e.id))
                     throw new Error("Duplicate track part id " + e.id.toString());
-                p.set(e.id, e)
+                partsMap.set(e.id, e)
             }
-            function f(e) {
-                const t = p.get(e);
+            function getPartById(e) {
+                const t = partsMap.get(e);
                 if (null == t)
                     throw new Error("Unknown track part id " + e.toString());
                 return t
             }
-            const g = u.filter((e => e.detector?.type == TrackPartDetectorType.Checkpoint)).map((e => e.id))
-              , m = u.filter((e => null != e.startOffset)).map((e => e.id))
+            const g = partsList.filter((e => e.detector?.type == TrackPartDetectorType.Checkpoint)).map((e => e.id))
+              , m = partsList.filter((e => null != e.startOffset)).map((e => e.id))
         }
         ,
         493: (module, exports, __webpack_require__) => {
@@ -3683,7 +3686,7 @@
                     e.clear()
                 }
             }
-            var y, b, w, x, S, k, E, T, M, _, C, R, P, I, L, U, z, N, D, B, G, F, O, W = n(3476);
+            var y, b, w, x, S, k, E, T, M, _, C, R, P, I, L, U, createCSM, N, D, B, G, F, O, W = n(3476);
             class RenderManager {
                 constructor(canvas, settings, fogOverride=null) {
                     y.add(this),
@@ -3722,8 +3725,9 @@
                     i.get(this, k, "f").outputColorSpace = THREE.LinearSRGBColorSpace,
                     i.get(this, k, "f").debug.checkShaderErrors = !1,
                     i.set(this, T, new THREE.Scene, "f"),
-                    i.get(this, y, "m", G).call(this),
-                    i.get(this, T, "f").add(new THREE.HemisphereLight(3891597,11714755,4.7)),
+                    i.get(this, y, "m", G).call(this);
+                    const realisticModeEnabled = i.get(this, x, "f")?.getSettingBoolean(W.A.RealisticModeEnabled) ?? !1;
+                    i.get(this, T, "f").add(new THREE.HemisphereLight(3891597,11714755,realisticModeEnabled ? window.GLOBAL_LIGHT : 4.7)),
                     document.addEventListener("fullscreenchange", ( () => {
                         i.get(this, y, "m", F).call(this)
                     }
@@ -3744,13 +3748,14 @@
                 update(e) {
                     i.get(this, I, "f").copy(e.getSunPosition());
                     let t = i.get(this, x, "f")?.getSettingInteger(W.A.ShadowQuality) ?? 0;
+                    const realisticModeEnabled = i.get(this, x, "f")?.getSettingBoolean(W.A.RealisticModeEnabled) ?? !1;
                     if (this.isShadowQualitySupported(t) || (t = 0),
                     !Number.isSafeInteger(t) || t <= 2 || t > 5)
                         if (null != i.get(this, _, "f") && (i.get(this, _, "f").remove(),
                         i.get(this, _, "f").dispose(),
                         i.set(this, _, null, "f"),
                         i.set(this, C, null, "f")),
-                        null == i.get(this, P, "f") && (i.set(this, P, new THREE.DirectionalLight(16777215,4.7), "f"),
+                        null == i.get(this, P, "f") && (i.set(this, P, new THREE.DirectionalLight(16777215,realisticModeEnabled ? window.GLOBAL_LIGHT : 4.7), "f"),
                         i.get(this, P, "f").position.copy(i.get(this, I, "f")),
                         i.get(this, T, "f").add(i.get(this, P, "f")),
                         i.get(this, T, "f").add(i.get(this, P, "f").target)),
@@ -3785,7 +3790,7 @@
                         i.get(this, k, "f").compile(i.get(this, T, "f"), i.get(this, M, "f"))),
                         null == i.get(this, _, "f")) {
                             i.get(this, k, "f").shadowMap.enabled = !0,
-                            i.set(this, _, i.get(this, y, "m", z).call(this, t), "f"),
+                            i.set(this, _, i.get(this, y, "m", createCSM).call(this, t, realisticModeEnabled ? window.GLOBAL_SUN_LIGHT : 4.7), "f"),
                             i.set(this, C, t, "f");
                             for (const {material: e, onBeforeCompile: t, customProgramCacheKey: n} of i.get(this, R, "f"))
                                 i.get(this, y, "m", D).call(this, e, t, n)
@@ -3895,7 +3900,7 @@
             L = new WeakMap,
             U = new WeakMap,
             y = new WeakSet,
-            z = function(e) {
+            createCSM = function(e, lightIntensity) {
                 if (3 != e && 4 != e && 5 != e)
                     throw new Error("Unsupported shadow quality: " + e.toString());
                 const t = i.get(this, y, "m", B).call(this, e);
@@ -3942,7 +3947,7 @@
                     parent: i.get(this, T, "f"),
                     shadowMapSize: t,
                     lightDirection: new THREE.Vector3(0,0,-1),
-                    lightIntensity: 4.7,
+                    lightIntensity: lightIntensity,
                     camera: i.get(this, M, "f")
                 });
                 s.fade = !0,
@@ -7274,7 +7279,8 @@
                 e[e.BackwardsCameraToggle = 26] = "BackwardsCameraToggle",
                 e[e.SpeedometerDecimalPlaces = 27] = "SpeedometerDecimalPlaces",
                 e[e.OrbitCameraFixed = 28] = "OrbitCameraFixed",
-                e[e.OrbitCameraFovMult = 29] = "OrbitCameraFovMult"
+                e[e.OrbitCameraFovMult = 29] = "OrbitCameraFovMult",
+                e[e.RealisticModeEnabled = 30] = "RealisticModeEnabled"
             }(i || (i = {}));
             const r = i
         }
@@ -7749,6 +7755,22 @@
                     l.get(this, we, "f").add(l.get(this, Se, "f"));
                     for (const e of l.get(this, ke, "f"))
                         l.get(this, ve, "f").add(e);
+
+                    const makeHeadlight = (xOffset) => {
+                        const light = new THREE.SpotLight(0xffffff, 50, 200, Math.PI / 5, 0.4, 1);
+                        light.position.set(xOffset, 0, 1.2);
+                        light.target.position.set(xOffset, 2, 10);
+                        light.castShadow = true;
+                        l.get(this, we, "f").add(light);
+                        l.get(this, we, "f").add(light.target);
+                        return light;
+                    };
+
+                    if (l.get(this, Ie, "f")?.getSettingBoolean(st.A.RealisticModeEnabled)) {
+                        makeHeadlight(-0.5);
+                        makeHeadlight(0.5);
+                    }
+
                     if (l.get(this, Ae, "f").scene.add(l.get(this, ve, "f")),
                     null != l.get(this, re, "f") && null != l.get(this, ne, "f")) {
                         const e = l.get(this, ne, "f");
@@ -29137,7 +29159,7 @@
             __webpack_require__.d(t, {
                 A: () => _
             });
-            var i, r, a, s, o, l, c, h, d, u, p, f, g, m = __webpack_require__(1635), 
+            var i, r, a, s, o, l, c, h, d, objsToRemove, p, f, g, m = __webpack_require__(1635), 
             THREE = __webpack_require__(4922), 
             TrackDataModule = __webpack_require__(8438), 
             TrackPartDetectorType = __webpack_require__(2247).A, 
@@ -29187,7 +29209,7 @@
                         min: new THREE.Vector2(0,0),
                         max: new THREE.Vector2(0,0)
                     }),
-                    u.set(this, []),
+                    objsToRemove.set(this, []),
                     m.set(this, r, e, "f"),
                     m.set(this, a, t, "f"),
                     m.set(this, s, n, "f")
@@ -29392,13 +29414,13 @@
                             }
 
                             m.get(this, r, "f").scene.add(inst);
-                            m.get(this, u, "f").push(inst);
+                            m.get(this, objsToRemove, "f").push(inst);
 
                             if (null != c) {
                                 const shadow = new E.t(inst, c);
                                 shadow.update(new THREE.Plane(new THREE.Vector3(0, 1, 0), 0), t);
                                 m.get(this, r, "f").scene.add(shadow);
-                                m.get(this, u, "f").push(shadow);
+                                m.get(this, objsToRemove, "f").push(shadow);
                             }
                         }
                     }
@@ -29531,12 +29553,12 @@
             c = new WeakMap,
             h = new WeakMap,
             d = new WeakMap,
-            u = new WeakMap,
+            objsToRemove = new WeakMap,
             i = new WeakSet,
             p = function() {
-                for (const e of m.get(this, u, "f"))
+                for (const e of m.get(this, objsToRemove, "f"))
                     m.get(this, r, "f").scene.remove(e);
-                m.get(this, u, "f").length = 0
+                m.get(this, objsToRemove, "f").length = 0
             }
             ,
             f = function(e) {
@@ -49066,7 +49088,14 @@
                 value: "4"
             }], R.A.SpeedometerDecimalPlaces)
             C.get(this, ms, "m", Fs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Fixed Orbit Camera"), R.A.OrbitCameraFixed),
-            C.get(this, ms, "m", Fs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Orbit Camera FOV Mult"), R.A.OrbitCameraFovMult)
+            C.get(this, ms, "m", Fs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Orbit Camera FOV Mult"), R.A.OrbitCameraFovMult),
+            C.get(this, ms, "m", Gs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Realistic Mode (requires restart)"), [{
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "Off"),
+                value: "false"
+            }, {
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "On"),
+                value: "true"
+            }], R.A.RealisticModeEnabled)
         }
         ,
         Ds = function(e) {
@@ -53443,7 +53472,63 @@
                 const s = new THREE.MeshLambertMaterial({
                     vertexColors: !0
                 });
+                const realisticModeEnabled = false;
+                if (realisticModeEnabled) {
+                    s.onBeforeCompile = (shader) => {
+                        shader.vertexShader = shader.vertexShader
+                            .replace('#include <common>', `
+                                #include <common>
+                                attribute vec3 vEmissive;
+                                varying vec3 vEmissiveV;
+                            `)
+                            .replace('#include <begin_vertex>', `
+                                #include <begin_vertex>
+                                vEmissiveV = vEmissive;
+                            `);
+                        shader.fragmentShader = shader.fragmentShader
+                            .replace('#include <common>', `
+                                #include <common>
+                                varying vec3 vEmissiveV;
+                            `)
+                            .replace(
+                                'vec3 totalEmissiveRadiance = emissive;',
+                                'vec3 totalEmissiveRadiance = emissive + vEmissiveV;'
+                            );
+                    };
+                    s.customProgramCacheKey = () => 'lambert_per_vertex_emissive';
+                    s.needsUpdate = true;
+                }
+
                 e.addMaterial(s);
+
+                function buildColorAndEmissive(count, colorRegions, colorLookup) {
+                    const colorArray = new Float32Array(count * 3);
+                    const emissiveArray = new Float32Array(count * 3);
+                    let off = 0;
+                    for (const region of colorRegions) {
+                        let cr, cg, cb;
+                        if (colorLookup.hasOwnProperty(region.materialName)) {
+                            const col = new THREE.Color(colorLookup[region.materialName]);
+                            cr = col.r; cg = col.g; cb = col.b;
+                        } else {
+                            cr = region.defaultColor.r;
+                            cg = region.defaultColor.g;
+                            cb = region.defaultColor.b;
+                        }
+                        let er = 0, eg = 0, eb = 0;
+                        console.log(region.materialName);
+                        if (['StartLine', 'Pillar', 'SignYellow', 'Checkpoint', 'Finish', 'RoadEdgeRed', 'RoadEdgeWhite'].includes(region.materialName)) {
+                            er = cr * 2.0; eg = cg * 2.0; eb = cb * 2.0;
+                        }
+                        for (let v = 0; v < region.count; v++) {
+                            colorArray[off]     = cr; colorArray[off + 1]     = cg; colorArray[off + 2]     = cb;
+                            emissiveArray[off]  = er; emissiveArray[off + 1]  = eg; emissiveArray[off + 2]  = eb;
+                            off += 3;
+                        }
+                    }
+                    return { colorArray, emissiveArray };
+                }
+
                 const o = async e => {
                     if (t.addResource(),
                     C.get(this, ld, "f").has(e.id))
@@ -53563,42 +53648,35 @@
                     l = baseGeometry.toNonIndexed();
 
                     const colorRegions = [];
-                    let offset = 0;
                     for (const g of firstColorGeos) {
-                        const count = g.attributes.position.count;
-                        colorRegions.push({ count, materialName: g._materialRef, defaultColor: g._defaultColor });
-                        offset += count;
+                        colorRegions.push({ count: g.attributes.position.count, materialName: g._materialRef, defaultColor: g._defaultColor });
                     }
 
-                    n.colors.set(e.colors[0].id, new THREE.Mesh(baseGeometry, s));
+                    // First color: baseGeometry already has `color` from the merge, but no `vEmissive`
+                    {
+                        const { colorArray, emissiveArray } = buildColorAndEmissive(
+                            baseGeometry.attributes.position.count, colorRegions, e.colors[0].colors
+                        );
+                        baseGeometry.setAttribute('color', new THREE.BufferAttribute(colorArray, 3));
+                        if (realisticModeEnabled) {
+                            baseGeometry.setAttribute('vEmissive', new THREE.BufferAttribute(emissiveArray, 3));
+                        }
+                        n.colors.set(e.colors[0].id, new THREE.Mesh(baseGeometry, s));
+                    }
 
                     for (let ci = 1; ci < e.colors.length; ci++) {
                         const t = e.colors[ci];
                         const geo = baseGeometry.clone();
-                        const colorArray = new Float32Array(geo.attributes.position.count * 3);
-                        let off = 0;
-
-                        for (const region of colorRegions) {
-                            let cr, cg, cb;
-                            if (t.colors.hasOwnProperty(region.materialName)) {
-                                const col = new THREE.Color(t.colors[region.materialName]);
-                                cr = col.r; cg = col.g; cb = col.b;
-                            } else {
-                                cr = region.defaultColor.r;
-                                cg = region.defaultColor.g;
-                                cb = region.defaultColor.b;
-                            }
-                            for (let v = 0; v < region.count; v++) {
-                                colorArray[off] = cr;
-                                colorArray[off + 1] = cg;
-                                colorArray[off + 2] = cb;
-                                off += 3;
-                            }
-                        }
-
+                        const { colorArray, emissiveArray } = buildColorAndEmissive(
+                            geo.attributes.position.count, colorRegions, t.colors
+                        );
                         geo.setAttribute('color', new THREE.BufferAttribute(colorArray, 3));
+                        if (realisticModeEnabled) {
+                            geo.setAttribute('vEmissive', new THREE.BufferAttribute(emissiveArray, 3));
+                        }
                         n.colors.set(t.id, new THREE.Mesh(geo, s));
                     }
+
                     if (null == l)
                         throw new Error("Physics geometry is missing");
                     if (!(l.attributes.position instanceof THREE.BufferAttribute))
@@ -53951,6 +54029,13 @@
                 ));
                 i.wrapT = THREE.RepeatWrapping,
                 i.wrapS = THREE.RepeatWrapping;
+                const realisticModeEnabled = C.get(this, Ed, "f").getSettingBoolean(R.A.RealisticModeEnabled);
+                var zenithColor = "vec3(5.0 / 255.0, 140.0 / 255.0, 255.0 / 255.0)";
+                var horizonColor = "vec3(255.0 / 255.0, 255.0 / 255.0, 255.0 / 255.0)";
+                if (realisticModeEnabled) {
+                    zenithColor = "vec3(5.0 / 255.0, 5.0 / 255.0, 5.0 / 255.0)";
+                    horizonColor = "vec3(5.0 / 255.0, 5.0 / 255.0, 5.0 / 255.0)";
+                }
                 const r = new THREE.SphereGeometry(1e6,5,2,0,2 * Math.PI,0,Math.PI)
                   , a = new THREE.ShaderMaterial({
                     defines: {
@@ -53977,7 +54062,29 @@
                         }
                     },
                     vertexShader: "\n\t\t\t\tvarying vec3 fPos;\n\t\t\t\t\n\t\t\t\tvoid main() {\n\t\t\t\t\tvec4 modelViewPosition = modelViewMatrix * vec4(position, 1.0);\n\t\t\t\t\tgl_Position = projectionMatrix * modelViewPosition;\n\t\t\t\t\tgl_Position.z = 0.0;\n\t\t\t\t\tfPos = position;\n\t\t\t\t}\n\t\t\t",
-                    fragmentShader: "\n\t\t\t\tvarying vec3 fPos;\n\n\t\t\t\tuniform vec2 offset;\n\t\t\t\tuniform vec2 scrollA;\n\t\t\t\tuniform vec2 scrollB;\n\t\t\t\tuniform sampler2D sampler;\n\n\t\t\t\tuniform float cloudDensity;\n\t\t\t\tuniform vec3 cloudLight;\n\n\t\t\t\tuniform vec3 sunPosition;\n\n\t\t\t\tvoid main()\n\t\t\t\t{\n\t\t\t\t\t#ifdef CLOUDS_ENABLED\n\t\t\t\t\t\tfloat c00 = texture2D(sampler, vec2(fPos.x / ((fPos.y + 0.06) / 0.1) - scrollB.x * 0.981, fPos.z / ((fPos.y + 0.06) / 0.1) - scrollB.y * 1.041) + scrollA).r;\n\t\t\t\t\t\tfloat c10 = texture2D(sampler, vec2(fPos.x / ((fPos.y + 0.06) / 0.1) + scrollB.x * 0.821, fPos.z / ((fPos.y + 0.06) / 0.1) - scrollB.y * 0.951) + scrollA).r;\n\t\t\t\t\t\tfloat c01 = texture2D(sampler, vec2(fPos.x / ((fPos.y + 0.06) / 0.1) - scrollB.x * 1.043, fPos.z / ((fPos.y + 0.06) / 0.1) + scrollB.y * 0.899) + scrollA).r;\n\t\t\t\t\t\tfloat c11 = texture2D(sampler, vec2(fPos.x / ((fPos.y + 0.06) / 0.1) + scrollB.x * 0.901, fPos.z / ((fPos.y + 0.06) / 0.1) + scrollB.y * 1.045) + scrollA).r;\n\t\t\t\t\t\tfloat cloud = min(1.0, max(0.0, (c00 + c10 + c01 + c11) / 4.0 - (1.0 - cloudDensity)) * 3.0);\n\n\t\t\t\t\t\tvec3 cloudColor = vec3(min(1.0, (c00 + c10 + c01 + c11) / 4.0 - (1.0 - cloudDensity)) * 4.0 + cloudDensity) * cloudLight;\n\t\t\t\t\t\tfloat cloudIntensity = cloud * min(1.0, max(0.0, fPos.y * 2.0 / 1000000.0));\n\t\t\t\t\t#else\n\t\t\t\t\t\tvec3 cloudColor = vec3(0.0);\n\t\t\t\t\t\tfloat cloudIntensity = 0.0;\n\t\t\t\t\t#endif\n\t\t\t\t\t\n\t\t\t\t\tvec3 horizonColor = vec3(255.0 / 255.0, 255.0 / 255.0, 255.0 / 255.0);\n\t\t\t\t\tvec3 zenithColor = vec3(5.0 / 255.0, 140.0 / 255.0, 255.0 / 255.0);\n\t\t\t\t\tfloat h = pow(clamp(fPos.y / 1000000.0, 0.01, 1.0), 0.2);\n\t\t\t\t\tvec3 skyColor = zenithColor * h + horizonColor * (1.0 - h);\n\n\t\t\t\t\tvec3 normal = normalize(-fPos);\n\t\t\t\t\tfloat sun = pow(max(0.0, max(0.0, dot(normal, sunPosition)) - 0.999), 4.0) * 60000000000.0;\n\t\t\t\t\tvec3 sunColor = vec3(20.0 * sun, 20.0 * sun, 19.0 * sun);\n\n\t\t\t\t\tgl_FragColor = vec4((skyColor * (1.0 - cloudIntensity) + cloudColor * cloudIntensity) * max(vec3(0.0), vec3(1.0) - sunColor) + sunColor, 1.0);\n\t\t\t\t}\n\t\t\t"
+                    fragmentShader: 
+                        `\n\t\t\t\tvarying vec3 fPos;\n\n\t\t\t\tuniform vec2 offset;\n\t\t\t\tuniform vec2 scrollA;\n\t\t\t\tuniform vec2 scrollB;\n\t\t\t\tuniform sampler2D sampler;\n\n\t\t\t\tuniform float cloudDensity;\n\t\t\t\tuniform vec3 cloudLight;\n\n\t\t\t\tuniform vec3 sunPosition;\n\n` +
+                        "\t\t\t\tfloat hash_s(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }\n" +
+                        "\t\t\t\tfloat hash2_s(vec2 p) { return fract(sin(dot(p, vec2(269.5, 183.3))) * 43758.5453); }\n" +
+                        `\t\t\t\tvoid main()\n\t\t\t\t{\n` +
+                        "\t\t\t\t\t#ifdef CLOUDS_ENABLED\n" + 
+                        (realisticModeEnabled ? (
+                        "\t\t\t\t\t\tvec2 starUV = vec2(fPos.x / ((fPos.y + 0.06) / 0.1), fPos.z / ((fPos.y + 0.06) / 0.1));\n" +
+                        "\t\t\t\t\t\tfloat starScale = 100.0;\n" +
+                        "\t\t\t\t\t\tvec2 grid = floor(starUV * starScale);\n" +
+                        "\t\t\t\t\t\tvec2 gridUV = fract(starUV * starScale);\n" +
+                        "\t\t\t\t\t\tvec2 starPos = vec2(hash_s(grid), hash_s(grid + vec2(1.0, 0.0)));\n" +
+                        "\t\t\t\t\t\tfloat dist_s = length(gridUV - starPos);\n" +
+                        "\t\t\t\t\t\tfloat brightness = hash2_s(grid);\n" +
+                        "\t\t\t\t\t\tfloat twinkle = sin(scrollA.x * 3.0 + brightness * 6.28) * 0.3 + 0.7;\n" +
+                        "\t\t\t\t\t\tfloat starSize = mix(0.02, 0.045, brightness) * 2.0;\n" +
+                        "\t\t\t\t\t\tfloat varStar = smoothstep(starSize, 0.0, dist_s) * step(0.85, brightness) * twinkle;\n" +
+                        "\t\t\t\t\t\tvec3 starTint = mix(vec3(0.8, 0.85, 1.0), vec3(1.0, 0.95, 0.8), brightness);\n" +
+                        "\t\t\t\t\t\tvec3 cloudColor = starTint * varStar * 2.0;\n" +
+                        "\t\t\t\t\t\tfloat cloudIntensity = varStar * min(1.0, max(0.0, fPos.y * 2.0 / 1000000.0));\n")
+                        : ("\t\t\t\t\t\tfloat c00 = texture2D(sampler, vec2(fPos.x / ((fPos.y + 0.06) / 0.1) - scrollB.x * 0.981, fPos.z / ((fPos.y + 0.06) / 0.1) - scrollB.y * 1.041) + scrollA).r;\n\t\t\t\t\t\tfloat c10 = texture2D(sampler, vec2(fPos.x / ((fPos.y + 0.06) / 0.1) + scrollB.x * 0.821, fPos.z / ((fPos.y + 0.06) / 0.1) - scrollB.y * 0.951) + scrollA).r;\n\t\t\t\t\t\tfloat c01 = texture2D(sampler, vec2(fPos.x / ((fPos.y + 0.06) / 0.1) - scrollB.x * 1.043, fPos.z / ((fPos.y + 0.06) / 0.1) + scrollB.y * 0.899) + scrollA).r;\n\t\t\t\t\t\tfloat c11 = texture2D(sampler, vec2(fPos.x / ((fPos.y + 0.06) / 0.1) + scrollB.x * 0.901, fPos.z / ((fPos.y + 0.06) / 0.1) + scrollB.y * 1.045) + scrollA).r;\n\t\t\t\t\t\tfloat cloud = min(1.0, max(0.0, (c00 + c10 + c01 + c11) / 4.0 - (1.0 - cloudDensity)) * 3.0);\n\n\t\t\t\t\t\tvec3 cloudColor = vec3(min(1.0, (c00 + c10 + c01 + c11) / 4.0 - (1.0 - cloudDensity)) * 4.0 + cloudDensity) * cloudLight;\n\t\t\t\t\t\tfloat cloudIntensity = cloud * min(1.0, max(0.0, fPos.y * 2.0 / 1000000.0));\n\t\t\t\t\t#else\n\t\t\t\t\t\tvec3 cloudColor = vec3(0.0);\n\t\t\t\t\t\tfloat cloudIntensity = 0.0;\n")) +
+                        "\t\t\t\t\t#endif\n" +
+                        `\t\t\t\t\t\n\t\t\t\t\tvec3 horizonColor = ${horizonColor};\n\t\t\t\t\tvec3 zenithColor = ${zenithColor};\n\t\t\t\t\tfloat h = pow(clamp(fPos.y / 1000000.0, 0.01, 1.0), 0.2);\n\t\t\t\t\tvec3 skyColor = zenithColor * h + horizonColor * (1.0 - h);\n\n\t\t\t\t\tvec3 normal = normalize(-fPos);\n\t\t\t\t\tfloat sun = pow(max(0.0, max(0.0, dot(normal, sunPosition)) - 0.999), 4.0) * 60000000000.0;\n\t\t\t\t\tvec3 sunColor = vec3(20.0 * sun, 20.0 * sun, 19.0 * sun);\n\n\t\t\t\t\tgl_FragColor = vec4((skyColor * (1.0 - cloudIntensity) + cloudColor * cloudIntensity) * max(vec3(0.0), vec3(1.0) - sunColor) + sunColor, 1.0);\n\t\t\t\t}\n\t\t\t`
                 });
                 a.side = THREE.BackSide,
                 a.depthWrite = !1,
@@ -55833,7 +55940,7 @@
                 null != n && C.get(this, Mu, "m", Pu).call(this, n);
             }
             defaultSettings() {
-                return new Map([[R.A.ImperialUnitsEnabled, "false"], [R.A.ResetHintEnabled, "true"], [R.A.GhostCarEnabled, "true"], [R.A.DefaultCameraMode, "false"], [R.A.CockpitCameraToggle, "true"], [R.A.BackwardsCameraToggle, "false"], [R.A.Checkpoints, "bottom"], [R.A.Timer, "bottom"], [R.A.Speedometer, "bottom"], [R.A.Language, "en-US"], [R.A.ShadowQuality, "2"], [R.A.CloudsEnabled, "true"], [R.A.ParticlesEnabled, "true"], [R.A.OrbitCameraFixed, "0"], [R.A.OrbitCameraFovMult, "1"], [R.A.SkidmarksEnabled, "true"], [R.A.FogEnabled, "true"], [R.A.ItalicsEnabled, "true"], [R.A.RenderScale, "1"], [R.A.ScreenPixelDensity, "true"], [R.A.Antialiasing, "true"], [R.A.MasterVolume, "1"], [R.A.SoundEffectVolume, "1"], [R.A.MusicVolume, "1"], [R.A.CheckpointVolume, "1"], [R.A.MaxGhostOpacity, "1"], [R.A.SpeedometerDecimalPlaces, "0"], [R.A.GhostCarSoundsEnabled, "true"], [R.A.VibrationEnabled, "false"], [R.A.TouchSteeringSide, "true"]])
+                return new Map([[R.A.ImperialUnitsEnabled, "false"], [R.A.ResetHintEnabled, "true"], [R.A.GhostCarEnabled, "true"], [R.A.DefaultCameraMode, "false"], [R.A.CockpitCameraToggle, "true"], [R.A.BackwardsCameraToggle, "false"], [R.A.Checkpoints, "bottom"], [R.A.Timer, "bottom"], [R.A.Speedometer, "bottom"], [R.A.Language, "en-US"], [R.A.ShadowQuality, "2"], [R.A.CloudsEnabled, "true"], [R.A.ParticlesEnabled, "true"], [R.A.OrbitCameraFixed, "0"], [R.A.OrbitCameraFovMult, "1"], [R.A.SkidmarksEnabled, "true"], [R.A.FogEnabled, "true"], [R.A.ItalicsEnabled, "true"], [R.A.RenderScale, "1"], [R.A.ScreenPixelDensity, "true"], [R.A.Antialiasing, "true"], [R.A.MasterVolume, "1"], [R.A.SoundEffectVolume, "1"], [R.A.MusicVolume, "1"], [R.A.CheckpointVolume, "1"], [R.A.MaxGhostOpacity, "1"], [R.A.SpeedometerDecimalPlaces, "0"], [R.A.RealisticModeEnabled, "false"], [R.A.GhostCarSoundsEnabled, "true"], [R.A.VibrationEnabled, "false"], [R.A.TouchSteeringSide, "true"]])
             }
             defaultKeyBindings() {
                 return new Map([
