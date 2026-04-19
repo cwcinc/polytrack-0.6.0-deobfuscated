@@ -1,5 +1,5 @@
-window.GLOBAL_LIGHT = 0.2;
-window.GLOBAL_SUN_LIGHT = 0.2;
+window.GLOBAL_LIGHT = -0.1;
+window.GLOBAL_SUN_LIGHT = -0.1;
 
 ( () => {
     var e, t = {
@@ -7280,7 +7280,8 @@ window.GLOBAL_SUN_LIGHT = 0.2;
                 e[e.SpeedometerDecimalPlaces = 27] = "SpeedometerDecimalPlaces",
                 e[e.OrbitCameraFixed = 28] = "OrbitCameraFixed",
                 e[e.OrbitCameraFovMult = 29] = "OrbitCameraFovMult",
-                e[e.RealisticModeEnabled = 30] = "RealisticModeEnabled"
+                e[e.RealisticModeEnabled = 30] = "RealisticModeEnabled",
+                e[e.RealisticCrashingEnabled = 31] = "RealisticCrashingEnabled"
             }(i || (i = {}));
             const r = i
         }
@@ -7757,9 +7758,9 @@ window.GLOBAL_SUN_LIGHT = 0.2;
                         l.get(this, ve, "f").add(e);
 
                     const makeHeadlight = (xOffset) => {
-                        const light = new THREE.SpotLight(0xffffff, 50, 200, Math.PI / 5, 0.4, 1);
+                        const light = new THREE.SpotLight(0xffffff, 30, 200, Math.PI / 6, 0.8, 1);
                         light.position.set(xOffset, 0, 1.2);
-                        light.target.position.set(xOffset, 2, 10);
+                        light.target.position.set(3 * xOffset, -1, 10);
                         light.castShadow = true;
                         l.get(this, we, "f").add(light);
                         l.get(this, we, "f").add(light.target);
@@ -8576,6 +8577,7 @@ window.GLOBAL_SUN_LIGHT = 0.2;
             ,
             playCollisionAudio = function(e) {
                 if (e > 25 && null != l.get(this, audioPanner, "f") && null != l.get(this, localAudioManager, "f") && (null == l.get(this, q, "f") || l.get(this, q, "f").impulse + 100 < e)) {
+                    const realisticCrashing = l.get(this, Ie, "f")?.getSettingBoolean(st.A.RealisticCrashingEnabled);
                     l.set(this, q, {
                         timeout: .2,
                         impulse: e
@@ -8586,10 +8588,45 @@ window.GLOBAL_SUN_LIGHT = 0.2;
                         n.buffer = t,
                         n.playbackRate.value = .1 + .15 * Math.min(e / 4e3, 1);
                         const i = l.get(this, localAudioManager, "f").context.createGain();
-                        i.gain.value = Math.max(.3, Math.min(e / 4e3, 1)) / 2.5,
+                        i.gain.value = (realisticCrashing ? 40 : 1) * Math.max(.3, Math.min(e / 4e3, 1)) / 2.5,
                         n.connect(i),
                         i.connect(l.get(this, audioPanner, "f")),
                         n.start(0)
+                    }
+                    if (realisticCrashing) {
+                        const t2 = l.get(this, localAudioManager, "f").getBuffer("screaming");
+                        if (null != t2 && null != l.get(this, localAudioManager, "f").context) {
+                            const n2 = l.get(this, localAudioManager, "f").context.createBufferSource();
+                            n2.buffer = t2,
+                            n2.playbackRate.value = 1;
+                            const i2 = l.get(this, localAudioManager, "f").context.createGain();
+                            i2.gain.value = 10 * Math.max(.3, Math.min(e / 4e3, 1)) / 2.5,
+                            n2.connect(i2),
+                            i2.connect(l.get(this, audioPanner, "f")),
+                            n2.start(0)
+                        }
+                        const t3 = l.get(this, localAudioManager, "f").getBuffer("kidscreaming");
+                        if (null != t3 && null != l.get(this, localAudioManager, "f").context) {
+                            const n3 = l.get(this, localAudioManager, "f").context.createBufferSource();
+                            n3.buffer = t3,
+                            n3.playbackRate.value = 1;
+                            const i3 = l.get(this, localAudioManager, "f").context.createGain();
+                            i3.gain.value = 10 * Math.max(.3, Math.min(e / 4e3, 1)) / 2.5,
+                            n3.connect(i3),
+                            i3.connect(l.get(this, audioPanner, "f")),
+                            n3.start(0)
+                        }
+                        const t4 = l.get(this, localAudioManager, "f").getBuffer("ohgod");
+                        if (null != t4 && null != l.get(this, localAudioManager, "f").context) {
+                            const n4 = l.get(this, localAudioManager, "f").context.createBufferSource();
+                            n4.buffer = t4,
+                            n4.playbackRate.value = 1;
+                            const i4 = l.get(this, localAudioManager, "f").context.createGain();
+                            i4.gain.value = 10 * Math.max(.3, Math.min(e / 4e3, 1)) / 2.5,
+                            n4.connect(i4),
+                            i4.connect(l.get(this, audioPanner, "f")),
+                            n4.start(0)
+                        }
                     }
                 }
             }
@@ -33119,7 +33156,7 @@ window.GLOBAL_SUN_LIGHT = 0.2;
                             vertexAlphas: !0 === s.vertexColors && !!w.attributes.color && 4 === w.attributes.color.itemSize,
                             pointsUvs: !0 === y.isPoints && !!w.attributes.uv && (D || fe),
                             fog: !!b,
-                            useFog: !0 === s.fog,
+                            useFog: !1,
                             fogExp2: !!b && b.isFogExp2,
                             flatShading: !0 === s.flatShading && !1 === s.wireframe,
                             sizeAttenuation: !0 === s.sizeAttenuation,
@@ -49095,7 +49132,14 @@ window.GLOBAL_SUN_LIGHT = 0.2;
             }, {
                 title: gs.getFromLanguage(C.get(this, Cs, "f"), "On"),
                 value: "true"
-            }], R.A.RealisticModeEnabled)
+            }], R.A.RealisticModeEnabled),
+            C.get(this, ms, "m", Gs).call(this, gs.getFromLanguage(C.get(this, Cs, "f"), "Realistic Crashing"), [{
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "Disabled"),
+                value: "false"
+            }, {
+                title: gs.getFromLanguage(C.get(this, Cs, "f"), "Enabled"),
+                value: "true"
+            }], R.A.RealisticCrashingEnabled)
         }
         ,
         Ds = function(e) {
@@ -53472,7 +53516,7 @@ window.GLOBAL_SUN_LIGHT = 0.2;
                 const s = new THREE.MeshLambertMaterial({
                     vertexColors: !0
                 });
-                const realisticModeEnabled = false;
+                const realisticModeEnabled = true;
                 if (realisticModeEnabled) {
                     s.onBeforeCompile = (shader) => {
                         shader.vertexShader = shader.vertexShader
@@ -55913,7 +55957,7 @@ window.GLOBAL_SUN_LIGHT = 0.2;
                 null != n && C.get(this, Mu, "m", Pu).call(this, n);
             }
             defaultSettings() {
-                return new Map([[R.A.ImperialUnitsEnabled, "false"], [R.A.ResetHintEnabled, "true"], [R.A.GhostCarEnabled, "true"], [R.A.DefaultCameraMode, "false"], [R.A.CockpitCameraToggle, "true"], [R.A.BackwardsCameraToggle, "false"], [R.A.Checkpoints, "bottom"], [R.A.Timer, "bottom"], [R.A.Speedometer, "bottom"], [R.A.Language, "en-US"], [R.A.ShadowQuality, "2"], [R.A.CloudsEnabled, "true"], [R.A.ParticlesEnabled, "true"], [R.A.OrbitCameraFixed, "0"], [R.A.OrbitCameraFovMult, "1"], [R.A.SkidmarksEnabled, "true"], [R.A.FogEnabled, "true"], [R.A.ItalicsEnabled, "true"], [R.A.RenderScale, "1"], [R.A.ScreenPixelDensity, "true"], [R.A.Antialiasing, "true"], [R.A.MasterVolume, "1"], [R.A.SoundEffectVolume, "1"], [R.A.MusicVolume, "1"], [R.A.CheckpointVolume, "1"], [R.A.MaxGhostOpacity, "1"], [R.A.SpeedometerDecimalPlaces, "0"], [R.A.RealisticModeEnabled, "false"], [R.A.GhostCarSoundsEnabled, "true"], [R.A.VibrationEnabled, "false"], [R.A.TouchSteeringSide, "true"]])
+                return new Map([[R.A.ImperialUnitsEnabled, "false"], [R.A.ResetHintEnabled, "true"], [R.A.RealisticCrashingEnabled, "false"], [R.A.GhostCarEnabled, "true"], [R.A.DefaultCameraMode, "false"], [R.A.CockpitCameraToggle, "true"], [R.A.BackwardsCameraToggle, "false"], [R.A.Checkpoints, "bottom"], [R.A.Timer, "bottom"], [R.A.Speedometer, "bottom"], [R.A.Language, "en-US"], [R.A.ShadowQuality, "2"], [R.A.CloudsEnabled, "true"], [R.A.ParticlesEnabled, "true"], [R.A.OrbitCameraFixed, "0"], [R.A.OrbitCameraFovMult, "1"], [R.A.SkidmarksEnabled, "true"], [R.A.FogEnabled, "true"], [R.A.ItalicsEnabled, "true"], [R.A.RenderScale, "1"], [R.A.ScreenPixelDensity, "true"], [R.A.Antialiasing, "true"], [R.A.MasterVolume, "1"], [R.A.SoundEffectVolume, "1"], [R.A.MusicVolume, "1"], [R.A.CheckpointVolume, "1"], [R.A.MaxGhostOpacity, "1"], [R.A.SpeedometerDecimalPlaces, "0"], [R.A.RealisticModeEnabled, "false"], [R.A.GhostCarSoundsEnabled, "true"], [R.A.VibrationEnabled, "false"], [R.A.TouchSteeringSide, "true"]])
             }
             defaultKeyBindings() {
                 return new Map([
@@ -57257,6 +57301,9 @@ window.GLOBAL_SUN_LIGHT = 0.2;
             audioLoader.load("suspension", ["audio/suspension.ogg", "audio/suspension.mp3"]),
             audioLoader.load("tires", ["audio/tires.ogg", "audio/tires.mp3"]),
             audioLoader.load("collision", ["audio/collision.ogg", "audio/collision.mp3"]),
+            audioLoader.load("screaming", ["mods/screaming.mp3"]),
+            audioLoader.load("kidscreaming", ["mods/kidscreaming.mp3"]),
+            audioLoader.load("ohgod", ["mods/ohgod.mp3"]),
             audioLoader.load("skidding", ["audio/skidding.ogg", "audio/skidding.mp3"]),
             audioLoader.load("editor_edit", ["audio/editor_edit.ogg", "audio/editor_edit.mp3"]),
             audioLoader.load("checkpoint", ["audio/checkpoint.ogg", "audio/checkpoint.mp3"]),
