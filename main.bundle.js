@@ -25805,7 +25805,7 @@ window.GLOBAL_SUN_LIGHT = -0.1;
                 let t = 0;
                 const len = e.length;
                 const n = new Uint8Array(Math.ceil(len * 6 / 8) + 1);
-                let maxByte = 0;
+                let maxByte = -1;
 
                 for (let s = 0; s < len; s++) {
                     const o = e.charCodeAt(s);
@@ -25815,23 +25815,27 @@ window.GLOBAL_SUN_LIGHT = -0.1;
 
                     const byteIdx = t >> 3;
                     const shift = t - (byteIdx << 3);
+                    const isLast = s === len - 1;
+                    let touched = byteIdx;
 
                     if ((val & a) == a) {
                         n[byteIdx] |= (val << shift) & 255;
-                        if (shift > 3 && s !== len - 1) {
+                        if (shift > 3 && !isLast) {
                             n[byteIdx + 1] |= val >> (8 - shift);
+                            touched = byteIdx + 1;
                         }
                         t += 5;
                     } else {
                         n[byteIdx] |= (val << shift) & 255;
-                        if (shift > 2 && s !== len - 1) {
+                        if (shift > 2 && !isLast) {
                             n[byteIdx + 1] |= val >> (8 - shift);
+                            touched = byteIdx + 1;
                         }
                         t += 6;
                     }
-                    if (byteIdx > maxByte) maxByte = byteIdx;
+                    if (touched > maxByte) maxByte = touched;
                 }
-                return n.subarray(0, Math.ceil(t / 8));
+                return n.subarray(0, maxByte + 1);
             }
         }
         ,
@@ -28226,8 +28230,7 @@ window.GLOBAL_SUN_LIGHT = -0.1;
                 try {
                     t = JSON.parse(e)
                 } catch (e) {
-                    return console.warn(e),
-                    null
+                    return null
                 }
                 if ("object" != typeof t || null == t)
                     return null;
@@ -28317,7 +28320,7 @@ window.GLOBAL_SUN_LIGHT = -0.1;
             n.d(t, {
                 A: () => TrackData
             });
-            var i, r, _environment, _sunDirection, o, l, c, h, 
+            var i, r, _environment, _sunDirection, o, l, c, toByteArray, 
             d = n(1635), 
             u = n(3075), 
             p = n(1312), 
@@ -28333,6 +28336,10 @@ window.GLOBAL_SUN_LIGHT = -0.1;
             Track = n(8971), 
             TrackEnvironment = n(5169).A, 
             TrackPartManager = n(405), 
+            SunDirection = n(7680).A,
+            Part = n(2203).A,
+            TrackPartColorId = n(4183).A,
+            TrackPartRotationAxis = n(8566).A,
             TrackPartTransform = n(5735);
 
             r = new WeakMap,
@@ -28370,7 +28377,7 @@ window.GLOBAL_SUN_LIGHT = -0.1;
                 } : null
             }
             ,
-            h = function() {
+            toByteArray = function() {
                 const e = [];
                 e.push(d.get(this, _environment, "f")),
                 e.push(d.get(this, _sunDirection, "f").representation);
@@ -28441,7 +28448,13 @@ window.GLOBAL_SUN_LIGHT = -0.1;
                     o.set(this, []),
                     l.set(this, new Map),
                     d.set(this, _environment, environment, "f"),
-                    d.set(this, _sunDirection, sunDirection.clone(), "f")
+                    d.set(this, _sunDirection, sunDirection.clone(), "f");
+                    this.betterCodes = new BetterTrackCodes(
+                        d.get(this, l, "f"),
+                        d.get(this, o, "f"),
+                        () => d.get(this, _environment, "f"),
+                        () => d.get(this, _sunDirection, "f")
+                    );
                 }
                 get environment() {
                     return d.get(this, _environment, "f")
@@ -28506,9 +28519,9 @@ window.GLOBAL_SUN_LIGHT = -0.1;
                     }
                 }
                 getId() {
-                    return d.set(this, r, d.get(this, r, "f") ?? (0,
-                    p.sha256)(d.get(this, i, "m", h).call(this)), "f"),
-                    d.get(this, r, "f")
+                    d.set(this, r, d.get(this, r, "f") ?? (0, p.sha256)(d.get(this, i, "m", toByteArray).call(this)), "f");
+                    // d.set(this, r, d.get(this, r, "f") ?? (0, p.sha256)(this.betterCodes.toByteArray()), "f");
+                    return d.get(this, r, "f")
                 }
                 getBounds() {
                     let e = 1 / 0
@@ -28547,7 +28560,7 @@ window.GLOBAL_SUN_LIGHT = -0.1;
                     return null
                 }
                 toSaveString() {
-                    const e = d.get(this, i, "m", h).call(this)
+                    const e = d.get(this, i, "m", toByteArray).call(this)
                       , t = new u.Ay.Deflate({
                         level: 9,
                         windowBits: 9,
@@ -28562,6 +28575,9 @@ window.GLOBAL_SUN_LIGHT = -0.1;
                     });
                     return r.push(n, !0),
                     Base62.encode(r.result)
+                }
+                toCwcSaveString() {
+                    return this.betterCodes.toSaveString();
                 }
                 toExportString(e) {
                     const t = (new TextEncoder).encode(e.name);
@@ -28583,7 +28599,7 @@ window.GLOBAL_SUN_LIGHT = -0.1;
                     s[1 + t.length] = n,
                     null != r && s.set(r, 1 + t.length + 1),
                     s.set(a, 1 + t.length + 1 + n);
-                    const o = d.get(this, i, "m", h).call(this)
+                    const o = d.get(this, i, "m", toByteArray).call(this)
                       , l = new u.Ay.Deflate({
                         level: 9,
                         windowBits: 9,
@@ -28600,7 +28616,13 @@ window.GLOBAL_SUN_LIGHT = -0.1;
                     return p.push(c, !0),
                     "PolyTrack2" + Base62.encode(p.result)
                 }
+                toCwcExportString(e) {
+                    return this.betterCodes.toExportString(e);
+                }
                 static fromSaveString(e) {
+                    const v6 = BetterTrackCodes.fromSaveString(e);
+                    if (v6 != null)
+                        return v6;
                     const t = TrackDataImporterV5.withoutMetadata(e);
                     if (null != t)
                         return t;
@@ -28622,6 +28644,9 @@ window.GLOBAL_SUN_LIGHT = -0.1;
                 static fromExportString(exportString) {
                     const exportStringWithoutWhitespace = exportString.replace(/\s+/g, "");
                     
+                    const v6 = BetterTrackCodes.fromExportString(exportStringWithoutWhitespace);
+                    if (null != v6)
+                        return v6;
                     const v5 = TrackDataImporterV5.withMetadata(exportStringWithoutWhitespace);
                     if (null != v5)
                         return v5;
@@ -28638,7 +28663,10 @@ window.GLOBAL_SUN_LIGHT = -0.1;
                     if (null != v1)
                         return v1;
                     const legacy = TrackDataImporterLegacy.withMetadata(exportString);
-                    return null != legacy ? legacy : null
+                    if (null != legacy)
+                        return legacy;
+                    console.warn("Failed to parse track data from export string");
+                    return null;
                 }
                 createThumbnail() {
                     let minX = Infinity, minZ = Infinity, maxX = -Infinity, maxZ = -Infinity;
@@ -28707,6 +28735,19 @@ window.GLOBAL_SUN_LIGHT = -0.1;
                     return canvas;
                 }
             }
+
+            BetterTrackCodes.init({
+                TrackData,
+                TrackEnvironment,
+                SunDirection,
+                Part,
+                TrackPartColorId,
+                TrackPartRotationAxis,
+                TrackPartManager,
+                Base62,
+                pako: u.Ay,
+            });
+            window.TrackData = TrackData;
         }
         ,
         8566: (e, t, n) => { // TrackPartRotationAxis
