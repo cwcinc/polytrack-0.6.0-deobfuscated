@@ -133,3 +133,22 @@
         opacity: 100%;
     }
 }
+
+.track-export-ui > .box > .bar > p.export-kb-display {
+    position: relative;
+    color: var(--text-color);
+    float: right;
+
+    margin: 0;
+    padding: 8px 18px;
+    background-color: var(--button-color);
+    border: none;
+    clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+    color: var(--text-color);
+    font-size: 32px;
+    pointer-events: auto;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}

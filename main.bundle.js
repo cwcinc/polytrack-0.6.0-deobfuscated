@@ -11,7 +11,7 @@ window.GLOBAL_SUN_LIGHT = -0.1;
         202: (module, exports, __webpack_require__) => {
             "use strict";
             __webpack_require__.d(exports, {
-                A: () => c
+                A: () => CopyButton
             });
             var i, r, a, s, o, l = __webpack_require__(1635);
             r = new WeakMap,
@@ -28,7 +28,7 @@ window.GLOBAL_SUN_LIGHT = -0.1;
                 ), 2e3), "f")
             }
             ;
-            const c = class {
+            const CopyButton = class {
                 constructor(e, t, n) {
                     i.add(this),
                     r.set(this, void 0),
@@ -543,7 +543,7 @@ window.GLOBAL_SUN_LIGHT = -0.1;
         579: (module, exports, __webpack_require__) => {
             "use strict";
             __webpack_require__.d(exports, {
-                A: () => M
+                A: () => TrackExportUI
             });
             var i = __webpack_require__(1635)
               , r = __webpack_require__(5072)
@@ -575,8 +575,8 @@ window.GLOBAL_SUN_LIGHT = -0.1;
             x = new WeakMap,
             S = new WeakMap,
             k = new WeakMap;
-            const M = class {
-                constructor(e, t, n, r, a, s, o) {
+            const TrackExportUI = class {
+                constructor(trackCodeText, t, n, r, a, s, o, getCwcExportString) {
                     v.set(this, void 0),
                     y.set(this, void 0),
                     b.set(this, void 0),
@@ -610,78 +610,102 @@ window.GLOBAL_SUN_LIGHT = -0.1;
                         t()
                     }
                     )),
-                    d.appendChild(u),
-                    null == n ? (i.set(this, x, new T.A(a,r,( () => i.get(this, w, "f").value)), "f"),
-                    i.get(this, x, "f").element.classList.add("right"),
-                    d.appendChild(i.get(this, x, "f").element),
-                    i.set(this, S, null, "f")) : (i.set(this, x, null, "f"),
-                    i.set(this, S, document.createElement("button"), "f"),
-                    i.get(this, S, "f").className = "button right",
-                    i.get(this, S, "f").innerHTML = '<img class="button-icon" src="images/import.svg"> ',
-                    i.get(this, S, "f").append(document.createTextNode(r.get("Import"))),
-                    i.get(this, S, "f").addEventListener("click", ( () => {
-                        a.playUIClick();
-                        const e = i.get(this, w, "f").value.split(/\s+/).map((e => e.trim())).filter((e => e.length > 0))
-                          , t = e.length > 1
-                          , l = e => {
-                            i.get(this, b, "f").classList.add("hidden"),
-                            o.show(e, r.get("Ok"), ( () => {
-                                i.get(this, b, "f").classList.remove("hidden")
+                    d.appendChild(u);
+
+                    if (null == n) {
+                        const codeLengthDisplay = document.createElement("p");
+                        codeLengthDisplay.textContent = `${trackCodeText.length / 1000} kb`;
+                        codeLengthDisplay.className = "export-kb-display";
+
+                        const exportCwc = document.createElement("button");
+                        exportCwc.className = "button",
+                        exportCwc.innerHTML = '<img class="button-icon" src="images/windowed.svg"> ',
+                        exportCwc.append(document.createTextNode(r.get("Compress (cwctrack)"))),
+                        exportCwc.addEventListener("click", ( () => {
+                            a.playUIClick();
+                            const newString = getCwcExportString();
+                            i.get(this, w, "f").value = newString || "failed. sorry!";
+                            codeLengthDisplay.textContent = `${newString.length / 1000} kb (${trackCodeText.length / 1000} kb original)`;
+                        }
+                        )),
+                        d.appendChild(exportCwc);
+
+                        i.set(this, x, new T.A(a,r,( () => i.get(this, w, "f").value)), "f"),
+                        i.get(this, x, "f").element.classList.add("right"),
+                        d.appendChild(i.get(this, x, "f").element),
+                        i.set(this, S, null, "f")
+                        
+                        d.appendChild(codeLengthDisplay);
+                    } else {
+                        i.set(this, x, null, "f"),
+                        i.set(this, S, document.createElement("button"), "f"),
+                        i.get(this, S, "f").className = "button right",
+                        i.get(this, S, "f").innerHTML = '<img class="button-icon" src="images/import.svg"> ',
+                        i.get(this, S, "f").append(document.createTextNode(r.get("Import"))),
+                        i.get(this, S, "f").addEventListener("click", ( () => {
+                            a.playUIClick();
+                            const e = i.get(this, w, "f").value.split(/\s+/).map((e => e.trim())).filter((e => e.length > 0))
+                            , t = e.length > 1
+                            , l = e => {
+                                i.get(this, b, "f").classList.add("hidden"),
+                                o.show(e, r.get("Ok"), ( () => {
+                                    i.get(this, b, "f").classList.remove("hidden")
+                                }
+                                ))
                             }
-                            ))
-                        }
-                          , c = t => {
-                            1 == e.length ? l(r.get("Failed to save track")) : l(r.get("Failed to save track {0}", [(t + 1).toString()]))
-                        }
-                        ;
-                        (async () => {
-                            const i = [];
-                            for (let t = 0; t < e.length; t++)
-                                await new Promise((n => {
-                                    const a = e[t]
-                                      , h = TrackDataModule.A.fromExportString(a);
-                                    if (null == h)
-                                        d = t,
-                                        1 == e.length ? l(r.get("Invalid track code")) : l(r.get("Invalid track code for track {0}", [(d + 1).toString()])),
-                                        n();
-                                    else {
-                                        const {trackMetadata: e, trackData: a} = h
-                                          , l = a.getId()
-                                          , d = a.createThumbnail();
-                                        s.checkCustomTrackNameExists(e.name) ? o.showConfirm(r.get('The track "{0}" already exists. Do you wish to overwrite it?', [e.name]), r.get("Cancel"), r.get("Overwrite"), ( () => {
-                                            n()
-                                        }
-                                        ), ( () => {
-                                            s.saveCustomTrack(e, a) ? i.push({
+                            , c = t => {
+                                1 == e.length ? l(r.get("Failed to save track")) : l(r.get("Failed to save track {0}", [(t + 1).toString()]))
+                            }
+                            ;
+                            (async () => {
+                                const i = [];
+                                for (let t = 0; t < e.length; t++)
+                                    await new Promise((n => {
+                                        const a = e[t]
+                                        , h = TrackDataModule.A.fromExportString(a);
+                                        if (null == h)
+                                            d = t,
+                                            1 == e.length ? l(r.get("Invalid track code")) : l(r.get("Invalid track code for track {0}", [(d + 1).toString()])),
+                                            n();
+                                        else {
+                                            const {trackMetadata: e, trackData: a} = h
+                                            , l = a.getId()
+                                            , d = a.createThumbnail();
+                                            s.checkCustomTrackNameExists(e.name) ? o.showConfirm(r.get('The track "{0}" already exists. Do you wish to overwrite it?', [e.name]), r.get("Cancel"), r.get("Overwrite"), ( () => {
+                                                n()
+                                            }
+                                            ), ( () => {
+                                                s.saveCustomTrack(e, a) ? i.push({
+                                                    trackMetadata: e,
+                                                    trackData: a,
+                                                    trackId: l,
+                                                    trackThumbnail: d
+                                                }) : c(t),
+                                                n()
+                                            }
+                                            )) : (s.saveCustomTrack(e, a) ? i.push({
                                                 trackMetadata: e,
                                                 trackData: a,
                                                 trackId: l,
                                                 trackThumbnail: d
                                             }) : c(t),
-                                            n()
+                                            n())
                                         }
-                                        )) : (s.saveCustomTrack(e, a) ? i.push({
-                                            trackMetadata: e,
-                                            trackData: a,
-                                            trackId: l,
-                                            trackThumbnail: d
-                                        }) : c(t),
-                                        n())
+                                        var d
                                     }
-                                    var d
-                                }
-                                ));
-                            i.length > 0 && n(i, t)
+                                    ));
+                                i.length > 0 && n(i, t)
+                            }
+                            )()
                         }
-                        )()
-                    }
-                    )),
-                    d.appendChild(i.get(this, S, "f"))),
+                        )),
+                        d.appendChild(i.get(this, S, "f"))
+                    };
                     i.set(this, w, document.createElement("textarea"), "f"),
                     i.get(this, w, "f").spellcheck = !1,
                     h.appendChild(i.get(this, w, "f")),
                     null != n && (i.get(this, w, "f").placeholder = i.get(this, v, "f").get("Paste track data here...")),
-                    i.get(this, w, "f").value = e,
+                    i.get(this, w, "f").value = trackCodeText,
                     i.get(this, w, "f").readOnly = null == n,
                     window.addEventListener("keydown", i.set(this, k, (e => {
                         "Escape" != e.code || o.isOpen || (t(),
@@ -49969,12 +49993,15 @@ window.GLOBAL_SUN_LIGHT = -0.1;
                             C.get(this, Xo, "f"))
                                 return;
                             const n = e.toExportString(o);
+                            const getCwcExportString = () => {
+                                return e.toCwcExportString(o);
+                            };
                             C.set(this, Qo, new TrackExportUI(n,( () => {
                                 C.get(this, Qo, "f")?.dispose(),
                                 C.set(this, Qo, null, "f"),
                                 C.get(this, Oo, "f").className = "track-info-ui"
                             }
-                            ),null,t,a,u,s), "f")
+                            ),null,t,a,u,s, getCwcExportString), "f")
                         } catch (e) {
                             if (C.get(this, Xo, "f"))
                                 return;

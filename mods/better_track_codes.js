@@ -71,8 +71,8 @@ class VarintWriter {
 }
 
 class BetterTrackCodes {
-  static EXPORT_PREFIX = "PolyTrack3";
-  static SAVE_PREFIX = "PT3";
+  static EXPORT_PREFIX = "CWCTrack1";
+  static SAVE_PREFIX = "CWC1";
   static deps = null;
 
   #parts;
@@ -117,7 +117,7 @@ class BetterTrackCodes {
     return Math.max(9, Math.min(15, Math.ceil(Math.log2(byteLen + 1))));
   }
 
-  static #deflate(bytes) {
+  static _deflate(bytes) {
     const { pako } = BetterTrackCodes.#requireDeps();
     const wb = BetterTrackCodes.#pickWindowBits(bytes.length);
     const d = new pako.Deflate({ level: 9, windowBits: wb, memLevel: 9 });
@@ -243,7 +243,7 @@ class BetterTrackCodes {
 
   toSaveString() {
     const { Base62 } = BetterTrackCodes.#requireDeps();
-    return BetterTrackCodes.SAVE_PREFIX + Base62.encode(BetterTrackCodes.#deflate(this.toByteArray()));
+    return BetterTrackCodes.SAVE_PREFIX + Base62.encode(BetterTrackCodes._deflate(this.toByteArray()));
   }
 
   toExportString(meta) {
@@ -269,7 +269,7 @@ class BetterTrackCodes {
     full.set(header, 0);
     full.set(body, header.length);
 
-    return BetterTrackCodes.EXPORT_PREFIX + Base62.encode(BetterTrackCodes.#deflate(full));
+    return BetterTrackCodes.EXPORT_PREFIX + Base62.encode(BetterTrackCodes._deflate(full));
   }
 
   // Returns a TrackData or null on any parse / validation error
