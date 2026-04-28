@@ -2812,13 +2812,17 @@
                                 author: get(this, editor_trackAuthor, "f"),
                                 lastModified: get(this, editor_lastModified, "f")
                             }
-                              , s = get(this, editor_track, "f").getTrackData().toExportString(n);
+                              , tData = get(this, editor_track, "f").getTrackData()
+                              , s = tData.toExportString(n)
+                              , getCwcTrackString = () => {
+                                    return tData.toCwcExportString(n)
+                              };
                             set(this, editor_helpUI, new TrackExportUI(s,( () => {
                                 get(this, editor_helpUI, "f")?.dispose(),
                                 set(this, editor_helpUI, null, "f"),
                                 get(this, editor_containerElement, "f").className = "editor-ui"
                             }
-                            ),null,get(this, editor_localization, "f"),get(this, editor_audioManager, "f"),get(this, editor_customTrackManager, "f"),get(this, editor_dialogManager, "f")), "f")
+                            ),null,get(this, editor_localization, "f"),get(this, editor_audioManager, "f"),get(this, editor_customTrackManager, "f"),get(this, editor_dialogManager, "f"), getCwcTrackString), "f")
                         }
                         )), "f");
                     else {
@@ -2828,13 +2832,17 @@
                             author: get(this, editor_trackAuthor, "f"),
                             lastModified: get(this, editor_lastModified, "f")
                         }
-                          , n = get(this, editor_track, "f").getTrackData().toExportString(e);
+                          , tData = get(this, editor_track, "f").getTrackData()
+                          , n = tData.toExportString(e)
+                          , getCwcTrackString = () => {
+                                return tData.toCwcExportString(e)
+                          };
                         set(this, editor_helpUI, new TrackExportUI(n,( () => {
                             get(this, editor_helpUI, "f")?.dispose(),
                             set(this, editor_helpUI, null, "f"),
                             get(this, editor_containerElement, "f").className = "editor-ui"
                         }
-                        ),null,get(this, editor_localization, "f"),get(this, editor_audioManager, "f"),get(this, editor_customTrackManager, "f"),get(this, editor_dialogManager, "f")), "f")
+                        ),null,get(this, editor_localization, "f"),get(this, editor_audioManager, "f"),get(this, editor_customTrackManager, "f"),get(this, editor_dialogManager, "f"), getCwcTrackString), "f")
                     }
                 }
                 )),
