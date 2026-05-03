@@ -42024,13 +42024,13 @@ var GLOBAL_LEADERBOARD_API = null;
                 else
                     switch (C.get(this, multiplayerInstanceInfo, "f").gameMode) {
                     case MultiplayerRoomModes.Casual:
-                        C.set(this, oa, new TimeAnnouncerUI(C.get(this, ea, "f").element,C.get(this, Ur, "f"),C.get(this, Nr, "f"),C.get(this, Xr, "f").name,t,s?.time ?? null,"personal-best",l,Promise.resolve(null)), "f");
+                        C.set(this, oa, new TimeAnnouncerUI(C.get(this, ea, "f").element,C.get(this, Ur, "f"),C.get(this, Nr, "f"),C.get(this, Xr, "f").name,t,s?.time ?? null,"personal-best",l,a), "f");
                         break;
                     case MultiplayerRoomModes.Competitive:
                         {
                             let e;
                             e = null != s && C.get(this, Ua, "f").time.equals(s.time) ? "session-best" : "personal-best",
-                            C.set(this, oa, new TimeAnnouncerUI(C.get(this, ea, "f").element,C.get(this, Ur, "f"),C.get(this, Nr, "f"),C.get(this, Xr, "f").name,t,o?.time ?? null,e,l,Promise.resolve(null)), "f");
+                            C.set(this, oa, new TimeAnnouncerUI(C.get(this, ea, "f").element,C.get(this, Ur, "f"),C.get(this, Nr, "f"),C.get(this, Xr, "f").name,t,o?.time ?? null,e,l,a), "f");
                             break
                         }
                     default:
