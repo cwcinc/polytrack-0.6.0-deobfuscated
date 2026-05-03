@@ -162,3 +162,17 @@
     padding-inline: 2px;
     padding-block: 2.3px;
 }
+
+.rank-badge-container {
+    width: 80px;
+    position: absolute;
+    right: 35%;
+    top: 58px;
+    z-index: 1000;
+    opacity: 0%;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.rank-badge-container.show {
+    opacity: 100%;
+}

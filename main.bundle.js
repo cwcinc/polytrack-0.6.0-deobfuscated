@@ -1,5 +1,6 @@
 window.GLOBAL_LIGHT = -0.1;
 window.GLOBAL_SUN_LIGHT = -0.1;
+var GLOBAL_LEADERBOARD_API = null;
 
 ( () => {
     var e, t = {
@@ -38985,9 +38986,9 @@ window.GLOBAL_SUN_LIGHT = -0.1;
                 return "th"
             }
         }
-        var Je, Xe, Ye, Ze, $e, et;
+        var Je, Xe, timeAnnouncerUIDiv, Ze, $e, et;
         Xe = new WeakMap,
-        Ye = new WeakMap,
+        timeAnnouncerUIDiv = new WeakMap,
         Ze = new WeakMap,
         $e = new WeakMap,
         Je = new WeakSet,
@@ -39009,15 +39010,17 @@ window.GLOBAL_SUN_LIGHT = -0.1;
         }
         ;
         const TimeAnnouncerUI = class {
-            constructor(e, t, n, i, r, a, s, o, l) {
+            constructor(e, t, n, i, finishTimeObject, personalBestTimeObject, s, o, postLeaderboardRequest) {
                 Je.add(this),
                 Xe.set(this, void 0),
-                Ye.set(this, void 0),
+                timeAnnouncerUIDiv.set(this, void 0),
                 Ze.set(this, null),
                 $e.set(this, !1),
                 C.set(this, Xe, e, "f"),
-                C.set(this, Ye, document.createElement("div"), "f"),
-                C.get(this, Ye, "f").className = "time-announcer-ui";
+
+                C.set(this, timeAnnouncerUIDiv, document.createElement("div"), "f"),
+                C.get(this, timeAnnouncerUIDiv, "f").className = "time-announcer-ui";
+
                 const c = document.createElement("div");
                 switch (c.className = "record hidden",
                 s) {
@@ -39029,43 +39032,58 @@ window.GLOBAL_SUN_LIGHT = -0.1;
                     c.classList.add("session-best"),
                     c.textContent = t.get("NEW SESSION BEST")
                 }
-                C.get(this, Ye, "f").appendChild(c);
+                C.get(this, timeAnnouncerUIDiv, "f").appendChild(c);
+
                 const h = document.createElement("div");
                 h.className = "track-name",
                 h.textContent = i,
-                C.get(this, Ye, "f").appendChild(h);
-                const d = document.createElement("div");
-                d.className = "current",
-                C.get(this, Ye, "f").appendChild(d);
-                const u = document.createElement("div");
-                u.className = "time",
-                d.appendChild(u);
+                C.get(this, timeAnnouncerUIDiv, "f").appendChild(h);
+
+                const currentTimeDiv = document.createElement("div");
+                currentTimeDiv.className = "current",
+                C.get(this, timeAnnouncerUIDiv, "f").appendChild(currentTimeDiv);
+
+                const timeDisplayText = document.createElement("div");
+                timeDisplayText.className = "time",
+                currentTimeDiv.appendChild(timeDisplayText);
+
                 const p = document.createElement("div");
                 p.className = "position-dash",
                 p.textContent = "-",
-                d.appendChild(p);
+                currentTimeDiv.appendChild(p);
+
                 const f = document.createElement("div");
                 f.className = "position",
-                d.appendChild(f);
+                currentTimeDiv.appendChild(f);
+
                 const g = document.createElement("div");
-                C.get(this, Ye, "f").appendChild(g);
+                C.get(this, timeAnnouncerUIDiv, "f").appendChild(g);
+
                 const m = document.createElement("p");
                 g.appendChild(m);
+
                 const A = document.createElement("div");
-                C.get(this, Ye, "f").appendChild(A);
+                C.get(this, timeAnnouncerUIDiv, "f").appendChild(A);
+
                 const v = document.createElement("p");
                 v.className = "title",
                 A.appendChild(v);
+
                 const y = document.createElement("p");
-                if (A.appendChild(y),
-                C.get(this, Xe, "f").appendChild(C.get(this, Ye, "f")),
-                u.textContent = Ve.A.formatTimeString(r),
-                null == a)
+                A.appendChild(y);
+                C.get(this, Xe, "f").appendChild(C.get(this, timeAnnouncerUIDiv, "f"));
+                timeDisplayText.textContent = Ve.A.formatTimeString(finishTimeObject);
+
+                const rank_div = document.createElement('div');
+                rank_div.className = 'rank-badge-container';
+                C.get(this, timeAnnouncerUIDiv, "f").appendChild(rank_div);
+
+                if (null == personalBestTimeObject)
                     c.classList.remove("hidden"),
                     g.className = "hidden",
                     C.get(this, Je, "m", et).call(this, n);
                 else {
-                    const e = r.difference(a);
+                    const e = finishTimeObject.difference(personalBestTimeObject);
                     m.textContent = Ve.A.formatTimeString(e, !0),
                     e.isNegative() ? (c.classList.remove("hidden"),
                     g.className = "difference",
@@ -39074,23 +39092,30 @@ window.GLOBAL_SUN_LIGHT = -0.1;
                 if (null == o)
                     A.className = "hidden";
                 else {
-                    const e = r.difference(o.record);
+                    const e = finishTimeObject.difference(o.record);
                     v.textContent = o.nickname,
                     y.textContent = Ve.A.formatTimeString(e, !0),
                     e.isNegative() ? A.className = "difference" : A.className = "difference red"
                 }
                 const b = performance.now();
-                l.then((e => {
+                postLeaderboardRequest.then((e => {
                     if (null != e) {
-                        const t = e.newPosition;
-                        let i = e.previousPosition;
+                        const t = e.positionChange.newPosition;
+                        let i = e.positionChange.previousPosition;
+                        const wrTime = e.worldRecord.time;
+                        const rank = m_calculateRank(finishTimeObject, wrTime);
+                        const svg = m_makeRankBadge(rank);
+
                         const r = Math.max(0, 1500 - (performance.now() - b));
                         setTimeout(( () => {
+                            rank_div.appendChild(m_makeRankBadge(rank));
+                            rank_div.classList.add("show");
+
                             i = Math.max(i, t);
                             let e = i;
-                            if (f.textContent = Ke(e),
-                            d.classList.add("show-position"),
-                            t != i) {
+                            f.textContent = Ke(e);
+                            currentTimeDiv.classList.add("show-position");
+                            if (t != i) {
                                 const i = () => {
                                     let i = performance.now();
                                     let r = .1;
@@ -39133,11 +39158,11 @@ window.GLOBAL_SUN_LIGHT = -0.1;
                         ), r)
                     }
                 }
-                ))
+                ));
             }
             dispose() {
                 null != C.get(this, Ze, "f") && clearTimeout(C.get(this, Ze, "f")),
-                C.get(this, Xe, "f").removeChild(C.get(this, Ye, "f")),
+                C.get(this, Xe, "f").removeChild(C.get(this, timeAnnouncerUIDiv, "f")),
                 C.set(this, $e, !0, "f")
             }
         }
@@ -41932,7 +41957,7 @@ window.GLOBAL_SUN_LIGHT = -0.1;
                         }
                     C.set(this, Ua, {
                         time: t,
-                        position: a.then((e => e?.newPosition ?? null)),
+                        position: a.then((e => e?.positionChange?.newPosition ?? null)),
                         recording: i
                     }, "f")
                 } else
@@ -49750,8 +49775,8 @@ window.GLOBAL_SUN_LIGHT = -0.1;
             C.get(this, po, "f").appendChild(r)
         }
         ;
-        const Lo = class {
-            constructor(e, t, n, i, r, a, s, o, l, c, h) {
+        const LeaderboardUI = class {
+            constructor(e, t, n, requestManager, r, a, s, o, l, c, h) {
                 Xs.add(this),
                 Ys.set(this, void 0),
                 Zs.set(this, void 0),
@@ -49779,7 +49804,7 @@ window.GLOBAL_SUN_LIGHT = -0.1;
                 wo.set(this, []),
                 C.set(this, Ys, t, "f"),
                 C.set(this, Zs, n, "f"),
-                C.set(this, $s, i, "f"),
+                C.set(this, $s, requestManager, "f"),
                 C.set(this, eo, r, "f"),
                 C.set(this, to, a, "f"),
                 C.set(this, no, s, "f"),
@@ -49917,7 +49942,7 @@ window.GLOBAL_SUN_LIGHT = -0.1;
             C.get(this, jo, "f").disabled = 0 == C.get(this, Jo, "f").length && null == C.get(this, Do, "f").getRecord(C.get(this, Bo, "f").profileSlot, C.get(this, Go, "f"))
         }
         ;
-        const nl = class {
+        const TrackInfoUI = class {
             constructor(e, t, n, i, r, a, s, o, l, c, h, d, u, p, f, g, m, A) {
                 Uo.add(this),
                 zo.set(this, void 0),
@@ -49947,7 +49972,7 @@ window.GLOBAL_SUN_LIGHT = -0.1;
                 C.get(this, Oo, "f").className = "track-info-ui",
                 e.appendChild(C.get(this, Oo, "f"));
                 const v = r.getRecord(i.profileSlot, h);
-                C.set(this, Ko, new Lo(C.get(this, Oo, "f"),h,t,n,a,i,r,u,p,(e => {
+                C.set(this, Ko, new LeaderboardUI(C.get(this, Oo, "f"),h,t,n,a,i,r,u,p,(e => {
                     C.set(this, Jo, e, "f"),
                     C.get(this, Uo, "m", $o).call(this)
                 }
@@ -51672,7 +51697,7 @@ window.GLOBAL_SUN_LIGHT = -0.1;
                     C.set(this, Ic, new LoadingScreenUI(!1), "f"),
                     d().then((d => {
                         d.hasStartingPoint() ? l(s, d, u, c, null) : a.show(e.get("Track is missing starting point"), e.get("Ok"), ( () => {
-                            C.set(this, Pc, new nl(C.get(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
+                            C.set(this, Pc, new TrackInfoUI(C.get(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
                         }
                         ))
                     }
@@ -51680,7 +51705,7 @@ window.GLOBAL_SUN_LIGHT = -0.1;
                         if (!(l instanceof TrackLoadError))
                             throw l;
                         a.show(e.get("Failed to load track"), e.get("Ok"), ( () => {
-                            C.set(this, Pc, new nl(C.get(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
+                            C.set(this, Pc, new TrackInfoUI(C.get(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
                         }
                         ))
                     }
@@ -51694,12 +51719,12 @@ window.GLOBAL_SUN_LIGHT = -0.1;
                     C.get(this, Pc, "f")?.dispose(),
                     C.set(this, Pc, null, "f"),
                     o.determinismState != Js.Ok ? a.show(e.get("Cannot load recordings due to non-determinism"), e.get("Ok"), ( () => {
-                        C.set(this, Pc, new nl(C.get(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
+                        C.set(this, Pc, new TrackInfoUI(C.get(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
                     }
                     )) : c.then((c => {
                         d().then((d => {
                             d.hasStartingPoint() ? l(s, d, u, c, null) : a.show(e.get("Track is missing starting point"), e.get("Ok"), ( () => {
-                                C.set(this, Pc, new nl(C.get(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
+                                C.set(this, Pc, new TrackInfoUI(C.get(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
                             }
                             ))
                         }
@@ -51707,7 +51732,7 @@ window.GLOBAL_SUN_LIGHT = -0.1;
                             if (!(l instanceof TrackLoadError))
                                 throw l;
                             a.show(e.get("Failed to load track"), e.get("Ok"), ( () => {
-                                C.set(this, Pc, new nl(C.get(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
+                                C.set(this, Pc, new TrackInfoUI(C.get(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
                             }
                             ))
                         }
@@ -51715,7 +51740,7 @@ window.GLOBAL_SUN_LIGHT = -0.1;
                     }
                     )).catch(( () => {
                         a.show(e.get("Failed to load recordings"), e.get("Ok"), ( () => {
-                            C.set(this, Pc, new nl(C.get(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
+                            C.set(this, Pc, new TrackInfoUI(C.get(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
                         }
                         ))
                     }
@@ -51725,12 +51750,12 @@ window.GLOBAL_SUN_LIGHT = -0.1;
                     C.get(this, Pc, "f")?.dispose(),
                     C.set(this, Pc, null, "f"),
                     o.determinismState != Js.Ok ? a.show(e.get("Cannot load recordings due to non-determinism"), e.get("Ok"), ( () => {
-                        C.set(this, Pc, new nl(C.get(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
+                        C.set(this, Pc, new TrackInfoUI(C.get(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
                     }
                     )) : l.then((l => {
                         d().then((d => {
                             d.hasStartingPoint() ? c(s, d, u, l) : a.show(e.get("Track is missing starting point"), e.get("Ok"), ( () => {
-                                C.set(this, Pc, new nl(C.get(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
+                                C.set(this, Pc, new TrackInfoUI(C.get(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
                             }
                             ))
                         }
@@ -51738,7 +51763,7 @@ window.GLOBAL_SUN_LIGHT = -0.1;
                             if (!(l instanceof TrackLoadError))
                                 throw l;
                             a.show(e.get("Failed to load track"), e.get("Ok"), ( () => {
-                                C.set(this, Pc, new nl(C.get(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
+                                C.set(this, Pc, new TrackInfoUI(C.get(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
                             }
                             ))
                         }
@@ -51746,7 +51771,7 @@ window.GLOBAL_SUN_LIGHT = -0.1;
                     }
                     )).catch(( () => {
                         a.show(e.get("Failed to load recordings"), e.get("Ok"), ( () => {
-                            C.set(this, Pc, new nl(C.get(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
+                            C.set(this, Pc, new TrackInfoUI(C.get(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
                         }
                         ))
                     }
@@ -51757,7 +51782,7 @@ window.GLOBAL_SUN_LIGHT = -0.1;
                     C.set(this, Pc, null, "f"),
                     d().then((d => {
                         d.hasStartingPoint() ? c(s, d, u, l) : a.show(e.get("Track is missing starting point"), e.get("Ok"), ( () => {
-                            C.set(this, Pc, new nl(C.get(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
+                            C.set(this, Pc, new TrackInfoUI(C.get(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
                         }
                         ))
                     }
@@ -51765,14 +51790,14 @@ window.GLOBAL_SUN_LIGHT = -0.1;
                         if (!(l instanceof TrackLoadError))
                             throw l;
                         a.show(e.get("Failed to load track"), e.get("Ok"), ( () => {
-                            C.set(this, Pc, new nl(C.get(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
+                            C.set(this, Pc, new TrackInfoUI(C.get(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f")
                         }
                         ))
                     }
                     ))
                 }
                 ;
-                C.set(this, Pc, new nl(C.get(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f"),
+                C.set(this, Pc, new TrackInfoUI(C.get(this, kc, "f"),e,o,r,n,t,a,s,h,d,p,f,i,g,A,m,v,y), "f"),
                 C.get(this, vc, "m", Xc).call(this)
             }
             ))
@@ -52565,7 +52590,7 @@ window.GLOBAL_SUN_LIGHT = -0.1;
             }
         }
         ;
-        var Dh, Bh, Gh, Fh, Oh, Wh, Vh, Hh, jh, Kh = i(1066);
+        var Dh, Bh, Gh, Fh, Oh, Wh, Vh, getPositionChange, jh, Kh = i(1066);
         Bh = new WeakMap,
         Gh = new WeakMap,
         Fh = new WeakMap,
@@ -52573,18 +52598,19 @@ window.GLOBAL_SUN_LIGHT = -0.1;
         Wh = new WeakMap,
         Vh = new WeakMap,
         Dh = new WeakSet,
-        Hh = async function(e, t, n, i, r) {
+        getPositionChange = async function(e, trackId, onlyVerified, i, r) {
             if (C.get(this, Fh, "f").determinismState != Js.Ok)
                 return null;
             const a = C.get(this, Oh, "f").getUserProfile(e);
             if (null == a)
                 return null;
-            const s = e.toString() + "_" + t
+            const s = e.toString() + "_" + trackId
               , o = (C.get(this, Wh, "f").get(s) ?? 0) + 1;
             C.get(this, Wh, "f").set(s, o);
-            const {uploadId: l, positionChange: c} = await C.get(this, Fh, "f").submitLeaderboard(a.token, a.nickname, a.countryCode, a.carStyle, t, n, i, r);
-            return C.get(this, Wh, "f").get(s) == o && C.get(this, Oh, "f").getUserProfile(e)?.token == a.token && C.get(this, Bh, "f").saveRecord(e, a.tokenHash, t, l, i, r, C.get(this, Fh, "f").determinismState),
-            c
+            const {uploadId: uploadId, positionChange: positionChange} = await C.get(this, Fh, "f").submitLeaderboard(a.token, a.nickname, a.countryCode, a.carStyle, trackId, onlyVerified, i, r);
+            const wrEntry = onlyVerified != null ? await C.get(this, Fh, "f").getTrackWorldRecord(a.token, trackId, onlyVerified) : null;
+            C.get(this, Wh, "f").get(s) == o && C.get(this, Oh, "f").getUserProfile(e)?.token == a.token && C.get(this, Bh, "f").saveRecord(e, a.tokenHash, trackId, uploadId, i, r, C.get(this, Fh, "f").determinismState);
+            return {uploadId: uploadId, positionChange: positionChange, worldRecord: wrEntry};
         }
         ,
         jh = async function(e, t, n) {
@@ -52636,19 +52662,27 @@ window.GLOBAL_SUN_LIGHT = -0.1;
                 if (null == a)
                     return null;
                 C.get(this, Bh, "f").saveRecord(e, a.tokenHash, t, null, i, r, C.get(this, Fh, "f").determinismState);
-                const s = await C.get(this, Dh, "m", Hh).call(this, e, t, n, i, r).catch((e => (console.warn(e),
+                const s = await C.get(this, Dh, "m", getPositionChange).call(this, e, t, n, i, r).catch((e => (console.warn(e),
                 null)));
                 for (const e of C.get(this, Vh, "f"))
                     e();
-                return s
+                return s;
             }
             async syncRecord(e, t, n) {
                 if (C.get(this, Fh, "f").determinismState != Js.Ok)
                     return null;
                 const i = this.getRecord(e, t);
-                return null != i && (null == n || i.uploadId != n.id && i.time.lessThan(n.time)) ? (await C.get(this, Dh, "m", Hh).call(this, e, t, null, i.time, i.recording),
-                "Upload") : null != n && (null == i || i.uploadId != n.id && n.time.lessThan(i.time)) ? (await C.get(this, Dh, "m", jh).call(this, e, t, n.id),
-                "Download") : null
+                return null != i && (
+                    null == n || i.uploadId != n.id && i.time.lessThan(n.time)
+                ) ? (
+                    (await C.get(this, Dh, "m", getPositionChange).call(this, e, t, null, i.time, i.recording)).positionChange,
+                    "Upload"
+                ) : null != n && (
+                    null == i || i.uploadId != n.id && n.time.lessThan(i.time)
+                ) ? (
+                    await C.get(this, Dh, "m", jh).call(this, e, t, n.id),
+                    "Download"
+                ) : null
             }
             cleanUpRecords() {
                 const e = C.get(this, Bh, "f").loadRecordTracks();
@@ -55582,8 +55616,92 @@ window.GLOBAL_SUN_LIGHT = -0.1;
                 }
                 ))
             }
-            getLeaderboardUserEntry(e, t, n) {
-                const i = POLYTRACK_API_REQUEST_URL + C.get(this, ku, "f") + "leaderboardUserEntry?version=0.6.0&trackId=" + t + "&userTokenHash=" + encodeURIComponent(e) + "&onlyVerified=" + n.toString();
+            getTrackWorldRecord(userTokenHash, trackId, onlyVerified) {
+                let reqUrl = POLYTRACK_API_REQUEST_URL + C.get(this, ku, "f") + "leaderboard?version=0.6.0&trackId=" + trackId + "&skip=" + 0 + "&amount=1&onlyVerified=" + onlyVerified.toString();
+                return this.determinismState == Js.Ok && (reqUrl += "&userTokenHash=" + encodeURIComponent(userTokenHash)),
+                new Promise(( (resolve, reject) => {
+                    const i = new XMLHttpRequest;
+                    i.timeout = C.get(this, wu, "f"),
+                    i.overrideMimeType("text/plain"),
+                    i.onreadystatechange = () => {
+                        if (i.readyState == XMLHttpRequest.DONE)
+                            if (200 == i.status)
+                                try {
+                                    const r = JSON.parse(i.responseText);
+                                    if (null == r || "object" != typeof r)
+                                        return void reject(new Error("JSON is not an object"));
+                                    if (!("total"in r) || "number" != typeof r.total)
+                                        return void reject(new Error("Total is not a number"));
+                                    if (!Number.isSafeInteger(r.total))
+                                        return void reject(new Error("Total is not a safe integer"));
+                                    const a = r.total;
+                                    if (!("entries"in r))
+                                        return void reject(new Error("Entries field does not exist"));
+                                    const s = r.entries;
+                                    if (!Array.isArray(s))
+                                        return void reject(new Error("Entries is not an array"));
+                                    const wrEntry = s[0];
+                                    if (null == wrEntry || "object" != typeof wrEntry)
+                                        return void reject(new Error("World record entry is not an object"));
+                                    if (!("id"in wrEntry))
+                                        return void reject(new Error('World record entry is missing "id" field'));
+                                    if (!("userId"in wrEntry))
+                                        return void reject(new Error('World record entry is missing "userId" field'));
+                                    if (!("nickname"in wrEntry))
+                                        return void reject(new Error('World record entry is missing "nickname" field'));
+                                    if (!("frames"in wrEntry))
+                                        return void reject(new Error('World record entry is missing "frames" field'));
+                                    if (!("carStyle"in wrEntry))
+                                        return void reject(new Error('World record entry is missing "carStyle" field'));
+                                    if (!("verifiedState"in wrEntry))
+                                        return void reject(new Error('World record entry is missing "verifiedState" field'));
+                                    if (!("countryCode"in wrEntry))
+                                        return void reject(new Error('World record entry is missing "countryCode" field'));
+                                    if ("number" != typeof wrEntry.id)
+                                        return void reject(new Error('"id" field has incorrect type'));
+                                    if ("string" != typeof wrEntry.userId)
+                                        return void reject(new Error('"userId" field has incorrect type'));
+                                    if ("string" != typeof wrEntry.nickname)
+                                        return void reject(new Error('"nickname" field has incorrect type'));
+                                    if ("number" != typeof wrEntry.verifiedState)
+                                        return void reject(new Error('"verifiedState" field has incorrect type'));
+                                    if (null != wrEntry.countryCode && "string" != typeof wrEntry.countryCode)
+                                        return void reject(new Error('"countryCode" field has incorrect type'));
+                                    let countryCode;
+                                    if (countryCode = null == wrEntry.countryCode ? null : (0,
+                                    Gn.j)(wrEntry.countryCode),
+                                    "number" != typeof wrEntry.frames)
+                                        return void reject(new Error('"frames" field has incorrect type'));
+                                    if (!Number.isSafeInteger(wrEntry.frames) || wrEntry.frames <= 0 || wrEntry.frames > ie.A.maxFrames)
+                                        return void reject(new Error('"frames" field has an invalid value'));
+                                    if ("string" != typeof wrEntry.carStyle)
+                                        return void reject(new Error('"carStyle" field has incorrect type'));
+                                    if (!Number.isSafeInteger(wrEntry.verifiedState) || wrEntry.verifiedState < 0)
+                                        return void reject(new Error('"verifiedState" field has an invalid value'));
+                                    const wrEntryData = {
+                                        id: wrEntry.id,
+                                        nickname: wrEntry.nickname,
+                                        countryCode: countryCode,
+                                        time: new yt.A(wrEntry.frames),
+                                        carStyle: jt.A.deserializeSafe(wrEntry.carStyle),
+                                        verifiedState: wrEntry.verifiedState,
+                                        isSelf: wrEntry.userId == userTokenHash
+                                    };
+                                    resolve(wrEntryData)
+                                } catch (e) {
+                                    reject(new Error("Unknown error: " + String(e)))
+                                }
+                            else
+                                reject(new Error("Failed to connect to server"))
+                    }
+                    ,
+                    i.open("GET", reqUrl, !0),
+                    i.send()
+                }
+                ))
+            }
+            getLeaderboardUserEntry(userTokenHash, trackId, onlyVerified) {
+                const i = POLYTRACK_API_REQUEST_URL + C.get(this, ku, "f") + "leaderboardUserEntry?version=0.6.0&trackId=" + trackId + "&userTokenHash=" + encodeURIComponent(userTokenHash) + "&onlyVerified=" + onlyVerified.toString();
                 return new Promise(( (e, t) => {
                     const n = new XMLHttpRequest;
                     n.timeout = C.get(this, wu, "f"),
@@ -55991,6 +56109,7 @@ window.GLOBAL_SUN_LIGHT = -0.1;
             }
         }
         ;
+        GLOBAL_LEADERBOARD_API = Tu;
         var Mu, _u, Cu, Ru, Pu;
         _u = new WeakMap,
         Cu = new WeakMap,
