@@ -39035,8 +39035,16 @@ var GLOBAL_LEADERBOARD_API = null;
                 C.get(this, timeAnnouncerUIDiv, "f").appendChild(c);
 
                 const h = document.createElement("div");
-                h.className = "track-name",
-                h.textContent = i,
+                h.className = "track-name";
+
+                const trackNameElement = document.createElement("p");
+                trackNameElement.textContent = i;
+                h.appendChild(trackNameElement);
+
+                const rank_div = document.createElement('div');
+                rank_div.className = 'rank-badge-container';
+                h.appendChild(rank_div);
+
                 C.get(this, timeAnnouncerUIDiv, "f").appendChild(h);
 
                 const currentTimeDiv = document.createElement("div");
@@ -39073,10 +39081,6 @@ var GLOBAL_LEADERBOARD_API = null;
                 A.appendChild(y);
                 C.get(this, Xe, "f").appendChild(C.get(this, timeAnnouncerUIDiv, "f"));
                 timeDisplayText.textContent = Ve.A.formatTimeString(finishTimeObject);
-
-                const rank_div = document.createElement('div');
-                rank_div.className = 'rank-badge-container';
-                C.get(this, timeAnnouncerUIDiv, "f").appendChild(rank_div);
 
                 if (null == personalBestTimeObject)
                     c.classList.remove("hidden"),

@@ -165,14 +165,32 @@
 
 .rank-badge-container {
     width: 80px;
-    position: absolute;
+    height: 60px;
+    transform: translateY(-10px);
+    flex-shrink: 0;
+    position: static;
     right: 35%;
     top: 58px;
-    z-index: 1000;
     opacity: 0%;
     transition: opacity 0.5s ease-in-out;
 }
 
 .rank-badge-container.show {
     opacity: 100%;
+}
+
+.track-name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4em;
+    max-width: 100%;
+}
+
+.track-name > p {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 0;
 }
