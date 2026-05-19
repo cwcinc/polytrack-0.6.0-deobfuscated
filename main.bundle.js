@@ -49498,7 +49498,7 @@ var GLOBAL_LEADERBOARD_API = null;
             e[e.TestFailed = 2] = "TestFailed",
             e[e.AssetsFailed = 3] = "AssetsFailed"
         }(Js || (Js = {}));
-        var Xs, Ys, Zs, $s, eo, to, no, io, ro, ao, so, oo, lo, co, ho, uo, po, fo, go, mo, Ao, vo, yo, bo, wo, xo, So, ko, Eo, To = i(4784);
+        var Xs, Ys, Zs, $s, eo, to, no, io, ro, ao, so, oo, lo, co, ho, uo, po, fo, go, mo, Ao, vo, yo, bo, wo, xo, So, createLeaderboardElement, Eo, To = i(4784);
         function Mo(e) {
             let t = Math.trunc(e).toString()
               , n = "";
@@ -49597,9 +49597,9 @@ var GLOBAL_LEADERBOARD_API = null;
                             C.get(this, oo, "f").textContent = C.get(this, Zs, "f").get("{0} players", [Mo(a)]),
                             C.get(this, oo, "f").classList.add("fade-in");
                             for (let e = 0; e < s.length; e++) {
-                                const {id: t, nickname: i, countryCode: a, time: o, carStyle: l, verifiedState: c, isSelf: h} = s[e]
+                                const {id: t, nickname: i, countryCode: a, time: o, carStyle: l, verifiedState: c, isSelf: h, date: date} = s[e]
                                   , d = r + e + 1;
-                                C.get(this, Xs, "m", ko).call(this, d, i, a, o, l, c, h, t, n)
+                                C.get(this, Xs, "m", createLeaderboardElement).call(this, d, i, a, o, l, c, h, t, n, date)
                             }
                             C.get(this, $s, "f").determinismState == Js.Ok && (null != o ? (C.set(this, yo, Math.floor((o.position - 1) / i), "f"),
                             C.get(this, ho, "f").disabled = !1,
@@ -49635,7 +49635,7 @@ var GLOBAL_LEADERBOARD_API = null;
             ), 500)
         }
         ,
-        ko = function(e, t, n, i, r, a, s, o, l) {
+        createLeaderboardElement = function(e, t, n, i, r, a, s, o, l, date) {
             const c = document.createElement("button");
             c.className = "button main",
             s && (C.set(this, bo, c, "f"),
@@ -49727,7 +49727,11 @@ var GLOBAL_LEADERBOARD_API = null;
             v.appendChild(S)
 
             const runIdText = document.createElement("p");
-            runIdText.textContent = `${o}`;
+            const dateString = date.toLocaleDateString() + " " + date.toLocaleTimeString(void 0, {
+                    hour: "numeric",
+                    minute: "2-digit"
+                })
+            runIdText.textContent = dateString;
             runIdText.className = "run-id-text";
             v.appendChild(runIdText);
         }
@@ -55569,7 +55573,8 @@ var GLOBAL_LEADERBOARD_API = null;
                                             time: new yt.A(t.frames),
                                             carStyle: jt.A.deserializeSafe(t.carStyle),
                                             verifiedState: t.verifiedState,
-                                            isSelf: t.userId == e
+                                            isSelf: t.userId == e,
+                                            date: t.time ? new Date(t.time) : null
                                         })
                                     }
                                     if (!("userEntry"in r))

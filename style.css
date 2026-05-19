@@ -77,7 +77,7 @@
 .leaderboard-ui > .container > button.main > div > p.run-id-text {
     position: absolute;
     font-size: medium;
-    top: 0px;
+    top: -11px;
     right: 0px;
     opacity: 20%;
     user-select: all;
