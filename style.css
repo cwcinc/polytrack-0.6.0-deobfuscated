@@ -194,3 +194,48 @@
     white-space: nowrap;
     margin: 0;
 }
+
+.track-selection-ui > .bar > .button.group-button.enabled {
+    background-color: var(--button-hover-color);
+}
+
+.track-selection-ui > .bar > .button.group-button {
+    margin: 8px 0px;
+}
+
+.sort-dropdown {
+    margin: 8px 0px 8px 12px;
+    padding: 8px 12px;
+    background-color: var(--button-color);
+    border: none;
+    clip-path: polygon(8px 0, 100% 0, 100% 100%, 0 100%);
+    color: var(--text-color);
+    font-size: 32px;
+    pointer-events: auto;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.sort-dropdown::-ms-expand {
+    display: none;
+}
+
+.track-selection-ui > .bar > .button.sort-order-button {
+    clip-path: polygon(0 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+    margin: 8px 0px;
+}
+
+.track-selection-ui > .bar > .button.sort-order-button > img {
+    width: 15px;
+}
+
+.track-selection-ui > .bar > .button.import-button {
+    margin: 8px 12px 8px 0px;
+}

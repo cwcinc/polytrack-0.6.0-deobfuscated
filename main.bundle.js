@@ -8883,7 +8883,7 @@ var GLOBAL_LEADERBOARD_API = null;
         4839: (e, t, n) => {
             "use strict";
             n.d(t, {
-                A: () => ie
+                A: () => TrackSelectionMenu
             });
             var i = n(1635)
               , r = n(5072)
@@ -8907,7 +8907,7 @@ var GLOBAL_LEADERBOARD_API = null;
             A.insertStyleElement = p();
             a()(m.A, A);
             m.A && m.A.locals && m.A.locals;
-            var v, y, b, w, x, S, k, E, T, LoadIntoTrackFromMenu, _, C, R, P, I, L, U, z, N, D, B, G, F, O, W, V, H, j, K, createTrackUIPanel, Q, J, X = n(5839), TrackExportUI = n(579).A, TrackEnvironment = n(5169).A;
+            var v, y, b, w, x, S, k, E, T, LoadIntoTrackFromMenu, _, C, R, P, I, L, U, z, N, D, trackMenuElements, currentTrackSearchCriteria, trackSortCriteria, F, groupsEnabled, trackSortAscending, O, W, V, H, j, K, createTrackUIPanel, Q, updateTrackSearchCriteria, X = n(5839), TrackExportUI = n(579).A, TrackEnvironment = n(5169).A;
             let $ = null
               , ee = 0
               , te = 0
@@ -8931,9 +8931,12 @@ var GLOBAL_LEADERBOARD_API = null;
             z = new WeakMap,
             N = new WeakMap,
             D = new WeakMap,
-            B = new WeakMap,
-            G = new WeakMap,
+            trackMenuElements = new WeakMap,
+            currentTrackSearchCriteria = new WeakMap,
+            trackSortCriteria = new WeakMap,
             F = new WeakMap,
+            groupsEnabled = new WeakMap,
+            trackSortAscending = new WeakMap,
             O = new WeakMap,
             W = new WeakMap,
             V = new WeakMap,
@@ -9100,7 +9103,7 @@ var GLOBAL_LEADERBOARD_API = null;
                     c.appendChild(e)
                 }
 
-                i.get(this, B, "f").push({
+                i.get(this, trackMenuElements, "f").push({
                     category: trackCategory,
                     group: environmentContainerType,
                     trackMetadata: trackMetadata,
@@ -9131,9 +9134,9 @@ var GLOBAL_LEADERBOARD_API = null;
                 i.get(this, U, "f").classList.add("open"))
             }
             ,
-            J = function() {
-                const e = i.get(this, G, "f").value.trim().toLowerCase();
-                for (const t of i.get(this, B, "f"))
+            updateTrackSearchCriteria = function() {
+                const e = i.get(this, currentTrackSearchCriteria, "f").value.trim().toLowerCase();
+                for (const t of i.get(this, trackMenuElements, "f"))
                     t.trackMetadata.name.toLowerCase().includes(e) || t.trackMetadata.author?.toLowerCase().includes(e) ? t.buttonContainer.style.display = "" : t.buttonContainer.style.display = "none";
                 for (const e of ["official", "community", "custom"]) {
                     let t;
@@ -9148,18 +9151,18 @@ var GLOBAL_LEADERBOARD_API = null;
                         t = i.get(this, D, "f")
                     }
                     for (const [n,r] of t.entries())
-                        i.get(this, B, "f").some((t => t.category == e && t.group == n && "none" != t.buttonContainer.style.display)) ? r.style.display = "" : r.style.display = "none"
+                        i.get(this, trackMenuElements, "f").some((t => t.category == e && t.group == n && "none" != t.buttonContainer.style.display)) ? r.style.display = "" : r.style.display = "none"
                 }
                 if ($ ?? ($ = i.get(this, T, "f").loadTrackSelectionTab()),
-                i.get(this, B, "f").filter((e => e.category == $)).every((e => "none" == e.buttonContainer.style.display)))
+                i.get(this, trackMenuElements, "f").filter((e => e.category == $)).every((e => "none" == e.buttonContainer.style.display)))
                     for (const e of ["official", "community", "custom"])
-                        if (i.get(this, B, "f").some((t => t.category == e && "none" != t.buttonContainer.style.display))) {
+                        if (i.get(this, trackMenuElements, "f").some((t => t.category == e && "none" != t.buttonContainer.style.display))) {
                             i.get(this, v, "m", Q).call(this, e);
                             break
                         }
             }
             ;
-            const ie = class {
+            const TrackSelectionMenu = class {
                 constructor(e, t, n, r, a, s, o, l, c, h, d, u) {
                     if (v.add(this),
                     y.set(this, void 0),
@@ -9181,11 +9184,14 @@ var GLOBAL_LEADERBOARD_API = null;
                     z.set(this, new Map),
                     N.set(this, new Map),
                     D.set(this, new Map),
-                    B.set(this, []),
-                    G.set(this, void 0),
+                    trackMenuElements.set(this, []),
+                    currentTrackSearchCriteria.set(this, void 0),
+                    trackSortCriteria.set(this, void 0),
                     F.set(this, null),
                     O.set(this, !1),
                     W.set(this, !1),
+                    groupsEnabled.set(this, !0),
+                    trackSortAscending.set(this, !0),
                     V.set(this, void 0),
                     H.set(this, void 0),
                     j.set(this, void 0),
@@ -9314,23 +9320,79 @@ var GLOBAL_LEADERBOARD_API = null;
                     const se = document.createElement("div");
                     se.className = "search-bar-container",
                     g.appendChild(se),
-                    i.set(this, G, document.createElement("input"), "f"),
-                    i.get(this, G, "f").type = "text",
-                    i.get(this, G, "f").spellcheck = !1,
-                    i.get(this, G, "f").autocomplete = "off",
-                    i.get(this, G, "f").autocapitalize = "off",
-                    i.get(this, G, "f").enterKeyHint = "search",
-                    i.get(this, G, "f").placeholder = i.get(this, b, "f").get("Search by track or author..."),
-                    i.get(this, G, "f").addEventListener("input", ( () => {
-                        i.get(this, v, "m", J).call(this)
+                    i.set(this, currentTrackSearchCriteria, document.createElement("input"), "f"),
+                    i.get(this, currentTrackSearchCriteria, "f").type = "text",
+                    i.get(this, currentTrackSearchCriteria, "f").spellcheck = !1,
+                    i.get(this, currentTrackSearchCriteria, "f").autocomplete = "off",
+                    i.get(this, currentTrackSearchCriteria, "f").autocapitalize = "off",
+                    i.get(this, currentTrackSearchCriteria, "f").enterKeyHint = "search",
+                    i.get(this, currentTrackSearchCriteria, "f").placeholder = i.get(this, b, "f").get("Search by track or author..."),
+                    i.get(this, currentTrackSearchCriteria, "f").addEventListener("input", ( () => {
+                        i.get(this, v, "m", updateTrackSearchCriteria).call(this)
                     }
                     )),
-                    se.appendChild(i.get(this, G, "f"));
+                    se.appendChild(i.get(this, currentTrackSearchCriteria, "f"));
+
+                    const sortCriteriaSelectionBox = document.createElement("select");
+                    sortCriteriaSelectionBox.className = "sort-dropdown",
+                    sortCriteriaSelectionBox.innerHTML = `
+                        <option value="id" selected>${i.get(this, b, "f").get("Save Time")}</option>
+                        <option value="name">${i.get(this, b, "f").get("Name")}</option>
+                        <option value="author">${i.get(this, b, "f").get("Author")}</option>
+                        <option value="lastModified">${i.get(this, b, "f").get("Last Modified")}</option>
+                        <option value="environment">${i.get(this, b, "f").get("Environment")}</option>
+                    `,
+                    // <option value="saveTime">${i.get(this, b, "f").get("Save Time")}</option>
+                    sortCriteriaSelectionBox.addEventListener("change", ( () => {
+                        console.log("Changed to ", sortCriteriaSelectionBox.value);
+                        i.set(this, trackSortCriteria, sortCriteriaSelectionBox.value, "f"),
+                        this.refresh();
+                    }
+                    )),
+                    g.appendChild(sortCriteriaSelectionBox);
+
+                    const sortOrderToggle = document.createElement("button");
+                    sortOrderToggle.className = "button sort-order-button";
+                    if (i.get(this, trackSortAscending, "f")) {
+                        sortOrderToggle.innerHTML = '<img class="button-icon" src="images/arrow_down.svg"> ';
+                    } else {
+                        sortOrderToggle.innerHTML = '<img class="button-icon" src="images/arrow_up.svg"> ';
+                    }
+                    sortOrderToggle.addEventListener("click", ( () => {
+                        i.set(this, trackSortAscending, !i.get(this, trackSortAscending, "f"), "f");
+                        if (i.get(this, trackSortAscending, "f")) {
+                            sortOrderToggle.innerHTML = '<img class="button-icon" src="images/arrow_down.svg"> ';
+                        } else {
+                            sortOrderToggle.innerHTML = '<img class="button-icon" src="images/arrow_up.svg"> ';
+                        }
+                        this.refresh()
+                    }
+                    ));
+                    g.appendChild(sortOrderToggle);
+
+                    const groupsEnabledToggle = document.createElement("button");
+                    groupsEnabledToggle.className = "button group-button";
+                    if (i.get(this, groupsEnabled, "f")) {
+                        groupsEnabledToggle.classList.add("enabled");
+                    }
+                    groupsEnabledToggle.innerHTML = '<img class="button-icon" src="images/list.svg"> ',
+                    groupsEnabledToggle.addEventListener("click", ( () => {
+                        i.set(this, groupsEnabled, !i.get(this, groupsEnabled, "f"), "f");
+                        if (i.get(this, groupsEnabled, "f")) {
+                            groupsEnabledToggle.classList.add("enabled");
+                        } else {
+                            groupsEnabledToggle.classList.remove("enabled");
+                        }
+                        this.refresh()
+                    }
+                    )),
+                    g.appendChild(groupsEnabledToggle);
+
                     const oe = document.createElement("img");
                     oe.src = "images/search.svg",
                     se.appendChild(oe);
                     const le = document.createElement("button");
-                    le.className = "button",
+                    le.className = "button import-button",
                     le.innerHTML = '<img class="button-icon" src="images/import.svg"> ',
                     le.append(document.createTextNode(i.get(this, b, "f").get("Import"))),
                     le.addEventListener("click", ( () => {
@@ -9435,7 +9497,7 @@ var GLOBAL_LEADERBOARD_API = null;
                     return i.get(this, O, "f") || null != i.get(this, F, "f")
                 }
                 refresh() {
-                    if (i.set(this, B, [], "f"),
+                    if (i.set(this, trackMenuElements, [], "f"),
                     i.get(this, I, "f").innerHTML = "",
                     i.get(this, L, "f").innerHTML = "",
                     i.get(this, U, "f").innerHTML = "",
@@ -9443,9 +9505,9 @@ var GLOBAL_LEADERBOARD_API = null;
                     i.get(this, N, "f").clear(),
                     i.get(this, D, "f").clear(),
                     i.get(this, S, "f").forEachOfficialTrack(( (e, t, n, r) => {
-                        i.get(this, v, "m", createTrackUIPanel).call(this, "official", n.environment, t, n.environment, ( () => Promise.resolve(n)), e, r)
+                        i.get(this, v, "m", createTrackUIPanel).call(this, "official", i.get(this, groupsEnabled, "f") ? n.environment : null, t, n.environment, ( () => Promise.resolve(n)), e, r)
                     }
-                    )),
+                    ), i.get(this, trackSortCriteria, "f"), i.get(this, trackSortAscending, "f")),
                     i.get(this, S, "f").isCommunityTracksEmpty()) {
                         const e = document.createElement("div");
                         e.className = "empty";
@@ -9459,10 +9521,10 @@ var GLOBAL_LEADERBOARD_API = null;
                         e.appendChild(n),
                         i.get(this, L, "f").appendChild(e)
                     } else
-                        i.get(this, S, "f").forEachCommunityTrack(( (e, t, n, r, a, s) => {
-                            i.get(this, v, "m", createTrackUIPanel).call(this, "community", t, n, r, a, e, s)
+                        i.get(this, S, "f").forEachCommunityTrack(( (e, group, n, r, a, s) => {
+                            i.get(this, v, "m", createTrackUIPanel).call(this, "community", i.get(this, groupsEnabled, "f") ? group : null, n, r, a, e, s)
                         }
-                        ));
+                        ), i.get(this, trackSortCriteria, "f"), i.get(this, trackSortAscending, "f"));
                     if (i.get(this, S, "f").isCustomTracksEmpty()) {
                         const e = document.createElement("div");
                         e.className = "empty";
@@ -9490,8 +9552,8 @@ var GLOBAL_LEADERBOARD_API = null;
                             }
                             ), saveTime, backup)
                         }
-                        ));
-                    i.get(this, v, "m", J).call(this)
+                        ), i.get(this, trackSortCriteria, "f"), i.get(this, trackSortAscending, "f"));
+                    i.get(this, v, "m", updateTrackSearchCriteria).call(this)
                 }
             }
         }
@@ -41506,7 +41568,7 @@ var GLOBAL_LEADERBOARD_API = null;
             }
         }
         ;
-        var sr = i(4839)
+        var TrackSelectionMenu = i(4839)
           , or = i(9782)
           , lr = {};
         lr.styleTagTransform = u(),
@@ -42373,7 +42435,7 @@ var GLOBAL_LEADERBOARD_API = null;
                     C.set(this, da, null, "f")),
                     null != C.get(this, ua, "f") ? (C.get(this, ua, "f").dispose(),
                     C.set(this, ua, null, "f")) : (C.get(this, ea, "f").isVisible = !1,
-                    C.set(this, ua, new sr.A(null,C.get(this, Ur, "f"),C.get(this, Nr, "f"),C.get(this, Br, "f"),C.get(this, Vr, "f"),C.get(this, Dr, "f"),C.get(this, Or, "f"),C.get(this, Hr, "f"),"cancel",!0,( () => {
+                    C.set(this, ua, new TrackSelectionMenu.A(null,C.get(this, Ur, "f"),C.get(this, Nr, "f"),C.get(this, Br, "f"),C.get(this, Vr, "f"),C.get(this, Dr, "f"),C.get(this, Or, "f"),C.get(this, Hr, "f"),"cancel",!0,( () => {
                         C.get(this, ua, "f")?.dispose(),
                         C.set(this, ua, null, "f"),
                         C.get(this, ea, "f").isVisible = !0
@@ -51402,7 +51464,7 @@ var GLOBAL_LEADERBOARD_API = null;
             f.addEventListener("click", ( () => {
                 C.get(this, audioHandler, "f").playUIClick(),
                 e.classList.add("hidden"),
-                C.set(this, tc, new sr.A(C.get(this, Jl, "f"),C.get(this, languageMap, "f"),C.get(this, audioHandler, "f"),C.get(this, recordManager, "f"),C.get(this, Ol, "f"),C.get(this, profileManager, "f"),C.get(this, Kl, "f"),C.get(this, jl, "f"),"back",!1,( () => {
+                C.set(this, tc, new TrackSelectionMenu.A(C.get(this, Jl, "f"),C.get(this, languageMap, "f"),C.get(this, audioHandler, "f"),C.get(this, recordManager, "f"),C.get(this, Ol, "f"),C.get(this, profileManager, "f"),C.get(this, Kl, "f"),C.get(this, jl, "f"),"back",!1,( () => {
                     C.get(this, tc, "f")?.dispose(),
                     C.set(this, tc, null, "f"),
                     e.classList.remove("hidden")
@@ -51687,7 +51749,7 @@ var GLOBAL_LEADERBOARD_API = null;
         Vc = new WeakMap,
         vc = new WeakSet,
         Hc = function(e, t, n, i, r, a, s, o, l, c) {
-            return new sr.A(C.get(this, kc, "f"),e,t,n,i,r,a,s,"back",!1,( () => {
+            return new TrackSelectionMenu.A(C.get(this, kc, "f"),e,t,n,i,r,a,s,"back",!1,( () => {
                 C.get(this, Rc, "f").hide(),
                 C.get(this, vc, "m", Qc).call(this),
                 C.get(this, vc, "m", Yc).call(this)
@@ -52707,9 +52769,9 @@ var GLOBAL_LEADERBOARD_API = null;
             }
         }
         ;
-        var Qh, Jh, Xh, loadedCustomTracks, Zh, $h, ed, td, nd, id, loadCustomTrackIntoGame, loadCustomTrackIntoGameWithBackup, ad;
-        Jh = new WeakMap,
-        Xh = new WeakMap,
+        var Qh, loadedMainTracks, loadedCommunityTracks, loadedCustomTracks, Zh, $h, ed, td, nd, id, loadCustomTrackIntoGame, loadCustomTrackIntoGameWithBackup, ad;
+        loadedMainTracks = new WeakMap,
+        loadedCommunityTracks = new WeakMap,
         loadedCustomTracks = new WeakMap,
         Zh = new WeakMap,
         $h = new WeakMap,
@@ -52847,21 +52909,21 @@ var GLOBAL_LEADERBOARD_API = null;
         const sd = class {
             constructor(e, t) {
                 Qh.add(this),
-                Jh.set(this, []),
-                Xh.set(this, []),
+                loadedMainTracks.set(this, []),
+                loadedCommunityTracks.set(this, []),
                 loadedCustomTracks.set(this, []),
                 Zh.set(this, new Map),
                 $h.set(this, void 0),
                 ed.set(this, []),
                 C.set(this, $h, t, "f");
                 Promise.all(["summer1.track", "summer2.track", "summer3.track", "summer4.track", "summer5.track", "summer6.track", "summer7.track", "winter1.track", "winter2.track", "winter3.track", "winter4.track", "winter5.track", "desert1.track", "desert2.track", "desert3.track", "desert4.track", "desert5.track"].map((t => C.get(this, Qh, "m", td).call(this, t, e)))).then((e => {
-                    C.set(this, Jh, e, "f")
+                    C.set(this, loadedMainTracks, e, "f")
                 }
                 )).catch((e => {
                     console.error(e)
                 }
                 )),
-                C.set(this, Xh, [{
+                C.set(this, loadedCommunityTracks, [{
                     id: "64bf7efaed2a47dfb03a6b152e3aef637ac251b68a725a28352f3376ff1384d7",
                     group: "0.6.0",
                     trackMetadata: {
@@ -53511,7 +53573,7 @@ var GLOBAL_LEADERBOARD_API = null;
                 t >= 0 && C.get(this, ed, "f").splice(t, 1)
             }
             isCommunityTracksEmpty() {
-                return 0 == C.get(this, Xh, "f").length
+                return 0 == C.get(this, loadedCommunityTracks, "f").length
             }
             isCustomTracksEmpty() {
                 return 0 == C.get(this, loadedCustomTracks, "f").length
@@ -53530,27 +53592,51 @@ var GLOBAL_LEADERBOARD_API = null;
                 }
                 ))
             }
-            forEachOfficialTrack(e) {
-                for (const t of C.get(this, Jh, "f"))
+            forEachOfficialTrack(e, sortType=null, ascending=true) {
+                const tracks = [...C.get(this, loadedMainTracks, "f")];
+                const sortFunction = SORTING_FUNCTIONS.get(sortType);
+                if (sortFunction) {
+                    tracks.sort(sortFunction);
+                }
+                if (!ascending) {
+                    tracks.reverse();
+                }
+                for (const t of tracks)
                     e(t.id, t.trackMetadata, t.trackData, t.thumbnail)
             }
-            forEachCommunityTrack(e) {
-                for (const t of C.get(this, Xh, "f"))
+            forEachCommunityTrack(e, sortType=null, ascending=true) {
+                const tracks = [...C.get(this, loadedCommunityTracks, "f")];
+                const sortFunction = SORTING_FUNCTIONS.get(sortType);
+                if (sortFunction) {
+                    tracks.sort(sortFunction);
+                }
+                if (!ascending) {
+                    tracks.reverse();
+                }
+                for (const t of tracks)
                     e(t.id, t.group, t.trackMetadata, t.environment, t.trackData, t.thumbnail)
             }
-            forEachCustomTrack(e) {
-                for (const t of C.get(this, loadedCustomTracks, "f"))
+            forEachCustomTrack(e, sortType=null, ascending=true) {
+                const tracks = [...C.get(this, loadedCustomTracks, "f")];
+                const sortFunction = SORTING_FUNCTIONS.get(sortType);
+                if (sortFunction) {
+                    tracks.sort(sortFunction);
+                }
+                if (!ascending) {
+                    tracks.reverse();
+                }
+                for (const t of tracks)
                     e(t.id, t.trackMetadata, t.trackData, t.thumbnail, t.saveTime, t.backup)
             }
             getNextOfficialTrack(e) {
                 const t = e.getId()
-                  , n = C.get(this, Jh, "f").findIndex((e => e.id == t));
+                  , n = C.get(this, loadedMainTracks, "f").findIndex((e => e.id == t));
                 if (n < 0)
                     return null;
                 const i = n + 1;
-                if (i >= C.get(this, Jh, "f").length)
+                if (i >= C.get(this, loadedMainTracks, "f").length)
                     return null;
-                const r = C.get(this, Jh, "f")[i];
+                const r = C.get(this, loadedMainTracks, "f")[i];
                 return {
                     id: r.id,
                     trackMetadata: r.trackMetadata,
@@ -53559,10 +53645,10 @@ var GLOBAL_LEADERBOARD_API = null;
                 }
             }
             getRandomOfficialTrackData() {
-                return C.get(this, Jh, "f")[Math.floor(Math.random() * C.get(this, Jh, "f").length)].trackData
+                return C.get(this, loadedMainTracks, "f")[Math.floor(Math.random() * C.get(this, loadedMainTracks, "f").length)].trackData
             }
             getTrackByName(e) {
-                const t = C.get(this, Jh, "f").find((t => t.trackMetadata.name == e));
+                const t = C.get(this, loadedMainTracks, "f").find((t => t.trackMetadata.name == e));
                 if (null != t)
                     return {
                         id: t.id,
@@ -53570,7 +53656,7 @@ var GLOBAL_LEADERBOARD_API = null;
                         trackData: () => Promise.resolve(t.trackData),
                         trackCategory: "official"
                     };
-                const n = C.get(this, Xh, "f").find((t => t.trackMetadata.name == e));
+                const n = C.get(this, loadedCommunityTracks, "f").find((t => t.trackMetadata.name == e));
                 if (null != n)
                     return {
                         id: n.id,
@@ -53587,10 +53673,10 @@ var GLOBAL_LEADERBOARD_API = null;
                 } : null
             }
             isOfficialTrack(e) {
-                return C.get(this, Jh, "f").some((t => t.id == e))
+                return C.get(this, loadedMainTracks, "f").some((t => t.id == e))
             }
             isCommunityTrack(e) {
-                return C.get(this, Xh, "f").some((t => t.id == e))
+                return C.get(this, loadedCommunityTracks, "f").some((t => t.id == e))
             }
             isCustomTrack(e) {
                 return C.get(this, loadedCustomTracks, "f").some((t => t.id == e))
