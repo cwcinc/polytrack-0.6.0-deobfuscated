@@ -243,3 +243,13 @@
 .track-selection-ui > .bar > .button.import-button {
     margin: 8px 12px 8px 0px;
 }
+
+.track-selection-ui > .tracks-container > .track {
+    cursor: grab;
+    transition: transform 180ms ease;
+}
+
+.track-selection-ui > .tracks-container > .track.dragging {
+    opacity: 0.4;
+    cursor: grabbing;
+}

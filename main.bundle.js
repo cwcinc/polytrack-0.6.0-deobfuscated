@@ -8907,7 +8907,7 @@ var GLOBAL_LEADERBOARD_API = null;
             A.insertStyleElement = p();
             a()(m.A, A);
             m.A && m.A.locals && m.A.locals;
-            var v, y, b, w, x, S, k, E, T, LoadIntoTrackFromMenu, _, C, R, P, I, L, U, z, N, D, trackMenuElements, currentTrackSearchCriteria, trackSortCriteria, F, groupsEnabled, trackSortAscending, O, W, V, H, j, K, createTrackUIPanel, Q, updateTrackSearchCriteria, X = n(5839), TrackExportUI = n(579).A, TrackEnvironment = n(5169).A;
+            var v, y, b, w, x, S, k, E, localstorageManagerAccessor, LoadIntoTrackFromMenu, _, C, R, P, I, L, U, z, N, D, trackMenuElements, currentTrackSearchCriteria, trackSortCriteria, F, groupsEnabled, trackSortAscending, O, W, V, H, j, K, createTrackUIPanel, Q, updateTrackSearchCriteria, X = n(5839), TrackExportUI = n(579).A, TrackEnvironment = n(5169).A;
             let $ = null
               , ee = 0
               , te = 0
@@ -8919,7 +8919,7 @@ var GLOBAL_LEADERBOARD_API = null;
             S = new WeakMap,
             k = new WeakMap,
             E = new WeakMap,
-            T = new WeakMap,
+            localstorageManagerAccessor = new WeakMap,
             LoadIntoTrackFromMenu = new WeakMap,
             _ = new WeakMap,
             C = new WeakMap,
@@ -8947,8 +8947,10 @@ var GLOBAL_LEADERBOARD_API = null;
             createTrackUIPanel = function(trackCategory, environmentContainerType, trackMetadata, trackEnvironment, trackDataGetter, trackId, trackThumbnail, deleteTrackCallback=null, dateCreated=null, backup=null) {
                 const c = document.createElement("div");
                 let h, d;
-                switch (c.className = "track",
-                trackCategory) {
+                c.className = "track";
+                c.draggable = trackCategory === "custom";
+                c.dataset.trackName = trackMetadata.name;
+                switch (trackCategory) {
                 case "official":
                     h = i.get(this, I, "f"),
                     d = i.get(this, z, "f");
@@ -9115,7 +9117,7 @@ var GLOBAL_LEADERBOARD_API = null;
             ,
             Q = function(e) {
                 $ = e,
-                i.get(this, T, "f").saveTrackSelectionTab($),
+                i.get(this, localstorageManagerAccessor, "f").saveTrackSelectionTab($),
                 "official" == e ? (i.get(this, C, "f").classList.add("selected"),
                 i.get(this, R, "f").classList.remove("selected"),
                 i.get(this, P, "f").classList.remove("selected"),
@@ -9153,7 +9155,7 @@ var GLOBAL_LEADERBOARD_API = null;
                     for (const [n,r] of t.entries())
                         i.get(this, trackMenuElements, "f").some((t => t.category == e && t.group == n && "none" != t.buttonContainer.style.display)) ? r.style.display = "" : r.style.display = "none"
                 }
-                if ($ ?? ($ = i.get(this, T, "f").loadTrackSelectionTab()),
+                if ($ ?? ($ = i.get(this, localstorageManagerAccessor, "f").loadTrackSelectionTab()),
                 i.get(this, trackMenuElements, "f").filter((e => e.category == $)).every((e => "none" == e.buttonContainer.style.display)))
                     for (const e of ["official", "community", "custom"])
                         if (i.get(this, trackMenuElements, "f").some((t => t.category == e && "none" != t.buttonContainer.style.display))) {
@@ -9163,7 +9165,7 @@ var GLOBAL_LEADERBOARD_API = null;
             }
             ;
             const TrackSelectionMenu = class {
-                constructor(e, t, n, r, a, s, o, l, c, h, d, u) {
+                constructor(e, t, n, r, a, s, o, localstorageManager, c, h, d, u) {
                     if (v.add(this),
                     y.set(this, void 0),
                     b.set(this, void 0),
@@ -9172,7 +9174,7 @@ var GLOBAL_LEADERBOARD_API = null;
                     S.set(this, void 0),
                     k.set(this, void 0),
                     E.set(this, void 0),
-                    T.set(this, void 0),
+                    localstorageManagerAccessor.set(this, void 0),
                     LoadIntoTrackFromMenu.set(this, void 0),
                     _.set(this, void 0),
                     C.set(this, void 0),
@@ -9186,7 +9188,7 @@ var GLOBAL_LEADERBOARD_API = null;
                     D.set(this, new Map),
                     trackMenuElements.set(this, []),
                     currentTrackSearchCriteria.set(this, void 0),
-                    trackSortCriteria.set(this, void 0),
+                    trackSortCriteria.set(this, "custom"),
                     F.set(this, null),
                     O.set(this, !1),
                     W.set(this, !1),
@@ -9209,7 +9211,7 @@ var GLOBAL_LEADERBOARD_API = null;
                     i.set(this, S, a, "f"),
                     i.set(this, k, s, "f"),
                     i.set(this, E, o, "f"),
-                    i.set(this, T, l, "f"),
+                    i.set(this, localstorageManagerAccessor, localstorageManager, "f"),
                     i.set(this, LoadIntoTrackFromMenu, u, "f"),
                     i.set(this, _, document.createElement("div"), "f"),
                     i.get(this, _, "f").className = h ? "track-selection-ui with-background hidden" : "track-selection-ui hidden",
@@ -9288,24 +9290,100 @@ var GLOBAL_LEADERBOARD_API = null;
                         Z = null
                     }
                     ;
-                    i.get(this, I, "f").addEventListener("touchstart", ie, {
-                        passive: !0
-                    }),
-                    i.get(this, L, "f").addEventListener("touchstart", ie, {
-                        passive: !0
-                    }),
-                    i.get(this, U, "f").addEventListener("touchstart", ie, {
-                        passive: !0
-                    }),
-                    i.get(this, I, "f").addEventListener("touchend", re, {
-                        passive: !0
-                    }),
-                    i.get(this, L, "f").addEventListener("touchend", re, {
-                        passive: !0
-                    }),
-                    i.get(this, U, "f").addEventListener("touchend", re, {
-                        passive: !0
-                    });
+
+                    function getDropTarget(x, y, container) {
+                        const tiles = [...container.querySelectorAll('.track:not(.dragging)')];
+                        return tiles.find((t) => {
+                            const r = t.getBoundingClientRect();
+                            return x >= r.left && x <= r.right && y >= r.top && y <= r.bottom;
+                        });
+                    }
+                    function commitOrder(container) {
+                        const tiles = [...container.querySelectorAll('.track')];
+                        const trackNames = tiles.map((t) => t.dataset.trackName);
+                        
+                        localstorageManager.reorderCustomTracks(trackNames, a.getLoadedCustomTracksCache());
+                    }
+
+                    let dragged = null;
+                    let dragContainer = null;
+
+                    let scrollRAF = null;
+                    let scrollVY = 0;
+
+                    const SCROLL_ZONE = 60;
+                    const SCROLL_MAX_SPEED = 12;
+
+                    function startAutoScroll() {
+                        const step = () => {
+                            if (!dragged || !scrollVY || !dragContainer) {
+                                scrollRAF = null;
+                                return;
+                            }
+                            dragContainer.scrollTop += scrollVY;
+                            scrollRAF = requestAnimationFrame(step);
+                        };
+                        scrollRAF = requestAnimationFrame(step);
+                    }
+
+                    for (const e of [i.get(this, I, "f"), i.get(this, L, "f"), i.get(this, U, "f")]) {
+                        e.addEventListener("touchstart", ie, { passive: !0 });
+                        e.addEventListener("touchend", re, { passive: !0 });
+
+                        if (e !== i.get(this, U, "f")) continue;
+
+                        e.addEventListener('dragstart', (event) => {
+                            const tile = event.target.closest('.track');
+                            if (!tile) return;
+                            dragged = tile;
+                            dragContainer = e;
+                            tile.classList.add('dragging');
+                            event.dataTransfer.effectAllowed = 'move';
+                        });
+
+                        e.addEventListener('dragend', () => {
+                            if (!dragged) return;
+                            dragged.classList.remove('dragging');
+                            dragged = null;
+                            if (i.get(this, trackSortCriteria, "f") === "custom") {
+                                commitOrder(e);
+                            }
+                        });
+
+                        e.addEventListener('dragover', (dragEvent) => {
+                            dragEvent.preventDefault();
+                            if (!dragged) return;
+                            const target = getDropTarget(dragEvent.clientX, dragEvent.clientY, e);
+                            if (!target || target === dragged) return;
+                            const rect = target.getBoundingClientRect();
+                            const before = (dragEvent.clientX - rect.left) < rect.width / 2;
+                            e.insertBefore(dragged, before ? target : target.nextSibling);
+                        });
+
+                        e.addEventListener('dragover', (event) => {
+                            if (!dragged) return;
+                            const rect = e.getBoundingClientRect();
+
+                            const topDist = event.clientY - rect.top;
+                            const bottomDist = rect.bottom - event.clientY;
+                            if (topDist < SCROLL_ZONE) {
+                                scrollVY = -SCROLL_MAX_SPEED * (1 - topDist / SCROLL_ZONE);
+                            } else if (bottomDist < SCROLL_ZONE) {
+                                scrollVY = SCROLL_MAX_SPEED * (1 - bottomDist / SCROLL_ZONE);
+                            } else {
+                                scrollVY = 0;
+                            }
+
+                            if (scrollVY && !scrollRAF) startAutoScroll();
+                        });
+
+                        e.addEventListener('dragend', () => {
+                            scrollVY = 0;
+                            dragContainer = null;
+                            if (scrollRAF) { cancelAnimationFrame(scrollRAF); scrollRAF = null; }
+                        });
+                    }
+
                     const ae = document.createElement("button");
                     ae.className = "button",
                     "cancel" == c ? (ae.innerHTML = '<img class="button-icon" src="images/erase.svg"> ',
@@ -9336,15 +9414,15 @@ var GLOBAL_LEADERBOARD_API = null;
                     const sortCriteriaSelectionBox = document.createElement("select");
                     sortCriteriaSelectionBox.className = "sort-dropdown",
                     sortCriteriaSelectionBox.innerHTML = `
-                        <option value="id" selected>${i.get(this, b, "f").get("Save Time")}</option>
+                        <option value="saveTime">${i.get(this, b, "f").get("Save Time")}</option>
+                        <option value="custom" selected>${i.get(this, b, "f").get("Custom")}</option>
                         <option value="name">${i.get(this, b, "f").get("Name")}</option>
                         <option value="author">${i.get(this, b, "f").get("Author")}</option>
                         <option value="lastModified">${i.get(this, b, "f").get("Last Modified")}</option>
                         <option value="environment">${i.get(this, b, "f").get("Environment")}</option>
+                        <option value="id">${i.get(this, b, "f").get("ID")}</option>
                     `,
-                    // <option value="saveTime">${i.get(this, b, "f").get("Save Time")}</option>
                     sortCriteriaSelectionBox.addEventListener("change", ( () => {
-                        console.log("Changed to ", sortCriteriaSelectionBox.value);
                         i.set(this, trackSortCriteria, sortCriteriaSelectionBox.value, "f"),
                         this.refresh();
                     }
@@ -9472,7 +9550,7 @@ var GLOBAL_LEADERBOARD_API = null;
                     i.get(this, _, "f").classList.remove("hidden"),
                     i.set(this, O, !0, "f"),
                     this.refresh(),
-                    $ ?? ($ = i.get(this, T, "f").loadTrackSelectionTab()),
+                    $ ?? ($ = i.get(this, localstorageManagerAccessor, "f").loadTrackSelectionTab()),
                     "official" == $ ? (i.get(this, C, "f").classList.add("selected"),
                     i.get(this, R, "f").classList.remove("selected"),
                     i.get(this, P, "f").classList.remove("selected"),
@@ -52841,13 +52919,14 @@ var GLOBAL_LEADERBOARD_API = null;
                 setTimeout(( () => {
                     const n = C.get(this, $h, "f").loadCustomTrack(e);
                     if (null != n) {
-                        const {trackMetadata: e, trackData: i, saveTime: r} = n
+                        const {trackMetadata: e, trackData: i, saveTime: r, orderId: orderId} = n
                           , a = {
                             id: i.getId(),
                             trackMetadata: e,
                             trackData: i,
                             thumbnail: i.createThumbnail(),
-                            saveTime: r
+                            saveTime: r,
+                            orderId: orderId
                         };
                         t(a)
                     } else
@@ -52865,30 +52944,31 @@ var GLOBAL_LEADERBOARD_API = null;
                         const mainTrackData = C.get(this, $h, "f").loadCustomTrack(e);
                         const backupData = await C.get(this, $h, "f").loadTrackBackup(e);
                         if (null != mainTrackData) {
-                            const {trackMetadata: e, trackData: i, saveTime: r} = mainTrackData
+                            const {trackMetadata: e, trackData: i, saveTime: r, orderId: orderId} = mainTrackData
 
                             let backupResponseCollection = null;
                             if (null != backupData) {
-                                const {trackMetadata: backupMetadata, trackData: backupTrackData, saveTime: backupSaveTime} = backupData
+                                const {trackMetadata: backupMetadata, trackData: backupTrackData, saveTime: backupSaveTime, orderId: backupOrderId} = backupData
                                 backupResponseCollection = {
                                     id: i.getId(),
                                     trackMetadata: backupMetadata,
                                     trackData: backupTrackData,
                                     thumbnail: backupTrackData.createThumbnail(),
-                                    saveTime: backupSaveTime
+                                    saveTime: backupSaveTime,
+                                    orderId: backupOrderId
                                 }
                                 if (backupSaveTime > r) {
                                     console.warn(`A backup for track ${e.name} was found that is newer than the main track data. Loading from backup.`);
                                     resolve(backupResponseCollection)
                                 }
                             }
-
                             const trackResponseCollection = {
                                 id: i.getId(),
                                 trackMetadata: e,
                                 trackData: i,
                                 thumbnail: i.createThumbnail(),
                                 saveTime: r,
+                                orderId: orderId,
                                 backup: backupResponseCollection
                             };
                             resolve(trackResponseCollection)
@@ -53616,7 +53696,7 @@ var GLOBAL_LEADERBOARD_API = null;
                 for (const t of tracks)
                     e(t.id, t.group, t.trackMetadata, t.environment, t.trackData, t.thumbnail)
             }
-            forEachCustomTrack(e, sortType=null, ascending=true) {
+            forEachCustomTrack(e, sortType="custom", ascending=true) {
                 const tracks = [...C.get(this, loadedCustomTracks, "f")];
                 const sortFunction = SORTING_FUNCTIONS.get(sortType);
                 if (sortFunction) {
@@ -53680,6 +53760,9 @@ var GLOBAL_LEADERBOARD_API = null;
             }
             isCustomTrack(e) {
                 return C.get(this, loadedCustomTracks, "f").some((t => t.id == e))
+            }
+            getLoadedCustomTracksCache(e) {
+                return C.get(this, loadedCustomTracks, "f")
             }
         }
         ;
@@ -54498,26 +54581,59 @@ var GLOBAL_LEADERBOARD_API = null;
                         console.error(e)
                     }
             }
-            saveCustomTrack(e, t, n) {
-                this.saveTrackBackup(e, t, n);
+            saveCustomTrack(e, t, n, orderId = null) {
                 const i = t.toExportString(e);
                 try {
-                    return C.get(this, Id, "f").setItem(C.get(Pd, Pd, "f", TRACK_SAVE_KEY_PREFIX) + e.name, JSON.stringify({
+                    const storage = C.get(this, Id, "f");
+                    const prefix = C.get(Pd, Pd, "f", TRACK_SAVE_KEY_PREFIX);
+                    const key = prefix + e.name;
+
+                    let finalOrderId = orderId;
+                    if (finalOrderId == null) {
+                        try {
+                            const existing = storage.getItem(key);
+                            if (existing != null) {
+                                const parsed = JSON.parse(existing);
+                                if (parsed && typeof parsed.orderId === "number") {
+                                    finalOrderId = parsed.orderId;
+                                }
+                            }
+                        } catch {}
+                    }
+                    if (finalOrderId == null) {
+                        let maxOrderId = -1;
+                        const allKeys = storage.getAllKeys();
+                        for (const k of allKeys) {
+                            if (!k.startsWith(prefix)) continue;
+                            try {
+                                const parsed = JSON.parse(storage.getItem(k));
+                                if (parsed && typeof parsed.orderId === "number" && parsed.orderId > maxOrderId) {
+                                    maxOrderId = parsed.orderId;
+                                }
+                            } catch {}
+                        }
+                        finalOrderId = maxOrderId + 1;
+                    }
+                    this.saveTrackBackup(e, t, n, finalOrderId);
+                    storage.setItem(key, JSON.stringify({
                         data: i,
-                        saveTime: n.getTime()
+                        saveTime: n.getTime(),
+                        orderId: finalOrderId
                     })),
                     !0
+                    return !0;
                 } catch (e) {
                     return console.error(e),
                     !1
                 }
             }
-            async saveTrackBackup(e, t, n) {
+            async saveTrackBackup(e, t, n, orderId=0) {
                 const i = t.toExportString(e);
                 try {
                     await this.m_backupManager.backupTrack(C.get(Pd, Pd, "f", TRACK_BACKUP_KEY_PREFIX) + e.name, JSON.stringify({
                         data: i,
-                        saveTime: n.getTime()
+                        saveTime: n.getTime(),
+                        orderId: orderId
                     })),
                     !0
                 } catch (e) {
@@ -54526,7 +54642,7 @@ var GLOBAL_LEADERBOARD_API = null;
                 }
             }
             async loadTrackBackup(e) {
-                let saveData, saveTime;
+                let saveData, saveTime, orderId;
                 try {
                     const i = await this.m_backupManager.getBackup(C.get(Pd, Pd, "f", TRACK_BACKUP_KEY_PREFIX) + e);
                     if (null == i)
@@ -54539,7 +54655,8 @@ var GLOBAL_LEADERBOARD_API = null;
                     if (!("saveTime"in r) || "number" != typeof r.saveTime)
                         return null;
                     saveData = r.data,
-                    saveTime = r.saveTime
+                    saveTime = r.saveTime,
+                    orderId = r.orderId ?? 0
                 } catch (e) {
                     return console.error(e),
                     null
@@ -54548,11 +54665,83 @@ var GLOBAL_LEADERBOARD_API = null;
                 return null == trackObject ? null : {
                     trackMetadata: trackObject.trackMetadata,
                     trackData: trackObject.trackData,
-                    saveTime: saveTime
+                    saveTime: saveTime,
+                    orderId: orderId
                 };
             }
+            assignDefaultOrderIds() {
+                let e;
+                const storage = C.get(this, Id, "f");
+                try {
+                    e = storage.getAllKeys()
+                } catch (e) {
+                    return console.error(e),
+                    null
+                };
+                const allTrackKeys = e.filter((e => e.startsWith(C.get(Pd, Pd, "f", TRACK_SAVE_KEY_PREFIX))));
+                
+                const tracks = [];
+                for (let key of allTrackKeys) {
+                    try {
+                        const raw = storage.getItem(key);
+                        if (raw == null) continue;
+                        const parsed = JSON.parse(raw);
+                        if (parsed == null || typeof parsed !== "object") continue;
+                        tracks.push({ key, parsed });
+                    } catch (e) {
+                        console.error(e);
+                    }
+                }
+
+                // Skip migration if every track already has orderId
+                // console.log(tracks);
+                const needsMigration = tracks.some(
+                    (t) => typeof t.parsed.orderId !== "number"
+                );
+                if (!needsMigration) return 0;
+
+                // Default sort is by save time ascending
+                tracks.sort((a, b) => Number(a.parsed.saveTime) - Number(b.parsed.saveTime));
+
+                let written = 0;
+                tracks.forEach((t, index) => {
+                    if (t.parsed.orderId === index) return;
+                    t.parsed.orderId = index;
+                    try {
+                        storage.setItem(t.key, JSON.stringify(t.parsed));
+                        written++;
+                    } catch (e) {
+                        console.error(e);
+                    }
+                });
+                return written;
+            }
+            reorderCustomTracks(trackNames, cachedTracks) {
+                const prefix = C.get(Pd, Pd, "f", TRACK_SAVE_KEY_PREFIX);
+                const storage = C.get(this, Id, "f");
+
+                trackNames.forEach((trackName, index) => {
+                    const newOrderId = trackNames.length - 1 - index;
+                    const key = prefix + trackName;
+                    try {
+                        const raw = storage.getItem(key);
+                        if (raw == null) return;
+                        const parsed = JSON.parse(raw);
+                        if (parsed == null || typeof parsed !== "object") return;
+                        if (parsed.orderId === newOrderId) return;
+                        parsed.orderId = newOrderId;
+                        storage.setItem(key, JSON.stringify(parsed));
+                    } catch (e) {
+                        console.error(e);
+                    }
+
+
+                    const cached = cachedTracks?.find((t) => t.trackMetadata.name === trackName);
+                    if (cached) cached.orderId = newOrderId;
+                });
+            }
             loadCustomTrack(e) {
-                let t, n;
+                let t, n, orderId;
                 try {
                     const i = C.get(this, Id, "f").getItem(C.get(Pd, Pd, "f", TRACK_SAVE_KEY_PREFIX) + e);
                     if (null == i)
@@ -54565,7 +54754,8 @@ var GLOBAL_LEADERBOARD_API = null;
                     if (!("saveTime"in r) || "number" != typeof r.saveTime)
                         return null;
                     t = r.data,
-                    n = r.saveTime
+                    n = r.saveTime,
+                    orderId = r.orderId ?? 0
                 } catch (e) {
                     return console.error(e),
                     null
@@ -54574,7 +54764,8 @@ var GLOBAL_LEADERBOARD_API = null;
                 return null == i ? null : {
                     trackMetadata: i.trackMetadata,
                     trackData: i.trackData,
-                    saveTime: n
+                    saveTime: n,
+                    orderId: orderId
                 }
             }
             deleteCustomTrack(e) {
@@ -57548,6 +57739,7 @@ var GLOBAL_LEADERBOARD_API = null;
             const e = new cu;
             await e.initialize(),
             e.migrate();
+            e.assignDefaultOrderIds();
             const t = new Nh
               , n = new Bf(e,t)
               , settingsManager = new SettingsClass(e);
