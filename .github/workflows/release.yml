@@ -22,7 +22,7 @@ jobs:
           npm install @electron/asar
       - name: pack asar
         run: |
-          npx asar -p . app.asar
+          npx asar p . app.asar
       - name: Create release
         uses: softprops/action-gh-release@v3
         with:
