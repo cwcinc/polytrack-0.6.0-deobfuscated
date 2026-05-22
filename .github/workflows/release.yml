@@ -13,15 +13,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-      - name: Remove package.json
-        run: rm -f package.json
       - name: Setup node
         uses: actions/setup-node@v6
         with:
           node-version: 'latest'
       - name: install packages
         run: |
-          npm install @electron/asar
+          npm install -g @electron/asar
       - name: pack asar
         run: |
           npx asar p . app.asar
