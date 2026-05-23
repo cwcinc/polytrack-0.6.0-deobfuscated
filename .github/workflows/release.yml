@@ -1,0 +1,65 @@
+name: Build and release cwctrack
+on:
+  push:
+    tags: ['*']
+
+jobs:
+  test:
+    uses: ./.github/workflows/ci.yml
+
+  build-and-release:
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 'latest'
+
+      - name: Install asar
+        run: npm install -g @electron/asar
+
+      - name: Stage build
+        run: |
+          mkdir dist
+          cp package.json dist/
+
+          cp admin.bundle.js dist/
+          cp app.bundle.js dist/
+          cp editor.bundle.js dist/
+          cp error_screen.bundle.js dist/
+          cp garage.bundle.js dist/
+          cp haptics.bundle.js dist/
+          cp main.bundle.js dist/
+          cp simulation_worker.bundle.js dist/
+          cp SQLite.bundle.js dist/
+          cp verifier.bundle.js dist/
+
+          cp forced_square.json dist/
+          cp forced_square.ttf dist/
+          cp forced_square.woff dist/
+          cp forced_square.woff2 dist/
+
+          cp favicon.ico dist/
+          cp index.html dist/
+          cp style.css dist/
+
+          cp polytrack_physics.wasm dist/
+
+          cp -r mods dist/
+          cp -r models dist/
+          cp -r images dist/
+          cp -r lib dist/
+          cp -r audio dist/
+          cp -r electron dist/
+          cp -r tracks dist/
+
+      - name: Pack asar
+        run: asar pack dist app.asar
+
+      - uses: softprops/action-gh-release@v3
+        with:
+          files: app.asar
